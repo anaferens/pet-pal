@@ -100,6 +100,17 @@
     pointer-events: none;
   }
   .hero-inner { position: relative; z-index: 1; }
+  .hero-sheep {
+    width: 170px;
+    margin: 0 auto 18px;
+    display: block;
+    filter: drop-shadow(0 0 50px rgba(205,188,255,0.35));
+    animation: float 6s ease-in-out infinite;
+  }
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-14px); }
+  }
   .eyebrow {
     display: inline-block;
     font-size: 0.78rem;
@@ -384,6 +395,7 @@
 
   <header class="hero" id="top">
     <div class="hero-inner">
+      <img class="hero-sheep" src="screens/hero-sheep.png" alt="PetPal sheep mascot">
       <span class="eyebrow">Design Research · PetPal</span>
       <h1>Competitor <em>research</em><br>&amp; benchmark</h1>
       <p>Where PetPal sits among direct rivals, adjacent tools, and global category leaders — and which UX patterns earn a place in our MVP.</p>
