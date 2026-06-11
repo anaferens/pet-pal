@@ -3,6 +3,7 @@
 Mobile-first lifestyle app for pet owners. One place for health records, reminders, documents, vet communication, and pet personality info.
 
 **Brief:** See [CLAUDE.md](CLAUDE.md) for full product brief.
+**Research:** See [research/research.md](research/research.md) for competitor benchmark.
 
 ---
 
@@ -25,8 +26,8 @@ Mobile-first lifestyle app for pet owners. One place for health records, reminde
 | Phase | Status |
 |---|---|
 | Brief | ✅ Done |
-| Competitor research | 🔜 Up next |
-| Wireframes | — |
+| Competitor research | ✅ Done |
+| Wireframes | 🔜 Up next |
 | Concept | — |
 | Design system | — |
 | Handoff | — |
