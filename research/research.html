@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PetPal — Competitor Research</title>
+<style>
+  :root {
+    --bg: #0f1115;
+    --bg-card: #1a1d24;
+    --bg-card-alt: #20242c;
+    --border: #2b2f3a;
+    --text: #e8e9ed;
+    --text-muted: #9aa0ac;
+    --accent: #7dd3a8;
+    --accent-soft: #f5c97b;
+    --accent-purple: #b8a4ff;
+    --red: #ff8a8a;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+  }
+  .wrap { max-width: 1100px; margin: 0 auto; padding: 40px 24px 100px; }
+  header.page-header {
+    text-align: center;
+    padding: 60px 24px 40px;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 40px;
+  }
+  header.page-header h1 {
+    font-size: 2.4rem;
+    margin: 0 0 8px;
+    letter-spacing: -0.5px;
+  }
+  header.page-header p {
+    color: var(--text-muted);
+    font-size: 1.05rem;
+    margin: 0;
+  }
+  nav.toc {
+    display: flex;
+    justify-content: center;
+    gap: 24px;
+    margin: 24px 0 0;
+    flex-wrap: wrap;
+  }
+  nav.toc a {
+    color: var(--accent);
+    text-decoration: none;
+    font-size: 0.95rem;
+    border: 1px solid var(--border);
+    padding: 6px 16px;
+    border-radius: 20px;
+    transition: background 0.15s;
+  }
+  nav.toc a:hover { background: var(--bg-card-alt); }
+
+  section { margin-bottom: 64px; scroll-margin-top: 20px; }
+  section h2 {
+    font-size: 1.7rem;
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  section > p.section-intro {
+    color: var(--text-muted);
+    margin-top: 0;
+    margin-bottom: 28px;
+    max-width: 760px;
+  }
+  h3 {
+    font-size: 1.15rem;
+    margin: 32px 0 12px;
+    color: var(--accent);
+  }
+  h3.soft { color: var(--accent-soft); }
+  h3.purple { color: var(--accent-purple); }
+
+  .badge {
+    display: inline-block;
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    padding: 3px 10px;
+    border-radius: 12px;
+    font-weight: 600;
+  }
+  .badge.hard { background: rgba(255,138,138,0.15); color: var(--red); }
+  .badge.soft { background: rgba(245,201,123,0.15); color: var(--accent-soft); }
+  .badge.asp { background: rgba(184,164,255,0.15); color: var(--accent-purple); }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 16px 0 28px;
+    font-size: 0.92rem;
+    background: var(--bg-card);
+    border-radius: 10px;
+    overflow: hidden;
+  }
+  th, td {
+    padding: 10px 14px;
+    border-bottom: 1px solid var(--border);
+    text-align: left;
+    vertical-align: top;
+  }
+  th {
+    background: var(--bg-card-alt);
+    font-weight: 600;
+    color: var(--text);
+    white-space: nowrap;
+  }
+  tr:last-child td { border-bottom: none; }
+  td.center, th.center { text-align: center; }
+  .score-table td.center { font-weight: 700; }
+  .score-table tr.total td { background: var(--bg-card-alt); font-weight: 700; }
+
+  .gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 16px;
+    margin: 24px 0 32px;
+  }
+  .gallery figure {
+    margin: 0;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    overflow: hidden;
+  }
+  .gallery img {
+    width: 100%;
+    display: block;
+    border-bottom: 1px solid var(--border);
+  }
+  .gallery figcaption {
+    padding: 10px 12px;
+    font-size: 0.85rem;
+    color: var(--text-muted);
+  }
+  .gallery figcaption strong { color: var(--text); display:block; font-size: 0.9rem; margin-bottom: 2px;}
+
+  .pattern-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 20px 22px;
+    margin-bottom: 16px;
+  }
+  .pattern-card h4 {
+    margin: 0 0 10px;
+    font-size: 1.05rem;
+  }
+  .pattern-card dl {
+    margin: 0;
+    display: grid;
+    grid-template-columns: 120px 1fr;
+    gap: 6px 16px;
+  }
+  .pattern-card dt {
+    color: var(--text-muted);
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    padding-top: 2px;
+  }
+  .pattern-card dd { margin: 0; }
+
+  .conclusion-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 16px;
+    margin-top: 16px;
+  }
+  @media (max-width: 800px) {
+    .conclusion-grid { grid-template-columns: 1fr; }
+  }
+  .conclusion-card {
+    border-radius: 10px;
+    padding: 18px 20px;
+    border: 1px solid var(--border);
+  }
+  .conclusion-card.win { background: rgba(125,211,168,0.07); border-color: rgba(125,211,168,0.3); }
+  .conclusion-card.second { background: rgba(245,201,123,0.07); border-color: rgba(245,201,123,0.3); }
+  .conclusion-card.no { background: rgba(255,138,138,0.07); border-color: rgba(255,138,138,0.3); }
+  .conclusion-card h4 { margin-top: 0; font-size: 1rem; }
+  .conclusion-card ul { padding-left: 20px; margin: 8px 0 0; font-size: 0.9rem; }
+  .conclusion-card ul li { margin-bottom: 6px; }
+
+  .pill-list { display: flex; flex-wrap: wrap; gap: 8px; margin: 12px 0 24px; }
+  .pill-list span {
+    background: var(--bg-card-alt);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 4px 12px;
+    font-size: 0.85rem;
+    color: var(--text-muted);
+  }
+
+  footer {
+    text-align: center;
+    color: var(--text-muted);
+    font-size: 0.85rem;
+    padding-top: 40px;
+    border-top: 1px solid var(--border);
+  }
+  a { color: var(--accent); }
+  code {
+    background: var(--bg-card-alt);
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-size: 0.85em;
+  }
+</style>
+</head>
+<body>
+<header class="page-header">
+  <h1>PetPal — Competitor Research</h1>
+  <p>Benchmark of direct, indirect, and aspirational products against PetPal's core JTBD: keeping pet info organized and sharing it with vets &amp; sitters.</p>
+  <nav class="toc">
+    <a href="#competitors">Competitors</a>
+    <a href="#benchmark">Benchmark</a>
+    <a href="#patterns">Patterns</a>
+    <a href="#conclusions">Conclusions</a>
+  </nav>
+</header>
+
+<div class="wrap">
+
+  <!-- COMPETITORS -->
+  <section id="competitors">
+    <h2>🧭 Competitors</h2>
+    <p class="section-intro">15 products across three baskets: <span class="badge hard">Hard</span> same product/audience/EU market, <span class="badge soft">Soft</span> different product but same job-to-be-done, <span class="badge asp">Aspirational</span> international benchmarks in the pet companion category.</p>
+
+    <h3>🔴 Hard — same product, same audience, EU market</h3>
+    <table>
+      <tr><th>Name</th><th>Type</th><th>Why in this group</th><th>Outstanding feature</th></tr>
+      <tr><td><strong>Lassie</strong> 🇸🇪</td><td>Pet insurance + health app</td><td>SE market, insurance core with app-based health layer</td><td>Gamified preventive-care courses that earn premium discounts</td></tr>
+      <tr><td><strong>Felmo</strong> 🇩🇪</td><td>Home vet visits + records</td><td>DE market, vet-to-owner connection built in</td><td>Vet visits at home + digital record created automatically</td></tr>
+      <tr><td><strong>FirstVet</strong> 🇸🇪/EU</td><td>Video vet consultation + shop</td><td>EU-wide, telehealth bundled into insurance</td><td>Video consult 6am–2am, often fully insurance-covered</td></tr>
+      <tr><td><strong>PetDesk</strong> 🇺🇸 (EU clinics)</td><td>Vet clinic communication platform</td><td>Owner-facing layer over clinic software — white-label model</td><td>24/7 booking + two-way messaging with clinic</td></tr>
+      <tr><td><strong>Tractive</strong> 🇦🇹</td><td>GPS + health tracker</td><td>EU-born, large base, overlapping audience</td><td>Live location + activity/sleep health visualisation</td></tr>
+    </table>
+
+    <h3 class="soft">🟡 Soft — different product, same JTBD</h3>
+    <table>
+      <tr><th>Name</th><th>Type</th><th>Why in this group</th><th>Outstanding feature</th></tr>
+      <tr><td><strong>MyTherapy</strong></td><td>Medication reminders (human health)</td><td>Same reminder + doctor-sharing JTBD, best-in-class UX</td><td>One-time code to share health report with a doctor</td></tr>
+      <tr><td><strong>Google Keep</strong> <code>[?]</code></td><td>Notes app</td><td>Default tool people use today for ad-hoc pet info</td><td>Zero-friction quick capture</td></tr>
+      <tr><td><strong>Notion</strong></td><td>Personal workspace</td><td>Power users build custom pet dashboards here</td><td>Infinite flexibility — but no pet-specific structure</td></tr>
+      <tr><td><strong>Apple Wallet</strong></td><td>Document/card storage</td><td>People already store insurance cards, vet cards here</td><td>Face ID–gated, lock-screen-level access</td></tr>
+      <tr><td><strong>Tractive</strong> (health module)</td><td>GPS + health tracker</td><td>Same audience, passive health logging vs. manual entry</td><td>Automatic activity/sleep tracking</td></tr>
+    </table>
+
+    <h3 class="purple">🟣 Aspirational — international benchmarks</h3>
+    <table>
+      <tr><th>Name</th><th>Type</th><th>Why in this group</th><th>Outstanding feature</th></tr>
+      <tr><td><strong>Rover</strong> 🇺🇸</td><td>Pet sitting marketplace</td><td>Pet care profile shared with sitters at scale</td><td>Sitter-facing card: feeding, meds, behaviour, allergies</td></tr>
+      <tr><td><strong>Airvet</strong> 🇺🇸</td><td>Telehealth via employee benefits</td><td>B2B2C distribution — future monetisation channel</td><td>On-demand video vet bundled as workplace perk</td></tr>
+      <tr><td><strong>BabelBark</strong> 🇺🇸</td><td>Multi-stakeholder pet platform</td><td>Closest existing attempt at PetPal's full vision</td><td>Owner + vet + business + shelter, role-based access</td></tr>
+      <tr><td><strong>PetDesk</strong> (owner side)</td><td>Vet communication platform</td><td>White-label potential, adjacent business model</td><td>Free to owners, B2B SaaS to clinics</td></tr>
+      <tr><td><strong>MyTherapy</strong> (cross-category)</td><td>Health reminder/diary</td><td>Lightweight sharing pattern transferable to PetPal</td><td>Doctor-sharing via one-time code</td></tr>
+    </table>
+
+    <h3>Screens captured</h3>
+    <div class="gallery">
+      <figure><img src="screens/hard_01_lassie.png" alt="Lassie"><figcaption><strong>Lassie</strong>Pet insurance + health app (SE)</figcaption></figure>
+      <figure><img src="screens/hard_02_felmo.png" alt="Felmo"><figcaption><strong>Felmo</strong>Home vet visits (DE)</figcaption></figure>
+      <figure><img src="screens/hard_03_firstvet.png" alt="FirstVet"><figcaption><strong>FirstVet</strong>Video vet consultations (SE/EU)</figcaption></figure>
+      <figure><img src="screens/hard_04_petdesk.png" alt="PetDesk"><figcaption><strong>PetDesk</strong>Vet clinic communication platform</figcaption></figure>
+      <figure><img src="screens/hard_05_tractive.png" alt="Tractive"><figcaption><strong>Tractive</strong>GPS + health tracker (AT)</figcaption></figure>
+      <figure><img src="screens/soft_01_mytherapy.png" alt="MyTherapy"><figcaption><strong>MyTherapy</strong>Medication reminders + doctor sharing</figcaption></figure>
+      <figure><img src="screens/soft_02_googlekeep_LOGIN.png" alt="Google Keep"><figcaption><strong>Google Keep</strong> <code>[?]</code> behind login</figcaption></figure>
+      <figure><img src="screens/soft_03_notion.png" alt="Notion"><figcaption><strong>Notion</strong>Personal workspace templates</figcaption></figure>
+      <figure><img src="screens/soft_04_applewallet.png" alt="Apple Wallet"><figcaption><strong>Apple Wallet</strong>Document/card storage</figcaption></figure>
+      <figure><img src="screens/asp_01_rover.png" alt="Rover"><figcaption><strong>Rover</strong>Pet sitting marketplace</figcaption></figure>
+      <figure><img src="screens/asp_02_airvet.png" alt="Airvet"><figcaption><strong>Airvet</strong>Telehealth employee benefit</figcaption></figure>
+      <figure><img src="screens/asp_03_babelbark.png" alt="BabelBark"><figcaption><strong>BabelBark</strong>Multi-stakeholder pet platform</figcaption></figure>
+      <figure><img src="screens/dim_babelbark_petparents.png" alt="BabelBark Pet Parents"><figcaption><strong>BabelBark — Pet Parents</strong>Health dashboard + instant sharing</figcaption></figure>
+    </div>
+  </section>
+
+  <!-- BENCHMARK -->
+  <section id="benchmark">
+    <h2>📊 Benchmark — Info Sharing &amp; Health Management</h2>
+    <p class="section-intro">Deep dive on PetPal's core dimension: keeping important pet info, managing health events, and sharing an overview easily with vets &amp; sitters. Scored 1–5 across 8 criteria.</p>
+
+    <table class="score-table">
+      <tr>
+        <th>Criterion</th>
+        <th class="center">BabelBark</th>
+        <th class="center">Rover</th>
+        <th class="center">MyTherapy</th>
+        <th class="center">Lassie</th>
+        <th class="center">PetDesk</th>
+      </tr>
+      <tr><td>1. Profile completeness (medical + personality/preferences)</td><td class="center">5</td><td class="center">4</td><td class="center">3</td><td class="center">3</td><td class="center">3</td></tr>
+      <tr><td>2. Health event tracking &amp; reminders</td><td class="center">5</td><td class="center">2</td><td class="center">5</td><td class="center">5</td><td class="center">4</td></tr>
+      <tr><td>3. Document/record storage</td><td class="center">4</td><td class="center">2</td><td class="center">3</td><td class="center">3</td><td class="center">3</td></tr>
+      <tr><td>4. Sharing mechanism simplicity</td><td class="center">5</td><td class="center">5</td><td class="center">5</td><td class="center">3</td><td class="center">4</td></tr>
+      <tr><td>5. Role-based access granularity</td><td class="center">5</td><td class="center">3</td><td class="center">2</td><td class="center">2</td><td class="center">4</td></tr>
+      <tr><td>6. At-a-glance overview</td><td class="center">4</td><td class="center">4</td><td class="center">5</td><td class="center">4</td><td class="center">3</td></tr>
+      <tr><td>7. Update/maintenance friction (5 = low effort)</td><td class="center">3</td><td class="center">4</td><td class="center">5</td><td class="center">3</td><td class="center">4</td></tr>
+      <tr><td>8. Multi-stakeholder ecosystem</td><td class="center">5</td><td class="center">2</td><td class="center">2</td><td class="center">3</td><td class="center">4</td></tr>
+      <tr class="total"><td>Total (/40)</td><td class="center">36</td><td class="center">26</td><td class="center">30</td><td class="center">26</td><td class="center">29</td></tr>
+    </table>
+
+    <h3>Shared patterns across all baskets</h3>
+    <ol>
+      <li><strong>Insurance &amp; health records are entangled.</strong> Lassie, FirstVet, and Airvet all bundle financial products directly with health data — data is the retention/monetisation hook.</li>
+      <li><strong>"Share via simple code/link" is the recurring trust mechanism.</strong> MyTherapy's one-time doctor code, Rover's shared pet profile, BabelBark's multi-party sync — all lightweight, time-boxed sharing rather than full account access.</li>
+      <li><strong>Mobile-first is the default</strong> — even B2B-core products (PetDesk, Airvet) ship a clean, simple owner-facing app regardless of backend complexity.</li>
+    </ol>
+
+    <h3>Key differences</h3>
+    <ol>
+      <li><strong>Manual vs. passive data entry.</strong> Tractive logs automatically via hardware; Lassie, Felmo, MyTherapy, PetPal rely on manual/photo entry — UX must minimise this friction.</li>
+      <li><strong>Single vs. multi-species support.</strong> Most direct competitors cover dogs/cats only; PetPal's 5-species scope has fewer reference patterns.</li>
+      <li><strong>Role-based multi-user access is rare.</strong> Only BabelBark attempts true multi-stakeholder access — genuine whitespace, but little proven UX to copy.</li>
+    </ol>
+  </section>
+
+  <!-- PATTERNS -->
+  <section id="patterns">
+    <h2>🧩 UX Patterns — Keeping &amp; Sharing Pet Info</h2>
+    <p class="section-intro">Five fundamentally different patterns for the core task: <em>keeping pet info updated and sharing it with vets &amp; sitters.</em></p>
+
+    <div class="pattern-card">
+      <h4>1. Living Shared Profile <span class="badge hard" style="margin-left:8px;">role-based</span></h4>
+      <dl>
+        <dt>How it works</dt><dd>A structured profile lives on a server; owner, vet, and sitter get different permission levels (edit/add/view-only) and always see the current state.</dd>
+        <dt>Where used</dt><dd>BabelBark, shared medical records, Google Docs with permission tiers.</dd>
+        <dt>When suitable</dt><dd>Ongoing relationships with repeat collaborators (regular vet, co-owner, recurring sitter) where info changes often.</dd>
+        <dt>When it breaks</dt><dd>One-off interactions (emergency sitter, one-time vet) — granting account-based access feels heavy for a five-minute need.</dd>
+      </dl>
+    </div>
+
+    <div class="pattern-card">
+      <h4>2. Point-in-Time Export / Snapshot</h4>
+      <dl>
+        <dt>How it works</dt><dd>A frozen snapshot (PDF, link, or one-time code) is generated at the moment of sharing — recipient needs no account.</dd>
+        <dt>Where used</dt><dd>MyTherapy's one-time doctor code; exporting a vaccination PDF for boarding.</dd>
+        <dt>When suitable</dt><dd>Formal, occasional handoffs where a fixed record is the actual requirement (insurance claims, legal docs).</dd>
+        <dt>When it breaks</dt><dd>When info changes frequently — the snapshot is stale the moment a new vaccine/med is added.</dd>
+      </dl>
+    </div>
+
+    <div class="pattern-card">
+      <h4>3. Quick-Reference Care Card</h4>
+      <dl>
+        <dt>How it works</dt><dd>A short, scannable card auto-pulls key fields (feeding, meds, allergies, "not friendly with") into one screen for someone who's never met the pet.</dd>
+        <dt>Where used</dt><dd>Rover's sitter handbook.</dd>
+        <dt>When suitable</dt><dd>Short-term caregivers (walkers, sitters) who need fast context, not deep history, and won't edit the record.</dd>
+        <dt>When it breaks</dt><dd>When the recipient needs depth (full medical history) — a card can't hold nuance or two-way logging.</dd>
+      </dl>
+    </div>
+
+    <div class="pattern-card">
+      <h4>4. Conversational / Chat-Based Updates</h4>
+      <dl>
+        <dt>How it works</dt><dd>Info exchanged via natural-language messages in a thread — "can she eat chicken today?" "yes, just no dairy."</dd>
+        <dt>Where used</dt><dd>PetDesk-style clinic messaging; WhatsApp groups with sitters/vets (today's informal default).</dd>
+        <dt>When suitable</dt><dd>Nuanced, situational judgment calls that don't map to structured fields.</dd>
+        <dt>When it breaks</dt><dd>As a system of record — info gets buried in scrollback, isn't searchable, "current state" must be reconstructed.</dd>
+      </dl>
+    </div>
+
+    <div class="pattern-card">
+      <h4>5. Collaborative Freeform Document / Wiki</h4>
+      <dl>
+        <dt>How it works</dt><dd>A shared doc/database where anyone can add their own structure — sections, tables, notes — with no imposed schema.</dd>
+        <dt>Where used</dt><dd>Notion pet trackers, shared spreadsheets.</dd>
+        <dt>When suitable</dt><dd>Tech-savvy power users with custom needs, willing to build &amp; maintain their own structure.</dd>
+        <dt>When it breaks</dt><dd>Onboarding anyone else — a vet/sitter has to learn a bespoke layout from scratch every time.</dd>
+      </dl>
+    </div>
+  </section>
+
+  <!-- CONCLUSIONS -->
+  <section id="conclusions">
+    <h2>✅ Conclusions</h2>
+    <p class="section-intro">Fit assessment of the five patterns against <code>CLAUDE.md</code>, plus the mechanisms worth transferring into PetPal's MVP.</p>
+
+    <div class="conclusion-grid">
+      <div class="conclusion-card win">
+        <h4>🏆 Best fit: Living Shared Profile</h4>
+        <ul>
+          <li>Brief explicitly requires differentiated roles (owner edit / vet add medical / sitter view-only) — only this pattern natively supports it.</li>
+          <li>"Transferable and accessible between vets" depends on info always being current — snapshots go stale immediately.</li>
+          <li>It's the structural foundation everything else (reminders, records, personality notes, messaging) plugs into.</li>
+        </ul>
+      </div>
+      <div class="conclusion-card second">
+        <h4>🥈 Second-best, under condition X</h4>
+        <p style="margin:0 0 8px; font-size:0.9rem;"><strong>Condition:</strong> sharing with a one-off caregiver (last-minute sitter, single vet visit).</p>
+        <ul>
+          <li><strong>Quick-Reference Care Card</strong> — generated <em>from</em> the living profile, no login required for the recipient.</li>
+          <li>Not a replacement for Pattern 1 — the right "view" layered on top for this specific use case (à la Rover).</li>
+        </ul>
+      </div>
+      <div class="conclusion-card no">
+        <h4>❌ Doesn't fit: Freeform Wiki</h4>
+        <ul>
+          <li>Audience spans 16–70 incl. non-technical users — a wiki requires owners to design their own structure.</li>
+          <li>Vets/sitters need consistent layouts across pets/owners — relearning a bespoke doc each time fails "transferable."</li>
+          <li>This is the status quo (Notion) PetPal is meant to replace — building PetPal this way wouldn't solve the problem.</li>
+        </ul>
+      </div>
+    </div>
+
+    <h3>Top 3 mechanisms to transfer into MVP</h3>
+    <div class="pill-list">
+      <span>BabelBark's instant shareable health dashboard</span>
+      <span>MyTherapy's one-time share code</span>
+      <span>Rover's sitter-facing care card</span>
+    </div>
+
+    <h3 style="color: var(--red);">1 mechanism that will NOT work</h3>
+    <p><strong>BabelBark's ~5,000-brand diet/nutrition database.</strong> Requires ongoing content-ops disproportionate to MVP value. A lightweight, manual "owner notes" approach (à la Rover) covers the actual JTBD — favourite treats, solid no's — without the maintenance burden or staleness risk.</p>
+  </section>
+
+  <footer>
+    PetPal Design Repository · <a href="../README.md">README</a> · <a href="research.md">research.md</a> · <a href="dimension-info-sharing.md">dimension-info-sharing.md</a>
+  </footer>
+</div>
+</body>
+</html>
