@@ -1,18 +1,37 @@
-# PetPal
+# PetPal — Design Repository
 
-Keep everything related to your pet in one place.
+Mobile-first lifestyle app for pet owners. One place for health records, reminders, documents, vet communication, and pet personality info.
 
-PetPal is a mobile-first lifestyle app for pet owners to manage health records, reminders, documents, vet communication, and pet personality info — all in one shareable profile.
+**Brief:** See [CLAUDE.md](CLAUDE.md) for full product brief.
 
-## What it does
-- Track vaccinations, prescriptions, and vet visits
-- Store insurance and legal documents with renewal reminders
-- Build a pet personality profile for walkers and sitters
-- Share access with vets, dog walkers, and co-owners
-- Communicate directly with your vet clinic
+---
 
-## Target market
-EU, mobile web first. Supports dogs, cats, rabbits, guinea pigs, and birds.
+## Repository Structure
+
+| Folder | Contents |
+|---|---|
+| [`research/`](research/) | Competitor benchmark, market notes, screen references |
+| [`wireframes/`](wireframes/) | Low and mid-fidelity wireframes |
+| [`concept/`](concept/) | Visual concepts and mood exploration |
+| [`tokens/`](tokens/) | Design tokens: color, typography, spacing, radius |
+| [`components/`](components/) | Individual UI components |
+| [`design-system/`](design-system/) | Full design system documentation |
+| [`handoff/`](handoff/) | Developer handoff specs and notes |
+
+---
 
 ## Status
-Early design & development phase.
+
+| Phase | Status |
+|---|---|
+| Brief | ✅ Done |
+| Competitor research | 🔜 Up next |
+| Wireframes | — |
+| Concept | — |
+| Design system | — |
+| Handoff | — |
+
+---
+
+## Platform
+Mobile web first → desktop adaptation later. EU market launch.
