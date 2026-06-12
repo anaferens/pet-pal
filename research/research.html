@@ -342,6 +342,63 @@
   .conclusion-card ul li { margin-bottom: 8px; }
   .conclusion-card ul li::marker { color: var(--text-muted); }
 
+  /* ---------- Voices (Trustpilot quotes) ---------- */
+  .voice-group { margin-bottom: 36px; }
+  .voice-group h3.subhead { margin-bottom: 16px; }
+  .voice-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+  @media (max-width: 800px) {
+    .voice-grid { grid-template-columns: 1fr; }
+  }
+  .quote-card {
+    background: var(--bg-elev);
+    border: 1px solid var(--line);
+    border-radius: 20px;
+    padding: 24px 26px;
+  }
+  .quote-card .feature-tag {
+    display: inline-block;
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--panel-muted);
+    background: var(--panel);
+    border: 1px solid var(--line);
+    border-radius: 100px;
+    padding: 5px 14px;
+    margin-bottom: 14px;
+  }
+  .quote-card blockquote {
+    margin: 0 0 14px;
+    font-size: 1.02rem;
+    line-height: 1.55;
+    color: var(--text);
+  }
+  .quote-card blockquote::before { content: "\201C"; }
+  .quote-card blockquote::after { content: "\201D"; }
+  .quote-card .quote-meta {
+    font-size: 0.82rem;
+    color: var(--text-muted);
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+  .quote-card .quote-meta a { color: var(--text-muted); text-decoration: underline; }
+  .quote-card .quote-meta a:hover { color: var(--text); }
+  .voice-na {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    border: 1px dashed var(--line);
+    border-radius: 16px;
+    padding: 16px 20px;
+    margin-bottom: 36px;
+  }
+
   .pill-list { display: flex; flex-wrap: wrap; gap: 10px; margin: 16px 0 32px; }
   .pill-list span {
     background: var(--bg-elev);
@@ -388,6 +445,7 @@
       <a href="#competitors">Competitors</a>
       <a href="#benchmark">Benchmark</a>
       <a href="#patterns">Patterns</a>
+      <a href="#voices">Voices</a>
       <a href="#conclusions">Conclusions</a>
     </div>
   </div>
@@ -571,6 +629,120 @@
         <dt>When suitable</dt><dd>Tech-savvy power users with custom needs, willing to build &amp; maintain their own structure.</dd>
         <dt>When it breaks</dt><dd>Onboarding anyone else — a vet/sitter has to learn a bespoke layout from scratch every time.</dd>
       </dl>
+    </div>
+  </section>
+
+  <!-- VOICES -->
+  <section id="voices">
+    <div class="section-head">
+      <span class="tag">04 — Real users</span>
+      <h2>Voices from Trustpilot</h2>
+      <p>Direct quotes from verified Trustpilot reviews, grouped by app and naming the specific feature each reviewer credits. Pulled live from each company's Trustpilot profile (accessed Jun 2026); review titles link to the original.</p>
+    </div>
+
+    <div class="voice-group">
+      <h3 class="subhead"><span class="dot">🟢</span> Tractive — GPS tracking &amp; virtual fence</h3>
+      <div class="voice-grid">
+        <div class="quote-card">
+          <span class="feature-tag">Emergency tracking</span>
+          <blockquote>The app is easy to use, the tracking is reliable, and it gives me confidence whenever we're out hiking, traveling, or even just going about our daily routine. I hope I never need to use the emergency tracking features, but having them available makes me feel much more secure as a dog owner.</blockquote>
+          <div class="quote-meta">
+            <span>Heather L. (CA), ⭐⭐⭐⭐⭐ — "Peace of Mind is Priceless"</span>
+            <a href="https://www.trustpilot.com/reviews/6a2ae53abd66814a09215adb" target="_blank" rel="noopener">Jun 11, 2026 ↗</a>
+          </div>
+        </div>
+        <div class="quote-card">
+          <span class="feature-tag">Virtual fence + LED collar light</span>
+          <blockquote>I love being able to virtually fence off roads and be alerted when she is out of bounds... I also love the LED light on her collar which makes it much easier to locate her in the dark!</blockquote>
+          <div class="quote-meta">
+            <span>Emma (AU), ⭐⭐⭐⭐⭐</span>
+            <a href="https://www.trustpilot.com/reviews/6a2a51e925edeccfefae22ae" target="_blank" rel="noopener">Jun 11, 2026 ↗</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="voice-group">
+      <h3 class="subhead"><span class="dot">🔴</span> Lassie — in-app claim submission</h3>
+      <div class="voice-grid">
+        <div class="quote-card">
+          <span class="feature-tag">Photo invoice upload → automatic refund</span>
+          <blockquote>Uploaded invoice from vet after the description of the incident in the app. It was processed in minutes automatically and it refund was in bank statement a couple of minutes later. Hope it keeps working like this in the future :)</blockquote>
+          <div class="quote-meta">
+            <span>Ezequiel Camarotta, ⭐⭐⭐⭐⭐ — "Super Fast resolution"</span>
+            <a href="https://www.trustpilot.com/reviews/6a28253d30df3e73688046e6" target="_blank" rel="noopener">Jun 2026 ↗</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="voice-group">
+      <h3 class="subhead"><span class="dot">🔴</span> FirstVet — on-demand video vet</h3>
+      <div class="voice-grid">
+        <div class="quote-card">
+          <span class="feature-tag">Fast video consultation</span>
+          <blockquote>We had a video call with Dr Cato as our cat 'wasn't right'... I got a video call within half an hour of requesting one and the advice she gave was to visit the emergency vet which we did. Turns out our cat has pancreatitis.</blockquote>
+          <div class="quote-meta">
+            <span>jess, ⭐⭐⭐⭐⭐ — "Great, quick service"</span>
+            <a href="https://www.trustpilot.com/reviews/69e345e50787d3986e4fa9a7" target="_blank" rel="noopener">Apr 18, 2026 ↗</a>
+          </div>
+        </div>
+        <div class="quote-card">
+          <span class="feature-tag">24/7 availability (middle-of-the-night)</span>
+          <blockquote>Very quick to get an appointment in the middle of the night. Dr Dudek was fantastic and was thorough in questioning, supporting me to examine my cat to give her more information. The advice and plan given was thorough and covered multiple options.</blockquote>
+          <div class="quote-meta">
+            <span>Luke Smith, ⭐⭐⭐⭐⭐ — "Fantastic!"</span>
+            <a href="https://www.trustpilot.com/reviews/6a04e0af3e6fdf71e2cfef4c" target="_blank" rel="noopener">May 14, 2026 ↗</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="voice-group">
+      <h3 class="subhead"><span class="dot">🔴</span> Felmo — home vet visit booking</h3>
+      <div class="voice-grid">
+        <div class="quote-card">
+          <span class="feature-tag">Booking &amp; communication, low-stress for pet</span>
+          <blockquote>Excellent communication and appointment availability, all the vets I have met are punctual, friendly, kind to the cats and good at their job... it's so much less stressful for the cats.</blockquote>
+          <div class="quote-meta">
+            <span>Anja Dobler, ⭐⭐⭐ — "Great service, shame about the prices"</span>
+            <a href="https://www.trustpilot.com/reviews/69cd09e89deb646c05d3bf2e" target="_blank" rel="noopener">Apr 1, 2026 ↗</a>
+          </div>
+        </div>
+      </div>
+      <div class="voice-na">Note: this review is 3★ overall (cost complaint) — quoted here only for the booking/communication feature, which the reviewer rated positively.</div>
+    </div>
+
+    <div class="voice-group">
+      <h3 class="subhead"><span class="dot">🟡</span> MyTherapy — health report export &amp; sharing</h3>
+      <div class="voice-grid">
+        <div class="quote-card">
+          <span class="feature-tag">PDF health report → share with doctor</span>
+          <blockquote>This app also has a function that allows you to record your health status such as weight and blood pressure and visually grasp the situation... it is possible to automatically summarize health conditions and medication intake status and create health reports in PDF format. Once you have created a report, you can send it by email.</blockquote>
+          <div class="quote-meta">
+            <span>Tom (HK), ⭐⭐⭐ — "Good medicine reminder app"</span>
+            <a href="https://www.trustpilot.com/reviews/661a938c2b072470fafaee1b" target="_blank" rel="noopener">Apr 13, 2024 ↗</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="voice-group">
+      <h3 class="subhead"><span class="dot">🟣</span> Rover — sitter updates &amp; photos</h3>
+      <div class="voice-grid">
+        <div class="quote-card">
+          <span class="feature-tag">In-app photo/status updates from sitter</span>
+          <blockquote>It was very easy to book a sitter through the website, and I was certain that my pet was going to be safe and well-cared for. It is wonderful to know that you can be provided with pictures and updates from time to time.</blockquote>
+          <div class="quote-meta">
+            <span>Andre Keaton, ⭐⭐⭐⭐ — "Rover made finding a pet sitter so easy!"</span>
+            <a href="https://www.trustpilot.com/reviews/6a2a93f9c4694b7541c32a65" target="_blank" rel="noopener">Jun 2026 ↗</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="voice-na">
+      <strong>Not included:</strong> PetDesk, Airvet, and BabelBark either have no Trustpilot consumer reviews (B2B/owner-app split, or unclaimed profile with 0–1 reviews) or an unclaimed profile with no usable feature-level quotes as of Jun 2026.
     </div>
   </section>
 
