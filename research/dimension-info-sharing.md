@@ -24,9 +24,9 @@
 | Product | Why selected for this dimension | Source |
 |---|---|---|
 | **BabelBark** | Explicitly built around "connect everybody in a pet's life" — health dashboard + instant sharing is its core pitch | [babelbark.com/petparents](https://babelbark.com/petparents/) ([screenshot](screens/dim_babelbark_petparents.png)) |
-| **Rover** | Sitter-facing pet care profile (feeding, meds, behaviour, allergies) is the gold standard for "personality + special requirements" info shared with a third party | [rover.com/dog-walking](https://www.rover.com/dog-walking/) ([screenshot](screens/asp_01_rover.png)) |
+| **Rover** | The sitter-facing pet care profile screen (feeding, meds, behaviour, allergies, "not friendly with") is the most complete "personality + special requirements" template seen across all 15 products | [rover.com/dog-walking](https://www.rover.com/dog-walking/) ([screenshot](screens/asp_01_rover.png)) |
 | **MyTherapy** | "One-time code" doctor-sharing is the cleanest lightweight sharing mechanism researched, directly transferable | [mytherapyapp.com](https://www.mytherapyapp.com) ([screenshot](screens/soft_01_mytherapy.png)) |
-| **Lassie** | Best-in-class reminder system tied to vet billing/insurance, EU benchmark | [lassie.co/en](https://www.lassie.co/en) ([screenshot](screens/hard_01_lassie.png)) |
+| **Lassie** | The reminder/health program screen ties vaccination and checkup reminders directly to insurance billing — the most tightly integrated reminder-to-billing flow seen in the EU-market (Hard) basket | [lassie.co/en](https://www.lassie.co/en) ([screenshot](screens/hard_01_lassie.png)) |
 | **PetDesk** | Clinic-owner connected record/messaging system — closest to a "vet has access" model | [petdesk.com](https://petdesk.com) ([screenshot](screens/hard_04_petdesk.png)) |
 
 ---
@@ -59,6 +59,6 @@
 
 ## 1 Mechanism That Will NOT Work for MVP
 
-**BabelBark's diet/nutrition database (~5,000 pet food brands with caloric/ingredient data).**
+**BabelBark's diet/nutrition database (~5,000 pet food brands with caloric/ingredient data — figure per [babelbark.com](https://babelbark.com/petparents/), accessed Jun 2026, `unverified, company claim`).**
 
 **Why it won't work:** This requires an ongoing content-ops investment (maintaining a third-party food database) that's disproportionate to MVP value. PetPal's brief calls for *owner notes* on food preferences ("favourite treats," "solid no's") — a lightweight, manual, personality-card approach (à la Rover) achieves the actual JTBD without the data-maintenance burden. Building a structured food database before validating the core sharing/reminder loop would be premature scope expansion — and risks becoming stale/inaccurate, which undermines trust in the rest of the profile.
