@@ -37,6 +37,21 @@
   }
   .serif { font-family: 'Inter', sans-serif; }
 
+  .bg-mountains {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 22vw;
+    max-height: 320px;
+    background-image: url('screens/bg-mountains.png');
+    background-repeat: no-repeat;
+    background-position: bottom center;
+    background-size: 100% auto;
+    z-index: -1;
+    pointer-events: none;
+  }
+
   /* ---------- Nav ---------- */
   .topnav {
     position: sticky;
@@ -438,6 +453,7 @@
 </style>
 </head>
 <body>
+  <div class="bg-mountains"></div>
 
   <div class="topnav">
     <a class="brand" href="#top">PetPal · Research</a>
