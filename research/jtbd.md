@@ -82,3 +82,45 @@ These are plausible jobs the research **does not** back. Phrased as questions to
 - **Escaping the messy status quo.** *Hypothesis:* "When my pet's info is scattered across chats and notes, I want one tidy place, so that I stop losing track." → Partly supported (Notion/Keep as "good enough" status quo, [research.md:34-35, 41](research.md); WhatsApp as informal default in [research.html](research.html)) but the **pain intensity is unmeasured** — people may be content with "good enough." `[?]`
 - **Jobs of non-dog/cat owners** (rabbit, guinea pig, bird). → No voices at all for 3 of 5 target species ([research.md:74](research.md)). `[?]`
 - **How people decide to adopt a tool like this.** *Hypothesis:* "When I'm weighing a new pet tool, I want proof it works, so that I don't waste effort." → The "read reviews, compare prices" behaviour is real but observed for a *hardware purchase* (Dave/Tractive), not for an app like PetPal. `[?]`
+
+---
+
+## 📊 JTBD × Persona matrix
+
+**Importance scale:** 1 = nice-to-have · 2 = matters · 3 = central to the persona. `[?]` = no data (no averaged guesses).
+**Personas:** OO = Organised Owner (primary) · WO = Worried-at-the-Wrong-Moment Owner · RC = Receiving Caregiver.
+Job codes refer to the jobs listed above.
+
+| Job | OO (primary) | WO | RC | FEATURE (what addresses it) | COMPETITORS (per research.md) |
+|---|---|---|---|---|---|
+| **Main** — keep everything in one trusted place, act in time + pass on | **3** — product's core, 🔵 [CLAUDE.md:6-10](../CLAUDE.md); 🟢 [research.md:33,51](research.md) | `[?]` — no data WO values long-term record-keeping | `1` — carer receives, doesn't maintain (role-inferred, no data) | Unified per-pet record + document storage | Partial: only **BabelBark** attempts the full picture 🟢 [research.md:53,75](research.md) |
+| **R1** — stay ahead of what's due | **3** — 🔵 [CLAUDE.md:43-56](../CLAUDE.md); 🟢 reminders valued [research.md:14,33](research.md) | `[?]` — WO is reactive, not preventive (no data) | `[?]` | Vaccination/renewal reminders + appointment tracking | **Well covered**: Lassie, MyTherapy, PetDesk 🟢 [research.md:14,33,17](research.md) |
+| **R2** — make a stranger understand my pet fast | **3** — 🟢 strongest match to Rover care card [research.md:51,58](research.md) | `1` — tangential | **3** — 🟢 this is literally the carer's task; Rover proves the content for "never met the pet" [research.md:58](research.md) | Personality profile + shareable carer view | **Only Rover** — and locked inside its booking marketplace 🟢 [research.md:51](research.md) |
+| **R3** — give a professional an accurate picture quickly | **3** — 🟢 mirrors MyTherapy doctor-report [research.html Voices](research.html), [research.md:33,40](research.md) | **2** — 🟢 relevant in the worry moment [research.md:16](research.md) | `[?]` | Share records from app + vet messaging | Covered but **account-bound**: MyTherapy code, PetDesk, BabelBark 🟢 [research.md:33,17,53](research.md) |
+| **R4** — get proof my pet's okay while away | **2** — 🟢 owners value updates [research.html Voices](research.html), Andre/Rover | `[?]` | `[?]` — sender side, no caregiver voice | **Gap** — PetPal has no carer-update flow `[?]` | **Only Rover** (sitter photos/updates) 🟢 [research.md:51](research.md) |
+| **R5** — make a good call in a worrying moment | **2** — 🟢 [research.md:16](research.md) | **3** — 🟢 defining job; FirstVet out-of-hours [research.html Voices](research.html) | `[?]` | Fast access to stored info (no consultation) | FirstVet, Airvet — but **different category** (telehealth) 🟢 [research.md:16,52](research.md) |
+| **E1** — trade worry for calm | **3** — 🟢 "peace of mind" most-repeated feeling [research.html Voices](research.html), Heather/Tractive | **3** — 🟢 same | `[?]` | Served indirectly via reliability + access | Tractive leans on this emotionally 🟢 [research.md:18](research.md) |
+| **E2** — feel sure nothing was forgotten | **2** — 🟢 partial/inferred from Andre/Rover; framing is interpretation `[?]` | `[?]` | `[?]` | Completeness of profile before handoff | `[?]` — none address this directly |
+| **E3** — spare my pet stress | **2** — 🟢 Anja/Felmo "less stressful for the cats" [research.md:15](research.md) | `1` | `[?]` | **Gap** — PetPal doesn't reduce the pet's stress directly `[?]` | Felmo (home visits) 🟢 [research.md:15](research.md) |
+| **S1** — keep everyone on the same page | **3** — 🟢 Tom/MyTherapy "help family members keep track" [research.html Voices](research.html) | `[?]` | **2** — RC is one of the "everyone" (role-inferred) | Shared access + roles (multi-user) | **Only BabelBark** attempts true multi-party 🟢 [research.md:53,75](research.md) |
+| **S2** — be an easy, trustworthy handoff | **2** — 🟢 low-friction supported [research.md:68](research.md); "be seen as trustworthy" is `[?]` | `[?]` | **2** — RC benefits from no-signup access (role-inferred) | Share via link/code, no account needed | MyTherapy one-time code, Rover 🟢 [research.md:68](research.md) |
+
+---
+
+## 🧭 Conclusion
+
+### 3 jobs for the MVP core
+*Criteria: importance **3** for the primary persona (OO) **and** thinly covered by the market.* The research names role-based, portable, multi-party sharing as the genuine whitespace ([research.md:75](research.md)) — all three cluster there.
+
+1. **R2 — make a stranger understand my pet fast.** OO = 3. Market: **only Rover**, and it's trapped inside a booking marketplace, not a portable record an owner controls ([research.md:51](research.md)). Clear whitespace.
+2. **S1 — keep everyone caring for my pet on the same page.** OO = 3. Market: **only BabelBark** attempts true multi-stakeholder access; "everyone else is single-owner or B2B-only" ([research.md:75](research.md)). The strongest documented gap.
+3. **R3 — give a professional an accurate picture quickly.** OO = 3. Market: solved only as *account-bound* systems (MyTherapy code, PetDesk, BabelBark) — none is an owner-held record portable to *any* vet ([research.md:33,17,53](research.md)).
+
+*Deliberately excluded:* **R1 (stay ahead of what's due)** is a 3 for OO but is **table-stakes** — already well covered by Lassie/MyTherapy/PetDesk ([research.md:14,33,17](research.md)). Build it competently, but it won't differentiate.
+
+### Feature candidates to remove (address no job)
+- **Contextual product/treat recommendations** ([CLAUDE.md:84](../CLAUDE.md)) — a monetization mechanism, maps to **no user job** in this matrix. Cut from MVP.
+- **Breed-aware food/treat *suggestions*** inside the personality profile ([CLAUDE.md:59](../CLAUDE.md)) — addresses no job, and the deep-dive already flagged a food database as premature, maintenance-heavy MVP scope ([dimension-info-sharing.md](dimension-info-sharing.md)). Cut; keep only free-text owner notes.
+- **White-label / clinic-app foundation** ([CLAUDE.md:75](../CLAUDE.md)) — a *business-model* ambition, not an owner/carer job. **Defer** (not "remove" — it's a future B2B path, [research.md:61](research.md)), but it should not consume MVP design effort.
+
+*Note:* **R4 (proof okay while away)** and **E3 (spare my pet stress)** currently have **no feature** behind them — these are gaps to decide on consciously, not features to cut.
