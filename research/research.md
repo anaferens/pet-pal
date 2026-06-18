@@ -79,3 +79,30 @@ Screens marked `[?]` are behind login / could not be accessed and are based on w
 1. **How "real-time" does vet communication need to be at MVP?** PetDesk and BabelBark both invest heavily in real-time sync between owner and vet — is that core to PetPal's MVP, or can v1 ship with async messaging + manual record sharing (like MyTherapy's doctor code)?
 2. **Should PetPal pursue passive data sources (wearables/trackers) at all, even as a "connect your Tractive" integration?** Tractive already partners with Lassie — is there an opportunity (or risk of redundancy) in supporting third-party device data instead of building our own?
 3. **Which monetization comes first — insurance referral or vet/clinic partnerships?** FirstVet's insurance-bundling and PetDesk's clinic-SaaS model represent two very different go-to-market paths, and they likely imply different MVP feature priorities (insurance docs/reminders vs. vet messaging/booking). Which should the design prioritize for v1?
+
+---
+
+## 🔎 Follow-up research after personas
+
+**Question tested:** *Is the core pain (scattered records / forgotten vaccinations / sitter info gaps) real and strong enough to make people switch from WhatsApp/Notes?* This was the #1 gap flagged in the persona/JTBD critique. Sources below are public app-store reviews, sitter-guidance articles, and the template market — **not** PetPal-target interviews, so this raises confidence but is not validation.
+
+**F1 — The pain sustains a whole product category (pain is real). 🟢**
+There is an active category of apps built *explicitly* to fix this: 11pets ([apps.apple.com/us/app/11pets-pet-care/id1232470530](https://apps.apple.com/us/app/11pets-pet-care/id1232470530)), VetKit, and **PetVax — "designed to replace the crumbling paper card with a clean Health Passport that vets and boarding facilities prefer"** ([apps.apple.com/us/app/-/id6758548102](https://apps.apple.com/us/app/-/id6758548102), accessed Jun 2026). Marketing framing `(company claim)`, but the *existence* of many such apps with positive reviews is real demand signal.
+
+**F2 — The Notes/paper → structured-app switch is documented by a real user. 🟢 (directly answers the question)**
+A reviewer reported tracking their pets in the phone **Notes app** "but it was getting tedious having to scroll through the long notes," which led them to switch to a structured pet-record app (PetNote+, [apps.apple.com/us/app/petnoteplus-dog-and-cat-care/id1553584485](https://apps.apple.com/us/app/petnoteplus-dog-and-cat-care/id1553584485), via review search accessed Jun 2026). This is direct evidence of (a) Notes as the real status quo, (b) the **tipping point = volume/tedium of scrolling**, and (c) people *do* switch. Notably this reviewer kept *geckos* — a first signal from outside the dog/cat majority.
+
+**F3 — Sitter handoff is a real, structured behaviour today. 🟢**
+Owners already assemble sitter info — but in **Google Sheets templates, printable PDFs, and texted/emailed photos**, not only WhatsApp. A template market exists ([youarelovedtemplates.com pet-sitter sheet](https://youarelovedtemplates.com/products/pet-sitter-instructions-pet-sitter-information-pet-sitter-pet-sitter-notes-google-sheets-pdf-cat-sitter-dog-sitter)), and veterinary guidance (AAHA, "Preparing for the Unexpected: Essential Pet Sitter Instructions") spells out the same fields PetPal plans (profile, routine, feeding, meds, emergency contacts). The demand is real; the status-quo tools are docs/sheets/printables/text.
+
+**F4 — The make-or-break is *capture friction*, not whether the pain exists. 🟢**
+Reviews of pet-record apps repeatedly flag data entry as "tedious" or needing "some learning… to input data" (Pet Health app reviews, [apps.apple.com/us/app/pet-health/id6447807502](https://apps.apple.com/us/app/pet-health/id6447807502?see-all=reviews), accessed Jun 2026). This sharpens the existing manual-entry concern (see [§Key Differences](#-3-key-differences), point 1): the bet isn't "does the pain exist" (it does) — it's **whether PetPal makes capturing/maintaining the record low-effort enough to beat 'good enough' inertia.**
+
+**What this changes**
+- The "good enough status quo stops people switching" framing is **too strong** — people *do* migrate, but only past a tipping point (volume/tedium) and only if the new tool is low-friction. Corrected in [personas.md](personas.md).
+
+**Still open (not closed by this round) `[?]`**
+- **No EU-mainland voices** — every source is US/English-language app stores. The launch-market user remains unverified.
+- **No evidence for the "Facebook groups / acquaintances" sitter-recommendation channel** — searched, not found. Kept as `[?]` in [personas.md](personas.md).
+- **No strong "I refuse to switch" inertia voice** either — so the *size* of the switching barrier is still unmeasured; F4 is a risk, not a proven blocker.
+- **The receiving caregiver's own view** is still absent — sitter-guidance articles are written *for owners*, not *by* sitters.

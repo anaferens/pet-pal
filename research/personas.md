@@ -25,9 +25,9 @@ She treats her dog's admin like her own: she wants to *check when the dog was la
 - Share with a vet/sitter without making them create an account. 🟢 proven pattern — MyTherapy one-time code, Rover profile share ([research.md:68](research.md)).
 
 **Pains in today's ways**
-- Info is **scattered** across notes apps and paper; the "good enough" status quo (Google Keep / Notion) is exactly what stops people bothering to switch. 🟢 [research.md:34-35, 41](research.md), [Keep login screenshot](screens/soft_02_googlekeep_LOGIN.png)
-- For sitters today people fall back to **WhatsApp messages** as the informal default — info gets buried in scrollback, no "current state." 🟢 (noted in the UX-patterns analysis in [research.html](research.html); also reflected in [research.md:68](research.md)).
-- **Facebook groups / asking acquaintances** for sitter recommendations and advice. `[?]` — *hypothesis*: this is plausible and is in the user's framing, but **no research source evidences it**. To validate.
+- Info is **scattered** across notes apps and paper. **Correction (follow-up research):** the earlier framing that the "good enough" status quo *stops* people switching is too strong — a real user described keeping pet info in the Notes app until it got "tedious having to scroll through the long notes," then switching to a structured app. People **do** migrate, but only past a tipping point (volume/tedium) **and only if the new tool is low-friction**. 🟢 [research.md → Follow-up research, F2 & F4](research.md), [Keep login screenshot](screens/soft_02_googlekeep_LOGIN.png)
+- For sitters, the status quo is **Google Sheets templates, printable PDFs, texted/emailed photos, and WhatsApp** — info gets buried, no single "current state." Confirmed as a real, structured behaviour (template market + AAHA sitter guidance), not just an assumption. 🟢 [research.md → Follow-up research, F3](research.md); also [research.md:68](research.md).
+- **Facebook groups / asking acquaintances** for sitter recommendations and advice. `[?]` — *hypothesis, still open*: searched in follow-up research and **not confirmed** (found docs/sheets/text channels, but no evidence for Facebook-group recommendations). Keep as a gap to validate.
 
 **Trust triggers**
 - Convinces: a record that updates itself and is shareable instantly ("never request a vaccination report again"). 🟢 [research.md:52](research.md). Direct, low-friction sharing. 🟢 [research.md:68](research.md)
@@ -99,6 +99,7 @@ They've never met this animal and need to understand it fast: what it eats, what
 
 1. **No PetPal-target user has been interviewed** — all evidence is competitor-product reviews. The Organised Owner's emotional pains are inferred.
 2. **The Receiving Caregiver has no voice at all** — sitters/walkers/vets are represented only by B2B product positioning ([research.md:53-54](research.md)).
-3. **The "Facebook/WhatsApp/acquaintances" status quo** is partly evidenced (Keep/Notion, WhatsApp) and partly hypothesis (Facebook groups, acquaintances) — confirm which channels people actually use.
-4. **No non-dog/cat owners** appear anywhere, yet 3 of 5 target species are rabbit/guinea-pig/bird ([research.md:74](research.md)). These personas are implicitly dog-owner-shaped.
-5. **No EU-mainland voices** — every real quote is GB/AU/CA/US/HK ([research.html Voices](research.html)).
+3. **The status quo channels** — *partly closed* (follow-up research, [research.md F2/F3](research.md)): Notes apps, Google Sheets templates, printable PDFs, texted photos and WhatsApp are now confirmed. **Facebook-group recommendations and "ask an acquaintance" remain unconfirmed `[?]`.**
+4. **No non-dog/cat owners** — *barely cracked*: one follow-up review came from a *gecko* owner ([research.md F2](research.md)), but rabbit/guinea-pig/bird owners (3 of 5 target species, [research.md:74](research.md)) are still absent. Personas remain implicitly dog-owner-shaped.
+5. **No EU-mainland voices** — *still fully open `[?]`*: every source remains GB/AU/CA/US/HK and English-language app stores ([research.html Voices](research.html); follow-up research found no EU-mainland reviews).
+6. **The core bet is now capture-friction, not pain** — follow-up research ([research.md F4](research.md)) indicates the pain is real but adoption hinges on low-effort data entry. The *size* of switching inertia is still unmeasured.
