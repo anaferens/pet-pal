@@ -28,6 +28,7 @@ She treats her dog's admin like her own: she wants to *check when the dog was la
 - Info is **scattered** across notes apps and paper. **Correction (follow-up research):** the earlier framing that the "good enough" status quo *stops* people switching is too strong — a real user described keeping pet info in the Notes app until it got "tedious having to scroll through the long notes," then switching to a structured app. People **do** migrate, but only past a tipping point (volume/tedium) **and only if the new tool is low-friction**. 🟢 [research.md → Follow-up research, F2 & F4](research.md), [Keep login screenshot](screens/soft_02_googlekeep_LOGIN.png)
 - For sitters, the status quo is **Google Sheets templates, printable PDFs, texted/emailed photos, and WhatsApp** — info gets buried, no single "current state." Confirmed as a real, structured behaviour (template market + AAHA sitter guidance), not just an assumption. 🟢 [research.md → Follow-up research, F3](research.md); also [research.md:68](research.md).
 - **Facebook groups / asking acquaintances** for sitter recommendations and advice. `[?]` — *hypothesis, still open*: searched in follow-up research and **not confirmed** (found docs/sheets/text channels, but no evidence for Facebook-group recommendations). Keep as a gap to validate.
+- **The handoff itself is emotionally loaded** (now evidenced): leaving the pet is a high-anxiety moment — **56% of owners feel "overwhelming guilt and anxiety" leaving their pet**, 61% worry about its welfare on vacation, 52% have been "too guilty to go." 🟢 [research.md → Follow-up research, F11](research.md). *Note:* this is intense but **episodic** (sitter use is occasional, not routine — F9/F11), vs. the planning/records job which is the more frequent driver.
 
 **Trust triggers**
 - Convinces: a record that updates itself and is shareable instantly ("never request a vaccination report again"). 🟢 [research.md:52](research.md). Direct, low-friction sharing. 🟢 [research.md:68](research.md)
@@ -37,7 +38,7 @@ She treats her dog's admin like her own: she wants to *check when the dog was la
 > "It is possible to automatically… create health reports in PDF format. Once you have created a report, you can send it by email… it can also help family members keep track of their health."
 > — Tom (HK), MyTherapy review ([research.html Voices](research.html); [original](https://www.trustpilot.com/reviews/661a938c2b072470fafaee1b))
 
-**Why primary:** she is the **only persona that exercises PetPal's full core loop** — records + reminders + role-based sharing — which is the product's reason to exist ([CLAUDE.md:9-10](../CLAUDE.md)). She is also the persona with the most (even if indirect) real-user support, via MyTherapy's report-sharing and Rover's care profile. The other two personas are real but each touches only *part* of the product.
+**Why primary:** *(rationale upgraded by follow-up research — see [research.md → Follow-up research, Round 3](research.md))* her core job — keeping and proving pet records — is the **most frequent felt need and the documented #1 reason people adopt pet apps** (F9, F10), not merely "the persona that exercises the full loop" (the earlier, weaker rationale flagged in the critique). The record/proof need recurs at every boarding, daycare, grooming and travel touchpoint, where verbal "he's up-to-date" isn't accepted. She also has the most (even if indirect) real-user support, via MyTherapy's report-sharing and Rover's care profile. The other two personas are real but each touches only *part* of the product — and one (the worried moment) is **rare per person** (F11).
 
 ---
 
@@ -65,7 +66,7 @@ The pet seems unwell, it's late, the clinic is closed, and they need information
 > "We had a video call with Dr Cato as our cat 'wasn't right'… I got a video call within half an hour of requesting one… Turns out our cat has pancreatitis."
 > — jess (GB), FirstVet review ([research.html Voices](research.html); [original](https://www.trustpilot.com/reviews/69e345e50787d3986e4fa9a7))
 
-**Why secondary:** the emotion is real and well-evidenced, but PetPal is **not** a telehealth or GPS product — it can only serve the *information* slice of this moment, not the consultation. Important for tone and the "one-tap critical info" view, not a core loop driver.
+**Why secondary:** *(confirmed by follow-up research, [Round 3 / F11](research.md))* the emotion is the most intense of the three jobs, but the moment is **rare per person** ("few owners are prepared for emergencies") and PetPal is **not** a telehealth or GPS product — it can serve only the *information* slice, not the consultation. Low frequency + partial serviceability = secondary. Important for tone and a "one-tap critical info" view, not a core loop driver.
 
 ---
 
@@ -98,7 +99,7 @@ They've never met this animal and need to understand it fast: what it eats, what
 
 ## Biggest validation gaps before these become real `[?]`
 
-1. **No PetPal-target user has been interviewed** — all evidence is competitor-product reviews. The Organised Owner's emotional pains are inferred.
+1. **No PetPal-target user has been interviewed** — all evidence is competitor-product reviews, app-store themes and surveys. The **choice** of the Organised Owner as primary is now frequency-/adoption-backed (Round 3, F9/F10), but her individual *emotional* pains remain inferred and all stats are **US-skewed** — EU applicability unproven `[?]`.
 2. **The Receiving Caregiver has no *lived* voice** — *partly closed*: their needs (info checklist, emergency authorization, no-signup expectation) are now documented via sitter-industry sources and UX research ([research.md → Follow-up research, F5-F8](research.md)), but every source is *for* owners or *by* the industry — **no first-person sitter/walker/vet testimony yet `[?]`**. The **vet recipient** specifically is still unaddressed.
 3. **The status quo channels** — *partly closed* (follow-up research, [research.md F2/F3](research.md)): Notes apps, Google Sheets templates, printable PDFs, texted photos and WhatsApp are now confirmed. **Facebook-group recommendations and "ask an acquaintance" remain unconfirmed `[?]`.**
 4. **No non-dog/cat owners** — *barely cracked*: one follow-up review came from a *gecko* owner ([research.md F2](research.md)), but rabbit/guinea-pig/bird owners (3 of 5 target species, [research.md:74](research.md)) are still absent. Personas remain implicitly dog-owner-shaped.

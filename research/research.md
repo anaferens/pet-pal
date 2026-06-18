@@ -130,3 +130,34 @@ Rover confirms "sitters only see the care instructions that clients have entered
 - **No lived sitter/walker/vet voice** — every source is written *for* owners or *by* the industry. The persona still lacks a first-person caregiver quote.
 - **The no-signup conclusion is by analogy** (F7) — untested with actual sitters; whether they'll use a link vs. fall back to "just text me" is unknown.
 - **The vet recipient** specifically is still unaddressed — all Round-2 evidence is about sitters/walkers, not vets meeting the pet for the first time.
+
+### Round 3 — Which job is most frequent and most painful?
+
+**Question tested:** *Of the three jobs — planning-ahead (records/reminders), sitter-handoff, and the worried moment (emergency) — which is most frequent and most painful?* This decides the true primary persona and should replace the **assumed** importance scores in the JTBD matrix. Sources are usage statistics, app-review themes, and owner surveys — **US-skewed, general pet-owner data, not PetPal users.**
+
+**F9 — Planning/records is the most *frequent* felt need. 🟢**
+Vet *events* are only ~1–2×/year (dogs ≈1.5, cats ≈0.7 visits/yr; ~half of owners go once a year — [AVMA / PMC](https://pmc.ncbi.nlm.nih.gov/articles/PMC7143178/)). But the **record/proof** need recurs far more often: boarding, daycare, grooming and travel all **require written proof of vaccination**, and "simply stating your dog is up-to-date is usually not enough" ([PetSmart day-camp requirements](https://services.petsmart.com/content/daycamp-requirements); [Hemopet](https://hemopet.org/boarding-kennels-and-grooming-vaccination-laws-and-issues/), which notes the rules are "vague… cause outright confusion and frustration"). So retrieving/proving records is a **recurring, multi-touchpoint friction**, not a once-a-year one.
+
+**F10 — Records/reminders is the #1 *adoption driver* for pet apps. 🟢**
+Across pet-record app review round-ups, **vaccination reminders + record/proof storage** are consistently the most-praised and most-requested features — owners explicitly ask to "upload hard copy vaccination documents" because "it's difficult to keep track of all paperwork" ([PetNoter](https://petnoter.com/best-pet-care-apps/), [JGDHealth](https://pets.jgdhealth.com/blogs/top-7-best-pet-vaccine-tracking-apps-you-should-know/), accessed Jun 2026). This is the job that actually pulls people into the category.
+
+**F11 — But pain *intensity* ranks in the opposite order. 🟢**
+Sitter-handoff carries a heavy emotional load: **56% of owners feel "overwhelming guilt and anxiety" leaving pets**, 61% worry about their pet's welfare on vacation, and 52% have been "too guilty to go" ([Trusted Housesitters survey](https://stevedalepetworld.com/blog/separation-anxiety-from-pets/); PetMeds 2,000-owner survey). The worried/emergency moment is the highest acute stress but **rare** ("few pet owners are prepared for emergencies"). Planning is the lowest-intensity (administrative). → **Frequency order (planning > sitter > emergency) is the reverse of pain-per-event order (emergency > sitter > planning).**
+
+**F12 — Counter-nuance on the reminder job. 🟡 `[?]`**
+Vaccine hesitancy is non-trivial — **22% of dog owners / 26% of cat owners are vaccine-hesitant**, ~40% believe canine vaccines are unsafe ([Boston University / AVMA](https://www.bu.edu/articles/2023/nearly-half-of-dog-owners-are-hesitant-to-vaccinate-their-pets/)). This may shrink the audience for the *"remind me to vaccinate"* job specifically — but the **records/proof** need persists regardless (boarding still demands proof), so the *records* job is more robust than the reminder job alone. EU size of this effect unknown `[?]`.
+
+**Conclusion (resolves the question)**
+- **Most frequent + main adoption driver:** planning/records → the **Organised Owner's** core job.
+- **Most painful per event:** the worried moment (rare, and PetPal can serve only the info slice), then sitter-handoff (very high, well-evidenced guilt/anxiety), then planning.
+- **Best frequency × pain × serviceability for the *core*:** planning/records (frequent + serviceable). **Sitter-handoff is the high-emotion episodic spike** PetPal can genuinely ease — less frequent, but intensely felt and the documented market whitespace.
+
+**What this changes**
+- The **Organised Owner stays primary, but on firmer grounds**: not "she exercises the full loop" (the earlier, weak rationale flagged in the critique) but "she owns the **most frequent felt need and the #1 reason people adopt these apps**." Corrected in [personas.md](personas.md).
+- The **Worried Owner is confirmed secondary** by frequency (rare per person) and serviceability (info-only).
+- **Action for the JTBD matrix** (not edited here): the assumed OO importance "3"s on the planning/records jobs are now **frequency-backed**, and the sitter-handoff job should be read as **lower-frequency / higher-intensity** rather than uniformly "important."
+
+**Still open `[?]`**
+- All stats are **US surveys / English app stores** — no EU-market frequency or pain data.
+- "Most painful" is inferred by comparing **separate** surveys, not a single head-to-head ranking study.
+- These measure **general** pet owners, not people who have chosen a tool like PetPal.
