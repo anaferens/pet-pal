@@ -106,3 +106,27 @@ Reviews of pet-record apps repeatedly flag data entry as "tedious" or needing "s
 - **No evidence for the "Facebook groups / acquaintances" sitter-recommendation channel** — searched, not found. Kept as `[?]` in [personas.md](personas.md).
 - **No strong "I refuse to switch" inertia voice** either — so the *size* of the switching barrier is still unmeasured; F4 is a risk, not a proven blocker.
 - **The receiving caregiver's own view** is still absent — sitter-guidance articles are written *for owners*, not *by* sitters.
+
+### Round 2 — Receiving caregiver needs & no-signup access
+
+**Question tested:** *What does the receiving caregiver (sitter / walker / new vet) actually need, and will they accept no-signup access?* This was flagged as the **highest-risk gap** (zero caregiver voice). Sources are sitter-industry guidance, release-form templates, Rover's own docs, and general sign-up/auth UX research — **still owner-/industry-facing, not lived sitter testimony.**
+
+**F5 — The caregiver's essential info needs are well-documented (confirmed). 🟢**
+A consistent checklist appears across independent sitter-guidance sources: **owner + emergency contacts** (incl. travel companions), **vet office details**, a **vaccination + medication list** (name, dose, frequency, route), age/weight/sex, medical history, microchip number, plus daily routine, feeding specifics and dos/don'ts. Sources: Pet Sitters International veterinary release form ([petsit.com/veterinary-release-form](https://www.petsit.com/veterinary-release-form)), Preventive Vet ([preventivevet.com/pets/pet-sitter-treatment-authorization](https://www.preventivevet.com/pets/pet-sitter-treatment-authorization)), AAHA (Round 1). This maps closely to PetPal's planned profile — **the content model is validated**.
+
+**F6 — A need PetPal's brief does NOT cover: emergency vet *treatment authorization* + spend cap. 🟢 (new)**
+Every sitter release-form source centres on something absent from PetPal's model: **explicit permission to seek emergency vet care, a pre-approved cost limit, and a payment arrangement** ("authorize treatment up to a certain amount"). Sources: [Pet Sitters International](https://www.petsit.com/veterinary-release-form), [Preventive Vet](https://www.preventivevet.com/pets/pet-sitter-treatment-authorization). **Design implication:** the shared caregiver view likely needs an "in an emergency: your vet is X · you're authorized up to €Y · pay via Z" block. Currently nowhere in [CLAUDE.md](../CLAUDE.md).
+
+**F7 — No-signup access is the right default — supported by analogy, not by sitter voice. 🟡**
+Account-creation/auth friction is a heavily documented abandonment driver: 15–25% drop-off at password steps, **92% of users abandon rather than reset a forgotten password**, gated forms convert at just 2–3%, and friction "impacts 100% of visitors" ([securityboulevard.com/2026/03/how-authentication-friction-affects-conversion-rates](https://securityboulevard.com/2026/03/how-authentication-friction-affects-conversion-rates-the-data-behind-frictionless-login/)). Recipients also actively resent a supposedly-open link that still gates them (Google Docs "view-only shared link still requires sign-in" support thread). **Caveat:** this is SaaS/e-commerce UX research, **not pet-sitting** — strong analogy that forcing a one-week sitter to sign up would cause drop-off, but not direct caregiver testimony.
+
+**F8 — The recipient sees exactly what the owner entered — completeness is the owner's job. 🟢**
+Rover confirms "sitters only see the care instructions that clients have entered" ([rover.com sitter resources](https://www.rover.com/blog/sitter-resources/communication-on-rover-a-step-by-step-guide/)). This reinforces the capture-friction risk (F4): a half-filled profile leaves the sitter flying blind. A documented real failure mode — a dog got loose and the owner wasn't told for an hour ([news report](https://www.yahoo.com/news/dog-owner-beloved-pet-dies-184344896.html)) — underlines that a *working owner-contact / update-back path* is part of the caregiver's real need, not a nice-to-have.
+
+**What this changes**
+- The Receiving Caregiver's needs are **no longer all `[?]`** — the info checklist and the no-signup expectation now have evidence. The persona's "everything is hypothesis" framing is corrected in [personas.md](personas.md), and the **emergency-authorization gap (F6)** is added as a new need.
+
+**Still open `[?]`**
+- **No lived sitter/walker/vet voice** — every source is written *for* owners or *by* the industry. The persona still lacks a first-person caregiver quote.
+- **The no-signup conclusion is by analogy** (F7) — untested with actual sitters; whether they'll use a link vs. fall back to "just text me" is unknown.
+- **The vet recipient** specifically is still unaddressed — all Round-2 evidence is about sitters/walkers, not vets meeting the pet for the first time.

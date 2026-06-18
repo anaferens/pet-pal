@@ -75,30 +75,31 @@ The pet seems unwell, it's late, the clinic is closed, and they need information
 
 **Context**
 They've never met this animal and need to understand it fast: what it eats, what it's scared of, what it can't be near, who its vet is.
-- Source: 🔵 this is PetPal's "Pet Personality Profile" recipient ([CLAUDE.md:58-71](../CLAUDE.md)). 🟢 The *content* model is proven by Rover's sitter-facing care card ([research.md:51, 58](research.md), [screenshot](screens/asp_01_rover.png)).
+- Source: 🔵 this is PetPal's "Pet Personality Profile" recipient ([CLAUDE.md:58-71](../CLAUDE.md)). 🟢 The *content* model is proven by Rover's sitter-facing care card ([research.md:51, 58](research.md), [screenshot](screens/asp_01_rover.png)). **Confirmed (follow-up research):** a consistent caregiver info-checklist is documented across sitter-industry sources ([research.md → Follow-up research, F5](research.md)).
 
 **Jobs**
 - Scan one screen and "get" the pet in seconds; not dig through a chat history. 🟢 (Rover care card; [dimension deep-dive](dimension-info-sharing.md) criteria 6).
-- `[?]` *hypothesis*: send the owner reassuring photo/status updates back. (Owners value receiving these on Rover 🟢, but we have **no voice from a sitter** about wanting to send them.)
+- **Know what to do — and what they're allowed to do — in an emergency.** 🟢 **New, from follow-up research:** sitter release forms centre on emergency vet authorization, a pre-approved spend limit, and how to pay — a need **not yet in PetPal's model** ([research.md → Follow-up research, F6](research.md)).
+- `[?]` *hypothesis*: send the owner reassuring photo/status updates back. (Owners value receiving these on Rover 🟢, but we still have **no voice from a sitter** about wanting to send them.)
 
 **Pains in today's ways**
-- `[?]` **Everything here is hypothesis — there is zero caregiver/vet user voice in the research.** Likely pains (info arrives as a long WhatsApp message, half-remembered verbal instructions, no single reference) are plausible but **unvalidated**.
+- **Corrected (follow-up research):** this is no longer "all hypothesis." The caregiver's *needs* are documented — missing emergency contacts, no vet/authorization details, info scattered across a long message — and Rover confirms a sitter "only sees the care instructions the client entered," so a half-filled handoff leaves them flying blind. 🟢 [research.md → Follow-up research, F5/F8](research.md). What's still missing is the caregiver's own *lived voice* `[?]`.
 
 **Trust triggers**
-- `[?]` *hypothesis*: convinced by being able to help without creating an account (low-friction, time-boxed access — proven owner-side, [research.md:68](research.md)); put off by being asked to install/sign up for a one-week job. **Not tested with actual caregivers.**
+- Convinced by being able to help **without creating an account** — now supported by analogy: account/auth friction is a documented abandonment driver (92% abandon rather than reset a password; gated forms convert ~2–3%). 🟡 [research.md → Follow-up research, F7](research.md). Put off by being told to install/sign up for a one-week job. **Caveat:** evidence is general UX research, **not tested with actual caregivers** — whether they'll use a link vs. fall back to "just text me" is still `[?]`.
 
 **Mood quote** — *owner-side proxy only (no caregiver quote exists in the research):* 🟢
 > "It is wonderful to know that you can be provided with pictures and updates from time to time."
 > — Andre Keaton, Rover review ([research.html Voices](research.html); [original](https://www.trustpilot.com/reviews/6a2a93f9c4694b7541c32a65))
 
-**Why secondary:** designing for the recipient is essential to PetPal's sharing promise, but this persona is **almost entirely `[?]`** — the research has no data from sitters, walkers, or vets as people. It's the **highest-risk persona** and the clearest candidate for the next round of primary research.
+**Why secondary:** designing for the recipient is essential to PetPal's sharing promise. Follow-up research has **firmed up *what* this persona needs** (info checklist + emergency authorization) and the *no-signup* design default, but it still has **no first-person sitter/walker/vet voice** — needs are documented by the industry, not spoken by caregivers. It remains the **highest-risk persona** and the clearest candidate for the next round of primary research (talk to actual sitters).
 
 ---
 
 ## Biggest validation gaps before these become real `[?]`
 
 1. **No PetPal-target user has been interviewed** — all evidence is competitor-product reviews. The Organised Owner's emotional pains are inferred.
-2. **The Receiving Caregiver has no voice at all** — sitters/walkers/vets are represented only by B2B product positioning ([research.md:53-54](research.md)).
+2. **The Receiving Caregiver has no *lived* voice** — *partly closed*: their needs (info checklist, emergency authorization, no-signup expectation) are now documented via sitter-industry sources and UX research ([research.md → Follow-up research, F5-F8](research.md)), but every source is *for* owners or *by* the industry — **no first-person sitter/walker/vet testimony yet `[?]`**. The **vet recipient** specifically is still unaddressed.
 3. **The status quo channels** — *partly closed* (follow-up research, [research.md F2/F3](research.md)): Notes apps, Google Sheets templates, printable PDFs, texted photos and WhatsApp are now confirmed. **Facebook-group recommendations and "ask an acquaintance" remain unconfirmed `[?]`.**
 4. **No non-dog/cat owners** — *barely cracked*: one follow-up review came from a *gecko* owner ([research.md F2](research.md)), but rabbit/guinea-pig/bird owners (3 of 5 target species, [research.md:74](research.md)) are still absent. Personas remain implicitly dog-owner-shaped.
 5. **No EU-mainland voices** — *still fully open `[?]`*: every source remains GB/AU/CA/US/HK and English-language app stores ([research.html Voices](research.html); follow-up research found no EU-mainland reviews).
