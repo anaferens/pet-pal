@@ -177,3 +177,59 @@ RECIPIENT entry — no account  (the RC journey)
 - **Account settings / notification preferences** — no standalone job today; would be `[ORPHAN]`. Reminder channel choice lives *with* "What's due" (R1) until a real job demands its own screen.
 - **Emotional jobs E1 (calm), E2 (nothing forgotten), E3 (spare pet stress)** — served *through* the screens above (reliability, a complete share, low-friction), **not** as their own nodes. E3 currently has no feature at all.
 - **Carer discovery / reviews / trust ratings** — the "find a carer" job is a **hypothesis** PetPal doesn't serve ([jtbd.md Hypotheses](jtbd.md)); no node.
+
+---
+
+## Navigation
+
+### 1. Global navigation — 3 items
+
+Each item is the entry to a **main-job cluster** — not "because every app has one." The three map cleanly onto the three verbs of the [main job](jtbd.md): *consult · act in time · pass on.*
+
+| Global item | Job behind it | Why it earns a global slot |
+|---|---|---|
+| **Pets** | **Main** ("keep everything in one trusted place… *consult*") | The single trusted record — the dossier hub. The most frequent felt need and #1 adoption driver ([research.md F9/F10](research.md)). This is the home. |
+| **What's due** | **R1** ("act in time, never reacting last-minute") | The reminder view, lifted above any one pet because "*what must I act on?*" spans all pets. The frequent, recurring reason to open the app. |
+| **Share** | **S2** (create a handoff) + **S1** (manage who sees what) | The "**…and can pass on**" half of the main job — and PetPal's documented market whitespace (role-based portable sharing, [research.md:75](research.md)). |
+
+**Why not 4–5:**
+- **Vet messages (R3)** → folded in as **contextual** (reachable from a pet / from a share); its MVP necessity is itself an open question ([research.md:79](research.md)) — too uncertain to hold a permanent global slot.
+- **Emergency (R5)** → a **secondary-persona** job (Worried Owner) and pet-specific; it lives *inside* a pet, surfaced prominently, not in global nav.
+- **Account / settings** → no job → would be an `[ORPHAN]`; excluded.
+
+### 2. Depth to the main job (primary persona — Organised Owner)
+
+First screen for a signed-in owner = **Pets** (My Pets).
+
+```
+Pets (first screen)  →  tap a pet  →  Pet dossier  =  the "one trusted place"
+       tap 0                tap 1         ← main job (consult) reached in 1 TAP ✅
+```
+
+- **Consult the trusted record:** **1 tap** (My Pets → open pet). With a *single* pet (the OO's typical case — "one dog"), the app can land directly on that pet's dossier = **0 taps**.
+- **Pass it on (other half of the job):** dossier → **Share** = **2 taps**, or via the global **Share** item = **1 tap**.
+- **Full main job (consult *and* initiate a handoff): ≤ 2 taps.**
+
+**Within the 3-tap budget — no restructure needed.** The flat tree (global cluster → object → its parts) keeps the core record one tap from the door, with no compromise to report.
+
+*(Bonus — secondary RC persona: the recipient opens a link straight into the **Shared pet view** = **0 taps** to their job, R2.)*
+
+### 3. Global / Contextual / Deep
+
+**Global — always visible** (the 3 job-cluster entries):
+- **Pets** [Main] · **What's due** [R1] · **Share** [S1/S2]
+
+**Contextual — appears inside a flow** (scoped to the object you're in):
+- Pet-dossier sections: **Health & jabs** [R1/R3], **Documents & passport** [Main/R3], **Insurance** [R1], **Personality & care** [R2], **Vet & appointments** [R1/R5], **Emergency info** [R5/R2·F6] — appear *inside a pet*.
+- **Set up a pet** [Main] — inside My Pets / first run.
+- **Vet messages** [R3] — inside a pet or a share.
+- **Who has access** [S1] — inside the Share cluster.
+- **Add a record / upload a document / add a reminder** — inside the relevant dossier section.
+- **Emergency & what I'm allowed to do** [R5/R2·F6] — inside the recipient's Shared pet view (RC).
+
+**Deep — rare actions** (intentionally a few taps down):
+- **Emergency authorization setup** (spend cap, payment, who-may-authorize) `[?]` — set once, seldom touched ([research.md F6](research.md)).
+- **Edit / revoke a specific access grant** — inside *Who has access*.
+- **Edit pet identity** (microchip, passport details) — infrequent.
+- **Archive / delete a pet** — rare and destructive (e.g. a pet that has passed).
+- **Account & notification preferences** — deferred, no standalone job yet.
