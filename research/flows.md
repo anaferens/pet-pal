@@ -6,7 +6,14 @@ Mermaid `flowchart TD`. Every `["screen"]` node exists in [sitemap.md](sitemap.m
 - `["Screen"]` — a screen (named from sitemap.md)
 - `{"Question?"}` — decision point
 - `("Loading / Empty / Error …")` — a **state**, not a screen
-- `(["Success / Dead end …"])` — an ending (✅ success or ⛔ stuck)
+- `(["Success / Dead end …"])` — an ending (success or stuck)
+
+**Colour legend**
+- 🟦 **blue** — screen · ⬜ decision (default diamond)
+- 🟨 **amber** — loading / empty state
+- 🟥 **red** — error state
+- 🟩 **green** — success ending (happy path)
+- 🟫 **dark red** — dead end (person gets stuck)
 
 ---
 
@@ -43,6 +50,19 @@ flowchart TD
   Q7 -->|no| LinkErr("Error: could not create link")
   LinkErr --> DeadShare(["Dead end: cannot pass on, falls back to chat and photos"])
   Q7 -->|yes| DoneShare(["Success: handoff sent, consult and pass on complete"])
+
+  classDef screen fill:#e7f5ff,stroke:#1971c2,color:#0b3d66;
+  classDef state fill:#fff3bf,stroke:#f08c00,color:#663c00;
+  classDef error fill:#ffe3e3,stroke:#e03131,color:#7a1212;
+  classDef success fill:#d3f9d8,stroke:#2f9e44,color:#14532d;
+  classDef deadend fill:#ffc9c9,stroke:#c92a2a,color:#6a1212;
+  classDef start fill:#f1f3f5,stroke:#868e96,color:#343a40;
+  class Start start;
+  class Pets,Setup,Dossier,Health,AddRec,Share screen;
+  class EmptyPets,SaveLoad,RecLoad,LinkLoad state;
+  class SaveErr,RecErr,LinkErr error;
+  class DoneConsult,DoneShare success;
+  class DeadShare deadend;
 ```
 
 ---
@@ -73,6 +93,19 @@ flowchart TD
   Q5 -->|no| DeadGap(["Dead end: carer cannot act confidently"])
   Q5 -->|yes| Emerg["Emergency & what I'm allowed to do"]
   Emerg --> Understood
+
+  classDef screen fill:#e7f5ff,stroke:#1971c2,color:#0b3d66;
+  classDef state fill:#fff3bf,stroke:#f08c00,color:#663c00;
+  classDef error fill:#ffe3e3,stroke:#e03131,color:#7a1212;
+  classDef success fill:#d3f9d8,stroke:#2f9e44,color:#14532d;
+  classDef deadend fill:#ffc9c9,stroke:#c92a2a,color:#6a1212;
+  classDef start fill:#f1f3f5,stroke:#868e96,color:#343a40;
+  class Open start;
+  class Dossier,Care,AddRec,Share,SharedView,Emerg screen;
+  class Load,Empty state;
+  class LinkErr error;
+  class Sent,Understood success;
+  class DeadLink,DeadGap deadend;
 ```
 
 ---
@@ -102,6 +135,17 @@ flowchart TD
   Q4 -->|no| SaveErr("Error: save failed")
   SaveErr --> DeadSave(["Dead end: due item stays unresolved"])
   Q4 -->|yes| Acted
+
+  classDef screen fill:#e7f5ff,stroke:#1971c2,color:#0b3d66;
+  classDef state fill:#fff3bf,stroke:#f08c00,color:#663c00;
+  classDef error fill:#ffe3e3,stroke:#e03131,color:#7a1212;
+  classDef success fill:#d3f9d8,stroke:#2f9e44,color:#14532d;
+  classDef deadend fill:#ffc9c9,stroke:#c92a2a,color:#6a1212;
+  class Whats,Health,Insurance,Vet,AddRec screen;
+  class Load,SaveLoad state;
+  class Err,SaveErr error;
+  class EmptyDone,Acted success;
+  class DeadLoad,DeadSave deadend;
 ```
 
 ---
@@ -127,6 +171,19 @@ flowchart TD
   Stale --> Q4{"Act on it anyway?"}
   Q4 -->|no| DeadStale(["Dead end: unsure, stuck"])
   Q4 -->|yes| Acted
+
+  classDef screen fill:#e7f5ff,stroke:#1971c2,color:#0b3d66;
+  classDef state fill:#fff3bf,stroke:#f08c00,color:#663c00;
+  classDef error fill:#ffe3e3,stroke:#e03131,color:#7a1212;
+  classDef success fill:#d3f9d8,stroke:#2f9e44,color:#14532d;
+  classDef deadend fill:#ffc9c9,stroke:#c92a2a,color:#6a1212;
+  classDef start fill:#f1f3f5,stroke:#868e96,color:#343a40;
+  class Start start;
+  class Pets,Dossier,Emerg screen;
+  class Load,Empty,Stale state;
+  class Err error;
+  class Acted success;
+  class DeadErr,DeadEmpty,DeadStale deadend;
 ```
 
 ---
