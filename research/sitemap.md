@@ -224,7 +224,7 @@ Pets (first screen)  →  tap a pet  →  Pet dossier  =  the "one trusted place
 - **Set up a pet** [Main] — inside My Pets / first run.
 - **Vet messages** [R3] — inside a pet or a share.
 - **Who has access** [S1] — inside the Share cluster.
-- **Add a record / upload a document / add a reminder** — inside the relevant dossier section.
+- **Add / update a record** (upload a document / add a reminder) — `[Main · R1 · R3]` — inside the relevant dossier section. *(node used across the flows in [flows.md](flows.md))*
 - **Emergency & what I'm allowed to do** [R5/R2·F6] — inside the recipient's Shared pet view (RC).
 
 **Deep — rare actions** (intentionally a few taps down):
