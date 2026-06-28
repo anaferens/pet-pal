@@ -118,4 +118,62 @@ Owner ── Vet message thread ── Vet clinic   (MVP scope [?])
 
 ---
 
-*Next step (not done here): map these entities onto screens & navigation.*
+---
+
+## Screens
+
+Draft screen hierarchy derived from the **jobs** and **entities** above — *not* from competitor structures. **Every node carries the job it serves** (codes from [jtbd.md](jtbd.md)); a node with no job is marked `[ORPHAN]` and must not silently enter the tree.
+
+**Legend:** `⭐OO` = needed for the **primary** persona (Organised Owner) · `◦WO` / `◦RC` = needed for a **secondary** persona (Worried Owner / Receiving Caregiver) · `[?]` = depends on an entity/job still flagged.
+**States, not screens:** empty / loading / error / "no access yet" are *states* of the screens below, not their own nodes.
+Depth is kept deliberately shallow — levels get added in step 3.
+
+```
+OWNER app — signed in  (the OO journey)
+│
+├─ My Pets ................................. [Main]          ⭐OO
+│   └─ Set up a pet ........................ [Main]          ⭐OO
+│
+├─ Pet dossier  (one pet) ................. [Main]          ⭐OO
+│   ├─ Health & jabs ...................... [R1, R3]        ⭐OO
+│   ├─ Documents & passport ............... [Main, R3]      ⭐OO
+│   ├─ Insurance .......................... [R1]            ⭐OO
+│   ├─ Personality & care ................. [R2]            ⭐OO
+│   ├─ Vet & appointments ................. [R1, R5]        ⭐OO
+│   └─ Emergency info & authorization ..... [R5, R2·F6]     ◦WO  ◦RC   [?]
+│
+├─ What's due  (reminders, all pets) ...... [R1]            ⭐OO
+│
+├─ Share a pet  (create access grant) ..... [S2]            ⭐OO
+│   └─ Who has access  (manage roles) ..... [S1]            ⭐OO
+│
+└─ Vet messages ........................... [R3]            ⭐OO   [MVP scope ?]
+
+
+RECIPIENT entry — no account  (the RC journey)
+│
+└─ Shared pet view ........................ [R2, R3]        ◦RC
+    └─ Emergency & what I'm allowed to do .. [R5, R2·F6]     ◦RC   [?]
+```
+
+### Why these nodes (object + human logic, not "website sections")
+
+- **My Pets / Set up a pet** — the **Pet** collection; the owner manages more than one (Main).
+- **Pet dossier** — the **Pet dossier** object; the single hub a person consults and passes on. Its children are the *parts of the dossier*, each load-bearing for a job, not generic menu sections.
+- **What's due** — the **Reminder** object, lifted out of any single pet because the human question "*what do I need to act on?*" spans all pets (R1).
+- **Share a pet / Who has access** — the **Access grant** object: *creating* a handoff (S2) is a different act from *managing who can see what* (S1), so they are two nodes.
+- **Vet messages** — the **Vet message thread** (R3); kept, but MVP necessity is an open question ([research.md:79](research.md)).
+- **Shared pet view** — the carer/vet projection of a dossier via an Access grant; a **separate entry** because the recipient arrives by link with **no account** (S2).
+
+### Persona split (explicit)
+
+- **Primary (⭐OO) — the owner's full loop:** My Pets, Set up a pet, Pet dossier + all six sections, What's due, Share a pet, Who has access, Vet messages.
+- **Secondary (◦WO):** **Emergency info & authorization** — the owner pulling critical info fast in a worried moment (R5).
+- **Secondary (◦RC):** **Shared pet view** and **Emergency & what I'm allowed to do** — the no-account recipient (R2, R3, R5/F6).
+
+### Deliberately absent (so they don't sneak in as orphans)
+
+- **Updates-from-carer / "proof okay while away"** — would serve **R4**, but R4 has **no feature** (flagged gap, [jtbd.md R4](jtbd.md)). No screen until that's decided.
+- **Account settings / notification preferences** — no standalone job today; would be `[ORPHAN]`. Reminder channel choice lives *with* "What's due" (R1) until a real job demands its own screen.
+- **Emotional jobs E1 (calm), E2 (nothing forgotten), E3 (spare pet stress)** — served *through* the screens above (reliability, a complete share, low-friction), **not** as their own nodes. E3 currently has no feature at all.
+- **Carer discovery / reviews / trust ratings** — the "find a carer" job is a **hypothesis** PetPal doesn't serve ([jtbd.md Hypotheses](jtbd.md)); no node.
