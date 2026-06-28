@@ -161,3 +161,10 @@ Vaccine hesitancy is non-trivial — **22% of dog owners / 26% of cat owners are
 - All stats are **US surveys / English app stores** — no EU-market frequency or pain data.
 - "Most painful" is inferred by comparing **separate** surveys, not a single head-to-head ranking study.
 - These measure **general** pet owners, not people who have chosen a tool like PetPal.
+
+### IA cross-check — gaps the architecture made concrete
+
+Building the [sitemap / flows / IA](sitemap.md) surfaced three structural points where the **design now depends on data we don't have** (none invented here — flagging for the next research round):
+- **Carer→owner updates (R4)** — the IA has *no page* for "proof my pet's okay while away" because there's no validated need or caregiver voice (parked, [jtbd.md R4](jtbd.md)). If owners actually want this, the tree is missing a branch — **needs RC-side validation**.
+- **In-app vet *messaging* vs. record-*sharing* (R3)** — the tree carries a *Vet messages* page, but whether real-time messaging (not just sharing a record) is wanted at MVP is **still the open PM question** above — unvalidated demand for a whole page.
+- **Emergency authorization data (F6)** — *Emergency info & authorization* is now a real screen, but the **spend-cap / payment / who-may-authorize** data behind it is a documented caregiver need (F6) with **no owner-side evidence** that owners will fill it in. Capture-friction risk (F4) applies doubly here.

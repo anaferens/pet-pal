@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PetPal — Information Architecture</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #080808; --bg-elev: #131313;
+    --line: rgba(255,255,255,0.09); --line-soft: rgba(255,255,255,0.05);
+    --text: #f3f3f3; --text-muted: #8c8c8c;
+    --panel: #1a1a1a; --panel-alt: #232323; --panel-text: #e6e6e6; --panel-muted: #9a9a9a;
+    --green: #6fce97; --amber: #d4b483; --red: #d98c8c; --blue: #9ab2c9;
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0; font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    background-color: var(--bg);
+    background-image:
+      linear-gradient(to right, rgba(255,255,255,0.025) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(255,255,255,0.025) 1px, transparent 1px);
+    background-size: 64px 64px;
+    color: var(--text); line-height: 1.65; -webkit-font-smoothing: antialiased;
+  }
+  .topnav {
+    position: sticky; top: 16px; z-index: 50; max-width: 1040px; margin: 0 auto;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 10px 10px 10px 22px;
+    background: rgba(20,20,22,0.6); backdrop-filter: blur(16px) saturate(160%);
+    border: 1px solid var(--line); border-radius: 100px;
+  }
+  .topnav .brand { font-size: 1.05rem; font-weight: 600; color: var(--text); text-decoration: none; }
+  .topnav .links { display: flex; gap: 6px; flex-wrap: wrap; }
+  .topnav .links a {
+    color: var(--text-muted); text-decoration: none; font-size: 0.85rem; font-weight: 500;
+    padding: 9px 16px; border-radius: 100px; transition: all 0.2s;
+  }
+  .topnav .links a:hover { color: var(--text); background: var(--panel-alt); }
+
+  .hero { position: relative; text-align: center; padding: 92px 24px 56px; overflow: hidden; }
+  .hero::before {
+    content: ""; position: absolute; top: -280px; left: 50%; width: 1100px; height: 700px;
+    transform: translateX(-50%);
+    background: radial-gradient(ellipse 460px 320px at 50% 60%, rgba(255,255,255,0.10), transparent 70%);
+    filter: blur(40px); pointer-events: none;
+  }
+  .hero-inner { position: relative; z-index: 1; }
+  .eyebrow {
+    display: inline-block; font-size: 0.78rem; letter-spacing: 0.15em; text-transform: uppercase;
+    color: var(--text-muted); border: 1px solid var(--line); border-radius: 100px;
+    padding: 6px 18px; margin-bottom: 24px;
+  }
+  .hero h1 { font-size: clamp(2.4rem, 5.5vw, 4rem); font-weight: 400; margin: 0 0 18px; letter-spacing: -0.02em; line-height: 1.06; }
+  .hero h1 em { font-style: normal; font-weight: 300; color: var(--text-muted); }
+  .hero p { max-width: 620px; margin: 0 auto; color: var(--text-muted); font-size: 1.05rem; }
+
+  .wrap { max-width: 1040px; margin: 0 auto; padding: 0 24px 70px; }
+  section { margin-bottom: 80px; scroll-margin-top: 100px; }
+  .section-head { margin-bottom: 24px; }
+  .section-head .num { font-size: 0.78rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-muted); display: block; margin-bottom: 8px; }
+  .section-head h2 { font-weight: 600; font-size: clamp(1.6rem, 3.4vw, 2.2rem); margin: 0 0 10px; letter-spacing: -0.01em; }
+  .section-head p { color: var(--text-muted); max-width: 720px; margin: 0; font-size: 0.98rem; }
+  h3.sub { font-weight: 600; font-size: 1.15rem; margin: 34px 0 12px; }
+
+  .card {
+    background: var(--panel); border: 1px solid var(--line); border-radius: 20px;
+    padding: 18px; overflow-x: auto;
+  }
+  .mermaid { display: flex; justify-content: center; min-width: 600px; }
+
+  /* legend chips */
+  .legend { display: flex; flex-wrap: wrap; gap: 10px; margin: 14px 0 4px; }
+  .chip { display: inline-flex; align-items: center; gap: 7px; font-size: 0.74rem; font-weight: 600; padding: 5px 12px; border-radius: 100px; border: 1px solid var(--line); color: var(--text-muted); }
+  .chip::before { content: ""; width: 9px; height: 9px; border-radius: 3px; }
+  .chip.global::before { background: #1971c2; }
+  .chip.screen::before { background: #cfe6fb; }
+  .chip.contextual::before { background: #f0c060; }
+  .chip.deep::before { background: #b9bcc0; }
+  .chip.recipient::before { background: #2fcaa0; }
+
+  /* tables */
+  .table-card { background: var(--panel); border: 1px solid var(--line); color: var(--panel-text); border-radius: 20px; padding: 8px; overflow-x: auto; margin-top: 8px; }
+  table { width: 100%; border-collapse: collapse; font-size: 0.85rem; min-width: 760px; }
+  th, td { padding: 11px 12px; text-align: left; vertical-align: top; border-bottom: 1px solid var(--line-soft); }
+  th { font-weight: 600; font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--panel-muted); }
+  th.c, td.c { text-align: center; }
+  tr:last-child td { border-bottom: none; }
+  td.job { font-weight: 700; color: var(--text); white-space: nowrap; }
+  .tick { color: var(--green); font-weight: 700; }
+  tr.orphan { background: rgba(217,140,140,0.10); }
+  tr.orphan td.job { color: var(--red); }
+  .pill { display: inline-block; font-size: 0.7rem; font-weight: 700; padding: 2px 9px; border-radius: 100px; }
+  .pill.parked { color: var(--amber); background: rgba(212,180,131,0.12); border: 1px solid rgba(212,180,131,0.3); }
+  .pill.done { color: var(--green); background: rgba(111,206,151,0.12); border: 1px solid rgba(111,206,151,0.3); }
+  .codelist { font-size: 0.82rem; color: var(--text-muted); margin-top: 14px; line-height: 1.9; }
+  .codelist b { color: var(--text); }
+  .note { color: var(--text-muted); font-size: 0.9rem; margin-top: 14px; }
+  .note b { color: var(--text); }
+
+  footer { text-align: center; color: var(--text-muted); font-size: 0.85rem; padding: 44px 24px 60px; border-top: 1px solid var(--line); max-width: 1040px; margin: 0 auto; }
+  footer a { color: var(--text); text-decoration: none; border-bottom: 1px solid var(--line); }
+  footer a:hover { border-color: var(--text); }
+  footer .sep { margin: 0 10px; opacity: 0.4; }
+  @media (max-width: 720px) { .topnav .links { display: none; } }
+</style>
+</head>
+<body>
+
+  <div class="topnav">
+    <a class="brand" href="#top">PetPal · IA</a>
+    <div class="links">
+      <a href="#sitemap">Sitemap</a>
+      <a href="#flows">Flows</a>
+      <a href="#traceability">Traceability</a>
+      <a href="research.html">Research</a>
+      <a href="personas.html">Personas</a>
+    </div>
+  </div>
+
+  <header class="hero" id="top">
+    <div class="hero-inner">
+      <span class="eyebrow">Design Research · PetPal</span>
+      <h1>Information <em>architecture</em></h1>
+      <p>One place for the whole product's structure: the sitemap tree with a job behind every screen, all user flows, and the job-to-screen traceability matrix.</p>
+    </div>
+  </header>
+
+<div class="wrap">
+
+  <!-- 01 SITEMAP -->
+  <section id="sitemap">
+    <div class="section-head">
+      <span class="num">01 — Structure</span>
+      <h2>Sitemap tree</h2>
+      <p>Every page from <a href="https://github.com/anaferens/pet-pal/blob/main/research/sitemap.md" style="color:var(--blue)">sitemap.md</a>, with the job it serves next to it. Two journeys: the owner app and the no-account recipient.</p>
+    </div>
+    <div class="legend">
+      <span class="chip global">global nav</span>
+      <span class="chip screen">screen</span>
+      <span class="chip contextual">contextual</span>
+      <span class="chip deep">deep / rare</span>
+      <span class="chip recipient">recipient</span>
+    </div>
+    <div class="card">
+      <pre class="mermaid">
+flowchart TD
+  Root(["PetPal"])
+  Root --> OwnerApp{{"Owner app · signed in"}}
+  Root --> Recipient{{"Recipient · no account, via link"}}
+  OwnerApp --> Pets["My Pets · Main"]
+  OwnerApp --> Whats["What's due · R1"]
+  OwnerApp --> Share["Share a pet · S2"]
+  OwnerApp --> VetMsg["Vet messages · R3"]
+  Pets --> Setup["Set up a pet · Main"]
+  Pets --> Dossier["Pet dossier · Main"]
+  Pets -.->|1-tap emergency shortcut| Emerg["Emergency info & authorization · R5"]
+  Dossier --> Health["Health & jabs · R1/R3"]
+  Dossier --> Docs["Documents & passport · Main/R3"]
+  Dossier --> Ins["Insurance · R1"]
+  Dossier --> Pers["Personality & care · R2"]
+  Dossier --> VetAppt["Vet & appointments · R1/R5"]
+  Dossier --> Emerg
+  Dossier --> AddRec["Add / update a record · Main/R1/R3"]
+  Dossier --> EditId["Edit pet identity & lifecycle · Main"]
+  Emerg --> EmergSetup["Emergency authorization setup · R5/F6"]
+  Whats -.->|act on item| AddRec
+  Whats --> RemSet["Reminder channel setting · R1"]
+  Share --> WhoAccess["Who has access · S1"]
+  WhoAccess --> EditGrant["Edit / revoke a grant · S1"]
+  Share -.->|creates| SharedView
+  Recipient --> SharedView["Shared pet view · R2/R3"]
+  SharedView --> EmergAllowed["Emergency & what I'm allowed to do · R5/F6"]
+  classDef entry fill:#0b3d66,stroke:#9ab2c9,color:#fff;
+  classDef global fill:#1971c2,stroke:#a5d8ff,color:#fff;
+  classDef screen fill:#e7f5ff,stroke:#1971c2,color:#0b3d66;
+  classDef contextual fill:#fff3bf,stroke:#f08c00,color:#663c00;
+  classDef deep fill:#ececec,stroke:#868e96,color:#343a40;
+  classDef recipient fill:#e6fcf5,stroke:#0ca678,color:#08503b;
+  class Root,OwnerApp,Recipient entry;
+  class Pets,Whats,Share global;
+  class Setup,Dossier,Health,Docs,Ins,Pers,VetAppt,Emerg,VetMsg screen;
+  class AddRec,RemSet contextual;
+  class EmergSetup,EditGrant,EditId deep;
+  class SharedView,EmergAllowed recipient;
+      </pre>
+    </div>
+    <p class="note"><b>Navigation:</b> 3 global items — <b>Pets</b> (consult · Main) · <b>What's due</b> (act in time · R1) · <b>Share</b> (pass on · S2/S1). <b>Depth:</b> main job in <b>1 tap</b> (0 with single-pet auto-land); <b>Emergency</b> in 1 tap from home.</p>
+  </section>
+
+  <!-- 02 FLOWS -->
+  <section id="flows">
+    <div class="section-head">
+      <span class="num">02 — Behaviour</span>
+      <h2>User flows</h2>
+      <p>From <a href="https://github.com/anaferens/pet-pal/blob/main/research/flows.md" style="color:var(--blue)">flows.md</a>. 🟦 screen · 🟨 state · 🟥 error · 🟩 success · 🟧 partial (recovered). No dead ends remain.</p>
+    </div>
+
+    <h3 class="sub">Main job — consult &amp; pass on</h3>
+    <div class="card">
+      <pre class="mermaid">
+flowchart TD
+  Start("Open app") --> PetsLoad("Loading: fetching pets")
+  PetsLoad --> Qp{"Pets loaded?"}
+  Qp -->|no| PetsErr("Error: could not load pets")
+  PetsErr -->|retry| PetsLoad
+  Qp -->|yes| Pets["My Pets"]
+  Pets --> Q1{"Any pets yet?"}
+  Q1 -->|no| EmptyPets("Empty: no pets yet")
+  EmptyPets --> Setup["Set up a pet"]
+  Q1 -->|yes| DossLoad("Loading: opening dossier")
+  Setup --> SaveLoad("Loading: saving pet")
+  SaveLoad --> Q2{"Saved?"}
+  Q2 -->|no| SaveErr("Error: could not save")
+  SaveErr -->|retry| Setup
+  Q2 -->|yes| DossLoad
+  DossLoad --> Qd{"Dossier opened?"}
+  Qd -->|no| DossErr("Error: could not open dossier")
+  DossErr -->|retry| DossLoad
+  Qd -->|yes| Dossier["Pet dossier"]
+  Dossier --> Q3{"Everything captured and current?"}
+  Q3 -->|no| Health["Health & jabs"]
+  Health --> Qe{"Any records yet?"}
+  Qe -->|no| EmptySec("Empty: no records yet, add the first")
+  EmptySec --> AddRec["Add / update a record"]
+  Qe -->|yes| AddRec
+  AddRec --> RecLoad("Loading: saving record")
+  RecLoad --> Q4{"Saved?"}
+  Q4 -->|no| RecErr("Error: save failed")
+  RecErr -->|retry| AddRec
+  Q4 -->|yes| Dossier
+  Q3 -->|yes| Q5{"Pass it on now?"}
+  Q5 -->|no| DoneConsult(["Success: record consulted and up to date"])
+  Q5 -->|yes| Share["Share a pet"]
+  Share --> Q6{"Recipient and scope set?"}
+  Q6 -->|no| Share
+  Q6 -->|yes| LinkLoad("Loading: creating link")
+  LinkLoad --> Q7{"Link created?"}
+  Q7 -->|no| LinkErr("Error: could not create link")
+  LinkErr -->|retry| LinkLoad
+  LinkErr -->|save and try later| Dossier
+  Q7 -->|yes| DoneShare(["Success: handoff sent, consult and pass on complete"])
+  classDef screen fill:#e7f5ff,stroke:#1971c2,color:#0b3d66;
+  classDef state fill:#fff3bf,stroke:#f08c00,color:#663c00;
+  classDef error fill:#ffe3e3,stroke:#e03131,color:#7a1212;
+  classDef success fill:#d3f9d8,stroke:#2f9e44,color:#14532d;
+  class Pets,Setup,Dossier,Health,AddRec,Share screen;
+  class PetsLoad,EmptyPets,DossLoad,SaveLoad,EmptySec,RecLoad,LinkLoad,Start state;
+  class PetsErr,DossErr,SaveErr,RecErr,LinkErr error;
+  class DoneConsult,DoneShare success;
+      </pre>
+    </div>
+
+    <h3 class="sub">R2 — make a stranger understand my pet fast</h3>
+    <div class="card">
+      <pre class="mermaid">
+flowchart TD
+  Dossier["Pet dossier"] --> Care["Personality & care"]
+  Care --> Q1{"Care info complete?"}
+  Q1 -->|no| AddRec["Add / update a record"]
+  AddRec --> Care
+  Q1 -->|yes| Share["Share a pet"]
+  Share --> Q2{"Carer scope and link set?"}
+  Q2 -->|no| Share
+  Q2 -->|yes| ShareLoad("Loading: creating link")
+  ShareLoad --> Q2b{"Link created?"}
+  Q2b -->|no| ShareErr("Error: could not create link")
+  ShareErr -->|retry| ShareLoad
+  Q2b -->|yes| Sent(["Success: link sent"])
+  Sent --> Open("Recipient opens link")
+  Open --> Load("Loading: opening shared view")
+  Load --> Q3{"Link valid and active?"}
+  Q3 -->|no| LinkErr("Error: link expired or revoked")
+  LinkErr --> Reissue("Owner re-shares a fresh link")
+  Reissue --> Open
+  Q3 -->|yes| Q3b{"View loaded ok?"}
+  Q3b -->|no| ViewErr("Error: could not load view")
+  ViewErr -->|retry| Load
+  Q3b -->|yes| SharedView["Shared pet view"]
+  SharedView --> Q4{"Contains what the carer needs?"}
+  Q4 -->|yes| Understood(["Success: carer understands the pet"])
+  Q4 -->|no| Empty("Empty: owner filled little")
+  Empty --> Q5{"Emergency info present?"}
+  Q5 -->|yes| Emerg["Emergency & what I'm allowed to do"]
+  Emerg --> Understood
+  Q5 -->|no| OwnerContact("Shown: owner contact")
+  OwnerContact --> Soft1(["Partial: carer has owner contact"])
+  classDef screen fill:#e7f5ff,stroke:#1971c2,color:#0b3d66;
+  classDef state fill:#fff3bf,stroke:#f08c00,color:#663c00;
+  classDef error fill:#ffe3e3,stroke:#e03131,color:#7a1212;
+  classDef success fill:#d3f9d8,stroke:#2f9e44,color:#14532d;
+  classDef soft fill:#ffe8cc,stroke:#e8590c,color:#7a3000;
+  class Dossier,Care,AddRec,Share,SharedView,Emerg screen;
+  class ShareLoad,Load,Empty,Reissue,OwnerContact,Open state;
+  class ShareErr,LinkErr,ViewErr error;
+  class Sent,Understood success;
+  class Soft1 soft;
+      </pre>
+    </div>
+
+    <h3 class="sub">R1 — stay ahead of what's due</h3>
+    <div class="card">
+      <pre class="mermaid">
+flowchart TD
+  Whats["What's due"] --> Load("Loading: fetching reminders")
+  Load --> Q0{"Loaded ok?"}
+  Q0 -->|no| Err("Error: could not load")
+  Err -->|retry| Load
+  Err -->|offline| Cached("Showing last-saved reminders")
+  Cached --> Q1
+  Q0 -->|yes| Q1{"Any reminders due?"}
+  Q1 -->|no| EmptyDone(["Success: nothing due"])
+  Q1 -->|yes| Q2{"Which type?"}
+  Q2 -->|vaccination| Health["Health & jabs"]
+  Q2 -->|insurance| Insurance["Insurance"]
+  Q2 -->|appointment| Vet["Vet & appointments"]
+  Health --> Q3{"Info current?"}
+  Insurance --> Q3
+  Vet --> Q3
+  Q3 -->|yes| Acted(["Success: acted in time"])
+  Q3 -->|no| AddRec["Add / update a record"]
+  AddRec --> SaveLoad("Loading: saving")
+  SaveLoad --> Q4{"Saved?"}
+  Q4 -->|no| SaveErr("Error: save failed")
+  SaveErr -->|retry| AddRec
+  SaveErr -->|keep in list| Whats
+  Q4 -->|yes| Acted
+  classDef screen fill:#e7f5ff,stroke:#1971c2,color:#0b3d66;
+  classDef state fill:#fff3bf,stroke:#f08c00,color:#663c00;
+  classDef error fill:#ffe3e3,stroke:#e03131,color:#7a1212;
+  classDef success fill:#d3f9d8,stroke:#2f9e44,color:#14532d;
+  class Whats,Health,Insurance,Vet,AddRec screen;
+  class Load,SaveLoad,Cached state;
+  class Err,SaveErr error;
+  class EmptyDone,Acted success;
+      </pre>
+    </div>
+
+    <h3 class="sub">R5 — make a good call in a worrying moment</h3>
+    <div class="card">
+      <pre class="mermaid">
+flowchart TD
+  Start("Open app - worried") --> Pets["My Pets"]
+  Pets -->|emergency shortcut| Emerg["Emergency info & authorization"]
+  Emerg --> Load("Loading: opening critical info")
+  Load --> Q1{"Info loaded?"}
+  Q1 -->|no| Err("Error: could not load")
+  Err -->|retry| Load
+  Err -->|offline| Cached("Showing cached critical info")
+  Cached --> Q2
+  Q1 -->|yes| Q2{"Critical info present?"}
+  Q2 -->|yes| Q3{"Is it current?"}
+  Q2 -->|no| Fallback("Shown: vet + owner contact, call your vet")
+  Fallback --> Soft1(["Partial: has a number to call"])
+  Q3 -->|yes| Acted(["Success: has the facts to decide"])
+  Q3 -->|no| Source("Shown: last updated and source")
+  Source --> Soft2(["Partial: can verify, not stuck"])
+  classDef screen fill:#e7f5ff,stroke:#1971c2,color:#0b3d66;
+  classDef state fill:#fff3bf,stroke:#f08c00,color:#663c00;
+  classDef error fill:#ffe3e3,stroke:#e03131,color:#7a1212;
+  classDef success fill:#d3f9d8,stroke:#2f9e44,color:#14532d;
+  classDef soft fill:#ffe8cc,stroke:#e8590c,color:#7a3000;
+  class Pets,Emerg screen;
+  class Load,Cached,Fallback,Source,Start state;
+  class Err error;
+  class Acted success;
+  class Soft1,Soft2 soft;
+      </pre>
+    </div>
+  </section>
+
+  <!-- 03 TRACEABILITY -->
+  <section id="traceability">
+    <div class="section-head">
+      <span class="num">03 — Coverage</span>
+      <h2>Traceability matrix</h2>
+      <p>Jobs × screens. <span class="tick">✓</span> = the screen participates in the job. <span style="color:var(--red)">Highlighted rows</span> are orphan jobs (no screen). Orphan screens Sc20/Sc21 were resolved — see note.</p>
+    </div>
+
+    <h3 class="sub">Matrix A — owner-app screens (Sc1–Sc14)</h3>
+    <div class="table-card">
+      <table>
+        <thead><tr><th>Job</th><th class="c">Sc1</th><th class="c">Sc2</th><th class="c">Sc3</th><th class="c">Sc4</th><th class="c">Sc5</th><th class="c">Sc6</th><th class="c">Sc7</th><th class="c">Sc8</th><th class="c">Sc9</th><th class="c">Sc10</th><th class="c">Sc11</th><th class="c">Sc12</th><th class="c">Sc13</th><th class="c">Sc14</th></tr></thead>
+        <tbody>
+          <tr><td class="job">Main</td><td class="c tick">✓</td><td class="c tick">✓</td><td class="c tick">✓</td><td class="c tick">✓</td><td class="c tick">✓</td><td class="c tick">✓</td><td class="c tick">✓</td><td class="c tick">✓</td><td class="c tick">✓</td><td class="c"></td><td class="c tick">✓</td><td class="c"></td><td class="c"></td><td class="c tick">✓</td></tr>
+          <tr><td class="job">R1</td><td class="c"></td><td class="c"></td><td class="c"></td><td class="c tick">✓</td><td class="c tick">✓</td><td class="c tick">✓</td><td class="c"></td><td class="c tick">✓</td><td class="c"></td><td class="c tick">✓</td><td class="c"></td><td class="c"></td><td class="c"></td><td class="c tick">✓</td></tr>
+          <tr><td class="job">R2</td><td class="c"></td><td class="c"></td><td class="c tick">✓</td><td class="c"></td><td class="c"></td><td class="c"></td><td class="c tick">✓</td><td class="c"></td><td class="c"></td><td class="c"></td><td class="c tick">✓</td><td class="c"></td><td class="c"></td><td class="c tick">✓</td></tr>
+          <tr><td class="job">R3</td><td class="c"></td><td class="c"></td><td class="c tick">✓</td><td class="c tick">✓</td><td class="c tick">✓</td><td class="c"></td><td class="c"></td><td class="c"></td><td class="c"></td><td class="c"></td><td class="c tick">✓</td><td class="c"></td><td class="c tick">✓</td><td class="c tick">✓</td></tr>
+          <tr class="orphan"><td class="job">R4 <span class="pill parked">⏸ backlog</span></td><td class="c"></td><td class="c"></td><td class="c"></td><td class="c"></td><td class="c"></td><td class="c"></td><td class="c"></td><td class="c"></td><td class="c"></td><td class="c"></td><td class="c"></td><td class="c"></td><td class="c"></td><td class="c"></td></tr>
+          <tr><td class="job">R5</td><td class="c tick">✓</td><td class="c"></td><td class="c tick">✓</td><td class="c tick">✓</td><td class="c"></td><td class="c"></td><td class="c"></td><td class="c tick">✓</td><td class="c tick">✓</td><td class="c"></td><td class="c"></td><td class="c"></td><td class="c"></td><td class="c"></td></tr>
+          <tr><td class="job">E1</td><td class="c"></td><td class="c"></td><td class="c"></td><td class="c"></td><td class="c"></td><td class="c"></td><td class="c"></td><td class="c"></td><td class="c tick">✓</td><td class="c tick">✓</td><td class="c tick">✓</td><td class="c"></td><td class="c"></td><td class="c"></td></tr>
+          <tr><td class="job">E2</td><td class="c"></td><td class="c"></td><td class="c tick">✓</td><td class="c"></td><td class="c"></td><td class="c"></td><td class="c"></td><td class="c"></td><td class="c"></td><td class="c"></td><td class="c tick">✓</td><td class="c"></td><td class="c"></td><td class="c"></td></tr>
+          <tr class="orphan"><td class="job">E3 <span class="pill parked">⏸ out-of-scope</span></td><td class="c"></td><td class="c"></td><td class="c"></td><td class="c"></td><td class="c"></td><td class="c"></td><td class="c"></td><td class="c"></td><td class="c"></td><td class="c"></td><td class="c"></td><td class="c"></td><td class="c"></td><td class="c"></td></tr>
+          <tr><td class="job">S1</td><td class="c"></td><td class="c"></td><td class="c tick">✓</td><td class="c"></td><td class="c"></td><td class="c"></td><td class="c"></td><td class="c"></td><td class="c"></td><td class="c"></td><td class="c tick">✓</td><td class="c tick">✓</td><td class="c"></td><td class="c"></td></tr>
+          <tr><td class="job">S2</td><td class="c"></td><td class="c"></td><td class="c"></td><td class="c"></td><td class="c"></td><td class="c"></td><td class="c"></td><td class="c"></td><td class="c"></td><td class="c"></td><td class="c tick">✓</td><td class="c"></td><td class="c"></td><td class="c"></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3 class="sub">Matrix B — recipient + deep-action screens (Sc15–Sc19)</h3>
+    <div class="table-card">
+      <table>
+        <thead><tr><th>Job</th><th class="c">Sc15</th><th class="c">Sc16</th><th class="c">Sc17</th><th class="c">Sc18</th><th class="c">Sc19</th></tr></thead>
+        <tbody>
+          <tr><td class="job">Main</td><td class="c"></td><td class="c"></td><td class="c"></td><td class="c"></td><td class="c tick">✓</td></tr>
+          <tr><td class="job">R1</td><td class="c"></td><td class="c"></td><td class="c"></td><td class="c"></td><td class="c"></td></tr>
+          <tr><td class="job">R2</td><td class="c tick">✓</td><td class="c tick">✓</td><td class="c"></td><td class="c"></td><td class="c"></td></tr>
+          <tr><td class="job">R3</td><td class="c tick">✓</td><td class="c"></td><td class="c"></td><td class="c"></td><td class="c"></td></tr>
+          <tr class="orphan"><td class="job">R4 <span class="pill parked">⏸ backlog</span></td><td class="c"></td><td class="c"></td><td class="c"></td><td class="c"></td><td class="c"></td></tr>
+          <tr><td class="job">R5</td><td class="c"></td><td class="c tick">✓</td><td class="c tick">✓</td><td class="c"></td><td class="c"></td></tr>
+          <tr><td class="job">E1</td><td class="c tick">✓</td><td class="c"></td><td class="c"></td><td class="c"></td><td class="c"></td></tr>
+          <tr><td class="job">E2</td><td class="c"></td><td class="c"></td><td class="c"></td><td class="c"></td><td class="c"></td></tr>
+          <tr class="orphan"><td class="job">E3 <span class="pill parked">⏸ out-of-scope</span></td><td class="c"></td><td class="c"></td><td class="c"></td><td class="c"></td><td class="c"></td></tr>
+          <tr><td class="job">S1</td><td class="c tick">✓</td><td class="c"></td><td class="c"></td><td class="c tick">✓</td><td class="c"></td></tr>
+          <tr><td class="job">S2</td><td class="c tick">✓</td><td class="c tick">✓</td><td class="c"></td><td class="c"></td><td class="c"></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="codelist">
+      <b>Sc1</b> My Pets · <b>Sc2</b> Set up a pet · <b>Sc3</b> Pet dossier · <b>Sc4</b> Health &amp; jabs · <b>Sc5</b> Documents &amp; passport · <b>Sc6</b> Insurance · <b>Sc7</b> Personality &amp; care · <b>Sc8</b> Vet &amp; appointments · <b>Sc9</b> Emergency info &amp; authorization · <b>Sc10</b> What's due · <b>Sc11</b> Share a pet · <b>Sc12</b> Who has access · <b>Sc13</b> Vet messages · <b>Sc14</b> Add / update a record · <b>Sc15</b> Shared pet view · <b>Sc16</b> Emergency &amp; what I'm allowed to do · <b>Sc17</b> Emergency authorization setup · <b>Sc18</b> Edit / revoke a grant · <b>Sc19</b> Edit pet identity &amp; lifecycle
+    </div>
+    <p class="note"><b>Orphan screens — resolved:</b> <span class="pill done">✅</span> <b>Sc20 Archive/delete</b> merged into Sc19; <b>Sc21 Account prefs</b> removed (reminder-channel → What's due). <b>Orphan jobs:</b> <b>R4</b> and <b>E3</b> remain empty rows on purpose — parked, not solved.</p>
+  </section>
+
+</div>
+
+<footer>
+  PetPal IA · built from
+  <a href="https://github.com/anaferens/pet-pal/blob/main/research/sitemap.md">sitemap.md</a><span class="sep">·</span><a href="https://github.com/anaferens/pet-pal/blob/main/research/flows.md">flows.md</a><span class="sep">·</span><a href="sitemap-critique.html">critique</a>
+</footer>
+
+<script type="module">
+  import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+  mermaid.initialize({
+    startOnLoad: true,
+    theme: 'dark',
+    themeVariables: {
+      fontFamily: 'Inter, sans-serif',
+      background: '#131313',
+      primaryColor: '#1a1a1a',
+      lineColor: '#8c8c8c',
+      textColor: '#e6e6e6'
+    },
+    flowchart: { curve: 'basis', useMaxWidth: true }
+  });
+</script>
+
+</body>
+</html>

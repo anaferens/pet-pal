@@ -76,6 +76,33 @@ Top 5 most common pets in the EU:
 
 ---
 
+## Information Architecture
+*Full detail in [research/sitemap.md](research/sitemap.md), [research/flows.md](research/flows.md), [research/ia.md](research/ia.md). Visual: [ia.html](research/ia.html).*
+
+### Top-level sitemap
+```
+Owner app (signed in)
+├─ My Pets → Pet dossier → {Health & jabs · Documents & passport · Insurance ·
+│                           Personality & care · Vet & appointments · Emergency info}
+├─ What's due   (reminders, all pets)
+├─ Share a pet → Who has access
+└─ Vet messages
+Recipient (no account, via link)
+└─ Shared pet view → Emergency & what I'm allowed to do
+```
+
+### Main flow (primary persona)
+Keep everything in one trusted place and pass it on:
+**My Pets → Pet dossier → (add/update records) → Share a pet → handoff sent.** Every error/empty state has a recovery — no dead ends.
+
+### Navigation
+3 global items, one per verb of the main job: **Pets** (consult) · **What's due** (act in time) · **Share** (pass on). Vet messages is contextual; Emergency is a 1-tap shortcut.
+
+### Depth
+Main job is **1 tap** from the first screen (**0 taps** with single-pet auto-land). Emergency info is **1 tap** from home. Nothing core exceeds 3 taps.
+
+---
+
 ## Business Model
 - Freemium base (free core features)
 - Monetisation:
