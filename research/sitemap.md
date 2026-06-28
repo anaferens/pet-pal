@@ -230,9 +230,14 @@ Pets (first screen)  →  tap a pet  →  Pet dossier  =  the "one trusted place
 **Deep — rare actions** (intentionally a few taps down):
 - **Emergency authorization setup** (spend cap, payment, who-may-authorize) `[?]` — set once, seldom touched ([research.md F6](research.md)).
 - **Edit / revoke a specific access grant** — inside *Who has access*.
-- **Edit pet identity** (microchip, passport details) — infrequent.
-- **Archive / delete a pet** — rare and destructive (e.g. a pet that has passed).
-- **Account & notification preferences** — deferred, no standalone job yet.
+- **Edit pet identity & lifecycle** (microchip, passport details, **archive / delete a pet**) — infrequent; the destructive archive/delete action lives here, **not** as a standalone screen. `[Main]` *(merged per [critique](sitemap-critique.md) — was orphan Sc20.)*
+- ~~Account & notification preferences~~ — **removed** (was orphan Sc21, no job): the only job-bearing setting, **reminder-channel choice**, now lives in **What's due** (R1); true account preferences are **backlog**.
+
+### 4. Navigation rules (from the [critique](sitemap-critique.md))
+
+- **Single-pet auto-land.** When the owner has exactly **one** pet, the first screen is that pet's **Pet dossier** (not My Pets) → main job consulted in **0 taps**. My Pets becomes a switcher that only matters with 2+ pets. *(Closes the depth risk where dossier sections sat at 3 taps in the multi-pet path.)*
+- **1-tap Emergency shortcut.** A persistent shortcut on the home surface opens **Emergency info & authorization** in **1 tap** — a worried moment (R5) can't afford the 3-tap dossier path.
+- **No dead ends.** Every error/empty state must offer a next step (retry / offline cache / back-to-dossier / re-share / show owner contact). See [flows.md](flows.md).
 
 ---
 
@@ -248,8 +253,9 @@ Coverage matrix: **rows = every job** ([jtbd.md](jtbd.md)) · **columns = every 
 | Sc5 Documents & passport | Sc6 Insurance | Sc7 Personality & care | Sc8 Vet & appointments |
 | Sc9 Emergency info & authorization | Sc10 What's due | Sc11 Share a pet | Sc12 Who has access |
 | Sc13 Vet messages | Sc14 Add / update a record | Sc15 Shared pet view | Sc16 Emergency & what I'm allowed to do |
-| Sc17 Emergency authorization setup `[?]` | Sc18 Edit / revoke an access grant | Sc19 Edit pet identity | Sc20 Archive / delete a pet |
-| Sc21 Account & notification preferences | | | |
+| Sc17 Emergency authorization setup `[?]` | Sc18 Edit / revoke an access grant | Sc19 Edit pet identity & lifecycle *(incl. archive/delete)* | — |
+
+*Sc20 (Archive/delete) merged into Sc19, and Sc21 (Account prefs) removed — see Orphan-screen decisions below.*
 
 **Matrix A — owner-app screens (Sc1–Sc14)**
 
@@ -267,36 +273,38 @@ Coverage matrix: **rows = every job** ([jtbd.md](jtbd.md)) · **columns = every 
 | **S1** |  |  | ✓ |  |  |  |  |  |  |  | ✓ | ✓ |  |  |
 | **S2** |  |  |  |  |  |  |  |  |  |  | ✓ |  |  |  |
 
-**Matrix B — recipient + deep-action screens (Sc15–Sc21)**
+**Matrix B — recipient + deep-action screens (Sc15–Sc19, post-fix)**
 
-| Job | Sc15 | Sc16 | Sc17 | Sc18 | Sc19 | Sc20 | Sc21 |
-|---|:--:|:--:|:--:|:--:|:--:|:--:|:--:|
-| **Main** |  |  |  |  | ✓ |  |  |
-| **R1** |  |  |  |  |  |  |  |
-| **R2** | ✓ | ✓ |  |  |  |  |  |
-| **R3** | ✓ |  |  |  |  |  |  |
-| **R4** |  |  |  |  |  |  |  |
-| **R5** |  | ✓ | ✓ |  |  |  |  |
-| **E1** | ✓ |  |  |  |  |  |  |
-| **E2** |  |  |  |  |  |  |  |
-| **E3** |  |  |  |  |  |  |  |
-| **S1** | ✓ |  |  | ✓ |  |  |  |
-| **S2** | ✓ | ✓ |  |  |  |  |  |
+| Job | Sc15 | Sc16 | Sc17 | Sc18 | Sc19 |
+|---|:--:|:--:|:--:|:--:|:--:|
+| **Main** |  |  |  |  | ✓ |
+| **R1** |  |  |  |  |  |
+| **R2** | ✓ | ✓ |  |  |  |
+| **R3** | ✓ |  |  |  |  |
+| **R4** ⏸ |  |  |  |  |  |
+| **R5** |  | ✓ | ✓ |  |  |
+| **E1** | ✓ |  |  |  |  |
+| **E2** |  |  |  |  |  |
+| **E3** ⏸ |  |  |  |  |  |
+| **S1** | ✓ |  |  | ✓ |  |
+| **S2** | ✓ | ✓ |  |  |  |
+
+*(⏸ = job parked: **R4** backlog, **E3** out-of-scope — empty rows are intentional, not unresolved defects. Sc20/Sc21 columns removed.)*
 
 *Note on emotional jobs:* **E1** and **E2** are satisfied **indirectly** — no dedicated screen, the calm/confidence is a by-product of the marked screens doing their job. That is acceptable (the screens do participate). **E3** is a different case — see orphan jobs.
 
 ---
 
-### ⛔ Orphan screens (empty columns — screen exists, no job)
+### ⛔ Orphan screens (empty columns) — ✅ resolved
 
-- **Sc20 — Archive / delete a pet.** *Why it exists:* a real data-lifecycle need (pet rehomed or passed away), but **no job** in jtbd.md drives a whole screen for it. → **Connect to existing screen:** fold it in as a destructive action under *Edit pet identity / Pet dossier*; **remove as a standalone node.**
-- **Sc21 — Account & notification preferences.** *Why it exists:* habit ("every app has settings"). The only job-relevant piece — reminder channel — belongs to **R1**. → **Remove as a standalone screen** for MVP; **connect** the reminder-channel choice to *What's due* (Sc10/R1); push true account prefs to **backlog** until a job needs them.
+- **Sc20 — Archive / delete a pet.** A real data-lifecycle need, but **no job** drove a whole screen. → **Done: merged** as a destructive action under **Sc19 Edit pet identity & lifecycle**; removed as a standalone node.
+- **Sc21 — Account & notification preferences.** Existed out of habit. → **Done: removed** for MVP; the reminder-channel setting **moved to What's due (Sc10/R1)**; true account prefs → **backlog**.
 
-### ⛔ Orphan jobs (empty rows — job exists, no screen)
+### ⛔ Orphan jobs (empty rows) — ⏸ parked
 
-- **R4 — get proof my pet's okay while away.** *Where is the person supposed to do this?* **Nowhere** — there is no carer→owner update channel (Shared pet view is read-only one-way; Vet messages is owner↔clinic). This matches the jtbd flag that R4 has **no feature** and the sender side has **no caregiver voice**. → **Backlog.** Don't add to MVP; revisit an "Updates from carer" capability only after the RC/R4 validation round.
-- **E3 — spare my pet unnecessary stress.** *Where?* **No screen can serve it** — reducing the animal's stress happens offline (in the vet's room / the carer's hands), not on a screen. → **Backlog / accept as out-of-scope.** Do **not** fabricate a screen; record it as a known, accepted gap.
+- **R4 — get proof my pet's okay while away.** No carer→owner update channel exists (Shared pet view is one-way read; Vet messages is owner↔clinic), matching the jtbd "no feature / no caregiver voice" flag. → **Backlog.** Revisit an "Updates from carer" capability only after the RC/R4 validation round.
+- **E3 — spare my pet unnecessary stress.** No screen can serve it — the stress reduction happens **offline** (vet's room / carer's hands). → **Out-of-scope** (accepted gap, no fabricated screen).
 
 ### Result after decisions
 
-Applying the decisions clears every defect: **Sc20 → merged**, **Sc21 → removed/merged**, **R4 → backlog**, **E3 → out-of-scope**. The remaining 19 screens each carry ≥1 job and the 9 in-scope jobs each have ≥1 screen — **no empty row, no empty column** within MVP scope.
+Decisions **applied**: Sc20 merged, Sc21 removed, R4 → backlog, E3 → out-of-scope. **No empty column remains.** The two empty rows (**R4, E3**) are now **explicitly parked** (⏸ backlog / out-of-scope) rather than silent defects. Every other in-scope job has ≥1 screen, and every remaining screen carries ≥1 job. Dead-end and missing-state defects are fixed in [flows.md](flows.md); depth risks closed by the **single-pet auto-land** and **1-tap emergency** rules in the Navigation section.
