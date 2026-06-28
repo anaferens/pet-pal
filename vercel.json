@@ -1,0 +1,5 @@
+{
+  "rewrites": [
+    { "source": "/", "destination": "/research/sitemap-critique.html" }
+  ]
+}

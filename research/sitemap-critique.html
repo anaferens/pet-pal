@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PetPal — Sitemap & Flows Critique</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #080808; --bg-elev: #131313;
+    --line: rgba(255,255,255,0.09); --line-soft: rgba(255,255,255,0.05);
+    --text: #f3f3f3; --text-muted: #8c8c8c;
+    --panel: #1a1a1a; --panel-alt: #232323; --panel-text: #e6e6e6; --panel-muted: #9a9a9a;
+    --green: #6fce97; --amber: #d4b483; --red: #d98c8c; --blue: #9ab2c9;
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    background-color: var(--bg);
+    background-image:
+      linear-gradient(to right, rgba(255,255,255,0.025) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(255,255,255,0.025) 1px, transparent 1px);
+    background-size: 64px 64px;
+    color: var(--text); line-height: 1.65; -webkit-font-smoothing: antialiased;
+  }
+  .topnav {
+    position: sticky; top: 16px; z-index: 50; max-width: 1000px; margin: 0 auto;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 10px 10px 10px 22px;
+    background: rgba(20,20,22,0.6); backdrop-filter: blur(16px) saturate(160%);
+    border: 1px solid var(--line); border-radius: 100px;
+  }
+  .topnav .brand { font-size: 1.05rem; font-weight: 600; color: var(--text); text-decoration: none; }
+  .topnav .links { display: flex; gap: 6px; flex-wrap: wrap; }
+  .topnav .links a {
+    color: var(--text-muted); text-decoration: none; font-size: 0.85rem; font-weight: 500;
+    padding: 9px 16px; border-radius: 100px; transition: all 0.2s;
+  }
+  .topnav .links a:hover { color: var(--text); background: var(--panel-alt); }
+
+  .hero { position: relative; text-align: center; padding: 92px 24px 56px; overflow: hidden; }
+  .hero::before {
+    content: ""; position: absolute; top: -280px; left: 50%; width: 1100px; height: 700px;
+    transform: translateX(-50%);
+    background: radial-gradient(ellipse 460px 320px at 50% 60%, rgba(255,255,255,0.10), transparent 70%);
+    filter: blur(40px); pointer-events: none;
+  }
+  .hero-inner { position: relative; z-index: 1; }
+  .eyebrow {
+    display: inline-block; font-size: 0.78rem; letter-spacing: 0.15em; text-transform: uppercase;
+    color: var(--text-muted); border: 1px solid var(--line); border-radius: 100px;
+    padding: 6px 18px; margin-bottom: 24px;
+  }
+  .hero h1 { font-size: clamp(2.4rem, 5.5vw, 4rem); font-weight: 400; margin: 0 0 18px; letter-spacing: -0.02em; line-height: 1.06; }
+  .hero h1 em { font-style: normal; font-weight: 300; color: var(--text-muted); }
+  .hero p { max-width: 600px; margin: 0 auto; color: var(--text-muted); font-size: 1.05rem; }
+
+  .legend { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; margin-top: 22px; }
+  .badge {
+    display: inline-flex; align-items: center; gap: 7px; font-size: 0.74rem; font-weight: 600;
+    padding: 5px 13px; border-radius: 100px; border: 1px solid var(--line); white-space: nowrap;
+  }
+  .badge::before { content: ""; width: 8px; height: 8px; border-radius: 50%; }
+  .badge.done { color: var(--green); } .badge.done::before { background: var(--green); }
+  .badge.parked { color: var(--amber); } .badge.parked::before { background: var(--amber); }
+  .badge.open { color: var(--red); } .badge.open::before { background: var(--red); }
+
+  .wrap { max-width: 1000px; margin: 0 auto; padding: 0 24px 70px; }
+  section { margin-bottom: 64px; scroll-margin-top: 100px; }
+  .section-head { margin-bottom: 22px; display: flex; align-items: baseline; gap: 14px; flex-wrap: wrap; }
+  .section-head .num {
+    font-size: 0.78rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-muted);
+  }
+  .section-head h2 { font-weight: 600; font-size: clamp(1.5rem, 3vw, 2rem); margin: 0; letter-spacing: -0.01em; }
+  .section-head .sub { color: var(--text-muted); font-size: 0.95rem; width: 100%; margin-top: 2px; }
+
+  .table-card {
+    background: var(--panel); border: 1px solid var(--line); color: var(--panel-text);
+    border-radius: 20px; padding: 8px; overflow-x: auto;
+  }
+  table { width: 100%; border-collapse: collapse; font-size: 0.9rem; min-width: 720px; }
+  th, td { padding: 14px 16px; text-align: left; vertical-align: top; border-bottom: 1px solid var(--line-soft); }
+  th { font-weight: 600; font-size: 0.74rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--panel-muted); }
+  tr:last-child td { border-bottom: none; }
+  td .where { font-weight: 600; color: var(--text); }
+  td code { background: rgba(255,255,255,0.07); padding: 2px 6px; border-radius: 6px; font-size: 0.85em; }
+  td.status { white-space: nowrap; }
+  .pill { display: inline-block; font-size: 0.74rem; font-weight: 700; padding: 3px 10px; border-radius: 100px; }
+  .pill.done { color: var(--green); background: rgba(111,206,151,0.12); border: 1px solid rgba(111,206,151,0.3); }
+  .pill.parked { color: var(--amber); background: rgba(212,180,131,0.12); border: 1px solid rgba(212,180,131,0.3); }
+  .pill.open { color: var(--red); background: rgba(217,140,140,0.12); border: 1px solid rgba(217,140,140,0.3); }
+
+  .note { color: var(--text-muted); font-size: 0.92rem; margin-top: 12px; }
+
+  .residue {
+    background: var(--bg-elev); border: 1px solid var(--line); border-radius: 20px; padding: 26px 30px;
+  }
+  .residue h3 { margin: 0 0 14px; font-size: 1.15rem; }
+  .residue ul { margin: 0; padding-left: 20px; }
+  .residue li { margin-bottom: 10px; color: var(--text-muted); }
+  .residue li b { color: var(--text); }
+
+  footer {
+    text-align: center; color: var(--text-muted); font-size: 0.85rem;
+    padding: 44px 24px 60px; border-top: 1px solid var(--line); max-width: 1000px; margin: 0 auto;
+  }
+  footer a { color: var(--text); text-decoration: none; border-bottom: 1px solid var(--line); }
+  footer a:hover { border-color: var(--text); }
+  footer .sep { margin: 0 10px; opacity: 0.4; }
+  @media (max-width: 700px) { .topnav .links { display: none; } }
+</style>
+</head>
+<body>
+
+  <div class="topnav">
+    <a class="brand" href="#top">PetPal · Critique</a>
+    <div class="links">
+      <a href="#dead-ends">Dead ends</a>
+      <a href="#missing-states">Missing states</a>
+      <a href="#depth">Depth</a>
+      <a href="#orphans">Orphans</a>
+    </div>
+  </div>
+
+  <header class="hero" id="top">
+    <div class="hero-inner">
+      <span class="eyebrow">Design Research · PetPal</span>
+      <h1>Sitemap &amp; flows <em>critique</em></h1>
+      <p>A four-class defect review of the information architecture — dead ends, missing states, excessive depth, and orphans — with the fix and status for each. All fixes applied.</p>
+      <div class="legend">
+        <span class="badge done">✅ done</span>
+        <span class="badge parked">⏸ parked (backlog / out-of-scope)</span>
+        <span class="badge open">⛔ open / defect</span>
+      </div>
+    </div>
+  </header>
+
+<div class="wrap">
+
+  <!-- 1. DEAD ENDS -->
+  <section id="dead-ends">
+    <div class="section-head">
+      <span class="num">01</span>
+      <h2>Dead ends</h2>
+      <span class="sub">A person stuck with no way out — a "no" branch or error/empty state leading nowhere. <b>Result: 0 terminal dead ends remain.</b></span>
+    </div>
+    <div class="table-card">
+      <table>
+        <thead><tr><th>Where</th><th>What</th><th>How to fix</th><th>Status</th></tr></thead>
+        <tbody>
+          <tr><td><span class="where">Main · <code>LinkErr → DeadShare</code></span></td><td>Link-creation error terminal; "pass on" half blocked, no exit</td><td>Retry → Share + "save &amp; try later" → dossier (record safe)</td><td class="status"><span class="pill done">✅ done</span></td></tr>
+          <tr><td><span class="where">R2 · <code>LinkErr → DeadLink</code></span></td><td>Expired/revoked link dead-ends the carer</td><td>"Owner re-shares a fresh link" → re-open</td><td class="status"><span class="pill done">✅ done</span></td></tr>
+          <tr><td><span class="where">R2 · <code>Q5 no → DeadGap</code></span></td><td>Empty profile + no emergency info → no info, no action</td><td>Show owner contact → partial ending (not stuck)</td><td class="status"><span class="pill done">✅ done</span></td></tr>
+          <tr><td><span class="where">R1 · <code>Err → DeadLoad</code></span></td><td>Reminder-load failure terminal; may miss a deadline</td><td>Retry + offline "last-saved reminders"</td><td class="status"><span class="pill done">✅ done</span></td></tr>
+          <tr><td><span class="where">R1 · <code>SaveErr → DeadSave</code></span></td><td>Save failure terminal; due item unresolved</td><td>Retry + "keep in list" (stays in What's due)</td><td class="status"><span class="pill done">✅ done</span></td></tr>
+          <tr><td><span class="where">R5 · <code>Err → DeadErr</code></span></td><td>Critical-info load fails <em>in a panic</em> — worst case</td><td>Retry + offline "cached critical info"</td><td class="status"><span class="pill done">✅ done</span></td></tr>
+          <tr><td><span class="where">R5 · <code>Empty → DeadEmpty</code></span></td><td>Never-filled fields → no facts</td><td>Fallback: vet + owner contact + "call your vet"</td><td class="status"><span class="pill done">✅ done</span></td></tr>
+          <tr><td><span class="where">R5 · <code>Stale → DeadStale</code></span></td><td>Unsure about stale info → stuck</td><td>Show last-updated + source + "confirm with owner/vet"</td><td class="status"><span class="pill done">✅ done</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- 2. MISSING STATES -->
+  <section id="missing-states">
+    <div class="section-head">
+      <span class="num">02</span>
+      <h2>Missing states</h2>
+      <span class="sub">A happy path exists, but no empty / error / loading state.</span>
+    </div>
+    <div class="table-card">
+      <table>
+        <thead><tr><th>Where</th><th>What</th><th>How to fix</th><th>Status</th></tr></thead>
+        <tbody>
+          <tr><td><span class="where">My Pets (Main, R5 entry)</span></td><td>Only "empty: no pets"; no loading/error on fetch</td><td>Add <code>Loading</code> + <code>Error</code>/retry</td><td class="status"><span class="pill done">✅ done</span></td></tr>
+          <tr><td><span class="where">Pet dossier (all flows)</span></td><td>Opened with no loading/error</td><td>Add dossier <code>Loading</code> + <code>Error</code>/retry</td><td class="status"><span class="pill done">✅ done</span></td></tr>
+          <tr><td><span class="where">Dossier sections</span></td><td>No <b>empty</b> state for a brand-new pet</td><td>Per-section <code>Empty</code> ("add the first record")</td><td class="status"><span class="pill done">✅ done</span></td></tr>
+          <tr><td><span class="where">R2 · Share step</span></td><td>No link-create loading/error (Main had them)</td><td>Add <code>Loading: creating link</code> + <code>Error</code></td><td class="status"><span class="pill done">✅ done</span></td></tr>
+          <tr><td><span class="where">Shared pet view (R2)</span></td><td>No generic load error (only expired-link)</td><td>Add <code>Error</code>/retry distinct from expired-link</td><td class="status"><span class="pill done">✅ done</span></td></tr>
+          <tr><td><span class="where">What's due → section (R1)</span></td><td>Deep-link open had no loading/error</td><td>Covered by the per-section load/error pattern</td><td class="status"><span class="pill done">✅ done</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- 3. DEPTH -->
+  <section id="depth">
+    <div class="section-head">
+      <span class="num">03</span>
+      <h2>Excessive depth</h2>
+      <span class="sub">Main or a frequent related job hidden deeper than 3 taps for the primary persona.</span>
+    </div>
+    <div class="table-card">
+      <table>
+        <thead><tr><th>Where</th><th>What</th><th>How to fix</th><th>Status</th></tr></thead>
+        <tbody>
+          <tr><td><span class="where">Main job</span></td><td>1 tap — but only via an unbuilt single-pet auto-land assumption</td><td>Make <b>single-pet auto-land</b> an explicit rule</td><td class="status"><span class="pill done">✅ done</span></td></tr>
+          <tr><td><span class="where">R2 — Personality &amp; care</span></td><td>Multi-pet: 3 taps to the care section</td><td>Single-pet auto-land + surface care/share on dossier home</td><td class="status"><span class="pill done">✅ done</span></td></tr>
+          <tr><td><span class="where">R5 — Emergency info</span></td><td>3 taps in a panic, no shortcut</td><td>Add <b>1-tap Emergency shortcut</b> from home</td><td class="status"><span class="pill done">✅ done</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- 4. ORPHANS -->
+  <section id="orphans">
+    <div class="section-head">
+      <span class="num">04</span>
+      <h2>Orphans</h2>
+      <span class="sub">Screens with no job; jobs with no screen (checked against the coverage matrix).</span>
+    </div>
+    <div class="table-card">
+      <table>
+        <thead><tr><th>Where</th><th>What</th><th>How to fix</th><th>Status</th></tr></thead>
+        <tbody>
+          <tr><td><span class="where">Sc20 Archive / delete a pet</span></td><td>Empty column — screen, no job</td><td>Merge under <em>Edit pet identity &amp; lifecycle</em></td><td class="status"><span class="pill done">✅ merged</span></td></tr>
+          <tr><td><span class="where">Sc21 Account &amp; notification preferences</span></td><td>Empty column — no job</td><td>Remove; reminder-channel → What's due (R1); prefs → backlog</td><td class="status"><span class="pill done">✅ removed</span></td></tr>
+          <tr><td><span class="where">R4 Proof my pet's okay while away</span></td><td>Empty row — job, no screen</td><td>Backlog (no carer→owner channel; known gap)</td><td class="status"><span class="pill parked">⏸ parked</span></td></tr>
+          <tr><td><span class="where">E3 Spare my pet stress</span></td><td>Empty row — job, no screen</td><td>Out-of-scope (offline outcome; no fabricated screen)</td><td class="status"><span class="pill parked">⏸ parked</span></td></tr>
+          <tr><td><span class="where">Who has access, Vet messages, Emergency-auth setup, Edit/revoke, Edit identity</span></td><td>Have a job but appear in no flow</td><td>Not orphans — flow coverage gap; add flows later</td><td class="status"><span class="pill open">⛔ open</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- RESIDUE -->
+  <section id="residue">
+    <div class="residue">
+      <h3>Honest residue (not silently hidden)</h3>
+      <ul>
+        <li><b>R4</b> and <b>E3</b> remain <b>empty rows on purpose</b> — parked, not solved. R4 needs the RC/R4 validation round before any "Updates from carer" feature; E3 is genuinely offline and may never be a PetPal screen.</li>
+        <li>The <b>single-pet auto-land</b> and <b>1-tap emergency</b> rules are navigation <em>rules</em>, not yet drawn into the screen tree's structure — they must be honoured when wireframing or the depth risk returns.</li>
+        <li>Several in-scope screens still have <b>no flow</b> exercising them (Who has access, Vet messages, etc.) — a coverage gap to close when those flows are drawn.</li>
+      </ul>
+    </div>
+  </section>
+
+</div>
+
+<footer>
+  PetPal design research · critique of
+  <a href="https://github.com/anaferens/pet-pal/blob/main/research/sitemap.md">sitemap.md</a><span class="sep">·</span><a href="https://github.com/anaferens/pet-pal/blob/main/research/flows.md">flows.md</a><span class="sep">·</span><a href="research.html">research</a><span class="sep">·</span><a href="personas.html">personas</a>
+</footer>
+
+</body>
+</html>
