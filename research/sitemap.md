@@ -233,3 +233,70 @@ Pets (first screen)  →  tap a pet  →  Pet dossier  =  the "one trusted place
 - **Edit pet identity** (microchip, passport details) — infrequent.
 - **Archive / delete a pet** — rare and destructive (e.g. a pet that has passed).
 - **Account & notification preferences** — deferred, no standalone job yet.
+
+---
+
+## Traceability
+
+Coverage matrix: **rows = every job** ([jtbd.md](jtbd.md)) · **columns = every screen** in this sitemap (the 16 tree/contextual screens + the 5 deep-action screens). `✓` = the screen *actually participates* in completing that job. Goal: **no empty row, no empty column.**
+
+**Screen codes**
+
+| | | | |
+|---|---|---|---|
+| Sc1 My Pets | Sc2 Set up a pet | Sc3 Pet dossier | Sc4 Health & jabs |
+| Sc5 Documents & passport | Sc6 Insurance | Sc7 Personality & care | Sc8 Vet & appointments |
+| Sc9 Emergency info & authorization | Sc10 What's due | Sc11 Share a pet | Sc12 Who has access |
+| Sc13 Vet messages | Sc14 Add / update a record | Sc15 Shared pet view | Sc16 Emergency & what I'm allowed to do |
+| Sc17 Emergency authorization setup `[?]` | Sc18 Edit / revoke an access grant | Sc19 Edit pet identity | Sc20 Archive / delete a pet |
+| Sc21 Account & notification preferences | | | |
+
+**Matrix A — owner-app screens (Sc1–Sc14)**
+
+| Job | Sc1 | Sc2 | Sc3 | Sc4 | Sc5 | Sc6 | Sc7 | Sc8 | Sc9 | Sc10 | Sc11 | Sc12 | Sc13 | Sc14 |
+|---|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|
+| **Main** | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |  | ✓ |  |  | ✓ |
+| **R1** |  |  |  | ✓ | ✓ | ✓ |  | ✓ |  | ✓ |  |  |  | ✓ |
+| **R2** |  |  | ✓ |  |  |  | ✓ |  |  |  | ✓ |  |  | ✓ |
+| **R3** |  |  | ✓ | ✓ | ✓ |  |  |  |  |  | ✓ |  | ✓ | ✓ |
+| **R4** |  |  |  |  |  |  |  |  |  |  |  |  |  |  |
+| **R5** | ✓ |  | ✓ | ✓ |  |  |  | ✓ | ✓ |  |  |  |  |  |
+| **E1** |  |  |  |  |  |  |  |  | ✓ | ✓ | ✓ |  |  |  |
+| **E2** |  |  | ✓ |  |  |  |  |  |  |  | ✓ |  |  |  |
+| **E3** |  |  |  |  |  |  |  |  |  |  |  |  |  |  |
+| **S1** |  |  | ✓ |  |  |  |  |  |  |  | ✓ | ✓ |  |  |
+| **S2** |  |  |  |  |  |  |  |  |  |  | ✓ |  |  |  |
+
+**Matrix B — recipient + deep-action screens (Sc15–Sc21)**
+
+| Job | Sc15 | Sc16 | Sc17 | Sc18 | Sc19 | Sc20 | Sc21 |
+|---|:--:|:--:|:--:|:--:|:--:|:--:|:--:|
+| **Main** |  |  |  |  | ✓ |  |  |
+| **R1** |  |  |  |  |  |  |  |
+| **R2** | ✓ | ✓ |  |  |  |  |  |
+| **R3** | ✓ |  |  |  |  |  |  |
+| **R4** |  |  |  |  |  |  |  |
+| **R5** |  | ✓ | ✓ |  |  |  |  |
+| **E1** | ✓ |  |  |  |  |  |  |
+| **E2** |  |  |  |  |  |  |  |
+| **E3** |  |  |  |  |  |  |  |
+| **S1** | ✓ |  |  | ✓ |  |  |  |
+| **S2** | ✓ | ✓ |  |  |  |  |  |
+
+*Note on emotional jobs:* **E1** and **E2** are satisfied **indirectly** — no dedicated screen, the calm/confidence is a by-product of the marked screens doing their job. That is acceptable (the screens do participate). **E3** is a different case — see orphan jobs.
+
+---
+
+### ⛔ Orphan screens (empty columns — screen exists, no job)
+
+- **Sc20 — Archive / delete a pet.** *Why it exists:* a real data-lifecycle need (pet rehomed or passed away), but **no job** in jtbd.md drives a whole screen for it. → **Connect to existing screen:** fold it in as a destructive action under *Edit pet identity / Pet dossier*; **remove as a standalone node.**
+- **Sc21 — Account & notification preferences.** *Why it exists:* habit ("every app has settings"). The only job-relevant piece — reminder channel — belongs to **R1**. → **Remove as a standalone screen** for MVP; **connect** the reminder-channel choice to *What's due* (Sc10/R1); push true account prefs to **backlog** until a job needs them.
+
+### ⛔ Orphan jobs (empty rows — job exists, no screen)
+
+- **R4 — get proof my pet's okay while away.** *Where is the person supposed to do this?* **Nowhere** — there is no carer→owner update channel (Shared pet view is read-only one-way; Vet messages is owner↔clinic). This matches the jtbd flag that R4 has **no feature** and the sender side has **no caregiver voice**. → **Backlog.** Don't add to MVP; revisit an "Updates from carer" capability only after the RC/R4 validation round.
+- **E3 — spare my pet unnecessary stress.** *Where?* **No screen can serve it** — reducing the animal's stress happens offline (in the vet's room / the carer's hands), not on a screen. → **Backlog / accept as out-of-scope.** Do **not** fabricate a screen; record it as a known, accepted gap.
+
+### Result after decisions
+
+Applying the decisions clears every defect: **Sc20 → merged**, **Sc21 → removed/merged**, **R4 → backlog**, **E3 → out-of-scope**. The remaining 19 screens each carry ≥1 job and the 9 in-scope jobs each have ≥1 screen — **no empty row, no empty column** within MVP scope.
