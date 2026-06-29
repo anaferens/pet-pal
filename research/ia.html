@@ -170,11 +170,11 @@
   <div class="topnav">
     <a class="brand" href="#top">PetPal · IA</a>
     <div class="links">
+      <a href="#navmodel">Nav model</a>
       <a href="#modules">Functionality</a>
       <a href="#sitemap">Sitemap</a>
       <a href="#flows">Flows</a>
       <a href="#traceability">Traceability</a>
-      <a href="#navmodel">Nav model</a>
       <a href="#decisions">Decisions</a>
       <a href="research.html">Research</a>
       <a href="personas.html">Personas</a>
@@ -191,10 +191,59 @@
 
 <div class="wrap">
 
-  <!-- 01 NAVIGATION TREE / MODULES -->
+  <!-- 01 NAVIGATION MODEL -->
+  <section id="navmodel">
+    <div class="section-head">
+      <span class="num">01 — Model</span>
+      <h2>Navigation model</h2>
+      <p>The platform, onboarding, navigation depth, and the access roles that decide what each person can see and do.</p>
+    </div>
+
+    <h3 class="sub">Platform — mobile-first</h3>
+    <div class="intro">
+      <p class="lead">Built for a phone in one hand, at the vet, at the kennel, on the sofa.</p>
+      <p>PetPal is <b>mobile web first</b>; desktop is a later adaptation. The launch market is the <b>EU</b> (GDPR applies to all pet &amp; owner data; pet-passport format follows EU regulation). The bar is <b>"easy for a 16-year-old and a 70-year-old alike"</b> — warm and companion-like, not clinical. Because the research showed the real adoption risk is <b>capture friction</b>, not lack of pain, every primary action is reachable with a thumb and asks for the least possible typing.</p>
+    </div>
+
+    <h3 class="sub">Onboarding</h3>
+    <div class="intro">
+      <p><b>Owner</b> — the only person who signs up: create account → <b>Set up a pet</b> (first record) → land on the <b>Pet dossier</b>. With one pet, the app <b>auto-lands on that dossier</b>, so the main job is reachable from the very first screen. Onboarding stays deliberately thin — the dossier can be filled gradually, because forcing everything up front is exactly what makes people abandon record apps (research F4).</p>
+      <p style="margin-bottom:0"><b>Receiving Caregiver</b> — <b>never onboards</b>. They arrive through a shared link with <b>no account, no install</b> (account/auth friction is a documented drop-off driver — research F7), opening straight into the read-only <b>Shared pet view</b>.</p>
+    </div>
+
+    <h3 class="sub">Navigation depth — three levels max</h3>
+    <div class="table-card">
+      <table>
+        <thead><tr><th>Level</th><th>What</th><th>Examples</th><th class="c">Visibility</th></tr></thead>
+        <tbody>
+          <tr><td class="job">L0 · Home</td><td>Entry surface</td><td>My Pets — or the single pet's dossier (auto-land)</td><td class="c">always</td></tr>
+          <tr><td class="job">L1 · Cluster</td><td>The 3 global job-clusters</td><td>Pets · What's due · Share</td><td class="c">global nav</td></tr>
+          <tr><td class="job">L2 · Object</td><td>Pages inside a cluster</td><td>Dossier sections · Who has access · Shared pet view</td><td class="c">contextual</td></tr>
+          <tr><td class="job">L3 · Deep</td><td>Rare / destructive actions</td><td>Emergency auth setup · Edit-or-revoke a grant · Edit identity</td><td class="c">a few taps down</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="note"><b>Main job = 1 tap</b> (L0→L2 dossier; 0 taps with single-pet auto-land). <b>Emergency = 1 tap</b> via a home shortcut. Nothing core exceeds 3 taps.</p>
+
+    <h3 class="sub">Roles &amp; access</h3>
+    <div class="table-card">
+      <table>
+        <thead><tr><th>Role</th><th>Can see / do</th><th>How they get in</th><th>Persona</th></tr></thead>
+        <tbody>
+          <tr><td class="job">Owner</td><td>Full access — view &amp; edit the whole dossier, manage sharing</td><td>Account (signs up)</td><td>Organised Owner <span class="persona-tag primary">primary</span></td></tr>
+          <tr><td class="job">Vet / clinic</td><td>View records + add medical entries</td><td>Shared access / invite</td><td>serves R3 — give a vet an accurate picture</td></tr>
+          <tr><td class="job">Walker / sitter</td><td>View-only or limited — care card + emergency info</td><td>No-account link</td><td>Receiving Caregiver <span class="persona-tag secondary">secondary</span></td></tr>
+          <tr><td class="job">Owner (in a crisis)</td><td>Same as Owner, but needs critical info in 1 tap</td><td>Account + emergency shortcut</td><td>Worried Owner <span class="persona-tag secondary">secondary</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="note"><b>Sharing is the spine:</b> roles are granted per pet via an <b>Access grant</b> (link/code, scoped, time-boxed) — view-only vs. limited-edit — so the same dossier shows a different, role-appropriate face to each person. This role-based, portable sharing is PetPal's documented market whitespace.</p>
+  </section>
+
+  <!-- 02 NAVIGATION TREE / MODULES -->
   <section id="modules">
     <div class="section-head">
-      <span class="num">01 — Functionality</span>
+      <span class="num">02 — Functionality</span>
       <h2>Navigation tree</h2>
       <p>The product grouped into functional modules — what's there, the elements inside each, and the JTBD job each one is responsible for. The detailed screen tree and flows follow below.</p>
     </div>
@@ -265,10 +314,10 @@
     <p class="note"><b>Parked / not in MVP (so nothing hides):</b> carer→owner "updates while away" (R4 · backlog) · spare-my-pet-stress (E3 · out-of-scope) · white-label clinic (deferred) · account preferences (removed — reminder-channel folded into Reminders).</p>
   </section>
 
-  <!-- 02 SITEMAP -->
+  <!-- 03 SITEMAP -->
   <section id="sitemap">
     <div class="section-head">
-      <span class="num">02 — Structure</span>
+      <span class="num">03 — Structure</span>
       <h2>Sitemap tree</h2>
       <p>Every page from <a href="https://github.com/anaferens/pet-pal/blob/main/research/sitemap.md" style="color:var(--blue)">sitemap.md</a>, with the job it serves next to it. Two journeys: the owner app and the no-account recipient.</p>
     </div>
@@ -330,10 +379,10 @@ flowchart TD
     <p class="note"><b>Navigation:</b> 3 global items — <b>Pets</b> (consult · Main) · <b>What's due</b> (act in time · R1) · <b>Share</b> (pass on · S2/S1). <b>Depth:</b> main job in <b>1 tap</b> (0 with single-pet auto-land); <b>Emergency</b> in 1 tap from home.</p>
   </section>
 
-  <!-- 02 FLOWS -->
+  <!-- 04 FLOWS -->
   <section id="flows">
     <div class="section-head">
-      <span class="num">03 — Behaviour</span>
+      <span class="num">04 — Behaviour</span>
       <h2>User flows</h2>
       <p>From <a href="https://github.com/anaferens/pet-pal/blob/main/research/flows.md" style="color:var(--blue)">flows.md</a>. 🟦 screen · 🟨 state · 🟥 error · 🟩 success · 🟧 partial (recovered). No dead ends remain.</p>
     </div>
@@ -550,10 +599,10 @@ flowchart TD
     </div>
   </section>
 
-  <!-- 03 TRACEABILITY -->
+  <!-- 05 TRACEABILITY -->
   <section id="traceability">
     <div class="section-head">
-      <span class="num">04 — Coverage</span>
+      <span class="num">05 — Coverage</span>
       <h2>Traceability matrix</h2>
       <p>Jobs × screens. <span class="tick">✓</span> = the screen participates in the job. <span style="color:var(--red)">Highlighted rows</span> are orphan jobs (no screen). Orphan screens Sc20/Sc21 were resolved — see note.</p>
     </div>
@@ -612,55 +661,6 @@ flowchart TD
       <b>Sc1</b> My Pets · <b>Sc2</b> Set up a pet · <b>Sc3</b> Pet dossier · <b>Sc4</b> Health &amp; jabs · <b>Sc5</b> Documents &amp; passport · <b>Sc6</b> Insurance · <b>Sc7</b> Personality &amp; care · <b>Sc8</b> Vet &amp; appointments · <b>Sc9</b> Emergency info &amp; authorization · <b>Sc10</b> What's due · <b>Sc11</b> Share a pet · <b>Sc12</b> Who has access · <b>Sc13</b> Vet messages · <b>Sc14</b> Add / update a record · <b>Sc15</b> Shared pet view · <b>Sc16</b> Emergency &amp; what I'm allowed to do · <b>Sc17</b> Emergency authorization setup · <b>Sc18</b> Edit / revoke a grant · <b>Sc19</b> Edit pet identity &amp; lifecycle
     </div>
     <p class="note"><b>Orphan screens — resolved:</b> <span class="pill done">✅</span> <b>Sc20 Archive/delete</b> merged into Sc19; <b>Sc21 Account prefs</b> removed (reminder-channel → What's due). <b>Orphan jobs:</b> <b>R4</b> and <b>E3</b> remain empty rows on purpose — parked, not solved.</p>
-  </section>
-
-  <!-- 04 NAVIGATION MODEL -->
-  <section id="navmodel">
-    <div class="section-head">
-      <span class="num">05 — Model</span>
-      <h2>Navigation model</h2>
-      <p>The platform, onboarding, navigation depth, and the access roles that decide what each person can see and do.</p>
-    </div>
-
-    <h3 class="sub">Platform — mobile-first</h3>
-    <div class="intro">
-      <p class="lead">Built for a phone in one hand, at the vet, at the kennel, on the sofa.</p>
-      <p>PetPal is <b>mobile web first</b>; desktop is a later adaptation. The launch market is the <b>EU</b> (GDPR applies to all pet &amp; owner data; pet-passport format follows EU regulation). The bar is <b>"easy for a 16-year-old and a 70-year-old alike"</b> — warm and companion-like, not clinical. Because the research showed the real adoption risk is <b>capture friction</b>, not lack of pain, every primary action is reachable with a thumb and asks for the least possible typing.</p>
-    </div>
-
-    <h3 class="sub">Onboarding</h3>
-    <div class="intro">
-      <p><b>Owner</b> — the only person who signs up: create account → <b>Set up a pet</b> (first record) → land on the <b>Pet dossier</b>. With one pet, the app <b>auto-lands on that dossier</b>, so the main job is reachable from the very first screen. Onboarding stays deliberately thin — the dossier can be filled gradually, because forcing everything up front is exactly what makes people abandon record apps (research F4).</p>
-      <p style="margin-bottom:0"><b>Receiving Caregiver</b> — <b>never onboards</b>. They arrive through a shared link with <b>no account, no install</b> (account/auth friction is a documented drop-off driver — research F7), opening straight into the read-only <b>Shared pet view</b>.</p>
-    </div>
-
-    <h3 class="sub">Navigation depth — three levels max</h3>
-    <div class="table-card">
-      <table>
-        <thead><tr><th>Level</th><th>What</th><th>Examples</th><th class="c">Visibility</th></tr></thead>
-        <tbody>
-          <tr><td class="job">L0 · Home</td><td>Entry surface</td><td>My Pets — or the single pet's dossier (auto-land)</td><td class="c">always</td></tr>
-          <tr><td class="job">L1 · Cluster</td><td>The 3 global job-clusters</td><td>Pets · What's due · Share</td><td class="c">global nav</td></tr>
-          <tr><td class="job">L2 · Object</td><td>Pages inside a cluster</td><td>Dossier sections · Who has access · Shared pet view</td><td class="c">contextual</td></tr>
-          <tr><td class="job">L3 · Deep</td><td>Rare / destructive actions</td><td>Emergency auth setup · Edit-or-revoke a grant · Edit identity</td><td class="c">a few taps down</td></tr>
-        </tbody>
-      </table>
-    </div>
-    <p class="note"><b>Main job = 1 tap</b> (L0→L2 dossier; 0 taps with single-pet auto-land). <b>Emergency = 1 tap</b> via a home shortcut. Nothing core exceeds 3 taps.</p>
-
-    <h3 class="sub">Roles &amp; access</h3>
-    <div class="table-card">
-      <table>
-        <thead><tr><th>Role</th><th>Can see / do</th><th>How they get in</th><th>Persona</th></tr></thead>
-        <tbody>
-          <tr><td class="job">Owner</td><td>Full access — view &amp; edit the whole dossier, manage sharing</td><td>Account (signs up)</td><td>Organised Owner <span class="persona-tag primary">primary</span></td></tr>
-          <tr><td class="job">Vet / clinic</td><td>View records + add medical entries</td><td>Shared access / invite</td><td>serves R3 — give a vet an accurate picture</td></tr>
-          <tr><td class="job">Walker / sitter</td><td>View-only or limited — care card + emergency info</td><td>No-account link</td><td>Receiving Caregiver <span class="persona-tag secondary">secondary</span></td></tr>
-          <tr><td class="job">Owner (in a crisis)</td><td>Same as Owner, but needs critical info in 1 tap</td><td>Account + emergency shortcut</td><td>Worried Owner <span class="persona-tag secondary">secondary</span></td></tr>
-        </tbody>
-      </table>
-    </div>
-    <p class="note"><b>Sharing is the spine:</b> roles are granted per pet via an <b>Access grant</b> (link/code, scoped, time-boxed) — view-only vs. limited-edit — so the same dossier shows a different, role-appropriate face to each person. This role-based, portable sharing is PetPal's documented market whitespace.</p>
   </section>
 
   <!-- 06 DECISIONS & OPEN QUESTIONS -->
