@@ -26,20 +26,36 @@
     background-size: 64px 64px;
     color: var(--text); line-height: 1.65; -webkit-font-smoothing: antialiased;
   }
-  .topnav {
-    position: sticky; top: 16px; z-index: 50; max-width: 1040px; margin: 0 auto;
-    display: flex; align-items: center; justify-content: space-between;
-    padding: 10px 10px 10px 22px;
-    background: rgba(20,20,22,0.6); backdrop-filter: blur(16px) saturate(160%);
-    border: 1px solid var(--line); border-radius: 100px;
+  .layout { display: flex; align-items: flex-start; }
+  .sidenav {
+    position: sticky; top: 0; align-self: flex-start; height: 100vh;
+    width: 232px; flex-shrink: 0; padding: 26px 16px 26px 24px;
+    border-right: 1px solid var(--line); display: flex; flex-direction: column; gap: 18px;
+    background: rgba(12,12,12,0.55); backdrop-filter: blur(10px);
   }
-  .topnav .brand { font-size: 1.05rem; font-weight: 600; color: var(--text); text-decoration: none; }
-  .topnav .links { display: flex; gap: 6px; flex-wrap: wrap; }
-  .topnav .links a {
-    color: var(--text-muted); text-decoration: none; font-size: 0.85rem; font-weight: 500;
-    padding: 9px 16px; border-radius: 100px; transition: all 0.2s;
+  .sidenav .brand { font-size: 1.05rem; font-weight: 600; color: var(--text); text-decoration: none; letter-spacing: 0.01em; }
+  .side-links { display: flex; flex-direction: column; gap: 3px; }
+  .side-links a {
+    color: var(--text-muted); text-decoration: none; font-size: 0.88rem; font-weight: 500;
+    padding: 9px 13px; border-radius: 10px; transition: all 0.15s;
   }
-  .topnav .links a:hover { color: var(--text); background: var(--panel-alt); }
+  .side-links a:hover { color: var(--text); background: var(--panel-alt); }
+  .side-links a.active { color: var(--text); background: var(--panel-alt); box-shadow: inset 2px 0 0 var(--blue); }
+  .side-cap { font-size: 0.66rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--text-muted); padding: 0 13px; margin: 2px 0; }
+  .side-div { height: 1px; background: var(--line); margin: 8px 6px; }
+  .content { flex: 1; min-width: 0; }
+  @media (max-width: 880px) {
+    .layout { flex-direction: column; }
+    .sidenav {
+      position: sticky; top: 0; height: auto; width: 100%; z-index: 50;
+      flex-direction: row; align-items: center; gap: 8px; overflow-x: auto;
+      border-right: none; border-bottom: 1px solid var(--line); padding: 11px 16px;
+    }
+    .sidenav .brand { flex-shrink: 0; }
+    .side-links { flex-direction: row; gap: 4px; flex-wrap: nowrap; }
+    .side-cap, .side-div { display: none; }
+    .side-links a { white-space: nowrap; font-size: 0.82rem; padding: 7px 11px; }
+  }
 
   .hero { position: relative; text-align: center; padding: 92px 24px 56px; overflow: hidden; }
   .hero::before {
@@ -162,24 +178,28 @@
   footer a { color: var(--text); text-decoration: none; border-bottom: 1px solid var(--line); }
   footer a:hover { border-color: var(--text); }
   footer .sep { margin: 0 10px; opacity: 0.4; }
-  @media (max-width: 720px) { .topnav .links { display: none; } }
 </style>
 </head>
 <body>
 
-  <div class="topnav">
+  <div class="layout">
+  <aside class="sidenav">
     <a class="brand" href="#top">PetPal · IA</a>
-    <div class="links">
-      <a href="#navmodel">Nav model</a>
-      <a href="#modules">Functionality</a>
-      <a href="#sitemap">Sitemap</a>
-      <a href="#flows">Flows</a>
-      <a href="#traceability">Traceability</a>
-      <a href="#decisions">Decisions</a>
+    <nav class="side-links">
+      <span class="side-cap">Sections</span>
+      <a href="#navmodel">01 · Nav model</a>
+      <a href="#modules">02 · Functionality</a>
+      <a href="#sitemap">03 · Sitemap</a>
+      <a href="#flows">04 · Flows</a>
+      <a href="#traceability">05 · Traceability</a>
+      <a href="#decisions">06 · Decisions</a>
+      <div class="side-div"></div>
+      <span class="side-cap">More</span>
       <a href="research.html">Research</a>
       <a href="personas.html">Personas</a>
-    </div>
-  </div>
+    </nav>
+  </aside>
+  <main class="content">
 
   <header class="hero" id="top">
     <div class="hero-inner">
@@ -746,6 +766,9 @@ flowchart TD
   <a href="https://github.com/anaferens/pet-pal/blob/main/research/sitemap.md">sitemap.md</a><span class="sep">·</span><a href="https://github.com/anaferens/pet-pal/blob/main/research/flows.md">flows.md</a><span class="sep">·</span><a href="sitemap-critique.html">critique</a>
 </footer>
 
+  </main>
+  </div>
+
 <script type="module">
   import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
   mermaid.initialize({
@@ -806,6 +829,27 @@ flowchart TD
       tip.style.left = Math.max(8, x) + 'px';
       tip.style.top = Math.max(8, y) + 'px';
     });
+  })();
+
+  // Scroll-spy: highlight the side-nav link for the section currently at the top.
+  (function () {
+    const links = [...document.querySelectorAll('.side-links a[href^="#"]')];
+    const sections = links
+      .map(a => ({ a, s: document.getElementById(a.getAttribute('href').slice(1)) }))
+      .filter(x => x.s);
+    function onScroll() {
+      let current = sections[0];
+      for (const item of sections) {
+        if (item.s.getBoundingClientRect().top <= 140) current = item;
+      }
+      links.forEach(l => l.classList.remove('active'));
+      if (current) current.a.classList.add('active');
+    }
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', onScroll);
+    onScroll();
+    setTimeout(onScroll, 500);   // re-run once Mermaid has sized the diagrams
+    setTimeout(onScroll, 1600);
   })();
 </script>
 
