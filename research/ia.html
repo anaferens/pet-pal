@@ -116,6 +116,22 @@
   .intro b { color: var(--text); }
   .intro .lead { color: var(--text); font-weight: 600; margin: 0 0 8px; }
 
+  /* module / navigation tree */
+  .modtree { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  @media (max-width: 760px) { .modtree { grid-template-columns: 1fr; } }
+  .module { background: var(--bg-elev); border: 1px solid var(--line); border-radius: 16px; padding: 18px 20px; }
+  .mod-head { display: flex; align-items: baseline; gap: 10px; margin-bottom: 12px; flex-wrap: wrap; }
+  .mod-num { font-size: 0.72rem; color: var(--text-muted); font-weight: 700; }
+  .mod-head h4 { margin: 0; font-size: 1.08rem; font-weight: 600; }
+  .mod-head .mod-tag { width: 100%; font-size: 0.82rem; color: var(--text-muted); margin-top: -4px; }
+  .mod-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 7px; }
+  .mod-list li { display: flex; justify-content: space-between; align-items: center; gap: 10px; font-size: 0.88rem; padding: 8px 12px; background: var(--panel); border: 1px solid var(--line-soft); border-radius: 10px; }
+  .mod-list .el { color: var(--text); }
+  .mod-list .desc { color: var(--text-muted); font-size: 0.8rem; }
+  .jb { display: inline-flex; gap: 4px; flex-shrink: 0; }
+  .jb span { font-size: 0.66rem; font-weight: 700; padding: 2px 7px; border-radius: 100px; background: rgba(154,178,201,0.14); color: var(--blue); border: 1px solid rgba(154,178,201,0.3); white-space: nowrap; }
+  .jb span.back { background: rgba(212,180,131,0.12); color: var(--amber); border-color: rgba(212,180,131,0.3); }
+
   footer { text-align: center; color: var(--text-muted); font-size: 0.85rem; padding: 44px 24px 60px; border-top: 1px solid var(--line); max-width: 1040px; margin: 0 auto; }
   footer a { color: var(--text); text-decoration: none; border-bottom: 1px solid var(--line); }
   footer a:hover { border-color: var(--text); }
@@ -128,6 +144,7 @@
   <div class="topnav">
     <a class="brand" href="#top">PetPal · IA</a>
     <div class="links">
+      <a href="#modules">Functionality</a>
       <a href="#sitemap">Sitemap</a>
       <a href="#flows">Flows</a>
       <a href="#traceability">Traceability</a>
@@ -147,10 +164,84 @@
 
 <div class="wrap">
 
-  <!-- 01 SITEMAP -->
+  <!-- 01 NAVIGATION TREE / MODULES -->
+  <section id="modules">
+    <div class="section-head">
+      <span class="num">01 — Functionality</span>
+      <h2>Navigation tree</h2>
+      <p>The product grouped into functional modules — what's there, the elements inside each, and the JTBD job each one is responsible for. The detailed screen tree and flows follow below.</p>
+    </div>
+    <div class="modtree">
+
+      <div class="module">
+        <div class="mod-head"><span class="mod-num">01</span><h4>Onboarding</h4><span class="mod-tag">Get set up fast, start the trusted record · <b>Main</b></span></div>
+        <ul class="mod-list">
+          <li><span class="el">Create account <span class="desc">— owner only</span></span><span class="jb"><span>Main</span></span></li>
+          <li><span class="el">Set up a pet <span class="desc">— first record</span></span><span class="jb"><span>Main</span></span></li>
+          <li><span class="el">Single-pet auto-land <span class="desc">— straight to the cabinet</span></span><span class="jb"><span>Main</span></span></li>
+          <li><span class="el">Caregiver entry <span class="desc">— no signup, opens a link</span></span><span class="jb"><span>S2</span></span></li>
+        </ul>
+      </div>
+
+      <div class="module">
+        <div class="mod-head"><span class="mod-num">02</span><h4>Pet cabinet</h4><span class="mod-tag">One source of truth per pet (the dossier) · <b>Main</b></span></div>
+        <ul class="mod-list">
+          <li><span class="el">My Pets / switch pet</span><span class="jb"><span>Main</span></span></li>
+          <li><span class="el">Profile &amp; identity <span class="desc">— breed, species, photo, microchip, passport</span></span><span class="jb"><span>Main</span></span></li>
+          <li><span class="el">Health &amp; jabs <span class="desc">— vaccination history + due status</span></span><span class="jb"><span>R1</span><span>R3</span></span></li>
+          <li><span class="el">Documents &amp; passport <span class="desc">— legal, prescriptions</span></span><span class="jb"><span>Main</span><span>R3</span></span></li>
+          <li><span class="el">Insurance <span class="desc">— policies + renewals</span></span><span class="jb"><span>R1</span></span></li>
+          <li><span class="el">Personality &amp; care <span class="desc">— food, behaviour, "not friendly with"</span></span><span class="jb"><span>R2</span></span></li>
+          <li><span class="el">Vet &amp; appointments <span class="desc">— preferred vet, upcoming visits</span></span><span class="jb"><span>R1</span><span>R5</span></span></li>
+          <li><span class="el">Add / update a record</span><span class="jb"><span>Main</span><span>R1</span><span>R3</span></span></li>
+          <li><span class="el">Edit identity &amp; lifecycle <span class="desc">— incl. archive/delete</span></span><span class="jb"><span>Main</span></span></li>
+        </ul>
+      </div>
+
+      <div class="module">
+        <div class="mod-head"><span class="mod-num">03</span><h4>Reminders</h4><span class="mod-tag">Stay ahead, act in time · <b>R1</b></span></div>
+        <ul class="mod-list">
+          <li><span class="el">What's due <span class="desc">— across all pets</span></span><span class="jb"><span>R1</span></span></li>
+          <li><span class="el">Reminder channel <span class="desc">— push / email</span></span><span class="jb"><span>R1</span></span></li>
+          <li><span class="el">Calendar export <span class="desc">— ICS subscribe (idea)</span></span><span class="jb"><span class="back">R1 · backlog</span></span></li>
+        </ul>
+      </div>
+
+      <div class="module">
+        <div class="mod-head"><span class="mod-num">04</span><h4>Sharing &amp; access</h4><span class="mod-tag">Pass it on; everyone on the same page · <b>S1 / S2 / R2</b></span></div>
+        <ul class="mod-list">
+          <li><span class="el">Share a pet <span class="desc">— scoped link, no account</span></span><span class="jb"><span>S2</span></span></li>
+          <li><span class="el">Who has access <span class="desc">— manage roles</span></span><span class="jb"><span>S1</span></span></li>
+          <li><span class="el">Edit / revoke a grant</span><span class="jb"><span>S1</span></span></li>
+          <li><span class="el">Shared pet view <span class="desc">— recipient, read-only</span></span><span class="jb"><span>R2</span><span>R3</span></span></li>
+        </ul>
+      </div>
+
+      <div class="module">
+        <div class="mod-head"><span class="mod-num">05</span><h4>Vet communication</h4><span class="mod-tag">Give a professional an accurate picture · <b>R3</b></span></div>
+        <ul class="mod-list">
+          <li><span class="el">Vet messages <span class="desc">— two-way, share records</span></span><span class="jb"><span class="back">R3 · MVP?</span></span></li>
+        </ul>
+      </div>
+
+      <div class="module">
+        <div class="mod-head"><span class="mod-num">06</span><h4>Emergency</h4><span class="mod-tag">Make a good call under stress · <b>R5</b></span></div>
+        <ul class="mod-list">
+          <li><span class="el">1-tap emergency shortcut <span class="desc">— from home</span></span><span class="jb"><span>R5</span></span></li>
+          <li><span class="el">Emergency info &amp; authorization <span class="desc">— meds, vet, spend cap</span></span><span class="jb"><span>R5</span><span>R2·F6</span></span></li>
+          <li><span class="el">Emergency authorization setup <span class="desc">— payment, who-may-authorize</span></span><span class="jb"><span>R5·F6</span></span></li>
+          <li><span class="el">Emergency &amp; what I'm allowed to do <span class="desc">— recipient view</span></span><span class="jb"><span>R5</span><span>R2·F6</span></span></li>
+        </ul>
+      </div>
+
+    </div>
+    <p class="note"><b>Parked / not in MVP (so nothing hides):</b> carer→owner "updates while away" (R4 · backlog) · spare-my-pet-stress (E3 · out-of-scope) · white-label clinic (deferred) · account preferences (removed — reminder-channel folded into Reminders).</p>
+  </section>
+
+  <!-- 02 SITEMAP -->
   <section id="sitemap">
     <div class="section-head">
-      <span class="num">01 — Structure</span>
+      <span class="num">02 — Structure</span>
       <h2>Sitemap tree</h2>
       <p>Every page from <a href="https://github.com/anaferens/pet-pal/blob/main/research/sitemap.md" style="color:var(--blue)">sitemap.md</a>, with the job it serves next to it. Two journeys: the owner app and the no-account recipient.</p>
     </div>
@@ -215,7 +306,7 @@ flowchart TD
   <!-- 02 FLOWS -->
   <section id="flows">
     <div class="section-head">
-      <span class="num">02 — Behaviour</span>
+      <span class="num">03 — Behaviour</span>
       <h2>User flows</h2>
       <p>From <a href="https://github.com/anaferens/pet-pal/blob/main/research/flows.md" style="color:var(--blue)">flows.md</a>. 🟦 screen · 🟨 state · 🟥 error · 🟩 success · 🟧 partial (recovered). No dead ends remain.</p>
     </div>
@@ -435,7 +526,7 @@ flowchart TD
   <!-- 03 TRACEABILITY -->
   <section id="traceability">
     <div class="section-head">
-      <span class="num">03 — Coverage</span>
+      <span class="num">04 — Coverage</span>
       <h2>Traceability matrix</h2>
       <p>Jobs × screens. <span class="tick">✓</span> = the screen participates in the job. <span style="color:var(--red)">Highlighted rows</span> are orphan jobs (no screen). Orphan screens Sc20/Sc21 were resolved — see note.</p>
     </div>
@@ -499,7 +590,7 @@ flowchart TD
   <!-- 04 NAVIGATION MODEL -->
   <section id="navmodel">
     <div class="section-head">
-      <span class="num">04 — Model</span>
+      <span class="num">05 — Model</span>
       <h2>Navigation model</h2>
       <p>The platform, onboarding, navigation depth, and the access roles that decide what each person can see and do.</p>
     </div>
