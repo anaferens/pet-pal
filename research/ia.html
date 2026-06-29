@@ -101,6 +101,21 @@
   .note { color: var(--text-muted); font-size: 0.9rem; margin-top: 14px; }
   .note b { color: var(--text); }
 
+  /* context cards */
+  .context { background: var(--bg-elev); border: 1px solid var(--line); border-radius: 16px; padding: 18px 22px; margin: 4px 0 14px; }
+  .ctx-grid { display: grid; grid-template-columns: 116px 1fr; gap: 9px 16px; }
+  .ctx-label { font-size: 0.68rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text-muted); padding-top: 3px; }
+  .ctx-val { font-size: 0.92rem; color: var(--panel-text); }
+  .ctx-val b { color: var(--text); }
+  .persona-tag { display: inline-block; font-size: 0.68rem; font-weight: 700; padding: 2px 10px; border-radius: 100px; margin-left: 4px; }
+  .persona-tag.primary { color: #0b3d66; background: #cfe6fb; }
+  .persona-tag.secondary { color: #7a3000; background: #ffe8cc; }
+  .ctx-quote { margin: 14px 0 0; padding: 12px 16px; background: var(--panel-alt); border-left: 2px solid var(--blue); border-radius: 0 12px 12px 0; font-size: 0.9rem; color: var(--text); }
+  .ctx-quote cite { display: block; margin-top: 6px; font-style: normal; font-size: 0.78rem; color: var(--text-muted); }
+  .intro { background: var(--bg-elev); border: 1px solid var(--line); border-radius: 16px; padding: 20px 24px; margin: 16px 0 22px; color: var(--panel-text); font-size: 0.96rem; }
+  .intro b { color: var(--text); }
+  .intro .lead { color: var(--text); font-weight: 600; margin: 0 0 8px; }
+
   footer { text-align: center; color: var(--text-muted); font-size: 0.85rem; padding: 44px 24px 60px; border-top: 1px solid var(--line); max-width: 1040px; margin: 0 auto; }
   footer a { color: var(--text); text-decoration: none; border-bottom: 1px solid var(--line); }
   footer a:hover { border-color: var(--text); }
@@ -116,6 +131,7 @@
       <a href="#sitemap">Sitemap</a>
       <a href="#flows">Flows</a>
       <a href="#traceability">Traceability</a>
+      <a href="#navmodel">Nav model</a>
       <a href="research.html">Research</a>
       <a href="personas.html">Personas</a>
     </div>
@@ -137,6 +153,11 @@
       <span class="num">01 — Structure</span>
       <h2>Sitemap tree</h2>
       <p>Every page from <a href="https://github.com/anaferens/pet-pal/blob/main/research/sitemap.md" style="color:var(--blue)">sitemap.md</a>, with the job it serves next to it. Two journeys: the owner app and the no-account recipient.</p>
+    </div>
+    <div class="intro">
+      <p class="lead">Two people, two journeys, one source of truth.</p>
+      <p>The <b>Owner app</b> is built for the <b>Organised Owner</b> <span class="persona-tag primary">primary</span> — someone who treats their pet's health, documents and care like their own admin. Everything hangs off a single <b>Pet dossier</b> she can both <b>consult</b> and <b>pass on</b>. The <b>Recipient</b> journey is a no-account, link-only view for the <b>Receiving Caregiver</b> <span class="persona-tag secondary">secondary</span> (sitter / walker / new vet) who has never met the pet and needs to understand it in seconds.</p>
+      <p style="margin-bottom:0"><b>Design rule:</b> there is a job behind <em>every</em> screen — orphan screens were removed, orphan jobs (R4, E3) were parked rather than silently dropped. The structure is intentionally shallow so the main job is one tap from the door.</p>
     </div>
     <div class="legend">
       <span class="chip global">global nav</span>
@@ -198,8 +219,21 @@ flowchart TD
       <h2>User flows</h2>
       <p>From <a href="https://github.com/anaferens/pet-pal/blob/main/research/flows.md" style="color:var(--blue)">flows.md</a>. 🟦 screen · 🟨 state · 🟥 error · 🟩 success · 🟧 partial (recovered). No dead ends remain.</p>
     </div>
+    <div class="intro">
+      <p class="lead">Four flows — one main, two frequent, one high-stakes.</p>
+      <p>The first is the <b>Organised Owner's main loop</b>; <b>R1</b> and <b>R2</b> are her most frequent related jobs; <b>R5</b> belongs to the secondary <b>Worried Owner</b>. Each diagram shows not just the happy path but the <b>recovery from every error/empty state</b> — because the research found the make-or-break for adoption isn't whether the pain is real (it is), it's whether the tool stays low-friction when things go wrong.</p>
+    </div>
 
     <h3 class="sub">Main job — consult &amp; pass on</h3>
+    <div class="context">
+      <div class="ctx-grid">
+        <span class="ctx-label">Who</span><span class="ctx-val">Organised Owner <span class="persona-tag primary">primary</span></span>
+        <span class="ctx-label">Job</span><span class="ctx-val">Keep everything I know about my pet in one trusted place I can consult <b>and pass on</b>.</span>
+        <span class="ctx-label">Motivation</span><span class="ctx-val">Act in time and <b>never scramble</b> to find or explain what matters.</span>
+        <span class="ctx-label">Why this flow</span><span class="ctx-val">It's the product's core loop and the <b>#1 reason people adopt pet apps</b> — proof of records is demanded at every boarding, vet and travel touchpoint (research F9/F10).</span>
+      </div>
+      <blockquote class="ctx-quote">"…create health reports in PDF format… you can send it by email… it can also help family members keep track."<cite>— Tom, MyTherapy review (the closest real analog to PetPal's consult-and-share loop)</cite></blockquote>
+    </div>
     <div class="card">
       <pre class="mermaid">
 flowchart TD
@@ -255,6 +289,15 @@ flowchart TD
     </div>
 
     <h3 class="sub">R2 — make a stranger understand my pet fast</h3>
+    <div class="context">
+      <div class="ctx-grid">
+        <span class="ctx-label">Who</span><span class="ctx-val">Organised Owner prepares &amp; shares <span class="persona-tag primary">primary</span> → Receiving Caregiver reads <span class="persona-tag secondary">secondary</span></span>
+        <span class="ctx-label">Job</span><span class="ctx-val">When I leave my pet with someone who's never cared for it, I want them to grasp what it needs in seconds.</span>
+        <span class="ctx-label">Motivation</span><span class="ctx-val">It's looked after <b>the way it would be with me</b>. The handoff is emotionally loaded — <b>56% of owners feel guilt &amp; anxiety leaving their pet</b> (research F11).</span>
+        <span class="ctx-label">Why this flow</span><span class="ctx-val">An <b>MVP-core</b> job and the clearest <b>market whitespace</b> — only Rover does this, locked inside its booking marketplace; PetPal makes it a portable, owner-held card.</span>
+      </div>
+      <blockquote class="ctx-quote">"It is wonderful to know that you can be provided with pictures and updates from time to time."<cite>— Andre, Rover review (owner-side; no first-person sitter voice exists yet — the caregiver remains our highest-risk persona)</cite></blockquote>
+    </div>
     <div class="card">
       <pre class="mermaid">
 flowchart TD
@@ -302,6 +345,14 @@ flowchart TD
     </div>
 
     <h3 class="sub">R1 — stay ahead of what's due</h3>
+    <div class="context">
+      <div class="ctx-grid">
+        <span class="ctx-label">Who</span><span class="ctx-val">Organised Owner <span class="persona-tag primary">primary</span></span>
+        <span class="ctx-label">Job</span><span class="ctx-val">When a routine or preventive treatment is coming up, I want to know before it lapses.</span>
+        <span class="ctx-label">Motivation</span><span class="ctx-val">My pet stays protected and I'm <b>not reacting at the last minute</b> — and I have proof when boarding/daycare/groomers demand it.</span>
+        <span class="ctx-label">Why this flow</span><span class="ctx-val">The <b>most frequent</b> felt need, but <b>table-stakes</b> — already well covered by Lassie / MyTherapy / PetDesk, so build it competently; it won't differentiate on its own.</span>
+      </div>
+    </div>
     <div class="card">
       <pre class="mermaid">
 flowchart TD
@@ -340,6 +391,15 @@ flowchart TD
     </div>
 
     <h3 class="sub">R5 — make a good call in a worrying moment</h3>
+    <div class="context">
+      <div class="ctx-grid">
+        <span class="ctx-label">Who</span><span class="ctx-val">Worried-at-the-Wrong-Moment Owner <span class="persona-tag secondary">secondary</span></span>
+        <span class="ctx-label">Job</span><span class="ctx-val">When something seems wrong and the clinic is closed, I want fast access to what I know and to help.</span>
+        <span class="ctx-label">Motivation</span><span class="ctx-val">Decide well <b>under stress</b> instead of panicking — the pet "isn't right", it's late, the vet is shut.</span>
+        <span class="ctx-label">Why this flow</span><span class="ctx-val">The most <b>intense</b> emotion of the three, but <b>rare</b> per person — so it's secondary. PetPal serves the <b>information</b> slice only (not a consultation), reached via the 1-tap emergency shortcut.</span>
+      </div>
+      <blockquote class="ctx-quote">"We had a video call as our cat 'wasn't right'… within half an hour… Turns out our cat has pancreatitis."<cite>— jess, FirstVet review (the out-of-hours "wasn't right" moment that defines this persona)</cite></blockquote>
+    </div>
     <div class="card">
       <pre class="mermaid">
 flowchart TD
@@ -378,6 +438,16 @@ flowchart TD
       <span class="num">03 — Coverage</span>
       <h2>Traceability matrix</h2>
       <p>Jobs × screens. <span class="tick">✓</span> = the screen participates in the job. <span style="color:var(--red)">Highlighted rows</span> are orphan jobs (no screen). Orphan screens Sc20/Sc21 were resolved — see note.</p>
+    </div>
+    <div class="intro">
+      <p class="lead">Why this matrix exists: nothing should be built without a job, and no job should be left homeless.</p>
+      <p>Reading it keeps the product honest. A column with no <span class="tick">✓</span> would be a screen nobody needs (we found two — Archive/delete and Account-prefs — and removed/merged them). A row with no <span class="tick">✓</span> is a job with nowhere to do it (R4 and E3 — parked openly, not faked).</p>
+      <p style="margin-bottom:0">The <b>MVP-core</b> sits where the primary persona's importance is highest <em>and</em> the market is thin: <b>R2</b> (understand my pet fast), <b>S1</b> (everyone on the same page), <b>R3</b> (accurate picture for a vet) — the portable, role-based sharing whitespace. <b>R1</b> is essential but table-stakes.</p>
+    </div>
+    <div class="intro">
+      <p class="lead">This matrix is the safety net: it proves nothing is decorative and nothing is missing.</p>
+      <p>Reading the columns catches <b>orphan screens</b> (a screen no job needs — likely scope creep); reading the rows catches <b>orphan jobs</b> (a job with nowhere to do it — a product gap). The <b>3 MVP-core jobs</b> — <b>R2</b> (understand my pet fast), <b>S1</b> (keep everyone on the same page) and <b>R3</b> (give a vet an accurate picture) — are the ones that are central to the primary persona <em>and</em> under-served by the market. <b>R1</b> is deliberately treated as table-stakes, not a differentiator.</p>
+      <p style="margin-bottom:0">Two rows stay empty <b>on purpose</b>: <b>R4</b> (proof my pet's okay while away) is parked in backlog — there's no carer→owner channel and no caregiver evidence yet; <b>E3</b> (spare my pet stress) is out of scope — it's an offline outcome, not something a screen delivers.</p>
     </div>
 
     <h3 class="sub">Matrix A — owner-app screens (Sc1–Sc14)</h3>
@@ -424,6 +494,55 @@ flowchart TD
       <b>Sc1</b> My Pets · <b>Sc2</b> Set up a pet · <b>Sc3</b> Pet dossier · <b>Sc4</b> Health &amp; jabs · <b>Sc5</b> Documents &amp; passport · <b>Sc6</b> Insurance · <b>Sc7</b> Personality &amp; care · <b>Sc8</b> Vet &amp; appointments · <b>Sc9</b> Emergency info &amp; authorization · <b>Sc10</b> What's due · <b>Sc11</b> Share a pet · <b>Sc12</b> Who has access · <b>Sc13</b> Vet messages · <b>Sc14</b> Add / update a record · <b>Sc15</b> Shared pet view · <b>Sc16</b> Emergency &amp; what I'm allowed to do · <b>Sc17</b> Emergency authorization setup · <b>Sc18</b> Edit / revoke a grant · <b>Sc19</b> Edit pet identity &amp; lifecycle
     </div>
     <p class="note"><b>Orphan screens — resolved:</b> <span class="pill done">✅</span> <b>Sc20 Archive/delete</b> merged into Sc19; <b>Sc21 Account prefs</b> removed (reminder-channel → What's due). <b>Orphan jobs:</b> <b>R4</b> and <b>E3</b> remain empty rows on purpose — parked, not solved.</p>
+  </section>
+
+  <!-- 04 NAVIGATION MODEL -->
+  <section id="navmodel">
+    <div class="section-head">
+      <span class="num">04 — Model</span>
+      <h2>Navigation model</h2>
+      <p>The platform, onboarding, navigation depth, and the access roles that decide what each person can see and do.</p>
+    </div>
+
+    <h3 class="sub">Platform — mobile-first</h3>
+    <div class="intro">
+      <p class="lead">Built for a phone in one hand, at the vet, at the kennel, on the sofa.</p>
+      <p>PetPal is <b>mobile web first</b>; desktop is a later adaptation. The launch market is the <b>EU</b> (GDPR applies to all pet &amp; owner data; pet-passport format follows EU regulation). The bar is <b>"easy for a 16-year-old and a 70-year-old alike"</b> — warm and companion-like, not clinical. Because the research showed the real adoption risk is <b>capture friction</b>, not lack of pain, every primary action is reachable with a thumb and asks for the least possible typing.</p>
+    </div>
+
+    <h3 class="sub">Onboarding</h3>
+    <div class="intro">
+      <p><b>Owner</b> — the only person who signs up: create account → <b>Set up a pet</b> (first record) → land on the <b>Pet dossier</b>. With one pet, the app <b>auto-lands on that dossier</b>, so the main job is reachable from the very first screen. Onboarding stays deliberately thin — the dossier can be filled gradually, because forcing everything up front is exactly what makes people abandon record apps (research F4).</p>
+      <p style="margin-bottom:0"><b>Receiving Caregiver</b> — <b>never onboards</b>. They arrive through a shared link with <b>no account, no install</b> (account/auth friction is a documented drop-off driver — research F7), opening straight into the read-only <b>Shared pet view</b>.</p>
+    </div>
+
+    <h3 class="sub">Navigation depth — three levels max</h3>
+    <div class="table-card">
+      <table>
+        <thead><tr><th>Level</th><th>What</th><th>Examples</th><th class="c">Visibility</th></tr></thead>
+        <tbody>
+          <tr><td class="job">L0 · Home</td><td>Entry surface</td><td>My Pets — or the single pet's dossier (auto-land)</td><td class="c">always</td></tr>
+          <tr><td class="job">L1 · Cluster</td><td>The 3 global job-clusters</td><td>Pets · What's due · Share</td><td class="c">global nav</td></tr>
+          <tr><td class="job">L2 · Object</td><td>Pages inside a cluster</td><td>Dossier sections · Who has access · Shared pet view</td><td class="c">contextual</td></tr>
+          <tr><td class="job">L3 · Deep</td><td>Rare / destructive actions</td><td>Emergency auth setup · Edit-or-revoke a grant · Edit identity</td><td class="c">a few taps down</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="note"><b>Main job = 1 tap</b> (L0→L2 dossier; 0 taps with single-pet auto-land). <b>Emergency = 1 tap</b> via a home shortcut. Nothing core exceeds 3 taps.</p>
+
+    <h3 class="sub">Roles &amp; access</h3>
+    <div class="table-card">
+      <table>
+        <thead><tr><th>Role</th><th>Can see / do</th><th>How they get in</th><th>Persona</th></tr></thead>
+        <tbody>
+          <tr><td class="job">Owner</td><td>Full access — view &amp; edit the whole dossier, manage sharing</td><td>Account (signs up)</td><td>Organised Owner <span class="persona-tag primary">primary</span></td></tr>
+          <tr><td class="job">Vet / clinic</td><td>View records + add medical entries</td><td>Shared access / invite</td><td>serves R3 — give a vet an accurate picture</td></tr>
+          <tr><td class="job">Walker / sitter</td><td>View-only or limited — care card + emergency info</td><td>No-account link</td><td>Receiving Caregiver <span class="persona-tag secondary">secondary</span></td></tr>
+          <tr><td class="job">Owner (in a crisis)</td><td>Same as Owner, but needs critical info in 1 tap</td><td>Account + emergency shortcut</td><td>Worried Owner <span class="persona-tag secondary">secondary</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="note"><b>Sharing is the spine:</b> roles are granted per pet via an <b>Access grant</b> (link/code, scoped, time-boxed) — view-only vs. limited-edit — so the same dossier shows a different, role-appropriate face to each person. This role-based, portable sharing is PetPal's documented market whitespace.</p>
   </section>
 
 </div>
