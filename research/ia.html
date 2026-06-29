@@ -149,6 +149,15 @@
   .qlist li::before { counter-increment: q; content: "Q" counter(q); position: absolute; left: 14px; top: 12px; font-size: 0.72rem; font-weight: 700; color: var(--amber); }
   .qlist li b { color: var(--text); }
 
+  /* job tooltip */
+  .hastip { cursor: help; }
+  .jobtip {
+    position: fixed; z-index: 100; max-width: 290px; padding: 9px 12px;
+    background: #0d0d0d; border: 1px solid rgba(255,255,255,0.16); border-radius: 9px;
+    color: var(--text); font-size: 0.8rem; line-height: 1.5; white-space: pre-line;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.6); pointer-events: none; opacity: 0; transition: opacity 0.12s;
+  }
+
   footer { text-align: center; color: var(--text-muted); font-size: 0.85rem; padding: 44px 24px 60px; border-top: 1px solid var(--line); max-width: 1040px; margin: 0 auto; }
   footer a { color: var(--text); text-decoration: none; border-bottom: 1px solid var(--line); }
   footer a:hover { border-color: var(--text); }
@@ -751,6 +760,53 @@ flowchart TD
     },
     flowchart: { curve: 'basis', useMaxWidth: true }
   });
+</script>
+
+<script>
+  // Hover tooltips for job-code chips (R1, S1, E1, …) and matrix job labels.
+  (function () {
+    const JOBS = {
+      Main: "Keep everything I know about my pet in one trusted place I can consult and pass on.",
+      R1: "Stay ahead of what's due — know before a treatment or renewal lapses.",
+      R2: "Make a stranger understand my pet fast.",
+      R3: "Give a professional an accurate picture quickly.",
+      R4: "Get proof my pet's okay while I'm away. (parked — backlog)",
+      R5: "Make a good call in a worrying moment.",
+      E1: "Trade worry for calm.",
+      E2: "Feel sure nothing was forgotten.",
+      E3: "Spare my pet unnecessary stress. (out of scope)",
+      S1: "Keep everyone caring for my pet on the same page.",
+      S2: "Be an easy, trustworthy handoff.",
+      F6: "Emergency vet authorization — spend cap, payment, who-may-authorize (research finding)."
+    };
+    const re = /\b(Main|R[1-5]|E[1-3]|S[12]|F6)\b/g;
+    const tip = document.createElement('div');
+    tip.className = 'jobtip';
+    document.body.appendChild(tip);
+
+    document.querySelectorAll('.jb span, td.job').forEach(el => {
+      const codes = [...new Set((el.textContent.match(re) || []))];
+      if (!codes.length) return;
+      el.dataset.tip = codes.map(c => c + ' — ' + JOBS[c]).join('\n');
+      el.classList.add('hastip');
+    });
+
+    document.addEventListener('mouseover', e => {
+      const el = e.target.closest('.hastip');
+      if (el) { tip.textContent = el.dataset.tip; tip.style.opacity = '1'; }
+    });
+    document.addEventListener('mouseout', e => {
+      const el = e.target.closest('.hastip');
+      if (el && !el.contains(e.relatedTarget)) tip.style.opacity = '0';
+    });
+    document.addEventListener('mousemove', e => {
+      if (tip.style.opacity !== '1') return;
+      const x = Math.min(e.clientX + 14, window.innerWidth - tip.offsetWidth - 12);
+      const y = Math.min(e.clientY + 16, window.innerHeight - tip.offsetHeight - 12);
+      tip.style.left = Math.max(8, x) + 'px';
+      tip.style.top = Math.max(8, y) + 'px';
+    });
+  })();
 </script>
 
 </body>
