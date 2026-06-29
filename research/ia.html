@@ -132,6 +132,23 @@
   .jb span { font-size: 0.66rem; font-weight: 700; padding: 2px 7px; border-radius: 100px; background: rgba(154,178,201,0.14); color: var(--blue); border: 1px solid rgba(154,178,201,0.3); white-space: nowrap; }
   .jb span.back { background: rgba(212,180,131,0.12); color: var(--amber); border-color: rgba(212,180,131,0.3); }
 
+  /* decisions & open questions */
+  .dcards { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 8px; }
+  @media (max-width: 760px) { .dcards { grid-template-columns: 1fr; } }
+  .dcard { background: var(--bg-elev); border: 1px solid var(--line); border-radius: 16px; padding: 18px 20px; }
+  .dcard h4 { margin: 0 0 8px; font-size: 1rem; font-weight: 600; }
+  .dcard p { margin: 0; font-size: 0.9rem; color: var(--text-muted); }
+  .dcard p b { color: var(--text); }
+  .dcard .vs { display: block; margin-top: 8px; font-size: 0.82rem; color: var(--blue); }
+  .setaside { list-style: none; padding: 0; margin: 8px 0 0; display: grid; gap: 8px; }
+  .setaside li { padding: 12px 16px; background: var(--panel); border: 1px solid var(--line-soft); border-radius: 12px; font-size: 0.9rem; color: var(--panel-text); }
+  .setaside li b { color: var(--text); }
+  .setaside li .r { color: var(--text-muted); }
+  .qlist { counter-reset: q; list-style: none; padding: 0; margin: 8px 0 0; display: grid; gap: 10px; }
+  .qlist li { padding: 12px 16px 12px 46px; position: relative; background: var(--bg-elev); border: 1px solid var(--line); border-radius: 12px; font-size: 0.92rem; color: var(--panel-text); }
+  .qlist li::before { counter-increment: q; content: "Q" counter(q); position: absolute; left: 14px; top: 12px; font-size: 0.72rem; font-weight: 700; color: var(--amber); }
+  .qlist li b { color: var(--text); }
+
   footer { text-align: center; color: var(--text-muted); font-size: 0.85rem; padding: 44px 24px 60px; border-top: 1px solid var(--line); max-width: 1040px; margin: 0 auto; }
   footer a { color: var(--text); text-decoration: none; border-bottom: 1px solid var(--line); }
   footer a:hover { border-color: var(--text); }
@@ -149,6 +166,7 @@
       <a href="#flows">Flows</a>
       <a href="#traceability">Traceability</a>
       <a href="#navmodel">Nav model</a>
+      <a href="#decisions">Decisions</a>
       <a href="research.html">Research</a>
       <a href="personas.html">Personas</a>
     </div>
@@ -634,6 +652,82 @@ flowchart TD
       </table>
     </div>
     <p class="note"><b>Sharing is the spine:</b> roles are granted per pet via an <b>Access grant</b> (link/code, scoped, time-boxed) — view-only vs. limited-edit — so the same dossier shows a different, role-appropriate face to each person. This role-based, portable sharing is PetPal's documented market whitespace.</p>
+  </section>
+
+  <!-- 06 DECISIONS & OPEN QUESTIONS -->
+  <section id="decisions">
+    <div class="section-head">
+      <span class="num">06 — Rationale</span>
+      <h2>Decisions &amp; open questions</h2>
+      <p>Why the architecture looks the way it does — the calls made, what was tempting but set aside, and the honest unknowns that should be validated before build.</p>
+    </div>
+
+    <h3 class="sub">Decisions we made</h3>
+    <div class="dcards">
+      <div class="dcard">
+        <h4>Three global tabs, not five</h4>
+        <p>Each global item is the entry to a <b>main-job verb</b>: Pets (consult) · What's due (act in time) · Share (pass on). A nav slot has to earn its place with a job cluster.</p>
+        <span class="vs">Instead of: a tab per feature "because every app has one".</span>
+      </div>
+      <div class="dcard">
+        <h4>The Pet dossier is the spine</h4>
+        <p>Everything hangs off one per-pet record — the "single trusted place" the main job is named for. Modules are <b>views onto the dossier</b>, not separate silos.</p>
+        <span class="vs">Instead of: feature-first menus (health here, docs there, no centre).</span>
+      </div>
+      <div class="dcard">
+        <h4>Single-pet auto-land</h4>
+        <p>With one pet (the Organised Owner's typical case), the first screen <b>is</b> the dossier → main job in 0 taps. My Pets only matters with 2+ pets.</p>
+        <span class="vs">Instead of: always opening a pet-list the user must tap through.</span>
+      </div>
+      <div class="dcard">
+        <h4>1-tap emergency shortcut</h4>
+        <p>Critical info is reachable in one tap from home — a worried moment (R5) can't afford the 3-tap dossier path.</p>
+        <span class="vs">Instead of: burying emergency info inside the dossier.</span>
+      </div>
+      <div class="dcard">
+        <h4>Recipients get a link, not an account</h4>
+        <p>The caregiver opens a no-account, read-only link. Account/auth friction is a documented drop-off driver (research F7), and nobody signs up for a one-week sit.</p>
+        <span class="vs">Instead of: "create an account to view this pet".</span>
+      </div>
+      <div class="dcard">
+        <h4>Reminders as a list + export — no in-app calendar</h4>
+        <p>What's due is a list with push/email; calendar lives via an <b>ICS export</b> (parked). PetPal stays the source of truth instead of rebuilding the OS calendar.</p>
+        <span class="vs">Instead of: a full calendar module to build and maintain.</span>
+      </div>
+      <div class="dcard">
+        <h4>Recovery, never dead ends</h4>
+        <p>Every error/empty state offers a next step (retry / offline / re-share / show contact). Capture-friction is the adoption make-or-break (F4); stranding a user kills trust.</p>
+        <span class="vs">Instead of: happy-path-only flows.</span>
+      </div>
+      <div class="dcard">
+        <h4>A job behind every screen</h4>
+        <p>The traceability matrix removed screens with no job (Archive/delete merged, Account-prefs cut) and parked jobs with no screen openly (R4, E3).</p>
+        <span class="vs">Instead of: settings/extra pages added out of habit.</span>
+      </div>
+    </div>
+
+    <h3 class="sub">Tempting, but set aside</h3>
+    <ul class="setaside">
+      <li><b>Carer → owner "updates while away" (R4).</b> <span class="r">Felt obvious — owners love Rover photo updates — but there's no validated need, no first-person caregiver voice, and no carer-update channel today. Parked, not faked.</span></li>
+      <li><b>In-app vet messaging / telehealth flavour.</b> <span class="r">Competitors (FirstVet, PetDesk) lean on it, so it's tempting to copy. But R3 can be served by record-sharing; real-time messaging's MVP necessity is unproven. Kept as a thin page, flagged "MVP?".</span></li>
+      <li><b>Reviews / trust ratings / find-a-carer marketplace.</b> <span class="r">Rover-shaped and natural-looking, but it maps only to a hypothesis job — PetPal does no matchmaking. Skipped entirely.</span></li>
+      <li><b>Breed-aware food database &amp; product recommendations.</b> <span class="r">In the brief, but addresses no user job and is maintenance-heavy. Cut to free-text owner notes.</span></li>
+      <li><b>An account / notification-settings screen.</b> <span class="r">Reflex to add it, but no job behind it. Removed; the one real setting (reminder channel) folded into What's due.</span></li>
+      <li><b>"Spare my pet stress" as a feature (E3).</b> <span class="r">A real owner motivation, but the stress reduction happens offline (the vet's room). No screen can serve it — out of scope, not invented.</span></li>
+      <li><b>White-label clinic app.</b> <span class="r">A business-model ambition, not an owner/carer job. Deferred so it doesn't consume MVP design effort.</span></li>
+    </ul>
+
+    <h3 class="sub">Open questions to validate</h3>
+    <ul class="qlist">
+      <li><b>Do PetPal's own people actually want this?</b> All evidence is competitor reviews + US surveys — no interviews, no EU-mainland voices. The personas are evidence-shaped hypotheses.</li>
+      <li><b>Will a caregiver use the link, or fall back to "just text me"?</b> No first-person sitter/walker/vet voice exists — the highest-risk persona.</li>
+      <li><b>Is the pain strong enough to switch from WhatsApp / Notes?</b> The pain is real, but capture-friction is the actual gate to adoption.</li>
+      <li><b>Should vet messaging be in the MVP at all,</b> or is one-way record-sharing enough?</li>
+      <li><b>Will owners fill in emergency authorization</b> (spend cap, payment, who-may-authorize)? A documented caregiver need (F6) with zero owner-side evidence — and double the capture-friction risk.</li>
+      <li><b>Is calendar export wanted,</b> and which calendar (Google / Apple / Outlook)? Channel preference was never researched.</li>
+      <li><b>What about non-dog/cat owners?</b> Rabbit, guinea-pig and bird are 3 of 5 target species, yet have zero voices — the personas are implicitly dog-shaped.</li>
+      <li><b>Does single-pet auto-land confuse multi-pet owners?</b> A sensible default, but an untested assumption.</li>
+    </ul>
   </section>
 
 </div>
