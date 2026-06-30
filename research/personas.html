@@ -47,27 +47,37 @@
     background-size: 100% auto; z-index: -1; pointer-events: none;
   }
 
-  /* ---------- Nav ---------- */
-  .topnav {
-    position: sticky; top: 16px; z-index: 50;
-    max-width: 980px; margin: 0 auto;
-    display: flex; align-items: center; justify-content: space-between;
-    padding: 10px 10px 10px 22px;
-    background: rgba(20,20,22,0.6);
-    backdrop-filter: blur(16px) saturate(160%);
-    border: 1px solid var(--line); border-radius: 100px;
+  /* ---------- Sidebar nav ---------- */
+  .layout { display: flex; align-items: flex-start; }
+  .sidenav {
+    position: sticky; top: 0; align-self: flex-start; height: 100vh;
+    width: 232px; flex-shrink: 0; padding: 26px 16px 26px 24px;
+    border-right: 1px solid var(--line); display: flex; flex-direction: column; gap: 18px;
+    background: rgba(12,12,12,0.55); backdrop-filter: blur(10px);
   }
-  .topnav .brand {
-    font-size: 1.05rem; font-weight: 600; letter-spacing: 0.01em;
-    color: var(--text); text-decoration: none;
+  .sidenav .brand { font-size: 1.05rem; font-weight: 600; color: var(--text); text-decoration: none; letter-spacing: 0.01em; }
+  .side-links { display: flex; flex-direction: column; gap: 3px; }
+  .side-links a {
+    color: var(--text-muted); text-decoration: none; font-size: 0.88rem; font-weight: 500;
+    padding: 9px 13px; border-radius: 10px; transition: all 0.15s;
   }
-  .topnav .links { display: flex; gap: 6px; }
-  .topnav .links a {
-    color: var(--text-muted); text-decoration: none;
-    font-size: 0.85rem; font-weight: 500;
-    padding: 9px 18px; border-radius: 100px; transition: all 0.2s;
+  .side-links a:hover { color: var(--text); background: var(--panel-alt); }
+  .side-links a.active { color: var(--text); background: var(--panel-alt); }
+  .side-cap { font-size: 0.66rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--text-muted); padding: 0 13px; margin: 2px 0; }
+  .side-div { height: 1px; background: var(--line); margin: 8px 6px; }
+  .content { flex: 1; min-width: 0; }
+  @media (max-width: 880px) {
+    .layout { flex-direction: column; }
+    .sidenav {
+      position: sticky; top: 0; height: auto; width: 100%; z-index: 50;
+      flex-direction: row; align-items: center; gap: 8px; overflow-x: auto;
+      border-right: none; border-bottom: 1px solid var(--line); padding: 11px 16px;
+    }
+    .sidenav .brand { flex-shrink: 0; }
+    .side-links { flex-direction: row; gap: 4px; flex-wrap: nowrap; }
+    .side-cap, .side-div { display: none; }
+    .side-links a { white-space: nowrap; font-size: 0.82rem; padding: 7px 11px; }
   }
-  .topnav .links a:hover { color: var(--text); background: var(--panel-alt); }
 
   /* ---------- Hero ---------- */
   .hero { position: relative; text-align: center; padding: 100px 24px 70px; overflow: hidden; }
@@ -294,7 +304,6 @@
   footer .sep { margin: 0 10px; opacity: 0.4; }
 
   @media (max-width: 720px) {
-    .topnav .links { display: none; }
     .persona-top { flex-direction: column; }
   }
 </style>
@@ -302,15 +311,21 @@
 <body>
   <div class="bg-mountains"></div>
 
-  <div class="topnav">
+  <div class="layout">
+  <aside class="sidenav">
     <a class="brand" href="#top">PetPal · Personas</a>
-    <div class="links">
-      <a href="#personas">Personas</a>
-      <a href="#jobs">Jobs</a>
-      <a href="#matrix">Matrix</a>
+    <nav class="side-links">
+      <span class="side-cap">Sections</span>
+      <a href="#personas">01 · Personas</a>
+      <a href="#jobs">02 · Jobs</a>
+      <a href="#matrix">03 · Matrix</a>
+      <div class="side-div"></div>
+      <span class="side-cap">More</span>
       <a href="research.html">Research</a>
-    </div>
-  </div>
+      <a href="ia.html">Architecture</a>
+    </nav>
+  </aside>
+  <div class="content">
 
   <header class="hero" id="top">
     <div class="hero-inner">
@@ -721,5 +736,27 @@
   <a href="personas.md">personas.md</a><span class="sep">·</span><a href="jtbd.md">jtbd.md</a><span class="sep">·</span><a href="research.html">research</a>
 </footer>
 
+</div><!-- /content -->
+</div><!-- /layout -->
+
+<script>
+(function(){
+  const links = [...document.querySelectorAll('.side-links a[href^="#"]')];
+  const sections = links.map(a => {
+    const s = document.querySelector(a.getAttribute('href'));
+    return s ? {a, s} : null;
+  }).filter(Boolean);
+  function onScroll(){
+    let current = sections[0];
+    for(const item of sections){
+      if(item.s.getBoundingClientRect().top <= 140) current = item;
+    }
+    links.forEach(l => l.classList.remove('active'));
+    if(current) current.a.classList.add('active');
+  }
+  window.addEventListener('scroll', onScroll, {passive:true});
+  onScroll();
+})();
+</script>
 </body>
 </html>
