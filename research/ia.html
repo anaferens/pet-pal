@@ -177,6 +177,10 @@
   .qlist li { padding: 12px 16px 12px 46px; position: relative; background: var(--bg-elev); border: 1px solid var(--line); border-radius: 12px; font-size: 0.92rem; color: var(--panel-text); }
   .qlist li::before { counter-increment: q; content: "Q" counter(q); position: absolute; left: 14px; top: 12px; font-size: 0.72rem; font-weight: 700; color: var(--amber); }
   .qlist li b { color: var(--text); }
+  .qlist li.resolved { border-color: rgba(111,206,151,0.25); background: rgba(111,206,151,0.04); }
+  .qlist li.resolved::before { color: var(--green); }
+  .answer { display: block; margin-top: 8px; color: var(--text); font-size: 0.88rem; line-height: 1.6; }
+  .answer-tag { display: inline-block; font-size: 0.66rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; padding: 2px 9px; border-radius: 100px; margin-bottom: 4px; color: var(--green); background: rgba(111,206,151,0.12); border: 1px solid rgba(111,206,151,0.3); }
 
   /* job tooltip */
   .hastip { cursor: help; }
@@ -735,9 +739,9 @@ flowchart TD
         <span class="vs">Instead of: "create an account to view this pet".</span>
       </div>
       <div class="dcard">
-        <h4>Reminders as a list + export — no in-app calendar</h4>
-        <p>What's due is a list with push/email; calendar lives via an <b>ICS export</b> (parked). PetPal stays the source of truth instead of rebuilding the OS calendar.</p>
-        <span class="vs">Instead of: a full calendar module to build and maintain.</span>
+        <h4>In-app calendar + export to external calendars</h4>
+        <p>What's due gets a <b>built-in calendar view</b> inside the app, plus an <b>export option</b> to Google Calendar, Apple Calendar, and Outlook so owners can see pet events alongside their personal schedule.</p>
+        <span class="vs">Updated: originally list-only with ICS parked — owner feedback confirmed both in-app and export are wanted.</span>
       </div>
       <div class="dcard">
         <h4>Recovery, never dead ends</h4>
@@ -754,7 +758,7 @@ flowchart TD
     <h3 class="sub">Tempting, but set aside</h3>
     <ul class="setaside">
       <li><b>Carer → owner "updates while away" (R4).</b> <span class="r">Felt obvious — owners love Rover photo updates — but there's no validated need, no first-person caregiver voice, and no carer-update channel today. Parked, not faked.</span></li>
-      <li><b>In-app vet messaging / telehealth flavour.</b> <span class="r">Competitors (FirstVet, PetDesk) lean on it, so it's tempting to copy. But R3 can be served by record-sharing; real-time messaging's MVP necessity is unproven. Kept as a thin page, flagged "MVP?".</span></li>
+      <li><b>In-app vet messaging / telehealth flavour.</b> <span class="r">Confirmed: one-way record-sharing is enough for MVP. Vet messaging deferred.</span></li>
       <li><b>Reviews / trust ratings / find-a-carer marketplace.</b> <span class="r">Rover-shaped and natural-looking, but it maps only to a hypothesis job — PetPal does no matchmaking. Skipped entirely.</span></li>
       <li><b>Breed-aware food database &amp; product recommendations.</b> <span class="r">In the brief, but addresses no user job and is maintenance-heavy. Cut to free-text owner notes.</span></li>
       <li><b>An account / notification-settings screen.</b> <span class="r">Reflex to add it, but no job behind it. Removed; the one real setting (reminder channel) folded into What's due.</span></li>
@@ -762,16 +766,32 @@ flowchart TD
       <li><b>White-label clinic app.</b> <span class="r">A business-model ambition, not an owner/carer job. Deferred so it doesn't consume MVP design effort.</span></li>
     </ul>
 
-    <h3 class="sub">Open questions to validate</h3>
+    <h3 class="sub">Questions — resolved</h3>
     <ul class="qlist">
-      <li><b>Do PetPal's own people actually want this?</b> All evidence is competitor reviews + US surveys — no interviews, no EU-mainland voices. The personas are evidence-shaped hypotheses.</li>
-      <li><b>Will a caregiver use the link, or fall back to "just text me"?</b> No first-person sitter/walker/vet voice exists — the highest-risk persona.</li>
-      <li><b>Is the pain strong enough to switch from WhatsApp / Notes?</b> The pain is real, but capture-friction is the actual gate to adoption.</li>
-      <li><b>Should vet messaging be in the MVP at all,</b> or is one-way record-sharing enough?</li>
-      <li><b>Will owners fill in emergency authorization</b> (spend cap, payment, who-may-authorize)? A documented caregiver need (F6) with zero owner-side evidence — and double the capture-friction risk.</li>
-      <li><b>Is calendar export wanted,</b> and which calendar (Google / Apple / Outlook)? Channel preference was never researched.</li>
-      <li><b>What about non-dog/cat owners?</b> Rabbit, guinea-pig and bird are 3 of 5 target species, yet have zero voices — the personas are implicitly dog-shaped.</li>
-      <li><b>Does single-pet auto-land confuse multi-pet owners?</b> A sensible default, but an untested assumption.</li>
+      <li class="resolved"><b>Do PetPal's own people actually want this?</b>
+        <span class="answer"><span class="answer-tag">Resolved</span> Yes. The owner uses PetPal as a personal handover pack for dog/cat sitters and as the single place for everything pet-related: behaviour notes, preferences, character, favourite snacks and games, periodic reminders (jabs, vet reviews, insurance), vet clinic details (address, doctor), insurance coverage and documents, passport and other pet documents. Future (post-MVP): vet clinics could use it as a GP-style dossier — move country, take the whole record with you.</span>
+      </li>
+      <li class="resolved"><b>Will a caregiver use the link, or fall back to "just text me"?</b>
+        <span class="answer"><span class="answer-tag">Resolved</span> The caregiver will use the link provided by the owner. It gives read-only access to the pet dossier, preferences, behaviour and health details, and emergency contacts. No messaging or video-call features for MVP.</span>
+      </li>
+      <li class="resolved"><b>Is the pain strong enough to switch from WhatsApp / Notes?</b>
+        <span class="answer"><span class="answer-tag">Resolved</span> Yes. The pet dossier is valuable for both owner and sitter. The emergency contacts section covers the urgent-info pain. WhatsApp is not abandoned — it remains an additional channel for calls, not the record system.</span>
+      </li>
+      <li class="resolved"><b>Should vet messaging be in the MVP at all?</b>
+        <span class="answer"><span class="answer-tag">Resolved</span> No. One-way record-sharing is enough for MVP. Vet messaging is deferred.</span>
+      </li>
+      <li class="resolved"><b>Will owners fill in emergency authorization?</b>
+        <span class="answer"><span class="answer-tag">Resolved</span> Not for MVP. Spend cap / payment / who-may-authorize adds too much capture friction with zero owner-side evidence. Cut from MVP scope.</span>
+      </li>
+      <li class="resolved"><b>Is calendar export wanted, and which calendar?</b>
+        <span class="answer"><span class="answer-tag">Resolved</span> Yes to both: an in-app calendar built into PetPal, plus export to Google Calendar, Apple Calendar, and Outlook.</span>
+      </li>
+      <li class="resolved"><b>What about non-dog/cat owners?</b>
+        <span class="answer"><span class="answer-tag">Resolved</span> MVP supports two pet types only: dogs and cats. Rabbit, guinea pig, and bird are deferred to a later phase.</span>
+      </li>
+      <li class="resolved"><b>Does single-pet auto-land confuse multi-pet owners?</b>
+        <span class="answer"><span class="answer-tag">Resolved</span> Not confusing as long as the UI clearly communicates which pet is active. Ideas: a tab or quick-switch button on the home screen to swap between pets; the same button could adapt per screen (home → pet switch, calendar → create event). The key: always signal which pet the user is interacting with.</span>
+      </li>
     </ul>
   </section>
 
