@@ -191,6 +191,11 @@
   }
   .flow-step span { font-weight: 600; color: var(--wf-text); }
 
+  .state-bar { display: flex; gap: 0; border-bottom: 1px solid var(--wf-border); background: var(--wf-surface); font-size: 11px; }
+  .state-bar a { flex: 1; text-align: center; padding: 7px 4px; text-decoration: none; color: var(--wf-muted); font-weight: 500; border-bottom: 2px solid transparent; }
+  .state-bar a:hover { color: var(--wf-text); }
+  .state-bar a.current { color: var(--wf-text); font-weight: 700; border-bottom-color: var(--wf-text); }
+
   /* ══════════════════════════════════════════
      TOGGLE VISIBILITY
      ══════════════════════════════════════════ */
@@ -706,6 +711,13 @@
   <div class="content-mobile view-mobile">
     <div class="phone">
 
+      <div class="state-bar" aria-label="Screen states">
+        <a href="listings.html" class="current">Success</a>
+        <a href="Pet-dossier-empty.html">Empty</a>
+        <a href="Pet-dossier-loading.html">Loading</a>
+        <a href="Pet-dossier-error.html">Error</a>
+      </div>
+
       <div class="flow-step">
         Main job · step 2 of 4 — <span>My Pets → ★ Pet dossier</span> → sections → Share
       </div>
@@ -866,6 +878,13 @@
        ═══════════════════════════════════════════════════════ -->
 
   <div class="content-desktop view-desktop">
+
+    <div class="state-bar" aria-label="Screen states">
+      <a href="listings.html" class="current">Success</a>
+      <a href="Pet-dossier-empty.html">Empty</a>
+      <a href="Pet-dossier-loading.html">Loading</a>
+      <a href="Pet-dossier-error.html">Error</a>
+    </div>
 
     <div class="flow-step" style="text-align:left;padding-left:32px;">
       <span class="zone-label">Desktop</span> &nbsp;
