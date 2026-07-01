@@ -36,7 +36,7 @@
   }
 
   /* ══════════════════════════════════════════
-     LAYOUT: sidebar + phone frame
+     LAYOUT: sidebar + content
      ══════════════════════════════════════════ */
   .layout {
     display: flex;
@@ -74,20 +74,40 @@
     margin: 6px 4px;
   }
 
+  /* ── VIEWPORT TOGGLE ── */
+  .viewport-toggle {
+    display: flex;
+    background: var(--nav-active-bg);
+    border-radius: 6px;
+    padding: 3px;
+    margin: 0 4px 4px;
+  }
+  .viewport-toggle button {
+    flex: 1;
+    padding: 6px 0;
+    font-size: 11px;
+    font-weight: 600;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    background: transparent;
+    color: var(--nav-text);
+    transition: all 0.15s;
+  }
+  .viewport-toggle button.active {
+    background: var(--wf-bg);
+    color: var(--nav-text-active);
+    box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+  }
+
   /* tree list */
   .nav-tree, .nav-tree ul {
     list-style: none;
     padding: 0;
     margin: 0;
   }
-  .nav-tree ul {
-    padding-left: 14px;
-  }
-  .nav-tree li {
-    margin: 0;
-  }
-
-  /* section heading (non-link) */
+  .nav-tree ul { padding-left: 14px; }
+  .nav-tree li { margin: 0; }
   .nav-tree .nav-section {
     font-size: 10px;
     font-weight: 700;
@@ -97,8 +117,6 @@
     padding: 10px 8px 3px;
     display: block;
   }
-
-  /* screen link */
   .nav-tree a {
     display: block;
     color: var(--nav-text);
@@ -121,8 +139,6 @@
     color: var(--nav-text-active);
     font-weight: 700;
   }
-
-  /* state links (children — smaller) */
   .nav-tree .state-list a {
     font-size: 11px;
     font-weight: 400;
@@ -138,19 +154,55 @@
     font-weight: 600;
     background: var(--nav-active-bg);
   }
-
-  /* step-08 marker */
-  .nav-tree .step08 {
-    opacity: 0.45;
-  }
+  .nav-tree .step08 { opacity: 0.45; }
   .nav-tree .step08-tag {
     font-size: 9px;
     color: var(--nav-cap);
     font-weight: 400;
   }
 
-  /* ── PHONE FRAME (content area) ── */
-  .content {
+  /* ══════════════════════════════════════════
+     ZONE LABEL
+     ══════════════════════════════════════════ */
+  .zone-label {
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--wf-muted);
+    border: 1px dashed var(--wf-border);
+    border-radius: 2px;
+    padding: 1px 5px;
+    display: inline-block;
+    margin-bottom: 6px;
+  }
+
+  /* ══════════════════════════════════════════
+     FLOW STEP BANNER (shared)
+     ══════════════════════════════════════════ */
+  .flow-step {
+    background: var(--wf-surface);
+    border-bottom: 1px solid var(--wf-border);
+    padding: 6px 16px;
+    font-size: 10px;
+    color: var(--wf-muted);
+    text-align: center;
+    letter-spacing: 0.02em;
+  }
+  .flow-step span { font-weight: 600; color: var(--wf-text); }
+
+  /* ══════════════════════════════════════════
+     TOGGLE VISIBILITY
+     ══════════════════════════════════════════ */
+  .view-mobile  { display: block; }
+  .view-desktop { display: none;  }
+  body.is-desktop .view-mobile  { display: none;  }
+  body.is-desktop .view-desktop { display: flex; flex-direction: column; }
+
+  /* ══════════════════════════════════════════════
+     MOBILE LAYOUT: phone frame
+     ══════════════════════════════════════════════ */
+  .content-mobile {
     flex: 1;
     display: flex;
     justify-content: center;
@@ -169,34 +221,8 @@
     box-shadow: 0 1px 4px rgba(0,0,0,0.06);
   }
 
-  /* ── ZONE LABEL (annotation visible on wireframe) ── */
-  .zone-label {
-    font-size: 9px;
-    font-weight: 700;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    color: var(--wf-muted);
-    border: 1px dashed var(--wf-border);
-    border-radius: 2px;
-    padding: 1px 5px;
-    display: inline-block;
-    margin-bottom: 6px;
-  }
-
-  /* ── FLOW STEP BANNER ── */
-  .flow-step {
-    background: var(--wf-surface);
-    border-bottom: 1px solid var(--wf-border);
-    padding: 6px 16px;
-    font-size: 10px;
-    color: var(--wf-muted);
-    text-align: center;
-    letter-spacing: 0.02em;
-  }
-  .flow-step span { font-weight: 600; color: var(--wf-text); }
-
-  /* ── HEADER ── */
-  header {
+  /* mobile header */
+  .m-header {
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -204,19 +230,18 @@
     border-bottom: 1px solid var(--wf-border);
     min-height: 48px;
   }
-  header .back {
+  .m-header .back {
     font-size: 14px;
     color: var(--wf-text);
     background: none;
     border: none;
     cursor: pointer;
-    padding: 4px 0;
   }
-  header h1 {
+  .m-header h1 {
     font-size: 17px;
     font-weight: 600;
   }
-  header .action-edit {
+  .m-header .action-edit {
     font-size: 13px;
     color: var(--wf-muted);
     background: none;
@@ -224,24 +249,24 @@
     cursor: pointer;
   }
 
-  /* ── MAIN ── */
-  main {
+  /* mobile main */
+  .m-main {
     flex: 1;
     overflow-y: auto;
     padding-bottom: 20px;
   }
 
-  /* ── PET IDENTITY STRIP ── */
-  .pet-identity {
+  /* mobile pet identity */
+  .m-pet-identity {
     display: flex;
     align-items: center;
     gap: 12px;
     padding: 16px;
     border-bottom: 1px solid var(--wf-border);
   }
+
+  /* shared pet photo */
   .pet-photo {
-    width: 64px;
-    height: 64px;
     border-radius: 50%;
     background: var(--wf-placeholder);
     flex-shrink: 0;
@@ -251,30 +276,21 @@
     font-size: 10px;
     color: var(--wf-muted);
   }
-  .pet-info h2 {
-    font-size: 20px;
-    font-weight: 700;
-    line-height: 1.2;
-  }
-  .pet-info .pet-meta {
-    font-size: 13px;
-    color: var(--wf-muted);
-    margin-top: 2px;
-  }
-  .pet-info .pet-chip {
-    font-size: 11px;
-    color: var(--wf-muted);
-    margin-top: 2px;
-  }
+  .pet-photo-m { width: 64px; height: 64px; }
+  .pet-photo-d { width: 88px; height: 88px; font-size: 11px; }
 
-  /* ── QUICK ACTIONS ── */
-  .quick-actions {
+  .pet-info h2, .pet-info h1 { line-height: 1.2; }
+  .pet-info .pet-meta { color: var(--wf-muted); margin-top: 2px; }
+  .pet-info .pet-chip { color: var(--wf-muted); margin-top: 2px; }
+
+  /* mobile quick actions */
+  .m-quick-actions {
     display: flex;
     gap: 8px;
     padding: 12px 16px;
     border-bottom: 1px solid var(--wf-border);
   }
-  .quick-actions button {
+  .m-quick-actions button {
     flex: 1;
     padding: 10px 0;
     font-size: 13px;
@@ -282,6 +298,8 @@
     border-radius: 6px;
     cursor: pointer;
   }
+
+  /* shared button styles */
   .btn-primary {
     background: var(--wf-btn);
     color: var(--wf-btn-text);
@@ -293,28 +311,19 @@
     border: 1.5px solid var(--wf-border);
   }
 
-  /* ── FILL STATUS / COUNTER ── */
-  .fill-counter {
+  /* mobile fill counter */
+  .m-fill-counter {
     padding: 14px 16px 6px;
     display: flex;
     align-items: baseline;
     justify-content: space-between;
   }
-  .fill-counter .count {
-    font-size: 14px;
-    font-weight: 600;
-  }
-  .fill-counter .status {
-    font-size: 12px;
-    color: var(--wf-muted);
-  }
+  .count { font-size: 14px; font-weight: 600; }
+  .status { font-size: 12px; color: var(--wf-muted); }
 
-  /* ── SEARCH & FILTER ── */
-  .search-filter {
-    padding: 0 16px 12px;
-  }
+  /* mobile search */
+  .m-search-filter { padding: 0 16px 12px; }
   .search-bar {
-    width: 100%;
     padding: 10px 12px;
     font-size: 14px;
     border: 1.5px solid var(--wf-border);
@@ -324,9 +333,10 @@
     outline: none;
   }
   .search-bar::placeholder { color: var(--wf-placeholder); }
+  .m-search-filter .search-bar { width: 100%; }
 
-  /* ── SECTION CARD LIST ── */
-  .section-list {
+  /* mobile section list */
+  .m-section-list {
     list-style: none;
     padding: 0 16px;
     display: flex;
@@ -334,8 +344,8 @@
     gap: 10px;
   }
 
-  /* ── SECTION CARD (entry point) ── */
-  .section-card {
+  /* mobile section card */
+  .m-section-card {
     background: var(--wf-surface);
     border: 1.5px solid var(--wf-border);
     border-radius: 8px;
@@ -345,12 +355,9 @@
     gap: 12px;
     align-items: flex-start;
   }
-  .section-card:hover {
-    border-color: var(--wf-muted);
-  }
+  .m-section-card:hover { border-color: var(--wf-muted); }
+
   .card-icon {
-    width: 36px;
-    height: 36px;
     border-radius: 6px;
     background: var(--wf-placeholder);
     flex-shrink: 0;
@@ -360,25 +367,18 @@
     font-size: 9px;
     color: var(--wf-muted);
   }
-  .card-body {
-    flex: 1;
-    min-width: 0;
-  }
-  .card-body h3 {
-    font-size: 15px;
-    font-weight: 600;
-    line-height: 1.3;
-  }
-  .card-body .card-detail {
+  .card-icon-m { width: 36px; height: 36px; }
+  .card-icon-d { width: 40px; height: 40px; border-radius: 8px; }
+
+  .card-body { flex: 1; min-width: 0; }
+  .card-body h3 { font-size: 15px; font-weight: 600; line-height: 1.3; }
+  .card-detail {
     font-size: 12px;
     color: var(--wf-muted);
     margin-top: 3px;
     line-height: 1.4;
   }
-  .card-body .card-detail strong {
-    color: var(--wf-text);
-    font-weight: 600;
-  }
+  .card-detail strong { color: var(--wf-text); font-weight: 600; }
   .card-arrow {
     color: var(--wf-muted);
     font-size: 16px;
@@ -386,7 +386,7 @@
     flex-shrink: 0;
   }
 
-  /* ── BOTTOM NAV ── */
+  /* mobile bottom nav */
   .phone-nav {
     border-top: 1px solid var(--wf-border);
     display: flex;
@@ -404,22 +404,146 @@
     align-items: center;
     gap: 3px;
   }
-  .phone-nav a.active {
-    color: var(--wf-text);
-    font-weight: 700;
-  }
+  .phone-nav a.active { color: var(--wf-text); font-weight: 700; }
   .phone-nav .nav-icon {
-    width: 22px;
-    height: 22px;
-    border-radius: 4px;
-    background: var(--wf-placeholder);
-    display: inline-block;
+    width: 22px; height: 22px; border-radius: 4px;
+    background: var(--wf-placeholder); display: inline-block;
   }
-  .phone-nav a.active .nav-icon {
-    background: var(--wf-muted);
+  .phone-nav a.active .nav-icon { background: var(--wf-muted); }
+
+  /* ══════════════════════════════════════════════
+     DESKTOP LAYOUT
+     ══════════════════════════════════════════════ */
+  .content-desktop {
+    flex: 1;
+    min-width: 0;
+    min-height: 100vh;
   }
 
-  /* ── RESPONSIVE: collapse sidebar on narrow viewports ── */
+  /* desktop top nav */
+  .top-nav {
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid var(--wf-border);
+    padding: 0 32px;
+  }
+  .top-nav .nav-brand {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--wf-text);
+    margin-right: 32px;
+    padding: 14px 0;
+  }
+  .top-nav a {
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--wf-muted);
+    padding: 14px 16px;
+    border-bottom: 2px solid transparent;
+    transition: all 0.12s;
+  }
+  .top-nav a:hover { color: var(--wf-text); }
+  .top-nav a.active {
+    color: var(--wf-text);
+    font-weight: 700;
+    border-bottom-color: var(--wf-text);
+  }
+  .top-nav .nav-spacer { flex: 1; }
+  .top-nav .nav-action {
+    font-size: 13px;
+    color: var(--wf-muted);
+    padding: 8px 16px;
+    border: 1.5px solid var(--wf-border);
+    border-radius: 6px;
+    background: none;
+    cursor: pointer;
+  }
+
+  /* desktop main */
+  .d-main {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 32px;
+    width: 100%;
+  }
+
+  /* desktop pet hero */
+  .d-pet-hero {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    padding: 24px;
+    background: var(--wf-surface);
+    border: 1.5px solid var(--wf-border);
+    border-radius: 10px;
+    margin-bottom: 24px;
+  }
+  .d-pet-hero .pet-info { flex: 1; }
+  .d-pet-hero .pet-info h1 { font-size: 26px; font-weight: 700; }
+  .d-pet-hero .pet-info .pet-meta { font-size: 15px; margin-top: 4px; }
+  .d-pet-hero .pet-info .pet-chip { font-size: 12px; margin-top: 4px; }
+  .d-pet-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    flex-shrink: 0;
+  }
+  .d-pet-actions button {
+    padding: 10px 20px;
+    font-size: 13px;
+    font-weight: 600;
+    border-radius: 6px;
+    cursor: pointer;
+    white-space: nowrap;
+  }
+
+  /* desktop toolbar */
+  .d-toolbar {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 20px;
+  }
+  .d-toolbar .spacer { flex: 1; }
+  .d-toolbar .search-bar { width: 280px; }
+
+  /* desktop card grid */
+  .d-section-grid {
+    list-style: none;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+  .d-section-card {
+    background: var(--wf-surface);
+    border: 1.5px solid var(--wf-border);
+    border-radius: 10px;
+    padding: 20px;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    transition: border-color 0.12s;
+  }
+  .d-section-card:hover { border-color: var(--wf-muted); }
+  .d-card-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .d-card-header h3 { font-size: 16px; font-weight: 600; flex: 1; }
+  .d-section-card .card-detail { font-size: 13px; line-height: 1.5; }
+
+  .d-footer {
+    border-top: 1px solid var(--wf-border);
+    padding: 16px 32px;
+    font-size: 11px;
+    color: var(--wf-muted);
+    text-align: center;
+  }
+
+  /* ── RESPONSIVE ── */
   @media (max-width: 700px) {
     .layout { flex-direction: column; }
     .sidenav {
@@ -427,8 +551,14 @@
       border-right: none; border-bottom: 1px solid var(--nav-line);
       padding: 12px 16px; max-height: 50vh; overflow-y: auto;
     }
-    .content { padding: 16px; }
+    .content-mobile { padding: 16px; }
     .phone { min-height: auto; }
+    .d-main { padding: 20px 16px; }
+    .d-section-grid { grid-template-columns: 1fr; }
+    .d-pet-hero { flex-direction: column; text-align: center; }
+    .d-pet-actions { flex-direction: row; }
+    .d-toolbar { flex-wrap: wrap; }
+    .d-toolbar .search-bar { width: 100%; }
   }
 </style>
 </head>
@@ -436,18 +566,22 @@
 
 <div class="layout">
 
-  <!-- ═══════════════════════════════════════════════════════════
-       SIDEBAR: wireframe tree nav
-       Structure follows sitemap.md → _screens.md state matrix
-       ═══════════════════════════════════════════════════════════ -->
+  <!-- ═══════════════════════════════════════════
+       SIDEBAR
+       ═══════════════════════════════════════════ -->
 
   <aside class="sidenav" aria-label="Wireframe navigation">
     <a class="brand" href="#">PetPal Wireframes</a>
+
+    <!-- VIEWPORT TOGGLE -->
+    <div class="viewport-toggle" role="radiogroup" aria-label="Layout toggle">
+      <button id="btn-mobile" class="active" aria-pressed="true" onclick="setView('mobile')">Mobile</button>
+      <button id="btn-desktop" aria-pressed="false" onclick="setView('desktop')">Desktop</button>
+    </div>
+
     <div class="nav-divider"></div>
 
     <ul class="nav-tree">
-
-      <!-- ── My Pets group ── -->
       <li><span class="nav-section">My Pets</span>
         <ul>
           <li><a href="My-Pets.html">My Pets</a>
@@ -470,7 +604,6 @@
 
       <li><div class="nav-divider"></div></li>
 
-      <!-- ── Pet dossier group ── -->
       <li><span class="nav-section">Pet dossier</span>
         <ul>
           <li><a href="listings.html" class="active">Pet dossier</a>
@@ -527,7 +660,6 @@
 
       <li><div class="nav-divider"></div></li>
 
-      <!-- ── Actions ── -->
       <li><span class="nav-section">Actions</span>
         <ul>
           <li><a href="Add-record.html">Add / update a record</a>
@@ -542,7 +674,6 @@
 
       <li><div class="nav-divider"></div></li>
 
-      <!-- ── Share group ── -->
       <li><span class="nav-section">Share</span>
         <ul>
           <li><a href="Share-a-pet.html">Share a pet</a>
@@ -558,76 +689,66 @@
 
       <li><div class="nav-divider"></div></li>
 
-      <!-- ── Step 08 (deferred) ── -->
       <li><span class="nav-section">Step 08 (deferred)</span>
         <ul>
           <li class="step08"><a href="#">What's due</a></li>
           <li class="step08"><a href="#">Shared pet view</a></li>
         </ul>
       </li>
-
     </ul>
   </aside>
 
 
-  <!-- ═══════════════════════════════════════════════════════════
-       PHONE FRAME: the wireframe screen
-       ═══════════════════════════════════════════════════════════ -->
+  <!-- ═══════════════════════════════════════════════════════
+       MOBILE VIEW (phone frame)
+       ═══════════════════════════════════════════════════════ -->
 
-  <div class="content">
+  <div class="content-mobile view-mobile">
     <div class="phone">
 
-      <!-- ── FLOW STEP BANNER ── -->
       <div class="flow-step">
         Main job · step 2 of 4 — <span>My Pets → ★ Pet dossier</span> → sections → Share
       </div>
 
-      <!-- ── HEADER ── -->
-      <header>
+      <header class="m-header">
         <button class="back" aria-label="Back to My Pets">← My Pets</button>
         <h1>Luna</h1>
         <button class="action-edit">Edit</button>
       </header>
 
-      <main>
+      <div class="m-main">
 
-        <!-- ── PET IDENTITY STRIP ── -->
-        <section class="pet-identity" aria-label="Pet identity">
+        <section class="m-pet-identity" aria-label="Pet identity">
           <div class="zone-label">Pet identity</div>
-          <figure class="pet-photo" aria-label="Pet photo placeholder">photo</figure>
+          <figure class="pet-photo pet-photo-m" aria-label="Pet photo placeholder">photo</figure>
           <div class="pet-info">
-            <h2>Luna</h2>
-            <p class="pet-meta">Dog · Siberian Husky · Female</p>
-            <p class="pet-chip">Microchip 276 098 106 412 345</p>
+            <h2 style="font-size:20px;font-weight:700;">Luna</h2>
+            <p class="pet-meta" style="font-size:13px;">Dog · Siberian Husky · Female</p>
+            <p class="pet-chip" style="font-size:11px;">Microchip 276 098 106 412 345</p>
           </div>
         </section>
 
-        <!-- ── QUICK ACTIONS ── -->
-        <section class="quick-actions" aria-label="Quick actions">
+        <section class="m-quick-actions" aria-label="Quick actions">
           <button class="btn-primary">Share Luna's info</button>
           <button class="btn-secondary">Edit pet details</button>
         </section>
 
-        <!-- ── COUNTER ── -->
-        <section class="fill-counter" aria-label="Dossier completeness">
+        <section class="m-fill-counter" aria-label="Dossier completeness">
           <div class="zone-label">Counter</div>
           <span class="count">5 of 6 sections filled</span>
           <span class="status">Updated 2 days ago</span>
         </section>
 
-        <!-- ── SEARCH & FILTER ── -->
-        <section class="search-filter" aria-label="Search sections">
+        <section class="m-search-filter" aria-label="Search sections">
           <div class="zone-label">Search &amp; filter</div>
-          <label for="section-search" class="sr-only" style="position:absolute;width:1px;height:1px;overflow:hidden;">Search sections</label>
-          <input id="section-search" class="search-bar" type="search" placeholder="Search sections, records, documents…">
+          <input class="search-bar" type="search" placeholder="Search sections, records, documents…" aria-label="Search sections">
         </section>
 
-        <!-- ── CARD LIST ── -->
-        <ul class="section-list" aria-label="Dossier sections">
+        <ul class="m-section-list" aria-label="Dossier sections">
 
           <li>
-            <article class="section-card" role="link" aria-label="Health and jabs — 6 records">
-              <div class="card-icon">icon</div>
+            <article class="m-section-card">
+              <div class="card-icon card-icon-m">icon</div>
               <div class="card-body">
                 <div class="zone-label">Card entry point → Health &amp; jabs</div>
                 <h3>Health &amp; jabs</h3>
@@ -642,8 +763,8 @@
           </li>
 
           <li>
-            <article class="section-card" role="link" aria-label="Documents and passport — 4 documents">
-              <div class="card-icon">icon</div>
+            <article class="m-section-card">
+              <div class="card-icon card-icon-m">icon</div>
               <div class="card-body">
                 <div class="zone-label">Card entry point → Documents &amp; passport</div>
                 <h3>Documents &amp; passport</h3>
@@ -658,8 +779,8 @@
           </li>
 
           <li>
-            <article class="section-card" role="link" aria-label="Insurance — 1 active policy">
-              <div class="card-icon">icon</div>
+            <article class="m-section-card">
+              <div class="card-icon card-icon-m">icon</div>
               <div class="card-body">
                 <div class="zone-label">Card entry point → Insurance</div>
                 <h3>Insurance</h3>
@@ -674,8 +795,8 @@
           </li>
 
           <li>
-            <article class="section-card" role="link" aria-label="Personality and care — filled">
-              <div class="card-icon">icon</div>
+            <article class="m-section-card">
+              <div class="card-icon card-icon-m">icon</div>
               <div class="card-body">
                 <div class="zone-label">Card entry point → Personality &amp; care</div>
                 <h3>Personality &amp; care</h3>
@@ -691,8 +812,8 @@
           </li>
 
           <li>
-            <article class="section-card" role="link" aria-label="Vet and appointments — next visit 15 August">
-              <div class="card-icon">icon</div>
+            <article class="m-section-card">
+              <div class="card-icon card-icon-m">icon</div>
               <div class="card-body">
                 <div class="zone-label">Card entry point → Vet &amp; appointments</div>
                 <h3>Vet &amp; appointments</h3>
@@ -707,8 +828,8 @@
           </li>
 
           <li>
-            <article class="section-card" role="link" aria-label="Emergency info — not filled yet" style="border-style: dashed;">
-              <div class="card-icon">icon</div>
+            <article class="m-section-card" style="border-style: dashed;">
+              <div class="card-icon card-icon-m">icon</div>
               <div class="card-body">
                 <div class="zone-label">Card entry point → Emergency info (step 08)</div>
                 <h3>Emergency info &amp; authorisation</h3>
@@ -722,29 +843,180 @@
           </li>
 
         </ul>
+      </div>
 
-      </main>
-
-      <!-- ── BOTTOM NAV ── -->
       <nav class="phone-nav" aria-label="Main navigation">
         <a href="My-Pets.html" class="active">
-          <span class="nav-icon" aria-hidden="true"></span>
-          Pets
+          <span class="nav-icon" aria-hidden="true"></span> Pets
         </a>
         <a href="#">
-          <span class="nav-icon" aria-hidden="true"></span>
-          What's due
+          <span class="nav-icon" aria-hidden="true"></span> What's due
         </a>
         <a href="Share-a-pet.html">
-          <span class="nav-icon" aria-hidden="true"></span>
-          Share
+          <span class="nav-icon" aria-hidden="true"></span> Share
         </a>
       </nav>
 
-    </div><!-- .phone -->
-  </div><!-- .content -->
+    </div>
+  </div>
 
-</div><!-- .layout -->
+
+  <!-- ═══════════════════════════════════════════════════════
+       DESKTOP VIEW (full-width)
+       ═══════════════════════════════════════════════════════ -->
+
+  <div class="content-desktop view-desktop">
+
+    <div class="flow-step" style="text-align:left;padding-left:32px;">
+      <span class="zone-label">Desktop</span> &nbsp;
+      Main job · step 2 of 4 — <span>My Pets → ★ Pet dossier</span> → sections → Share
+    </div>
+
+    <nav class="top-nav" aria-label="Main navigation (desktop)">
+      <span class="nav-brand">PetPal</span>
+      <a href="My-Pets.html" class="active">Pets</a>
+      <a href="#">What's due</a>
+      <a href="Share-a-pet.html">Share</a>
+      <span class="nav-spacer"></span>
+      <button class="nav-action">Edit pet details</button>
+    </nav>
+
+    <div class="d-main">
+
+      <section class="d-pet-hero" aria-label="Pet identity">
+        <div class="zone-label">Pet identity · desktop hero</div>
+        <figure class="pet-photo pet-photo-d" aria-label="Pet photo placeholder">photo</figure>
+        <div class="pet-info">
+          <h1>Luna</h1>
+          <p class="pet-meta" style="font-size:15px;">Dog · Siberian Husky · Female</p>
+          <p class="pet-chip" style="font-size:12px;">Microchip 276 098 106 412 345</p>
+        </div>
+        <div class="d-pet-actions">
+          <button class="btn-primary">Share Luna's info</button>
+          <button class="btn-secondary">Edit pet details</button>
+        </div>
+      </section>
+
+      <section class="d-toolbar" aria-label="Dossier toolbar">
+        <div class="zone-label">Counter</div>
+        <span class="count">5 of 6 sections filled</span>
+        <span class="status">· Updated 2 days ago</span>
+        <span class="spacer"></span>
+        <div class="zone-label">Search &amp; filter</div>
+        <input class="search-bar" type="search" placeholder="Search sections, records, documents…" aria-label="Search sections">
+      </section>
+
+      <ul class="d-section-grid" aria-label="Dossier sections">
+
+        <li>
+          <article class="d-section-card">
+            <div class="d-card-header">
+              <div class="card-icon card-icon-d">icon</div>
+              <h3>Health &amp; jabs</h3>
+              <span class="card-arrow" aria-hidden="true">→</span>
+            </div>
+            <p class="card-detail">
+              <strong>6 records</strong> · Updated 3 days ago<br>
+              Rabies (due 15 Mar 2027) · DHPP · Leptospirosis<br>
+              Condition: atopic dermatitis · Apoquel 16 mg daily
+            </p>
+          </article>
+        </li>
+
+        <li>
+          <article class="d-section-card">
+            <div class="d-card-header">
+              <div class="card-icon card-icon-d">icon</div>
+              <h3>Documents &amp; passport</h3>
+              <span class="card-arrow" aria-hidden="true">→</span>
+            </div>
+            <p class="card-detail">
+              <strong>4 documents</strong> · Updated 1 week ago<br>
+              EU Pet Passport DE-0812345 · Microchip registration<br>
+              Rabies certificate · Pedigree papers
+            </p>
+          </article>
+        </li>
+
+        <li>
+          <article class="d-section-card">
+            <div class="d-card-header">
+              <div class="card-icon card-icon-d">icon</div>
+              <h3>Insurance</h3>
+              <span class="card-arrow" aria-hidden="true">→</span>
+            </div>
+            <p class="card-detail">
+              <strong>1 active policy</strong> · Renews 1 Oct 2026<br>
+              Lassie Haustierversicherung · OP-Schutz Plus<br>
+              Premium €29.90 / month · Covers surgery, inpatient
+            </p>
+          </article>
+        </li>
+
+        <li>
+          <article class="d-section-card">
+            <div class="d-card-header">
+              <div class="card-icon card-icon-d">icon</div>
+              <h3>Personality &amp; care</h3>
+              <span class="card-arrow" aria-hidden="true">→</span>
+            </div>
+            <p class="card-detail">
+              <strong>Profile filled</strong> · Updated 5 days ago<br>
+              Calm, affectionate, loves belly rubs<br>
+              Not friendly with: small rodents, off-leash terriers<br>
+              Food: Royal Canin Maxi Adult, 350 g twice daily
+            </p>
+          </article>
+        </li>
+
+        <li>
+          <article class="d-section-card">
+            <div class="d-card-header">
+              <div class="card-icon card-icon-d">icon</div>
+              <h3>Vet &amp; appointments</h3>
+              <span class="card-arrow" aria-hidden="true">→</span>
+            </div>
+            <p class="card-detail">
+              <strong>Tierklinik am Stadtpark</strong> · Dr. Müller<br>
+              Next: annual checkup, 15 Aug 2026, 10:00<br>
+              Last visit: dental cleaning, 20 May 2026
+            </p>
+          </article>
+        </li>
+
+        <li>
+          <article class="d-section-card" style="border-style: dashed;">
+            <div class="d-card-header">
+              <div class="card-icon card-icon-d">icon</div>
+              <h3>Emergency info &amp; authorisation</h3>
+              <span class="card-arrow" aria-hidden="true">→</span>
+            </div>
+            <p class="card-detail">
+              <strong>Not filled yet</strong><br>
+              Vet contact, current meds, conditions, emergency contact — what a carer needs if something goes wrong
+            </p>
+          </article>
+        </li>
+
+      </ul>
+    </div>
+
+    <footer class="d-footer">
+      Pet dossier · desktop adaptation · same content as mobile, layout expanded for wide screens
+    </footer>
+  </div>
+
+</div>
+
+<script>
+function setView(mode) {
+  document.body.classList.toggle('is-desktop', mode === 'desktop');
+  document.getElementById('btn-mobile').classList.toggle('active', mode === 'mobile');
+  document.getElementById('btn-desktop').classList.toggle('active', mode === 'desktop');
+  document.getElementById('btn-mobile').setAttribute('aria-pressed', mode === 'mobile');
+  document.getElementById('btn-desktop').setAttribute('aria-pressed', mode === 'desktop');
+}
+</script>
 
 </body>
 </html>
