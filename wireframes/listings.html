@@ -1,0 +1,750 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pet dossier — PetPal wireframe</title>
+<style>
+  :root {
+    --wf-bg:         #ffffff;
+    --wf-surface:    #f5f5f5;
+    --wf-border:     #e0e0e0;
+    --wf-text:       #1a1a1a;
+    --wf-muted:      #757575;
+    --wf-placeholder:#d0d0d0;
+    --wf-input-bg:   #fafafa;
+    --wf-btn:        #333333;
+    --wf-btn-text:   #ffffff;
+    --wf-btn-sec:    transparent;
+
+    --nav-bg:        #f9f9f9;
+    --nav-active-bg: #eaeaea;
+    --nav-text:      #555555;
+    --nav-text-active:#1a1a1a;
+    --nav-cap:       #999999;
+    --nav-line:      #e0e0e0;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+    background: var(--wf-bg);
+    color: var(--wf-text);
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ══════════════════════════════════════════
+     LAYOUT: sidebar + phone frame
+     ══════════════════════════════════════════ */
+  .layout {
+    display: flex;
+    align-items: flex-start;
+    min-height: 100vh;
+  }
+
+  /* ── SIDEBAR NAV PANEL ── */
+  .sidenav {
+    position: sticky;
+    top: 0;
+    align-self: flex-start;
+    height: 100vh;
+    width: 240px;
+    flex-shrink: 0;
+    padding: 20px 12px 20px 16px;
+    border-right: 1px solid var(--nav-line);
+    background: var(--nav-bg);
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+  .sidenav .brand {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--wf-text);
+    text-decoration: none;
+    padding: 0 8px 8px;
+    letter-spacing: 0.02em;
+  }
+  .nav-divider {
+    height: 1px;
+    background: var(--nav-line);
+    margin: 6px 4px;
+  }
+
+  /* tree list */
+  .nav-tree, .nav-tree ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  .nav-tree ul {
+    padding-left: 14px;
+  }
+  .nav-tree li {
+    margin: 0;
+  }
+
+  /* section heading (non-link) */
+  .nav-tree .nav-section {
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--nav-cap);
+    padding: 10px 8px 3px;
+    display: block;
+  }
+
+  /* screen link */
+  .nav-tree a {
+    display: block;
+    color: var(--nav-text);
+    text-decoration: none;
+    font-size: 12px;
+    font-weight: 500;
+    padding: 4px 8px;
+    border-radius: 5px;
+    transition: background 0.12s;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .nav-tree a:hover {
+    background: var(--nav-active-bg);
+    color: var(--nav-text-active);
+  }
+  .nav-tree a.active {
+    background: var(--nav-active-bg);
+    color: var(--nav-text-active);
+    font-weight: 700;
+  }
+
+  /* state links (children — smaller) */
+  .nav-tree .state-list a {
+    font-size: 11px;
+    font-weight: 400;
+    color: var(--nav-cap);
+    padding: 2px 8px;
+  }
+  .nav-tree .state-list a:hover {
+    color: var(--nav-text);
+    background: var(--nav-active-bg);
+  }
+  .nav-tree .state-list a.active {
+    color: var(--nav-text-active);
+    font-weight: 600;
+    background: var(--nav-active-bg);
+  }
+
+  /* step-08 marker */
+  .nav-tree .step08 {
+    opacity: 0.45;
+  }
+  .nav-tree .step08-tag {
+    font-size: 9px;
+    color: var(--nav-cap);
+    font-weight: 400;
+  }
+
+  /* ── PHONE FRAME (content area) ── */
+  .content {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    padding: 24px;
+    min-height: 100vh;
+  }
+  .phone {
+    width: 375px;
+    min-height: 812px;
+    background: var(--wf-bg);
+    border: 1.5px solid var(--wf-border);
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+  }
+
+  /* ── ZONE LABEL (annotation visible on wireframe) ── */
+  .zone-label {
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--wf-muted);
+    border: 1px dashed var(--wf-border);
+    border-radius: 2px;
+    padding: 1px 5px;
+    display: inline-block;
+    margin-bottom: 6px;
+  }
+
+  /* ── FLOW STEP BANNER ── */
+  .flow-step {
+    background: var(--wf-surface);
+    border-bottom: 1px solid var(--wf-border);
+    padding: 6px 16px;
+    font-size: 10px;
+    color: var(--wf-muted);
+    text-align: center;
+    letter-spacing: 0.02em;
+  }
+  .flow-step span { font-weight: 600; color: var(--wf-text); }
+
+  /* ── HEADER ── */
+  header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 16px;
+    border-bottom: 1px solid var(--wf-border);
+    min-height: 48px;
+  }
+  header .back {
+    font-size: 14px;
+    color: var(--wf-text);
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 4px 0;
+  }
+  header h1 {
+    font-size: 17px;
+    font-weight: 600;
+  }
+  header .action-edit {
+    font-size: 13px;
+    color: var(--wf-muted);
+    background: none;
+    border: none;
+    cursor: pointer;
+  }
+
+  /* ── MAIN ── */
+  main {
+    flex: 1;
+    overflow-y: auto;
+    padding-bottom: 20px;
+  }
+
+  /* ── PET IDENTITY STRIP ── */
+  .pet-identity {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 16px;
+    border-bottom: 1px solid var(--wf-border);
+  }
+  .pet-photo {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    background: var(--wf-placeholder);
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 10px;
+    color: var(--wf-muted);
+  }
+  .pet-info h2 {
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 1.2;
+  }
+  .pet-info .pet-meta {
+    font-size: 13px;
+    color: var(--wf-muted);
+    margin-top: 2px;
+  }
+  .pet-info .pet-chip {
+    font-size: 11px;
+    color: var(--wf-muted);
+    margin-top: 2px;
+  }
+
+  /* ── QUICK ACTIONS ── */
+  .quick-actions {
+    display: flex;
+    gap: 8px;
+    padding: 12px 16px;
+    border-bottom: 1px solid var(--wf-border);
+  }
+  .quick-actions button {
+    flex: 1;
+    padding: 10px 0;
+    font-size: 13px;
+    font-weight: 600;
+    border-radius: 6px;
+    cursor: pointer;
+  }
+  .btn-primary {
+    background: var(--wf-btn);
+    color: var(--wf-btn-text);
+    border: none;
+  }
+  .btn-secondary {
+    background: var(--wf-btn-sec);
+    color: var(--wf-text);
+    border: 1.5px solid var(--wf-border);
+  }
+
+  /* ── FILL STATUS / COUNTER ── */
+  .fill-counter {
+    padding: 14px 16px 6px;
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+  }
+  .fill-counter .count {
+    font-size: 14px;
+    font-weight: 600;
+  }
+  .fill-counter .status {
+    font-size: 12px;
+    color: var(--wf-muted);
+  }
+
+  /* ── SEARCH & FILTER ── */
+  .search-filter {
+    padding: 0 16px 12px;
+  }
+  .search-bar {
+    width: 100%;
+    padding: 10px 12px;
+    font-size: 14px;
+    border: 1.5px solid var(--wf-border);
+    border-radius: 6px;
+    background: var(--wf-input-bg);
+    color: var(--wf-text);
+    outline: none;
+  }
+  .search-bar::placeholder { color: var(--wf-placeholder); }
+
+  /* ── SECTION CARD LIST ── */
+  .section-list {
+    list-style: none;
+    padding: 0 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  /* ── SECTION CARD (entry point) ── */
+  .section-card {
+    background: var(--wf-surface);
+    border: 1.5px solid var(--wf-border);
+    border-radius: 8px;
+    padding: 14px;
+    cursor: pointer;
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+  }
+  .section-card:hover {
+    border-color: var(--wf-muted);
+  }
+  .card-icon {
+    width: 36px;
+    height: 36px;
+    border-radius: 6px;
+    background: var(--wf-placeholder);
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 9px;
+    color: var(--wf-muted);
+  }
+  .card-body {
+    flex: 1;
+    min-width: 0;
+  }
+  .card-body h3 {
+    font-size: 15px;
+    font-weight: 600;
+    line-height: 1.3;
+  }
+  .card-body .card-detail {
+    font-size: 12px;
+    color: var(--wf-muted);
+    margin-top: 3px;
+    line-height: 1.4;
+  }
+  .card-body .card-detail strong {
+    color: var(--wf-text);
+    font-weight: 600;
+  }
+  .card-arrow {
+    color: var(--wf-muted);
+    font-size: 16px;
+    align-self: center;
+    flex-shrink: 0;
+  }
+
+  /* ── BOTTOM NAV ── */
+  .phone-nav {
+    border-top: 1px solid var(--wf-border);
+    display: flex;
+    background: var(--wf-bg);
+  }
+  .phone-nav a {
+    flex: 1;
+    text-align: center;
+    padding: 10px 0 8px;
+    font-size: 11px;
+    color: var(--wf-muted);
+    text-decoration: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 3px;
+  }
+  .phone-nav a.active {
+    color: var(--wf-text);
+    font-weight: 700;
+  }
+  .phone-nav .nav-icon {
+    width: 22px;
+    height: 22px;
+    border-radius: 4px;
+    background: var(--wf-placeholder);
+    display: inline-block;
+  }
+  .phone-nav a.active .nav-icon {
+    background: var(--wf-muted);
+  }
+
+  /* ── RESPONSIVE: collapse sidebar on narrow viewports ── */
+  @media (max-width: 700px) {
+    .layout { flex-direction: column; }
+    .sidenav {
+      position: sticky; top: 0; height: auto; width: 100%; z-index: 50;
+      border-right: none; border-bottom: 1px solid var(--nav-line);
+      padding: 12px 16px; max-height: 50vh; overflow-y: auto;
+    }
+    .content { padding: 16px; }
+    .phone { min-height: auto; }
+  }
+</style>
+</head>
+<body>
+
+<div class="layout">
+
+  <!-- ═══════════════════════════════════════════════════════════
+       SIDEBAR: wireframe tree nav
+       Structure follows sitemap.md → _screens.md state matrix
+       ═══════════════════════════════════════════════════════════ -->
+
+  <aside class="sidenav" aria-label="Wireframe navigation">
+    <a class="brand" href="#">PetPal Wireframes</a>
+    <div class="nav-divider"></div>
+
+    <ul class="nav-tree">
+
+      <!-- ── My Pets group ── -->
+      <li><span class="nav-section">My Pets</span>
+        <ul>
+          <li><a href="My-Pets.html">My Pets</a>
+            <ul class="state-list">
+              <li><a href="My-Pets.html">success</a></li>
+              <li><a href="My-Pets-empty.html">empty</a></li>
+              <li><a href="My-Pets-loading.html">loading</a></li>
+              <li><a href="My-Pets-error.html">error</a></li>
+            </ul>
+          </li>
+          <li><a href="Set-up-a-pet.html">Set up a pet</a>
+            <ul class="state-list">
+              <li><a href="Set-up-a-pet.html">success</a></li>
+              <li><a href="Set-up-a-pet-loading.html">loading</a></li>
+              <li><a href="Set-up-a-pet-error.html">error</a></li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+
+      <li><div class="nav-divider"></div></li>
+
+      <!-- ── Pet dossier group ── -->
+      <li><span class="nav-section">Pet dossier</span>
+        <ul>
+          <li><a href="listings.html" class="active">Pet dossier</a>
+            <ul class="state-list">
+              <li><a href="listings.html" class="active">success</a></li>
+              <li><a href="Pet-dossier-empty.html">empty</a></li>
+              <li><a href="Pet-dossier-loading.html">loading</a></li>
+              <li><a href="Pet-dossier-error.html">error</a></li>
+            </ul>
+          </li>
+          <li><a href="Health-and-jabs.html">Health &amp; jabs</a>
+            <ul class="state-list">
+              <li><a href="Health-and-jabs.html">success</a></li>
+              <li><a href="Health-and-jabs-empty.html">empty</a></li>
+              <li><a href="Health-and-jabs-loading.html">loading</a></li>
+              <li><a href="Health-and-jabs-error.html">error</a></li>
+            </ul>
+          </li>
+          <li><a href="Documents-and-passport.html">Documents &amp; passport</a>
+            <ul class="state-list">
+              <li><a href="Documents-and-passport.html">success</a></li>
+              <li><a href="Documents-and-passport-empty.html">empty</a></li>
+              <li><a href="Documents-and-passport-loading.html">loading</a></li>
+              <li><a href="Documents-and-passport-error.html">error</a></li>
+            </ul>
+          </li>
+          <li><a href="Insurance.html">Insurance</a>
+            <ul class="state-list">
+              <li><a href="Insurance.html">success</a></li>
+              <li><a href="Insurance-empty.html">empty</a></li>
+              <li><a href="Insurance-loading.html">loading</a></li>
+              <li><a href="Insurance-error.html">error</a></li>
+            </ul>
+          </li>
+          <li><a href="Personality-and-care.html">Personality &amp; care</a>
+            <ul class="state-list">
+              <li><a href="Personality-and-care.html">success</a></li>
+              <li><a href="Personality-and-care-empty.html">empty</a></li>
+              <li><a href="Personality-and-care-loading.html">loading</a></li>
+              <li><a href="Personality-and-care-error.html">error</a></li>
+            </ul>
+          </li>
+          <li><a href="Vet-and-appointments.html">Vet &amp; appointments</a>
+            <ul class="state-list">
+              <li><a href="Vet-and-appointments.html">success</a></li>
+              <li><a href="Vet-and-appointments-empty.html">empty</a></li>
+              <li><a href="Vet-and-appointments-loading.html">loading</a></li>
+              <li><a href="Vet-and-appointments-error.html">error</a></li>
+            </ul>
+          </li>
+          <li class="step08"><a href="#">Emergency info <span class="step08-tag">step 08</span></a></li>
+        </ul>
+      </li>
+
+      <li><div class="nav-divider"></div></li>
+
+      <!-- ── Actions ── -->
+      <li><span class="nav-section">Actions</span>
+        <ul>
+          <li><a href="Add-record.html">Add / update a record</a>
+            <ul class="state-list">
+              <li><a href="Add-record.html">success</a></li>
+              <li><a href="Add-record-loading.html">loading</a></li>
+              <li><a href="Add-record-error.html">error</a></li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+
+      <li><div class="nav-divider"></div></li>
+
+      <!-- ── Share group ── -->
+      <li><span class="nav-section">Share</span>
+        <ul>
+          <li><a href="Share-a-pet.html">Share a pet</a>
+            <ul class="state-list">
+              <li><a href="Share-a-pet.html">success</a></li>
+              <li><a href="Share-a-pet-loading.html">loading</a></li>
+              <li><a href="Share-a-pet-error.html">error</a></li>
+            </ul>
+          </li>
+          <li class="step08"><a href="#">Who has access <span class="step08-tag">step 08</span></a></li>
+        </ul>
+      </li>
+
+      <li><div class="nav-divider"></div></li>
+
+      <!-- ── Step 08 (deferred) ── -->
+      <li><span class="nav-section">Step 08 (deferred)</span>
+        <ul>
+          <li class="step08"><a href="#">What's due</a></li>
+          <li class="step08"><a href="#">Shared pet view</a></li>
+        </ul>
+      </li>
+
+    </ul>
+  </aside>
+
+
+  <!-- ═══════════════════════════════════════════════════════════
+       PHONE FRAME: the wireframe screen
+       ═══════════════════════════════════════════════════════════ -->
+
+  <div class="content">
+    <div class="phone">
+
+      <!-- ── FLOW STEP BANNER ── -->
+      <div class="flow-step">
+        Main job · step 2 of 4 — <span>My Pets → ★ Pet dossier</span> → sections → Share
+      </div>
+
+      <!-- ── HEADER ── -->
+      <header>
+        <button class="back" aria-label="Back to My Pets">← My Pets</button>
+        <h1>Luna</h1>
+        <button class="action-edit">Edit</button>
+      </header>
+
+      <main>
+
+        <!-- ── PET IDENTITY STRIP ── -->
+        <section class="pet-identity" aria-label="Pet identity">
+          <div class="zone-label">Pet identity</div>
+          <figure class="pet-photo" aria-label="Pet photo placeholder">photo</figure>
+          <div class="pet-info">
+            <h2>Luna</h2>
+            <p class="pet-meta">Dog · Siberian Husky · Female</p>
+            <p class="pet-chip">Microchip 276 098 106 412 345</p>
+          </div>
+        </section>
+
+        <!-- ── QUICK ACTIONS ── -->
+        <section class="quick-actions" aria-label="Quick actions">
+          <button class="btn-primary">Share Luna's info</button>
+          <button class="btn-secondary">Edit pet details</button>
+        </section>
+
+        <!-- ── COUNTER ── -->
+        <section class="fill-counter" aria-label="Dossier completeness">
+          <div class="zone-label">Counter</div>
+          <span class="count">5 of 6 sections filled</span>
+          <span class="status">Updated 2 days ago</span>
+        </section>
+
+        <!-- ── SEARCH & FILTER ── -->
+        <section class="search-filter" aria-label="Search sections">
+          <div class="zone-label">Search &amp; filter</div>
+          <label for="section-search" class="sr-only" style="position:absolute;width:1px;height:1px;overflow:hidden;">Search sections</label>
+          <input id="section-search" class="search-bar" type="search" placeholder="Search sections, records, documents…">
+        </section>
+
+        <!-- ── CARD LIST ── -->
+        <ul class="section-list" aria-label="Dossier sections">
+
+          <li>
+            <article class="section-card" role="link" aria-label="Health and jabs — 6 records">
+              <div class="card-icon">icon</div>
+              <div class="card-body">
+                <div class="zone-label">Card entry point → Health &amp; jabs</div>
+                <h3>Health &amp; jabs</h3>
+                <p class="card-detail">
+                  <strong>6 records</strong> · Updated 3 days ago<br>
+                  Rabies (due 15 Mar 2027) · DHPP · Leptospirosis<br>
+                  Condition: atopic dermatitis · Apoquel 16 mg daily
+                </p>
+              </div>
+              <span class="card-arrow" aria-hidden="true">→</span>
+            </article>
+          </li>
+
+          <li>
+            <article class="section-card" role="link" aria-label="Documents and passport — 4 documents">
+              <div class="card-icon">icon</div>
+              <div class="card-body">
+                <div class="zone-label">Card entry point → Documents &amp; passport</div>
+                <h3>Documents &amp; passport</h3>
+                <p class="card-detail">
+                  <strong>4 documents</strong> · Updated 1 week ago<br>
+                  EU Pet Passport DE-0812345 · Microchip registration<br>
+                  Rabies certificate · Pedigree papers
+                </p>
+              </div>
+              <span class="card-arrow" aria-hidden="true">→</span>
+            </article>
+          </li>
+
+          <li>
+            <article class="section-card" role="link" aria-label="Insurance — 1 active policy">
+              <div class="card-icon">icon</div>
+              <div class="card-body">
+                <div class="zone-label">Card entry point → Insurance</div>
+                <h3>Insurance</h3>
+                <p class="card-detail">
+                  <strong>1 active policy</strong> · Renews 1 Oct 2026<br>
+                  Lassie Haustierversicherung · OP-Schutz Plus<br>
+                  Premium €29.90 / month · Covers surgery, inpatient
+                </p>
+              </div>
+              <span class="card-arrow" aria-hidden="true">→</span>
+            </article>
+          </li>
+
+          <li>
+            <article class="section-card" role="link" aria-label="Personality and care — filled">
+              <div class="card-icon">icon</div>
+              <div class="card-body">
+                <div class="zone-label">Card entry point → Personality &amp; care</div>
+                <h3>Personality &amp; care</h3>
+                <p class="card-detail">
+                  <strong>Profile filled</strong> · Updated 5 days ago<br>
+                  Calm, affectionate, loves belly rubs<br>
+                  Not friendly with: small rodents, off-leash terriers<br>
+                  Food: Royal Canin Maxi Adult, 350 g twice daily
+                </p>
+              </div>
+              <span class="card-arrow" aria-hidden="true">→</span>
+            </article>
+          </li>
+
+          <li>
+            <article class="section-card" role="link" aria-label="Vet and appointments — next visit 15 August">
+              <div class="card-icon">icon</div>
+              <div class="card-body">
+                <div class="zone-label">Card entry point → Vet &amp; appointments</div>
+                <h3>Vet &amp; appointments</h3>
+                <p class="card-detail">
+                  <strong>Tierklinik am Stadtpark</strong> · Dr. Müller<br>
+                  Next: annual checkup, 15 Aug 2026, 10:00<br>
+                  Last visit: dental cleaning, 20 May 2026
+                </p>
+              </div>
+              <span class="card-arrow" aria-hidden="true">→</span>
+            </article>
+          </li>
+
+          <li>
+            <article class="section-card" role="link" aria-label="Emergency info — not filled yet" style="border-style: dashed;">
+              <div class="card-icon">icon</div>
+              <div class="card-body">
+                <div class="zone-label">Card entry point → Emergency info (step 08)</div>
+                <h3>Emergency info &amp; authorisation</h3>
+                <p class="card-detail">
+                  <strong>Not filled yet</strong><br>
+                  Vet contact, current meds, conditions, emergency contact — what a carer needs if something goes wrong
+                </p>
+              </div>
+              <span class="card-arrow" aria-hidden="true">→</span>
+            </article>
+          </li>
+
+        </ul>
+
+      </main>
+
+      <!-- ── BOTTOM NAV ── -->
+      <nav class="phone-nav" aria-label="Main navigation">
+        <a href="My-Pets.html" class="active">
+          <span class="nav-icon" aria-hidden="true"></span>
+          Pets
+        </a>
+        <a href="#">
+          <span class="nav-icon" aria-hidden="true"></span>
+          What's due
+        </a>
+        <a href="Share-a-pet.html">
+          <span class="nav-icon" aria-hidden="true"></span>
+          Share
+        </a>
+      </nav>
+
+    </div><!-- .phone -->
+  </div><!-- .content -->
+
+</div><!-- .layout -->
+
+</body>
+</html>
