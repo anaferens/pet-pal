@@ -136,7 +136,7 @@ Base screen = the **success** state. State variants are separate files with a su
 |---|---|---|---|---|
 | My Pets | `My-Pets.html` | `My-Pets-empty.html` | `My-Pets-loading.html` | `My-Pets-error.html` |
 | Set up a pet | `Set-up-a-pet.html` | — | `Set-up-a-pet-loading.html` | `Set-up-a-pet-error.html` |
-| Pet dossier | `Pet-dossier.html` | `Pet-dossier-empty.html` | `Pet-dossier-loading.html` | `Pet-dossier-error.html` |
+| Pet dossier | `home-success.html` | `home-empty.html` | `home-loading.html` | `home-error.html` |
 | Health & jabs | `Health-and-jabs.html` | `Health-and-jabs-empty.html` | `Health-and-jabs-loading.html` | `Health-and-jabs-error.html` |
 | Documents & passport | `Documents-and-passport.html` | `Documents-and-passport-empty.html` | `Documents-and-passport-loading.html` | `Documents-and-passport-error.html` |
 | Insurance | `Insurance.html` | `Insurance-empty.html` | `Insurance-loading.html` | `Insurance-error.html` |
