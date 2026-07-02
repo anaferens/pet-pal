@@ -190,6 +190,15 @@
   .state-bar a:hover { color: var(--wf-text); }
   .state-bar a.current { color: var(--wf-text); font-weight: 700; border-bottom-color: var(--wf-text); }
 
+  /* PET SWITCHER */
+  .pet-switcher { display: flex; align-items: center; gap: 4px; padding: 8px 16px; border-bottom: 1px solid var(--wf-border); background: var(--wf-bg); }
+  .pet-switcher-label { font-size: 11px; color: var(--wf-muted); margin-right: 4px; }
+  .pet-pill { display: flex; align-items: center; gap: 6px; padding: 6px 14px; border-radius: 20px; border: 1.5px solid var(--wf-border); background: var(--wf-bg); text-decoration: none; color: var(--wf-muted); font-size: 13px; font-weight: 500; cursor: pointer; transition: all 0.15s; }
+  .pet-pill:hover { border-color: var(--wf-muted); color: var(--wf-text); }
+  .pet-pill.active { background: var(--wf-text); color: var(--wf-btn-text); border-color: var(--wf-text); font-weight: 600; }
+  .pet-pill .pill-avatar { width: 22px; height: 22px; border-radius: 50%; background: var(--wf-placeholder); display: flex; align-items: center; justify-content: center; font-size: 8px; flex-shrink: 0; }
+  .pet-pill.active .pill-avatar { background: var(--wf-muted); }
+
   /* ══════════════════════════════════════════
      TOGGLE VISIBILITY
      ══════════════════════════════════════════ */
@@ -986,6 +995,12 @@
     </nav>
 
     <div class="d-main">
+
+      <div class="pet-switcher" aria-label="Switch pet">
+        <span class="pet-switcher-label">Pet:</span>
+        <a href="home-success.html" class="pet-pill"><span class="pill-avatar">M</span> Miso</a>
+        <a href="home-success-cheetah.html" class="pet-pill active"><span class="pill-avatar">C</span> Cheetah</a>
+      </div>
 
       <section class="d-pet-hero" aria-label="Pet identity">
         <div class="zone-label">Pet identity · desktop hero</div>
