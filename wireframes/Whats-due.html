@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Pet dossier — PetPal wireframe</title>
+<title>What's due — PetPal wireframe</title>
 <style>
   :root {
     --wf-bg:         #ffffff;
@@ -542,6 +542,181 @@
     text-align: center;
   }
 
+  /* ══════════════════════════════════════════════
+     WHAT'S DUE — CUSTOM STYLES
+     ══════════════════════════════════════════════ */
+
+  /* Pet filter tabs */
+  .pet-filter-tabs {
+    display: flex;
+    gap: 0;
+    padding: 0 16px;
+    border-bottom: 1px solid var(--wf-border);
+  }
+  .pet-filter-tabs button {
+    flex: 1;
+    padding: 10px 8px;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--wf-muted);
+    background: none;
+    border: none;
+    border-bottom: 2px solid transparent;
+    cursor: pointer;
+    transition: all 0.12s;
+  }
+  .pet-filter-tabs button:hover { color: var(--wf-text); }
+  .pet-filter-tabs button.active {
+    color: var(--wf-text);
+    font-weight: 700;
+    border-bottom-color: var(--wf-text);
+  }
+
+  /* Desktop pet filter */
+  .d-pet-filter {
+    display: flex;
+    gap: 0;
+    border-bottom: 1px solid var(--wf-border);
+    margin-bottom: 24px;
+  }
+  .d-pet-filter button {
+    padding: 10px 20px;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--wf-muted);
+    background: none;
+    border: none;
+    border-bottom: 2px solid transparent;
+    cursor: pointer;
+    transition: all 0.12s;
+  }
+  .d-pet-filter button:hover { color: var(--wf-text); }
+  .d-pet-filter button.active {
+    color: var(--wf-text);
+    font-weight: 700;
+    border-bottom-color: var(--wf-text);
+  }
+
+  /* Urgency section heading */
+  .urgency-heading {
+    font-size: 13px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: var(--wf-muted);
+    padding: 16px 16px 8px;
+  }
+  .d-urgency-heading {
+    font-size: 14px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: var(--wf-muted);
+    padding: 0 0 10px;
+    margin-top: 8px;
+  }
+
+  /* Reminder card */
+  .reminder-list {
+    list-style: none;
+    padding: 0 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 4px;
+  }
+  .reminder-card {
+    background: var(--wf-surface);
+    border: 1.5px solid var(--wf-border);
+    border-radius: 8px;
+    padding: 14px;
+    cursor: pointer;
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+    text-decoration: none;
+    color: inherit;
+  }
+  .reminder-card:hover { border-color: var(--wf-muted); }
+
+  .reminder-body { flex: 1; min-width: 0; }
+  .reminder-body h3 { font-size: 15px; font-weight: 600; line-height: 1.3; }
+  .reminder-meta {
+    font-size: 12px;
+    color: var(--wf-muted);
+    margin-top: 3px;
+    line-height: 1.4;
+  }
+  .reminder-badge {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--wf-text);
+    background: var(--wf-border);
+    border-radius: 4px;
+    padding: 2px 8px;
+    margin-top: 6px;
+  }
+
+  /* Desktop reminder list */
+  .d-reminder-list {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 8px;
+  }
+  .d-reminder-card {
+    background: var(--wf-surface);
+    border: 1.5px solid var(--wf-border);
+    border-radius: 10px;
+    padding: 18px 20px;
+    cursor: pointer;
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+    text-decoration: none;
+    color: inherit;
+    transition: border-color 0.12s;
+  }
+  .d-reminder-card:hover { border-color: var(--wf-muted); }
+  .d-reminder-body { flex: 1; min-width: 0; }
+  .d-reminder-body h3 { font-size: 16px; font-weight: 600; line-height: 1.3; }
+  .d-reminder-meta {
+    font-size: 13px;
+    color: var(--wf-muted);
+    margin-top: 4px;
+    line-height: 1.5;
+  }
+  .d-reminder-badge {
+    display: inline-block;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--wf-text);
+    background: var(--wf-border);
+    border-radius: 4px;
+    padding: 2px 10px;
+    margin-top: 6px;
+  }
+
+  /* Floating add button (mobile) */
+  .fab-add {
+    position: sticky;
+    bottom: 0;
+    padding: 12px 16px;
+    background: var(--wf-bg);
+    border-top: 1px solid var(--wf-border);
+  }
+  .fab-add button {
+    width: 100%;
+    padding: 12px 0;
+    font-size: 14px;
+    font-weight: 600;
+    border-radius: 8px;
+    cursor: pointer;
+  }
+
   /* ── RESPONSIVE ── */
   @media (max-width: 700px) {
     .layout { flex-direction: column; }
@@ -571,15 +746,11 @@
 
   <aside class="sidenav" aria-label="Wireframe navigation">
     <a class="brand" href="#">PetPal Wireframes</a>
-
-    <!-- VIEWPORT TOGGLE -->
     <div class="viewport-toggle" role="radiogroup" aria-label="Layout toggle">
       <button id="btn-mobile" class="active" aria-pressed="true" onclick="setView('mobile')">Mobile</button>
       <button id="btn-desktop" aria-pressed="false" onclick="setView('desktop')">Desktop</button>
     </div>
-
     <div class="nav-divider"></div>
-
     <ul class="nav-tree">
       <li><span class="nav-section">My Pets</span>
         <ul>
@@ -600,14 +771,12 @@
           </li>
         </ul>
       </li>
-
       <li><div class="nav-divider"></div></li>
-
       <li><span class="nav-section">Pet dossier</span>
         <ul>
-          <li><a href="home-success.html" class="active">Pet dossier</a>
+          <li><a href="home-success.html">Pet dossier</a>
             <ul class="state-list">
-              <li><a href="home-success.html" class="active">success</a></li>
+              <li><a href="home-success.html">success</a></li>
               <li><a href="home-empty.html">empty</a></li>
               <li><a href="home-loading.html">loading</a></li>
               <li><a href="home-error.html">error</a></li>
@@ -663,9 +832,7 @@
           </li>
         </ul>
       </li>
-
       <li><div class="nav-divider"></div></li>
-
       <li><span class="nav-section">Actions</span>
         <ul>
           <li><a href="Add-record.html">Add / update a record</a>
@@ -698,14 +865,13 @@
           </li>
         </ul>
       </li>
-
       <li><div class="nav-divider"></div></li>
-
       <li><span class="nav-section">Share</span>
         <ul>
           <li><a href="Share-a-pet.html">Share a pet</a>
             <ul class="state-list">
               <li><a href="Share-a-pet.html">success</a></li>
+              <li><a href="Share-a-pet-empty.html">empty</a></li>
               <li><a href="Share-a-pet-loading.html">loading</a></li>
               <li><a href="Share-a-pet-error.html">error</a></li>
             </ul>
@@ -727,14 +893,12 @@
           </li>
         </ul>
       </li>
-
       <li><div class="nav-divider"></div></li>
-
       <li><span class="nav-section">What's due</span>
         <ul>
-          <li><a href="Whats-due.html">What's due</a>
+          <li><a href="Whats-due.html" class="active">What's due</a>
             <ul class="state-list">
-              <li><a href="Whats-due.html">success</a></li>
+              <li><a href="Whats-due.html" class="active">success</a></li>
               <li><a href="Whats-due-empty.html">empty</a></li>
               <li><a href="Whats-due-loading.html">loading</a></li>
               <li><a href="Whats-due-error.html">error</a></li>
@@ -742,9 +906,7 @@
           </li>
         </ul>
       </li>
-
       <li><div class="nav-divider"></div></li>
-
       <li><span class="nav-section">Recipient</span>
         <ul>
           <li><a href="Shared-pet-view.html">Shared pet view</a>
@@ -765,9 +927,7 @@
           </li>
         </ul>
       </li>
-
       <li><div class="nav-divider"></div></li>
-
       <li><span class="nav-section">Deep actions</span>
         <ul>
           <li><a href="Emergency-auth-setup.html">Emergency auth setup</a>
@@ -791,162 +951,119 @@
     <div class="phone">
 
       <div class="state-bar" aria-label="Screen states">
-        <a href="home-success.html" class="current">Success</a>
-        <a href="home-empty.html">Empty</a>
-        <a href="home-loading.html">Loading</a>
-        <a href="home-error.html">Error</a>
+        <a href="Whats-due.html" class="current">Success</a>
+        <a href="Whats-due-empty.html">Empty</a>
+        <a href="Whats-due-loading.html">Loading</a>
+        <a href="Whats-due-error.html">Error</a>
       </div>
 
       <div class="flow-step">
-        Main job · step 2 of 4 — <span>My Pets → ★ Pet dossier</span> → sections → Share
+        R1 · What's due — <span>What's due</span> → section → Add/update a record
       </div>
 
       <header class="m-header">
-        <a href="My-Pets.html" style="text-decoration:none;"><button class="back" aria-label="Back to My Pets">← My Pets</button></a>
-        <h1>Miso</h1>
-        <button class="action-edit">Edit</button>
+        <span></span>
+        <h1>What's due</h1>
+        <span></span>
       </header>
 
-      <div class="m-main">
+      <main class="m-main">
 
-        <div class="pet-switcher" aria-label="Switch pet">
-          <span class="pet-switcher-label">Pet:</span>
-          <a href="home-success.html" class="pet-pill active"><span class="pill-avatar">M</span> Miso</a>
-          <a href="home-success-cheetah.html" class="pet-pill"><span class="pill-avatar">C</span> Cheetah</a>
+        <!-- Pet filter tabs -->
+        <nav class="pet-filter-tabs" aria-label="Filter by pet">
+          <button class="active">All pets</button>
+          <button>Miso</button>
+          <button>Cheetah</button>
+        </nav>
+
+        <!-- Overdue section -->
+        <section aria-label="Overdue reminders">
+          <h2 class="urgency-heading">Overdue</h2>
+          <ul class="reminder-list">
+            <li>
+              <a href="Health-and-jabs.html" class="reminder-card">
+                <div class="card-icon card-icon-m">icon</div>
+                <article class="reminder-body">
+                  <h3>Rabies booster — Miso</h3>
+                  <p class="reminder-meta">Was due 15 Jun 2026</p>
+                  <span class="reminder-badge">Overdue</span>
+                </article>
+                <span class="card-arrow" aria-hidden="true">→</span>
+              </a>
+            </li>
+          </ul>
+        </section>
+
+        <!-- Due this month section -->
+        <section aria-label="Due this month">
+          <h2 class="urgency-heading">Due this month</h2>
+          <ul class="reminder-list">
+            <li>
+              <a href="Insurance.html" class="reminder-card">
+                <div class="card-icon card-icon-m">icon</div>
+                <article class="reminder-body">
+                  <h3>Insurance renewal — Miso</h3>
+                  <p class="reminder-meta">Due 1 Oct 2026 · Lassie OP-Schutz Plus</p>
+                  <span class="reminder-badge">Due soon</span>
+                </article>
+                <span class="card-arrow" aria-hidden="true">→</span>
+              </a>
+            </li>
+            <li>
+              <a href="Vet-and-appointments.html" class="reminder-card">
+                <div class="card-icon card-icon-m">icon</div>
+                <article class="reminder-body">
+                  <h3>Annual checkup — Miso</h3>
+                  <p class="reminder-meta">15 Aug 2026, 10:00 · Tierklinik am Stadtpark</p>
+                  <span class="reminder-badge">Due soon</span>
+                </article>
+                <span class="card-arrow" aria-hidden="true">→</span>
+              </a>
+            </li>
+          </ul>
+        </section>
+
+        <!-- Coming up section -->
+        <section aria-label="Coming up">
+          <h2 class="urgency-heading">Coming up</h2>
+          <ul class="reminder-list">
+            <li>
+              <a href="Health-and-jabs.html" class="reminder-card">
+                <div class="card-icon card-icon-m">icon</div>
+                <article class="reminder-body">
+                  <h3>FVRCP booster — Cheetah</h3>
+                  <p class="reminder-meta">Due 12 Nov 2026</p>
+                  <span class="reminder-badge">Upcoming</span>
+                </article>
+                <span class="card-arrow" aria-hidden="true">→</span>
+              </a>
+            </li>
+            <li>
+              <a href="Documents-and-passport.html" class="reminder-card">
+                <div class="card-icon card-icon-m">icon</div>
+                <article class="reminder-body">
+                  <h3>EU Passport renewal — Miso</h3>
+                  <p class="reminder-meta">Expires 1 Mar 2027</p>
+                  <span class="reminder-badge">Upcoming</span>
+                </article>
+                <span class="card-arrow" aria-hidden="true">→</span>
+              </a>
+            </li>
+          </ul>
+        </section>
+
+        <!-- Floating add reminder button -->
+        <div class="fab-add">
+          <a href="Add-record.html" style="text-decoration:none;"><button class="btn-primary">Add reminder</button></a>
         </div>
 
-        <section class="m-pet-identity" aria-label="Pet identity">
-          <div class="zone-label">Pet identity</div>
-          <figure class="pet-photo pet-photo-m" aria-label="Pet photo placeholder">photo</figure>
-          <div class="pet-info">
-            <h2 style="font-size:20px;font-weight:700;">Miso</h2>
-            <p class="pet-meta" style="font-size:13px;">Dog · Border Terrier · Female</p>
-            <p class="pet-chip" style="font-size:11px;">Microchip 276 098 106 412 345</p>
-          </div>
-        </section>
-
-        <section class="m-quick-actions" aria-label="Quick actions">
-          <a href="Share-a-pet.html"><button class="btn-primary">Share Miso's info</button></a>
-          <a href="Set-up-a-pet.html"><button class="btn-secondary">Edit pet details</button></a>
-        </section>
-
-        <section class="m-fill-counter" aria-label="Dossier completeness">
-          <div class="zone-label">Counter</div>
-          <span class="count">5 of 6 sections filled</span>
-          <span class="status">Updated 2 days ago</span>
-        </section>
-
-        <section class="m-search-filter" aria-label="Search sections">
-          <div class="zone-label">Search &amp; filter</div>
-          <input class="search-bar" type="search" placeholder="Search sections, records, documents…" aria-label="Search sections">
-        </section>
-
-                <ul class="m-section-list" aria-label="Dossier sections">
-
-          <li>
-            <a href="Health-and-jabs.html" style="text-decoration:none;color:inherit;display:block;"><article class="m-section-card">
-              <div class="card-icon card-icon-m">icon</div>
-              <div class="card-body">
-                <div class="zone-label">Card entry point → Health &amp; jabs</div>
-                <h3>Health &amp; jabs</h3>
-                <p class="card-detail">
-                  <strong>6 records</strong> · Updated 3 days ago<br>
-                  Rabies (due 15 Mar 2027) · DHPP · Leptospirosis<br>
-                  Condition: atopic dermatitis · Apoquel 16 mg daily
-                </p>
-              </div>
-              <span class="card-arrow" aria-hidden="true">→</span>
-            </article></a>
-          </li>
-
-          <li>
-            <a href="Documents-and-passport.html" style="text-decoration:none;color:inherit;display:block;"><article class="m-section-card">
-              <div class="card-icon card-icon-m">icon</div>
-              <div class="card-body">
-                <div class="zone-label">Card entry point → Documents &amp; passport</div>
-                <h3>Documents &amp; passport</h3>
-                <p class="card-detail">
-                  <strong>4 documents</strong> · Updated 1 week ago<br>
-                  EU Pet Passport DE-0812345 · Microchip registration<br>
-                  Rabies certificate · Pedigree papers
-                </p>
-              </div>
-              <span class="card-arrow" aria-hidden="true">→</span>
-            </article></a>
-          </li>
-
-          <li>
-            <a href="Insurance.html" style="text-decoration:none;color:inherit;display:block;"><article class="m-section-card">
-              <div class="card-icon card-icon-m">icon</div>
-              <div class="card-body">
-                <div class="zone-label">Card entry point → Insurance</div>
-                <h3>Insurance</h3>
-                <p class="card-detail">
-                  <strong>1 active policy</strong> · Renews 1 Oct 2026<br>
-                  Lassie Haustierversicherung · OP-Schutz Plus<br>
-                  Premium €29.90 / month · Covers surgery, inpatient
-                </p>
-              </div>
-              <span class="card-arrow" aria-hidden="true">→</span>
-            </article></a>
-          </li>
-
-          <li>
-            <a href="Personality-and-care.html" style="text-decoration:none;color:inherit;display:block;"><article class="m-section-card">
-              <div class="card-icon card-icon-m">icon</div>
-              <div class="card-body">
-                <div class="zone-label">Card entry point → Personality &amp; care</div>
-                <h3>Personality &amp; care</h3>
-                <p class="card-detail">
-                  <strong>Profile filled</strong> · Updated 5 days ago<br>
-                  Calm, affectionate, loves belly rubs<br>
-                  Not friendly with: small rodents, off-leash terriers<br>
-                  Food: Royal Canin Maxi Adult, 350 g twice daily
-                </p>
-              </div>
-              <span class="card-arrow" aria-hidden="true">→</span>
-            </article></a>
-          </li>
-
-          <li>
-            <a href="Vet-and-appointments.html" style="text-decoration:none;color:inherit;display:block;"><article class="m-section-card">
-              <div class="card-icon card-icon-m">icon</div>
-              <div class="card-body">
-                <div class="zone-label">Card entry point → Vet &amp; appointments</div>
-                <h3>Vet &amp; appointments</h3>
-                <p class="card-detail">
-                  <strong>Tierklinik am Stadtpark</strong> · Dr. Müller<br>
-                  Next: annual checkup, 15 Aug 2026, 10:00<br>
-                  Last visit: dental cleaning, 20 May 2026
-                </p>
-              </div>
-              <span class="card-arrow" aria-hidden="true">→</span>
-            </article></a>
-          </li>
-
-          <li>
-            <article class="m-section-card" style="border-style: dashed;">
-              <div class="card-icon card-icon-m">icon</div>
-              <div class="card-body">
-                <div class="zone-label">Card entry point → Emergency info (step 08)</div>
-                <h3>Emergency info &amp; authorisation</h3>
-                <p class="card-detail">
-                  <strong>Not filled yet</strong><br>
-                  Vet contact, current meds, conditions, emergency contact — what a carer needs if something goes wrong
-                </p>
-              </div>
-              <span class="card-arrow" aria-hidden="true">→</span>
-            </article>
-          </li>
-
-        </ul>
-      </div>
+      </main>
 
       <nav class="phone-nav" aria-label="Main navigation">
-        <a href="My-Pets.html" class="active">
+        <a href="My-Pets.html">
           <span class="nav-icon" aria-hidden="true"></span> Pets
         </a>
-        <a href="Whats-due.html">
+        <a href="Whats-due.html" class="active">
           <span class="nav-icon" aria-hidden="true"></span> What's due
         </a>
         <a href="Share-a-pet.html">
@@ -965,148 +1082,117 @@
   <div class="content-desktop view-desktop">
 
     <div class="state-bar" aria-label="Screen states">
-      <a href="home-success.html" class="current">Success</a>
-      <a href="home-empty.html">Empty</a>
-      <a href="home-loading.html">Loading</a>
-      <a href="home-error.html">Error</a>
+      <a href="Whats-due.html" class="current">Success</a>
+      <a href="Whats-due-empty.html">Empty</a>
+      <a href="Whats-due-loading.html">Loading</a>
+      <a href="Whats-due-error.html">Error</a>
     </div>
 
     <div class="flow-step" style="text-align:left;padding-left:32px;">
       <span class="zone-label">Desktop</span> &nbsp;
-      Main job · step 2 of 4 — <span>My Pets → ★ Pet dossier</span> → sections → Share
+      R1 · What's due — <span>What's due</span> → section → Add/update a record
     </div>
 
     <nav class="top-nav" aria-label="Main navigation (desktop)">
       <span class="nav-brand">PetPal</span>
-      <a href="My-Pets.html" class="active">Pets</a>
-      <a href="Whats-due.html">What's due</a>
+      <a href="My-Pets.html">Pets</a>
+      <a href="Whats-due.html" class="active">What's due</a>
       <a href="Share-a-pet.html">Share</a>
       <span class="nav-spacer"></span>
-      <a href="Set-up-a-pet.html"><button class="nav-action">Edit pet details</button></a>
+      <a href="Add-record.html"><button class="nav-action">Add reminder</button></a>
     </nav>
 
     <div class="d-main">
 
-      <section class="d-pet-hero" aria-label="Pet identity">
-        <div class="zone-label">Pet identity · desktop hero</div>
-        <figure class="pet-photo pet-photo-d" aria-label="Pet photo placeholder">photo</figure>
-        <div class="pet-info">
-          <h1>Miso</h1>
-          <p class="pet-meta" style="font-size:15px;">Dog · Border Terrier · Female</p>
-          <p class="pet-chip" style="font-size:12px;">Microchip 276 098 106 412 345</p>
-        </div>
-        <div class="d-pet-actions">
-          <a href="Share-a-pet.html"><button class="btn-primary">Share Miso's info</button></a>
-          <a href="Set-up-a-pet.html"><button class="btn-secondary">Edit pet details</button></a>
-        </div>
+      <h1 style="font-size:26px;font-weight:700;margin-bottom:20px;">What's due</h1>
+
+      <!-- Desktop pet filter tabs -->
+      <nav class="d-pet-filter" aria-label="Filter by pet">
+        <button class="active">All pets</button>
+        <button>Miso</button>
+        <button>Cheetah</button>
+      </nav>
+
+      <!-- Overdue -->
+      <section aria-label="Overdue reminders">
+        <h2 class="d-urgency-heading">Overdue</h2>
+        <ul class="d-reminder-list">
+          <li>
+            <a href="Health-and-jabs.html" class="d-reminder-card">
+              <div class="card-icon card-icon-d">icon</div>
+              <article class="d-reminder-body">
+                <h3>Rabies booster — Miso</h3>
+                <p class="d-reminder-meta">Was due 15 Jun 2026</p>
+                <span class="d-reminder-badge">Overdue</span>
+              </article>
+              <span class="card-arrow" aria-hidden="true">→</span>
+            </a>
+          </li>
+        </ul>
       </section>
 
-      <section class="d-toolbar" aria-label="Dossier toolbar">
-        <div class="zone-label">Counter</div>
-        <span class="count">5 of 6 sections filled</span>
-        <span class="status">· Updated 2 days ago</span>
-        <span class="spacer"></span>
-        <div class="zone-label">Search &amp; filter</div>
-        <input class="search-bar" type="search" placeholder="Search sections, records, documents…" aria-label="Search sections">
+      <!-- Due this month -->
+      <section aria-label="Due this month">
+        <h2 class="d-urgency-heading">Due this month</h2>
+        <ul class="d-reminder-list">
+          <li>
+            <a href="Insurance.html" class="d-reminder-card">
+              <div class="card-icon card-icon-d">icon</div>
+              <article class="d-reminder-body">
+                <h3>Insurance renewal — Miso</h3>
+                <p class="d-reminder-meta">Due 1 Oct 2026 · Lassie OP-Schutz Plus</p>
+                <span class="d-reminder-badge">Due soon</span>
+              </article>
+              <span class="card-arrow" aria-hidden="true">→</span>
+            </a>
+          </li>
+          <li>
+            <a href="Vet-and-appointments.html" class="d-reminder-card">
+              <div class="card-icon card-icon-d">icon</div>
+              <article class="d-reminder-body">
+                <h3>Annual checkup — Miso</h3>
+                <p class="d-reminder-meta">15 Aug 2026, 10:00 · Tierklinik am Stadtpark</p>
+                <span class="d-reminder-badge">Due soon</span>
+              </article>
+              <span class="card-arrow" aria-hidden="true">→</span>
+            </a>
+          </li>
+        </ul>
       </section>
 
-            <ul class="d-section-grid" aria-label="Dossier sections">
-
-        <li>
-          <a href="Health-and-jabs.html" style="text-decoration:none;color:inherit;display:block;"><article class="d-section-card">
-            <div class="d-card-header">
+      <!-- Coming up -->
+      <section aria-label="Coming up">
+        <h2 class="d-urgency-heading">Coming up</h2>
+        <ul class="d-reminder-list">
+          <li>
+            <a href="Health-and-jabs.html" class="d-reminder-card">
               <div class="card-icon card-icon-d">icon</div>
-              <h3>Health &amp; jabs</h3>
+              <article class="d-reminder-body">
+                <h3>FVRCP booster — Cheetah</h3>
+                <p class="d-reminder-meta">Due 12 Nov 2026</p>
+                <span class="d-reminder-badge">Upcoming</span>
+              </article>
               <span class="card-arrow" aria-hidden="true">→</span>
-            </div>
-            <p class="card-detail">
-              <strong>6 records</strong> · Updated 3 days ago<br>
-              Rabies (due 15 Mar 2027) · DHPP · Leptospirosis<br>
-              Condition: atopic dermatitis · Apoquel 16 mg daily
-            </p>
-          </article></a>
-        </li>
-
-        <li>
-          <a href="Documents-and-passport.html" style="text-decoration:none;color:inherit;display:block;"><article class="d-section-card">
-            <div class="d-card-header">
+            </a>
+          </li>
+          <li>
+            <a href="Documents-and-passport.html" class="d-reminder-card">
               <div class="card-icon card-icon-d">icon</div>
-              <h3>Documents &amp; passport</h3>
+              <article class="d-reminder-body">
+                <h3>EU Passport renewal — Miso</h3>
+                <p class="d-reminder-meta">Expires 1 Mar 2027</p>
+                <span class="d-reminder-badge">Upcoming</span>
+              </article>
               <span class="card-arrow" aria-hidden="true">→</span>
-            </div>
-            <p class="card-detail">
-              <strong>4 documents</strong> · Updated 1 week ago<br>
-              EU Pet Passport DE-0812345 · Microchip registration<br>
-              Rabies certificate · Pedigree papers
-            </p>
-          </article></a>
-        </li>
+            </a>
+          </li>
+        </ul>
+      </section>
 
-        <li>
-          <a href="Insurance.html" style="text-decoration:none;color:inherit;display:block;"><article class="d-section-card">
-            <div class="d-card-header">
-              <div class="card-icon card-icon-d">icon</div>
-              <h3>Insurance</h3>
-              <span class="card-arrow" aria-hidden="true">→</span>
-            </div>
-            <p class="card-detail">
-              <strong>1 active policy</strong> · Renews 1 Oct 2026<br>
-              Lassie Haustierversicherung · OP-Schutz Plus<br>
-              Premium €29.90 / month · Covers surgery, inpatient
-            </p>
-          </article></a>
-        </li>
-
-        <li>
-          <a href="Personality-and-care.html" style="text-decoration:none;color:inherit;display:block;"><article class="d-section-card">
-            <div class="d-card-header">
-              <div class="card-icon card-icon-d">icon</div>
-              <h3>Personality &amp; care</h3>
-              <span class="card-arrow" aria-hidden="true">→</span>
-            </div>
-            <p class="card-detail">
-              <strong>Profile filled</strong> · Updated 5 days ago<br>
-              Calm, affectionate, loves belly rubs<br>
-              Not friendly with: small rodents, off-leash terriers<br>
-              Food: Royal Canin Maxi Adult, 350 g twice daily
-            </p>
-          </article></a>
-        </li>
-
-        <li>
-          <a href="Vet-and-appointments.html" style="text-decoration:none;color:inherit;display:block;"><article class="d-section-card">
-            <div class="d-card-header">
-              <div class="card-icon card-icon-d">icon</div>
-              <h3>Vet &amp; appointments</h3>
-              <span class="card-arrow" aria-hidden="true">→</span>
-            </div>
-            <p class="card-detail">
-              <strong>Tierklinik am Stadtpark</strong> · Dr. Müller<br>
-              Next: annual checkup, 15 Aug 2026, 10:00<br>
-              Last visit: dental cleaning, 20 May 2026
-            </p>
-          </article></a>
-        </li>
-
-        <li>
-          <article class="d-section-card" style="border-style: dashed;">
-            <div class="d-card-header">
-              <div class="card-icon card-icon-d">icon</div>
-              <h3>Emergency info &amp; authorisation</h3>
-              <span class="card-arrow" aria-hidden="true">→</span>
-            </div>
-            <p class="card-detail">
-              <strong>Not filled yet</strong><br>
-              Vet contact, current meds, conditions, emergency contact — what a carer needs if something goes wrong
-            </p>
-          </article>
-        </li>
-
-      </ul>
     </div>
 
     <footer class="d-footer">
-      Pet dossier · desktop adaptation · same content as mobile, layout expanded for wide screens
+      What's due · desktop adaptation · reminders hub across all pets
     </footer>
   </div>
 

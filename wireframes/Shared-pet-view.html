@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Pet dossier — PetPal wireframe</title>
+<title>Shared pet view — PetPal wireframe</title>
 <style>
   :root {
     --wf-bg:         #ffffff;
@@ -458,6 +458,11 @@
     background: none;
     cursor: pointer;
   }
+  .top-nav .nav-label {
+    font-size: 13px;
+    color: var(--wf-muted);
+    padding: 14px 0;
+  }
 
   /* desktop main */
   .d-main {
@@ -542,6 +547,209 @@
     text-align: center;
   }
 
+  /* ══════════════════════════════════════════
+     RECIPIENT-SPECIFIC STYLES
+     ══════════════════════════════════════════ */
+
+  /* Role badge strip */
+  .role-badge-strip {
+    background: var(--wf-surface);
+    border-bottom: 1px solid var(--wf-border);
+    padding: 10px 16px;
+    font-size: 12px;
+    color: var(--wf-muted);
+    text-align: center;
+    line-height: 1.4;
+  }
+  .role-badge-strip strong {
+    color: var(--wf-text);
+    font-weight: 600;
+  }
+
+  /* Shared footer (replaces bottom nav for recipients) */
+  .shared-footer {
+    border-top: 1px solid var(--wf-border);
+    padding: 12px 16px;
+    font-size: 11px;
+    color: var(--wf-muted);
+    text-align: center;
+    line-height: 1.5;
+    background: var(--wf-surface);
+  }
+
+  /* Content sections for shared view */
+  .shared-section {
+    padding: 16px;
+    border-bottom: 1px solid var(--wf-border);
+  }
+  .shared-section h3 {
+    font-size: 14px;
+    font-weight: 700;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+  .shared-section p {
+    font-size: 13px;
+    line-height: 1.6;
+    margin-bottom: 4px;
+  }
+  .shared-section .detail-label {
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--wf-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    margin-top: 10px;
+    margin-bottom: 2px;
+  }
+  .shared-section .detail-value {
+    font-size: 13px;
+    color: var(--wf-text);
+  }
+  .shared-section .warning-text {
+    font-size: 12px;
+    font-weight: 600;
+    margin-top: 4px;
+  }
+
+  /* Vet card */
+  .vet-card {
+    background: var(--wf-surface);
+    border: 1.5px solid var(--wf-border);
+    border-radius: 8px;
+    padding: 14px;
+    margin-top: 8px;
+  }
+  .vet-card p {
+    font-size: 13px;
+    margin-bottom: 4px;
+  }
+  .vet-card .vet-name {
+    font-weight: 600;
+    font-size: 14px;
+  }
+  .vet-card .vet-phone {
+    font-weight: 600;
+  }
+  .vet-card button {
+    margin-top: 10px;
+    padding: 8px 16px;
+    font-size: 13px;
+    font-weight: 600;
+    border-radius: 6px;
+    cursor: pointer;
+    width: 100%;
+  }
+
+  /* Emergency link */
+  .emergency-link {
+    display: block;
+    padding: 14px 16px;
+    border-bottom: 1px solid var(--wf-border);
+    text-decoration: none;
+    color: var(--wf-text);
+    font-size: 14px;
+    font-weight: 600;
+    background: var(--wf-surface);
+  }
+  .emergency-link:hover {
+    background: var(--wf-border);
+  }
+  .emergency-link .arrow {
+    float: right;
+    color: var(--wf-muted);
+  }
+
+  /* Document list */
+  .doc-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 0;
+    border-bottom: 1px solid var(--wf-border);
+  }
+  .doc-item:last-child { border-bottom: none; }
+  .doc-item .doc-name {
+    font-size: 13px;
+    font-weight: 500;
+  }
+  .doc-item .doc-status {
+    font-size: 11px;
+    color: var(--wf-muted);
+  }
+  .doc-item a {
+    font-size: 12px;
+    color: var(--wf-muted);
+    text-decoration: none;
+  }
+
+  /* Desktop shared section grid */
+  .d-shared-sections {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  .d-shared-section {
+    background: var(--wf-surface);
+    border: 1.5px solid var(--wf-border);
+    border-radius: 10px;
+    padding: 24px;
+  }
+  .d-shared-section h3 {
+    font-size: 15px;
+    font-weight: 700;
+    margin-bottom: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+  .d-shared-section p {
+    font-size: 14px;
+    line-height: 1.6;
+    margin-bottom: 4px;
+  }
+  .d-shared-section .detail-label {
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--wf-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    margin-top: 12px;
+    margin-bottom: 2px;
+  }
+  .d-shared-section .detail-value {
+    font-size: 14px;
+    color: var(--wf-text);
+  }
+  .d-shared-section .warning-text {
+    font-size: 13px;
+    font-weight: 600;
+    margin-top: 4px;
+  }
+
+  /* Two-column layout for desktop sections */
+  .d-two-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
+
+  /* Vaccination list */
+  .vax-list {
+    list-style: none;
+    margin-top: 4px;
+  }
+  .vax-list li {
+    font-size: 13px;
+    padding: 3px 0;
+    display: flex;
+    justify-content: space-between;
+  }
+  .vax-list .vax-status {
+    font-size: 11px;
+    color: var(--wf-muted);
+  }
+
   /* ── RESPONSIVE ── */
   @media (max-width: 700px) {
     .layout { flex-direction: column; }
@@ -558,6 +766,7 @@
     .d-pet-actions { flex-direction: row; }
     .d-toolbar { flex-wrap: wrap; }
     .d-toolbar .search-bar { width: 100%; }
+    .d-two-col { grid-template-columns: 1fr; }
   }
 </style>
 </head>
@@ -571,15 +780,11 @@
 
   <aside class="sidenav" aria-label="Wireframe navigation">
     <a class="brand" href="#">PetPal Wireframes</a>
-
-    <!-- VIEWPORT TOGGLE -->
     <div class="viewport-toggle" role="radiogroup" aria-label="Layout toggle">
       <button id="btn-mobile" class="active" aria-pressed="true" onclick="setView('mobile')">Mobile</button>
       <button id="btn-desktop" aria-pressed="false" onclick="setView('desktop')">Desktop</button>
     </div>
-
     <div class="nav-divider"></div>
-
     <ul class="nav-tree">
       <li><span class="nav-section">My Pets</span>
         <ul>
@@ -600,14 +805,12 @@
           </li>
         </ul>
       </li>
-
       <li><div class="nav-divider"></div></li>
-
       <li><span class="nav-section">Pet dossier</span>
         <ul>
-          <li><a href="home-success.html" class="active">Pet dossier</a>
+          <li><a href="home-success.html">Pet dossier</a>
             <ul class="state-list">
-              <li><a href="home-success.html" class="active">success</a></li>
+              <li><a href="home-success.html">success</a></li>
               <li><a href="home-empty.html">empty</a></li>
               <li><a href="home-loading.html">loading</a></li>
               <li><a href="home-error.html">error</a></li>
@@ -663,9 +866,7 @@
           </li>
         </ul>
       </li>
-
       <li><div class="nav-divider"></div></li>
-
       <li><span class="nav-section">Actions</span>
         <ul>
           <li><a href="Add-record.html">Add / update a record</a>
@@ -698,14 +899,13 @@
           </li>
         </ul>
       </li>
-
       <li><div class="nav-divider"></div></li>
-
       <li><span class="nav-section">Share</span>
         <ul>
           <li><a href="Share-a-pet.html">Share a pet</a>
             <ul class="state-list">
               <li><a href="Share-a-pet.html">success</a></li>
+              <li><a href="Share-a-pet-empty.html">empty</a></li>
               <li><a href="Share-a-pet-loading.html">loading</a></li>
               <li><a href="Share-a-pet-error.html">error</a></li>
             </ul>
@@ -727,9 +927,7 @@
           </li>
         </ul>
       </li>
-
       <li><div class="nav-divider"></div></li>
-
       <li><span class="nav-section">What's due</span>
         <ul>
           <li><a href="Whats-due.html">What's due</a>
@@ -742,14 +940,12 @@
           </li>
         </ul>
       </li>
-
       <li><div class="nav-divider"></div></li>
-
       <li><span class="nav-section">Recipient</span>
         <ul>
-          <li><a href="Shared-pet-view.html">Shared pet view</a>
+          <li><a href="Shared-pet-view.html" class="active">Shared pet view</a>
             <ul class="state-list">
-              <li><a href="Shared-pet-view.html">success</a></li>
+              <li><a href="Shared-pet-view.html" class="active">success</a></li>
               <li><a href="Shared-pet-view-empty.html">empty</a></li>
               <li><a href="Shared-pet-view-loading.html">loading</a></li>
               <li><a href="Shared-pet-view-error.html">error</a></li>
@@ -765,9 +961,7 @@
           </li>
         </ul>
       </li>
-
       <li><div class="nav-divider"></div></li>
-
       <li><span class="nav-section">Deep actions</span>
         <ul>
           <li><a href="Emergency-auth-setup.html">Emergency auth setup</a>
@@ -791,32 +985,30 @@
     <div class="phone">
 
       <div class="state-bar" aria-label="Screen states">
-        <a href="home-success.html" class="current">Success</a>
-        <a href="home-empty.html">Empty</a>
-        <a href="home-loading.html">Loading</a>
-        <a href="home-error.html">Error</a>
+        <a href="Shared-pet-view.html" class="current">Success</a>
+        <a href="Shared-pet-view-empty.html">Empty</a>
+        <a href="Shared-pet-view-loading.html">Loading</a>
+        <a href="Shared-pet-view-error.html">Error</a>
       </div>
 
       <div class="flow-step">
-        Main job · step 2 of 4 — <span>My Pets → ★ Pet dossier</span> → sections → Share
+        R2 · Recipient view — Link opened → <span>★ Shared pet view</span> → Emergency &amp; allowed
       </div>
 
       <header class="m-header">
-        <a href="My-Pets.html" style="text-decoration:none;"><button class="back" aria-label="Back to My Pets">← My Pets</button></a>
-        <h1>Miso</h1>
-        <button class="action-edit">Edit</button>
+        <span style="font-size:15px;font-weight:700;">PetPal</span>
+        <h1>Shared with you</h1>
+        <span style="width:40px;"></span>
       </header>
 
-      <div class="m-main">
+      <div class="role-badge-strip">
+        You're viewing as: <strong>Carer</strong> (read-only) · Shared by Eva · Expires 12 Jul 2026
+      </div>
 
-        <div class="pet-switcher" aria-label="Switch pet">
-          <span class="pet-switcher-label">Pet:</span>
-          <a href="home-success.html" class="pet-pill active"><span class="pill-avatar">M</span> Miso</a>
-          <a href="home-success-cheetah.html" class="pet-pill"><span class="pill-avatar">C</span> Cheetah</a>
-        </div>
+      <main class="m-main">
 
+        <!-- Pet identity -->
         <section class="m-pet-identity" aria-label="Pet identity">
-          <div class="zone-label">Pet identity</div>
           <figure class="pet-photo pet-photo-m" aria-label="Pet photo placeholder">photo</figure>
           <div class="pet-info">
             <h2 style="font-size:20px;font-weight:700;">Miso</h2>
@@ -825,134 +1017,94 @@
           </div>
         </section>
 
-        <section class="m-quick-actions" aria-label="Quick actions">
-          <a href="Share-a-pet.html"><button class="btn-primary">Share Miso's info</button></a>
-          <a href="Set-up-a-pet.html"><button class="btn-secondary">Edit pet details</button></a>
+        <!-- Personality & care -->
+        <section class="shared-section" aria-label="Personality and care">
+          <h3>Personality &amp; care</h3>
+
+          <p class="detail-label">Favourite food</p>
+          <p class="detail-value">Royal Canin Maxi Adult, 350 g twice daily</p>
+          <p class="detail-value" style="font-size:12px;color:var(--wf-muted);">Treats: dried liver snaps (max 3/day)</p>
+
+          <p class="detail-label">Likes</p>
+          <p class="detail-value">Belly rubs, fetch, rolling in grass</p>
+
+          <p class="detail-label">Dislikes</p>
+          <p class="detail-value">Loud noises, vacuum cleaner, being left alone > 4 hours</p>
+
+          <p class="detail-label">Not friendly with</p>
+          <p class="detail-value">Small rodents, off-leash terriers</p>
+          <p class="warning-text">Warning — approach with caution around these animals</p>
+
+          <p class="detail-label">Walking routine</p>
+          <p class="detail-value">30 min morning (7:30), 45 min evening (18:00). Prefers Volkspark paths.</p>
+
+          <p class="detail-label">Special</p>
+          <p class="detail-value">Must wear harness not collar (neck sensitivity)</p>
         </section>
 
-        <section class="m-fill-counter" aria-label="Dossier completeness">
-          <div class="zone-label">Counter</div>
-          <span class="count">5 of 6 sections filled</span>
-          <span class="status">Updated 2 days ago</span>
+        <!-- Health summary -->
+        <section class="shared-section" aria-label="Health summary">
+          <h3>Health summary</h3>
+
+          <p class="detail-label">Conditions</p>
+          <p class="detail-value">Atopic dermatitis (diagnosed Mar 2025)</p>
+
+          <p class="detail-label">Current medications</p>
+          <p class="detail-value">Apoquel 16 mg · Once daily</p>
+          <p class="detail-value" style="font-size:12px;font-weight:600;">Must not be stopped without vet approval</p>
+
+          <p class="detail-label">Allergies</p>
+          <p class="detail-value">Chicken protein</p>
+
+          <p class="detail-label">Vaccinations</p>
+          <ul class="vax-list">
+            <li>Rabies (due 15 Mar 2027) <span class="vax-status">Up to date</span></li>
+            <li>DHPP <span class="vax-status">Up to date</span></li>
+            <li>Leptospirosis <span class="vax-status">Up to date</span></li>
+          </ul>
         </section>
 
-        <section class="m-search-filter" aria-label="Search sections">
-          <div class="zone-label">Search &amp; filter</div>
-          <input class="search-bar" type="search" placeholder="Search sections, records, documents…" aria-label="Search sections">
+        <!-- Vet contact -->
+        <section class="shared-section" aria-label="Vet contact">
+          <h3>Vet contact</h3>
+          <div class="vet-card">
+            <p class="vet-name">Tierklinik am Stadtpark · Dr. Muller</p>
+            <p class="vet-phone">+49 30 1234567</p>
+            <p style="font-size:12px;color:var(--wf-muted);">Parkstrasse 12, 10115 Berlin</p>
+            <button class="btn-secondary" style="width:100%;padding:10px;">Call vet</button>
+          </div>
         </section>
 
-                <ul class="m-section-list" aria-label="Dossier sections">
-
-          <li>
-            <a href="Health-and-jabs.html" style="text-decoration:none;color:inherit;display:block;"><article class="m-section-card">
-              <div class="card-icon card-icon-m">icon</div>
-              <div class="card-body">
-                <div class="zone-label">Card entry point → Health &amp; jabs</div>
-                <h3>Health &amp; jabs</h3>
-                <p class="card-detail">
-                  <strong>6 records</strong> · Updated 3 days ago<br>
-                  Rabies (due 15 Mar 2027) · DHPP · Leptospirosis<br>
-                  Condition: atopic dermatitis · Apoquel 16 mg daily
-                </p>
-              </div>
-              <span class="card-arrow" aria-hidden="true">→</span>
-            </article></a>
-          </li>
-
-          <li>
-            <a href="Documents-and-passport.html" style="text-decoration:none;color:inherit;display:block;"><article class="m-section-card">
-              <div class="card-icon card-icon-m">icon</div>
-              <div class="card-body">
-                <div class="zone-label">Card entry point → Documents &amp; passport</div>
-                <h3>Documents &amp; passport</h3>
-                <p class="card-detail">
-                  <strong>4 documents</strong> · Updated 1 week ago<br>
-                  EU Pet Passport DE-0812345 · Microchip registration<br>
-                  Rabies certificate · Pedigree papers
-                </p>
-              </div>
-              <span class="card-arrow" aria-hidden="true">→</span>
-            </article></a>
-          </li>
-
-          <li>
-            <a href="Insurance.html" style="text-decoration:none;color:inherit;display:block;"><article class="m-section-card">
-              <div class="card-icon card-icon-m">icon</div>
-              <div class="card-body">
-                <div class="zone-label">Card entry point → Insurance</div>
-                <h3>Insurance</h3>
-                <p class="card-detail">
-                  <strong>1 active policy</strong> · Renews 1 Oct 2026<br>
-                  Lassie Haustierversicherung · OP-Schutz Plus<br>
-                  Premium €29.90 / month · Covers surgery, inpatient
-                </p>
-              </div>
-              <span class="card-arrow" aria-hidden="true">→</span>
-            </article></a>
-          </li>
-
-          <li>
-            <a href="Personality-and-care.html" style="text-decoration:none;color:inherit;display:block;"><article class="m-section-card">
-              <div class="card-icon card-icon-m">icon</div>
-              <div class="card-body">
-                <div class="zone-label">Card entry point → Personality &amp; care</div>
-                <h3>Personality &amp; care</h3>
-                <p class="card-detail">
-                  <strong>Profile filled</strong> · Updated 5 days ago<br>
-                  Calm, affectionate, loves belly rubs<br>
-                  Not friendly with: small rodents, off-leash terriers<br>
-                  Food: Royal Canin Maxi Adult, 350 g twice daily
-                </p>
-              </div>
-              <span class="card-arrow" aria-hidden="true">→</span>
-            </article></a>
-          </li>
-
-          <li>
-            <a href="Vet-and-appointments.html" style="text-decoration:none;color:inherit;display:block;"><article class="m-section-card">
-              <div class="card-icon card-icon-m">icon</div>
-              <div class="card-body">
-                <div class="zone-label">Card entry point → Vet &amp; appointments</div>
-                <h3>Vet &amp; appointments</h3>
-                <p class="card-detail">
-                  <strong>Tierklinik am Stadtpark</strong> · Dr. Müller<br>
-                  Next: annual checkup, 15 Aug 2026, 10:00<br>
-                  Last visit: dental cleaning, 20 May 2026
-                </p>
-              </div>
-              <span class="card-arrow" aria-hidden="true">→</span>
-            </article></a>
-          </li>
-
-          <li>
-            <article class="m-section-card" style="border-style: dashed;">
-              <div class="card-icon card-icon-m">icon</div>
-              <div class="card-body">
-                <div class="zone-label">Card entry point → Emergency info (step 08)</div>
-                <h3>Emergency info &amp; authorisation</h3>
-                <p class="card-detail">
-                  <strong>Not filled yet</strong><br>
-                  Vet contact, current meds, conditions, emergency contact — what a carer needs if something goes wrong
-                </p>
-              </div>
-              <span class="card-arrow" aria-hidden="true">→</span>
-            </article>
-          </li>
-
-        </ul>
-      </div>
-
-      <nav class="phone-nav" aria-label="Main navigation">
-        <a href="My-Pets.html" class="active">
-          <span class="nav-icon" aria-hidden="true"></span> Pets
+        <!-- Emergency info link -->
+        <a href="Emergency-allowed.html" class="emergency-link" aria-label="View emergency info">
+          View emergency info &amp; what you're allowed to do
+          <span class="arrow" aria-hidden="true">→</span>
         </a>
-        <a href="Whats-due.html">
-          <span class="nav-icon" aria-hidden="true"></span> What's due
-        </a>
-        <a href="Share-a-pet.html">
-          <span class="nav-icon" aria-hidden="true"></span> Share
-        </a>
-      </nav>
+
+        <!-- Documents -->
+        <section class="shared-section" aria-label="Documents">
+          <h3>Documents</h3>
+          <div class="doc-item">
+            <div>
+              <p class="doc-name">EU Pet Passport DE-0812345</p>
+            </div>
+            <a href="#">View document</a>
+          </div>
+          <div class="doc-item">
+            <div>
+              <p class="doc-name">Insurance: Lassie OP-Schutz Plus</p>
+              <p class="doc-status">Policy active</p>
+            </div>
+            <a href="#">View document</a>
+          </div>
+        </section>
+
+      </main>
+
+      <!-- Shared footer (replaces bottom nav) -->
+      <footer class="shared-footer" aria-label="Shared link info">
+        Shared via PetPal · This link expires 12 Jul 2026 · Contact owner: Eva · Questions? Ask Eva directly.
+      </footer>
 
     </div>
   </div>
@@ -965,148 +1117,138 @@
   <div class="content-desktop view-desktop">
 
     <div class="state-bar" aria-label="Screen states">
-      <a href="home-success.html" class="current">Success</a>
-      <a href="home-empty.html">Empty</a>
-      <a href="home-loading.html">Loading</a>
-      <a href="home-error.html">Error</a>
+      <a href="Shared-pet-view.html" class="current">Success</a>
+      <a href="Shared-pet-view-empty.html">Empty</a>
+      <a href="Shared-pet-view-loading.html">Loading</a>
+      <a href="Shared-pet-view-error.html">Error</a>
     </div>
 
     <div class="flow-step" style="text-align:left;padding-left:32px;">
       <span class="zone-label">Desktop</span> &nbsp;
-      Main job · step 2 of 4 — <span>My Pets → ★ Pet dossier</span> → sections → Share
+      R2 · Recipient view — Link opened → <span>★ Shared pet view</span> → Emergency &amp; allowed
     </div>
 
-    <nav class="top-nav" aria-label="Main navigation (desktop)">
+    <!-- Simplified top nav for recipients -->
+    <nav class="top-nav" aria-label="Recipient navigation (desktop)">
       <span class="nav-brand">PetPal</span>
-      <a href="My-Pets.html" class="active">Pets</a>
-      <a href="Whats-due.html">What's due</a>
-      <a href="Share-a-pet.html">Share</a>
+      <span class="nav-label">Shared with you · Carer view</span>
       <span class="nav-spacer"></span>
-      <a href="Set-up-a-pet.html"><button class="nav-action">Edit pet details</button></a>
+      <button class="nav-action">Contact owner</button>
     </nav>
 
-    <div class="d-main">
+    <div class="role-badge-strip" style="text-align:left;padding-left:32px;">
+      You're viewing as: <strong>Carer</strong> (read-only) · Shared by Eva · Expires 12 Jul 2026
+    </div>
 
+    <main class="d-main">
+
+      <!-- Pet identity hero -->
       <section class="d-pet-hero" aria-label="Pet identity">
-        <div class="zone-label">Pet identity · desktop hero</div>
         <figure class="pet-photo pet-photo-d" aria-label="Pet photo placeholder">photo</figure>
         <div class="pet-info">
           <h1>Miso</h1>
           <p class="pet-meta" style="font-size:15px;">Dog · Border Terrier · Female</p>
           <p class="pet-chip" style="font-size:12px;">Microchip 276 098 106 412 345</p>
         </div>
-        <div class="d-pet-actions">
-          <a href="Share-a-pet.html"><button class="btn-primary">Share Miso's info</button></a>
-          <a href="Set-up-a-pet.html"><button class="btn-secondary">Edit pet details</button></a>
-        </div>
       </section>
 
-      <section class="d-toolbar" aria-label="Dossier toolbar">
-        <div class="zone-label">Counter</div>
-        <span class="count">5 of 6 sections filled</span>
-        <span class="status">· Updated 2 days ago</span>
-        <span class="spacer"></span>
-        <div class="zone-label">Search &amp; filter</div>
-        <input class="search-bar" type="search" placeholder="Search sections, records, documents…" aria-label="Search sections">
-      </section>
+      <div class="d-shared-sections">
 
-            <ul class="d-section-grid" aria-label="Dossier sections">
+        <!-- Personality & care -->
+        <section class="d-shared-section" aria-label="Personality and care">
+          <h3>Personality &amp; care</h3>
+          <div class="d-two-col">
+            <div>
+              <p class="detail-label">Favourite food</p>
+              <p class="detail-value">Royal Canin Maxi Adult, 350 g twice daily</p>
+              <p style="font-size:12px;color:var(--wf-muted);">Treats: dried liver snaps (max 3/day)</p>
 
-        <li>
-          <a href="Health-and-jabs.html" style="text-decoration:none;color:inherit;display:block;"><article class="d-section-card">
-            <div class="d-card-header">
-              <div class="card-icon card-icon-d">icon</div>
-              <h3>Health &amp; jabs</h3>
-              <span class="card-arrow" aria-hidden="true">→</span>
+              <p class="detail-label">Likes</p>
+              <p class="detail-value">Belly rubs, fetch, rolling in grass</p>
+
+              <p class="detail-label">Dislikes</p>
+              <p class="detail-value">Loud noises, vacuum cleaner, being left alone > 4 hours</p>
             </div>
-            <p class="card-detail">
-              <strong>6 records</strong> · Updated 3 days ago<br>
-              Rabies (due 15 Mar 2027) · DHPP · Leptospirosis<br>
-              Condition: atopic dermatitis · Apoquel 16 mg daily
-            </p>
-          </article></a>
-        </li>
+            <div>
+              <p class="detail-label">Not friendly with</p>
+              <p class="detail-value">Small rodents, off-leash terriers</p>
+              <p class="warning-text">Warning — approach with caution around these animals</p>
 
-        <li>
-          <a href="Documents-and-passport.html" style="text-decoration:none;color:inherit;display:block;"><article class="d-section-card">
-            <div class="d-card-header">
-              <div class="card-icon card-icon-d">icon</div>
-              <h3>Documents &amp; passport</h3>
-              <span class="card-arrow" aria-hidden="true">→</span>
+              <p class="detail-label">Walking routine</p>
+              <p class="detail-value">30 min morning (7:30), 45 min evening (18:00). Prefers Volkspark paths.</p>
+
+              <p class="detail-label">Special</p>
+              <p class="detail-value">Must wear harness not collar (neck sensitivity)</p>
             </div>
-            <p class="card-detail">
-              <strong>4 documents</strong> · Updated 1 week ago<br>
-              EU Pet Passport DE-0812345 · Microchip registration<br>
-              Rabies certificate · Pedigree papers
-            </p>
-          </article></a>
-        </li>
+          </div>
+        </section>
 
-        <li>
-          <a href="Insurance.html" style="text-decoration:none;color:inherit;display:block;"><article class="d-section-card">
-            <div class="d-card-header">
-              <div class="card-icon card-icon-d">icon</div>
-              <h3>Insurance</h3>
-              <span class="card-arrow" aria-hidden="true">→</span>
+        <!-- Health summary -->
+        <section class="d-shared-section" aria-label="Health summary">
+          <h3>Health summary</h3>
+          <div class="d-two-col">
+            <div>
+              <p class="detail-label">Conditions</p>
+              <p class="detail-value">Atopic dermatitis (diagnosed Mar 2025)</p>
+
+              <p class="detail-label">Current medications</p>
+              <p class="detail-value">Apoquel 16 mg · Once daily</p>
+              <p style="font-size:13px;font-weight:600;">Must not be stopped without vet approval</p>
+
+              <p class="detail-label">Allergies</p>
+              <p class="detail-value">Chicken protein</p>
             </div>
-            <p class="card-detail">
-              <strong>1 active policy</strong> · Renews 1 Oct 2026<br>
-              Lassie Haustierversicherung · OP-Schutz Plus<br>
-              Premium €29.90 / month · Covers surgery, inpatient
-            </p>
-          </article></a>
-        </li>
-
-        <li>
-          <a href="Personality-and-care.html" style="text-decoration:none;color:inherit;display:block;"><article class="d-section-card">
-            <div class="d-card-header">
-              <div class="card-icon card-icon-d">icon</div>
-              <h3>Personality &amp; care</h3>
-              <span class="card-arrow" aria-hidden="true">→</span>
+            <div>
+              <p class="detail-label">Vaccinations</p>
+              <ul class="vax-list">
+                <li>Rabies (due 15 Mar 2027) <span class="vax-status">Up to date</span></li>
+                <li>DHPP <span class="vax-status">Up to date</span></li>
+                <li>Leptospirosis <span class="vax-status">Up to date</span></li>
+              </ul>
             </div>
-            <p class="card-detail">
-              <strong>Profile filled</strong> · Updated 5 days ago<br>
-              Calm, affectionate, loves belly rubs<br>
-              Not friendly with: small rodents, off-leash terriers<br>
-              Food: Royal Canin Maxi Adult, 350 g twice daily
-            </p>
-          </article></a>
-        </li>
+          </div>
+        </section>
 
-        <li>
-          <a href="Vet-and-appointments.html" style="text-decoration:none;color:inherit;display:block;"><article class="d-section-card">
-            <div class="d-card-header">
-              <div class="card-icon card-icon-d">icon</div>
-              <h3>Vet &amp; appointments</h3>
-              <span class="card-arrow" aria-hidden="true">→</span>
+        <!-- Vet contact -->
+        <section class="d-shared-section" aria-label="Vet contact">
+          <h3>Vet contact</h3>
+          <div class="vet-card" style="max-width:400px;">
+            <p class="vet-name">Tierklinik am Stadtpark · Dr. Muller</p>
+            <p class="vet-phone">+49 30 1234567</p>
+            <p style="font-size:12px;color:var(--wf-muted);">Parkstrasse 12, 10115 Berlin</p>
+            <button class="btn-secondary" style="padding:10px 20px;margin-top:10px;">Call vet</button>
+          </div>
+        </section>
+
+        <!-- Emergency info link -->
+        <a href="Emergency-allowed.html" class="emergency-link" style="border-radius:10px;border:1.5px solid var(--wf-border);" aria-label="View emergency info">
+          View emergency info &amp; what you're allowed to do
+          <span class="arrow" aria-hidden="true">→</span>
+        </a>
+
+        <!-- Documents -->
+        <section class="d-shared-section" aria-label="Documents">
+          <h3>Documents</h3>
+          <div class="doc-item">
+            <div>
+              <p class="doc-name">EU Pet Passport DE-0812345</p>
             </div>
-            <p class="card-detail">
-              <strong>Tierklinik am Stadtpark</strong> · Dr. Müller<br>
-              Next: annual checkup, 15 Aug 2026, 10:00<br>
-              Last visit: dental cleaning, 20 May 2026
-            </p>
-          </article></a>
-        </li>
-
-        <li>
-          <article class="d-section-card" style="border-style: dashed;">
-            <div class="d-card-header">
-              <div class="card-icon card-icon-d">icon</div>
-              <h3>Emergency info &amp; authorisation</h3>
-              <span class="card-arrow" aria-hidden="true">→</span>
+            <a href="#">View document</a>
+          </div>
+          <div class="doc-item">
+            <div>
+              <p class="doc-name">Insurance: Lassie OP-Schutz Plus</p>
+              <p class="doc-status">Policy active</p>
             </div>
-            <p class="card-detail">
-              <strong>Not filled yet</strong><br>
-              Vet contact, current meds, conditions, emergency contact — what a carer needs if something goes wrong
-            </p>
-          </article>
-        </li>
+            <a href="#">View document</a>
+          </div>
+        </section>
 
-      </ul>
-    </div>
+      </div>
+    </main>
 
     <footer class="d-footer">
-      Pet dossier · desktop adaptation · same content as mobile, layout expanded for wide screens
+      Shared via PetPal · This link expires 12 Jul 2026 · Contact owner: Eva · Questions? Ask Eva directly.
     </footer>
   </div>
 

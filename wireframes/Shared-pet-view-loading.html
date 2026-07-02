@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Shared pet view (loading) — PetPal wireframe</title>
+<style>
+  :root {
+    --wf-bg:         #ffffff;
+    --wf-surface:    #f5f5f5;
+    --wf-border:     #e0e0e0;
+    --wf-text:       #1a1a1a;
+    --wf-muted:      #757575;
+    --wf-placeholder:#d0d0d0;
+    --wf-input-bg:   #fafafa;
+    --wf-btn:        #333333;
+    --wf-btn-text:   #ffffff;
+    --wf-btn-sec:    transparent;
+
+    --nav-bg:        #f9f9f9;
+    --nav-active-bg: #eaeaea;
+    --nav-text:      #555555;
+    --nav-text-active:#1a1a1a;
+    --nav-cap:       #999999;
+    --nav-line:      #e0e0e0;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+    background: var(--wf-bg);
+    color: var(--wf-text);
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .layout { display: flex; align-items: flex-start; min-height: 100vh; }
+
+  .sidenav {
+    position: sticky; top: 0; align-self: flex-start; height: 100vh; width: 240px; flex-shrink: 0;
+    padding: 20px 12px 20px 16px; border-right: 1px solid var(--nav-line); background: var(--nav-bg);
+    overflow-y: auto; display: flex; flex-direction: column; gap: 4px;
+  }
+  .sidenav .brand { font-size: 13px; font-weight: 700; color: var(--wf-text); text-decoration: none; padding: 0 8px 8px; letter-spacing: 0.02em; }
+  .nav-divider { height: 1px; background: var(--nav-line); margin: 6px 4px; }
+  .viewport-toggle { display: flex; background: var(--nav-active-bg); border-radius: 6px; padding: 3px; margin: 0 4px 4px; }
+  .viewport-toggle button { flex: 1; padding: 6px 0; font-size: 11px; font-weight: 600; border: none; border-radius: 4px; cursor: pointer; background: transparent; color: var(--nav-text); transition: all 0.15s; }
+  .viewport-toggle button.active { background: var(--wf-bg); color: var(--nav-text-active); box-shadow: 0 1px 3px rgba(0,0,0,0.08); }
+  .nav-tree, .nav-tree ul { list-style: none; padding: 0; margin: 0; }
+  .nav-tree ul { padding-left: 14px; }
+  .nav-tree li { margin: 0; }
+  .nav-tree .nav-section { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--nav-cap); padding: 10px 8px 3px; display: block; }
+  .nav-tree a { display: block; color: var(--nav-text); text-decoration: none; font-size: 12px; font-weight: 500; padding: 4px 8px; border-radius: 5px; transition: background 0.12s; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .nav-tree a:hover { background: var(--nav-active-bg); color: var(--nav-text-active); }
+  .nav-tree a.active { background: var(--nav-active-bg); color: var(--nav-text-active); font-weight: 700; }
+  .nav-tree .state-list a { font-size: 11px; font-weight: 400; color: var(--nav-cap); padding: 2px 8px; }
+  .nav-tree .state-list a:hover { color: var(--nav-text); background: var(--nav-active-bg); }
+  .nav-tree .state-list a.active { color: var(--nav-text-active); font-weight: 600; background: var(--nav-active-bg); }
+
+  .zone-label { font-size: 9px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--wf-muted); border: 1px dashed var(--wf-border); border-radius: 2px; padding: 1px 5px; display: inline-block; margin-bottom: 6px; }
+  .flow-step { background: var(--wf-surface); border-bottom: 1px solid var(--wf-border); padding: 6px 16px; font-size: 10px; color: var(--wf-muted); text-align: center; letter-spacing: 0.02em; }
+  .flow-step span { font-weight: 600; color: var(--wf-text); }
+  .state-bar { display: flex; gap: 0; border-bottom: 1px solid var(--wf-border); background: var(--wf-surface); font-size: 11px; }
+  .state-bar a { flex: 1; text-align: center; padding: 7px 4px; text-decoration: none; color: var(--wf-muted); font-weight: 500; border-bottom: 2px solid transparent; }
+  .state-bar a:hover { color: var(--wf-text); }
+  .state-bar a.current { color: var(--wf-text); font-weight: 700; border-bottom-color: var(--wf-text); }
+
+  .view-mobile  { display: block; }
+  .view-desktop { display: none;  }
+  body.is-desktop .view-mobile  { display: none;  }
+  body.is-desktop .view-desktop { display: flex; flex-direction: column; }
+
+  .content-mobile { flex: 1; display: flex; justify-content: center; padding: 24px; min-height: 100vh; }
+  .phone { width: 375px; min-height: 812px; background: var(--wf-bg); border: 1.5px solid var(--wf-border); border-radius: 12px; display: flex; flex-direction: column; overflow: hidden; box-shadow: 0 1px 4px rgba(0,0,0,0.06); }
+
+  .m-header { display: flex; align-items: center; justify-content: space-between; padding: 12px 16px; border-bottom: 1px solid var(--wf-border); min-height: 48px; }
+  .m-header h1 { font-size: 17px; font-weight: 600; }
+  .m-main { flex: 1; overflow-y: auto; padding-bottom: 20px; }
+
+  .role-badge-strip { background: var(--wf-surface); border-bottom: 1px solid var(--wf-border); padding: 10px 16px; font-size: 12px; color: var(--wf-muted); text-align: center; line-height: 1.4; }
+  .role-badge-strip strong { color: var(--wf-text); font-weight: 600; }
+  .shared-footer { border-top: 1px solid var(--wf-border); padding: 12px 16px; font-size: 11px; color: var(--wf-muted); text-align: center; line-height: 1.5; background: var(--wf-surface); }
+
+  /* Skeleton blocks */
+  .skeleton { background: var(--wf-placeholder); border-radius: 6px; }
+  .skeleton-circle { border-radius: 50%; background: var(--wf-placeholder); }
+  .skeleton-text { height: 14px; background: var(--wf-placeholder); border-radius: 3px; margin-bottom: 8px; }
+  .skeleton-text.short { width: 60%; }
+  .skeleton-text.medium { width: 80%; }
+  .skeleton-text.long { width: 95%; }
+  .skeleton-section { padding: 16px; border-bottom: 1px solid var(--wf-border); }
+  .skeleton-heading { height: 12px; width: 40%; background: var(--wf-placeholder); border-radius: 3px; margin-bottom: 14px; }
+  .loading-label { font-size: 13px; color: var(--wf-muted); text-align: center; padding: 24px 16px; }
+
+  .content-desktop { flex: 1; min-width: 0; min-height: 100vh; }
+  .top-nav { display: flex; align-items: center; border-bottom: 1px solid var(--wf-border); padding: 0 32px; }
+  .top-nav .nav-brand { font-size: 15px; font-weight: 700; color: var(--wf-text); margin-right: 32px; padding: 14px 0; }
+  .top-nav .nav-label { font-size: 13px; color: var(--wf-muted); padding: 14px 0; }
+  .top-nav .nav-spacer { flex: 1; }
+  .top-nav .nav-action { font-size: 13px; color: var(--wf-muted); padding: 8px 16px; border: 1.5px solid var(--wf-border); border-radius: 6px; background: none; cursor: pointer; }
+  .d-main { max-width: 960px; margin: 0 auto; padding: 32px; width: 100%; }
+  .d-footer { border-top: 1px solid var(--wf-border); padding: 16px 32px; font-size: 11px; color: var(--wf-muted); text-align: center; }
+
+  /* Desktop skeleton section */
+  .d-skeleton-section { background: var(--wf-surface); border: 1.5px solid var(--wf-border); border-radius: 10px; padding: 24px; margin-bottom: 20px; }
+
+  @media (max-width: 700px) {
+    .layout { flex-direction: column; }
+    .sidenav { position: sticky; top: 0; height: auto; width: 100%; z-index: 50; border-right: none; border-bottom: 1px solid var(--nav-line); padding: 12px 16px; max-height: 50vh; overflow-y: auto; }
+    .content-mobile { padding: 16px; }
+    .phone { min-height: auto; }
+    .d-main { padding: 20px 16px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="layout">
+
+  <aside class="sidenav" aria-label="Wireframe navigation">
+    <a class="brand" href="#">PetPal Wireframes</a>
+    <div class="viewport-toggle" role="radiogroup" aria-label="Layout toggle">
+      <button id="btn-mobile" class="active" aria-pressed="true" onclick="setView('mobile')">Mobile</button>
+      <button id="btn-desktop" aria-pressed="false" onclick="setView('desktop')">Desktop</button>
+    </div>
+    <div class="nav-divider"></div>
+    <ul class="nav-tree">
+      <li><span class="nav-section">My Pets</span>
+        <ul>
+          <li><a href="My-Pets.html">My Pets</a>
+            <ul class="state-list">
+              <li><a href="My-Pets.html">success</a></li>
+              <li><a href="My-Pets-empty.html">empty</a></li>
+              <li><a href="My-Pets-loading.html">loading</a></li>
+              <li><a href="My-Pets-error.html">error</a></li>
+            </ul>
+          </li>
+          <li><a href="Set-up-a-pet.html">Set up a pet</a>
+            <ul class="state-list">
+              <li><a href="Set-up-a-pet.html">success</a></li>
+              <li><a href="Set-up-a-pet-loading.html">loading</a></li>
+              <li><a href="Set-up-a-pet-error.html">error</a></li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li><div class="nav-divider"></div></li>
+      <li><span class="nav-section">Pet dossier</span>
+        <ul>
+          <li><a href="home-success.html">Pet dossier</a>
+            <ul class="state-list">
+              <li><a href="home-success.html">success</a></li>
+              <li><a href="home-empty.html">empty</a></li>
+              <li><a href="home-loading.html">loading</a></li>
+              <li><a href="home-error.html">error</a></li>
+            </ul>
+          </li>
+          <li><a href="Health-and-jabs.html">Health &amp; jabs</a>
+            <ul class="state-list">
+              <li><a href="Health-and-jabs.html">success</a></li>
+              <li><a href="Health-and-jabs-empty.html">empty</a></li>
+              <li><a href="Health-and-jabs-loading.html">loading</a></li>
+              <li><a href="Health-and-jabs-error.html">error</a></li>
+            </ul>
+          </li>
+          <li><a href="Documents-and-passport.html">Documents &amp; passport</a>
+            <ul class="state-list">
+              <li><a href="Documents-and-passport.html">success</a></li>
+              <li><a href="Documents-and-passport-empty.html">empty</a></li>
+              <li><a href="Documents-and-passport-loading.html">loading</a></li>
+              <li><a href="Documents-and-passport-error.html">error</a></li>
+            </ul>
+          </li>
+          <li><a href="Insurance.html">Insurance</a>
+            <ul class="state-list">
+              <li><a href="Insurance.html">success</a></li>
+              <li><a href="Insurance-empty.html">empty</a></li>
+              <li><a href="Insurance-loading.html">loading</a></li>
+              <li><a href="Insurance-error.html">error</a></li>
+            </ul>
+          </li>
+          <li><a href="Personality-and-care.html">Personality &amp; care</a>
+            <ul class="state-list">
+              <li><a href="Personality-and-care.html">success</a></li>
+              <li><a href="Personality-and-care-empty.html">empty</a></li>
+              <li><a href="Personality-and-care-loading.html">loading</a></li>
+              <li><a href="Personality-and-care-error.html">error</a></li>
+            </ul>
+          </li>
+          <li><a href="Vet-and-appointments.html">Vet &amp; appointments</a>
+            <ul class="state-list">
+              <li><a href="Vet-and-appointments.html">success</a></li>
+              <li><a href="Vet-and-appointments-empty.html">empty</a></li>
+              <li><a href="Vet-and-appointments-loading.html">loading</a></li>
+              <li><a href="Vet-and-appointments-error.html">error</a></li>
+            </ul>
+          </li>
+          <li><a href="Emergency-info.html">Emergency info</a>
+            <ul class="state-list">
+              <li><a href="Emergency-info.html">success</a></li>
+              <li><a href="Emergency-info-empty.html">empty</a></li>
+              <li><a href="Emergency-info-loading.html">loading</a></li>
+              <li><a href="Emergency-info-error.html">error</a></li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li><div class="nav-divider"></div></li>
+      <li><span class="nav-section">Actions</span>
+        <ul>
+          <li><a href="Add-record.html">Add / update a record</a>
+            <ul class="state-list">
+              <li><a href="Add-record.html">success</a></li>
+              <li><a href="Add-record-loading.html">loading</a></li>
+              <li><a href="Add-record-error.html">error</a></li>
+            </ul>
+          </li>
+          <li><a href="Add-care-note.html">Add care note</a>
+            <ul class="state-list">
+              <li><a href="Add-care-note.html">success</a></li>
+              <li><a href="Add-care-note-loading.html">loading</a></li>
+              <li><a href="Add-care-note-error.html">error</a></li>
+            </ul>
+          </li>
+          <li><a href="Edit-care-note.html">Edit care note</a>
+            <ul class="state-list">
+              <li><a href="Edit-care-note.html">success</a></li>
+              <li><a href="Edit-care-note-loading.html">loading</a></li>
+              <li><a href="Edit-care-note-error.html">error</a></li>
+            </ul>
+          </li>
+          <li><a href="Edit-pet.html">Edit pet identity</a>
+            <ul class="state-list">
+              <li><a href="Edit-pet.html">success</a></li>
+              <li><a href="Edit-pet-loading.html">loading</a></li>
+              <li><a href="Edit-pet-error.html">error</a></li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li><div class="nav-divider"></div></li>
+      <li><span class="nav-section">Share</span>
+        <ul>
+          <li><a href="Share-a-pet.html">Share a pet</a>
+            <ul class="state-list">
+              <li><a href="Share-a-pet.html">success</a></li>
+              <li><a href="Share-a-pet-empty.html">empty</a></li>
+              <li><a href="Share-a-pet-loading.html">loading</a></li>
+              <li><a href="Share-a-pet-error.html">error</a></li>
+            </ul>
+          </li>
+          <li><a href="Who-has-access.html">Who has access</a>
+            <ul class="state-list">
+              <li><a href="Who-has-access.html">success</a></li>
+              <li><a href="Who-has-access-empty.html">empty</a></li>
+              <li><a href="Who-has-access-loading.html">loading</a></li>
+              <li><a href="Who-has-access-error.html">error</a></li>
+            </ul>
+          </li>
+          <li><a href="Edit-access-grant.html">Edit / revoke grant</a>
+            <ul class="state-list">
+              <li><a href="Edit-access-grant.html">success</a></li>
+              <li><a href="Edit-access-grant-loading.html">loading</a></li>
+              <li><a href="Edit-access-grant-error.html">error</a></li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li><div class="nav-divider"></div></li>
+      <li><span class="nav-section">What's due</span>
+        <ul>
+          <li><a href="Whats-due.html">What's due</a>
+            <ul class="state-list">
+              <li><a href="Whats-due.html">success</a></li>
+              <li><a href="Whats-due-empty.html">empty</a></li>
+              <li><a href="Whats-due-loading.html">loading</a></li>
+              <li><a href="Whats-due-error.html">error</a></li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li><div class="nav-divider"></div></li>
+      <li><span class="nav-section">Recipient</span>
+        <ul>
+          <li><a href="Shared-pet-view.html" class="active">Shared pet view</a>
+            <ul class="state-list">
+              <li><a href="Shared-pet-view.html">success</a></li>
+              <li><a href="Shared-pet-view-empty.html">empty</a></li>
+              <li><a href="Shared-pet-view-loading.html" class="active">loading</a></li>
+              <li><a href="Shared-pet-view-error.html">error</a></li>
+            </ul>
+          </li>
+          <li><a href="Emergency-allowed.html">Emergency &amp; allowed</a>
+            <ul class="state-list">
+              <li><a href="Emergency-allowed.html">success</a></li>
+              <li><a href="Emergency-allowed-empty.html">empty</a></li>
+              <li><a href="Emergency-allowed-loading.html">loading</a></li>
+              <li><a href="Emergency-allowed-error.html">error</a></li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li><div class="nav-divider"></div></li>
+      <li><span class="nav-section">Deep actions</span>
+        <ul>
+          <li><a href="Emergency-auth-setup.html">Emergency auth setup</a>
+            <ul class="state-list">
+              <li><a href="Emergency-auth-setup.html">success</a></li>
+              <li><a href="Emergency-auth-setup-loading.html">loading</a></li>
+              <li><a href="Emergency-auth-setup-error.html">error</a></li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </aside>
+
+
+  <!-- ═══════════════════════════════════════════════════════
+       MOBILE VIEW (phone frame)
+       ═══════════════════════════════════════════════════════ -->
+
+  <div class="content-mobile view-mobile">
+    <div class="phone">
+
+      <div class="state-bar" aria-label="Screen states">
+        <a href="Shared-pet-view.html">Success</a>
+        <a href="Shared-pet-view-empty.html">Empty</a>
+        <a href="Shared-pet-view-loading.html" class="current">Loading</a>
+        <a href="Shared-pet-view-error.html">Error</a>
+      </div>
+
+      <div class="flow-step">
+        R2 · Recipient view — Link opened → <span>★ Shared pet view (loading)</span> → Emergency &amp; allowed
+      </div>
+
+      <header class="m-header">
+        <span style="font-size:15px;font-weight:700;">PetPal</span>
+        <h1>Shared with you</h1>
+        <span style="width:40px;"></span>
+      </header>
+
+      <main class="m-main">
+
+        <p class="loading-label">Loading Miso's shared profile...</p>
+
+        <!-- Skeleton: pet identity -->
+        <div class="skeleton-section" style="display:flex;gap:12px;align-items:center;">
+          <div class="skeleton-circle" style="width:64px;height:64px;flex-shrink:0;"></div>
+          <div style="flex:1;">
+            <div class="skeleton-text short"></div>
+            <div class="skeleton-text medium" style="height:10px;"></div>
+            <div class="skeleton-text short" style="height:10px;"></div>
+          </div>
+        </div>
+
+        <!-- Skeleton: personality & care -->
+        <div class="skeleton-section">
+          <div class="skeleton-heading"></div>
+          <div class="skeleton-text long"></div>
+          <div class="skeleton-text medium"></div>
+          <div class="skeleton-text long"></div>
+          <div class="skeleton-text short"></div>
+          <div class="skeleton-text medium"></div>
+        </div>
+
+        <!-- Skeleton: health summary -->
+        <div class="skeleton-section">
+          <div class="skeleton-heading"></div>
+          <div class="skeleton-text long"></div>
+          <div class="skeleton-text medium"></div>
+          <div class="skeleton-text short"></div>
+          <div class="skeleton-text long"></div>
+        </div>
+
+        <!-- Skeleton: vet contact -->
+        <div class="skeleton-section">
+          <div class="skeleton-heading"></div>
+          <div class="skeleton-text medium"></div>
+          <div class="skeleton-text short"></div>
+          <div class="skeleton" style="height:40px;width:100%;margin-top:10px;"></div>
+        </div>
+
+      </main>
+
+      <footer class="shared-footer" aria-label="Shared link info">
+        Shared via PetPal · This link expires 12 Jul 2026
+      </footer>
+
+    </div>
+  </div>
+
+
+  <!-- ═══════════════════════════════════════════════════════
+       DESKTOP VIEW (full-width)
+       ═══════════════════════════════════════════════════════ -->
+
+  <div class="content-desktop view-desktop">
+
+    <div class="state-bar" aria-label="Screen states">
+      <a href="Shared-pet-view.html">Success</a>
+      <a href="Shared-pet-view-empty.html">Empty</a>
+      <a href="Shared-pet-view-loading.html" class="current">Loading</a>
+      <a href="Shared-pet-view-error.html">Error</a>
+    </div>
+
+    <div class="flow-step" style="text-align:left;padding-left:32px;">
+      <span class="zone-label">Desktop</span> &nbsp;
+      R2 · Recipient view — Link opened → <span>★ Shared pet view (loading)</span> → Emergency &amp; allowed
+    </div>
+
+    <nav class="top-nav" aria-label="Recipient navigation (desktop)">
+      <span class="nav-brand">PetPal</span>
+      <span class="nav-label">Shared with you · Carer view</span>
+      <span class="nav-spacer"></span>
+      <button class="nav-action">Contact owner</button>
+    </nav>
+
+    <main class="d-main">
+
+      <p class="loading-label" style="text-align:left;padding:0 0 20px;">Loading Miso's shared profile...</p>
+
+      <!-- Skeleton: pet identity hero -->
+      <div class="d-skeleton-section" style="display:flex;gap:24px;align-items:center;">
+        <div class="skeleton-circle" style="width:88px;height:88px;flex-shrink:0;"></div>
+        <div style="flex:1;">
+          <div class="skeleton-text" style="width:30%;height:22px;"></div>
+          <div class="skeleton-text medium" style="height:12px;"></div>
+          <div class="skeleton-text short" style="height:10px;"></div>
+        </div>
+      </div>
+
+      <!-- Skeleton: personality & care -->
+      <div class="d-skeleton-section">
+        <div class="skeleton-heading"></div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;">
+          <div>
+            <div class="skeleton-text long"></div>
+            <div class="skeleton-text medium"></div>
+            <div class="skeleton-text long"></div>
+          </div>
+          <div>
+            <div class="skeleton-text medium"></div>
+            <div class="skeleton-text long"></div>
+            <div class="skeleton-text short"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Skeleton: health summary -->
+      <div class="d-skeleton-section">
+        <div class="skeleton-heading"></div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;">
+          <div>
+            <div class="skeleton-text long"></div>
+            <div class="skeleton-text medium"></div>
+          </div>
+          <div>
+            <div class="skeleton-text short"></div>
+            <div class="skeleton-text medium"></div>
+          </div>
+        </div>
+      </div>
+
+    </main>
+
+    <footer class="d-footer">
+      Shared via PetPal · This link expires 12 Jul 2026
+    </footer>
+  </div>
+
+</div>
+
+<script>
+function setView(mode) {
+  document.body.classList.toggle('is-desktop', mode === 'desktop');
+  document.getElementById('btn-mobile').classList.toggle('active', mode === 'mobile');
+  document.getElementById('btn-desktop').classList.toggle('active', mode === 'desktop');
+  document.getElementById('btn-mobile').setAttribute('aria-pressed', mode === 'mobile');
+  document.getElementById('btn-desktop').setAttribute('aria-pressed', mode === 'desktop');
+}
+</script>
+
+</body>
+</html>
