@@ -59,6 +59,19 @@
   .nav-tree .state-list a:hover { color: var(--nav-text); background: var(--nav-active-bg); }
   .nav-tree .state-list a.active { color: var(--nav-text-active); font-weight: 600; background: var(--nav-active-bg); }
 
+  /* PERSONA FLOWS */
+  .persona-flow {
+    display: block; padding: 8px 10px; margin: 3px 0;
+    border: 1.5px solid var(--wf-border); border-radius: 8px;
+    text-decoration: none; color: var(--nav-text);
+    font-size: 11px; line-height: 1.5; transition: border-color 0.15s, background 0.15s;
+  }
+  .persona-flow:hover { border-color: var(--nav-text); background: var(--nav-active-bg); }
+  .persona-flow strong { font-size: 12px; display: block; margin-bottom: 2px; }
+  .persona-flow .flow-steps {
+    color: var(--nav-cap); font-size: 10px; line-height: 1.6;
+  }
+
   /* ZONE LABEL */
   .zone-label { font-size: 9px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--wf-muted); border: 1px dashed var(--wf-border); border-radius: 2px; padding: 1px 5px; display: inline-block; margin-bottom: 6px; }
 
@@ -81,6 +94,31 @@
   .pet-pill.active { background: var(--wf-text); color: var(--wf-btn-text); border-color: var(--wf-text); font-weight: 600; }
   .pet-pill .pill-avatar { width: 22px; height: 22px; border-radius: 50%; background: var(--wf-placeholder); display: flex; align-items: center; justify-content: center; font-size: 8px; flex-shrink: 0; }
   .pet-pill.active .pill-avatar { background: var(--wf-muted); }
+
+  /* MODAL */
+  .modal-overlay {
+    display: none; position: fixed; inset: 0; z-index: 100;
+    background: rgba(0,0,0,0.4); align-items: center; justify-content: center;
+  }
+  .modal-overlay.open { display: flex; }
+  .modal {
+    background: var(--wf-bg); border-radius: 14px;
+    width: 340px; max-height: 85vh; overflow-y: auto;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.18);
+    animation: modalIn 0.2s ease-out;
+  }
+  @keyframes modalIn { from { opacity: 0; transform: scale(0.95); } to { opacity: 1; transform: scale(1); } }
+  .modal-header {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 16px 16px 12px; border-bottom: 1px solid var(--wf-border);
+  }
+  .modal-header h3 { font-size: 16px; font-weight: 600; margin: 0; }
+  .modal-close {
+    width: 28px; height: 28px; border-radius: 50%; border: none;
+    background: var(--wf-surface); color: var(--wf-muted);
+    font-size: 16px; cursor: pointer; display: flex; align-items: center; justify-content: center;
+  }
+  .modal-body { padding: 20px 16px 24px; text-align: center; }
 
   /* TOGGLE VISIBILITY */
   .view-mobile  { display: block; }
@@ -276,7 +314,26 @@
     </div>
     <div class="nav-divider"></div>
     <ul class="nav-tree">
-      <li><span class="nav-section">My Pets</span>
+      <li><span class="nav-section">Persona flows</span>
+        <ul style="padding-left:0;">
+          <li>
+            <a href="My-Pets.html" class="persona-flow">
+              <strong>Pet owner (Ana)</strong>
+              <span class="flow-steps">My Pets &rarr; Pet dossier &rarr; Health &amp; jabs &rarr; Documents &rarr; Personality &amp; care &rarr; Share a pet &rarr; What's due</span>
+            </a>
+          </li>
+          <li>
+            <a href="Shared-pet-view.html" class="persona-flow">
+              <strong>Pet sitter (recipient)</strong>
+              <span class="flow-steps">Shared pet view &rarr; Emergency &amp; allowed</span>
+            </a>
+          </li>
+        </ul>
+      </li>
+
+      <li><div class="nav-divider"></div></li>
+
+<li><span class="nav-section">My Pets</span>
         <ul>
           <li><a href="My-Pets.html">My Pets</a>
             <ul class="state-list">
@@ -378,6 +435,13 @@
               <li><a href="Edit-care-note.html">success</a></li>
               <li><a href="Edit-care-note-loading.html">loading</a></li>
               <li><a href="Edit-care-note-error.html">error</a></li>
+            </ul>
+          </li>
+          <li><a href="Edit-pet.html">Edit pet identity</a>
+            <ul class="state-list">
+              <li><a href="Edit-pet.html">success</a></li>
+              <li><a href="Edit-pet-loading.html">loading</a></li>
+              <li><a href="Edit-pet-error.html">error</a></li>
             </ul>
           </li>
         </ul>
@@ -539,19 +603,28 @@
 
         <div class="form-actions" style="flex-direction:column;gap:10px;">
           <a href="Share-a-pet-loading.html" style="display:block;"><button type="button" class="btn-primary" style="width:100%;">Create share link</button></a>
-          <button type="button" class="btn-secondary" style="width:100%;" onclick="document.getElementById('qr-mobile').hidden = !document.getElementById('qr-mobile').hidden;">Show QR code</button>
+          <button type="button" class="btn-secondary" style="width:100%;" onclick="document.getElementById('qr-modal').classList.add('open');">Show QR code</button>
         </div>
 
         <p style="padding:0 16px 12px;font-size:11px;color:var(--wf-muted);text-align:center;">The recipient opens the link in a browser or scans the QR — no sign-up or app install needed.</p>
 
-        <div id="qr-mobile" style="border-top:1px solid var(--wf-border);padding:20px 16px;text-align:center;">
-          <p style="font-size:13px;font-weight:600;margin-bottom:4px;">Full dossier · Carer (read-only)</p>
-          <p style="font-size:11px;color:var(--wf-muted);margin-bottom:14px;">QR matches your scope and role selection above.</p>
-          <div style="width:160px;height:160px;margin:0 auto 14px;background:var(--wf-surface);border:1.5px solid var(--wf-border);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:11px;color:var(--wf-muted);">QR code<br>placeholder</div>
-          <p style="font-size:11px;color:var(--wf-muted);margin-bottom:14px;">Scan to open Miso's shared profile — no app needed.</p>
-          <div style="display:flex;gap:8px;">
-            <button class="btn-secondary" style="flex:1;font-size:13px;padding:8px;">Save QR image</button>
-            <button class="btn-secondary" style="flex:1;font-size:13px;padding:8px;">Print QR</button>
+      </div>
+
+      <div id="qr-modal" class="modal-overlay" onclick="if(event.target===this)this.classList.remove('open');">
+        <div class="modal">
+          <div class="modal-header">
+            <h3>QR code</h3>
+            <button class="modal-close" onclick="document.getElementById('qr-modal').classList.remove('open');" aria-label="Close">&#x2715;</button>
+          </div>
+          <div class="modal-body">
+            <p style="font-size:14px;font-weight:600;margin-bottom:4px;">Full dossier · Carer (read-only)</p>
+            <p style="font-size:12px;color:var(--wf-muted);margin-bottom:16px;">QR matches your scope and role selection above.</p>
+            <div style="width:180px;height:180px;margin:0 auto 16px;background:var(--wf-surface);border:1.5px solid var(--wf-border);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:11px;color:var(--wf-muted);">QR code<br>placeholder</div>
+            <p style="font-size:12px;color:var(--wf-muted);margin-bottom:16px;">Scan to open Miso's shared profile — no app needed.</p>
+            <div style="display:flex;gap:8px;">
+              <button class="btn-secondary" style="flex:1;font-size:13px;padding:10px;">Save QR image</button>
+              <button class="btn-secondary" style="flex:1;font-size:13px;padding:10px;">Print QR</button>
+            </div>
           </div>
         </div>
       </div>
@@ -642,21 +715,11 @@
 
         <div class="form-actions" style="flex-direction:column;gap:10px;">
           <a href="Share-a-pet-loading.html" style="display:block;"><button type="button" class="btn-primary" style="width:100%;">Create share link</button></a>
-          <button type="button" class="btn-secondary" style="width:100%;" onclick="document.getElementById('qr-desktop').hidden = !document.getElementById('qr-desktop').hidden;">Show QR code</button>
+          <button type="button" class="btn-secondary" style="width:100%;" onclick="document.getElementById('qr-modal').classList.add('open');">Show QR code</button>
         </div>
 
         <p style="padding:0 16px 12px;font-size:11px;color:var(--wf-muted);text-align:center;">The recipient opens the link in a browser or scans the QR — no sign-up or app install needed.</p>
 
-        <div id="qr-desktop" style="border-top:1px solid var(--wf-border);padding:20px 16px;text-align:center;">
-          <p style="font-size:13px;font-weight:600;margin-bottom:4px;">Full dossier · Carer (read-only)</p>
-          <p style="font-size:11px;color:var(--wf-muted);margin-bottom:14px;">QR matches your scope and role selection above.</p>
-          <div style="width:160px;height:160px;margin:0 auto 14px;background:var(--wf-surface);border:1.5px solid var(--wf-border);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:11px;color:var(--wf-muted);">QR code<br>placeholder</div>
-          <p style="font-size:11px;color:var(--wf-muted);margin-bottom:14px;">Scan to open Miso's shared profile — no app needed.</p>
-          <div style="display:flex;gap:8px;">
-            <button class="btn-secondary" style="flex:1;font-size:13px;padding:8px;">Save QR image</button>
-            <button class="btn-secondary" style="flex:1;font-size:13px;padding:8px;">Print QR</button>
-          </div>
-        </div>
     </div>
   </div>
 

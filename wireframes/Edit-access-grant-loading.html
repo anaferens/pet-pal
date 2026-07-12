@@ -155,6 +155,19 @@
     background: var(--nav-active-bg);
   }
 
+  /* PERSONA FLOWS */
+  .persona-flow {
+    display: block; padding: 8px 10px; margin: 3px 0;
+    border: 1.5px solid var(--wf-border); border-radius: 8px;
+    text-decoration: none; color: var(--nav-text);
+    font-size: 11px; line-height: 1.5; transition: border-color 0.15s, background 0.15s;
+  }
+  .persona-flow:hover { border-color: var(--nav-text); background: var(--nav-active-bg); }
+  .persona-flow strong { font-size: 12px; display: block; margin-bottom: 2px; }
+  .persona-flow .flow-steps {
+    color: var(--nav-cap); font-size: 10px; line-height: 1.6;
+  }
+
   /* ══════════════════════════════════════════
      ZONE LABEL
      ══════════════════════════════════════════ */
@@ -770,7 +783,26 @@
     </div>
     <div class="nav-divider"></div>
     <ul class="nav-tree">
-      <li><span class="nav-section">My Pets</span>
+      <li><span class="nav-section">Persona flows</span>
+        <ul style="padding-left:0;">
+          <li>
+            <a href="My-Pets.html" class="persona-flow">
+              <strong>Pet owner (Ana)</strong>
+              <span class="flow-steps">My Pets &rarr; Pet dossier &rarr; Health &amp; jabs &rarr; Documents &rarr; Personality &amp; care &rarr; Share a pet &rarr; What's due</span>
+            </a>
+          </li>
+          <li>
+            <a href="Shared-pet-view.html" class="persona-flow">
+              <strong>Pet sitter (recipient)</strong>
+              <span class="flow-steps">Shared pet view &rarr; Emergency &amp; allowed</span>
+            </a>
+          </li>
+        </ul>
+      </li>
+
+      <li><div class="nav-divider"></div></li>
+
+<li><span class="nav-section">My Pets</span>
         <ul>
           <li><a href="My-Pets.html">My Pets</a>
             <ul class="state-list">
