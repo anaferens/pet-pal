@@ -823,6 +823,12 @@
             </a>
           </li>
           <li>
+            <a href="My-Pets-empty.html?flow=setup" class="persona-flow">
+              <strong>New pet setup (full journey)</strong>
+              <span class="flow-steps">Empty state &rarr; Set up a pet &rarr; Dossier &rarr; Health &rarr; Documents &rarr; Insurance &rarr; Care notes &rarr; Vet &rarr; Emergency &rarr; Share &rarr; Sitter view</span>
+            </a>
+          </li>
+          <li>
             <a href="Shared-pet-view.html?flow=sitter" class="persona-flow">
               <strong>Pet sitter (recipient)</strong>
               <span class="flow-steps">Shared pet view &rarr; Emergency &amp; allowed</span>
@@ -1328,6 +1334,21 @@ function setView(mode) {
       { file: 'Personality-and-care.html', tip: 'Read care notes. Tap \u201c+ Add\u201d to create a new note' },
       { file: 'Share-a-pet.html', tip: 'Set sharing scope and role, then create a link or show QR code' },
       { file: 'Whats-due.html', tip: 'Check upcoming reminders \u2014 vaccinations, vet visits, renewals' }
+    ],
+    setup: [
+      { file: 'My-Pets-empty.html', tip: 'You have no pets yet. Tap \u201c+ Add your first pet\u201d to get started' },
+      { file: 'Set-up-a-pet.html', tip: 'Fill in your pet\u2019s details \u2014 name, breed, sex, microchip number' },
+      { file: 'home-success.html', tip: 'Your pet dossier is created! Now fill in each section' },
+      { file: 'Health-and-jabs.html', tip: 'Tap \u201cAdd\u201d to log vaccinations, conditions, and medications' },
+      { file: 'Add-record.html', tip: 'Fill in the record \u2014 type, date, vet, and notes \u2014 then save' },
+      { file: 'Documents-and-passport.html', tip: 'Upload EU pet passport, microchip cert, and pedigree papers' },
+      { file: 'Insurance.html', tip: 'Add your pet insurance policy and renewal date' },
+      { file: 'Personality-and-care.html', tip: 'This section holds care notes. Tap \u201c+ Add\u201d to create one' },
+      { file: 'Add-care-note.html', tip: 'Pick a category, write a title and details, then save' },
+      { file: 'Vet-and-appointments.html', tip: 'Add your vet clinic and upcoming appointments' },
+      { file: 'Emergency-info.html', tip: 'Set up emergency contacts, conditions, and vet details' },
+      { file: 'Share-a-pet.html', tip: 'Choose what to share, pick the sitter role, and create a link' },
+      { file: 'Shared-pet-view.html', tip: 'Done! This is what your pet sitter sees when they open the link' }
     ],
     sitter: [
       { file: 'Shared-pet-view.html', tip: 'You received a shared pet link. Review the pet\u2019s profile and care info' },
