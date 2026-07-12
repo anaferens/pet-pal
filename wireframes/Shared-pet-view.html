@@ -1372,7 +1372,26 @@ function setView(mode) {
   var steps = flows[flowName];
   var currentFile = window.location.pathname.split('/').pop().split('?')[0];
   var idx = steps.findIndex(function(s) { return s.file === currentFile; });
-  if (idx === -1) return;
+
+  function tagLinks() {
+    document.querySelectorAll('.phone a, .desktop-view a, .content-mobile a, .content-desktop a').forEach(function(a) {
+      var href = a.getAttribute('href');
+      if (!href || href.startsWith('#') || href.startsWith('http') || href.includes('?flow=')) return;
+      if (href.endsWith('.html')) a.setAttribute('href', href + '?flow=' + flowName);
+    });
+  }
+
+  tagLinks();
+
+  if (idx === -1) {
+    var base = currentFile.replace(/-loading\.html$/, '.html').replace(/-error\.html$/, '.html');
+    var loadingOf = steps.findIndex(function(s) { return s.file === base; });
+    if (loadingOf !== -1) {
+      var next = loadingOf < steps.length - 1 ? steps[loadingOf + 1].file : steps[loadingOf].file;
+      setTimeout(function() { window.location.href = next + '?flow=' + flowName; }, 1200);
+    }
+    return;
+  }
 
   var step = steps[idx];
   var prevHref = idx > 0 ? steps[idx - 1].file + '?flow=' + flowName : null;
