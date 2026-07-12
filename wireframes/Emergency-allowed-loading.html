@@ -71,6 +71,37 @@
     color: var(--nav-cap); font-size: 10px; line-height: 1.6;
   }
 
+  /* FLOW TOOLTIP */
+  .flow-tooltip {
+    display: none; background: #1a1a1a; color: #fff;
+    padding: 10px 14px; font-size: 12px; line-height: 1.5;
+    position: relative; z-index: 50;
+  }
+  .flow-tooltip.visible { display: flex; align-items: center; gap: 10px; }
+  .flow-tooltip .ft-step {
+    font-size: 10px; font-weight: 700; background: rgba(255,255,255,0.2);
+    border-radius: 4px; padding: 2px 7px; white-space: nowrap; flex-shrink: 0;
+  }
+  .flow-tooltip .ft-text { flex: 1; }
+  .flow-tooltip .ft-nav {
+    display: flex; gap: 4px; flex-shrink: 0;
+  }
+  .flow-tooltip .ft-nav a {
+    display: flex; align-items: center; justify-content: center;
+    width: 26px; height: 26px; border-radius: 50%;
+    background: rgba(255,255,255,0.15); color: #fff;
+    text-decoration: none; font-size: 14px; font-weight: 600;
+    transition: background 0.15s;
+  }
+  .flow-tooltip .ft-nav a:hover { background: rgba(255,255,255,0.3); }
+  .flow-tooltip .ft-nav a.ft-disabled { opacity: 0.3; pointer-events: none; }
+  .flow-tooltip .ft-close {
+    background: none; border: none; color: rgba(255,255,255,0.5);
+    font-size: 16px; cursor: pointer; padding: 0 2px; margin-left: 4px;
+  }
+  .flow-tooltip .ft-close:hover { color: #fff; }
+
+
   .zone-label { font-size: 9px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--wf-muted); border: 1px dashed var(--wf-border); border-radius: 2px; padding: 1px 5px; display: inline-block; margin-bottom: 6px; }
   .flow-step { background: var(--wf-surface); border-bottom: 1px solid var(--wf-border); padding: 6px 16px; font-size: 10px; color: var(--wf-muted); text-align: center; letter-spacing: 0.02em; }
   .flow-step span { font-weight: 600; color: var(--wf-text); }
@@ -139,13 +170,13 @@
       <li><span class="nav-section">Persona flows</span>
         <ul style="padding-left:0;">
           <li>
-            <a href="My-Pets.html" class="persona-flow">
+            <a href="My-Pets.html?flow=owner" class="persona-flow">
               <strong>Pet owner (Ana)</strong>
               <span class="flow-steps">My Pets &rarr; Pet dossier &rarr; Health &amp; jabs &rarr; Documents &rarr; Personality &amp; care &rarr; Share a pet &rarr; What's due</span>
             </a>
           </li>
           <li>
-            <a href="Shared-pet-view.html" class="persona-flow">
+            <a href="Shared-pet-view.html?flow=sitter" class="persona-flow">
               <strong>Pet sitter (recipient)</strong>
               <span class="flow-steps">Shared pet view &rarr; Emergency &amp; allowed</span>
             </a>
@@ -493,6 +524,60 @@ function setView(mode) {
   document.getElementById('btn-mobile').setAttribute('aria-pressed', mode === 'mobile');
   document.getElementById('btn-desktop').setAttribute('aria-pressed', mode === 'desktop');
 }
+
+
+(function() {
+  var flows = {
+    owner: [
+      { file: 'My-Pets.html', tip: 'Tap on Miso to open her full pet dossier' },
+      { file: 'home-success.html', tip: 'Browse Miso\u2019s dossier overview. Tap any section card to explore' },
+      { file: 'Health-and-jabs.html', tip: 'Review vaccination records, conditions, and upcoming jabs' },
+      { file: 'Documents-and-passport.html', tip: 'Check EU pet passport and uploaded documents' },
+      { file: 'Personality-and-care.html', tip: 'Read care notes. Tap \u201c+ Add\u201d to create a new note' },
+      { file: 'Share-a-pet.html', tip: 'Set sharing scope and role, then create a link or show QR code' },
+      { file: 'Whats-due.html', tip: 'Check upcoming reminders \u2014 vaccinations, vet visits, renewals' }
+    ],
+    sitter: [
+      { file: 'Shared-pet-view.html', tip: 'You received a shared pet link. Review the pet\u2019s profile and care info' },
+      { file: 'Emergency-allowed.html', tip: 'Check emergency contacts, vet details, and what you\u2019re allowed to do' }
+    ]
+  };
+
+  var params = new URLSearchParams(window.location.search);
+  var flowName = params.get('flow');
+  if (!flowName || !flows[flowName]) return;
+
+  var steps = flows[flowName];
+  var currentFile = window.location.pathname.split('/').pop().split('?')[0];
+  var idx = steps.findIndex(function(s) { return s.file === currentFile; });
+  if (idx === -1) return;
+
+  var step = steps[idx];
+  var prevHref = idx > 0 ? steps[idx - 1].file + '?flow=' + flowName : null;
+  var nextHref = idx < steps.length - 1 ? steps[idx + 1].file + '?flow=' + flowName : null;
+
+  var bar = document.createElement('div');
+  bar.className = 'flow-tooltip visible';
+  bar.innerHTML =
+    '<span class="ft-step">' + (idx + 1) + '/' + steps.length + '</span>' +
+    '<span class="ft-text">' + step.tip + '</span>' +
+    '<span class="ft-nav">' +
+      '<a href="' + (prevHref || '#') + '" class="' + (!prevHref ? 'ft-disabled' : '') + '">&lsaquo;</a>' +
+      '<a href="' + (nextHref || '#') + '" class="' + (!nextHref ? 'ft-disabled' : '') + '">&rsaquo;</a>' +
+    '</span>' +
+    '<button class="ft-close" onclick="this.parentElement.remove();history.replaceState(null,\'\',location.pathname)">&times;</button>';
+
+  var phone = document.querySelector('.phone');
+  if (phone) phone.insertBefore(bar, phone.firstChild);
+
+  var dv = document.querySelector('.desktop-view');
+  if (dv) {
+    var bar2 = bar.cloneNode(true);
+    bar2.querySelector('.ft-close').onclick = function() { bar.remove(); bar2.remove(); history.replaceState(null, '', location.pathname); };
+    dv.insertBefore(bar2, dv.firstChild);
+  }
+})();
+
 </script>
 
 </body>
