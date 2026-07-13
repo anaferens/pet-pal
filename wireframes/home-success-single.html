@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>What's due (empty) — PetPal wireframe</title>
+<title>Pet dossier · 1 pet — PetPal wireframe</title>
 <style>
   :root {
     --wf-bg:         #ffffff;
@@ -35,12 +35,16 @@
     -webkit-font-smoothing: antialiased;
   }
 
+  /* ══════════════════════════════════════════
+     LAYOUT: sidebar + content
+     ══════════════════════════════════════════ */
   .layout {
     display: flex;
     align-items: flex-start;
     min-height: 100vh;
   }
 
+  /* ── SIDEBAR NAV PANEL ── */
   .sidenav {
     position: sticky;
     top: 0;
@@ -70,6 +74,7 @@
     margin: 6px 4px;
   }
 
+  /* ── VIEWPORT TOGGLE ── */
   .viewport-toggle {
     display: flex;
     background: var(--nav-active-bg);
@@ -95,6 +100,7 @@
     box-shadow: 0 1px 3px rgba(0,0,0,0.08);
   }
 
+  /* tree list */
   .nav-tree, .nav-tree ul {
     list-style: none;
     padding: 0;
@@ -192,7 +198,9 @@
   }
   .flow-tooltip .ft-close:hover { color: #fff; }
 
-
+  /* ══════════════════════════════════════════
+     ZONE LABEL
+     ══════════════════════════════════════════ */
   .zone-label {
     font-size: 9px;
     font-weight: 700;
@@ -206,6 +214,9 @@
     margin-bottom: 6px;
   }
 
+  /* ══════════════════════════════════════════
+     FLOW STEP BANNER (shared)
+     ══════════════════════════════════════════ */
   .flow-step {
     background: var(--wf-surface);
     border-bottom: 1px solid var(--wf-border);
@@ -222,11 +233,26 @@
   .state-bar a:hover { color: var(--wf-text); }
   .state-bar a.current { color: var(--wf-text); font-weight: 700; border-bottom-color: var(--wf-text); }
 
+  /* PET SWITCHER */
+  .pet-switcher { display: flex; align-items: center; gap: 4px; padding: 8px 16px; border-bottom: 1px solid var(--wf-border); background: var(--wf-bg); }
+  .pet-switcher-label { font-size: 11px; color: var(--wf-muted); margin-right: 4px; }
+  .pet-pill { display: flex; align-items: center; gap: 6px; padding: 6px 14px; border-radius: 20px; border: 1.5px solid var(--wf-border); background: var(--wf-bg); text-decoration: none; color: var(--wf-muted); font-size: 13px; font-weight: 500; cursor: pointer; transition: all 0.15s; }
+  .pet-pill:hover { border-color: var(--wf-muted); color: var(--wf-text); }
+  .pet-pill.active { background: var(--wf-text); color: var(--wf-btn-text); border-color: var(--wf-text); font-weight: 600; }
+  .pet-pill .pill-avatar { width: 22px; height: 22px; border-radius: 50%; background: var(--wf-placeholder); display: flex; align-items: center; justify-content: center; font-size: 8px; flex-shrink: 0; }
+  .pet-pill.active .pill-avatar { background: var(--wf-muted); }
+
+  /* ══════════════════════════════════════════
+     TOGGLE VISIBILITY
+     ══════════════════════════════════════════ */
   .view-mobile  { display: block; }
   .view-desktop { display: none;  }
   body.is-desktop .view-mobile  { display: none;  }
   body.is-desktop .view-desktop { display: flex; flex-direction: column; }
 
+  /* ══════════════════════════════════════════════
+     MOBILE LAYOUT: phone frame
+     ══════════════════════════════════════════════ */
   .content-mobile {
     flex: 1;
     display: flex;
@@ -246,6 +272,7 @@
     box-shadow: 0 1px 4px rgba(0,0,0,0.06);
   }
 
+  /* mobile header */
   .m-header {
     display: flex;
     align-items: center;
@@ -254,17 +281,76 @@
     border-bottom: 1px solid var(--wf-border);
     min-height: 48px;
   }
+  .m-header .back {
+    font-size: 14px;
+    color: var(--wf-text);
+    background: none;
+    border: none;
+    cursor: pointer;
+  }
   .m-header h1 {
     font-size: 17px;
     font-weight: 600;
   }
+  .m-header .action-edit {
+    font-size: 13px;
+    color: var(--wf-muted);
+    background: none;
+    border: none;
+    cursor: pointer;
+  }
 
+  /* mobile main */
   .m-main {
     flex: 1;
     overflow-y: auto;
     padding-bottom: 20px;
   }
 
+  /* mobile pet identity */
+  .m-pet-identity {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 16px;
+    border-bottom: 1px solid var(--wf-border);
+  }
+
+  /* shared pet photo */
+  .pet-photo {
+    border-radius: 50%;
+    background: var(--wf-placeholder);
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 10px;
+    color: var(--wf-muted);
+  }
+  .pet-photo-m { width: 64px; height: 64px; }
+  .pet-photo-d { width: 88px; height: 88px; font-size: 11px; }
+
+  .pet-info h2, .pet-info h1 { line-height: 1.2; }
+  .pet-info .pet-meta { color: var(--wf-muted); margin-top: 2px; }
+  .pet-info .pet-chip { color: var(--wf-muted); margin-top: 2px; }
+
+  /* mobile quick actions */
+  .m-quick-actions {
+    display: flex;
+    gap: 8px;
+    padding: 12px 16px;
+    border-bottom: 1px solid var(--wf-border);
+  }
+  .m-quick-actions button {
+    flex: 1;
+    padding: 10px 0;
+    font-size: 13px;
+    font-weight: 600;
+    border-radius: 6px;
+    cursor: pointer;
+  }
+
+  /* shared button styles */
   .btn-primary {
     background: var(--wf-btn);
     color: var(--wf-btn-text);
@@ -276,6 +362,82 @@
     border: 1.5px solid var(--wf-border);
   }
 
+  /* mobile fill counter */
+  .m-fill-counter {
+    padding: 14px 16px 6px;
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+  }
+  .count { font-size: 14px; font-weight: 600; }
+  .status { font-size: 12px; color: var(--wf-muted); }
+
+  /* mobile search */
+  .m-search-filter { padding: 0 16px 12px; }
+  .search-bar {
+    padding: 10px 12px;
+    font-size: 14px;
+    border: 1.5px solid var(--wf-border);
+    border-radius: 6px;
+    background: var(--wf-input-bg);
+    color: var(--wf-text);
+    outline: none;
+  }
+  .search-bar::placeholder { color: var(--wf-placeholder); }
+  .m-search-filter .search-bar { width: 100%; }
+
+  /* mobile section list */
+  .m-section-list {
+    list-style: none;
+    padding: 0 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  /* mobile section card */
+  .m-section-card {
+    background: var(--wf-surface);
+    border: 1.5px solid var(--wf-border);
+    border-radius: 8px;
+    padding: 14px;
+    cursor: pointer;
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+  }
+  .m-section-card:hover { border-color: var(--wf-muted); }
+
+  .card-icon {
+    border-radius: 6px;
+    background: var(--wf-placeholder);
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 9px;
+    color: var(--wf-muted);
+  }
+  .card-icon-m { width: 36px; height: 36px; }
+  .card-icon-d { width: 40px; height: 40px; border-radius: 8px; }
+
+  .card-body { flex: 1; min-width: 0; }
+  .card-body h3 { font-size: 15px; font-weight: 600; line-height: 1.3; }
+  .card-detail {
+    font-size: 12px;
+    color: var(--wf-muted);
+    margin-top: 3px;
+    line-height: 1.4;
+  }
+  .card-detail strong { color: var(--wf-text); font-weight: 600; }
+  .card-arrow {
+    color: var(--wf-muted);
+    font-size: 16px;
+    align-self: center;
+    flex-shrink: 0;
+  }
+
+  /* mobile bottom nav */
   .phone-nav {
     border-top: 1px solid var(--wf-border);
     display: flex;
@@ -300,12 +462,16 @@
   }
   .phone-nav a.active .nav-icon { background: var(--wf-muted); }
 
+  /* ══════════════════════════════════════════════
+     DESKTOP LAYOUT
+     ══════════════════════════════════════════════ */
   .content-desktop {
     flex: 1;
     min-width: 0;
     min-height: 100vh;
   }
 
+  /* desktop top nav */
   .top-nav {
     display: flex;
     align-items: center;
@@ -345,12 +511,80 @@
     cursor: pointer;
   }
 
+  /* desktop main */
   .d-main {
     max-width: 960px;
     margin: 0 auto;
     padding: 32px;
     width: 100%;
   }
+
+  /* desktop pet hero */
+  .d-pet-hero {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    padding: 24px;
+    background: var(--wf-surface);
+    border: 1.5px solid var(--wf-border);
+    border-radius: 10px;
+    margin-bottom: 24px;
+  }
+  .d-pet-hero .pet-info { flex: 1; }
+  .d-pet-hero .pet-info h1 { font-size: 26px; font-weight: 700; }
+  .d-pet-hero .pet-info .pet-meta { font-size: 15px; margin-top: 4px; }
+  .d-pet-hero .pet-info .pet-chip { font-size: 12px; margin-top: 4px; }
+  .d-pet-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    flex-shrink: 0;
+  }
+  .d-pet-actions button {
+    padding: 10px 20px;
+    font-size: 13px;
+    font-weight: 600;
+    border-radius: 6px;
+    cursor: pointer;
+    white-space: nowrap;
+  }
+
+  /* desktop toolbar */
+  .d-toolbar {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 20px;
+  }
+  .d-toolbar .spacer { flex: 1; }
+  .d-toolbar .search-bar { width: 280px; }
+
+  /* desktop card grid */
+  .d-section-grid {
+    list-style: none;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+  .d-section-card {
+    background: var(--wf-surface);
+    border: 1.5px solid var(--wf-border);
+    border-radius: 10px;
+    padding: 20px;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    transition: border-color 0.12s;
+  }
+  .d-section-card:hover { border-color: var(--wf-muted); }
+  .d-card-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .d-card-header h3 { font-size: 16px; font-weight: 600; flex: 1; }
+  .d-section-card .card-detail { font-size: 13px; line-height: 1.5; }
 
   .d-footer {
     border-top: 1px solid var(--wf-border);
@@ -360,92 +594,7 @@
     text-align: center;
   }
 
-  /* ══════════════════════════════════════════════
-     EMPTY STATE
-     ══════════════════════════════════════════════ */
-  .empty-state {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    padding: 48px 24px;
-    min-height: 400px;
-  }
-  .empty-illustration {
-    width: 120px;
-    height: 120px;
-    background: var(--wf-placeholder);
-    border-radius: 16px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 11px;
-    color: var(--wf-muted);
-    margin-bottom: 20px;
-  }
-  .empty-state h2 {
-    font-size: 18px;
-    font-weight: 700;
-    margin-bottom: 8px;
-  }
-  .empty-state p {
-    font-size: 14px;
-    color: var(--wf-muted);
-    max-width: 280px;
-    margin-bottom: 20px;
-    line-height: 1.5;
-  }
-  .empty-state button {
-    padding: 12px 24px;
-    font-size: 14px;
-    font-weight: 600;
-    border-radius: 8px;
-    cursor: pointer;
-  }
-
-  /* desktop empty state */
-  .d-empty-state {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    padding: 80px 32px;
-    min-height: 400px;
-  }
-  .d-empty-illustration {
-    width: 120px;
-    height: 120px;
-    background: var(--wf-placeholder);
-    border-radius: 16px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 11px;
-    color: var(--wf-muted);
-    margin-bottom: 24px;
-  }
-  .d-empty-state h2 {
-    font-size: 22px;
-    font-weight: 700;
-    margin-bottom: 10px;
-  }
-  .d-empty-state p {
-    font-size: 15px;
-    color: var(--wf-muted);
-    max-width: 380px;
-    margin-bottom: 24px;
-    line-height: 1.5;
-  }
-  .d-empty-state button {
-    padding: 12px 28px;
-    font-size: 15px;
-    font-weight: 600;
-    border-radius: 8px;
-    cursor: pointer;
-  }
-
+  /* ── RESPONSIVE ── */
   @media (max-width: 700px) {
     .layout { flex-direction: column; }
     .sidenav {
@@ -456,6 +605,11 @@
     .content-mobile { padding: 16px; }
     .phone { min-height: auto; }
     .d-main { padding: 20px 16px; }
+    .d-section-grid { grid-template-columns: 1fr; }
+    .d-pet-hero { flex-direction: column; text-align: center; }
+    .d-pet-actions { flex-direction: row; }
+    .d-toolbar { flex-wrap: wrap; }
+    .d-toolbar .search-bar { width: 100%; }
   }
 </style>
 </head>
@@ -463,13 +617,21 @@
 
 <div class="layout">
 
+  <!-- ═══════════════════════════════════════════
+       SIDEBAR
+       ═══════════════════════════════════════════ -->
+
   <aside class="sidenav" aria-label="Wireframe navigation">
     <a class="brand" href="#">PetPal Wireframes</a>
+
+    <!-- VIEWPORT TOGGLE -->
     <div class="viewport-toggle" role="radiogroup" aria-label="Layout toggle">
       <button id="btn-mobile" class="active" aria-pressed="true" onclick="setView('mobile')">Mobile</button>
       <button id="btn-desktop" aria-pressed="false" onclick="setView('desktop')">Desktop</button>
     </div>
+
     <div class="nav-divider"></div>
+
     <ul class="nav-tree">
       <li><span class="nav-section">Persona flows</span>
         <ul style="padding-left:0;">
@@ -496,7 +658,7 @@
 
       <li><div class="nav-divider"></div></li>
 
-<li><span class="nav-section">My Pets</span>
+      <li><span class="nav-section">My Pets</span>
         <ul>
           <li><a href="My-Pets.html">My Pets</a>
             <ul class="state-list">
@@ -515,13 +677,15 @@
           </li>
         </ul>
       </li>
+
       <li><div class="nav-divider"></div></li>
+
       <li><span class="nav-section">Pet dossier</span>
         <ul>
-          <li><a href="home-success.html">Pet dossier</a>
+          <li><a href="home-success.html" class="active">Pet dossier</a>
             <ul class="state-list">
               <li><a href="home-success.html">success</a></li>
-              <li><a href="home-success-single.html">success · 1 pet</a></li>
+              <li><a href="home-success-single.html" class="active">success · 1 pet</a></li>
               <li><a href="home-empty.html">empty</a></li>
               <li><a href="home-new.html">new pet</a></li>
               <li><a href="home-loading.html">loading</a></li>
@@ -578,7 +742,9 @@
           </li>
         </ul>
       </li>
+
       <li><div class="nav-divider"></div></li>
+
       <li><span class="nav-section">Actions</span>
         <ul>
           <li><a href="Add-record.html">Add / update a record</a>
@@ -612,13 +778,14 @@
           </li>
         </ul>
       </li>
+
       <li><div class="nav-divider"></div></li>
+
       <li><span class="nav-section">Share</span>
         <ul>
           <li><a href="Share-a-pet.html">Share a pet</a>
             <ul class="state-list">
               <li><a href="Share-a-pet.html">success</a></li>
-              <li><a href="Share-a-pet-empty.html">empty</a></li>
               <li><a href="Share-a-pet-loading.html">loading</a></li>
               <li><a href="Share-a-pet-error.html">error</a></li>
             </ul>
@@ -640,20 +807,24 @@
           </li>
         </ul>
       </li>
+
       <li><div class="nav-divider"></div></li>
+
       <li><span class="nav-section">What's due</span>
         <ul>
-          <li><a href="Whats-due.html" class="active">What's due</a>
+          <li><a href="Whats-due.html">What's due</a>
             <ul class="state-list">
               <li><a href="Whats-due.html">success</a></li>
-              <li><a href="Whats-due-empty.html" class="active">empty</a></li>
+              <li><a href="Whats-due-empty.html">empty</a></li>
               <li><a href="Whats-due-loading.html">loading</a></li>
               <li><a href="Whats-due-error.html">error</a></li>
             </ul>
           </li>
         </ul>
       </li>
+
       <li><div class="nav-divider"></div></li>
+
       <li><span class="nav-section">Recipient</span>
         <ul>
           <li><a href="Shared-pet-view.html">Shared pet view</a>
@@ -674,7 +845,9 @@
           </li>
         </ul>
       </li>
+
       <li><div class="nav-divider"></div></li>
+
       <li><span class="nav-section">Deep actions</span>
         <ul>
           <li><a href="Emergency-auth-setup.html">Emergency auth setup</a>
@@ -698,36 +871,156 @@
     <div class="phone">
 
       <div class="state-bar" aria-label="Screen states">
-        <a href="Whats-due.html">Success</a>
-        <a href="Whats-due-empty.html" class="current">Empty</a>
-        <a href="Whats-due-loading.html">Loading</a>
-        <a href="Whats-due-error.html">Error</a>
+        <a href="home-success.html">Success</a>
+        <a href="home-empty.html">Empty</a>
+        <a href="home-loading.html">Loading</a>
+        <a href="home-error.html">Error</a>
       </div>
 
       <div class="flow-step">
-        R1 · What's due — <span>What's due</span> → section → Add/update a record
+        Main job · step 2 of 4 — <span>My Pets → ★ Pet dossier</span> → sections → Share
       </div>
 
       <header class="m-header">
-        <span></span>
-        <h1>What's due</h1>
-        <span></span>
+        <a href="My-Pets.html" style="text-decoration:none;"><button class="back" aria-label="Back to My Pets">← My Pets</button></a>
+        <h1>Miso</h1>
+        <button class="action-edit">Edit</button>
       </header>
 
-      <main class="m-main">
-        <section class="empty-state" aria-label="No reminders">
-          <figure class="empty-illustration" alt="No reminders illustration placeholder">illustration</figure>
-          <h2>Nothing due right now</h2>
-          <p>When you add vaccinations, appointments, or insurance, their due dates appear here automatically.</p>
-          <a href="My-Pets.html" style="text-decoration:none;"><button class="btn-primary">Go to My Pets</button></a>
+      <div class="m-main">
+
+        <section class="m-pet-identity" aria-label="Pet identity">
+          <div class="zone-label">Pet identity</div>
+          <figure class="pet-photo pet-photo-m" aria-label="Pet photo placeholder">photo</figure>
+          <div class="pet-info">
+            <h2 style="font-size:20px;font-weight:700;">Miso</h2>
+            <p class="pet-meta" style="font-size:13px;">Dog · Border Terrier · Female</p>
+            <p class="pet-chip" style="font-size:11px;">Microchip 276 098 106 412 345</p>
+          </div>
         </section>
-      </main>
+
+        <section class="m-quick-actions" aria-label="Quick actions">
+          <a href="Share-a-pet.html"><button class="btn-primary">Share Miso's info</button></a>
+          <a href="Set-up-a-pet.html"><button class="btn-secondary">Edit pet details</button></a>
+        </section>
+
+        <section class="m-fill-counter" aria-label="Dossier completeness">
+          <div class="zone-label">Counter</div>
+          <span class="count">5 of 6 sections filled</span>
+          <span class="status">Updated 2 days ago</span>
+        </section>
+
+        <section class="m-search-filter" aria-label="Search sections">
+          <div class="zone-label">Search &amp; filter</div>
+          <input class="search-bar" type="search" placeholder="Search sections, records, documents…" aria-label="Search sections">
+        </section>
+
+                <ul class="m-section-list" aria-label="Dossier sections">
+
+          <li>
+            <a href="Health-and-jabs.html" style="text-decoration:none;color:inherit;display:block;"><article class="m-section-card">
+              <div class="card-icon card-icon-m">icon</div>
+              <div class="card-body">
+                <div class="zone-label">Card entry point → Health &amp; jabs</div>
+                <h3>Health &amp; jabs</h3>
+                <p class="card-detail">
+                  <strong>6 records</strong> · Updated 3 days ago<br>
+                  Rabies (due 15 Mar 2027) · DHPP · Leptospirosis<br>
+                  Condition: atopic dermatitis · Apoquel 16 mg daily
+                </p>
+              </div>
+              <span class="card-arrow" aria-hidden="true">→</span>
+            </article></a>
+          </li>
+
+          <li>
+            <a href="Documents-and-passport.html" style="text-decoration:none;color:inherit;display:block;"><article class="m-section-card">
+              <div class="card-icon card-icon-m">icon</div>
+              <div class="card-body">
+                <div class="zone-label">Card entry point → Documents &amp; passport</div>
+                <h3>Documents &amp; passport</h3>
+                <p class="card-detail">
+                  <strong>4 documents</strong> · Updated 1 week ago<br>
+                  EU Pet Passport DE-0812345 · Microchip registration<br>
+                  Rabies certificate · Pedigree papers
+                </p>
+              </div>
+              <span class="card-arrow" aria-hidden="true">→</span>
+            </article></a>
+          </li>
+
+          <li>
+            <a href="Insurance.html" style="text-decoration:none;color:inherit;display:block;"><article class="m-section-card">
+              <div class="card-icon card-icon-m">icon</div>
+              <div class="card-body">
+                <div class="zone-label">Card entry point → Insurance</div>
+                <h3>Insurance</h3>
+                <p class="card-detail">
+                  <strong>1 active policy</strong> · Renews 1 Oct 2026<br>
+                  Lassie Haustierversicherung · OP-Schutz Plus<br>
+                  Premium €29.90 / month · Covers surgery, inpatient
+                </p>
+              </div>
+              <span class="card-arrow" aria-hidden="true">→</span>
+            </article></a>
+          </li>
+
+          <li>
+            <a href="Personality-and-care.html" style="text-decoration:none;color:inherit;display:block;"><article class="m-section-card">
+              <div class="card-icon card-icon-m">icon</div>
+              <div class="card-body">
+                <div class="zone-label">Card entry point → Personality &amp; care</div>
+                <h3>Personality &amp; care</h3>
+                <p class="card-detail">
+                  <strong>Profile filled</strong> · Updated 5 days ago<br>
+                  Calm, affectionate, loves belly rubs<br>
+                  Not friendly with: small rodents, off-leash terriers<br>
+                  Food: Royal Canin Maxi Adult, 350 g twice daily
+                </p>
+              </div>
+              <span class="card-arrow" aria-hidden="true">→</span>
+            </article></a>
+          </li>
+
+          <li>
+            <a href="Vet-and-appointments.html" style="text-decoration:none;color:inherit;display:block;"><article class="m-section-card">
+              <div class="card-icon card-icon-m">icon</div>
+              <div class="card-body">
+                <div class="zone-label">Card entry point → Vet &amp; appointments</div>
+                <h3>Vet &amp; appointments</h3>
+                <p class="card-detail">
+                  <strong>Tierklinik am Stadtpark</strong> · Dr. Müller<br>
+                  Next: annual checkup, 15 Aug 2026, 10:00<br>
+                  Last visit: dental cleaning, 20 May 2026
+                </p>
+              </div>
+              <span class="card-arrow" aria-hidden="true">→</span>
+            </article></a>
+          </li>
+
+          <li>
+            <article class="m-section-card" style="border-style: dashed;">
+              <div class="card-icon card-icon-m">icon</div>
+              <div class="card-body">
+                <div class="zone-label">Card entry point → Emergency info (step 08)</div>
+                <h3>Emergency info &amp; authorisation</h3>
+                <p class="card-detail">
+                  <strong>Not filled yet</strong><br>
+                  Vet contact, current meds, conditions, emergency contact — what a carer needs if something goes wrong
+                </p>
+              </div>
+              <span class="card-arrow" aria-hidden="true">→</span>
+            </article>
+          </li>
+
+        </ul>
+      </div>
 
       <nav class="phone-nav" aria-label="Main navigation">
-        <a href="My-Pets.html">
+        <a href="My-Pets.html" class="active">
           <span class="nav-icon" aria-hidden="true"></span> Pets
         </a>
-        <a href="Whats-due.html" class="active">
+        <a href="Whats-due.html">
           <span class="nav-icon" aria-hidden="true"></span> What's due
         </a>
         <a href="Share-a-pet.html">
@@ -746,38 +1039,148 @@
   <div class="content-desktop view-desktop">
 
     <div class="state-bar" aria-label="Screen states">
-      <a href="Whats-due.html">Success</a>
-      <a href="Whats-due-empty.html" class="current">Empty</a>
-      <a href="Whats-due-loading.html">Loading</a>
-      <a href="Whats-due-error.html">Error</a>
+      <a href="home-success.html">Success</a>
+      <a href="home-empty.html">Empty</a>
+      <a href="home-loading.html">Loading</a>
+      <a href="home-error.html">Error</a>
     </div>
 
     <div class="flow-step" style="text-align:left;padding-left:32px;">
       <span class="zone-label">Desktop</span> &nbsp;
-      R1 · What's due — <span>What's due</span> → section → Add/update a record
+      Main job · step 2 of 4 — <span>My Pets → ★ Pet dossier</span> → sections → Share
     </div>
 
     <nav class="top-nav" aria-label="Main navigation (desktop)">
       <span class="nav-brand">PetPal</span>
-      <a href="My-Pets.html">Pets</a>
-      <a href="Whats-due.html" class="active">What's due</a>
+      <a href="My-Pets.html" class="active">Pets</a>
+      <a href="Whats-due.html">What's due</a>
       <a href="Share-a-pet.html">Share</a>
       <span class="nav-spacer"></span>
+      <a href="Set-up-a-pet.html"><button class="nav-action">Edit pet details</button></a>
     </nav>
 
     <div class="d-main">
-      <h1 style="font-size:26px;font-weight:700;margin-bottom:20px;">What's due</h1>
 
-      <section class="d-empty-state" aria-label="No reminders">
-        <figure class="d-empty-illustration" alt="No reminders illustration placeholder">illustration</figure>
-        <h2>Nothing due right now</h2>
-        <p>When you add vaccinations, appointments, or insurance, their due dates appear here automatically.</p>
-        <a href="My-Pets.html" style="text-decoration:none;"><button class="btn-primary">Go to My Pets</button></a>
+      <section class="d-pet-hero" aria-label="Pet identity">
+        <div class="zone-label">Pet identity · desktop hero</div>
+        <figure class="pet-photo pet-photo-d" aria-label="Pet photo placeholder">photo</figure>
+        <div class="pet-info">
+          <h1>Miso</h1>
+          <p class="pet-meta" style="font-size:15px;">Dog · Border Terrier · Female</p>
+          <p class="pet-chip" style="font-size:12px;">Microchip 276 098 106 412 345</p>
+        </div>
+        <div class="d-pet-actions">
+          <a href="Share-a-pet.html"><button class="btn-primary">Share Miso's info</button></a>
+          <a href="Set-up-a-pet.html"><button class="btn-secondary">Edit pet details</button></a>
+        </div>
       </section>
+
+      <section class="d-toolbar" aria-label="Dossier toolbar">
+        <div class="zone-label">Counter</div>
+        <span class="count">5 of 6 sections filled</span>
+        <span class="status">· Updated 2 days ago</span>
+        <span class="spacer"></span>
+        <div class="zone-label">Search &amp; filter</div>
+        <input class="search-bar" type="search" placeholder="Search sections, records, documents…" aria-label="Search sections">
+      </section>
+
+            <ul class="d-section-grid" aria-label="Dossier sections">
+
+        <li>
+          <a href="Health-and-jabs.html" style="text-decoration:none;color:inherit;display:block;"><article class="d-section-card">
+            <div class="d-card-header">
+              <div class="card-icon card-icon-d">icon</div>
+              <h3>Health &amp; jabs</h3>
+              <span class="card-arrow" aria-hidden="true">→</span>
+            </div>
+            <p class="card-detail">
+              <strong>6 records</strong> · Updated 3 days ago<br>
+              Rabies (due 15 Mar 2027) · DHPP · Leptospirosis<br>
+              Condition: atopic dermatitis · Apoquel 16 mg daily
+            </p>
+          </article></a>
+        </li>
+
+        <li>
+          <a href="Documents-and-passport.html" style="text-decoration:none;color:inherit;display:block;"><article class="d-section-card">
+            <div class="d-card-header">
+              <div class="card-icon card-icon-d">icon</div>
+              <h3>Documents &amp; passport</h3>
+              <span class="card-arrow" aria-hidden="true">→</span>
+            </div>
+            <p class="card-detail">
+              <strong>4 documents</strong> · Updated 1 week ago<br>
+              EU Pet Passport DE-0812345 · Microchip registration<br>
+              Rabies certificate · Pedigree papers
+            </p>
+          </article></a>
+        </li>
+
+        <li>
+          <a href="Insurance.html" style="text-decoration:none;color:inherit;display:block;"><article class="d-section-card">
+            <div class="d-card-header">
+              <div class="card-icon card-icon-d">icon</div>
+              <h3>Insurance</h3>
+              <span class="card-arrow" aria-hidden="true">→</span>
+            </div>
+            <p class="card-detail">
+              <strong>1 active policy</strong> · Renews 1 Oct 2026<br>
+              Lassie Haustierversicherung · OP-Schutz Plus<br>
+              Premium €29.90 / month · Covers surgery, inpatient
+            </p>
+          </article></a>
+        </li>
+
+        <li>
+          <a href="Personality-and-care.html" style="text-decoration:none;color:inherit;display:block;"><article class="d-section-card">
+            <div class="d-card-header">
+              <div class="card-icon card-icon-d">icon</div>
+              <h3>Personality &amp; care</h3>
+              <span class="card-arrow" aria-hidden="true">→</span>
+            </div>
+            <p class="card-detail">
+              <strong>Profile filled</strong> · Updated 5 days ago<br>
+              Calm, affectionate, loves belly rubs<br>
+              Not friendly with: small rodents, off-leash terriers<br>
+              Food: Royal Canin Maxi Adult, 350 g twice daily
+            </p>
+          </article></a>
+        </li>
+
+        <li>
+          <a href="Vet-and-appointments.html" style="text-decoration:none;color:inherit;display:block;"><article class="d-section-card">
+            <div class="d-card-header">
+              <div class="card-icon card-icon-d">icon</div>
+              <h3>Vet &amp; appointments</h3>
+              <span class="card-arrow" aria-hidden="true">→</span>
+            </div>
+            <p class="card-detail">
+              <strong>Tierklinik am Stadtpark</strong> · Dr. Müller<br>
+              Next: annual checkup, 15 Aug 2026, 10:00<br>
+              Last visit: dental cleaning, 20 May 2026
+            </p>
+          </article></a>
+        </li>
+
+        <li>
+          <article class="d-section-card" style="border-style: dashed;">
+            <div class="d-card-header">
+              <div class="card-icon card-icon-d">icon</div>
+              <h3>Emergency info &amp; authorisation</h3>
+              <span class="card-arrow" aria-hidden="true">→</span>
+            </div>
+            <p class="card-detail">
+              <strong>Not filled yet</strong><br>
+              Vet contact, current meds, conditions, emergency contact — what a carer needs if something goes wrong
+            </p>
+          </article>
+        </li>
+
+      </ul>
     </div>
 
     <footer class="d-footer">
-      What's due · empty state · no reminders yet
+      Pet dossier · desktop adaptation · same content as mobile, layout expanded for wide screens
     </footer>
   </div>
 
@@ -792,7 +1195,6 @@ function setView(mode) {
   document.getElementById('btn-desktop').setAttribute('aria-pressed', mode === 'desktop');
 }
 
-
 (function() {
   var flows = {
     owner: [
@@ -800,19 +1202,19 @@ function setView(mode) {
       { file: 'home-success.html', tip: 'Browse Miso\u2019s dossier overview. Tap any section card to explore' },
       { file: 'Health-and-jabs.html', tip: 'Review vaccination records, conditions, and upcoming jabs' },
       { file: 'Documents-and-passport.html', tip: 'Check EU pet passport and uploaded documents' },
-      { file: 'Personality-and-care.html', tip: 'Read care notes. Tap \u201c+ Add\u201d to create a new note' },
+      { file: 'Personality-and-care.html', tip: 'Read care notes. Tap “+ Add” to create a new note' },
       { file: 'Share-a-pet.html', tip: 'Set sharing scope and role, then create a link or show QR code' },
-      { file: 'Whats-due.html', tip: 'Check upcoming reminders \u2014 vaccinations, vet visits, renewals' }
+      { file: 'Whats-due.html', tip: 'Check upcoming reminders — vaccinations, vet visits, renewals' }
     ],
     setup: [
-      { file: 'My-Pets-empty.html', tip: 'You have no pets yet. Tap \u201c+ Add your first pet\u201d to get started' },
-      { file: 'Set-up-a-pet.html', tip: 'Fill in your pet\u2019s details \u2014 name, breed, sex, microchip number' },
+      { file: 'My-Pets-empty.html', tip: 'You have no pets yet. Tap "+ Add your first pet" to get started' },
+      { file: 'Set-up-a-pet.html', tip: 'Fill in your pet\u2019s details — name, breed, sex, microchip number' },
       { file: 'home-new.html', tip: 'Nice! Tap \u201c+ Add info\u201d to begin adding notes' },
-      { file: 'Health-and-jabs.html', tip: 'Tap \u201cAdd\u201d to log vaccinations, conditions, and medications' },
-      { file: 'Add-record.html', tip: 'Fill in the record \u2014 type, date, vet, and notes \u2014 then save' },
+      { file: 'Health-and-jabs.html', tip: 'Tap "Add" to log vaccinations, conditions, and medications' },
+      { file: 'Add-record.html', tip: 'Fill in the record — type, date, vet, and notes — then save' },
       { file: 'Documents-and-passport.html', tip: 'Upload EU pet passport, microchip cert, and pedigree papers' },
       { file: 'Insurance.html', tip: 'Add your pet insurance policy and renewal date' },
-      { file: 'Personality-and-care.html', tip: 'This section holds care notes. Tap \u201c+ Add\u201d to create one' },
+      { file: 'Personality-and-care.html', tip: 'This section holds care notes. Tap "+ Add" to create one' },
       { file: 'Add-care-note.html', tip: 'Pick a category, write a title and details, then save' },
       { file: 'Vet-and-appointments.html', tip: 'Add your vet clinic and upcoming appointments' },
       { file: 'Emergency-info.html', tip: 'Set up emergency contacts, conditions, and vet details' },
@@ -877,8 +1279,8 @@ function setView(mode) {
     bar2.querySelector('.ft-close').onclick = function() { bar.remove(); bar2.remove(); history.replaceState(null, '', location.pathname); };
     dv.insertBefore(bar2, dv.firstChild);
   }
-})();
 
+})();
 </script>
 
 </body>
