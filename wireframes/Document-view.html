@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Emergency authorization setup — PetPal wireframe</title>
+<title>Document view — PetPal wireframe</title>
 <style>
   :root {
     --wf-bg:         #ffffff;
@@ -124,13 +124,15 @@
 
   /* MOBILE LAYOUT */
   .content-mobile { flex: 1; display: flex; justify-content: center; padding: 24px; min-height: 100vh; }
-  .phone { width: 375px; min-height: 812px; background: var(--wf-bg); border: 1.5px solid var(--wf-border); border-radius: 12px; display: flex; flex-direction: column; overflow: hidden; box-shadow: 0 1px 4px rgba(0,0,0,0.06); }
+  .phone { position: relative; width: 375px; min-height: 812px; background: var(--wf-bg); border: 1.5px solid var(--wf-border); border-radius: 12px; display: flex; flex-direction: column; overflow: hidden; box-shadow: 0 1px 4px rgba(0,0,0,0.06); }
+  .fab { position: absolute; right: 16px; bottom: 76px; width: 56px; height: 56px; border-radius: 50%; background: var(--wf-btn); color: var(--wf-btn-text); font-size: 28px; line-height: 1; border: none; cursor: pointer; display: flex; align-items: center; justify-content: center; text-decoration: none; box-shadow: 0 4px 14px rgba(0,0,0,0.28); z-index: 10; }
   .m-header { display: flex; align-items: center; justify-content: space-between; padding: 12px 16px; border-bottom: 1px solid var(--wf-border); min-height: 48px; }
   .m-header .back { font-size: 14px; color: var(--wf-text); background: none; border: none; cursor: pointer; }
   .m-header h1 { font-size: 17px; font-weight: 600; }
+  .m-header .action-btn { font-size: 13px; color: var(--wf-muted); background: none; border: none; cursor: pointer; }
   .m-main { flex: 1; overflow-y: auto; padding-bottom: 20px; }
 
-  /* PET IDENTITY STRIP */
+  /* PET IDENTITY STRIP (small, for sections) */
   .m-pet-identity { display: flex; align-items: center; gap: 10px; padding: 12px 16px; border-bottom: 1px solid var(--wf-border); }
   .pet-photo { border-radius: 50%; background: var(--wf-placeholder); flex-shrink: 0; display: flex; align-items: center; justify-content: center; font-size: 10px; color: var(--wf-muted); }
   .pet-photo-s { width: 40px; height: 40px; }
@@ -138,59 +140,136 @@
   .pet-photo-d { width: 88px; height: 88px; font-size: 11px; }
   .pet-info h2, .pet-info h1 { line-height: 1.2; }
   .pet-info .pet-meta { color: var(--wf-muted); margin-top: 2px; }
+  .pet-info .pet-chip { color: var(--wf-muted); margin-top: 2px; }
 
   /* BUTTONS */
   .btn-primary { background: var(--wf-btn); color: var(--wf-btn-text); border: none; padding: 10px 20px; font-size: 14px; font-weight: 600; border-radius: 6px; cursor: pointer; }
   .btn-secondary { background: var(--wf-btn-sec); color: var(--wf-text); border: 1.5px solid var(--wf-border); padding: 10px 20px; font-size: 14px; font-weight: 600; border-radius: 6px; cursor: pointer; }
   .btn-primary:disabled { opacity: 0.5; cursor: not-allowed; }
 
+  /* PET CARD (My Pets) */
+  .pet-card { background: var(--wf-surface); border: 1.5px solid var(--wf-border); border-radius: 8px; padding: 16px; display: flex; gap: 14px; align-items: center; cursor: pointer; }
+  .pet-card:hover { border-color: var(--wf-muted); }
+  .pet-card-info { flex: 1; }
+  .pet-card-info h3 { font-size: 17px; font-weight: 600; }
+  .pet-card-info .pet-meta { font-size: 13px; color: var(--wf-muted); margin-top: 2px; }
+  .pet-card-info .fill-hint { font-size: 12px; color: var(--wf-muted); margin-top: 4px; }
+  .card-arrow { color: var(--wf-muted); font-size: 16px; flex-shrink: 0; }
+
+  /* SECTION CARD (dossier) */
+  .m-section-card { background: var(--wf-surface); border: 1.5px solid var(--wf-border); border-radius: 8px; padding: 14px; cursor: pointer; display: flex; gap: 12px; align-items: flex-start; }
+  .m-section-card:hover { border-color: var(--wf-muted); }
+  .card-icon { border-radius: 6px; background: var(--wf-placeholder); flex-shrink: 0; display: flex; align-items: center; justify-content: center; font-size: 9px; color: var(--wf-muted); }
+  .card-icon-m { width: 36px; height: 36px; }
+  .card-body { flex: 1; min-width: 0; }
+  .card-body h3 { font-size: 15px; font-weight: 600; line-height: 1.3; }
+  .card-detail { font-size: 12px; color: var(--wf-muted); margin-top: 3px; line-height: 1.4; }
+  .card-detail strong { color: var(--wf-text); font-weight: 600; }
+
+  /* RECORD ENTRY */
+  .record-entry { display: flex; align-items: flex-start; justify-content: space-between; padding: 14px 16px; border-bottom: 1px solid var(--wf-border); }
+  .record-entry:last-child { border-bottom: none; }
+  .record-info h3 { font-size: 15px; font-weight: 600; }
+  .record-info .record-meta { font-size: 12px; color: var(--wf-muted); margin-top: 2px; }
+  .record-status { font-size: 11px; font-weight: 600; padding: 3px 8px; border-radius: 4px; background: var(--wf-surface); border: 1px solid var(--wf-border); flex-shrink: 0; margin-left: 8px; align-self: center; }
+  .record-action { font-size: 12px; color: var(--wf-muted); background: none; border: none; cursor: pointer; flex-shrink: 0; align-self: center; }
+
   /* FORM */
-  fieldset { border: none; padding: 0; margin: 0 16px 16px; }
-  legend { font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em; color: var(--wf-muted); padding: 16px 0 8px; display: block; width: 100%; }
-  .form-group { margin-bottom: 14px; }
+  .form-group { padding: 0 16px; margin-bottom: 16px; }
   .form-group label { display: block; font-size: 13px; font-weight: 600; margin-bottom: 4px; }
   .form-group label .req { color: var(--wf-muted); }
-  .form-group input,
-  .form-group select,
-  .form-group textarea { width: 100%; padding: 10px 12px; font-size: 14px; border: 1.5px solid var(--wf-border); border-radius: 6px; background: var(--wf-input-bg); color: var(--wf-text); font-family: inherit; }
-  .form-group textarea { min-height: 70px; resize: vertical; }
-  .form-group .helper { font-size: 11px; color: var(--wf-muted); margin-top: 4px; line-height: 1.4; }
-  .form-group input::placeholder,
-  .form-group textarea::placeholder { color: var(--wf-placeholder); }
-  .form-group select { appearance: auto; }
-
-  /* INPUT WITH PREFIX */
-  .input-prefix-wrap { display: flex; align-items: stretch; }
-  .input-prefix-wrap .prefix { display: flex; align-items: center; padding: 0 10px; font-size: 14px; font-weight: 600; color: var(--wf-muted); background: var(--wf-surface); border: 1.5px solid var(--wf-border); border-right: none; border-radius: 6px 0 0 6px; }
-  .input-prefix-wrap input { border-radius: 0 6px 6px 0; }
-
-  /* TOGGLE */
-  .toggle-row { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 4px 0; }
-  .toggle-label { font-size: 14px; font-weight: 600; flex: 1; }
-  .toggle-switch { position: relative; width: 44px; height: 24px; flex-shrink: 0; }
-  .toggle-switch input { opacity: 0; width: 0; height: 0; position: absolute; }
-  .toggle-track { display: block; width: 44px; height: 24px; background: var(--wf-placeholder); border-radius: 12px; cursor: pointer; position: relative; transition: background 0.15s; }
-  .toggle-track::after { content: ''; position: absolute; top: 2px; left: 2px; width: 20px; height: 20px; background: var(--wf-bg); border-radius: 50%; transition: transform 0.15s; }
-  .toggle-switch input:checked + .toggle-track { background: var(--wf-btn); }
-  .toggle-switch input:checked + .toggle-track::after { transform: translateX(20px); }
-
-  /* CONTACT ROW */
-  .contact-row { display: flex; align-items: center; gap: 10px; padding: 10px 0; border-bottom: 1px solid var(--wf-border); }
-  .contact-row:last-child { border-bottom: none; }
-  .contact-avatar { width: 32px; height: 32px; border-radius: 50%; background: var(--wf-placeholder); flex-shrink: 0; display: flex; align-items: center; justify-content: center; font-size: 9px; color: var(--wf-muted); }
-  .contact-row .contact-info { flex: 1; }
-  .contact-row .contact-info h4 { font-size: 14px; font-weight: 600; }
-  .contact-row .contact-info .contact-meta { font-size: 12px; color: var(--wf-muted); }
-  .contact-row .contact-role { font-size: 11px; color: var(--wf-muted); font-weight: 500; }
-  .contact-row .edit-link { font-size: 13px; color: var(--wf-text); text-decoration: underline; flex-shrink: 0; }
-
-  /* FORM ACTIONS */
+  .form-group input, .form-group select, .form-group textarea { width: 100%; padding: 10px 12px; font-size: 14px; border: 1.5px solid var(--wf-border); border-radius: 6px; background: var(--wf-input-bg); color: var(--wf-text); }
+  .form-group textarea { min-height: 80px; resize: vertical; }
+  .form-group .helper { font-size: 11px; color: var(--wf-muted); margin-top: 4px; }
+  .form-group input::placeholder, .form-group textarea::placeholder { color: var(--wf-placeholder); }
   .form-actions { padding: 16px; display: flex; gap: 8px; }
   .form-actions button { flex: 1; }
 
-  /* ERROR BANNER */
+  /* SECTION HEADING */
+  .section-heading { padding: 16px 16px 8px; font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em; color: var(--wf-muted); }
+
+  /* PINNED CARD (conditions/meds) */
+  .pinned-card { margin: 12px 16px; padding: 14px; background: var(--wf-surface); border: 1.5px solid var(--wf-border); border-radius: 8px; }
+  .pinned-card h3 { font-size: 14px; font-weight: 600; margin-bottom: 6px; }
+  .pinned-card p { font-size: 12px; color: var(--wf-muted); line-height: 1.5; }
+
+  /* DOCUMENT CARD */
+  .doc-card { display: flex; gap: 12px; padding: 14px 16px; border-bottom: 1px solid var(--wf-border); align-items: center; }
+  .doc-thumb { width: 48px; height: 48px; border-radius: 6px; background: var(--wf-placeholder); flex-shrink: 0; display: flex; align-items: center; justify-content: center; font-size: 9px; color: var(--wf-muted); }
+  .doc-info { flex: 1; }
+  .doc-info h3 { font-size: 14px; font-weight: 600; }
+  .doc-info .doc-meta { font-size: 12px; color: var(--wf-muted); margin-top: 2px; }
+
+  /* POLICY CARD */
+  .policy-card { margin: 12px 16px; padding: 16px; background: var(--wf-surface); border: 1.5px solid var(--wf-border); border-radius: 8px; }
+  .policy-card h3 { font-size: 16px; font-weight: 600; margin-bottom: 4px; }
+  .policy-card .policy-field { display: flex; justify-content: space-between; padding: 6px 0; border-bottom: 1px solid var(--wf-border); font-size: 13px; }
+  .policy-card .policy-field:last-child { border-bottom: none; }
+  .policy-card .policy-label { color: var(--wf-muted); }
+  .policy-card .policy-value { font-weight: 500; }
+
+  /* PERSONALITY SECTIONS */
+  .personality-section { padding: 14px 16px; border-bottom: 1px solid var(--wf-border); }
+  .personality-section h3 { font-size: 14px; font-weight: 600; margin-bottom: 4px; }
+  .personality-section p { font-size: 13px; color: var(--wf-muted); line-height: 1.5; }
+  .personality-section.warning { background: var(--wf-surface); }
+  .personality-section.warning h3::before { content: "⚠ "; }
+
+  /* VET CARD */
+  .vet-card { margin: 12px 16px; padding: 16px; background: var(--wf-surface); border: 1.5px solid var(--wf-border); border-radius: 8px; }
+  .vet-card h3 { font-size: 16px; font-weight: 600; margin-bottom: 8px; }
+  .vet-field { display: flex; align-items: baseline; gap: 8px; padding: 4px 0; font-size: 13px; }
+  .vet-label { color: var(--wf-muted); min-width: 60px; }
+
+  /* APPOINTMENT */
+  .appt-entry { display: flex; justify-content: space-between; padding: 12px 16px; border-bottom: 1px solid var(--wf-border); }
+  .appt-info h3 { font-size: 14px; font-weight: 600; }
+  .appt-info .appt-meta { font-size: 12px; color: var(--wf-muted); margin-top: 2px; }
+  .appt-status { font-size: 11px; font-weight: 600; align-self: center; padding: 3px 8px; border-radius: 4px; background: var(--wf-surface); border: 1px solid var(--wf-border); }
+
+  /* SHARE FORM */
+  .share-scope { padding: 12px 16px; }
+  .scope-option { display: flex; align-items: center; gap: 10px; padding: 10px 12px; border: 1.5px solid var(--wf-border); border-radius: 6px; margin-bottom: 8px; cursor: pointer; }
+  .scope-option.selected { border-color: var(--wf-text); }
+  .scope-radio { width: 18px; height: 18px; border-radius: 50%; border: 2px solid var(--wf-border); flex-shrink: 0; }
+  .scope-option.selected .scope-radio { border-color: var(--wf-text); background: var(--wf-text); }
+  .scope-label { font-size: 14px; font-weight: 500; }
+  .scope-desc { font-size: 12px; color: var(--wf-muted); }
+  .share-result { text-align: center; padding: 20px 16px; }
+  .share-link { display: block; padding: 12px; background: var(--wf-surface); border: 1.5px solid var(--wf-border); border-radius: 6px; font-size: 13px; color: var(--wf-muted); margin: 12px 16px; word-break: break-all; }
+  .share-actions { display: flex; gap: 8px; padding: 0 16px; }
+  .share-actions button { flex: 1; }
+
+  /* EMPTY STATE */
+  .empty-state { text-align: center; padding: 60px 32px; }
+  .empty-illustration { width: 120px; height: 120px; border-radius: 12px; background: var(--wf-placeholder); margin: 0 auto 20px; display: flex; align-items: center; justify-content: center; font-size: 11px; color: var(--wf-muted); }
+  .empty-headline { font-size: 18px; font-weight: 600; margin-bottom: 8px; }
+  .empty-body { font-size: 14px; color: var(--wf-muted); margin-bottom: 20px; line-height: 1.5; }
+  .empty-cta { font-size: 14px; }
+
+  /* ERROR STATE */
+  .error-state { text-align: center; padding: 60px 32px; }
+  .error-headline { font-size: 18px; font-weight: 600; margin-bottom: 8px; }
+  .error-body { font-size: 14px; color: var(--wf-muted); margin-bottom: 20px; line-height: 1.5; }
+  .error-cta { font-size: 14px; }
+
+  /* SKELETON */
+  .skeleton-area { padding: 16px; }
+  .skeleton-label { font-size: 12px; color: var(--wf-muted); margin-bottom: 12px; }
+  .skeleton-block { height: 72px; background: var(--wf-placeholder); border-radius: 8px; margin-bottom: 10px; opacity: 0.5; }
+
+  /* PLACEHOLDER STATE */
+  .placeholder-state { text-align: center; padding: 60px 32px; }
+  .placeholder-why { font-size: 14px; color: var(--wf-muted); font-style: italic; border: 1px dashed var(--wf-border); border-radius: 8px; padding: 20px; }
+
+  /* INLINE ERROR BANNER (for form saves) */
   .error-banner { margin: 12px 16px; padding: 12px; background: var(--wf-surface); border: 1.5px solid var(--wf-border); border-radius: 6px; }
   .error-banner p { font-size: 13px; color: var(--wf-text); }
+  .error-banner .error-detail { font-size: 12px; color: var(--wf-muted); margin-top: 4px; }
+
+  /* STICKY FOOTER ACTION */
+  .sticky-action { padding: 12px 16px; border-top: 1px solid var(--wf-border); background: var(--wf-bg); }
+  .sticky-action button { width: 100%; }
 
   /* BOTTOM NAV */
   .phone-nav { border-top: 1px solid var(--wf-border); display: flex; background: var(--wf-bg); }
@@ -208,15 +287,6 @@
   .top-nav a.active { color: var(--wf-text); font-weight: 700; border-bottom-color: var(--wf-text); }
   .top-nav .nav-spacer { flex: 1; }
   .d-main { max-width: 720px; margin: 0 auto; padding: 32px; width: 100%; }
-  .d-footer { border-top: 1px solid var(--wf-border); padding: 16px 32px; font-size: 11px; color: var(--wf-muted); text-align: center; }
-
-  /* DESKTOP FORM LAYOUT */
-  .d-main fieldset { margin: 0 0 20px; }
-  .d-main .form-actions { padding: 20px 0; }
-  .d-main .form-group input,
-  .d-main .form-group select,
-  .d-main .form-group textarea { max-width: 480px; }
-  .d-main .input-prefix-wrap { max-width: 480px; }
 
   /* RESPONSIVE */
   @media (max-width: 700px) {
@@ -226,13 +296,13 @@
     .phone { min-height: auto; }
     .d-main { padding: 20px 16px; }
   }
+
 </style>
 </head>
 <body>
 
 <div class="layout">
 
-  <!-- SIDEBAR -->
   <aside class="sidenav" aria-label="Wireframe navigation">
     <a class="brand" href="#">PetPal Wireframes</a>
     <div class="viewport-toggle" role="radiogroup" aria-label="Layout toggle">
@@ -306,9 +376,9 @@
               <li><a href="Health-and-jabs-error.html">error</a></li>
             </ul>
           </li>
-          <li><a href="Documents-and-passport.html">Documents &amp; passport</a>
+          <li><a href="Documents-and-passport.html" class="active">Documents &amp; passport</a>
             <ul class="state-list">
-              <li><a href="Documents-and-passport.html">success</a></li>
+              <li><a href="Documents-and-passport.html" class="active">success</a></li>
               <li><a href="Documents-and-passport-empty.html">empty</a></li>
               <li><a href="Documents-and-passport-loading.html">loading</a></li>
               <li><a href="Documents-and-passport-error.html">error</a></li>
@@ -359,7 +429,7 @@
             </ul>
           </li>
           <li><a href="Add-health-record.html">Add health record</a></li>
-          <li><a href="Document-view.html">Document view</a></li>
+          <li><a href="Document-view.html" class="active">Document view</a></li>
           <li><a href="Add-care-note.html">Add care note</a>
             <ul class="state-list">
               <li><a href="Add-care-note.html">success</a></li>
@@ -389,7 +459,6 @@
           <li><a href="Share-a-pet.html">Share a pet</a>
             <ul class="state-list">
               <li><a href="Share-a-pet.html">success</a></li>
-              <li><a href="Share-a-pet-empty.html">empty</a></li>
               <li><a href="Share-a-pet-loading.html">loading</a></li>
               <li><a href="Share-a-pet-error.html">error</a></li>
             </ul>
@@ -424,7 +493,9 @@
           </li>
         </ul>
       </li>
+
       <li><div class="nav-divider"></div></li>
+
       <li><span class="nav-section">Recipient</span>
         <ul>
           <li><a href="Shared-pet-view.html">Shared pet view</a>
@@ -445,12 +516,14 @@
           </li>
         </ul>
       </li>
+
       <li><div class="nav-divider"></div></li>
+
       <li><span class="nav-section">Deep actions</span>
         <ul>
-          <li><a href="Emergency-auth-setup.html" class="active">Emergency auth setup</a>
+          <li><a href="Emergency-auth-setup.html">Emergency auth setup</a>
             <ul class="state-list">
-              <li><a href="Emergency-auth-setup.html" class="active">success</a></li>
+              <li><a href="Emergency-auth-setup.html">success</a></li>
               <li><a href="Emergency-auth-setup-loading.html">loading</a></li>
               <li><a href="Emergency-auth-setup-error.html">error</a></li>
             </ul>
@@ -460,129 +533,58 @@
     </ul>
   </aside>
 
-
-  <!-- MOBILE VIEW -->
   <div class="content-mobile view-mobile">
     <div class="phone">
 
       <div class="state-bar" aria-label="Screen states">
-        <a href="Emergency-auth-setup.html" class="current">Success</a>
-        <a href="Emergency-auth-setup-loading.html">Loading</a>
-        <a href="Emergency-auth-setup-error.html">Error</a>
+        <a href="Document-view.html" class="current">Success</a>
+        <a href="Documents-and-passport-empty.html">Empty</a>
+        <a href="Documents-and-passport-loading.html">Loading</a>
+        <a href="Documents-and-passport-error.html">Error</a>
       </div>
 
       <div class="flow-step">
-        R5 &middot; Emergency setup &mdash; Emergency info &rarr; <span>&starf; Authorization setup</span>
+        <span class="zone-label">Main, R3</span> Main + R3 · <span>Documents & passport → ★ Document view</span> → back to section
       </div>
 
       <header class="m-header">
-        <a href="Emergency-info.html" style="text-decoration:none;"><button class="back" aria-label="Back to Emergency info">&larr; Emergency info</button></a>
-        <h1>Emergency authorization</h1>
-        <span></span>
+        <a href="Documents-and-passport.html" style="text-decoration:none;"><button class="back" aria-label="Back">← Documents</button></a>
+        <h1>EU Pet Passport</h1>
+        <span style="width:60px;" aria-hidden="true"></span>
       </header>
 
-      <main class="m-main">
+      <div class="m-main">
 
         <section class="m-pet-identity" aria-label="Pet identity">
           <figure class="pet-photo pet-photo-s" aria-label="Pet photo placeholder">photo</figure>
           <div class="pet-info">
             <h2 style="font-size:15px;font-weight:700;">Miso</h2>
-            <p class="pet-meta" style="font-size:12px;">Dog &middot; Border Terrier &middot; Female</p>
+            <p class="pet-meta" style="font-size:12px;">Dog · Border Terrier · Female</p>
           </div>
         </section>
 
-        <form action="Emergency-auth-setup-loading.html" method="get">
+        <div style="margin:16px;border:1.5px dashed var(--wf-border);border-radius:10px;background:var(--wf-surface);height:340px;display:flex;align-items:center;justify-content:center;color:var(--wf-muted);font-size:13px;">
+          document preview
+        </div>
 
-          <!-- Authorization toggle -->
-          <fieldset aria-label="Authorization toggle">
-            <legend>Carer emergency access</legend>
-            <div class="form-group">
-              <div class="toggle-row">
-                <label for="auth-toggle" class="toggle-label">Allow carer to seek emergency vet care</label>
-                <div class="toggle-switch">
-                  <input type="checkbox" id="auth-toggle" name="auth-toggle" checked>
-                  <label for="auth-toggle" class="toggle-track" aria-label="Toggle emergency authorization"></label>
-                </div>
-              </div>
-              <p class="helper">When enabled, your carer can take Miso to the vet in an emergency without waiting for your approval.</p>
-            </div>
-          </fieldset>
-
-          <!-- Spend limit -->
-          <fieldset aria-label="Spend limit">
-            <legend>Spend limit</legend>
-            <div class="form-group">
-              <label for="spend-limit">Pre-approved spend limit</label>
-              <div class="input-prefix-wrap">
-                <span class="prefix">&euro;</span>
-                <input type="number" id="spend-limit" name="spend-limit" value="500" min="0" step="50">
-              </div>
-              <p class="helper">The maximum your carer may authorize for emergency treatment.</p>
-            </div>
-          </fieldset>
-
-          <!-- Payment arrangement -->
-          <fieldset aria-label="Payment arrangement">
-            <legend>Payment arrangement</legend>
-            <div class="form-group">
-              <label for="payment-method">Payment method</label>
-              <select id="payment-method" name="payment-method">
-                <option value="reimburse" selected>Carer pays, owner reimburses</option>
-                <option value="card-on-file">Owner's card on file at vet</option>
-                <option value="other">Other</option>
-              </select>
-            </div>
-            <div class="form-group">
-              <label for="payment-notes">Payment notes</label>
-              <textarea id="payment-notes" name="payment-notes" placeholder="e.g. Carer should use the credit card in the emergency folder"></textarea>
-            </div>
-          </fieldset>
-
-          <!-- Emergency vet (if different) -->
-          <fieldset aria-label="Emergency clinic">
-            <legend>Emergency clinic</legend>
-            <div class="form-group">
-              <label for="emergency-clinic">Preferred emergency clinic (if different from regular vet)</label>
-              <input type="text" id="emergency-clinic" name="emergency-clinic" placeholder="e.g. Tierklinik D&uuml;ppel 24h">
-            </div>
-            <div class="form-group">
-              <label for="emergency-phone">Emergency clinic phone</label>
-              <input type="tel" id="emergency-phone" name="emergency-phone" placeholder="e.g. +49 30 8311091">
-            </div>
-          </fieldset>
-
-          <!-- Owner emergency contacts -->
-          <fieldset aria-label="Owner emergency contacts">
-            <legend>Owner emergency contacts</legend>
-            <article class="contact-row">
-              <div class="contact-avatar">icon</div>
-              <div class="contact-info">
-                <h4>Eva Schmidt</h4>
-                <p class="contact-meta">+49 171 9876543</p>
-              </div>
-              <span class="contact-role">Owner</span>
-              <a href="Edit-access-grant.html" class="edit-link">Edit</a>
-            </article>
-            <article class="contact-row">
-              <div class="contact-avatar">icon</div>
-              <div class="contact-info">
-                <h4>Thomas Schmidt</h4>
-                <p class="contact-meta">+49 171 1112233</p>
-              </div>
-              <span class="contact-role">Backup</span>
-              <a href="Edit-access-grant.html" class="edit-link">Edit</a>
-            </article>
-          </fieldset>
-
-          <!-- Form actions -->
-          <div class="form-actions">
-            <a href="Emergency-auth-setup-loading.html" style="flex:1;text-decoration:none;"><button type="button" class="btn-primary" style="width:100%;">Save authorization</button></a>
-            <a href="Emergency-info.html" style="flex:1;text-decoration:none;"><button type="button" class="btn-secondary" style="width:100%;">Cancel</button></a>
+        <div style="padding:0 16px;">
+          <div class="zone-label">Document details</div>
+          <div style="font-size:13px;line-height:2;border-bottom:1px solid var(--wf-border);padding-bottom:12px;">
+            <div style="display:flex;justify-content:space-between;"><span style="color:var(--wf-muted);">Number</span><strong>DE-0812345</strong></div>
+            <div style="display:flex;justify-content:space-between;"><span style="color:var(--wf-muted);">Status</span><strong>Valid</strong></div>
+            <div style="display:flex;justify-content:space-between;"><span style="color:var(--wf-muted);">Issued</span><strong>15 Jan 2024</strong></div>
+            <div style="display:flex;justify-content:space-between;"><span style="color:var(--wf-muted);">File</span><strong>EU_Pet_Passport_Miso.pdf · 2.1 MB</strong></div>
           </div>
+        </div>
 
-        </form>
-
-      </main>
+        <div style="display:flex;gap:8px;padding:16px;">
+          <button class="btn-primary" style="flex:1;" onclick="this.textContent='Downloaded ✓'">Download PDF</button>
+          <a href="Share-a-pet.html" style="flex:1;text-decoration:none;"><button class="btn-secondary" style="width:100%;">Share</button></a>
+        </div>
+        <div style="padding:0 16px 16px;">
+          <a href="Add-record.html" style="font-size:12px;color:var(--wf-muted);">Replace / update this document →</a>
+        </div>
+      </div>
 
       <nav class="phone-nav" aria-label="Main navigation">
         <a href="My-Pets.html" class="active">
@@ -599,18 +601,17 @@
     </div>
   </div>
 
-
-  <!-- DESKTOP VIEW -->
   <div class="content-desktop view-desktop">
 
-    <div class="state-bar" aria-label="Screen states">
-      <a href="Emergency-auth-setup.html" class="current">Success</a>
-      <a href="Emergency-auth-setup-loading.html">Loading</a>
-      <a href="Emergency-auth-setup-error.html">Error</a>
-    </div>
+      <div class="state-bar" aria-label="Screen states">
+        <a href="Document-view.html" class="current">Success</a>
+        <a href="Documents-and-passport-empty.html">Empty</a>
+        <a href="Documents-and-passport-loading.html">Loading</a>
+        <a href="Documents-and-passport-error.html">Error</a>
+      </div>
 
     <div class="flow-step" style="text-align:left;padding-left:32px;">
-      R5 &middot; Emergency setup &mdash; Emergency info &rarr; <span>&starf; Authorization setup</span>
+      Main + R3 · <span>Documents & passport → ★ Document view</span> → back to section
     </div>
 
     <nav class="top-nav" aria-label="Main navigation (desktop)">
@@ -622,115 +623,40 @@
 
     <div class="d-main">
 
-      <header style="margin-bottom:24px;">
-        <a href="Emergency-info.html" style="font-size:14px;color:var(--wf-muted);text-decoration:none;">&larr; Back to Emergency info</a>
-        <h1 style="font-size:24px;font-weight:700;margin-top:8px;">Emergency authorization</h1>
-      </header>
-
-      <section class="m-pet-identity" aria-label="Pet identity" style="margin-bottom:24px;border:1.5px solid var(--wf-border);border-radius:8px;padding:12px 16px;">
-        <figure class="pet-photo pet-photo-s" aria-label="Pet photo placeholder">photo</figure>
-        <div class="pet-info">
-          <h2 style="font-size:15px;font-weight:700;">Miso</h2>
-          <p class="pet-meta" style="font-size:12px;">Dog &middot; Border Terrier &middot; Female</p>
-        </div>
-      </section>
-
-      <form action="Emergency-auth-setup-loading.html" method="get">
-
-        <!-- Authorization toggle -->
-        <fieldset aria-label="Authorization toggle">
-          <legend>Carer emergency access</legend>
-          <div class="form-group">
-            <div class="toggle-row">
-              <label for="d-auth-toggle" class="toggle-label">Allow carer to seek emergency vet care</label>
-              <div class="toggle-switch">
-                <input type="checkbox" id="d-auth-toggle" name="auth-toggle" checked>
-                <label for="d-auth-toggle" class="toggle-track" aria-label="Toggle emergency authorization"></label>
-              </div>
-            </div>
-            <p class="helper">When enabled, your carer can take Miso to the vet in an emergency without waiting for your approval.</p>
+        <section class="m-pet-identity" aria-label="Pet identity">
+          <figure class="pet-photo pet-photo-s" aria-label="Pet photo placeholder">photo</figure>
+          <div class="pet-info">
+            <h2 style="font-size:15px;font-weight:700;">Miso</h2>
+            <p class="pet-meta" style="font-size:12px;">Dog · Border Terrier · Female</p>
           </div>
-        </fieldset>
+        </section>
 
-        <!-- Spend limit -->
-        <fieldset aria-label="Spend limit">
-          <legend>Spend limit</legend>
-          <div class="form-group">
-            <label for="d-spend-limit">Pre-approved spend limit</label>
-            <div class="input-prefix-wrap">
-              <span class="prefix">&euro;</span>
-              <input type="number" id="d-spend-limit" name="spend-limit" value="500" min="0" step="50">
-            </div>
-            <p class="helper">The maximum your carer may authorize for emergency treatment.</p>
-          </div>
-        </fieldset>
+        <div style="padding:12px 16px;"><a href="Documents-and-passport.html" style="font-size:13px;color:var(--wf-muted);text-decoration:none;">← Back to Documents &amp; passport</a></div>
+        <h2 style="padding:0 16px 8px;font-size:20px;font-weight:700;">EU Pet Passport</h2>
 
-        <!-- Payment arrangement -->
-        <fieldset aria-label="Payment arrangement">
-          <legend>Payment arrangement</legend>
-          <div class="form-group">
-            <label for="d-payment-method">Payment method</label>
-            <select id="d-payment-method" name="payment-method">
-              <option value="reimburse" selected>Carer pays, owner reimburses</option>
-              <option value="card-on-file">Owner's card on file at vet</option>
-              <option value="other">Other</option>
-            </select>
-          </div>
-          <div class="form-group">
-            <label for="d-payment-notes">Payment notes</label>
-            <textarea id="d-payment-notes" name="payment-notes" placeholder="e.g. Carer should use the credit card in the emergency folder"></textarea>
-          </div>
-        </fieldset>
-
-        <!-- Emergency vet (if different) -->
-        <fieldset aria-label="Emergency clinic">
-          <legend>Emergency clinic</legend>
-          <div class="form-group">
-            <label for="d-emergency-clinic">Preferred emergency clinic (if different from regular vet)</label>
-            <input type="text" id="d-emergency-clinic" name="emergency-clinic" placeholder="e.g. Tierklinik D&uuml;ppel 24h">
-          </div>
-          <div class="form-group">
-            <label for="d-emergency-phone">Emergency clinic phone</label>
-            <input type="tel" id="d-emergency-phone" name="emergency-phone" placeholder="e.g. +49 30 8311091">
-          </div>
-        </fieldset>
-
-        <!-- Owner emergency contacts -->
-        <fieldset aria-label="Owner emergency contacts">
-          <legend>Owner emergency contacts</legend>
-          <article class="contact-row">
-            <div class="contact-avatar">icon</div>
-            <div class="contact-info">
-              <h4>Eva Schmidt</h4>
-              <p class="contact-meta">+49 171 9876543</p>
-            </div>
-            <span class="contact-role">Owner</span>
-            <a href="Edit-access-grant.html" class="edit-link">Edit</a>
-          </article>
-          <article class="contact-row">
-            <div class="contact-avatar">icon</div>
-            <div class="contact-info">
-              <h4>Thomas Schmidt</h4>
-              <p class="contact-meta">+49 171 1112233</p>
-            </div>
-            <span class="contact-role">Backup</span>
-            <a href="Edit-access-grant.html" class="edit-link">Edit</a>
-          </article>
-        </fieldset>
-
-        <!-- Form actions -->
-        <div class="form-actions">
-          <a href="Emergency-auth-setup-loading.html" style="flex:1;text-decoration:none;"><button type="button" class="btn-primary" style="width:100%;">Save authorization</button></a>
-          <a href="Emergency-info.html" style="flex:1;text-decoration:none;"><button type="button" class="btn-secondary" style="width:100%;">Cancel</button></a>
+        <div style="margin:8px 16px;border:1.5px dashed var(--wf-border);border-radius:10px;background:var(--wf-surface);height:420px;display:flex;align-items:center;justify-content:center;color:var(--wf-muted);font-size:13px;">
+          document preview
         </div>
 
-      </form>
+        <div style="padding:0 16px;max-width:560px;">
+          <div class="zone-label">Document details</div>
+          <div style="font-size:13px;line-height:2;border-bottom:1px solid var(--wf-border);padding-bottom:12px;">
+            <div style="display:flex;justify-content:space-between;"><span style="color:var(--wf-muted);">Number</span><strong>DE-0812345</strong></div>
+            <div style="display:flex;justify-content:space-between;"><span style="color:var(--wf-muted);">Status</span><strong>Valid</strong></div>
+            <div style="display:flex;justify-content:space-between;"><span style="color:var(--wf-muted);">Issued</span><strong>15 Jan 2024</strong></div>
+            <div style="display:flex;justify-content:space-between;"><span style="color:var(--wf-muted);">File</span><strong>EU_Pet_Passport_Miso.pdf · 2.1 MB</strong></div>
+          </div>
+        </div>
 
+        <div style="display:flex;gap:8px;padding:16px;max-width:560px;">
+          <button class="btn-primary" style="flex:1;" onclick="this.textContent='Downloaded ✓'">Download PDF</button>
+          <a href="Share-a-pet.html" style="flex:1;text-decoration:none;"><button class="btn-secondary" style="width:100%;">Share</button></a>
+        </div>
+        <div style="padding:0 16px 16px;">
+          <a href="Add-record.html" style="font-size:12px;color:var(--wf-muted);">Replace / update this document →</a>
+        </div>
     </div>
 
-    <footer class="d-footer">
-      Emergency authorization setup &middot; desktop adaptation &middot; same form as mobile, wider layout
-    </footer>
   </div>
 
 </div>
