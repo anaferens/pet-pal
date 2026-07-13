@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>My Pets (empty) — PetPal wireframe</title>
+<title>Edit health record — PetPal wireframe</title>
 <style>
   :root {
     --wf-bg:         #ffffff;
@@ -337,10 +337,10 @@
 
 <li><span class="nav-section">My Pets</span>
         <ul>
-          <li><a href="My-Pets.html" class="active">My Pets</a>
+          <li><a href="My-Pets.html">My Pets</a>
             <ul class="state-list">
               <li><a href="My-Pets.html">success</a></li>
-              <li><a href="My-Pets-empty.html" class="active">empty</a></li>
+              <li><a href="My-Pets-empty.html">empty</a></li>
               <li><a href="My-Pets-loading.html">loading</a></li>
               <li><a href="My-Pets-error.html">error</a></li>
             </ul>
@@ -421,16 +421,16 @@
       <li><div class="nav-divider"></div></li>
       <li><span class="nav-section">Actions</span>
         <ul>
-          <li><a href="Add-record.html">Add / update a record</a>
+          <li><a href="Add-record.html" class="active">Add / update a record</a>
             <ul class="state-list">
-              <li><a href="Add-record.html">success</a></li>
+              <li><a href="Add-record.html" class="active">success</a></li>
               <li><a href="Add-record-loading.html">loading</a></li>
               <li><a href="Add-record-error.html">error</a></li>
             </ul>
           </li>
-          <li><a href="Add-health-record.html">Add health record</a></li>
-          <li><a href="Edit-health-record.html">Edit health record</a></li>
-          <li><a href="Document-view.html">Document view</a></li>
+                  <li><a href="Add-health-record.html">Add health record</a></li>
+                  <li><a href="Edit-health-record.html" class="active">Edit health record</a></li>
+                  <li><a href="Document-view.html">Document view</a></li>
           <li><a href="Add-care-note.html">Add care note</a>
             <ul class="state-list">
               <li><a href="Add-care-note.html">success</a></li>
@@ -538,43 +538,87 @@
     <div class="phone">
 
       <div class="state-bar" aria-label="Screen states">
-        <a href="My-Pets.html">Success</a>
-        <a href="My-Pets-empty.html" class="current">Empty</a>
-        <a href="My-Pets-loading.html">Loading</a>
-        <a href="My-Pets-error.html">Error</a>
+        <a href="Edit-health-record.html" class="current">Success</a>
+        <a href="Add-record-empty.html">Empty</a>
+        <a href="Add-record-loading.html">Loading</a>
+        <a href="Add-record-error.html">Error</a>
       </div>
 
       <div class="flow-step">
-        <span class="zone-label">Main</span> Main job · step 1 of 4 — <span>★ My Pets</span> → Pet dossier → sections → Share
+        <span class="zone-label">Main</span> Main · <span>Health & jabs → ★ Edit record</span> → back to section
       </div>
 
       <header class="m-header">
-        <span></span>
-        <h1>My Pets</h1>
+        <a href="Health-and-jabs.html" style="text-decoration:none;"><button class="back" aria-label="Back">← Cancel</button></a>
+        <h1>Edit record</h1>
         <span></span>
       </header>
 
       <div class="m-main">
 
-        <section class="empty-state" aria-label="Empty state">
-          <figure class="empty-illustration" aria-label="Illustration placeholder">illustration</figure>
-          <h2 class="empty-headline">No pets yet</h2>
-          <p class="empty-body">Add your first pet to keep their health, documents, and care info in one place.</p>
-          <a href="Set-up-a-pet.html"><button class="btn-primary empty-cta">Add your first pet</button></a>
-        </section>
+        <form aria-label="Add a record">
+          <p style="padding:12px 16px;font-size:12px;color:var(--wf-muted);">Editing an existing record — fields are pre-filled. Change anything and save.</p>
+
+          <div class="form-group">
+            <label>Record type</label>
+            <select>
+              <option>Vaccination</option>
+              <option selected>Health &amp; jabs</option>
+              <option>Documents &amp; passport</option>
+              <option>Insurance</option>
+              <option>Vet &amp; appointments</option>
+              <option>Personality &amp; care</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label>Record title <span class="req">*</span></label>
+            <input type="text" value="Dental cleaning">
+          </div>
+
+          <div class="form-group">
+            <label>Date <span class="req">*</span></label>
+            <input type="date" value="2026-05-20">
+          </div>
+
+          <div class="form-group">
+            <label>Vet / clinic</label>
+            <input type="text" value="Tierklinik am Stadtpark">
+          </div>
+
+          <div class="form-group">
+            <label>Follow-up date</label>
+            <input type="date" value="2027-05-20">
+            <p class="helper">Used for reminders — leave blank if none.</p>
+          </div>
+
+          <div class="form-group">
+            <label>Outcome / notes</label>
+            <textarea>All clear. Tartar removed under light sedation. Next cleaning recommended in 12 months.</textarea>
+          </div>
+
+          <div class="form-group">
+            <label>Proof / attachment</label>
+            <div style="display:flex;align-items:center;gap:10px;padding:12px;border:1.5px solid var(--wf-border);border-radius:6px;margin-bottom:8px;">
+              <span style="width:34px;height:34px;border-radius:6px;background:var(--wf-placeholder);display:flex;align-items:center;justify-content:center;font-size:9px;color:var(--wf-muted);flex-shrink:0;">PDF</span>
+              <span style="flex:1;font-size:13px;">Dental_invoice_Miso.pdf<br><span style="font-size:11px;color:var(--wf-muted);">0.8 MB · added 20 May 2026</span></span>
+              <a href="Document-view.html" style="font-size:12px;">View</a>
+            </div>
+            <div style="padding:14px;border:1.5px dashed var(--wf-border);border-radius:6px;text-align:center;color:var(--wf-muted);font-size:13px;cursor:pointer;" onclick="this.textContent='attachment replaced ✓'">
+              Replace attachment
+            </div>
+          </div>
+
+          <div class="form-actions">
+            <a href="Health-and-jabs.html"><button type="button" class="btn-secondary">Cancel</button></a>
+            <a href="Health-and-jabs.html"><button type="button" class="btn-primary">Save changes</button></a>
+          </div>
+          <div style="text-align:center;padding:4px 16px 20px;">
+            <button type="button" style="background:none;border:none;color:var(--wf-muted);font-size:12px;text-decoration:underline;cursor:pointer;" onclick="window.location.href='Health-and-jabs.html'+window.location.search">Delete this record</button>
+          </div>
+        </form>
       </div>
 
-      <nav class="phone-nav" aria-label="Main navigation">
-        <a href="My-Pets.html" class="active">
-          <span class="nav-icon" aria-hidden="true"></span> Pets
-        </a>
-        <a href="Whats-due.html">
-          <span class="nav-icon" aria-hidden="true"></span> What's due
-        </a>
-        <a href="Share-a-pet.html">
-          <span class="nav-icon" aria-hidden="true"></span> Share
-        </a>
-      </nav>
 
     </div>
   </div>
@@ -582,14 +626,14 @@
   <div class="content-desktop view-desktop">
 
       <div class="state-bar" aria-label="Screen states">
-        <a href="My-Pets.html">Success</a>
-        <a href="My-Pets-empty.html" class="current">Empty</a>
-        <a href="My-Pets-loading.html">Loading</a>
-        <a href="My-Pets-error.html">Error</a>
+        <a href="Edit-health-record.html" class="current">Success</a>
+        <a href="Add-record-empty.html">Empty</a>
+        <a href="Add-record-loading.html">Loading</a>
+        <a href="Add-record-error.html">Error</a>
       </div>
 
     <div class="flow-step" style="text-align:left;padding-left:32px;">
-      Main job · step 1 of 4 — <span>★ My Pets</span> → Pet dossier → sections → Share
+      Main · <span>Health & jabs → ★ Edit record</span> → back to section
     </div>
 
     <nav class="top-nav" aria-label="Main navigation (desktop)">
@@ -601,18 +645,86 @@
 
     <div class="d-main">
 
-        <section class="empty-state" aria-label="Empty state">
-          <figure class="empty-illustration" aria-label="Illustration placeholder">illustration</figure>
-          <h2 class="empty-headline">No pets yet</h2>
-          <p class="empty-body">Add your first pet to keep their health, documents, and care info in one place.</p>
-          <a href="Set-up-a-pet.html"><button class="btn-primary empty-cta">Add your first pet</button></a>
-        </section>
+        <form aria-label="Add a record">
+          <p style="padding:12px 16px;font-size:12px;color:var(--wf-muted);">Editing an existing record — fields are pre-filled. Change anything and save.</p>
+
+          <div class="form-group">
+            <label>Record type</label>
+            <select>
+              <option>Vaccination</option>
+              <option selected>Health &amp; jabs</option>
+              <option>Documents &amp; passport</option>
+              <option>Insurance</option>
+              <option>Vet &amp; appointments</option>
+              <option>Personality &amp; care</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label>Record title <span class="req">*</span></label>
+            <input type="text" value="Dental cleaning">
+          </div>
+
+          <div class="form-group">
+            <label>Date <span class="req">*</span></label>
+            <input type="date" value="2026-05-20">
+          </div>
+
+          <div class="form-group">
+            <label>Vet / clinic</label>
+            <input type="text" value="Tierklinik am Stadtpark">
+          </div>
+
+          <div class="form-group">
+            <label>Follow-up date</label>
+            <input type="date" value="2027-05-20">
+            <p class="helper">Used for reminders — leave blank if none.</p>
+          </div>
+
+          <div class="form-group">
+            <label>Outcome / notes</label>
+            <textarea>All clear. Tartar removed under light sedation. Next cleaning recommended in 12 months.</textarea>
+          </div>
+
+          <div class="form-group">
+            <label>Proof / attachment</label>
+            <div style="display:flex;align-items:center;gap:10px;padding:12px;border:1.5px solid var(--wf-border);border-radius:6px;margin-bottom:8px;">
+              <span style="width:34px;height:34px;border-radius:6px;background:var(--wf-placeholder);display:flex;align-items:center;justify-content:center;font-size:9px;color:var(--wf-muted);flex-shrink:0;">PDF</span>
+              <span style="flex:1;font-size:13px;">Dental_invoice_Miso.pdf<br><span style="font-size:11px;color:var(--wf-muted);">0.8 MB · added 20 May 2026</span></span>
+              <a href="Document-view.html" style="font-size:12px;">View</a>
+            </div>
+            <div style="padding:14px;border:1.5px dashed var(--wf-border);border-radius:6px;text-align:center;color:var(--wf-muted);font-size:13px;cursor:pointer;" onclick="this.textContent='attachment replaced ✓'">
+              Replace attachment
+            </div>
+          </div>
+
+          <div class="form-actions">
+            <a href="Health-and-jabs.html"><button type="button" class="btn-secondary">Cancel</button></a>
+            <a href="Health-and-jabs.html"><button type="button" class="btn-primary">Save changes</button></a>
+          </div>
+          <div style="text-align:center;padding:4px 16px 20px;">
+            <button type="button" style="background:none;border:none;color:var(--wf-muted);font-size:12px;text-decoration:underline;cursor:pointer;" onclick="window.location.href='Health-and-jabs.html'+window.location.search">Delete this record</button>
+          </div>
+        </form>
     </div>
   </div>
 
 </div>
 
 <script>
+function preselectType() {
+  var t = new URLSearchParams(window.location.search).get('type');
+  if (!t) return;
+  var map = { vaccination: 'Vaccination', health: 'Health & jabs', documents: 'Documents & passport', insurance: 'Insurance', vet: 'Vet & appointments', personality: 'Personality & care' };
+  var want = map[t.toLowerCase()];
+  if (!want) return;
+  document.querySelectorAll('form select').forEach(function(sel) {
+    for (var i = 0; i < sel.options.length; i++) {
+      if (sel.options[i].text.trim() === want) { sel.selectedIndex = i; break; }
+    }
+  });
+}
+preselectType();
 function setView(mode) {
   document.body.classList.toggle('is-desktop', mode === 'desktop');
   document.getElementById('btn-mobile').classList.toggle('active', mode === 'mobile');
