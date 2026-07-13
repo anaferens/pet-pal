@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Pet dossier · error — PetPal wireframe</title>
+<title>Pet dossier · new pet — PetPal wireframe</title>
 <style>
   :root {
     --wf-bg:#ffffff;--wf-surface:#f5f5f5;--wf-border:#e0e0e0;--wf-text:#1a1a1a;
@@ -14,6 +14,8 @@
   }
   *{box-sizing:border-box;margin:0;padding:0}
   body{font-family:-apple-system,BlinkMacSystemFont,sans-serif;background:var(--wf-bg);color:var(--wf-text);line-height:1.5;-webkit-font-smoothing:antialiased}
+
+  /* layout */
   .layout{display:flex;align-items:flex-start;min-height:100vh}
   .sidenav{position:sticky;top:0;align-self:flex-start;height:100vh;width:240px;flex-shrink:0;padding:20px 12px 20px 16px;border-right:1px solid var(--nav-line);background:var(--nav-bg);overflow-y:auto;display:flex;flex-direction:column;gap:4px}
   .sidenav .brand{font-size:13px;font-weight:700;color:var(--wf-text);text-decoration:none;padding:0 8px 8px;letter-spacing:.02em}
@@ -31,37 +33,61 @@
   .nav-tree .state-list a{font-size:11px;font-weight:400;color:var(--nav-cap);padding:2px 8px}
   .nav-tree .state-list a:hover{color:var(--nav-text);background:var(--nav-active-bg)}
   .nav-tree .state-list a.active{color:var(--nav-text-active);font-weight:600;background:var(--nav-active-bg)}
+
+  /* zones */
   .zone-label{font-size:9px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--wf-muted);border:1px dashed var(--wf-border);border-radius:2px;padding:1px 5px;display:inline-block;margin-bottom:6px}
+
+  /* state bar */
   .state-bar{display:flex;gap:0;border-bottom:1px solid var(--wf-border);background:var(--wf-surface);font-size:11px}
   .state-bar a{flex:1;text-align:center;padding:7px 4px;text-decoration:none;color:var(--wf-muted);font-weight:500;border-bottom:2px solid transparent}
   .state-bar a:hover{color:var(--wf-text)}
   .state-bar a.current{color:var(--wf-text);font-weight:700;border-bottom-color:var(--wf-text)}
+
+  /* flow step */
   .flow-step{background:var(--wf-surface);border-bottom:1px solid var(--wf-border);padding:6px 16px;font-size:10px;color:var(--wf-muted);text-align:center;letter-spacing:.02em}
   .flow-step span{font-weight:600;color:var(--wf-text)}
+
+  /* toggle */
   .view-mobile{display:block}.view-desktop{display:none}
   body.is-desktop .view-mobile{display:none}
   body.is-desktop .view-desktop{display:flex;flex-direction:column}
+
+  /* mobile phone */
   .content-mobile{flex:1;display:flex;justify-content:center;padding:24px;min-height:100vh}
   .phone{width:375px;min-height:812px;background:var(--wf-bg);border:1.5px solid var(--wf-border);border-radius:12px;display:flex;flex-direction:column;overflow:hidden;box-shadow:0 1px 4px rgba(0,0,0,.06)}
   .m-header{display:flex;align-items:center;justify-content:space-between;padding:12px 16px;border-bottom:1px solid var(--wf-border);min-height:48px}
   .m-header .back{font-size:14px;color:var(--wf-text);background:none;border:none;cursor:pointer}
   .m-header h1{font-size:17px;font-weight:600}
+  .m-header .action-edit{font-size:13px;color:var(--wf-muted);background:none;border:none;cursor:pointer}
   .m-main{flex:1;overflow-y:auto;padding-bottom:20px}
+  .m-pet-identity{display:flex;align-items:center;gap:12px;padding:16px;border-bottom:1px solid var(--wf-border)}
+  .pet-photo{border-radius:50%;background:var(--wf-placeholder);flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:10px;color:var(--wf-muted)}
+  .pet-photo-m{width:64px;height:64px}.pet-photo-d{width:88px;height:88px;font-size:11px}
+  .pet-info h2,.pet-info h1{line-height:1.2}
+  .pet-info .pet-meta{color:var(--wf-muted);margin-top:2px}
+  .pet-info .pet-chip{color:var(--wf-muted);margin-top:2px}
+  .m-quick-actions{display:flex;gap:8px;padding:12px 16px;border-bottom:1px solid var(--wf-border)}
+  .m-quick-actions button{flex:1;padding:10px 0;font-size:13px;font-weight:600;border-radius:6px;cursor:pointer}
   .btn-primary{background:var(--wf-btn);color:var(--wf-btn-text);border:none}
   .btn-secondary{background:var(--wf-btn-sec);color:var(--wf-text);border:1.5px solid var(--wf-border)}
+  .m-fill-counter{padding:14px 16px 6px;display:flex;align-items:baseline;justify-content:space-between}
+  .count{font-size:14px;font-weight:600}.status{font-size:12px;color:var(--wf-muted)}
+  .m-search-filter{padding:0 16px 12px}
+  .search-bar{padding:10px 12px;font-size:14px;border:1.5px solid var(--wf-border);border-radius:6px;background:var(--wf-input-bg);color:var(--wf-text);outline:none}
+  .search-bar::placeholder{color:var(--wf-placeholder)}
+  .m-search-filter .search-bar{width:100%}
   .phone-nav{border-top:1px solid var(--wf-border);display:flex;background:var(--wf-bg)}
   .phone-nav a{flex:1;text-align:center;padding:10px 0 8px;font-size:11px;color:var(--wf-muted);text-decoration:none;display:flex;flex-direction:column;align-items:center;gap:3px}
   .phone-nav a.active{color:var(--wf-text);font-weight:700}
   .phone-nav .nav-icon{width:22px;height:22px;border-radius:4px;background:var(--wf-placeholder);display:inline-block}
   .phone-nav a.active .nav-icon{background:var(--wf-muted)}
 
-  /* error block */
-  .error-block{display:flex;flex-direction:column;align-items:center;text-align:center;padding:64px 32px;gap:12px}
-  .error-block h3{font-size:16px;font-weight:600}
-  .error-block p{font-size:13px;color:var(--wf-muted);max-width:260px}
-  .error-block button{margin-top:4px;padding:10px 24px;font-size:13px;font-weight:600;border-radius:6px;cursor:pointer}
-  .error-block .secondary-link{font-size:12px;color:var(--wf-muted);margin-top:4px;text-decoration:none}
-  .error-block .secondary-link:hover{color:var(--wf-text)}
+  /* empty state block */
+  .empty-block{display:flex;flex-direction:column;align-items:center;text-align:center;padding:48px 32px;gap:12px}
+  .empty-illustration{width:120px;height:120px;background:var(--wf-placeholder);border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:10px;color:var(--wf-muted)}
+  .empty-block h3{font-size:16px;font-weight:600}
+  .empty-block p{font-size:13px;color:var(--wf-muted);max-width:260px}
+  .empty-block button{margin-top:4px;padding:10px 24px;font-size:13px;font-weight:600;border-radius:6px;cursor:pointer}
 
   /* desktop */
   .content-desktop{flex:1;min-width:0;min-height:100vh}
@@ -72,18 +98,30 @@
   .top-nav a.active{color:var(--wf-text);font-weight:700;border-bottom-color:var(--wf-text)}
   .top-nav .nav-spacer{flex:1}
   .d-main{max-width:960px;margin:0 auto;padding:32px;width:100%}
-  .d-error-block{display:flex;flex-direction:column;align-items:center;text-align:center;padding:100px 32px;gap:16px}
-  .d-error-block h3{font-size:20px;font-weight:600}
-  .d-error-block p{font-size:14px;color:var(--wf-muted);max-width:400px}
-  .d-error-block button{margin-top:4px;padding:12px 28px;font-size:14px;font-weight:600;border-radius:6px;cursor:pointer}
-  .d-error-block .secondary-link{font-size:13px;color:var(--wf-muted);margin-top:4px;text-decoration:none}
-  .d-error-block .secondary-link:hover{color:var(--wf-text)}
+  .d-pet-hero{display:flex;align-items:center;gap:24px;padding:24px;background:var(--wf-surface);border:1.5px solid var(--wf-border);border-radius:10px;margin-bottom:24px}
+  .d-pet-hero .pet-info{flex:1}
+  .d-pet-hero .pet-info h1{font-size:26px;font-weight:700}
+  .d-pet-hero .pet-info .pet-meta{font-size:15px;margin-top:4px}
+  .d-pet-hero .pet-info .pet-chip{font-size:12px;margin-top:4px}
+  .d-pet-actions{display:flex;flex-direction:column;gap:8px;flex-shrink:0}
+  .d-pet-actions button{padding:10px 20px;font-size:13px;font-weight:600;border-radius:6px;cursor:pointer;white-space:nowrap}
+  .d-toolbar{display:flex;align-items:center;gap:16px;margin-bottom:20px}
+  .d-toolbar .spacer{flex:1}
+  .d-toolbar .search-bar{width:280px}
+  .d-empty-block{display:flex;flex-direction:column;align-items:center;text-align:center;padding:80px 32px;gap:16px}
+  .d-empty-block .empty-illustration{width:160px;height:160px}
+  .d-empty-block h3{font-size:20px;font-weight:600}
+  .d-empty-block p{font-size:14px;color:var(--wf-muted);max-width:380px}
+  .d-empty-block button{margin-top:4px;padding:12px 28px;font-size:14px;font-weight:600;border-radius:6px;cursor:pointer}
 
   @media(max-width:700px){
     .layout{flex-direction:column}
     .sidenav{position:sticky;top:0;height:auto;width:100%;z-index:50;border-right:none;border-bottom:1px solid var(--nav-line);padding:12px 16px;max-height:50vh;overflow-y:auto}
     .content-mobile{padding:16px}.phone{min-height:auto}
     .d-main{padding:20px 16px}
+    .d-pet-hero{flex-direction:column;text-align:center}
+    .d-pet-actions{flex-direction:row}
+    .d-toolbar{flex-wrap:wrap}.d-toolbar .search-bar{width:100%}
   }
 
   /* PERSONA FLOWS */
@@ -146,7 +184,7 @@
       </ul></li>
       <li><div class="nav-divider"></div></li>
       <li><span class="nav-section">Pet dossier</span><ul>
-        <li><a href="home-success.html" class="active">Pet dossier</a><ul class="state-list"><li><a href="home-success.html">success</a></li><li><a href="home-empty.html">empty</a></li><li><a href="home-new.html">new pet</a></li><li><a href="home-loading.html">loading</a></li><li><a href="home-error.html" class="active">error</a></li></ul></li>
+        <li><a href="home-success.html" class="active">Pet dossier</a><ul class="state-list"><li><a href="home-success.html">success</a></li><li><a href="home-empty.html">empty</a></li><li><a href="home-new.html" class="active">new pet</a></li><li><a href="home-loading.html">loading</a></li><li><a href="home-error.html">error</a></li></ul></li>
         <li><a href="Health-and-jabs.html">Health &amp; jabs</a><ul class="state-list"><li><a href="Health-and-jabs.html">success</a></li><li><a href="Health-and-jabs-empty.html">empty</a></li><li><a href="Health-and-jabs-loading.html">loading</a></li><li><a href="Health-and-jabs-error.html">error</a></li></ul></li>
         <li><a href="Documents-and-passport.html">Documents &amp; passport</a><ul class="state-list"><li><a href="Documents-and-passport.html">success</a></li><li><a href="Documents-and-passport-empty.html">empty</a></li><li><a href="Documents-and-passport-loading.html">loading</a></li><li><a href="Documents-and-passport-error.html">error</a></li></ul></li>
         <li><a href="Insurance.html">Insurance</a><ul class="state-list"><li><a href="Insurance.html">success</a></li><li><a href="Insurance-empty.html">empty</a></li><li><a href="Insurance-loading.html">loading</a></li><li><a href="Insurance-error.html">error</a></li></ul></li>
@@ -188,7 +226,7 @@
         <a href="home-success.html">Success</a>
         <a href="home-empty.html">Empty</a>
         <a href="home-loading.html">Loading</a>
-        <a href="home-error.html" class="current">Error</a>
+        <a href="home-error.html">Error</a>
       </div>
 
       <div class="flow-step">
@@ -198,15 +236,35 @@
       <header class="m-header">
         <button class="back">← My Pets</button>
         <h1>Miso</h1>
+        <button class="action-edit">Edit</button>
       </header>
 
       <div class="m-main">
-        <!-- ERROR STATE: dossier failed to load (flows.md: DossErr → retry → DossLoad) -->
-        <section class="error-block" aria-label="Error">
-          <h3>Something went wrong</h3>
-          <p>Couldn't load Miso's dossier. Check your connection and try again.</p>
-          <a href="home-loading.html"><button class="btn-primary">Try again</button></a>
-          <a href="My-Pets.html" class="secondary-link">← Back to My Pets</a>
+        <section class="m-pet-identity">
+          <figure class="pet-photo pet-photo-m">photo</figure>
+          <div class="pet-info">
+            <h2 style="font-size:20px;font-weight:700;">Miso</h2>
+            <p class="pet-meta" style="font-size:13px;">Dog · Border Terrier · Female</p>
+            <p class="pet-chip" style="font-size:11px;">Microchip 276 098 106 412 345</p>
+          </div>
+        </section>
+
+        <section class="m-quick-actions">
+          <button class="btn-primary">Share Miso's info</button>
+          <button class="btn-secondary">Edit pet details</button>
+        </section>
+
+        <section class="m-fill-counter">
+          <span class="count">0 of 6 sections filled</span>
+          <span class="status">Just created</span>
+        </section>
+
+        <!-- EMPTY STATE: brand-new dossier -->
+        <section class="empty-block" aria-label="New dossier">
+          <figure class="empty-illustration">illustration</figure>
+          <h3>Nice — Miso's dossier is ready!</h3>
+          <p>Let's add some notes: jabs, health records, personality &amp; care, emergency info, vet &amp; appointment notes, pet passport, insurance — keep everything in one place and share it when needed.</p>
+          <a href="Health-and-jabs.html"><button class="btn-primary">+ Start with Health &amp; jabs</button></a>
         </section>
       </div>
 
@@ -224,7 +282,7 @@
       <a href="home-success.html">Success</a>
       <a href="home-empty.html">Empty</a>
       <a href="home-loading.html">Loading</a>
-      <a href="home-error.html" class="current">Error</a>
+      <a href="home-error.html">Error</a>
     </div>
     <div class="flow-step" style="text-align:left;padding-left:32px;">
       <span class="zone-label">Desktop</span> &nbsp;
@@ -238,11 +296,28 @@
       <span class="nav-spacer"></span>
     </nav>
     <div class="d-main">
-      <section class="d-error-block">
-        <h3>Something went wrong</h3>
-        <p>Couldn't load Miso's dossier. Check your connection and try again.</p>
-        <a href="home-loading.html"><button class="btn-primary">Try again</button></a>
-        <a href="My-Pets.html" class="secondary-link">← Back to My Pets</a>
+      <section class="d-pet-hero">
+        <figure class="pet-photo pet-photo-d">photo</figure>
+        <div class="pet-info">
+          <h1>Miso</h1>
+          <p class="pet-meta" style="font-size:15px;">Dog · Border Terrier · Female</p>
+          <p class="pet-chip" style="font-size:12px;">Microchip 276 098 106 412 345</p>
+        </div>
+        <div class="d-pet-actions">
+          <button class="btn-primary">Share Miso's info</button>
+          <button class="btn-secondary">Edit pet details</button>
+        </div>
+      </section>
+      <section class="d-toolbar">
+        <span class="count">0 of 6 sections filled</span>
+        <span class="status">Just created</span>
+        <span class="spacer"></span>
+      </section>
+      <section class="d-empty-block">
+        <figure class="empty-illustration">illustration</figure>
+        <h3>Nice — Miso's dossier is ready!</h3>
+        <p>Let's add some notes: jabs, health records, personality &amp; care, emergency info, vet &amp; appointment notes, pet passport, insurance — keep everything in one place and share it when needed.</p>
+        <a href="Health-and-jabs.html"><button class="btn-primary">+ Start with Health &amp; jabs</button></a>
       </section>
     </div>
   </div>

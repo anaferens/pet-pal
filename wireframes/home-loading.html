@@ -95,6 +95,23 @@
     .d-main{padding:20px 16px}
     .d-skeleton-grid{grid-template-columns:1fr}
   }
+
+  /* PERSONA FLOWS */
+  .persona-flow{display:block;padding:8px 10px;margin:3px 0;border:1.5px solid var(--wf-border);border-radius:8px;text-decoration:none;color:var(--nav-text);font-size:11px;line-height:1.5;transition:border-color 0.15s,background 0.15s}
+  .persona-flow:hover{border-color:var(--nav-text);background:var(--nav-active-bg)}
+  .persona-flow strong{font-size:12px;display:block;margin-bottom:2px}
+  .persona-flow .flow-steps{color:var(--nav-cap);font-size:10px;line-height:1.6}
+  /* FLOW TOOLTIP */
+  .flow-tooltip{display:none;background:#1a1a1a;color:#fff;padding:10px 14px;font-size:12px;line-height:1.5;position:relative;z-index:50}
+  .flow-tooltip.visible{display:flex;align-items:center;gap:10px}
+  .flow-tooltip .ft-step{font-size:10px;font-weight:700;background:rgba(255,255,255,0.2);border-radius:4px;padding:2px 7px;white-space:nowrap;flex-shrink:0}
+  .flow-tooltip .ft-text{flex:1}
+  .flow-tooltip .ft-nav{display:flex;gap:4px;flex-shrink:0}
+  .flow-tooltip .ft-nav a{display:flex;align-items:center;justify-content:center;width:26px;height:26px;border-radius:50%;background:rgba(255,255,255,0.15);color:#fff;text-decoration:none;font-size:14px;font-weight:600}
+  .flow-tooltip .ft-nav a:hover{background:rgba(255,255,255,0.3)}
+  .flow-tooltip .ft-nav a.ft-disabled{opacity:0.3;pointer-events:none}
+  .flow-tooltip .ft-close{background:none;border:none;color:rgba(255,255,255,0.5);font-size:16px;cursor:pointer;padding:0 2px;margin-left:4px}
+  .flow-tooltip .ft-close:hover{color:#fff}
 </style>
 </head>
 <body>
@@ -139,7 +156,7 @@
       </ul></li>
       <li><div class="nav-divider"></div></li>
       <li><span class="nav-section">Pet dossier</span><ul>
-        <li><a href="home-success.html" class="active">Pet dossier</a><ul class="state-list"><li><a href="home-success.html">success</a></li><li><a href="home-empty.html">empty</a></li><li><a href="home-loading.html" class="active">loading</a></li><li><a href="home-error.html">error</a></li></ul></li>
+        <li><a href="home-success.html" class="active">Pet dossier</a><ul class="state-list"><li><a href="home-success.html">success</a></li><li><a href="home-empty.html">empty</a></li><li><a href="home-new.html">new pet</a></li><li><a href="home-loading.html" class="active">loading</a></li><li><a href="home-error.html">error</a></li></ul></li>
         <li><a href="Health-and-jabs.html">Health &amp; jabs</a><ul class="state-list"><li><a href="Health-and-jabs.html">success</a></li><li><a href="Health-and-jabs-empty.html">empty</a></li><li><a href="Health-and-jabs-loading.html">loading</a></li><li><a href="Health-and-jabs-error.html">error</a></li></ul></li>
         <li><a href="Documents-and-passport.html">Documents &amp; passport</a><ul class="state-list"><li><a href="Documents-and-passport.html">success</a></li><li><a href="Documents-and-passport-empty.html">empty</a></li><li><a href="Documents-and-passport-loading.html">loading</a></li><li><a href="Documents-and-passport-error.html">error</a></li></ul></li>
         <li><a href="Insurance.html">Insurance</a><ul class="state-list"><li><a href="Insurance.html">success</a></li><li><a href="Insurance-empty.html">empty</a></li><li><a href="Insurance-loading.html">loading</a></li><li><a href="Insurance-error.html">error</a></li></ul></li>
@@ -358,7 +375,7 @@ function setView(mode){
     setup: [
       { file: 'My-Pets-empty.html', tip: 'You have no pets yet. Tap \u201c+ Add your first pet\u201d to get started' },
       { file: 'Set-up-a-pet.html', tip: 'Fill in your pet\u2019s details \u2014 name, breed, sex, microchip number' },
-      { file: 'home-success.html', tip: 'Your pet dossier is created! Now fill in each section' },
+      { file: 'home-new.html', tip: 'Nice! Tap \u201c+ Start with Health & jabs\u201d to begin adding notes' },
       { file: 'Health-and-jabs.html', tip: 'Tap \u201cAdd\u201d to log vaccinations, conditions, and medications' },
       { file: 'Add-record.html', tip: 'Fill in the record \u2014 type, date, vet, and notes \u2014 then save' },
       { file: 'Documents-and-passport.html', tip: 'Upload EU pet passport, microchip cert, and pedigree papers' },
