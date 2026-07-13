@@ -1386,6 +1386,7 @@ function setView(mode) {
       var href = a.getAttribute('href');
       if (!href || href.startsWith('#') || href.startsWith('http') || href.includes('?flow=')) return;
       if (href.endsWith('.html')) a.setAttribute('href', href + '?flow=' + flowName);
+      else if (href.indexOf('.html?') !== -1) a.setAttribute('href', href + '&flow=' + flowName);
     });
   }
 

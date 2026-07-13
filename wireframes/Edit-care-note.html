@@ -159,6 +159,8 @@
   .toggle-row .toggle-desc { font-size: 12px; color: var(--wf-muted); margin-top: 2px; }
   .toggle-switch { width: 44px; height: 24px; border-radius: 12px; background: var(--wf-border); flex-shrink: 0; position: relative; cursor: pointer; }
   .toggle-switch::after { content: ""; position: absolute; top: 3px; left: 3px; width: 18px; height: 18px; border-radius: 50%; background: white; }
+  .toggle-switch.on { background: var(--wf-btn); }
+  .toggle-switch.on::after { left: auto; right: 3px; }
 
   /* BOTTOM NAV */
   .phone-nav { border-top: 1px solid var(--wf-border); display: flex; background: var(--wf-bg); }
@@ -621,6 +623,38 @@ function photoPicked() {
   document.querySelectorAll('.upload-box').forEach(function(b) { b.textContent = 'photo added \u2713'; });
   closePhotoModal();
 }
+var careNotes = {
+  food:      { cat: 'Favourite food & treats', title: 'Favourite food & treats', warning: false,
+               details: 'Royal Canin Maxi Adult, 350 g twice daily (morning + evening). Loves dried chicken strips as training treats. No rawhide \u2014 causes stomach upset.' },
+  likes:     { cat: 'Likes & temperament', title: 'Likes & temperament', warning: false,
+               details: 'Calm and affectionate. Loves belly rubs and long walks in the forest. Enjoys meeting other dogs on leash. Sleeps on the sofa \u2014 allowed.' },
+  warning:   { cat: 'Not friendly with (warning)', title: 'Not friendly with', warning: true,
+               details: 'Small rodents (strong prey drive). Off-leash terriers \u2014 gets overstimulated. Keep leashed in dog parks if terriers are present.' },
+  behaviour: { cat: 'Behaviour notes', title: 'Behaviour notes', warning: false,
+               details: 'Barks at the doorbell \u2014 settles after 30 seconds. Can be left alone for up to 4 hours. Crate-trained but prefers the sofa. Knows sit, stay, come, paw.' },
+  walking:   { cat: 'Walking & routines', title: 'Walking & routines', warning: false,
+               details: 'Morning walk 30 min (around the block). Evening walk 45\u201360 min (Stadtpark preferred). Always on leash near roads. Drinks from a collapsible bowl on long walks.' },
+  special:   { cat: 'Special requirements', title: 'Special requirements', warning: false,
+               details: 'Apoquel tablet with morning meal \u2014 see Health & jabs for dosage. Ear drops after swimming. Brush coat 2\u00d7 per week (undercoat sheds heavily in spring).' }
+};
+function prefillNote() {
+  var key = new URLSearchParams(window.location.search).get('note');
+  var note = careNotes[key];
+  if (!note) return;
+  document.querySelectorAll('form').forEach(function(form) {
+    var sel = form.querySelector('select');
+    if (sel) for (var i = 0; i < sel.options.length; i++) {
+      if (sel.options[i].text.trim() === note.cat) { sel.selectedIndex = i; break; }
+    }
+    var title = form.querySelector('input[type="text"]');
+    if (title) title.value = note.title;
+    var ta = form.querySelector('textarea');
+    if (ta) ta.value = note.details;
+    var tog = form.querySelector('.toggle-switch');
+    if (tog) tog.classList.toggle('on', note.warning);
+  });
+}
+prefillNote();
 function setView(mode) {
   document.body.classList.toggle('is-desktop', mode === 'desktop');
   document.getElementById('btn-mobile').classList.toggle('active', mode === 'mobile');
@@ -675,6 +709,7 @@ function setView(mode) {
       var href = a.getAttribute('href');
       if (!href || href.startsWith('#') || href.startsWith('http') || href.includes('?flow=')) return;
       if (href.endsWith('.html')) a.setAttribute('href', href + '?flow=' + flowName);
+      else if (href.indexOf('.html?') !== -1) a.setAttribute('href', href + '&flow=' + flowName);
     });
   }
 
