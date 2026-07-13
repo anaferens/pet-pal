@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Health & jabs (empty) — PetPal wireframe</title>
+<title>Add health record — PetPal wireframe</title>
 <style>
   :root {
     --wf-bg:         #ffffff;
@@ -365,10 +365,10 @@
               <li><a href="home-error.html">error</a></li>
             </ul>
           </li>
-          <li><a href="Health-and-jabs.html" class="active">Health &amp; jabs</a>
+          <li><a href="Health-and-jabs.html">Health &amp; jabs</a>
             <ul class="state-list">
               <li><a href="Health-and-jabs.html">success</a></li>
-              <li><a href="Health-and-jabs-empty.html" class="active">empty</a></li>
+              <li><a href="Health-and-jabs-empty.html">empty</a></li>
               <li><a href="Health-and-jabs-loading.html">loading</a></li>
               <li><a href="Health-and-jabs-error.html">error</a></li>
             </ul>
@@ -418,14 +418,14 @@
       <li><div class="nav-divider"></div></li>
       <li><span class="nav-section">Actions</span>
         <ul>
-          <li><a href="Add-record.html">Add / update a record</a>
+          <li><a href="Add-record.html" class="active">Add / update a record</a>
             <ul class="state-list">
-              <li><a href="Add-record.html">success</a></li>
+              <li><a href="Add-record.html" class="active">success</a></li>
               <li><a href="Add-record-loading.html">loading</a></li>
               <li><a href="Add-record-error.html">error</a></li>
             </ul>
           </li>
-          <li><a href="Add-health-record.html">Add health record</a></li>
+                  <li><a href="Add-health-record.html" class="active">Add health record</a></li>
           <li><a href="Add-care-note.html">Add care note</a>
             <ul class="state-list">
               <li><a href="Add-care-note.html">success</a></li>
@@ -533,50 +533,80 @@
     <div class="phone">
 
       <div class="state-bar" aria-label="Screen states">
-        <a href="Health-and-jabs.html">Success</a>
-        <a href="Health-and-jabs-empty.html" class="current">Empty</a>
-        <a href="Health-and-jabs-loading.html">Loading</a>
-        <a href="Health-and-jabs-error.html">Error</a>
+        <a href="Add-health-record.html" class="current">Success</a>
+        <a href="Add-record-empty.html">Empty</a>
+        <a href="Add-record-loading.html">Loading</a>
+        <a href="Add-record-error.html">Error</a>
       </div>
 
       <div class="flow-step">
-        <span class="zone-label">R1, R3</span> R1 + R3 · <span>Pet dossier → ★ Health & jabs</span>
+        <span class="zone-label">Main</span> Main · <span>Section → ★ Add health record</span> → back to section
       </div>
 
       <header class="m-header">
-        <a href="home-success.html" style="text-decoration:none;"><button class="back" aria-label="Back">← Dossier</button></a>
-        <h1>Health & jabs</h1>
-        <button class="action-btn">Add</button>
+        <a href="Health-and-jabs.html" style="text-decoration:none;"><button class="back" aria-label="Back">← Cancel</button></a>
+        <h1>Add health record</h1>
+        <span></span>
       </header>
 
       <div class="m-main">
 
-        <section class="m-pet-identity" aria-label="Pet identity">
-          <figure class="pet-photo pet-photo-s" aria-label="Pet photo placeholder">photo</figure>
-          <div class="pet-info">
-            <h2 style="font-size:15px;font-weight:700;">Miso</h2>
-            <p class="pet-meta" style="font-size:12px;">Dog · Border Terrier · Female</p>
+        <form aria-label="Add a record">
+          <p style="padding:12px 16px;font-size:12px;color:var(--wf-muted);">Context-aware form — fields adapt to record type. Shown: health record.</p>
+
+          <div class="form-group">
+            <label>Record type</label>
+            <select>
+              <option>Vaccination</option>
+              <option selected>Health record</option>
+              <option>Document upload</option>
+              <option>Insurance</option>
+              <option>Vet / appointment</option>
+              <option>Personality note</option>
+            </select>
           </div>
-        </section>
-        <section class="empty-state" aria-label="Empty state">
-          <figure class="empty-illustration" aria-label="Illustration placeholder">illustration</figure>
-          <h2 class="empty-headline">No health records yet</h2>
-          <p class="empty-body">Add Miso's first vaccination or health record. Track jabs, checkups, conditions, and medications — all in one place.</p>
-          <a href="Add-record.html"><button class="btn-primary empty-cta">Add first health record</button></a>
-        </section>
+
+          <div class="form-group">
+            <label>Record title <span class="req">*</span></label>
+            <input type="text" placeholder="e.g. Dental cleaning, Annual checkup">
+          </div>
+
+          <div class="form-group">
+            <label>Date <span class="req">*</span></label>
+            <input type="date">
+          </div>
+
+          <div class="form-group">
+            <label>Vet / clinic</label>
+            <input type="text" placeholder="e.g. Dr. Müller, Tierklinik am Stadtpark">
+          </div>
+
+          <div class="form-group">
+            <label>Follow-up date</label>
+            <input type="date">
+            <p class="helper">Used for reminders — leave blank if none.</p>
+          </div>
+
+          <div class="form-group">
+            <label>Outcome / notes</label>
+            <textarea placeholder="e.g. All clear. Next cleaning recommended in 12 months."></textarea>
+          </div>
+
+          <div class="form-group">
+            <label>Proof / attachment</label>
+            <div style="padding:20px;border:1.5px dashed var(--wf-border);border-radius:6px;text-align:center;color:var(--wf-muted);font-size:13px;cursor:pointer;">
+              Tap to upload photo or PDF
+            </div>
+            <p class="helper">Vet report, invoice, lab results, or any related document.</p>
+          </div>
+
+          <div class="form-actions">
+            <a href="Health-and-jabs.html"><button type="button" class="btn-secondary">Cancel</button></a>
+            <a href="Add-record-loading.html"><button type="button" class="btn-primary">Save record</button></a>
+          </div>
+        </form>
       </div>
 
-      <nav class="phone-nav" aria-label="Main navigation">
-        <a href="My-Pets.html" class="active">
-          <span class="nav-icon" aria-hidden="true"></span> Pets
-        </a>
-        <a href="Whats-due.html">
-          <span class="nav-icon" aria-hidden="true"></span> What's due
-        </a>
-        <a href="Share-a-pet.html">
-          <span class="nav-icon" aria-hidden="true"></span> Share
-        </a>
-      </nav>
 
     </div>
   </div>
@@ -584,14 +614,14 @@
   <div class="content-desktop view-desktop">
 
       <div class="state-bar" aria-label="Screen states">
-        <a href="Health-and-jabs.html">Success</a>
-        <a href="Health-and-jabs-empty.html" class="current">Empty</a>
-        <a href="Health-and-jabs-loading.html">Loading</a>
-        <a href="Health-and-jabs-error.html">Error</a>
+        <a href="Add-health-record.html" class="current">Success</a>
+        <a href="Add-record-empty.html">Empty</a>
+        <a href="Add-record-loading.html">Loading</a>
+        <a href="Add-record-error.html">Error</a>
       </div>
 
     <div class="flow-step" style="text-align:left;padding-left:32px;">
-      R1 + R3 · <span>Pet dossier → ★ Health & jabs</span>
+      Main · <span>Section → ★ Add health record</span> → back to section
     </div>
 
     <nav class="top-nav" aria-label="Main navigation (desktop)">
@@ -603,19 +633,60 @@
 
     <div class="d-main">
 
-        <section class="m-pet-identity" aria-label="Pet identity">
-          <figure class="pet-photo pet-photo-s" aria-label="Pet photo placeholder">photo</figure>
-          <div class="pet-info">
-            <h2 style="font-size:15px;font-weight:700;">Miso</h2>
-            <p class="pet-meta" style="font-size:12px;">Dog · Border Terrier · Female</p>
+        <form aria-label="Add a record">
+          <p style="padding:12px 16px;font-size:12px;color:var(--wf-muted);">Context-aware form — fields adapt to record type. Shown: health record.</p>
+
+          <div class="form-group">
+            <label>Record type</label>
+            <select>
+              <option>Vaccination</option>
+              <option selected>Health record</option>
+              <option>Document upload</option>
+              <option>Insurance</option>
+              <option>Vet / appointment</option>
+              <option>Personality note</option>
+            </select>
           </div>
-        </section>
-        <section class="empty-state" aria-label="Empty state">
-          <figure class="empty-illustration" aria-label="Illustration placeholder">illustration</figure>
-          <h2 class="empty-headline">No health records yet</h2>
-          <p class="empty-body">Add Miso's first vaccination or health record. Track jabs, checkups, conditions, and medications — all in one place.</p>
-          <a href="Add-record.html"><button class="btn-primary empty-cta">Add first health record</button></a>
-        </section>
+
+          <div class="form-group">
+            <label>Record title <span class="req">*</span></label>
+            <input type="text" placeholder="e.g. Dental cleaning, Annual checkup">
+          </div>
+
+          <div class="form-group">
+            <label>Date <span class="req">*</span></label>
+            <input type="date">
+          </div>
+
+          <div class="form-group">
+            <label>Vet / clinic</label>
+            <input type="text" placeholder="e.g. Dr. Müller, Tierklinik am Stadtpark">
+          </div>
+
+          <div class="form-group">
+            <label>Follow-up date</label>
+            <input type="date">
+            <p class="helper">Used for reminders — leave blank if none.</p>
+          </div>
+
+          <div class="form-group">
+            <label>Outcome / notes</label>
+            <textarea placeholder="e.g. All clear. Next cleaning recommended in 12 months."></textarea>
+          </div>
+
+          <div class="form-group">
+            <label>Proof / attachment</label>
+            <div style="padding:20px;border:1.5px dashed var(--wf-border);border-radius:6px;text-align:center;color:var(--wf-muted);font-size:13px;cursor:pointer;">
+              Tap to upload photo or PDF
+            </div>
+            <p class="helper">Vet report, invoice, lab results, or any related document.</p>
+          </div>
+
+          <div class="form-actions">
+            <a href="Health-and-jabs.html"><button type="button" class="btn-secondary">Cancel</button></a>
+            <a href="Add-record-loading.html"><button type="button" class="btn-primary">Save record</button></a>
+          </div>
+        </form>
     </div>
   </div>
 
