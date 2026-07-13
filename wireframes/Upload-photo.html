@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Documents & passport — PetPal wireframe</title>
+<title>Add pet photo — PetPal wireframe</title>
 <style>
   :root {
     --wf-bg:         #ffffff;
@@ -124,8 +124,7 @@
 
   /* MOBILE LAYOUT */
   .content-mobile { flex: 1; display: flex; justify-content: center; padding: 24px; min-height: 100vh; }
-  .phone { position: relative; width: 375px; min-height: 812px; background: var(--wf-bg); border: 1.5px solid var(--wf-border); border-radius: 12px; display: flex; flex-direction: column; overflow: hidden; box-shadow: 0 1px 4px rgba(0,0,0,0.06); }
-  .fab { position: absolute; right: 16px; bottom: 76px; width: 56px; height: 56px; border-radius: 50%; background: var(--wf-btn); color: var(--wf-btn-text); font-size: 28px; line-height: 1; border: none; cursor: pointer; display: flex; align-items: center; justify-content: center; text-decoration: none; box-shadow: 0 4px 14px rgba(0,0,0,0.28); z-index: 10; }
+  .phone { width: 375px; min-height: 812px; background: var(--wf-bg); border: 1.5px solid var(--wf-border); border-radius: 12px; display: flex; flex-direction: column; overflow: hidden; box-shadow: 0 1px 4px rgba(0,0,0,0.06); }
   .m-header { display: flex; align-items: center; justify-content: space-between; padding: 12px 16px; border-bottom: 1px solid var(--wf-border); min-height: 48px; }
   .m-header .back { font-size: 14px; color: var(--wf-text); background: none; border: none; cursor: pointer; }
   .m-header h1 { font-size: 17px; font-weight: 600; }
@@ -353,7 +352,7 @@
               <li><a href="Set-up-a-pet-error.html">error</a></li>
             </ul>
           </li>
-          <li><a href="Upload-photo.html">Upload photo</a></li>
+          <li><a href="Upload-photo.html" class="active">Upload photo</a></li>
         </ul>
       </li>
       <li><div class="nav-divider"></div></li>
@@ -377,9 +376,9 @@
               <li><a href="Health-and-jabs-error.html">error</a></li>
             </ul>
           </li>
-          <li><a href="Documents-and-passport.html" class="active">Documents &amp; passport</a>
+          <li><a href="Documents-and-passport.html">Documents &amp; passport</a>
             <ul class="state-list">
-              <li><a href="Documents-and-passport.html" class="active">success</a></li>
+              <li><a href="Documents-and-passport.html">success</a></li>
               <li><a href="Documents-and-passport-empty.html">empty</a></li>
               <li><a href="Documents-and-passport-loading.html">loading</a></li>
               <li><a href="Documents-and-passport-error.html">error</a></li>
@@ -422,15 +421,15 @@
       <li><div class="nav-divider"></div></li>
       <li><span class="nav-section">Actions</span>
         <ul>
-          <li><a href="Add-record.html">Add / update a record</a>
+          <li><a href="Add-record.html" class="active">Add / update a record</a>
             <ul class="state-list">
-              <li><a href="Add-record.html">success</a></li>
+              <li><a href="Add-record.html" class="active">success</a></li>
               <li><a href="Add-record-loading.html">loading</a></li>
               <li><a href="Add-record-error.html">error</a></li>
             </ul>
           </li>
-          <li><a href="Add-health-record.html">Add health record</a></li>
-          <li><a href="Document-view.html">Document view</a></li>
+                  <li><a href="Add-health-record.html">Add health record</a></li>
+                  <li><a href="Document-view.html">Document view</a></li>
           <li><a href="Add-care-note.html">Add care note</a>
             <ul class="state-list">
               <li><a href="Add-care-note.html">success</a></li>
@@ -538,79 +537,51 @@
     <div class="phone">
 
       <div class="state-bar" aria-label="Screen states">
-        <a href="Documents-and-passport.html" class="current">Success</a>
-        <a href="Documents-and-passport-empty.html">Empty</a>
-        <a href="Documents-and-passport-loading.html">Loading</a>
-        <a href="Documents-and-passport-error.html">Error</a>
+        <a href="Upload-photo.html" class="current">Success</a>
+        <a href="Add-record-empty.html">Empty</a>
+        <a href="Add-record-loading.html">Loading</a>
+        <a href="Add-record-error.html">Error</a>
       </div>
 
       <div class="flow-step">
-        <span class="zone-label">Main, R3</span> Main + R3 · <span>Pet dossier → ★ Documents & passport</span>
+        <span class="zone-label">Main</span> Main · <span>Set up a pet → ★ Add photo</span> → back to form → back to section
       </div>
 
       <header class="m-header">
-        <a href="home-success.html" style="text-decoration:none;"><button class="back" aria-label="Back">← Dossier</button></a>
-        <h1>Documents & passport</h1>
-        <span style="width:60px;" aria-hidden="true"></span>
+        <a href="Set-up-a-pet.html" style="text-decoration:none;"><button class="back" aria-label="Back">← Cancel</button></a>
+        <h1>Add photo</h1>
+        <span></span>
       </header>
 
       <div class="m-main">
 
-        <section class="m-pet-identity" aria-label="Pet identity">
-          <figure class="pet-photo pet-photo-s" aria-label="Pet photo placeholder">photo</figure>
-          <div class="pet-info">
-            <h2 style="font-size:15px;font-weight:700;">Miso</h2>
-            <p class="pet-meta" style="font-size:12px;">Dog · Border Terrier · Female</p>
-          </div>
-        </section>
+        <form aria-label="Add a photo">
+          <p style="padding:12px 16px;font-size:12px;color:var(--wf-muted);">A photo helps sitters and vets recognise your pet at a glance.</p>
 
-        <div class="doc-card">
-          <div class="doc-thumb">PDF</div>
-          <div class="doc-info">
-            <h3>EU Pet Passport</h3>
-            <p class="doc-meta">DE-0812345 · Valid · Issued 15 Jan 2024</p>
+          <div style="display:flex;justify-content:center;padding:8px 16px 20px;">
+            <div class="photo-preview" style="width:140px;height:140px;border-radius:50%;background:var(--wf-placeholder);display:flex;align-items:center;justify-content:center;font-size:11px;color:var(--wf-muted);text-align:center;">no photo yet</div>
           </div>
-          <a href="Document-view.html"><button class="record-action">→</button></a>
-        </div>
-        <div class="doc-card">
-          <div class="doc-thumb">PDF</div>
-          <div class="doc-info">
-            <h3>Microchip registration</h3>
-            <p class="doc-meta">276 098 106 412 345 · Registered 10 Jan 2024</p>
+
+          <div class="form-group">
+            <button type="button" class="btn-secondary" style="width:100%;display:flex;align-items:center;gap:12px;padding:14px 16px;" onclick="selectPhoto(this)">
+              <span style="width:32px;height:32px;border-radius:8px;background:var(--wf-placeholder);flex-shrink:0;"></span>
+              <span style="text-align:left;"><strong style="display:block;font-size:14px;">Take photo</strong><span style="font-size:12px;color:var(--wf-muted);">Use your camera</span></span>
+            </button>
           </div>
-          <a href="Document-view.html"><button class="record-action">→</button></a>
-        </div>
-        <div class="doc-card">
-          <div class="doc-thumb">IMG</div>
-          <div class="doc-info">
-            <h3>Rabies vaccination certificate</h3>
-            <p class="doc-meta">Valid until 15 Mar 2027</p>
+          <div class="form-group">
+            <button type="button" class="btn-secondary" style="width:100%;display:flex;align-items:center;gap:12px;padding:14px 16px;" onclick="selectPhoto(this)">
+              <span style="width:32px;height:32px;border-radius:8px;background:var(--wf-placeholder);flex-shrink:0;"></span>
+              <span style="text-align:left;"><strong style="display:block;font-size:14px;">Choose from library</strong><span style="font-size:12px;color:var(--wf-muted);">Pick an existing photo</span></span>
+            </button>
           </div>
-          <a href="Document-view.html"><button class="record-action">→</button></a>
-        </div>
-        <div class="doc-card">
-          <div class="doc-thumb">PDF</div>
-          <div class="doc-info">
-            <h3>Pedigree papers</h3>
-            <p class="doc-meta">VDH / FCI registration</p>
+
+          <div class="form-actions">
+            <a href="Set-up-a-pet.html"><button type="button" class="btn-secondary">Cancel</button></a>
+            <a href="Set-up-a-pet.html"><button type="button" class="btn-primary">Use photo</button></a>
           </div>
-          <a href="Document-view.html"><button class="record-action">→</button></a>
-        </div>
+        </form>
       </div>
 
-      <a href="Add-record.html" class="fab" aria-label="Add">+</a>
-
-      <nav class="phone-nav" aria-label="Main navigation">
-        <a href="My-Pets.html" class="active">
-          <span class="nav-icon" aria-hidden="true"></span> Pets
-        </a>
-        <a href="Whats-due.html">
-          <span class="nav-icon" aria-hidden="true"></span> What's due
-        </a>
-        <a href="Share-a-pet.html">
-          <span class="nav-icon" aria-hidden="true"></span> Share
-        </a>
-      </nav>
 
     </div>
   </div>
@@ -618,14 +589,14 @@
   <div class="content-desktop view-desktop">
 
       <div class="state-bar" aria-label="Screen states">
-        <a href="Documents-and-passport.html" class="current">Success</a>
-        <a href="Documents-and-passport-empty.html">Empty</a>
-        <a href="Documents-and-passport-loading.html">Loading</a>
-        <a href="Documents-and-passport-error.html">Error</a>
+        <a href="Upload-photo.html" class="current">Success</a>
+        <a href="Add-record-empty.html">Empty</a>
+        <a href="Add-record-loading.html">Loading</a>
+        <a href="Add-record-error.html">Error</a>
       </div>
 
     <div class="flow-step" style="text-align:left;padding-left:32px;">
-      Main + R3 · <span>Pet dossier → ★ Documents & passport</span>
+      Main · <span>Set up a pet → ★ Add photo</span> → back to form → back to section
     </div>
 
     <nav class="top-nav" aria-label="Main navigation (desktop)">
@@ -637,52 +608,40 @@
 
     <div class="d-main">
 
-        <section class="m-pet-identity" aria-label="Pet identity">
-          <figure class="pet-photo pet-photo-s" aria-label="Pet photo placeholder">photo</figure>
-          <div class="pet-info">
-            <h2 style="font-size:15px;font-weight:700;">Miso</h2>
-            <p class="pet-meta" style="font-size:12px;">Dog · Border Terrier · Female</p>
-          </div>
-        </section>
+        <form aria-label="Add a photo">
+          <p style="padding:12px 16px;font-size:12px;color:var(--wf-muted);">A photo helps sitters and vets recognise your pet at a glance.</p>
 
-        <div class="doc-card">
-          <div class="doc-thumb">PDF</div>
-          <div class="doc-info">
-            <h3>EU Pet Passport</h3>
-            <p class="doc-meta">DE-0812345 · Valid · Issued 15 Jan 2024</p>
+          <div style="display:flex;justify-content:center;padding:8px 16px 20px;">
+            <div class="photo-preview" style="width:140px;height:140px;border-radius:50%;background:var(--wf-placeholder);display:flex;align-items:center;justify-content:center;font-size:11px;color:var(--wf-muted);text-align:center;">no photo yet</div>
           </div>
-          <a href="Document-view.html"><button class="record-action">→</button></a>
-        </div>
-        <div class="doc-card">
-          <div class="doc-thumb">PDF</div>
-          <div class="doc-info">
-            <h3>Microchip registration</h3>
-            <p class="doc-meta">276 098 106 412 345 · Registered 10 Jan 2024</p>
+
+          <div class="form-group">
+            <button type="button" class="btn-secondary" style="width:100%;display:flex;align-items:center;gap:12px;padding:14px 16px;" onclick="selectPhoto(this)">
+              <span style="width:32px;height:32px;border-radius:8px;background:var(--wf-placeholder);flex-shrink:0;"></span>
+              <span style="text-align:left;"><strong style="display:block;font-size:14px;">Take photo</strong><span style="font-size:12px;color:var(--wf-muted);">Use your camera</span></span>
+            </button>
           </div>
-          <a href="Document-view.html"><button class="record-action">→</button></a>
-        </div>
-        <div class="doc-card">
-          <div class="doc-thumb">IMG</div>
-          <div class="doc-info">
-            <h3>Rabies vaccination certificate</h3>
-            <p class="doc-meta">Valid until 15 Mar 2027</p>
+          <div class="form-group">
+            <button type="button" class="btn-secondary" style="width:100%;display:flex;align-items:center;gap:12px;padding:14px 16px;" onclick="selectPhoto(this)">
+              <span style="width:32px;height:32px;border-radius:8px;background:var(--wf-placeholder);flex-shrink:0;"></span>
+              <span style="text-align:left;"><strong style="display:block;font-size:14px;">Choose from library</strong><span style="font-size:12px;color:var(--wf-muted);">Pick an existing photo</span></span>
+            </button>
           </div>
-          <a href="Document-view.html"><button class="record-action">→</button></a>
-        </div>
-        <div class="doc-card">
-          <div class="doc-thumb">PDF</div>
-          <div class="doc-info">
-            <h3>Pedigree papers</h3>
-            <p class="doc-meta">VDH / FCI registration</p>
+
+          <div class="form-actions">
+            <a href="Set-up-a-pet.html"><button type="button" class="btn-secondary">Cancel</button></a>
+            <a href="Set-up-a-pet.html"><button type="button" class="btn-primary">Use photo</button></a>
           </div>
-          <a href="Document-view.html"><button class="record-action">→</button></a>
-        </div>
+        </form>
     </div>
   </div>
 
 </div>
 
 <script>
+function selectPhoto(btn) {
+  document.querySelectorAll('.photo-preview').forEach(function(p) { p.textContent = 'photo selected \u2713'; p.style.background = 'var(--wf-border)'; });
+}
 function setView(mode) {
   document.body.classList.toggle('is-desktop', mode === 'desktop');
   document.getElementById('btn-mobile').classList.toggle('active', mode === 'mobile');

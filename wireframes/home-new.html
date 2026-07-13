@@ -198,6 +198,7 @@
 <li><span class="nav-section">My Pets</span><ul>
         <li><a href="My-Pets.html">My Pets</a><ul class="state-list"><li><a href="My-Pets.html">success</a></li><li><a href="My-Pets-empty.html">empty</a></li><li><a href="My-Pets-loading.html">loading</a></li><li><a href="My-Pets-error.html">error</a></li></ul></li>
         <li><a href="Set-up-a-pet.html">Set up a pet</a><ul class="state-list"><li><a href="Set-up-a-pet.html">success</a></li><li><a href="Set-up-a-pet-loading.html">loading</a></li><li><a href="Set-up-a-pet-error.html">error</a></li></ul></li>
+          <li><a href="Upload-photo.html">Upload photo</a></li>
       </ul></li>
       <li><div class="nav-divider"></div></li>
       <li><span class="nav-section">Pet dossier</span><ul>
@@ -289,32 +290,32 @@
             <h3>What do you want to add?</h3>
             <button class="add-close" onclick="closeAddModal()" aria-label="Close">✕</button>
           </div>
-          <a class="add-option" href="Health-and-jabs.html">
+          <a class="add-option" href="Add-health-record.html">
             <span class="opt-icon"></span>
             <span class="opt-body"><h4>Health &amp; jabs</h4><span class="opt-desc">Add important health related info about your pet</span></span>
             <span class="opt-arrow">→</span>
           </a>
-          <a class="add-option" href="Documents-and-passport.html">
+          <a class="add-option" href="Add-record.html?type=documents">
             <span class="opt-icon"></span>
             <span class="opt-body"><h4>Documents &amp; passport</h4><span class="opt-desc">Add official documents like passport, so you always have them nearby</span></span>
             <span class="opt-arrow">→</span>
           </a>
-          <a class="add-option" href="Insurance.html">
+          <a class="add-option" href="Add-record.html?type=insurance">
             <span class="opt-icon"></span>
             <span class="opt-body"><h4>Insurance</h4><span class="opt-desc">Add your pet’s insurance</span></span>
             <span class="opt-arrow">→</span>
           </a>
-          <a class="add-option" href="Personality-and-care.html">
+          <a class="add-option" href="Add-care-note.html?cat=behaviour">
             <span class="opt-icon"></span>
             <span class="opt-body"><h4>Personality &amp; care</h4><span class="opt-desc">Anything about your pet’s personality, preferences, behaviour etc</span></span>
             <span class="opt-arrow">→</span>
           </a>
-          <a class="add-option" href="Vet-and-appointments.html">
+          <a class="add-option" href="Add-record.html?type=vet">
             <span class="opt-icon"></span>
             <span class="opt-body"><h4>Vet &amp; appointments</h4><span class="opt-desc">Have an appointment soon? Keep it here so we can remind you on time</span></span>
             <span class="opt-arrow">→</span>
           </a>
-          <a class="add-option dashed" href="Emergency-info.html">
+          <a class="add-option dashed" href="Emergency-auth-setup.html">
             <span class="opt-icon"></span>
             <span class="opt-body"><h4>Emergency info &amp; authorisation</h4><span class="opt-desc">Vet contact, current meds, conditions, emergency contact — what a carer needs if something goes wrong</span></span>
             <span class="opt-arrow">→</span>
@@ -381,32 +382,32 @@
             <h3>What do you want to add?</h3>
             <button class="add-close" onclick="closeAddModal()" aria-label="Close">✕</button>
           </div>
-          <a class="add-option" href="Health-and-jabs.html">
+          <a class="add-option" href="Add-health-record.html">
             <span class="opt-icon"></span>
             <span class="opt-body"><h4>Health &amp; jabs</h4><span class="opt-desc">Add important health related info about your pet</span></span>
             <span class="opt-arrow">→</span>
           </a>
-          <a class="add-option" href="Documents-and-passport.html">
+          <a class="add-option" href="Add-record.html?type=documents">
             <span class="opt-icon"></span>
             <span class="opt-body"><h4>Documents &amp; passport</h4><span class="opt-desc">Add official documents like passport, so you always have them nearby</span></span>
             <span class="opt-arrow">→</span>
           </a>
-          <a class="add-option" href="Insurance.html">
+          <a class="add-option" href="Add-record.html?type=insurance">
             <span class="opt-icon"></span>
             <span class="opt-body"><h4>Insurance</h4><span class="opt-desc">Add your pet’s insurance</span></span>
             <span class="opt-arrow">→</span>
           </a>
-          <a class="add-option" href="Personality-and-care.html">
+          <a class="add-option" href="Add-care-note.html?cat=behaviour">
             <span class="opt-icon"></span>
             <span class="opt-body"><h4>Personality &amp; care</h4><span class="opt-desc">Anything about your pet’s personality, preferences, behaviour etc</span></span>
             <span class="opt-arrow">→</span>
           </a>
-          <a class="add-option" href="Vet-and-appointments.html">
+          <a class="add-option" href="Add-record.html?type=vet">
             <span class="opt-icon"></span>
             <span class="opt-body"><h4>Vet &amp; appointments</h4><span class="opt-desc">Have an appointment soon? Keep it here so we can remind you on time</span></span>
             <span class="opt-arrow">→</span>
           </a>
-          <a class="add-option dashed" href="Emergency-info.html">
+          <a class="add-option dashed" href="Emergency-auth-setup.html">
             <span class="opt-icon"></span>
             <span class="opt-body"><h4>Emergency info &amp; authorisation</h4><span class="opt-desc">Vet contact, current meds, conditions, emergency contact — what a carer needs if something goes wrong</span></span>
             <span class="opt-arrow">→</span>
@@ -476,6 +477,7 @@ function setView(mode){
       var href = a.getAttribute('href');
       if (!href || href.startsWith('#') || href.startsWith('http') || href.includes('?flow=')) return;
       if (href.endsWith('.html')) a.setAttribute('href', href + '?flow=' + flowName);
+      else if (href.indexOf('.html?') !== -1) a.setAttribute('href', href + '&flow=' + flowName);
     });
   }
 

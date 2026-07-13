@@ -241,6 +241,7 @@
               <li><a href="Set-up-a-pet-error.html">error</a></li>
             </ul>
           </li>
+          <li><a href="Upload-photo.html">Upload photo</a></li>
         </ul>
       </li>
       <li><div class="nav-divider"></div></li>
@@ -596,6 +597,20 @@
 </div>
 
 <script>
+function preselectCat() {
+  var t = new URLSearchParams(window.location.search).get('cat');
+  if (!t) return;
+  document.querySelectorAll('form select').forEach(function(sel) {
+    for (var i = 0; i < sel.options.length; i++) {
+      if (sel.options[i].text.toLowerCase().indexOf(t.toLowerCase()) !== -1) {
+        sel.querySelectorAll('option').forEach ? null : null;
+        for (var j = 0; j < sel.options.length; j++) sel.options[j].removeAttribute('selected');
+        sel.selectedIndex = i; break;
+      }
+    }
+  });
+}
+preselectCat();
 function setView(mode) {
   document.body.classList.toggle('is-desktop', mode === 'desktop');
   document.getElementById('btn-mobile').classList.toggle('active', mode === 'mobile');
