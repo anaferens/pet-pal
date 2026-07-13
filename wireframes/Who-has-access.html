@@ -1100,9 +1100,9 @@
 
         <!-- Pet filter segmented control -->
         <div class="pet-filter" role="group" aria-label="Filter by pet">
-          <button class="active">All pets</button>
-          <button>Miso</button>
-          <button>Cheetah</button>
+          <button class="active" onclick="segSelect(this)">All pets</button>
+          <button onclick="segSelect(this)">Miso</button>
+          <button onclick="segSelect(this)">Cheetah</button>
         </div>
 
         <!-- Active grants list -->
@@ -1128,7 +1128,7 @@
                 </div>
                 <div class="grant-actions">
                   <a href="Edit-access-grant.html"><button class="btn-sm btn-primary">Edit</button></a>
-                  <button class="btn-sm btn-secondary">Revoke</button>
+                  <a href="Edit-access-grant.html"><button class="btn-sm btn-secondary">Revoke</button></a>
                 </div>
               </article>
             </li>
@@ -1152,7 +1152,7 @@
                 </div>
                 <div class="grant-actions">
                   <a href="Edit-access-grant.html"><button class="btn-sm btn-primary">Edit</button></a>
-                  <button class="btn-sm btn-secondary">Revoke</button>
+                  <a href="Edit-access-grant.html"><button class="btn-sm btn-secondary">Revoke</button></a>
                 </div>
               </article>
             </li>
@@ -1176,7 +1176,7 @@
                 </div>
                 <div class="grant-actions">
                   <a href="Edit-access-grant.html"><button class="btn-sm btn-primary">Edit</button></a>
-                  <button class="btn-sm btn-secondary">Revoke</button>
+                  <a href="Edit-access-grant.html"><button class="btn-sm btn-secondary">Revoke</button></a>
                 </div>
               </article>
             </li>
@@ -1258,9 +1258,9 @@
 
       <!-- Pet filter -->
       <div class="d-pet-filter" role="group" aria-label="Filter by pet">
-        <button class="active">All pets</button>
-        <button>Miso</button>
-        <button>Cheetah</button>
+        <button class="active" onclick="segSelect(this)">All pets</button>
+        <button onclick="segSelect(this)">Miso</button>
+        <button onclick="segSelect(this)">Cheetah</button>
       </div>
 
       <!-- Active grants -->
@@ -1285,7 +1285,7 @@
               </div>
               <div class="d-grant-actions">
                 <a href="Edit-access-grant.html"><button class="btn-sm btn-primary">Edit</button></a>
-                <button class="btn-sm btn-secondary">Revoke</button>
+                <a href="Edit-access-grant.html"><button class="btn-sm btn-secondary">Revoke</button></a>
               </div>
             </article>
           </li>
@@ -1307,7 +1307,7 @@
               </div>
               <div class="d-grant-actions">
                 <a href="Edit-access-grant.html"><button class="btn-sm btn-primary">Edit</button></a>
-                <button class="btn-sm btn-secondary">Revoke</button>
+                <a href="Edit-access-grant.html"><button class="btn-sm btn-secondary">Revoke</button></a>
               </div>
             </article>
           </li>
@@ -1329,7 +1329,7 @@
               </div>
               <div class="d-grant-actions">
                 <a href="Edit-access-grant.html"><button class="btn-sm btn-primary">Edit</button></a>
-                <button class="btn-sm btn-secondary">Revoke</button>
+                <a href="Edit-access-grant.html"><button class="btn-sm btn-secondary">Revoke</button></a>
               </div>
             </article>
           </li>
@@ -1365,6 +1365,10 @@
 </div>
 
 <script>
+function segSelect(btn) {
+  Array.from(btn.parentElement.children).forEach(function(b) { b.classList.remove('active'); });
+  btn.classList.add('active');
+}
 function setView(mode) {
   document.body.classList.toggle('is-desktop', mode === 'desktop');
   document.getElementById('btn-mobile').classList.toggle('active', mode === 'mobile');

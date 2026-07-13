@@ -185,6 +185,19 @@
     .d-main { padding: 20px 16px; }
   }
 
+
+  /* PHOTO UPLOAD MODAL */
+  .photo-modal { display: none; position: fixed; inset: 0; z-index: 100; background: rgba(0,0,0,0.5); align-items: center; justify-content: center; padding: 20px; }
+  .photo-modal.open { display: flex; }
+  .photo-sheet { text-align: left; background: var(--wf-bg); border-radius: 16px; width: 100%; max-width: 360px; padding: 20px; box-shadow: 0 8px 32px rgba(0,0,0,0.25); }
+  .photo-sheet-head { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 16px; }
+  .photo-sheet-head h3 { font-size: 18px; font-weight: 700; }
+  .photo-sheet-close { width: 32px; height: 32px; border-radius: 50%; border: none; background: var(--wf-surface); color: var(--wf-text); font-size: 15px; cursor: pointer; flex-shrink: 0; display: flex; align-items: center; justify-content: center; }
+  .photo-opt { display: flex; align-items: center; gap: 12px; width: 100%; border: 1.5px solid var(--wf-border); border-radius: 10px; padding: 14px; margin-bottom: 12px; background: var(--wf-input-bg); cursor: pointer; text-align: left; font-family: inherit; }
+  .photo-opt:hover { border-color: var(--wf-text); }
+  .photo-opt .po-icon { width: 32px; height: 32px; border-radius: 8px; background: var(--wf-placeholder); flex-shrink: 0; }
+  .photo-opt strong { display: block; font-size: 14px; }
+  .photo-opt span.po-sub { font-size: 12px; color: var(--wf-muted); }
 </style>
 </head>
 <body>
@@ -487,7 +500,7 @@
 
           <div class="form-group" style="margin-top:16px;">
             <label>Photo (optional)</label>
-            <div style="padding:20px;border:1.5px dashed var(--wf-border);border-radius:6px;text-align:center;color:var(--wf-muted);font-size:13px;cursor:pointer;">
+            <div class="upload-box" style="padding:20px;border:1.5px dashed var(--wf-border);border-radius:6px;text-align:center;color:var(--wf-muted);font-size:13px;cursor:pointer;" onclick="openPhotoModal()">
               Tap to upload a photo
             </div>
             <p class="helper">e.g. the food bag label, a favourite spot, or a reaction to avoid.</p>
@@ -581,7 +594,7 @@
 
           <div class="form-group" style="margin-top:16px;">
             <label>Photo (optional)</label>
-            <div style="padding:20px;border:1.5px dashed var(--wf-border);border-radius:6px;text-align:center;color:var(--wf-muted);font-size:13px;cursor:pointer;">
+            <div class="upload-box" style="padding:20px;border:1.5px dashed var(--wf-border);border-radius:6px;text-align:center;color:var(--wf-muted);font-size:13px;cursor:pointer;" onclick="openPhotoModal()">
               Click to upload a photo
             </div>
           </div>
@@ -611,6 +624,12 @@ function preselectCat() {
   });
 }
 preselectCat();
+function openPhotoModal() { document.getElementById('photo-modal').classList.add('open'); }
+function closePhotoModal() { document.getElementById('photo-modal').classList.remove('open'); }
+function photoPicked() {
+  document.querySelectorAll('.upload-box').forEach(function(b) { b.textContent = 'photo added \u2713'; });
+  closePhotoModal();
+}
 function setView(mode) {
   document.body.classList.toggle('is-desktop', mode === 'desktop');
   document.getElementById('btn-mobile').classList.toggle('active', mode === 'mobile');
@@ -708,5 +727,22 @@ function setView(mode) {
 
 </script>
 
+
+<div class="photo-modal" id="photo-modal" onclick="if(event.target===this)closePhotoModal()">
+  <div class="photo-sheet" role="dialog" aria-label="Add a photo">
+    <div class="photo-sheet-head">
+      <h3>Add a photo</h3>
+      <button class="photo-sheet-close" onclick="closePhotoModal()" aria-label="Close">✕</button>
+    </div>
+    <button type="button" class="photo-opt" onclick="photoPicked()">
+      <span class="po-icon"></span>
+      <span><strong>Take photo</strong><span class="po-sub">Use your camera</span></span>
+    </button>
+    <button type="button" class="photo-opt" onclick="photoPicked()">
+      <span class="po-icon"></span>
+      <span><strong>Choose from library</strong><span class="po-sub">Pick an existing photo</span></span>
+    </button>
+  </div>
+</div>
 </body>
 </html>

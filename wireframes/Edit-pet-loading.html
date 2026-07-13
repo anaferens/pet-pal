@@ -471,8 +471,8 @@
           <section class="photo-section" aria-label="Pet photo">
             <figure class="photo-placeholder" aria-label="Current pet photo">photo</figure>
             <div class="photo-actions">
-              <button type="button" class="btn-secondary" disabled>Change photo</button>
-              <button type="button" class="text-link" disabled>Remove photo</button>
+              <button type="button" class="btn-secondary" disabled onclick="window.location.href='Upload-photo.html'+window.location.search">Change photo</button>
+              <button type="button" class="text-link" disabled onclick="this.textContent='Photo removed ✓'">Remove photo</button>
             </div>
           </section>
 
@@ -534,8 +534,8 @@
 
           <!-- Form actions (saving state) -->
           <div class="form-actions">
-            <button type="button" class="btn-primary" disabled style="width:100%;">Saving...</button>
-            <button type="button" class="btn-secondary" disabled style="width:100%;">Cancel</button>
+            <button type="button" class="btn-primary" disabled style="width:100%;" disabled>Saving...</button>
+            <button type="button" class="btn-secondary" disabled style="width:100%;" onclick="window.location.href='Edit-pet.html'+window.location.search">Cancel</button>
           </div>
 
         </form>
@@ -545,12 +545,12 @@
           <p class="danger-zone-label">Danger zone</p>
 
           <div class="danger-action">
-            <button type="button" disabled>Archive Miso</button>
+            <button type="button" disabled onclick="window.location.href='My-Pets.html'+window.location.search">Archive Miso</button>
             <p class="helper">Archived pets are hidden from your list but all data is preserved. You can restore later.</p>
           </div>
 
           <div class="danger-action">
-            <button type="button" disabled>Permanently delete Miso</button>
+            <button type="button" disabled onclick="window.location.href='My-Pets-empty.html'+window.location.search">Permanently delete Miso</button>
             <p class="helper">This removes all of Miso's data -- dossier, records, documents, shares -- and cannot be undone.</p>
           </div>
         </section>
@@ -611,8 +611,8 @@
         <section class="photo-section" style="border:1.5px solid var(--wf-border);border-radius:8px;margin-bottom:24px;" aria-label="Pet photo">
           <figure class="photo-placeholder" aria-label="Current pet photo">photo</figure>
           <div class="photo-actions">
-            <button type="button" class="btn-secondary" disabled>Change photo</button>
-            <button type="button" class="text-link" disabled>Remove photo</button>
+            <button type="button" class="btn-secondary" disabled onclick="window.location.href='Upload-photo.html'+window.location.search">Change photo</button>
+            <button type="button" class="text-link" disabled onclick="this.textContent='Photo removed ✓'">Remove photo</button>
           </div>
         </section>
 
@@ -683,8 +683,8 @@
 
         <!-- Form actions (saving state) -->
         <div style="display:flex;gap:12px;margin-bottom:32px;">
-          <button type="button" class="btn-primary" disabled>Saving...</button>
-          <button type="button" class="btn-secondary" disabled>Cancel</button>
+          <button type="button" class="btn-primary" disabled disabled>Saving...</button>
+          <button type="button" class="btn-secondary" disabled onclick="window.location.href='Edit-pet.html'+window.location.search">Cancel</button>
         </div>
 
       </form>
@@ -695,11 +695,11 @@
 
         <div class="d-danger-actions">
           <div class="danger-action">
-            <button type="button" disabled>Archive Miso</button>
+            <button type="button" disabled onclick="window.location.href='My-Pets.html'+window.location.search">Archive Miso</button>
             <p class="helper">Archived pets are hidden from your list but all data is preserved. You can restore later.</p>
           </div>
           <div class="danger-action">
-            <button type="button" disabled>Permanently delete Miso</button>
+            <button type="button" disabled onclick="window.location.href='My-Pets-empty.html'+window.location.search">Permanently delete Miso</button>
             <p class="helper">This removes all of Miso's data -- dossier, records, documents, shares -- and cannot be undone.</p>
           </div>
         </div>

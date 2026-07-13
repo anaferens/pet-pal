@@ -236,9 +236,9 @@
       </div>
 
       <header class="m-header">
-        <button class="back">← My Pets</button>
+        <a href="My-Pets.html" style="text-decoration:none;"><button class="back">← My Pets</button></a>
         <h1>Miso</h1>
-        <button class="action-edit">Edit</button>
+        <a href="Edit-pet.html" style="text-decoration:none;"><button class="action-edit">Edit</button></a>
       </header>
 
       <div class="m-main">
@@ -252,8 +252,8 @@
         </section>
 
         <section class="m-quick-actions">
-          <button class="btn-primary">Share Miso's info</button>
-          <button class="btn-secondary">Edit pet details</button>
+          <a href="Share-a-pet.html"><button class="btn-primary">Share Miso's info</button></a>
+          <a href="Set-up-a-pet.html"><button class="btn-secondary">Edit pet details</button></a>
         </section>
 
         <section class="m-fill-counter">
@@ -311,8 +311,8 @@
           <p class="pet-chip" style="font-size:12px;">Microchip 276 098 106 412 345</p>
         </div>
         <div class="d-pet-actions">
-          <button class="btn-primary">Share Miso's info</button>
-          <button class="btn-secondary">Edit pet details</button>
+          <a href="Share-a-pet.html"><button class="btn-primary">Share Miso's info</button></a>
+          <a href="Set-up-a-pet.html"><button class="btn-secondary">Edit pet details</button></a>
         </div>
       </section>
       <section class="d-toolbar">
@@ -325,7 +325,7 @@
         <figure class="empty-illustration">illustration</figure>
         <h3>No sections match your search</h3>
         <p>Nothing in Miso's dossier matches "rabies cert." Try a broader term or clear the search to see all sections.</p>
-        <button class="btn-primary">Clear search</button>
+        <button class="btn-primary" onclick="history.back()">Clear search</button>
         <a href="home-success.html" style="font-size:13px;color:var(--wf-muted);margin-top:4px;">Show all sections</a>
       </section>
     </div>

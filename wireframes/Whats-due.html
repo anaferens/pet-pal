@@ -1045,9 +1045,9 @@
 
         <!-- Pet filter tabs -->
         <nav class="pet-filter-tabs" aria-label="Filter by pet">
-          <button class="active">All pets</button>
-          <button>Miso</button>
-          <button>Cheetah</button>
+          <button class="active" onclick="segSelect(this)">All pets</button>
+          <button onclick="segSelect(this)">Miso</button>
+          <button onclick="segSelect(this)">Cheetah</button>
         </nav>
 
         <!-- Overdue section -->
@@ -1182,9 +1182,9 @@
 
       <!-- Desktop pet filter tabs -->
       <nav class="d-pet-filter" aria-label="Filter by pet">
-        <button class="active">All pets</button>
-        <button>Miso</button>
-        <button>Cheetah</button>
+        <button class="active" onclick="segSelect(this)">All pets</button>
+        <button onclick="segSelect(this)">Miso</button>
+        <button onclick="segSelect(this)">Cheetah</button>
       </nav>
 
       <!-- Overdue -->
@@ -1273,6 +1273,10 @@
 </div>
 
 <script>
+function segSelect(btn) {
+  Array.from(btn.parentElement.children).forEach(function(b) { b.classList.remove('active'); });
+  btn.classList.add('active');
+}
 function setView(mode) {
   document.body.classList.toggle('is-desktop', mode === 'desktop');
   document.getElementById('btn-mobile').classList.toggle('active', mode === 'mobile');
