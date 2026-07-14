@@ -102,6 +102,14 @@
   .flow-tooltip .ft-nav a.ft-disabled{opacity:0.3;pointer-events:none}
   .flow-tooltip .ft-close{background:none;border:none;color:rgba(255,255,255,0.5);font-size:16px;cursor:pointer;padding:0 2px;margin-left:4px}
   .flow-tooltip .ft-close:hover{color:#fff}
+  .nav-tree .flow-screens { margin: 2px 0 4px 6px; }
+  .nav-tree .flow-screens summary { font-size: 10px; font-weight: 600; letter-spacing: .04em; text-transform: uppercase; color: var(--nav-cap); cursor: pointer; padding: 4px 8px; list-style: none; }
+  .nav-tree .flow-screens summary::-webkit-details-marker { display: none; }
+  .nav-tree .flow-screens summary::before { content: "\25b8  "; }
+  .nav-tree .flow-screens[open] summary::before { content: "\25be  "; }
+  .nav-tree .flow-screens ol { list-style: none; counter-reset: none; padding-left: 8px; margin: 0 0 4px; border-left: 1px solid var(--nav-line); }
+  .nav-tree .flow-screens ol a { font-size: 11px; font-weight: 400; color: var(--nav-text); padding: 3px 8px; display: block; border-radius: 4px; text-decoration: none; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .nav-tree .flow-screens ol a:hover { background: var(--nav-active-bg); color: var(--nav-text-active); }
 </style>
 </head>
 <body>
@@ -120,20 +128,67 @@
           <li>
             <a href="My-Pets.html?flow=owner" class="persona-flow">
               <strong>Pet owner (Ana)</strong>
-              <span class="flow-steps">My Pets &rarr; Pet dossier &rarr; Health &amp; jabs &rarr; Documents &rarr; Personality &amp; care &rarr; Share a pet &rarr; What's due</span>
+              <span class="flow-steps">7 screens &middot; consult &amp; share</span>
             </a>
+            <details class="flow-screens">
+              <summary>Screens</summary>
+              <ol>
+              <li><a href="My-Pets.html?flow=owner">1 &middot; My Pets</a></li>
+              <li><a href="home-success.html?flow=owner">2 &middot; Pet dossier</a></li>
+              <li><a href="Health-and-jabs.html?flow=owner">3 &middot; Health &amp; jabs</a></li>
+              <li><a href="Documents-and-passport.html?flow=owner">4 &middot; Documents &amp; passport</a></li>
+              <li><a href="Personality-and-care.html?flow=owner">5 &middot; Personality &amp; care</a></li>
+              <li><a href="Share-a-pet.html?flow=owner">6 &middot; Share a pet</a></li>
+              <li><a href="Whats-due.html?flow=owner">7 &middot; What&rsquo;s due</a></li>
+              </ol>
+            </details>
           </li>
           <li>
             <a href="My-Pets-empty.html?flow=setup" class="persona-flow">
               <strong>New pet setup (full journey)</strong>
-              <span class="flow-steps">Empty state &rarr; Set up a pet &rarr; Dossier &rarr; Health &rarr; Documents &rarr; Insurance &rarr; Care notes &rarr; Vet &rarr; Emergency &rarr; Share &rarr; Sitter view</span>
+              <span class="flow-steps">23 screens &middot; empty &rarr; add &rarr; one-entry per section</span>
             </a>
+            <details class="flow-screens">
+              <summary>Screens</summary>
+              <ol>
+              <li><a href="My-Pets-empty.html?flow=setup">1 &middot; Empty: no pets</a></li>
+              <li><a href="Set-up-a-pet.html?flow=setup">2 &middot; Set up a pet</a></li>
+              <li><a href="home-new.html?flow=setup">3 &middot; New dossier &middot; Add info</a></li>
+              <li><a href="Health-and-jabs-empty.html?flow=setup">4 &middot; Health &amp; jabs &middot; empty</a></li>
+              <li><a href="Add-record.html?flow=setup">5 &middot; Add vaccine</a></li>
+              <li><a href="Health-and-jabs-firstrun.html?flow=setup">6 &middot; Health &amp; jabs &middot; 1 record</a></li>
+              <li><a href="Documents-and-passport-empty.html?flow=setup">7 &middot; Documents &middot; empty</a></li>
+              <li><a href="Add-document.html?flow=setup">8 &middot; Add document</a></li>
+              <li><a href="Documents-and-passport-firstrun.html?flow=setup">9 &middot; Documents &middot; 1 doc</a></li>
+              <li><a href="Insurance-empty.html?flow=setup">10 &middot; Insurance &middot; empty</a></li>
+              <li><a href="Add-insurance.html?flow=setup">11 &middot; Add insurance</a></li>
+              <li><a href="Insurance-firstrun.html?flow=setup">12 &middot; Insurance &middot; 1 policy</a></li>
+              <li><a href="Personality-and-care-empty.html?flow=setup">13 &middot; Personality &middot; empty</a></li>
+              <li><a href="Add-care-note.html?flow=setup">14 &middot; Add care note</a></li>
+              <li><a href="Personality-and-care-firstrun.html?flow=setup">15 &middot; Personality &middot; 1 note</a></li>
+              <li><a href="Vet-and-appointments-empty.html?flow=setup">16 &middot; Vet &middot; empty</a></li>
+              <li><a href="Add-vet-record.html?flow=setup">17 &middot; Add vet record</a></li>
+              <li><a href="Vet-and-appointments-firstrun.html?flow=setup">18 &middot; Vet &middot; 1 appointment</a></li>
+              <li><a href="Emergency-info-empty.html?flow=setup">19 &middot; Emergency &middot; empty</a></li>
+              <li><a href="Emergency-auth-setup.html?flow=setup">20 &middot; Emergency auth setup</a></li>
+              <li><a href="Emergency-info-firstrun.html?flow=setup">21 &middot; Emergency &middot; set up</a></li>
+              <li><a href="Share-a-pet.html?flow=setup">22 &middot; Share a pet</a></li>
+              <li><a href="Shared-pet-view.html?flow=setup">23 &middot; Sitter view</a></li>
+              </ol>
+            </details>
           </li>
           <li>
             <a href="Shared-pet-view.html?flow=sitter" class="persona-flow">
               <strong>Pet sitter (recipient)</strong>
-              <span class="flow-steps">Shared pet view &rarr; Emergency &amp; allowed</span>
+              <span class="flow-steps">2 screens &middot; no account, via link</span>
             </a>
+            <details class="flow-screens">
+              <summary>Screens</summary>
+              <ol>
+              <li><a href="Shared-pet-view.html?flow=sitter">1 &middot; Shared pet view</a></li>
+              <li><a href="Emergency-allowed.html?flow=sitter">2 &middot; Emergency &amp; allowed</a></li>
+              </ol>
+            </details>
           </li>
         </ul>
       </li>
