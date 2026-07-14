@@ -1105,7 +1105,7 @@
           <fieldset style="border:none;padding:0;margin:16px 0 0;">
             <legend class="scope-picker-label" style="padding:0 16px;">What can Marie see?</legend>
             <div class="scope-picker" role="radiogroup" aria-label="Access scope">
-              <label class="scope-option">
+              <label class="scope-option" onclick="selectScope(this)">
                 <input type="radio" name="scope" value="full" style="display:none;">
                 <div class="scope-radio"></div>
                 <div>
@@ -1113,7 +1113,7 @@
                   <div class="scope-desc">Health, documents, personality, vet — everything</div>
                 </div>
               </label>
-              <label class="scope-option selected">
+              <label class="scope-option selected" onclick="selectScope(this)">
                 <input type="radio" name="scope" value="care" checked style="display:none;">
                 <div class="scope-radio"></div>
                 <div>
@@ -1121,7 +1121,7 @@
                   <div class="scope-desc">Personality, food, routines, warnings — for a sitter</div>
                 </div>
               </label>
-              <label class="scope-option">
+              <label class="scope-option" onclick="selectScope(this)">
                 <input type="radio" name="scope" value="health" style="display:none;">
                 <div class="scope-radio"></div>
                 <div>
@@ -1129,7 +1129,7 @@
                   <div class="scope-desc">Vaccinations, conditions, meds — for a vet visit</div>
                 </div>
               </label>
-              <label class="scope-option">
+              <label class="scope-option" onclick="selectScope(this)">
                 <input type="radio" name="scope" value="emergency" style="display:none;">
                 <div class="scope-radio"></div>
                 <div>
@@ -1270,7 +1270,7 @@
         <fieldset style="border:none;padding:0;margin:0 0 24px;">
           <legend class="scope-picker-label" style="margin-bottom:8px;">What can Marie see?</legend>
           <div class="d-scope-grid" role="radiogroup" aria-label="Access scope">
-            <label class="scope-option">
+            <label class="scope-option" onclick="selectScope(this)">
               <input type="radio" name="d-scope" value="full" style="display:none;">
               <div class="scope-radio"></div>
               <div>
@@ -1278,7 +1278,7 @@
                 <div class="scope-desc">Health, documents, personality, vet — everything</div>
               </div>
             </label>
-            <label class="scope-option selected">
+            <label class="scope-option selected" onclick="selectScope(this)">
               <input type="radio" name="d-scope" value="care" checked style="display:none;">
               <div class="scope-radio"></div>
               <div>
@@ -1286,7 +1286,7 @@
                 <div class="scope-desc">Personality, food, routines, warnings — for a sitter</div>
               </div>
             </label>
-            <label class="scope-option">
+            <label class="scope-option" onclick="selectScope(this)">
               <input type="radio" name="d-scope" value="health" style="display:none;">
               <div class="scope-radio"></div>
               <div>
@@ -1294,7 +1294,7 @@
                 <div class="scope-desc">Vaccinations, conditions, meds — for a vet visit</div>
               </div>
             </label>
-            <label class="scope-option">
+            <label class="scope-option" onclick="selectScope(this)">
               <input type="radio" name="d-scope" value="emergency" style="display:none;">
               <div class="scope-radio"></div>
               <div>
@@ -1350,6 +1350,11 @@ function populateGrant() {
   document.title = 'Edit access: ' + p.first + ' \u2014 PetPal wireframe';
 }
 populateGrant();
+function selectScope(el) {
+  var group = el.parentElement;
+  group.querySelectorAll('.scope-option').forEach(function(o){ o.classList.remove('selected'); });
+  el.classList.add('selected');
+}
 function setView(mode) {
   document.body.classList.toggle('is-desktop', mode === 'desktop');
   document.getElementById('btn-mobile').classList.toggle('active', mode === 'mobile');

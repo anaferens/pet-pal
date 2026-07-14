@@ -603,28 +603,28 @@
         </section>
 
         <div class="share-scope">
-          <div class="scope-option selected">
+          <div class="scope-option selected" onclick="selectScope(this)">
             <div class="scope-radio"></div>
             <div>
               <div class="scope-label">Full dossier</div>
               <div class="scope-desc">Health, documents, personality, vet — everything</div>
             </div>
           </div>
-          <div class="scope-option">
+          <div class="scope-option" onclick="selectScope(this)">
             <div class="scope-radio"></div>
             <div>
               <div class="scope-label">Care info only</div>
               <div class="scope-desc">Personality, food, routines, warnings — for a sitter</div>
             </div>
           </div>
-          <div class="scope-option">
+          <div class="scope-option" onclick="selectScope(this)">
             <div class="scope-radio"></div>
             <div>
               <div class="scope-label">Health info only</div>
               <div class="scope-desc">Vaccinations, conditions, meds — for a vet visit</div>
             </div>
           </div>
-          <div class="scope-option">
+          <div class="scope-option" onclick="selectScope(this)">
             <div class="scope-radio"></div>
             <div>
               <div class="scope-label">Emergency only</div>
@@ -715,28 +715,28 @@
         </section>
 
         <div class="share-scope">
-          <div class="scope-option selected">
+          <div class="scope-option selected" onclick="selectScope(this)">
             <div class="scope-radio"></div>
             <div>
               <div class="scope-label">Full dossier</div>
               <div class="scope-desc">Health, documents, personality, vet — everything</div>
             </div>
           </div>
-          <div class="scope-option">
+          <div class="scope-option" onclick="selectScope(this)">
             <div class="scope-radio"></div>
             <div>
               <div class="scope-label">Care info only</div>
               <div class="scope-desc">Personality, food, routines, warnings — for a sitter</div>
             </div>
           </div>
-          <div class="scope-option">
+          <div class="scope-option" onclick="selectScope(this)">
             <div class="scope-radio"></div>
             <div>
               <div class="scope-label">Health info only</div>
               <div class="scope-desc">Vaccinations, conditions, meds — for a vet visit</div>
             </div>
           </div>
-          <div class="scope-option">
+          <div class="scope-option" onclick="selectScope(this)">
             <div class="scope-radio"></div>
             <div>
               <div class="scope-label">Emergency only</div>
@@ -769,6 +769,11 @@
 </div>
 
 <script>
+function selectScope(el) {
+  var group = el.parentElement;
+  group.querySelectorAll('.scope-option').forEach(function(o){ o.classList.remove('selected'); });
+  el.classList.add('selected');
+}
 function setView(mode) {
   document.body.classList.toggle('is-desktop', mode === 'desktop');
   document.getElementById('btn-mobile').classList.toggle('active', mode === 'mobile');
