@@ -232,6 +232,10 @@
   .nav-tree .flow-screens ol { list-style: none; counter-reset: none; padding-left: 8px; margin: 0 0 4px; border-left: 1px solid var(--nav-line); }
   .nav-tree .flow-screens ol a { font-size: 11px; font-weight: 400; color: var(--nav-text); padding: 3px 8px; display: block; border-radius: 4px; text-decoration: none; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
   .nav-tree .flow-screens ol a:hover { background: var(--nav-active-bg); color: var(--nav-text-active); }
+  .empty-state { text-align: center; padding: 60px 32px; }
+  .empty-illustration { width: 120px; height: 120px; border-radius: 12px; background: var(--wf-placeholder); margin: 0 auto 20px; display: flex; align-items: center; justify-content: center; font-size: 11px; color: var(--wf-muted); }
+  .empty-headline { font-size: 18px; font-weight: 600; margin-bottom: 8px; }
+  .empty-body { font-size: 14px; color: var(--wf-muted); margin-bottom: 20px; line-height: 1.5; }
 </style>
 </head>
 <body>
@@ -538,12 +542,6 @@
         R5 &middot; Emergency setup &mdash; Emergency info &rarr; <span>&starf; Authorization setup</span>
       </div>
 
-      <header class="m-header">
-        <a href="Emergency-info.html" style="text-decoration:none;"><button class="back" aria-label="Back to Emergency info">&larr; Emergency info</button></a>
-        <h1>Emergency authorization</h1>
-        <span></span>
-      </header>
-
       <main class="m-main">
 
         <section class="m-pet-identity" aria-label="Pet identity">
@@ -554,94 +552,11 @@
           </div>
         </section>
 
-        <form>
-
-          <!-- Authorization toggle — DISABLED -->
-          <fieldset disabled aria-label="Authorization toggle">
-            <legend>Carer emergency access</legend>
-            <div class="form-group">
-              <div class="toggle-row">
-                <label for="auth-toggle" class="toggle-label">Allow carer to seek emergency vet care</label>
-                <div class="toggle-switch">
-                  <input type="checkbox" id="auth-toggle" name="auth-toggle" checked disabled>
-                  <label for="auth-toggle" class="toggle-track" aria-label="Toggle emergency authorization"></label>
-                </div>
-              </div>
-              <p class="helper">When enabled, your carer can take Miso to the vet in an emergency without waiting for your approval.</p>
-            </div>
-          </fieldset>
-
-          <!-- Spend limit — DISABLED -->
-          <fieldset disabled aria-label="Spend limit">
-            <legend>Spend limit</legend>
-            <div class="form-group">
-              <label for="spend-limit">Pre-approved spend limit</label>
-              <div class="input-prefix-wrap">
-                <span class="prefix">&euro;</span>
-                <input type="number" id="spend-limit" name="spend-limit" value="500" min="0" step="50" disabled>
-              </div>
-              <p class="helper">The maximum your carer may authorize for emergency treatment.</p>
-            </div>
-          </fieldset>
-
-          <!-- Payment arrangement — DISABLED -->
-          <fieldset disabled aria-label="Payment arrangement">
-            <legend>Payment arrangement</legend>
-            <div class="form-group">
-              <label for="payment-method">Payment method</label>
-              <select id="payment-method" name="payment-method" disabled>
-                <option value="reimburse" selected>Carer pays, owner reimburses</option>
-                <option value="card-on-file">Owner's card on file at vet</option>
-                <option value="other">Other</option>
-              </select>
-            </div>
-            <div class="form-group">
-              <label for="payment-notes">Payment notes</label>
-              <textarea id="payment-notes" name="payment-notes" placeholder="e.g. Carer should use the credit card in the emergency folder" disabled></textarea>
-            </div>
-          </fieldset>
-
-          <!-- Emergency vet — DISABLED -->
-          <fieldset disabled aria-label="Emergency clinic">
-            <legend>Emergency clinic</legend>
-            <div class="form-group">
-              <label for="emergency-clinic">Preferred emergency clinic (if different from regular vet)</label>
-              <input type="text" id="emergency-clinic" name="emergency-clinic" placeholder="e.g. Tierklinik D&uuml;ppel 24h" disabled>
-            </div>
-            <div class="form-group">
-              <label for="emergency-phone">Emergency clinic phone</label>
-              <input type="tel" id="emergency-phone" name="emergency-phone" placeholder="e.g. +49 30 8311091" disabled>
-            </div>
-          </fieldset>
-
-          <!-- Owner emergency contacts — DISABLED -->
-          <fieldset disabled aria-label="Owner emergency contacts">
-            <legend>Owner emergency contacts</legend>
-            <article class="contact-row">
-              <div class="contact-avatar">icon</div>
-              <div class="contact-info">
-                <h4>Eva Schmidt</h4>
-                <p class="contact-meta">+49 171 9876543</p>
-              </div>
-              <span class="contact-role">Owner</span>
-            </article>
-            <article class="contact-row">
-              <div class="contact-avatar">icon</div>
-              <div class="contact-info">
-                <h4>Thomas Schmidt</h4>
-                <p class="contact-meta">+49 171 1112233</p>
-              </div>
-              <span class="contact-role">Backup</span>
-            </article>
-          </fieldset>
-
-          <!-- Form actions — DISABLED -->
-          <div class="form-actions">
-            <button type="button" class="btn-primary" style="flex:1;" disabled disabled>Saving&hellip;</button>
-            <button type="button" class="btn-secondary" style="flex:1;" disabled onclick="window.location.href='Emergency-info.html'+window.location.search">Cancel</button>
-          </div>
-
-        </form>
+        <section class="empty-state" aria-label="Saving">
+          <figure class="empty-illustration" aria-label="Illustration placeholder">illustration</figure>
+          <h2 class="empty-headline">Saving…</h2>
+          <p class="empty-body">Let us save your updated info so we can store it and keep it accessible for you at any moment.</p>
+        </section>
 
       </main>
 
@@ -696,94 +611,11 @@
         </div>
       </section>
 
-      <form>
-
-        <!-- Authorization toggle — DISABLED -->
-        <fieldset disabled aria-label="Authorization toggle">
-          <legend>Carer emergency access</legend>
-          <div class="form-group">
-            <div class="toggle-row">
-              <label for="d-auth-toggle" class="toggle-label">Allow carer to seek emergency vet care</label>
-              <div class="toggle-switch">
-                <input type="checkbox" id="d-auth-toggle" name="auth-toggle" checked disabled>
-                <label for="d-auth-toggle" class="toggle-track" aria-label="Toggle emergency authorization"></label>
-              </div>
-            </div>
-            <p class="helper">When enabled, your carer can take Miso to the vet in an emergency without waiting for your approval.</p>
-          </div>
-        </fieldset>
-
-        <!-- Spend limit — DISABLED -->
-        <fieldset disabled aria-label="Spend limit">
-          <legend>Spend limit</legend>
-          <div class="form-group">
-            <label for="d-spend-limit">Pre-approved spend limit</label>
-            <div class="input-prefix-wrap">
-              <span class="prefix">&euro;</span>
-              <input type="number" id="d-spend-limit" name="spend-limit" value="500" min="0" step="50" disabled>
-            </div>
-            <p class="helper">The maximum your carer may authorize for emergency treatment.</p>
-          </div>
-        </fieldset>
-
-        <!-- Payment arrangement — DISABLED -->
-        <fieldset disabled aria-label="Payment arrangement">
-          <legend>Payment arrangement</legend>
-          <div class="form-group">
-            <label for="d-payment-method">Payment method</label>
-            <select id="d-payment-method" name="payment-method" disabled>
-              <option value="reimburse" selected>Carer pays, owner reimburses</option>
-              <option value="card-on-file">Owner's card on file at vet</option>
-              <option value="other">Other</option>
-            </select>
-          </div>
-          <div class="form-group">
-            <label for="d-payment-notes">Payment notes</label>
-            <textarea id="d-payment-notes" name="payment-notes" placeholder="e.g. Carer should use the credit card in the emergency folder" disabled></textarea>
-          </div>
-        </fieldset>
-
-        <!-- Emergency vet — DISABLED -->
-        <fieldset disabled aria-label="Emergency clinic">
-          <legend>Emergency clinic</legend>
-          <div class="form-group">
-            <label for="d-emergency-clinic">Preferred emergency clinic (if different from regular vet)</label>
-            <input type="text" id="d-emergency-clinic" name="emergency-clinic" placeholder="e.g. Tierklinik D&uuml;ppel 24h" disabled>
-          </div>
-          <div class="form-group">
-            <label for="d-emergency-phone">Emergency clinic phone</label>
-            <input type="tel" id="d-emergency-phone" name="emergency-phone" placeholder="e.g. +49 30 8311091" disabled>
-          </div>
-        </fieldset>
-
-        <!-- Owner emergency contacts — DISABLED -->
-        <fieldset disabled aria-label="Owner emergency contacts">
-          <legend>Owner emergency contacts</legend>
-          <article class="contact-row">
-            <div class="contact-avatar">icon</div>
-            <div class="contact-info">
-              <h4>Eva Schmidt</h4>
-              <p class="contact-meta">+49 171 9876543</p>
-            </div>
-            <span class="contact-role">Owner</span>
-          </article>
-          <article class="contact-row">
-            <div class="contact-avatar">icon</div>
-            <div class="contact-info">
-              <h4>Thomas Schmidt</h4>
-              <p class="contact-meta">+49 171 1112233</p>
-            </div>
-            <span class="contact-role">Backup</span>
-          </article>
-        </fieldset>
-
-        <!-- Form actions — DISABLED -->
-        <div class="form-actions">
-          <button type="button" class="btn-primary" style="flex:1;" disabled disabled>Saving&hellip;</button>
-          <button type="button" class="btn-secondary" style="flex:1;" disabled onclick="window.location.href='Emergency-info.html'+window.location.search">Cancel</button>
-        </div>
-
-      </form>
+      <section class="empty-state" aria-label="Saving">
+          <figure class="empty-illustration" aria-label="Illustration placeholder">illustration</figure>
+          <h2 class="empty-headline">Saving…</h2>
+          <p class="empty-body">Let us save your updated info so we can store it and keep it accessible for you at any moment.</p>
+        </section>
 
     </div>
 

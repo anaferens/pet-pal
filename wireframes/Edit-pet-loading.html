@@ -212,6 +212,10 @@
   .nav-tree .flow-screens ol { list-style: none; counter-reset: none; padding-left: 8px; margin: 0 0 4px; border-left: 1px solid var(--nav-line); }
   .nav-tree .flow-screens ol a { font-size: 11px; font-weight: 400; color: var(--nav-text); padding: 3px 8px; display: block; border-radius: 4px; text-decoration: none; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
   .nav-tree .flow-screens ol a:hover { background: var(--nav-active-bg); color: var(--nav-text-active); }
+  .empty-state { text-align: center; padding: 60px 32px; }
+  .empty-illustration { width: 120px; height: 120px; border-radius: 12px; background: var(--wf-placeholder); margin: 0 auto 20px; display: flex; align-items: center; justify-content: center; font-size: 11px; color: var(--wf-muted); }
+  .empty-headline { font-size: 18px; font-weight: 600; margin-bottom: 8px; }
+  .empty-body { font-size: 14px; color: var(--wf-muted); margin-bottom: 20px; line-height: 1.5; }
 </style>
 </head>
 <body>
@@ -521,88 +525,13 @@
         Main · Edit pet — <span>Pet dossier → ★ Edit pet identity</span>
       </div>
 
-      <header class="m-header">
-        <a href="home-success.html" style="text-decoration:none;"><button class="back" aria-label="Back to Dossier" disabled>&larr; Dossier</button></a>
-        <h1>Edit Miso</h1>
-        <span></span>
-      </header>
-
       <main class="m-main">
 
-        <form aria-label="Edit pet details (saving)">
-
-          <!-- Photo section (disabled) -->
-          <section class="photo-section" aria-label="Pet photo">
-            <figure class="photo-placeholder" aria-label="Current pet photo">photo</figure>
-            <div class="photo-actions">
-              <button type="button" class="btn-secondary" disabled onclick="window.location.href='Upload-photo.html'+window.location.search">Change photo</button>
-              <button type="button" class="text-link" disabled onclick="this.textContent='Photo removed ✓'">Remove photo</button>
-            </div>
-          </section>
-
-          <!-- Pet identity fieldset (disabled) -->
-          <fieldset disabled>
-            <legend>Pet identity</legend>
-
-            <div class="form-group">
-              <label for="pet-name">Name <span class="req">*</span></label>
-              <input type="text" id="pet-name" value="Miso" disabled>
-            </div>
-
-            <div class="form-group">
-              <label for="pet-species">Species <span class="req">*</span></label>
-              <select id="pet-species" disabled>
-                <option value="Dog" selected>Dog</option>
-                <option value="Cat">Cat</option>
-              </select>
-            </div>
-
-            <div class="form-group">
-              <label for="pet-breed">Breed</label>
-              <input type="text" id="pet-breed" value="Border Terrier" disabled>
-            </div>
-
-            <div class="form-group">
-              <label for="pet-sex">Sex</label>
-              <select id="pet-sex" disabled>
-                <option value="Female" selected>Female</option>
-                <option value="Male">Male</option>
-                <option value="Unknown">Unknown</option>
-              </select>
-            </div>
-
-            <div class="form-group">
-              <label for="pet-dob">Date of birth</label>
-              <input type="date" id="pet-dob" value="2022-03-15" disabled>
-            </div>
-
-            <p class="form-group helper" style="padding-top:0;">Only name and species are required.</p>
-          </fieldset>
-
-          <!-- Identification fieldset (disabled) -->
-          <fieldset disabled>
-            <legend>Identification</legend>
-
-            <div class="form-group">
-              <label for="pet-microchip">Microchip number</label>
-              <input type="text" id="pet-microchip" value="276 098 106 412 345" disabled>
-            </div>
-
-            <div class="form-group">
-              <label for="pet-passport">EU Passport number</label>
-              <input type="text" id="pet-passport" value="DE-0812345" disabled>
-            </div>
-
-            <p class="form-group helper" style="padding-top:0;">These link to your pet's official documents.</p>
-          </fieldset>
-
-          <!-- Form actions (saving state) -->
-          <div class="form-actions">
-            <button type="button" class="btn-primary" disabled style="width:100%;" disabled>Saving...</button>
-            <button type="button" class="btn-secondary" disabled style="width:100%;" onclick="window.location.href='Edit-pet.html'+window.location.search">Cancel</button>
-          </div>
-
-        </form>
+        <section class="empty-state" aria-label="Saving">
+          <figure class="empty-illustration" aria-label="Illustration placeholder">illustration</figure>
+          <h2 class="empty-headline">Saving…</h2>
+          <p class="empty-body">Let us save your updated info so we can store it and keep it accessible for you at any moment.</p>
+        </section>
 
         <!-- Danger zone (disabled during save) -->
         <section class="danger-zone" aria-label="Danger zone">
@@ -669,89 +598,11 @@
         Edit Miso
       </h1>
 
-      <form aria-label="Edit pet details (saving)">
-
-        <!-- Photo section (disabled) -->
-        <section class="photo-section" style="border:1.5px solid var(--wf-border);border-radius:8px;margin-bottom:24px;" aria-label="Pet photo">
-          <figure class="photo-placeholder" aria-label="Current pet photo">photo</figure>
-          <div class="photo-actions">
-            <button type="button" class="btn-secondary" disabled onclick="window.location.href='Upload-photo.html'+window.location.search">Change photo</button>
-            <button type="button" class="text-link" disabled onclick="this.textContent='Photo removed ✓'">Remove photo</button>
-          </div>
+      <section class="empty-state" aria-label="Saving">
+          <figure class="empty-illustration" aria-label="Illustration placeholder">illustration</figure>
+          <h2 class="empty-headline">Saving…</h2>
+          <p class="empty-body">Let us save your updated info so we can store it and keep it accessible for you at any moment.</p>
         </section>
-
-        <!-- Pet identity fieldset (disabled) -->
-        <fieldset disabled style="margin-bottom:24px;">
-          <legend style="padding:0 0 12px;">Pet identity</legend>
-
-          <div class="d-form-row" style="margin-bottom:16px;">
-            <div class="form-group">
-              <label for="d-pet-name">Name <span class="req">*</span></label>
-              <input type="text" id="d-pet-name" value="Miso" disabled>
-            </div>
-            <div class="form-group">
-              <label for="d-pet-species">Species <span class="req">*</span></label>
-              <select id="d-pet-species" disabled>
-                <option value="Dog" selected>Dog</option>
-                <option value="Cat">Cat</option>
-              </select>
-            </div>
-          </div>
-
-          <div class="d-form-row" style="margin-bottom:16px;">
-            <div class="form-group">
-              <label for="d-pet-breed">Breed</label>
-              <input type="text" id="d-pet-breed" value="Border Terrier" disabled>
-            </div>
-            <div class="form-group">
-              <label for="d-pet-sex">Sex</label>
-              <select id="d-pet-sex" disabled>
-                <option value="Female" selected>Female</option>
-                <option value="Male">Male</option>
-                <option value="Unknown">Unknown</option>
-              </select>
-            </div>
-          </div>
-
-          <div class="d-form-row" style="margin-bottom:16px;">
-            <div class="form-group">
-              <label for="d-pet-dob">Date of birth</label>
-              <input type="date" id="d-pet-dob" value="2022-03-15" disabled>
-            </div>
-            <div class="form-group" style="visibility:hidden;">
-              <label>&nbsp;</label>
-              <input type="text" disabled>
-            </div>
-          </div>
-
-          <p style="font-size:11px;color:var(--wf-muted);margin-top:4px;">Only name and species are required.</p>
-        </fieldset>
-
-        <!-- Identification fieldset (disabled) -->
-        <fieldset disabled style="margin-bottom:24px;">
-          <legend style="padding:0 0 12px;">Identification</legend>
-
-          <div class="d-form-row" style="margin-bottom:16px;">
-            <div class="form-group">
-              <label for="d-pet-microchip">Microchip number</label>
-              <input type="text" id="d-pet-microchip" value="276 098 106 412 345" disabled>
-            </div>
-            <div class="form-group">
-              <label for="d-pet-passport">EU Passport number</label>
-              <input type="text" id="d-pet-passport" value="DE-0812345" disabled>
-            </div>
-          </div>
-
-          <p style="font-size:11px;color:var(--wf-muted);margin-top:4px;">These link to your pet's official documents.</p>
-        </fieldset>
-
-        <!-- Form actions (saving state) -->
-        <div style="display:flex;gap:12px;margin-bottom:32px;">
-          <button type="button" class="btn-primary" disabled disabled>Saving...</button>
-          <button type="button" class="btn-secondary" disabled onclick="window.location.href='Edit-pet.html'+window.location.search">Cancel</button>
-        </div>
-
-      </form>
 
       <!-- Danger zone (disabled during save) -->
       <section class="d-danger-zone" aria-label="Danger zone">
