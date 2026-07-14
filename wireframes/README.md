@@ -73,7 +73,7 @@ Each base screen also has **Empty / Loading / Error** variants (`*-empty.html`, 
 
 - **Context-carried pre-selection.** Add/Edit forms and detail pages read a URL param and pre-fill accordingly — `?type=` (record type), `?cat=` / `?note=` (care-note category / which note), `?doc=` (which document), `?rec=` (which record), `?person=` (which grant). Clicking "Edit" on *Annual checkup* opens *Annual checkup*, not a blank form.
 - **One add affordance.** A floating **+** action button on every dossier section (expands on Health & jabs) — replacing the old, inconsistent header "Add/Upload/Edit" text buttons.
-- **State-truthful setup.** During *new pet setup*, each section shows what a brand-new pet actually has: its **empty** state, then after the first entry a **first-run** view with **only that one entry** — never the fully-populated demo. Realized as `*-firstrun.html` for Health & jabs, Documents, Personality, Vet, and Emergency (Insurance already shows a single policy).
+- **Uniform, state-truthful setup (23 steps).** Every section walks the same path — **empty → its own add form → one-entry first-run view** — so a brand-new pet never sees the fully-populated demo. Each section has a dedicated add form (`Add-record`, `Add-document`, `Add-insurance`, `Add-care-note`, `Add-vet-record`, `Emergency-auth-setup`) so flow navigation stays unambiguous, a shared `Section-saving.html?next=…` animates the save, and each lands on its `*-firstrun.html` one-entry screen.
 - **State variants** for every screen the flows touch (Empty / Loading / Error), each with a recovery path (retry / back-to-dossier / show owner contact).
 - **Responsive.** One file renders both mobile and desktop; toggle in the sidebar.
 

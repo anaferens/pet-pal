@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Edit health record — PetPal wireframe</title>
+<title>Add insurance — PetPal wireframe</title>
 <style>
   :root {
     --wf-bg:         #ffffff;
@@ -352,7 +352,7 @@
               <li><a href="Set-up-a-pet-error.html">error</a></li>
             </ul>
           </li>
-          <li><a href="Upload-photo.html">Upload photo</a></li><li><a href="Add-document.html">Add document</a></li><li><a href="Add-insurance.html">Add insurance</a></li><li><a href="Add-vet-record.html">Add vet record</a></li><li><a href="Section-saving.html">Saving…</a></li>
+          <li><a href="Upload-photo.html">Upload photo</a></li><li><a href="Add-document.html">Add document</a></li><li><a class="active" href="Add-insurance.html">Add insurance</a></li><li><a href="Add-vet-record.html">Add vet record</a></li><li><a href="Section-saving.html">Saving…</a></li>
         </ul>
       </li>
       <li><div class="nav-divider"></div></li>
@@ -434,7 +434,7 @@
             </ul>
           </li>
                   <li><a href="Add-health-record.html">Add health record</a></li>
-                  <li><a href="Edit-health-record.html" class="active">Edit health record</a></li>
+                  <li><a href="Edit-health-record.html">Edit health record</a></li>
                   <li><a href="Document-view.html">Document view</a></li>
           <li><a href="Add-care-note.html">Add care note</a>
             <ul class="state-list">
@@ -543,83 +543,76 @@
     <div class="phone">
 
       <div class="state-bar" aria-label="Screen states">
-        <a href="Edit-health-record.html" class="current">Success</a>
+        <a href="Add-insurance.html" class="current">Success</a>
         <a href="Add-record-empty.html">Empty</a>
         <a href="Add-record-loading.html">Loading</a>
         <a href="Add-record-error.html">Error</a>
       </div>
 
       <div class="flow-step">
-        <span class="zone-label">Main</span> Main · <span>Health & jabs → ★ Edit record</span> → back to section
+        <span class="zone-label">Main</span> Main · <span>Section → ★ Add / update a record</span> → back to section
       </div>
 
       <header class="m-header">
-        <a href="Health-and-jabs.html" style="text-decoration:none;"><button class="back" aria-label="Back">← Cancel</button></a>
-        <h1>Edit record</h1>
+        <a href="Insurance-empty.html" style="text-decoration:none;"><button class="back" aria-label="Back">← Cancel</button></a>
+        <h1>Add insurance</h1>
         <span></span>
       </header>
 
       <div class="m-main">
 
         <form aria-label="Add a record">
-          <p style="padding:12px 16px;font-size:12px;color:var(--wf-muted);">Editing an existing record — fields are pre-filled. Change anything and save.</p>
+          <p style="padding:12px 16px;font-size:12px;color:var(--wf-muted);">Context-aware form — fields adapt to record type. Shown: insurance.</p>
 
           <div class="form-group">
             <label>Record type</label>
             <select>
               <option>Vaccination</option>
-              <option selected>Health &amp; jabs</option>
+              <option>Health &amp; jabs</option>
               <option>Documents &amp; passport</option>
-              <option>Insurance</option>
+              <option selected>Insurance</option>
               <option>Vet &amp; appointments</option>
               <option>Personality &amp; care</option>
             </select>
           </div>
 
           <div class="form-group">
-            <label>Record title <span class="req">*</span></label>
-            <input type="text" class="ehr-title" value="Dental cleaning">
+            <label>Insurer <span class="req">*</span></label>
+            <input type="text" placeholder="e.g. Lassie, Petplan, Agila">
           </div>
 
           <div class="form-group">
             <label>Date <span class="req">*</span></label>
-            <input type="date" class="ehr-date" value="2026-05-20">
+            <input type="date">
           </div>
 
           <div class="form-group">
-            <label>Vet / clinic</label>
-            <input type="text" class="ehr-vet" value="Tierklinik am Stadtpark">
+            <label>Next due date</label>
+            <input type="date">
+            <p class="helper">Used for reminders — leave blank if unknown.</p>
           </div>
 
           <div class="form-group">
-            <label>Follow-up date</label>
-            <input type="date" class="ehr-followup" value="2027-05-20">
-            <p class="helper">Used for reminders — leave blank if none.</p>
+            <label>Administering vet</label>
+            <input type="text" placeholder="e.g. Dr. Müller, Tierklinik am Stadtpark">
           </div>
 
           <div class="form-group">
-            <label>Outcome / notes</label>
-            <textarea class="ehr-notes">All clear. Tartar removed under light sedation. Next cleaning recommended in 12 months.</textarea>
+            <label>Notes</label>
+            <textarea placeholder="e.g. No adverse reaction. Batch #LR-2026-041."></textarea>
           </div>
 
           <div class="form-group">
             <label>Proof / attachment</label>
-            <div style="display:flex;align-items:center;gap:10px;padding:12px;border:1.5px solid var(--wf-border);border-radius:6px;margin-bottom:8px;">
-              <span style="width:34px;height:34px;border-radius:6px;background:var(--wf-placeholder);display:flex;align-items:center;justify-content:center;font-size:9px;color:var(--wf-muted);flex-shrink:0;">PDF</span>
-              <span style="flex:1;font-size:13px;">Dental_invoice_Miso.pdf<br><span style="font-size:11px;color:var(--wf-muted);">0.8 MB · added 20 May 2026</span></span>
-              <a href="Document-view.html" style="font-size:12px;">View</a>
+            <div style="padding:20px;border:1.5px dashed var(--wf-border);border-radius:6px;text-align:center;color:var(--wf-muted);font-size:13px;cursor:pointer;" onclick="this.textContent='attachment added ✓'">
+              Tap to upload photo or PDF
             </div>
-            <div style="padding:14px;border:1.5px dashed var(--wf-border);border-radius:6px;text-align:center;color:var(--wf-muted);font-size:13px;cursor:pointer;" onclick="this.textContent='attachment replaced ✓'">
-              Replace attachment
-            </div>
+            <p class="helper">The policy document (PDF).</p>
           </div>
 
           <div class="form-actions">
-            <a href="Health-and-jabs.html"><button type="button" class="btn-secondary">Cancel</button></a>
-            <a href="Health-and-jabs.html"><button type="button" class="btn-primary">Save changes</button></a>
-          </div>
-          <div style="text-align:center;padding:4px 16px 20px;">
-            <button type="button" style="background:none;border:none;color:var(--wf-muted);font-size:12px;text-decoration:underline;cursor:pointer;" onclick="window.location.href='Health-and-jabs.html'+window.location.search">Delete this record</button>
+            <a href="Insurance-empty.html"><button type="button" class="btn-secondary">Cancel</button></a>
+            <a href="Section-saving.html?next=Insurance.html"><button type="button" class="btn-primary">Save</button></a>
           </div>
         </form>
       </div>
@@ -631,14 +624,14 @@
   <div class="content-desktop view-desktop">
 
       <div class="state-bar" aria-label="Screen states">
-        <a href="Edit-health-record.html" class="current">Success</a>
+        <a href="Add-insurance.html" class="current">Success</a>
         <a href="Add-record-empty.html">Empty</a>
         <a href="Add-record-loading.html">Loading</a>
         <a href="Add-record-error.html">Error</a>
       </div>
 
     <div class="flow-step" style="text-align:left;padding-left:32px;">
-      Main · <span>Health & jabs → ★ Edit record</span> → back to section
+      Main · <span>Section → ★ Add / update a record</span> → back to section
     </div>
 
     <nav class="top-nav" aria-label="Main navigation (desktop)">
@@ -651,64 +644,57 @@
     <div class="d-main">
 
         <form aria-label="Add a record">
-          <p style="padding:12px 16px;font-size:12px;color:var(--wf-muted);">Editing an existing record — fields are pre-filled. Change anything and save.</p>
+          <p style="padding:12px 16px;font-size:12px;color:var(--wf-muted);">Context-aware form — fields adapt to record type. Shown: insurance.</p>
 
           <div class="form-group">
             <label>Record type</label>
             <select>
               <option>Vaccination</option>
-              <option selected>Health &amp; jabs</option>
+              <option>Health &amp; jabs</option>
               <option>Documents &amp; passport</option>
-              <option>Insurance</option>
+              <option selected>Insurance</option>
               <option>Vet &amp; appointments</option>
               <option>Personality &amp; care</option>
             </select>
           </div>
 
           <div class="form-group">
-            <label>Record title <span class="req">*</span></label>
-            <input type="text" class="ehr-title" value="Dental cleaning">
+            <label>Insurer <span class="req">*</span></label>
+            <input type="text" placeholder="e.g. Lassie, Petplan, Agila">
           </div>
 
           <div class="form-group">
             <label>Date <span class="req">*</span></label>
-            <input type="date" class="ehr-date" value="2026-05-20">
+            <input type="date">
           </div>
 
           <div class="form-group">
-            <label>Vet / clinic</label>
-            <input type="text" class="ehr-vet" value="Tierklinik am Stadtpark">
+            <label>Next due date</label>
+            <input type="date">
+            <p class="helper">Used for reminders — leave blank if unknown.</p>
           </div>
 
           <div class="form-group">
-            <label>Follow-up date</label>
-            <input type="date" class="ehr-followup" value="2027-05-20">
-            <p class="helper">Used for reminders — leave blank if none.</p>
+            <label>Administering vet</label>
+            <input type="text" placeholder="e.g. Dr. Müller, Tierklinik am Stadtpark">
           </div>
 
           <div class="form-group">
-            <label>Outcome / notes</label>
-            <textarea class="ehr-notes">All clear. Tartar removed under light sedation. Next cleaning recommended in 12 months.</textarea>
+            <label>Notes</label>
+            <textarea placeholder="e.g. No adverse reaction. Batch #LR-2026-041."></textarea>
           </div>
 
           <div class="form-group">
             <label>Proof / attachment</label>
-            <div style="display:flex;align-items:center;gap:10px;padding:12px;border:1.5px solid var(--wf-border);border-radius:6px;margin-bottom:8px;">
-              <span style="width:34px;height:34px;border-radius:6px;background:var(--wf-placeholder);display:flex;align-items:center;justify-content:center;font-size:9px;color:var(--wf-muted);flex-shrink:0;">PDF</span>
-              <span style="flex:1;font-size:13px;">Dental_invoice_Miso.pdf<br><span style="font-size:11px;color:var(--wf-muted);">0.8 MB · added 20 May 2026</span></span>
-              <a href="Document-view.html" style="font-size:12px;">View</a>
+            <div style="padding:20px;border:1.5px dashed var(--wf-border);border-radius:6px;text-align:center;color:var(--wf-muted);font-size:13px;cursor:pointer;" onclick="this.textContent='attachment added ✓'">
+              Tap to upload photo or PDF
             </div>
-            <div style="padding:14px;border:1.5px dashed var(--wf-border);border-radius:6px;text-align:center;color:var(--wf-muted);font-size:13px;cursor:pointer;" onclick="this.textContent='attachment replaced ✓'">
-              Replace attachment
-            </div>
+            <p class="helper">The policy document (PDF).</p>
           </div>
 
           <div class="form-actions">
-            <a href="Health-and-jabs.html"><button type="button" class="btn-secondary">Cancel</button></a>
-            <a href="Health-and-jabs.html"><button type="button" class="btn-primary">Save changes</button></a>
-          </div>
-          <div style="text-align:center;padding:4px 16px 20px;">
-            <button type="button" style="background:none;border:none;color:var(--wf-muted);font-size:12px;text-decoration:underline;cursor:pointer;" onclick="window.location.href='Health-and-jabs.html'+window.location.search">Delete this record</button>
+            <a href="Insurance-empty.html"><button type="button" class="btn-secondary">Cancel</button></a>
+            <a href="Section-saving.html?next=Insurance.html"><button type="button" class="btn-primary">Save</button></a>
           </div>
         </form>
     </div>
@@ -730,29 +716,6 @@ function preselectType() {
   });
 }
 preselectType();
-function populateRec() {
-  var recs = {
-    dental:     { type:'Health & jabs', title:'Dental cleaning', date:'2026-05-20', vet:'Tierklinik am Stadtpark', followup:'2027-05-20', notes:'All clear. Tartar removed under light sedation. Next cleaning recommended in 12 months.' },
-    checkup:    { type:'Health & jabs', title:'Annual checkup', date:'2026-03-12', vet:'Dr. M\u00fcller', followup:'2027-03-12', notes:'All clear \u2014 healthy weight, good dental condition. Continue current diet and Apoquel.' },
-    rabies:     { type:'Vaccination', title:'Rabies', date:'2026-03-12', vet:'Dr. M\u00fcller', followup:'2027-03-15', notes:'Nobivac Rabies. No adverse reaction. Batch #LR-2026-041.' },
-    dhpp:       { type:'Vaccination', title:'DHPP (Distemper combo)', date:'2026-03-12', vet:'Dr. M\u00fcller', followup:'2027-03-12', notes:'Combined distemper, hepatitis, parvo, parainfluenza. No reaction.' },
-    lepto:      { type:'Vaccination', title:'Leptospirosis', date:'2026-01-05', vet:'Dr. M\u00fcller', followup:'2026-07-05', notes:'6-month booster due soon. Recommended for dogs with outdoor/water exposure.' },
-    vetvax:     { type:'Vet & appointments', title:'Vaccination (Rabies + DHPP)', date:'2026-03-12', vet:'Dr. M\u00fcller', followup:'', notes:'Annual boosters administered. Next due March 2027.' },
-    dermatitis: { type:'Vet & appointments', title:'Dermatitis follow-up', date:'2026-02-05', vet:'Dr. M\u00fcller', followup:'', notes:'Apoquel dosage adjusted to 16 mg once daily. Skin improving. Review in 3 months.' }
-  };
-  var key = new URLSearchParams(window.location.search).get('rec') || 'dental';
-  var r = recs[key] || recs.dental;
-  document.querySelectorAll('.ehr-title').forEach(function(e){ e.value = r.title; });
-  document.querySelectorAll('.ehr-date').forEach(function(e){ e.value = r.date; });
-  document.querySelectorAll('.ehr-vet').forEach(function(e){ e.value = r.vet; });
-  document.querySelectorAll('.ehr-followup').forEach(function(e){ e.value = r.followup; });
-  document.querySelectorAll('.ehr-notes').forEach(function(e){ e.value = r.notes; });
-  document.querySelectorAll('form select').forEach(function(sel){
-    for (var i=0;i<sel.options.length;i++){ if(sel.options[i].text.trim()===r.type){ sel.selectedIndex=i; break; } }
-  });
-  document.title = 'Edit: ' + r.title + ' \u2014 PetPal wireframe';
-}
-populateRec();
 function setView(mode) {
   document.body.classList.toggle('is-desktop', mode === 'desktop');
   document.getElementById('btn-mobile').classList.toggle('active', mode === 'mobile');
