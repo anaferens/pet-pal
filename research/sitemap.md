@@ -252,6 +252,9 @@ Pets (first screen)  →  tap a pet  →  Pet dossier  =  the "one trusted place
 | **Sc24 · Edit an existing record** (`Edit-health-record.html`, `Edit-care-note.html`) | Main / R1 / R3 (correct a record) | Add / update a record (Sc14) | "Edit" opens the entry **pre-filled** and supports delete — semantically distinct from the blank *Add*. Every list item now opens *its own* instance (via id param), not one shared page. |
 | **Sc25 · Document view** (`Document-view.html`) | Main / R3 (retrieve & hand over a document) | Document entity · Documents & passport (Sc5), Insurance (Sc6) | Viewing / downloading / re-sharing / replacing one stored document — the read side of the Document entity, previously only writable. |
 | **Sc26 · Pet dossier — single-pet auto-land** (`home-success-single.html`) | Main (0-tap consult) | Pet dossier (Sc3) | Realizes the **single-pet auto-land** navigation rule: no pet-switcher, the app opens straight onto the one pet. A layout variant of Sc3, tracked so the rule is testable. |
+| **Sc27 · Reminder detail** (`Whats-due-detail.html?rem=…`) | R1 (act in time) | Reminder entity · What's due (Sc10) | Where R1's *"marked done or booked"* actually happens — Mark done / Snooze + a contextual action (Book / Renew / Add to calendar / Start renewal) + view the record. Each reminder opens its own instance (fixes the old shared-section jump). |
+| **Sc28 · Reminder settings** (`Reminder-settings.html`) | R1 | What's due (Sc10) | Realizes the IA's **Reminder channel setting** node (push/email, lead time, default snooze, quiet hours) — the setting that justified removing the old Account/notification-prefs screen. |
+| **Sc29 · What's due — offline** (`Whats-due-offline.html`) | R1 | What's due (Sc10) | The R1 flow's *"showing last-saved reminders"* recovery — a banner + Retry over the cached list, reached from the error state. Closes the last partial dead-end. |
 
 **Typed *Add / update a record* (Sc14).** The generic add-record form now ships as **type-aware variants** — the "Record type" selector arrives **pre-selected** from context: *Add health record* (`Add-health-record.html`), documents, insurance, vet, and *Add care note* (`Add-care-note.html`, category pre-chosen). Same screen and job (Sc14); the pre-selection is state carried in from the launching card, not a new page.
 
@@ -312,18 +315,18 @@ Coverage matrix: **rows = every job** ([jtbd.md](jtbd.md)) · **columns = every 
 
 *(⏸ = job parked: **R4** backlog, **E3** out-of-scope — empty rows are intentional, not unresolved defects. Sc20/Sc21 columns removed.)*
 
-**Matrix C — wireframe-realized screens (Sc22–Sc26)** — *added in v2, see "Screens realized in the interactive wireframes" above.*
+**Matrix C — wireframe-realized screens (Sc22–Sc29)** — *added in v2, see "Screens realized in the interactive wireframes" above.*
 
-| Job | Sc22 Add photo | Sc23 New-dossier + Add-info hub | Sc24 Edit a record | Sc25 Document view | Sc26 Single-pet auto-land |
-|---|:--:|:--:|:--:|:--:|:--:|
-| **Main** | ✓ | ✓ | ✓ | ✓ | ✓ |
-| **R1** |  | ✓ | ✓ |  |  |
-| **R2** |  | ✓ |  |  |  |
-| **R3** |  |  | ✓ | ✓ |  |
-| **R5** |  | ✓ |  |  |  |
-| **S2** |  |  |  | ✓ |  |
+| Job | Sc22 Add photo | Sc23 New-dossier + Add-info | Sc24 Edit a record | Sc25 Document view | Sc26 Single-pet auto-land | Sc27 Reminder detail | Sc28 Reminder settings | Sc29 What's due offline |
+|---|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|
+| **Main** | ✓ | ✓ | ✓ | ✓ | ✓ |  |  |  |
+| **R1** |  | ✓ | ✓ |  |  | ✓ | ✓ | ✓ |
+| **R2** |  | ✓ |  |  |  |  |  |  |
+| **R3** |  |  | ✓ | ✓ |  |  |  |  |
+| **R5** |  | ✓ |  |  |  |  |  |  |
+| **S2** |  |  |  | ✓ |  |  |  |  |
 
-*Every new screen carries ≥1 job (no orphan columns); each is a view/sub-action of an existing entity (Pet, Pet dossier, Document, Health/Personality record), so no new entity or empty job-row is introduced.*
+*Every new screen carries ≥1 job (no orphan columns); each is a view/sub-action of an existing entity (Pet, Pet dossier, Document, Health/Personality record, **Reminder**), so no new entity or empty job-row is introduced. Sc27–29 complete R1's "act in time" screens — the flow previously reached only the sections.*
 
 *Note on emotional jobs:* **E1** and **E2** are satisfied **indirectly** — no dedicated screen, the calm/confidence is a by-product of the marked screens doing their job. That is acceptable (the screens do participate). **E3** is a different case — see orphan jobs. *(The brand-new-dossier onboarding empty state, Sc23, also serves **E1/E2** indirectly — encouraging copy that reassures the first-run owner nothing's broken and nothing's been forgotten.)*
 

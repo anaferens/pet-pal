@@ -213,21 +213,28 @@ flowchart TD
 ```mermaid
 flowchart TD
   Whats["What's due"] --> Load("Loading: fetching reminders")
+  Whats -.->|settings| RemSet["Reminder settings"]
   Load --> Q0{"Loaded ok?"}
   Q0 -->|no| Err("Error: could not load reminders")
   Err -->|retry| Load
-  Err -->|offline| Cached("Showing last-saved reminders")
-  Cached --> Q1
+  Err -->|offline| Offline["What's due - offline: last-saved reminders"]
+  Offline -->|retry| Load
+  Offline --> Q1
   Q0 -->|yes| Q1{"Any reminders due?"}
   Q1 -->|no| EmptyDone(["Success: nothing due, nothing slipping"])
-  Q1 -->|yes| Q2{"Which type?"}
-  Q2 -->|vaccination| Health["Health & jabs"]
-  Q2 -->|insurance| Insurance["Insurance"]
-  Q2 -->|appointment| Vet["Vet & appointments"]
+  Q1 -->|yes| Rem["Reminder detail - tap a reminder"]
+  Rem --> Q2{"Act how?"}
+  Q2 -->|mark done / snooze| Acted(["Success: acted in time, marked done or booked"])
+  Q2 -->|book, renew or open record| Q2b{"Which type?"}
+  Q2b -->|vaccination| Health["Health & jabs"]
+  Q2b -->|insurance| Insurance["Insurance"]
+  Q2b -->|appointment| Vet["Vet & appointments"]
+  Q2b -->|document expiry| Docs["Documents & passport"]
   Health --> Q3{"Info current? when last updated and source"}
   Insurance --> Q3
   Vet --> Q3
-  Q3 -->|yes| Acted(["Success: acted in time, marked done or booked"])
+  Docs --> Q3
+  Q3 -->|yes| Acted
   Q3 -->|no| AddRec["Add / update a record"]
   AddRec --> SaveLoad("Loading: saving")
   SaveLoad --> Q4{"Saved?"}
@@ -241,11 +248,16 @@ flowchart TD
   classDef error fill:#ffe3e3,stroke:#e03131,color:#7a1212;
   classDef success fill:#d3f9d8,stroke:#2f9e44,color:#14532d;
   classDef soft fill:#ffe8cc,stroke:#e8590c,color:#7a3000;
-  class Whats,Health,Insurance,Vet,AddRec screen;
-  class Load,SaveLoad,Cached state;
+  class Whats,Rem,RemSet,Offline,Health,Insurance,Vet,Docs,AddRec screen;
+  class Load,SaveLoad state;
   class Err,SaveErr error;
   class EmptyDone,Acted success;
 ```
+
+**Screens realized in the prototype for R1** (previously the flow reached only the sections):
+- **Reminder detail** (`Whats-due-detail.html?rem=…`) — tapping a reminder opens *its own* screen (fixing the old shared-destination jump where every reminder went to the same section) with **Mark done / Snooze** and a contextual primary action (*Book vet appointment / Renew policy / Add to calendar / Start renewal*) plus *View in [section]*. This is where the R1 "act in time" actually happens.
+- **Reminder settings** (`Reminder-settings.html`) — realizes the IA's *Reminder channel setting* node: push/email delivery, how far ahead to remind, default snooze, quiet hours. Reached from the What's due header.
+- **What's due — offline** (`Whats-due-offline.html`) — the *"showing last-saved reminders"* recovery, reachable from the error state; a banner + Retry over the cached list.
 
 ---
 

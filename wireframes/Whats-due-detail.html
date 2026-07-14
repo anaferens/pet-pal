@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Add / update a record (error) — PetPal wireframe</title>
+<title>Reminder — PetPal wireframe</title>
 <style>
   :root {
     --wf-bg:         #ffffff;
@@ -124,7 +124,8 @@
 
   /* MOBILE LAYOUT */
   .content-mobile { flex: 1; display: flex; justify-content: center; padding: 24px; min-height: 100vh; }
-  .phone { width: 375px; min-height: 812px; background: var(--wf-bg); border: 1.5px solid var(--wf-border); border-radius: 12px; display: flex; flex-direction: column; overflow: hidden; box-shadow: 0 1px 4px rgba(0,0,0,0.06); }
+  .phone { position: relative; width: 375px; min-height: 812px; background: var(--wf-bg); border: 1.5px solid var(--wf-border); border-radius: 12px; display: flex; flex-direction: column; overflow: hidden; box-shadow: 0 1px 4px rgba(0,0,0,0.06); }
+  .fab { position: absolute; right: 16px; bottom: 76px; width: 56px; height: 56px; border-radius: 50%; background: var(--wf-btn); color: var(--wf-btn-text); font-size: 28px; line-height: 1; border: none; cursor: pointer; display: flex; align-items: center; justify-content: center; text-decoration: none; box-shadow: 0 4px 14px rgba(0,0,0,0.28); z-index: 10; }
   .m-header { display: flex; align-items: center; justify-content: space-between; padding: 12px 16px; border-bottom: 1px solid var(--wf-border); min-height: 48px; }
   .m-header .back { font-size: 14px; color: var(--wf-text); background: none; border: none; cursor: pointer; }
   .m-header h1 { font-size: 17px; font-weight: 600; }
@@ -432,9 +433,9 @@
               <li><a href="Health-and-jabs-firstrun.html">first record</a></li>
             </ul>
           </li>
-          <li><a href="Documents-and-passport.html">Documents &amp; passport</a>
+          <li><a href="Documents-and-passport.html" class="active">Documents &amp; passport</a>
             <ul class="state-list">
-              <li><a href="Documents-and-passport.html">success</a></li>
+              <li><a href="Documents-and-passport.html" class="active">success</a></li>
               <li><a href="Documents-and-passport-empty.html">empty</a></li>
               <li><a href="Documents-and-passport-loading.html">loading</a></li>
               <li><a href="Documents-and-passport-error.html">error</a></li>
@@ -482,16 +483,16 @@
       <li><div class="nav-divider"></div></li>
       <li><span class="nav-section">Actions</span>
         <ul>
-          <li><a href="Add-record.html" class="active">Add / update a record</a>
+          <li><a href="Add-record.html">Add / update a record</a>
             <ul class="state-list">
               <li><a href="Add-record.html">success</a></li>
               <li><a href="Add-record-loading.html">loading</a></li>
-              <li><a href="Add-record-error.html" class="active">error</a></li>
+              <li><a href="Add-record-error.html">error</a></li>
             </ul>
           </li>
-                  <li><a href="Add-health-record.html">Add health record</a></li>
-                  <li><a href="Edit-health-record.html">Edit health record</a></li>
-                  <li><a href="Document-view.html">Document view</a></li>
+          <li><a href="Add-health-record.html">Add health record</a></li>
+          <li><a href="Edit-health-record.html">Edit health record</a></li>
+          <li><a href="Document-view.html" class="active">Document view</a></li>
           <li><a href="Add-care-note.html">Add care note</a>
             <ul class="state-list">
               <li><a href="Add-care-note.html">success</a></li>
@@ -551,7 +552,7 @@
               <li><a href="Whats-due-empty.html">empty</a></li>
               <li><a href="Whats-due-loading.html">loading</a></li>
               <li><a href="Whats-due-error.html">error</a></li>
-              <li><a href="Whats-due-detail.html">reminder detail</a></li><li><a href="Whats-due-offline.html">offline</a></li>
+              <li><a class="active" href="Whats-due-detail.html">reminder detail</a></li><li><a href="Whats-due-offline.html">offline</a></li>
             </ul>
           </li>
         <li><a href="Reminder-settings.html">Reminder settings</a></li>
@@ -601,49 +602,66 @@
     <div class="phone">
 
       <div class="state-bar" aria-label="Screen states">
-        <a href="Add-record.html">Success</a>
-        <a href="Add-record-empty.html">Empty</a>
-        <a href="Add-record-loading.html">Loading</a>
-        <a href="Add-record-error.html" class="current">Error</a>
+        <a href="Whats-due-detail.html" class="current">Success</a>
+        <a href="Whats-due-empty.html">Empty</a>
+        <a href="Whats-due-loading.html">Loading</a>
+        <a href="Whats-due-error.html">Error</a>
       </div>
 
       <div class="flow-step">
-        <span class="zone-label">Main</span> Main · <span>Section → ★ Add / update a record</span> → back to section
+        <span class="zone-label">R1</span> R1 · <span>What's due → ★ Reminder</span> → back to list
       </div>
 
       <header class="m-header">
-        <a href="Health-and-jabs.html" style="text-decoration:none;"><button class="back" aria-label="Back">← Cancel</button></a>
-        <h1>Add vaccination</h1>
-        <span></span>
+        <a href="Whats-due.html" style="text-decoration:none;"><button class="back" aria-label="Back">← What's due</button></a>
+        <h1>Reminder</h1>
+        <span style="width:60px;" aria-hidden="true"></span>
       </header>
 
       <div class="m-main">
 
-        <form aria-label="Save failed">
-          <div class="error-banner">
-            <p>Couldn't save this record. Check your connection and try again.</p>
-            <p class="error-detail">All your data is preserved — just tap "Try again."</p>
+        <section class="m-pet-identity" aria-label="Pet identity">
+          <figure class="pet-photo pet-photo-s" aria-label="Pet photo placeholder">photo</figure>
+          <div class="pet-info">
+            <h2 style="font-size:15px;font-weight:700;">Miso</h2>
+            <p class="pet-meta" style="font-size:12px;">Dog · Border Terrier · Female</p>
           </div>
+        </section>
 
-          <div class="form-group">
-            <label>Vaccine name</label>
-            <input type="text" value="Leptospirosis">
-          </div>
-          <div class="form-group">
-            <label>Date given</label>
-            <input type="text" value="2 Jul 2026">
-          </div>
-          <div class="form-group">
-            <label>Next due date</label>
-            <input type="text" value="2 Jan 2027">
-          </div>
-          <div class="form-actions">
-            <a href="Health-and-jabs.html"><button type="button" class="btn-secondary">Cancel</button></a>
-            <a href="Add-record.html"><button type="button" class="btn-primary">Try again</button></a>
-          </div>
-        </form>
+        <div style="margin:16px;padding:16px;border:1.5px solid var(--wf-border);border-radius:10px;background:var(--wf-surface);">
+          <span class="rd-badge" style="display:inline-block;font-size:11px;font-weight:700;padding:3px 10px;border-radius:12px;background:var(--wf-border);color:var(--wf-text);">Due soon</span>
+          <h2 class="rd-title" style="font-size:18px;font-weight:700;margin-top:10px;">Reminder</h2>
+          <p class="rd-due" style="font-size:13px;color:var(--wf-muted);margin-top:4px;"></p>
+        </div>
+
+        <div style="padding:0 16px;">
+          <div class="zone-label">Details</div>
+          <div class="dv-rows" style="font-size:13px;line-height:2;border-bottom:1px solid var(--wf-border);padding-bottom:12px;"></div>
+        </div>
+
+        <div style="display:flex;gap:8px;padding:16px;">
+          <button class="btn-primary" style="flex:1;" onclick="this.textContent='Marked done ✓';this.disabled=true">Mark done</button>
+          <button class="btn-secondary" style="flex:1;" onclick="this.textContent='Snoozed 1 week ✓'">Snooze</button>
+        </div>
+        <div style="padding:0 16px 10px;">
+          <a class="rd-primary" href="Add-vet-record.html"><button class="btn-secondary" style="width:100%;">Action</button></a>
+        </div>
+        <div style="padding:0 16px 16px;">
+          <a class="rd-view" href="Health-and-jabs.html" style="font-size:12px;color:var(--wf-muted);">View in section →</a>
+        </div>
       </div>
 
+      <nav class="phone-nav" aria-label="Main navigation">
+        <a href="My-Pets.html" class="active">
+          <span class="nav-icon" aria-hidden="true"></span> Pets
+        </a>
+        <a href="Whats-due.html">
+          <span class="nav-icon" aria-hidden="true"></span> What's due
+        </a>
+        <a href="Share-a-pet.html">
+          <span class="nav-icon" aria-hidden="true"></span> Share
+        </a>
+      </nav>
 
     </div>
   </div>
@@ -651,14 +669,14 @@
   <div class="content-desktop view-desktop">
 
       <div class="state-bar" aria-label="Screen states">
-        <a href="Add-record.html">Success</a>
-        <a href="Add-record-empty.html">Empty</a>
-        <a href="Add-record-loading.html">Loading</a>
-        <a href="Add-record-error.html" class="current">Error</a>
+        <a href="Whats-due-detail.html" class="current">Success</a>
+        <a href="Whats-due-empty.html">Empty</a>
+        <a href="Whats-due-loading.html">Loading</a>
+        <a href="Whats-due-error.html">Error</a>
       </div>
 
     <div class="flow-step" style="text-align:left;padding-left:32px;">
-      Main · <span>Section → ★ Add / update a record</span> → back to section
+      R1 · <span>What's due → ★ Reminder</span> → back to list
     </div>
 
     <nav class="top-nav" aria-label="Main navigation (desktop)">
@@ -670,35 +688,75 @@
 
     <div class="d-main">
 
-        <form aria-label="Save failed">
-          <div class="error-banner">
-            <p>Couldn't save this record. Check your connection and try again.</p>
-            <p class="error-detail">All your data is preserved — just tap "Try again."</p>
+        <section class="m-pet-identity" aria-label="Pet identity">
+          <figure class="pet-photo pet-photo-s" aria-label="Pet photo placeholder">photo</figure>
+          <div class="pet-info">
+            <h2 style="font-size:15px;font-weight:700;">Miso</h2>
+            <p class="pet-meta" style="font-size:12px;">Dog · Border Terrier · Female</p>
           </div>
+        </section>
 
-          <div class="form-group">
-            <label>Vaccine name</label>
-            <input type="text" value="Leptospirosis">
-          </div>
-          <div class="form-group">
-            <label>Date given</label>
-            <input type="text" value="2 Jul 2026">
-          </div>
-          <div class="form-group">
-            <label>Next due date</label>
-            <input type="text" value="2 Jan 2027">
-          </div>
-          <div class="form-actions">
-            <a href="Health-and-jabs.html"><button type="button" class="btn-secondary">Cancel</button></a>
-            <a href="Add-record.html"><button type="button" class="btn-primary">Try again</button></a>
-          </div>
-        </form>
+        <div style="padding:12px 16px;"><a href="Whats-due.html" style="font-size:13px;color:var(--wf-muted);text-decoration:none;">← Back to What's due</a></div>
+        <h2 style="padding:0 16px 8px;font-size:20px;font-weight:700;">Reminder</h2>
+
+        <div style="margin:8px 16px;padding:16px;border:1.5px solid var(--wf-border);border-radius:10px;background:var(--wf-surface);max-width:560px;">
+          <span class="rd-badge" style="display:inline-block;font-size:11px;font-weight:700;padding:3px 10px;border-radius:12px;background:var(--wf-border);color:var(--wf-text);">Due soon</span>
+          <h2 class="rd-title" style="font-size:20px;font-weight:700;margin-top:10px;">Reminder</h2>
+          <p class="rd-due" style="font-size:13px;color:var(--wf-muted);margin-top:4px;"></p>
+        </div>
+
+        <div style="padding:0 16px;max-width:560px;">
+          <div class="zone-label">Details</div>
+          <div class="dv-rows" style="font-size:13px;line-height:2;border-bottom:1px solid var(--wf-border);padding-bottom:12px;"></div>
+        </div>
+
+        <div style="display:flex;gap:8px;padding:16px;max-width:560px;">
+          <button class="btn-primary" style="flex:1;" onclick="this.textContent='Marked done ✓';this.disabled=true">Mark done</button>
+          <button class="btn-secondary" style="flex:1;" onclick="this.textContent='Snoozed 1 week ✓'">Snooze</button>
+          <a class="rd-primary" href="Add-vet-record.html" style="flex:1;text-decoration:none;"><button class="btn-secondary" style="width:100%;">Action</button></a>
+        </div>
+        <div style="padding:0 16px 16px;max-width:560px;">
+          <a class="rd-view" href="Health-and-jabs.html" style="font-size:12px;color:var(--wf-muted);">View in section →</a>
+        </div>
     </div>
+
   </div>
 
 </div>
 
 <script>
+function populateReminder() {
+  var R = {
+    rabies:    { badge:'Overdue', title:'Rabies booster — Miso', due:'Was due 15 Jun 2026',
+                 rows:[['Pet','Miso'],['Type','Vaccination'],['Source','Health & jabs record']],
+                 primary:['Book vet appointment','Add-vet-record.html'], view:['View in Health & jabs','Health-and-jabs.html'] },
+    insurance: { badge:'Due soon', title:'Insurance renewal — Miso', due:'Due 1 Oct 2026 · Lassie OP-Schutz Plus',
+                 rows:[['Pet','Miso'],['Type','Insurance renewal'],['Premium','€29.90 / month']],
+                 primary:['Renew policy','Add-insurance.html'], view:['View in Insurance','Insurance.html'] },
+    checkup:   { badge:'Due soon', title:'Annual checkup — Miso', due:'15 Aug 2026, 10:00 · Tierklinik am Stadtpark',
+                 rows:[['Pet','Miso'],['Type','Appointment'],['Clinic','Tierklinik am Stadtpark']],
+                 primary:['Add to calendar','Vet-and-appointments.html'], view:['View in Vet & appointments','Vet-and-appointments.html'] },
+    fvrcp:     { badge:'Upcoming', title:'FVRCP booster — Cheetah', due:'Due 12 Nov 2026',
+                 rows:[['Pet','Cheetah'],['Type','Vaccination'],['Source','Health & jabs record']],
+                 primary:['Book vet appointment','Add-vet-record.html'], view:['View in Health & jabs','Health-and-jabs.html'] },
+    passport:  { badge:'Upcoming', title:'EU Passport renewal — Miso', due:'Expires 1 Mar 2027',
+                 rows:[['Pet','Miso'],['Type','Document expiry'],['Document','EU Pet Passport']],
+                 primary:['Start renewal','Add-document.html'], view:['View in Documents','Documents-and-passport.html'] }
+  };
+  var key = new URLSearchParams(window.location.search).get('rem') || 'rabies';
+  var r = R[key] || R.rabies;
+  document.querySelectorAll('.rd-title').forEach(function(t){ t.textContent = r.title; });
+  document.querySelectorAll('.rd-due').forEach(function(t){ t.textContent = r.due; });
+  document.querySelectorAll('.rd-badge').forEach(function(t){ t.textContent = r.badge; });
+  var html = r.rows.map(function(x){
+    return '<div style="display:flex;justify-content:space-between;"><span style="color:var(--wf-muted);">'+x[0]+'</span><strong>'+x[1]+'</strong></div>';
+  }).join('');
+  document.querySelectorAll('.dv-rows').forEach(function(el){ el.innerHTML = html; });
+  document.querySelectorAll('.rd-primary').forEach(function(a){ a.setAttribute('href', r.primary[1]); a.querySelector('button').textContent = r.primary[0]; });
+  document.querySelectorAll('.rd-view').forEach(function(a){ a.setAttribute('href', r.view[1]); a.textContent = r.view[0] + ' →'; });
+  document.title = r.title + ' — PetPal wireframe';
+}
+populateReminder();
 function setView(mode) {
   document.body.classList.toggle('is-desktop', mode === 'desktop');
   document.getElementById('btn-mobile').classList.toggle('active', mode === 'mobile');

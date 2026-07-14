@@ -1038,8 +1038,10 @@
               <li><a href="Whats-due-empty.html">empty</a></li>
               <li><a href="Whats-due-loading.html">loading</a></li>
               <li><a href="Whats-due-error.html">error</a></li>
+              <li><a href="Whats-due-detail.html">reminder detail</a></li><li><a href="Whats-due-offline.html">offline</a></li>
             </ul>
           </li>
+        <li><a href="Reminder-settings.html">Reminder settings</a></li>
         </ul>
       </li>
       <li><div class="nav-divider"></div></li>
@@ -1098,9 +1100,9 @@
       </div>
 
       <header class="m-header">
-        <span></span>
+        <span style="width:60px;"></span>
         <h1>What's due</h1>
-        <span></span>
+        <a href="Reminder-settings.html" style="text-decoration:none;"><button class="action-edit">Settings</button></a>
       </header>
 
       <main class="m-main">
@@ -1117,7 +1119,7 @@
           <h2 class="urgency-heading">Overdue</h2>
           <ul class="reminder-list">
             <li>
-              <a href="Health-and-jabs.html" class="reminder-card">
+              <a href="Whats-due-detail.html?rem=rabies" class="reminder-card">
                 <div class="card-icon card-icon-m">icon</div>
                 <article class="reminder-body">
                   <h3>Rabies booster — Miso</h3>
@@ -1135,7 +1137,7 @@
           <h2 class="urgency-heading">Due this month</h2>
           <ul class="reminder-list">
             <li>
-              <a href="Insurance.html" class="reminder-card">
+              <a href="Whats-due-detail.html?rem=insurance" class="reminder-card">
                 <div class="card-icon card-icon-m">icon</div>
                 <article class="reminder-body">
                   <h3>Insurance renewal — Miso</h3>
@@ -1146,7 +1148,7 @@
               </a>
             </li>
             <li>
-              <a href="Vet-and-appointments.html" class="reminder-card">
+              <a href="Whats-due-detail.html?rem=checkup" class="reminder-card">
                 <div class="card-icon card-icon-m">icon</div>
                 <article class="reminder-body">
                   <h3>Annual checkup — Miso</h3>
@@ -1164,7 +1166,7 @@
           <h2 class="urgency-heading">Coming up</h2>
           <ul class="reminder-list">
             <li>
-              <a href="Health-and-jabs.html" class="reminder-card">
+              <a href="Whats-due-detail.html?rem=fvrcp" class="reminder-card">
                 <div class="card-icon card-icon-m">icon</div>
                 <article class="reminder-body">
                   <h3>FVRCP booster — Cheetah</h3>
@@ -1175,7 +1177,7 @@
               </a>
             </li>
             <li>
-              <a href="Documents-and-passport.html" class="reminder-card">
+              <a href="Whats-due-detail.html?rem=passport" class="reminder-card">
                 <div class="card-icon card-icon-m">icon</div>
                 <article class="reminder-body">
                   <h3>EU Passport renewal — Miso</h3>
@@ -1240,7 +1242,10 @@
 
     <div class="d-main">
 
-      <h1 style="font-size:26px;font-weight:700;margin-bottom:20px;">What's due</h1>
+      <div style="display:flex;align-items:baseline;justify-content:space-between;margin-bottom:20px;">
+        <h1 style="font-size:26px;font-weight:700;">What's due</h1>
+        <a href="Reminder-settings.html" style="font-size:13px;color:var(--wf-muted);text-decoration:none;">Reminder settings &rarr;</a>
+      </div>
 
       <!-- Desktop pet filter tabs -->
       <nav class="d-pet-filter" aria-label="Filter by pet">
@@ -1254,7 +1259,7 @@
         <h2 class="d-urgency-heading">Overdue</h2>
         <ul class="d-reminder-list">
           <li>
-            <a href="Health-and-jabs.html" class="d-reminder-card">
+            <a href="Whats-due-detail.html?rem=rabies" class="d-reminder-card">
               <div class="card-icon card-icon-d">icon</div>
               <article class="d-reminder-body">
                 <h3>Rabies booster — Miso</h3>
@@ -1272,7 +1277,7 @@
         <h2 class="d-urgency-heading">Due this month</h2>
         <ul class="d-reminder-list">
           <li>
-            <a href="Insurance.html" class="d-reminder-card">
+            <a href="Whats-due-detail.html?rem=insurance" class="d-reminder-card">
               <div class="card-icon card-icon-d">icon</div>
               <article class="d-reminder-body">
                 <h3>Insurance renewal — Miso</h3>
@@ -1283,7 +1288,7 @@
             </a>
           </li>
           <li>
-            <a href="Vet-and-appointments.html" class="d-reminder-card">
+            <a href="Whats-due-detail.html?rem=checkup" class="d-reminder-card">
               <div class="card-icon card-icon-d">icon</div>
               <article class="d-reminder-body">
                 <h3>Annual checkup — Miso</h3>
@@ -1301,7 +1306,7 @@
         <h2 class="d-urgency-heading">Coming up</h2>
         <ul class="d-reminder-list">
           <li>
-            <a href="Health-and-jabs.html" class="d-reminder-card">
+            <a href="Whats-due-detail.html?rem=fvrcp" class="d-reminder-card">
               <div class="card-icon card-icon-d">icon</div>
               <article class="d-reminder-body">
                 <h3>FVRCP booster — Cheetah</h3>
@@ -1312,7 +1317,7 @@
             </a>
           </li>
           <li>
-            <a href="Documents-and-passport.html" class="d-reminder-card">
+            <a href="Whats-due-detail.html?rem=passport" class="d-reminder-card">
               <div class="card-icon card-icon-d">icon</div>
               <article class="d-reminder-body">
                 <h3>EU Passport renewal — Miso</h3>

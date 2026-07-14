@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Shared pet view (empty) — PetPal wireframe</title>
+<title>What's due · offline — PetPal wireframe</title>
 <style>
   :root {
     --wf-bg:         #ffffff;
@@ -35,28 +35,125 @@
     -webkit-font-smoothing: antialiased;
   }
 
-  .layout { display: flex; align-items: flex-start; min-height: 100vh; }
-
-  .sidenav {
-    position: sticky; top: 0; align-self: flex-start; height: 100vh; width: 240px; flex-shrink: 0;
-    padding: 20px 12px 20px 16px; border-right: 1px solid var(--nav-line); background: var(--nav-bg);
-    overflow-y: auto; display: flex; flex-direction: column; gap: 4px;
+  /* ══════════════════════════════════════════
+     LAYOUT: sidebar + content
+     ══════════════════════════════════════════ */
+  .layout {
+    display: flex;
+    align-items: flex-start;
+    min-height: 100vh;
   }
-  .sidenav .brand { font-size: 13px; font-weight: 700; color: var(--wf-text); text-decoration: none; padding: 0 8px 8px; letter-spacing: 0.02em; }
-  .nav-divider { height: 1px; background: var(--nav-line); margin: 6px 4px; }
-  .viewport-toggle { display: flex; background: var(--nav-active-bg); border-radius: 6px; padding: 3px; margin: 0 4px 4px; }
-  .viewport-toggle button { flex: 1; padding: 6px 0; font-size: 11px; font-weight: 600; border: none; border-radius: 4px; cursor: pointer; background: transparent; color: var(--nav-text); transition: all 0.15s; }
-  .viewport-toggle button.active { background: var(--wf-bg); color: var(--nav-text-active); box-shadow: 0 1px 3px rgba(0,0,0,0.08); }
-  .nav-tree, .nav-tree ul { list-style: none; padding: 0; margin: 0; }
+
+  /* ── SIDEBAR NAV PANEL ── */
+  .sidenav {
+    position: sticky;
+    top: 0;
+    align-self: flex-start;
+    height: 100vh;
+    width: 240px;
+    flex-shrink: 0;
+    padding: 20px 12px 20px 16px;
+    border-right: 1px solid var(--nav-line);
+    background: var(--nav-bg);
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+  .sidenav .brand {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--wf-text);
+    text-decoration: none;
+    padding: 0 8px 8px;
+    letter-spacing: 0.02em;
+  }
+  .nav-divider {
+    height: 1px;
+    background: var(--nav-line);
+    margin: 6px 4px;
+  }
+
+  /* ── VIEWPORT TOGGLE ── */
+  .viewport-toggle {
+    display: flex;
+    background: var(--nav-active-bg);
+    border-radius: 6px;
+    padding: 3px;
+    margin: 0 4px 4px;
+  }
+  .viewport-toggle button {
+    flex: 1;
+    padding: 6px 0;
+    font-size: 11px;
+    font-weight: 600;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    background: transparent;
+    color: var(--nav-text);
+    transition: all 0.15s;
+  }
+  .viewport-toggle button.active {
+    background: var(--wf-bg);
+    color: var(--nav-text-active);
+    box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+  }
+
+  /* tree list */
+  .nav-tree, .nav-tree ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
   .nav-tree ul { padding-left: 14px; }
   .nav-tree li { margin: 0; }
-  .nav-tree .nav-section { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--nav-cap); padding: 10px 8px 3px; display: block; }
-  .nav-tree a { display: block; color: var(--nav-text); text-decoration: none; font-size: 12px; font-weight: 500; padding: 4px 8px; border-radius: 5px; transition: background 0.12s; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-  .nav-tree a:hover { background: var(--nav-active-bg); color: var(--nav-text-active); }
-  .nav-tree a.active { background: var(--nav-active-bg); color: var(--nav-text-active); font-weight: 700; }
-  .nav-tree .state-list a { font-size: 11px; font-weight: 400; color: var(--nav-cap); padding: 2px 8px; }
-  .nav-tree .state-list a:hover { color: var(--nav-text); background: var(--nav-active-bg); }
-  .nav-tree .state-list a.active { color: var(--nav-text-active); font-weight: 600; background: var(--nav-active-bg); }
+  .nav-tree .nav-section {
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--nav-cap);
+    padding: 10px 8px 3px;
+    display: block;
+  }
+  .nav-tree a {
+    display: block;
+    color: var(--nav-text);
+    text-decoration: none;
+    font-size: 12px;
+    font-weight: 500;
+    padding: 4px 8px;
+    border-radius: 5px;
+    transition: background 0.12s;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .nav-tree a:hover {
+    background: var(--nav-active-bg);
+    color: var(--nav-text-active);
+  }
+  .nav-tree a.active {
+    background: var(--nav-active-bg);
+    color: var(--nav-text-active);
+    font-weight: 700;
+  }
+  .nav-tree .state-list a {
+    font-size: 11px;
+    font-weight: 400;
+    color: var(--nav-cap);
+    padding: 2px 8px;
+  }
+  .nav-tree .state-list a:hover {
+    color: var(--nav-text);
+    background: var(--nav-active-bg);
+  }
+  .nav-tree .state-list a.active {
+    color: var(--nav-text-active);
+    font-weight: 600;
+    background: var(--nav-active-bg);
+  }
 
   /* PERSONA FLOWS */
   .persona-flow {
@@ -102,79 +199,584 @@
   .flow-tooltip .ft-close:hover { color: #fff; }
 
 
-  .zone-label { font-size: 9px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--wf-muted); border: 1px dashed var(--wf-border); border-radius: 2px; padding: 1px 5px; display: inline-block; margin-bottom: 6px; }
-  .flow-step { background: var(--wf-surface); border-bottom: 1px solid var(--wf-border); padding: 6px 16px; font-size: 10px; color: var(--wf-muted); text-align: center; letter-spacing: 0.02em; }
+  /* ══════════════════════════════════════════
+     ZONE LABEL
+     ══════════════════════════════════════════ */
+  .zone-label {
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--wf-muted);
+    border: 1px dashed var(--wf-border);
+    border-radius: 2px;
+    padding: 1px 5px;
+    display: inline-block;
+    margin-bottom: 6px;
+  }
+
+  /* ══════════════════════════════════════════
+     FLOW STEP BANNER (shared)
+     ══════════════════════════════════════════ */
+  .flow-step {
+    background: var(--wf-surface);
+    border-bottom: 1px solid var(--wf-border);
+    padding: 6px 16px;
+    font-size: 10px;
+    color: var(--wf-muted);
+    text-align: center;
+    letter-spacing: 0.02em;
+  }
   .flow-step span { font-weight: 600; color: var(--wf-text); }
+
   .state-bar { display: flex; gap: 0; border-bottom: 1px solid var(--wf-border); background: var(--wf-surface); font-size: 11px; }
   .state-bar a { flex: 1; text-align: center; padding: 7px 4px; text-decoration: none; color: var(--wf-muted); font-weight: 500; border-bottom: 2px solid transparent; }
   .state-bar a:hover { color: var(--wf-text); }
   .state-bar a.current { color: var(--wf-text); font-weight: 700; border-bottom-color: var(--wf-text); }
 
+  /* ══════════════════════════════════════════
+     TOGGLE VISIBILITY
+     ══════════════════════════════════════════ */
   .view-mobile  { display: block; }
   .view-desktop { display: none;  }
   body.is-desktop .view-mobile  { display: none;  }
   body.is-desktop .view-desktop { display: flex; flex-direction: column; }
 
-  .content-mobile { flex: 1; display: flex; justify-content: center; padding: 24px; min-height: 100vh; }
-  .phone { width: 375px; min-height: 812px; background: var(--wf-bg); border: 1.5px solid var(--wf-border); border-radius: 12px; display: flex; flex-direction: column; overflow: hidden; box-shadow: 0 1px 4px rgba(0,0,0,0.06); }
+  /* ══════════════════════════════════════════════
+     MOBILE LAYOUT: phone frame
+     ══════════════════════════════════════════════ */
+  .content-mobile {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    padding: 24px;
+    min-height: 100vh;
+  }
+  .phone {
+    width: 375px;
+    min-height: 812px;
+    background: var(--wf-bg);
+    border: 1.5px solid var(--wf-border);
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+  }
 
-  .m-header { display: flex; align-items: center; justify-content: space-between; padding: 12px 16px; border-bottom: 1px solid var(--wf-border); min-height: 48px; }
-  .m-header h1 { font-size: 17px; font-weight: 600; }
-  .m-main { flex: 1; overflow-y: auto; padding-bottom: 20px; }
+  /* mobile header */
+  .m-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 16px;
+    border-bottom: 1px solid var(--wf-border);
+    min-height: 48px;
+  }
+  .m-header .back {
+    font-size: 14px;
+    color: var(--wf-text);
+    background: none;
+    border: none;
+    cursor: pointer;
+  }
+  .m-header h1 {
+    font-size: 17px;
+    font-weight: 600;
+  }
+  .m-header .action-edit {
+    font-size: 13px;
+    color: var(--wf-muted);
+    background: none;
+    border: none;
+    cursor: pointer;
+  }
 
-  .m-pet-identity { display: flex; align-items: center; gap: 12px; padding: 16px; border-bottom: 1px solid var(--wf-border); }
-  .pet-photo { border-radius: 50%; background: var(--wf-placeholder); flex-shrink: 0; display: flex; align-items: center; justify-content: center; font-size: 10px; color: var(--wf-muted); }
+  /* mobile main */
+  .m-main {
+    flex: 1;
+    overflow-y: auto;
+    padding-bottom: 20px;
+  }
+
+  /* mobile pet identity */
+  .m-pet-identity {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 16px;
+    border-bottom: 1px solid var(--wf-border);
+  }
+
+  /* shared pet photo */
+  .pet-photo {
+    border-radius: 50%;
+    background: var(--wf-placeholder);
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 10px;
+    color: var(--wf-muted);
+  }
   .pet-photo-m { width: 64px; height: 64px; }
   .pet-photo-d { width: 88px; height: 88px; font-size: 11px; }
+
   .pet-info h2, .pet-info h1 { line-height: 1.2; }
   .pet-info .pet-meta { color: var(--wf-muted); margin-top: 2px; }
+  .pet-info .pet-chip { color: var(--wf-muted); margin-top: 2px; }
 
-  .btn-primary { background: var(--wf-btn); color: var(--wf-btn-text); border: none; }
-  .btn-secondary { background: var(--wf-btn-sec); color: var(--wf-text); border: 1.5px solid var(--wf-border); }
+  /* mobile quick actions */
+  .m-quick-actions {
+    display: flex;
+    gap: 8px;
+    padding: 12px 16px;
+    border-bottom: 1px solid var(--wf-border);
+  }
+  .m-quick-actions button {
+    flex: 1;
+    padding: 10px 0;
+    font-size: 13px;
+    font-weight: 600;
+    border-radius: 6px;
+    cursor: pointer;
+  }
 
-  .role-badge-strip { background: var(--wf-surface); border-bottom: 1px solid var(--wf-border); padding: 10px 16px; font-size: 12px; color: var(--wf-muted); text-align: center; line-height: 1.4; }
-  .role-badge-strip strong { color: var(--wf-text); font-weight: 600; }
-  .shared-footer { border-top: 1px solid var(--wf-border); padding: 12px 16px; font-size: 11px; color: var(--wf-muted); text-align: center; line-height: 1.5; background: var(--wf-surface); }
+  /* shared button styles */
+  .btn-primary {
+    background: var(--wf-btn);
+    color: var(--wf-btn-text);
+    border: none;
+  }
+  .btn-secondary {
+    background: var(--wf-btn-sec);
+    color: var(--wf-text);
+    border: 1.5px solid var(--wf-border);
+  }
 
-  /* Empty state block */
-  .empty-block { padding: 48px 24px; text-align: center; }
-  .empty-block figure { width: 120px; height: 120px; background: var(--wf-placeholder); border-radius: 12px; margin: 0 auto 20px; display: flex; align-items: center; justify-content: center; font-size: 11px; color: var(--wf-muted); }
-  .empty-block h2 { font-size: 18px; font-weight: 700; margin-bottom: 8px; }
-  .empty-block p { font-size: 14px; color: var(--wf-muted); margin-bottom: 6px; line-height: 1.5; }
-  .empty-block button { margin-top: 16px; padding: 12px 24px; font-size: 14px; font-weight: 600; border-radius: 6px; cursor: pointer; }
+  /* mobile fill counter */
+  .m-fill-counter {
+    padding: 14px 16px 6px;
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+  }
+  .count { font-size: 14px; font-weight: 600; }
+  .status { font-size: 12px; color: var(--wf-muted); }
 
-  /* Shared section */
-  .shared-section { padding: 16px; border-bottom: 1px solid var(--wf-border); }
-  .shared-section h3 { font-size: 14px; font-weight: 700; margin-bottom: 10px; text-transform: uppercase; letter-spacing: 0.04em; }
-  .shared-section p { font-size: 13px; line-height: 1.6; margin-bottom: 4px; }
-  .shared-section .empty-notice { font-size: 13px; color: var(--wf-muted); font-style: italic; }
+  /* mobile search */
+  .m-search-filter { padding: 0 16px 12px; }
+  .search-bar {
+    padding: 10px 12px;
+    font-size: 14px;
+    border: 1.5px solid var(--wf-border);
+    border-radius: 6px;
+    background: var(--wf-input-bg);
+    color: var(--wf-text);
+    outline: none;
+  }
+  .search-bar::placeholder { color: var(--wf-placeholder); }
+  .m-search-filter .search-bar { width: 100%; }
 
-  /* Owner contact card */
-  .owner-contact { background: var(--wf-surface); border: 1.5px solid var(--wf-border); border-radius: 8px; padding: 16px; margin: 16px; text-align: center; }
-  .owner-contact p { font-size: 14px; margin-bottom: 4px; }
-  .owner-contact .owner-name { font-weight: 600; font-size: 16px; }
-  .owner-contact button { margin-top: 12px; padding: 10px 24px; font-size: 14px; font-weight: 600; border-radius: 6px; cursor: pointer; }
+  /* mobile section list */
+  .m-section-list {
+    list-style: none;
+    padding: 0 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
 
-  .content-desktop { flex: 1; min-width: 0; min-height: 100vh; }
-  .top-nav { display: flex; align-items: center; border-bottom: 1px solid var(--wf-border); padding: 0 32px; }
-  .top-nav .nav-brand { font-size: 15px; font-weight: 700; color: var(--wf-text); margin-right: 32px; padding: 14px 0; }
-  .top-nav .nav-label { font-size: 13px; color: var(--wf-muted); padding: 14px 0; }
+  /* mobile section card */
+  .m-section-card {
+    background: var(--wf-surface);
+    border: 1.5px solid var(--wf-border);
+    border-radius: 8px;
+    padding: 14px;
+    cursor: pointer;
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+  }
+  .m-section-card:hover { border-color: var(--wf-muted); }
+
+  .card-icon {
+    border-radius: 6px;
+    background: var(--wf-placeholder);
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 9px;
+    color: var(--wf-muted);
+  }
+  .card-icon-m { width: 36px; height: 36px; }
+  .card-icon-d { width: 40px; height: 40px; border-radius: 8px; }
+
+  .card-body { flex: 1; min-width: 0; }
+  .card-body h3 { font-size: 15px; font-weight: 600; line-height: 1.3; }
+  .card-detail {
+    font-size: 12px;
+    color: var(--wf-muted);
+    margin-top: 3px;
+    line-height: 1.4;
+  }
+  .card-detail strong { color: var(--wf-text); font-weight: 600; }
+  .card-arrow {
+    color: var(--wf-muted);
+    font-size: 16px;
+    align-self: center;
+    flex-shrink: 0;
+  }
+
+  /* mobile bottom nav */
+  .phone-nav {
+    border-top: 1px solid var(--wf-border);
+    display: flex;
+    background: var(--wf-bg);
+  }
+  .phone-nav a {
+    flex: 1;
+    text-align: center;
+    padding: 10px 0 8px;
+    font-size: 11px;
+    color: var(--wf-muted);
+    text-decoration: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 3px;
+  }
+  .phone-nav a.active { color: var(--wf-text); font-weight: 700; }
+  .phone-nav .nav-icon {
+    width: 22px; height: 22px; border-radius: 4px;
+    background: var(--wf-placeholder); display: inline-block;
+  }
+  .phone-nav a.active .nav-icon { background: var(--wf-muted); }
+
+  /* ══════════════════════════════════════════════
+     DESKTOP LAYOUT
+     ══════════════════════════════════════════════ */
+  .content-desktop {
+    flex: 1;
+    min-width: 0;
+    min-height: 100vh;
+  }
+
+  /* desktop top nav */
+  .top-nav {
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid var(--wf-border);
+    padding: 0 32px;
+  }
+  .top-nav .nav-brand {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--wf-text);
+    margin-right: 32px;
+    padding: 14px 0;
+  }
+  .top-nav a {
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--wf-muted);
+    padding: 14px 16px;
+    border-bottom: 2px solid transparent;
+    transition: all 0.12s;
+  }
+  .top-nav a:hover { color: var(--wf-text); }
+  .top-nav a.active {
+    color: var(--wf-text);
+    font-weight: 700;
+    border-bottom-color: var(--wf-text);
+  }
   .top-nav .nav-spacer { flex: 1; }
-  .top-nav .nav-action { font-size: 13px; color: var(--wf-muted); padding: 8px 16px; border: 1.5px solid var(--wf-border); border-radius: 6px; background: none; cursor: pointer; }
-  .d-main { max-width: 960px; margin: 0 auto; padding: 32px; width: 100%; }
-  .d-pet-hero { display: flex; align-items: center; gap: 24px; padding: 24px; background: var(--wf-surface); border: 1.5px solid var(--wf-border); border-radius: 10px; margin-bottom: 24px; }
+  .top-nav .nav-action {
+    font-size: 13px;
+    color: var(--wf-muted);
+    padding: 8px 16px;
+    border: 1.5px solid var(--wf-border);
+    border-radius: 6px;
+    background: none;
+    cursor: pointer;
+  }
+
+  /* desktop main */
+  .d-main {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 32px;
+    width: 100%;
+  }
+
+  /* desktop pet hero */
+  .d-pet-hero {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    padding: 24px;
+    background: var(--wf-surface);
+    border: 1.5px solid var(--wf-border);
+    border-radius: 10px;
+    margin-bottom: 24px;
+  }
   .d-pet-hero .pet-info { flex: 1; }
   .d-pet-hero .pet-info h1 { font-size: 26px; font-weight: 700; }
   .d-pet-hero .pet-info .pet-meta { font-size: 15px; margin-top: 4px; }
-  .d-footer { border-top: 1px solid var(--wf-border); padding: 16px 32px; font-size: 11px; color: var(--wf-muted); text-align: center; }
+  .d-pet-hero .pet-info .pet-chip { font-size: 12px; margin-top: 4px; }
+  .d-pet-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    flex-shrink: 0;
+  }
+  .d-pet-actions button {
+    padding: 10px 20px;
+    font-size: 13px;
+    font-weight: 600;
+    border-radius: 6px;
+    cursor: pointer;
+    white-space: nowrap;
+  }
 
+  /* desktop toolbar */
+  .d-toolbar {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 20px;
+  }
+  .d-toolbar .spacer { flex: 1; }
+  .d-toolbar .search-bar { width: 280px; }
+
+  /* desktop card grid */
+  .d-section-grid {
+    list-style: none;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+  .d-section-card {
+    background: var(--wf-surface);
+    border: 1.5px solid var(--wf-border);
+    border-radius: 10px;
+    padding: 20px;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    transition: border-color 0.12s;
+  }
+  .d-section-card:hover { border-color: var(--wf-muted); }
+  .d-card-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .d-card-header h3 { font-size: 16px; font-weight: 600; flex: 1; }
+  .d-section-card .card-detail { font-size: 13px; line-height: 1.5; }
+
+  .d-footer {
+    border-top: 1px solid var(--wf-border);
+    padding: 16px 32px;
+    font-size: 11px;
+    color: var(--wf-muted);
+    text-align: center;
+  }
+
+  /* ══════════════════════════════════════════════
+     WHAT'S DUE — CUSTOM STYLES
+     ══════════════════════════════════════════════ */
+
+  /* Pet filter tabs */
+  .pet-filter-tabs {
+    display: flex;
+    gap: 0;
+    padding: 0 16px;
+    border-bottom: 1px solid var(--wf-border);
+  }
+  .pet-filter-tabs button {
+    flex: 1;
+    padding: 10px 8px;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--wf-muted);
+    background: none;
+    border: none;
+    border-bottom: 2px solid transparent;
+    cursor: pointer;
+    transition: all 0.12s;
+  }
+  .pet-filter-tabs button:hover { color: var(--wf-text); }
+  .pet-filter-tabs button.active {
+    color: var(--wf-text);
+    font-weight: 700;
+    border-bottom-color: var(--wf-text);
+  }
+
+  /* Desktop pet filter */
+  .d-pet-filter {
+    display: flex;
+    gap: 0;
+    border-bottom: 1px solid var(--wf-border);
+    margin-bottom: 24px;
+  }
+  .d-pet-filter button {
+    padding: 10px 20px;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--wf-muted);
+    background: none;
+    border: none;
+    border-bottom: 2px solid transparent;
+    cursor: pointer;
+    transition: all 0.12s;
+  }
+  .d-pet-filter button:hover { color: var(--wf-text); }
+  .d-pet-filter button.active {
+    color: var(--wf-text);
+    font-weight: 700;
+    border-bottom-color: var(--wf-text);
+  }
+
+  /* Urgency section heading */
+  .urgency-heading {
+    font-size: 13px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: var(--wf-muted);
+    padding: 16px 16px 8px;
+  }
+  .d-urgency-heading {
+    font-size: 14px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: var(--wf-muted);
+    padding: 0 0 10px;
+    margin-top: 8px;
+  }
+
+  /* Reminder card */
+  .reminder-list {
+    list-style: none;
+    padding: 0 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 4px;
+  }
+  .reminder-card {
+    background: var(--wf-surface);
+    border: 1.5px solid var(--wf-border);
+    border-radius: 8px;
+    padding: 14px;
+    cursor: pointer;
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+    text-decoration: none;
+    color: inherit;
+  }
+  .reminder-card:hover { border-color: var(--wf-muted); }
+
+  .reminder-body { flex: 1; min-width: 0; }
+  .reminder-body h3 { font-size: 15px; font-weight: 600; line-height: 1.3; }
+  .reminder-meta {
+    font-size: 12px;
+    color: var(--wf-muted);
+    margin-top: 3px;
+    line-height: 1.4;
+  }
+  .reminder-badge {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--wf-text);
+    background: var(--wf-border);
+    border-radius: 4px;
+    padding: 2px 8px;
+    margin-top: 6px;
+  }
+
+  /* Desktop reminder list */
+  .d-reminder-list {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 8px;
+  }
+  .d-reminder-card {
+    background: var(--wf-surface);
+    border: 1.5px solid var(--wf-border);
+    border-radius: 10px;
+    padding: 18px 20px;
+    cursor: pointer;
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+    text-decoration: none;
+    color: inherit;
+    transition: border-color 0.12s;
+  }
+  .d-reminder-card:hover { border-color: var(--wf-muted); }
+  .d-reminder-body { flex: 1; min-width: 0; }
+  .d-reminder-body h3 { font-size: 16px; font-weight: 600; line-height: 1.3; }
+  .d-reminder-meta {
+    font-size: 13px;
+    color: var(--wf-muted);
+    margin-top: 4px;
+    line-height: 1.5;
+  }
+  .d-reminder-badge {
+    display: inline-block;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--wf-text);
+    background: var(--wf-border);
+    border-radius: 4px;
+    padding: 2px 10px;
+    margin-top: 6px;
+  }
+
+  /* Floating add button (mobile) */
+  .fab-add {
+    position: sticky;
+    bottom: 0;
+    padding: 12px 16px;
+    background: var(--wf-bg);
+    border-top: 1px solid var(--wf-border);
+  }
+  .fab-add button {
+    width: 100%;
+    padding: 12px 0;
+    font-size: 14px;
+    font-weight: 600;
+    border-radius: 8px;
+    cursor: pointer;
+  }
+
+  /* ── RESPONSIVE ── */
   @media (max-width: 700px) {
     .layout { flex-direction: column; }
-    .sidenav { position: sticky; top: 0; height: auto; width: 100%; z-index: 50; border-right: none; border-bottom: 1px solid var(--nav-line); padding: 12px 16px; max-height: 50vh; overflow-y: auto; }
+    .sidenav {
+      position: sticky; top: 0; height: auto; width: 100%; z-index: 50;
+      border-right: none; border-bottom: 1px solid var(--nav-line);
+      padding: 12px 16px; max-height: 50vh; overflow-y: auto;
+    }
     .content-mobile { padding: 16px; }
     .phone { min-height: auto; }
     .d-main { padding: 20px 16px; }
+    .d-section-grid { grid-template-columns: 1fr; }
     .d-pet-hero { flex-direction: column; text-align: center; }
+    .d-pet-actions { flex-direction: row; }
+    .d-toolbar { flex-wrap: wrap; }
+    .d-toolbar .search-bar { width: 100%; }
   }
   .nav-tree .flow-screens { margin: 2px 0 4px 6px; }
   .nav-tree .flow-screens summary { font-size: 10px; font-weight: 600; letter-spacing: .04em; text-transform: uppercase; color: var(--nav-cap); cursor: pointer; padding: 4px 8px; list-style: none; }
@@ -189,6 +791,10 @@
 <body>
 
 <div class="layout">
+
+  <!-- ═══════════════════════════════════════════
+       SIDEBAR
+       ═══════════════════════════════════════════ -->
 
   <aside class="sidenav" aria-label="Wireframe navigation">
     <a class="brand" href="#">PetPal Wireframes</a>
@@ -426,13 +1032,13 @@
       <li><div class="nav-divider"></div></li>
       <li><span class="nav-section">What's due</span>
         <ul>
-          <li><a href="Whats-due.html">What's due</a>
+          <li><a href="Whats-due.html" class="active">What's due</a>
             <ul class="state-list">
-              <li><a href="Whats-due.html">success</a></li>
+              <li><a href="Whats-due.html" class="active">success</a></li>
               <li><a href="Whats-due-empty.html">empty</a></li>
               <li><a href="Whats-due-loading.html">loading</a></li>
               <li><a href="Whats-due-error.html">error</a></li>
-              <li><a href="Whats-due-detail.html">reminder detail</a></li><li><a href="Whats-due-offline.html">offline</a></li>
+              <li><a href="Whats-due-detail.html">reminder detail</a></li><li><a class="active" href="Whats-due-offline.html">offline</a></li>
             </ul>
           </li>
         <li><a href="Reminder-settings.html">Reminder settings</a></li>
@@ -441,10 +1047,10 @@
       <li><div class="nav-divider"></div></li>
       <li><span class="nav-section">Recipient</span>
         <ul>
-          <li><a href="Shared-pet-view.html" class="active">Shared pet view</a>
+          <li><a href="Shared-pet-view.html">Shared pet view</a>
             <ul class="state-list">
               <li><a href="Shared-pet-view.html">success</a></li>
-              <li><a href="Shared-pet-view-empty.html" class="active">empty</a></li>
+              <li><a href="Shared-pet-view-empty.html">empty</a></li>
               <li><a href="Shared-pet-view-loading.html">loading</a></li>
               <li><a href="Shared-pet-view-error.html">error</a></li>
             </ul>
@@ -483,74 +1089,130 @@
     <div class="phone">
 
       <div class="state-bar" aria-label="Screen states">
-        <a href="Shared-pet-view.html">Success</a>
-        <a href="Shared-pet-view-empty.html" class="current">Empty</a>
-        <a href="Shared-pet-view-loading.html">Loading</a>
-        <a href="Shared-pet-view-error.html">Error</a>
+        <a href="Whats-due.html" class="current">Success</a>
+        <a href="Whats-due-empty.html">Empty</a>
+        <a href="Whats-due-loading.html">Loading</a>
+        <a href="Whats-due-error.html">Error</a>
       </div>
 
       <div class="flow-step">
-        R2 · Recipient view — Link opened → <span>★ Shared pet view (empty)</span> → Emergency &amp; allowed
+        R1 · What's due — <span>What's due</span> → section → Add/update a record
       </div>
 
       <header class="m-header">
-        <span style="font-size:15px;font-weight:700;">PetPal</span>
-        <h1>Shared with you</h1>
-        <span style="width:40px;"></span>
+        <span></span>
+        <h1>What's due</h1>
+        <span></span>
       </header>
-
-      <div class="role-badge-strip">
-        You're viewing as: <strong>Carer</strong> (read-only) · Shared by Eva · Expires 12 Jul 2026
-      </div>
 
       <main class="m-main">
 
-        <!-- Pet identity (minimal) -->
-        <section class="m-pet-identity" aria-label="Pet identity">
-          <figure class="pet-photo pet-photo-m" aria-label="Pet photo placeholder">photo</figure>
-          <div class="pet-info">
-            <h2 style="font-size:20px;font-weight:700;">Miso</h2>
-            <p class="pet-meta" style="font-size:13px;">Dog</p>
-          </div>
+        <!-- Pet filter tabs -->
+        <nav class="pet-filter-tabs" aria-label="Filter by pet">
+          <button class="active" onclick="segSelect(this)">All pets</button>
+          <button onclick="segSelect(this)">Miso</button>
+          <button onclick="segSelect(this)">Cheetah</button>
+        </nav>
+
+        <!-- Overdue section -->
+        <div style="margin:12px 16px;padding:10px 14px;border:1.5px solid var(--wf-border);border-radius:8px;background:var(--wf-surface);display:flex;align-items:center;gap:10px;">
+          <span style="font-size:13px;flex:1;color:var(--wf-muted);"><strong style="color:var(--wf-text);">Offline</strong> &mdash; showing last saved. Some items may be out of date.</span>
+          <a href="Whats-due-loading.html" style="text-decoration:none;"><button class="btn-secondary" style="padding:6px 14px;font-size:12px;">Retry</button></a>
+        </div>
+
+        <section aria-label="Overdue reminders">
+          <h2 class="urgency-heading">Overdue</h2>
+          <ul class="reminder-list">
+            <li>
+              <a href="Whats-due-detail.html?rem=rabies" class="reminder-card">
+                <div class="card-icon card-icon-m">icon</div>
+                <article class="reminder-body">
+                  <h3>Rabies booster — Miso</h3>
+                  <p class="reminder-meta">Was due 15 Jun 2026</p>
+                  <span class="reminder-badge">Overdue</span>
+                </article>
+                <span class="card-arrow" aria-hidden="true">→</span>
+              </a>
+            </li>
+          </ul>
         </section>
 
-        <!-- Empty care info -->
-        <section class="shared-section" aria-label="Personality and care">
-          <h3>Personality &amp; care</h3>
-          <p class="empty-notice">Eva hasn't added care info yet. Contact her to ask.</p>
+        <!-- Due this month section -->
+        <section aria-label="Due this month">
+          <h2 class="urgency-heading">Due this month</h2>
+          <ul class="reminder-list">
+            <li>
+              <a href="Whats-due-detail.html?rem=insurance" class="reminder-card">
+                <div class="card-icon card-icon-m">icon</div>
+                <article class="reminder-body">
+                  <h3>Insurance renewal — Miso</h3>
+                  <p class="reminder-meta">Due 1 Oct 2026 · Lassie OP-Schutz Plus</p>
+                  <span class="reminder-badge">Due soon</span>
+                </article>
+                <span class="card-arrow" aria-hidden="true">→</span>
+              </a>
+            </li>
+            <li>
+              <a href="Whats-due-detail.html?rem=checkup" class="reminder-card">
+                <div class="card-icon card-icon-m">icon</div>
+                <article class="reminder-body">
+                  <h3>Annual checkup — Miso</h3>
+                  <p class="reminder-meta">15 Aug 2026, 10:00 · Tierklinik am Stadtpark</p>
+                  <span class="reminder-badge">Due soon</span>
+                </article>
+                <span class="card-arrow" aria-hidden="true">→</span>
+              </a>
+            </li>
+          </ul>
         </section>
 
-        <!-- Empty health info -->
-        <section class="shared-section" aria-label="Health summary">
-          <h3>Health summary</h3>
-          <p class="empty-notice">No health records shared. Ask Eva if you need medical details.</p>
+        <!-- Coming up section -->
+        <section aria-label="Coming up">
+          <h2 class="urgency-heading">Coming up</h2>
+          <ul class="reminder-list">
+            <li>
+              <a href="Whats-due-detail.html?rem=fvrcp" class="reminder-card">
+                <div class="card-icon card-icon-m">icon</div>
+                <article class="reminder-body">
+                  <h3>FVRCP booster — Cheetah</h3>
+                  <p class="reminder-meta">Due 12 Nov 2026</p>
+                  <span class="reminder-badge">Upcoming</span>
+                </article>
+                <span class="card-arrow" aria-hidden="true">→</span>
+              </a>
+            </li>
+            <li>
+              <a href="Whats-due-detail.html?rem=passport" class="reminder-card">
+                <div class="card-icon card-icon-m">icon</div>
+                <article class="reminder-body">
+                  <h3>EU Passport renewal — Miso</h3>
+                  <p class="reminder-meta">Expires 1 Mar 2027</p>
+                  <span class="reminder-badge">Upcoming</span>
+                </article>
+                <span class="card-arrow" aria-hidden="true">→</span>
+              </a>
+            </li>
+          </ul>
         </section>
 
-        <!-- Empty vet info -->
-        <section class="shared-section" aria-label="Vet contact">
-          <h3>Vet contact</h3>
-          <p class="empty-notice">No vet details added yet. Contact Eva directly in an emergency.</p>
-        </section>
-
-        <!-- Empty documents -->
-        <section class="shared-section" aria-label="Documents">
-          <h3>Documents</h3>
-          <p class="empty-notice">No documents shared.</p>
-        </section>
-
-        <!-- Owner contact -->
-        <div class="owner-contact">
-          <p class="owner-name">Eva</p>
-          <p style="font-size:13px;color:var(--wf-muted);">Owner of Miso</p>
-          <p style="font-size:13px;color:var(--wf-muted);">For care details, health info, or emergencies — contact Eva directly.</p>
-          <button class="btn-primary" onclick="window.location.href='tel:+491719876543'">Contact Eva</button>
+        <!-- Floating add reminder button -->
+        <div class="fab-add">
+          <a href="Add-record.html" style="text-decoration:none;"><button class="btn-primary">Add reminder</button></a>
         </div>
 
       </main>
 
-      <footer class="shared-footer" aria-label="Shared link info">
-        Shared via PetPal · This link expires 12 Jul 2026 · Contact owner: Eva · Questions? Ask Eva directly.
-      </footer>
+      <nav class="phone-nav" aria-label="Main navigation">
+        <a href="My-Pets.html">
+          <span class="nav-icon" aria-hidden="true"></span> Pets
+        </a>
+        <a href="Whats-due.html" class="active">
+          <span class="nav-icon" aria-hidden="true"></span> What's due
+        </a>
+        <a href="Share-a-pet.html">
+          <span class="nav-icon" aria-hidden="true"></span> Share
+        </a>
+      </nav>
 
     </div>
   </div>
@@ -563,56 +1225,132 @@
   <div class="content-desktop view-desktop">
 
     <div class="state-bar" aria-label="Screen states">
-      <a href="Shared-pet-view.html">Success</a>
-      <a href="Shared-pet-view-empty.html" class="current">Empty</a>
-      <a href="Shared-pet-view-loading.html">Loading</a>
-      <a href="Shared-pet-view-error.html">Error</a>
+      <a href="Whats-due.html" class="current">Success</a>
+      <a href="Whats-due-empty.html">Empty</a>
+      <a href="Whats-due-loading.html">Loading</a>
+      <a href="Whats-due-error.html">Error</a>
     </div>
 
     <div class="flow-step" style="text-align:left;padding-left:32px;">
       <span class="zone-label">Desktop</span> &nbsp;
-      R2 · Recipient view — Link opened → <span>★ Shared pet view (empty)</span> → Emergency &amp; allowed
+      R1 · What's due — <span>What's due</span> → section → Add/update a record
     </div>
 
-    <nav class="top-nav" aria-label="Recipient navigation (desktop)">
+    <nav class="top-nav" aria-label="Main navigation (desktop)">
       <span class="nav-brand">PetPal</span>
-      <span class="nav-label">Shared with you · Carer view</span>
+      <a href="My-Pets.html">Pets</a>
+      <a href="Whats-due.html" class="active">What's due</a>
+      <a href="Share-a-pet.html">Share</a>
       <span class="nav-spacer"></span>
-      <a href="tel:+491719876543" style="text-decoration:none;"><button class="nav-action">Contact owner</button></a>
+      <a href="Add-record.html"><button class="nav-action">Add reminder</button></a>
     </nav>
 
-    <div class="role-badge-strip" style="text-align:left;padding-left:32px;">
-      You're viewing as: <strong>Carer</strong> (read-only) · Shared by Eva · Expires 12 Jul 2026
-    </div>
+    <div class="d-main">
 
-    <main class="d-main">
+      <h1 style="font-size:26px;font-weight:700;margin-bottom:20px;">What's due</h1>
 
-      <section class="d-pet-hero" aria-label="Pet identity">
-        <figure class="pet-photo pet-photo-d" aria-label="Pet photo placeholder">photo</figure>
-        <div class="pet-info">
-          <h1>Miso</h1>
-          <p class="pet-meta" style="font-size:15px;">Dog</p>
+      <!-- Desktop pet filter tabs -->
+      <nav class="d-pet-filter" aria-label="Filter by pet">
+        <button class="active" onclick="segSelect(this)">All pets</button>
+        <button onclick="segSelect(this)">Miso</button>
+        <button onclick="segSelect(this)">Cheetah</button>
+      </nav>
+
+      <!-- Overdue -->
+      <div style="margin:12px 16px;padding:10px 14px;border:1.5px solid var(--wf-border);border-radius:8px;background:var(--wf-surface);display:flex;align-items:center;gap:10px;">
+          <span style="font-size:13px;flex:1;color:var(--wf-muted);"><strong style="color:var(--wf-text);">Offline</strong> &mdash; showing last saved. Some items may be out of date.</span>
+          <a href="Whats-due-loading.html" style="text-decoration:none;"><button class="btn-secondary" style="padding:6px 14px;font-size:12px;">Retry</button></a>
         </div>
+
+        <section aria-label="Overdue reminders">
+        <h2 class="d-urgency-heading">Overdue</h2>
+        <ul class="d-reminder-list">
+          <li>
+            <a href="Whats-due-detail.html?rem=rabies" class="d-reminder-card">
+              <div class="card-icon card-icon-d">icon</div>
+              <article class="d-reminder-body">
+                <h3>Rabies booster — Miso</h3>
+                <p class="d-reminder-meta">Was due 15 Jun 2026</p>
+                <span class="d-reminder-badge">Overdue</span>
+              </article>
+              <span class="card-arrow" aria-hidden="true">→</span>
+            </a>
+          </li>
+        </ul>
       </section>
 
-      <div class="empty-block">
-        <figure aria-label="Empty state illustration">illustration</figure>
-        <h2>Not much here yet</h2>
-        <p>Eva shared Miso's profile, but hasn't filled in the details yet.</p>
-        <p>Contact Eva directly if you need care instructions, health info, or emergency details.</p>
-        <button class="btn-primary" onclick="window.location.href='tel:+491719876543'">Contact Eva</button>
-      </div>
+      <!-- Due this month -->
+      <section aria-label="Due this month">
+        <h2 class="d-urgency-heading">Due this month</h2>
+        <ul class="d-reminder-list">
+          <li>
+            <a href="Whats-due-detail.html?rem=insurance" class="d-reminder-card">
+              <div class="card-icon card-icon-d">icon</div>
+              <article class="d-reminder-body">
+                <h3>Insurance renewal — Miso</h3>
+                <p class="d-reminder-meta">Due 1 Oct 2026 · Lassie OP-Schutz Plus</p>
+                <span class="d-reminder-badge">Due soon</span>
+              </article>
+              <span class="card-arrow" aria-hidden="true">→</span>
+            </a>
+          </li>
+          <li>
+            <a href="Whats-due-detail.html?rem=checkup" class="d-reminder-card">
+              <div class="card-icon card-icon-d">icon</div>
+              <article class="d-reminder-body">
+                <h3>Annual checkup — Miso</h3>
+                <p class="d-reminder-meta">15 Aug 2026, 10:00 · Tierklinik am Stadtpark</p>
+                <span class="d-reminder-badge">Due soon</span>
+              </article>
+              <span class="card-arrow" aria-hidden="true">→</span>
+            </a>
+          </li>
+        </ul>
+      </section>
 
-    </main>
+      <!-- Coming up -->
+      <section aria-label="Coming up">
+        <h2 class="d-urgency-heading">Coming up</h2>
+        <ul class="d-reminder-list">
+          <li>
+            <a href="Whats-due-detail.html?rem=fvrcp" class="d-reminder-card">
+              <div class="card-icon card-icon-d">icon</div>
+              <article class="d-reminder-body">
+                <h3>FVRCP booster — Cheetah</h3>
+                <p class="d-reminder-meta">Due 12 Nov 2026</p>
+                <span class="d-reminder-badge">Upcoming</span>
+              </article>
+              <span class="card-arrow" aria-hidden="true">→</span>
+            </a>
+          </li>
+          <li>
+            <a href="Whats-due-detail.html?rem=passport" class="d-reminder-card">
+              <div class="card-icon card-icon-d">icon</div>
+              <article class="d-reminder-body">
+                <h3>EU Passport renewal — Miso</h3>
+                <p class="d-reminder-meta">Expires 1 Mar 2027</p>
+                <span class="d-reminder-badge">Upcoming</span>
+              </article>
+              <span class="card-arrow" aria-hidden="true">→</span>
+            </a>
+          </li>
+        </ul>
+      </section>
+
+    </div>
 
     <footer class="d-footer">
-      Shared via PetPal · This link expires 12 Jul 2026 · Contact owner: Eva · Questions? Ask Eva directly.
+      What's due · desktop adaptation · reminders hub across all pets
     </footer>
   </div>
 
 </div>
 
 <script>
+function segSelect(btn) {
+  Array.from(btn.parentElement.children).forEach(function(b) { b.classList.remove('active'); });
+  btn.classList.add('active');
+}
 function setView(mode) {
   document.body.classList.toggle('is-desktop', mode === 'desktop');
   document.getElementById('btn-mobile').classList.toggle('active', mode === 'mobile');

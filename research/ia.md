@@ -49,8 +49,9 @@ flowchart TD
   Emerg --> EmergSetup["Emergency authorization setup · R5/F6"]
 
   %% ---- What's due cluster ----
-  Whats -.->|act on item| AddRec
-  Whats --> RemSet["Reminder channel setting · R1"]
+  Whats -.->|tap a reminder| RemDetail["Reminder detail · R1"]
+  RemDetail -.->|act on item| AddRec
+  Whats --> RemSet["Reminder settings · R1"]
 
   %% ---- Share cluster ----
   Share --> WhoAccess["Who has access · S1"]
@@ -70,12 +71,12 @@ flowchart TD
   class Root,OwnerApp,Recipient entry;
   class Pets,Whats,Share global;
   class Setup,Dossier,Health,Docs,Ins,Pers,VetAppt,Emerg,VetMsg,Photo,DocView screen;
-  class AddRec,RemSet,NewDoss,EditRec contextual;
+  class AddRec,RemSet,RemDetail,NewDoss,EditRec contextual;
   class EmergSetup,EditGrant,EditId deep;
   class SharedView,EmergAllowed recipient;
 ```
 
-> **v2 (wireframe-realized) nodes** are folded in above: **Add photo** (from *Set up a pet* and *Edit pet identity*), **New-pet dossier + Add-info hub** (first-run empty state with its section-picker), **Edit a record** (edit an existing entry, distinct from blank Add), and **Document view** (read/download side of a Document). Dotted edges are shortcuts / cross-links; see [sitemap.md §"Screens realized in the interactive wireframes"](sitemap.md) for the codes (Sc22–Sc26) and jobs.
+> **v2 (wireframe-realized) nodes** are folded in above: **Add photo** (from *Set up a pet* and *Edit pet identity*), **New-pet dossier + Add-info hub** (first-run empty state with its section-picker), **Edit a record** (edit an existing entry, distinct from blank Add), and **Document view** (read/download side of a Document); plus for R1 the **Reminder detail** (act on a reminder), **Reminder settings**, and the **What's due offline** recovery. Dotted edges are shortcuts / cross-links; see [sitemap.md §"Screens realized in the interactive wireframes"](sitemap.md) for the codes (Sc22–Sc26) and jobs.
 
 ---
 
@@ -103,8 +104,10 @@ PetPal
 │  │   │   └─ Edit pet identity & lifecycle · Main        (deep, incl. archive/delete)
 │  │   └─ ⚡ 1-tap shortcut → Emergency info
 │  ├─ ⌂ What's due · R1                          (global, all pets)
-│  │   ├─ act on item → Add / update a record
-│  │   └─ Reminder channel setting · R1          (contextual)
+│  │   ├─ Reminder detail · R1                   (tap a reminder → Mark done / Snooze / act)
+│  │   │   └─ act on item → Add / update a record
+│  │   ├─ Reminder settings · R1                 (push/email, lead time, snooze, quiet hours)
+│  │   └─ (offline: last-saved reminders)        (recovery state)
 │  ├─ ⌂ Share a pet · S2                         (global)
 │  │   └─ Who has access · S1
 │  │       └─ Edit / revoke a grant · S1         (deep)
