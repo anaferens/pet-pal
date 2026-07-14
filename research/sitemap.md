@@ -1,6 +1,6 @@
-# PetPal — Sitemap (draft)
+# PetPal — Sitemap
 
-> Pre-wireframe working doc. **No screens or navigation yet** — this is only the object model behind the jobs.
+> Started as a pre-wireframe object model (Entities → Screens → Navigation → Traceability). **Now realized** as a clickable prototype in [wireframes/](../wireframes/); the wireframe-added screens are logged in §"Screens realized in the interactive wireframes (v2)" and folded into the traceability matrix (Sc22–Sc26). The Entities section below remains the object model behind the jobs.
 
 ## Entities
 
@@ -241,6 +241,27 @@ Pets (first screen)  →  tap a pet  →  Pet dossier  =  the "one trusted place
 
 ---
 
+## Screens realized in the interactive wireframes (v2)
+
+> The [wireframes](../wireframes/) now implement the sitemap as a **clickable prototype** (mobile + desktop, three persona walkthroughs). Building it surfaced a handful of screens that the object model implied but the pre-wireframe tree hadn't named as pages. They are **not new entities** — each is a view or sub-action of an existing entity — but they *are* real screens, so they're logged here and folded into the traceability matrix below (Sc22–Sc26).
+
+| New screen | Realizes | Entity / parent | Why it's a screen, not just a state |
+|---|---|---|---|
+| **Sc22 · Add photo** (`Upload-photo.html`) | Main (identity), the "photo" part of **Pet** | Set up a pet (Sc2) · Edit pet identity (Sc19) | The avatar was an inert placeholder; capturing a photo (camera / library) is a distinct task reachable from two parents. |
+| **Sc23 · Pet dossier — brand-new empty state + "Add info" hub** (`home-new.html`) | Main (first-run) | Pet dossier (Sc3) | A just-created dossier needs an onboarding empty state (encouraging copy + one CTA) and a **section-picker** — clearly a different screen from the populated dossier. The picker itself is a modal, not a page. |
+| **Sc24 · Edit an existing record** (`Edit-health-record.html`, `Edit-care-note.html`) | Main / R1 / R3 (correct a record) | Add / update a record (Sc14) | "Edit" opens the entry **pre-filled** and supports delete — semantically distinct from the blank *Add*. Every list item now opens *its own* instance (via id param), not one shared page. |
+| **Sc25 · Document view** (`Document-view.html`) | Main / R3 (retrieve & hand over a document) | Document entity · Documents & passport (Sc5), Insurance (Sc6) | Viewing / downloading / re-sharing / replacing one stored document — the read side of the Document entity, previously only writable. |
+| **Sc26 · Pet dossier — single-pet auto-land** (`home-success-single.html`) | Main (0-tap consult) | Pet dossier (Sc3) | Realizes the **single-pet auto-land** navigation rule: no pet-switcher, the app opens straight onto the one pet. A layout variant of Sc3, tracked so the rule is testable. |
+
+**Typed *Add / update a record* (Sc14).** The generic add-record form now ships as **type-aware variants** — the "Record type" selector arrives **pre-selected** from context: *Add health record* (`Add-health-record.html`), documents, insurance, vet, and *Add care note* (`Add-care-note.html`, category pre-chosen). Same screen and job (Sc14); the pre-selection is state carried in from the launching card, not a new page.
+
+**Interaction patterns introduced (not screens):**
+- **Floating "+" action button** on every dossier section — the single, consistent add-entry affordance (expands to *Add vaccine / Add health record* on Health & jabs). Replaces the old header "Add/Upload/Edit" text buttons.
+- **"What do you want to add?"** section-picker modal on the brand-new dossier (Sc23).
+- **QR share** presented as a centered modal (was a bottom sheet), consistent across mobile and desktop.
+
+---
+
 ## Traceability
 
 Coverage matrix: **rows = every job** ([jtbd.md](jtbd.md)) · **columns = every screen** in this sitemap (the 16 tree/contextual screens + the 5 deep-action screens). `✓` = the screen *actually participates* in completing that job. Goal: **no empty row, no empty column.**
@@ -291,7 +312,20 @@ Coverage matrix: **rows = every job** ([jtbd.md](jtbd.md)) · **columns = every 
 
 *(⏸ = job parked: **R4** backlog, **E3** out-of-scope — empty rows are intentional, not unresolved defects. Sc20/Sc21 columns removed.)*
 
-*Note on emotional jobs:* **E1** and **E2** are satisfied **indirectly** — no dedicated screen, the calm/confidence is a by-product of the marked screens doing their job. That is acceptable (the screens do participate). **E3** is a different case — see orphan jobs.
+**Matrix C — wireframe-realized screens (Sc22–Sc26)** — *added in v2, see "Screens realized in the interactive wireframes" above.*
+
+| Job | Sc22 Add photo | Sc23 New-dossier + Add-info hub | Sc24 Edit a record | Sc25 Document view | Sc26 Single-pet auto-land |
+|---|:--:|:--:|:--:|:--:|:--:|
+| **Main** | ✓ | ✓ | ✓ | ✓ | ✓ |
+| **R1** |  | ✓ | ✓ |  |  |
+| **R2** |  | ✓ |  |  |  |
+| **R3** |  |  | ✓ | ✓ |  |
+| **R5** |  | ✓ |  |  |  |
+| **S2** |  |  |  | ✓ |  |
+
+*Every new screen carries ≥1 job (no orphan columns); each is a view/sub-action of an existing entity (Pet, Pet dossier, Document, Health/Personality record), so no new entity or empty job-row is introduced.*
+
+*Note on emotional jobs:* **E1** and **E2** are satisfied **indirectly** — no dedicated screen, the calm/confidence is a by-product of the marked screens doing their job. That is acceptable (the screens do participate). **E3** is a different case — see orphan jobs. *(The brand-new-dossier onboarding empty state, Sc23, also serves **E1/E2** indirectly — encouraging copy that reassures the first-run owner nothing's broken and nothing's been forgotten.)*
 
 ---
 

@@ -384,16 +384,23 @@ flowchart TD
   OwnerApp --> Share["Share a pet · S2"]
   OwnerApp --> VetMsg["Vet messages · R3"]
   Pets --> Setup["Set up a pet · Main"]
+  Setup --> Photo["Add photo · Main"]
   Pets --> Dossier["Pet dossier · Main"]
+  Pets -.->|single-pet auto-land, 0 taps| Dossier
+  Pets -.->|first run| NewDoss["New-pet dossier + Add-info hub · Main"]
+  NewDoss -.->|section picker| AddRec
   Pets -.->|1-tap emergency shortcut| Emerg["Emergency info & authorization · R5"]
   Dossier --> Health["Health & jabs · R1/R3"]
   Dossier --> Docs["Documents & passport · Main/R3"]
+  Docs --> DocView["Document view · Main/R3"]
   Dossier --> Ins["Insurance · R1"]
   Dossier --> Pers["Personality & care · R2"]
   Dossier --> VetAppt["Vet & appointments · R1/R5"]
   Dossier --> Emerg
   Dossier --> AddRec["Add / update a record · Main/R1/R3"]
+  AddRec -.->|edit existing entry| EditRec["Edit a record · Main/R1/R3"]
   Dossier --> EditId["Edit pet identity & lifecycle · Main"]
+  EditId -.-> Photo
   Emerg --> EmergSetup["Emergency authorization setup · R5/F6"]
   Whats -.->|act on item| AddRec
   Whats --> RemSet["Reminder channel setting · R1"]
@@ -410,8 +417,8 @@ flowchart TD
   classDef recipient fill:#e6fcf5,stroke:#0ca678,color:#08503b;
   class Root,OwnerApp,Recipient entry;
   class Pets,Whats,Share global;
-  class Setup,Dossier,Health,Docs,Ins,Pers,VetAppt,Emerg,VetMsg screen;
-  class AddRec,RemSet contextual;
+  class Setup,Dossier,Health,Docs,Ins,Pers,VetAppt,Emerg,VetMsg,Photo,DocView screen;
+  class AddRec,RemSet,NewDoss,EditRec contextual;
   class EmergSetup,EditGrant,EditId deep;
   class SharedView,EmergAllowed recipient;
       </pre>

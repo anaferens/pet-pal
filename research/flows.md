@@ -80,6 +80,79 @@ flowchart TD
 
 ---
 
+## New-pet setup — the full onboarding journey *(realized in the interactive prototype)*
+*Primary persona: Organised Owner (embodied as **Ana** in the prototype). The **"New pet setup (full journey)"** persona-flow — a first-run owner going from an empty account to a filled dossier that's ready to share.*
+
+> This flow is the concrete, end-to-end onboarding path built in the [wireframes](../wireframes/) (`?flow=setup`). It expands the Main-job "Set up a pet" branch into every section, and introduces four wireframe-realized screens: **Add photo** (`Upload-photo.html`), the **brand-new-pet dossier empty state** with its **"Add info" section-picker** (`home-new.html`), **Edit an existing record** (`Edit-health-record.html` / `Edit-care-note.html`), and **Document view** (`Document-view.html`). No dead ends — every add opens a pre-filled form, every form returns to the dossier.
+
+```mermaid
+flowchart TD
+  Start("Open app - first run") --> PetsLoad("Loading: fetching pets")
+  PetsLoad --> EmptyPets("Empty: no pets yet")
+  EmptyPets -->|+ Add your first pet| Setup["Set up a pet"]
+  Setup --> Qphoto{"Add a photo?"}
+  Qphoto -->|yes| Photo["Add photo"]
+  Photo -->|take / choose| Setup
+  Qphoto -->|skip| SaveLoad("Loading: saving pet")
+  Setup --> SaveLoad
+  SaveLoad --> Q1{"Saved?"}
+  Q1 -->|no| SaveErr("Error: could not save")
+  SaveErr -->|retry| Setup
+  Q1 -->|yes| NewDoss["Pet dossier - brand new, empty"]
+  NewDoss --> AddInfo{"+ Add info: what to add?"}
+  AddInfo -->|Health & jabs| AddHealth["Add health record"]
+  AddInfo -->|Documents & passport| AddDoc["Add / update a record - documents"]
+  AddInfo -->|Insurance| AddIns["Add / update a record - insurance"]
+  AddInfo -->|Personality & care| AddCare["Add care note - behaviour"]
+  AddInfo -->|Vet & appointments| AddVet["Add / update a record - vet"]
+  AddInfo -->|Emergency info & authorisation| EmergSetup["Emergency authorization setup"]
+  AddHealth --> RecLoad("Loading: saving")
+  AddDoc --> RecLoad
+  AddIns --> RecLoad
+  AddCare --> RecLoad
+  AddVet --> RecLoad
+  EmergSetup --> RecLoad
+  RecLoad --> Q2{"Saved?"}
+  Q2 -->|no| RecErr("Error: save failed")
+  RecErr -->|retry| AddInfo
+  Q2 -->|yes| Filled["Pet dossier - sections filling up"]
+  Filled --> Q3{"Reviewing existing entries?"}
+  Q3 -->|edit a record| EditRec["Edit an existing record - pre-filled"]
+  EditRec --> Filled
+  Q3 -->|open a document| DocView["Document view"]
+  DocView --> Filled
+  Filled --> Q4{"Enough captured to hand off?"}
+  Q4 -->|no, add more| AddInfo
+  Q4 -->|yes| Share["Share a pet"]
+  Share --> Q5{"Scope, role and link set?"}
+  Q5 -->|no| Share
+  Q5 -->|yes| LinkLoad("Loading: creating link")
+  LinkLoad --> Q6{"Link created?"}
+  Q6 -->|no| LinkErr("Error: could not create link")
+  LinkErr -->|retry| LinkLoad
+  Q6 -->|yes| Sitter["Shared pet view - what the sitter sees"]
+  Sitter --> Done(["Success: new pet set up, dossier filled and shared"])
+
+  classDef screen fill:#e7f5ff,stroke:#1971c2,color:#0b3d66;
+  classDef state fill:#fff3bf,stroke:#f08c00,color:#663c00;
+  classDef error fill:#ffe3e3,stroke:#e03131,color:#7a1212;
+  classDef success fill:#d3f9d8,stroke:#2f9e44,color:#14532d;
+  classDef start fill:#f1f3f5,stroke:#868e96,color:#343a40;
+  class Start start;
+  class Setup,Photo,NewDoss,AddHealth,AddDoc,AddIns,AddCare,AddVet,EmergSetup,Filled,EditRec,DocView,Share,Sitter screen;
+  class PetsLoad,EmptyPets,SaveLoad,RecLoad,LinkLoad state;
+  class SaveErr,RecErr,LinkErr error;
+  class Done success;
+```
+
+**What this flow added to the product picture**
+- **Add photo** is its own step (take photo / choose from library), reachable from both *Set up a pet* and *Edit pet identity* — no longer an inert avatar.
+- The **brand-new dossier** has a dedicated empty state (encouraging copy + a single **"+ Add info"** call-to-action) instead of dropping the owner into a dossier that looks "broken but empty."
+- **"What do you want to add?"** is a section-picker modal — each of the six cards opens the matching form with the **section pre-selected** (e.g. Personality → *Behaviour* pre-chosen), so the owner never re-picks what they just chose.
+- Every list item (document, jab, health record, appointment, care note, access grant) opens its **own pre-filled Edit/View screen** — "Edit" means edit *that* entry, not a blank Add form.
+
+---
+
 ## R2 — make a stranger understand my pet fast
 *Owner prepares and shares (Organised Owner) → carer reads it (Receiving Caregiver).*
 
@@ -214,3 +287,7 @@ flowchart TD
 ### Screen nodes used (all in sitemap.md)
 My Pets · Set up a pet · Pet dossier · Health & jabs · Personality & care · Insurance · Vet & appointments · Emergency info & authorization · What's due · Share a pet · Shared pet view · Emergency & what I'm allowed to do · **Add / update a record**.
 *(Recovery nodes — re-share, show owner contact, offline cache, retry — are **states of existing screens**, not new screens.)*
+
+**New screen nodes introduced by the interactive prototype** (all in [wireframes/](../wireframes/), added to [sitemap.md](sitemap.md) §"Screens realized in the interactive wireframes"):
+**Add photo** (`Upload-photo.html`) · **Pet dossier — brand-new empty state / "Add info" hub** (`home-new.html`) · **Add health record** (`Add-health-record.html`, a typed variant of *Add / update a record*) · **Edit an existing record** (`Edit-health-record.html`, `Edit-care-note.html`) · **Document view** (`Document-view.html`) · **Pet dossier — single-pet auto-land** (`home-success-single.html`, realizes the single-pet 0-tap rule).
+*("Add info" section-picker is a modal on the brand-new dossier, not a separate page.)*

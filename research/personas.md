@@ -11,9 +11,23 @@ Built from [`research.md`](research.md) and the user-voice quotes in [`research.
 
 ---
 
+## How the interactive prototype embodies these personas
+
+The [wireframes](../wireframes/) ship **three named persona walkthroughs** (sidebar → "Persona flows", or `?flow=…` in the URL). Each maps to a persona below and to a flow in [flows.md](flows.md):
+
+| Prototype walkthrough | Persona | Job(s) exercised | Flow |
+|---|---|---|---|
+| **Pet owner (Ana)** — *My Pets → dossier → sections → Share → What's due* | ⭐ Organised Owner | Main (consult + pass on), R1 | [Main job](flows.md), [R1](flows.md) |
+| **New pet setup (full journey)** — *empty account → set up pet → add photo → fill every section → share with a sitter* | ⭐ Organised Owner (first run) | Main (capture), leads into R2 | [New-pet setup](flows.md) |
+| **Pet sitter (recipient)** — *shared link → Shared pet view → Emergency & allowed* | ◦ Receiving Caregiver | R2, R5/F6 | [R2](flows.md) |
+
+> **Naming note.** The Organised Owner is written up below as *Eva*; the prototype's owner walkthrough labels her **Ana** (and the sample sitter view still shows "Shared by Eva"). Same persona — the concrete name is cosmetic and unvalidated (`[?]`). The **Worried-at-the-Wrong-Moment Owner** (R5) is not a standalone walkthrough: her one-tap emergency path is reachable from inside the owner flows (the emergency shortcut and the sitter's *Emergency & allowed* screen), matching the sitemap decision to keep R5 pet-contextual rather than global.
+
+---
+
 ## ⭐ PRIMARY — "The Organised Owner"
 
-*Eva, 34, lives in an EU city, one dog. Comfortable with apps. `[?]` (age/location are brief scope [CLAUDE.md:14-17](../CLAUDE.md), not observed — the specific person is a hypothesis.)*
+*Eva ("Ana" in the prototype), 34, lives in an EU city, one dog. Comfortable with apps. `[?]` (age/location are brief scope [CLAUDE.md:14-17](../CLAUDE.md), not observed — the specific person is a hypothesis.)*
 
 **Context**
 She treats her dog's admin like her own: she wants to *check when the dog was last vaccinated to plan the next one*, and when she travels she needs to *hand a sitter everything important about the dog*. Two situations, one underlying need: a single trustworthy record she can both **consult** and **pass on**.

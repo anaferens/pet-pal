@@ -27,7 +27,11 @@ flowchart TD
 
   %% ---- Pets cluster ----
   Pets --> Setup["Set up a pet · Main"]
+  Setup --> Photo["Add photo · Main"]
   Pets --> Dossier["Pet dossier · Main"]
+  Pets -.->|single-pet auto-land, 0 taps| Dossier
+  Pets -.->|first run| NewDoss["New-pet dossier + Add-info hub · Main"]
+  NewDoss -.->|section picker| AddRec
   Pets -.->|1-tap emergency shortcut| Emerg["Emergency info & authorization · R5"]
 
   %% ---- Dossier sections ----
@@ -38,7 +42,10 @@ flowchart TD
   Dossier --> VetAppt["Vet & appointments · R1/R5"]
   Dossier --> Emerg
   Dossier --> AddRec["Add / update a record · Main/R1/R3"]
+  AddRec -.->|edit existing entry| EditRec["Edit a record · Main/R1/R3"]
+  Docs --> DocView["Document view · Main/R3"]
   Dossier --> EditId["Edit pet identity & lifecycle · Main"]
+  EditId -.-> Photo
   Emerg --> EmergSetup["Emergency authorization setup · R5/F6"]
 
   %% ---- What's due cluster ----
@@ -62,11 +69,13 @@ flowchart TD
   classDef recipient fill:#e6fcf5,stroke:#0ca678,color:#08503b;
   class Root,OwnerApp,Recipient entry;
   class Pets,Whats,Share global;
-  class Setup,Dossier,Health,Docs,Ins,Pers,VetAppt,Emerg,VetMsg screen;
-  class AddRec,RemSet contextual;
+  class Setup,Dossier,Health,Docs,Ins,Pers,VetAppt,Emerg,VetMsg,Photo,DocView screen;
+  class AddRec,RemSet,NewDoss,EditRec contextual;
   class EmergSetup,EditGrant,EditId deep;
   class SharedView,EmergAllowed recipient;
 ```
+
+> **v2 (wireframe-realized) nodes** are folded in above: **Add photo** (from *Set up a pet* and *Edit pet identity*), **New-pet dossier + Add-info hub** (first-run empty state with its section-picker), **Edit a record** (edit an existing entry, distinct from blank Add), and **Document view** (read/download side of a Document). Dotted edges are shortcuts / cross-links; see [sitemap.md §"Screens realized in the interactive wireframes"](sitemap.md) for the codes (Sc22–Sc26) and jobs.
 
 ---
 
@@ -78,15 +87,19 @@ PetPal
 ├─ OWNER APP · signed in
 │  ├─ ⌂ My Pets · Main                         (global)
 │  │   ├─ Set up a pet · Main
+│  │   │   └─ Add photo · Main                  (camera / library; also from Edit pet identity)
+│  │   ├─ New-pet dossier + "Add info" hub · Main   (first-run empty state → section picker)
 │  │   ├─ Pet dossier · Main   (single-pet auto-land → 0 taps)
 │  │   │   ├─ Health & jabs · R1/R3
 │  │   │   ├─ Documents & passport · Main/R3
+│  │   │   │   └─ Document view · Main/R3        (view / download / re-share / replace)
 │  │   │   ├─ Insurance · R1
 │  │   │   ├─ Personality & care · R2
 │  │   │   ├─ Vet & appointments · R1/R5
 │  │   │   ├─ Emergency info & authorization · R5
 │  │   │   │   └─ Emergency authorization setup · R5/F6   (deep)
-│  │   │   ├─ Add / update a record · Main/R1/R3          (contextual, from any section)
+│  │   │   ├─ Add / update a record · Main/R1/R3          (contextual, type pre-selected from launcher)
+│  │   │   │   └─ Edit a record · Main/R1/R3              (edit existing entry, pre-filled + delete)
 │  │   │   └─ Edit pet identity & lifecycle · Main        (deep, incl. archive/delete)
 │  │   └─ ⚡ 1-tap shortcut → Emergency info
 │  ├─ ⌂ What's due · R1                          (global, all pets)
