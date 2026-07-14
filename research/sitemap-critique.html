@@ -131,6 +131,7 @@
       <span class="eyebrow">Design Research · PetPal</span>
       <h1>Sitemap &amp; flows <em>critique</em></h1>
       <p>A four-class defect review of the information architecture — dead ends, missing states, excessive depth, and orphans — with the fix and status for each. All fixes applied.</p>
+      <p><b>v2 update:</b> the IA is now a clickable prototype (<a href="https://github.com/anaferens/pet-pal/tree/main/wireframes">wireframes/</a>), which exposed a second, runtime defect layer — controls wired wrong or not at all. See <a href="#v2">§5 · interactive-prototype audit</a> (four audits, all passing at zero).</p>
       <div class="legend">
         <span class="badge done">✅ done</span>
         <span class="badge parked">⏸ parked (backlog / out-of-scope)</span>
@@ -227,14 +228,36 @@
     </div>
   </section>
 
+  <!-- 5. V2 INTERACTIVE-PROTOTYPE AUDIT -->
+  <section id="v2">
+    <div class="section-head">
+      <span class="num">05</span>
+      <h2>v2 · Interactive-prototype audit</h2>
+      <span class="sub">Once the sitemap became a clickable prototype, a new defect layer appeared that paper review can't see: a control that looks tappable but does nothing, or navigates to the <em>wrong</em> screen — the runtime equivalent of a dead end. Four audits run over <b>all 82 wireframe files, both mobile and desktop</b>. <b>Result: all pass at zero.</b></span>
+    </div>
+
+    <div class="table-card">
+      <table>
+        <thead><tr><th>Audit / where</th><th>What it found</th><th>How to fix</th><th>Status</th></tr></thead>
+        <tbody>
+          <tr><td><span class="where">5a · Structural dead ends<br><small>~38 screens, both views</small></span></td><td><b>104</b> buttons/links with no destination — header actions, record "Edit&nbsp;→", "Call vet", filter chips, "View document", loading "Cancel", empty-state CTAs, home actions; plus links to non-existent files</td><td>Wire each to its real target (<code>tel:</code> for calls); disable true "Saving…" buttons; cross-check every <code>href</code> against the file list</td><td class="status"><span class="pill done">✅ 0 remain</span></td></tr>
+          <tr><td><span class="where">5b · Wrong / shared destinations<br><small>Documents, Insurance, Health &amp; jabs, Vet, Personality, Who-has-access, Emergency-auth, Shared view</small></span></td><td>Distinct list items all opening one hardcoded detail/edit page — click "Annual checkup", land on "Dental cleaning"; 4 docs → one Document view; 6 care notes → one note; 3 grants → one grant</td><td>Parameterize the detail/edit pages by id (<code>?doc=</code> / <code>?rec=</code> / <code>?note=</code> / <code>?person=</code>); wire each row to its own instance</td><td class="status"><span class="pill done">✅ done</span></td></tr>
+          <tr><td><span class="where">5c · Entity mismatch<br><small>My Pets, section-launched forms</small></span></td><td>Tapping <b>Miso</b> opened the dossier loading state (never resolved); desktop opened <b>Cheetah</b>; Cheetah's card wasn't clickable. Forms opened with the wrong record-type pre-selected</td><td>Point each pet card at that pet's dossier (both views); carry the section as a param (<code>?type=</code>/<code>?cat=</code>) so the launcher's choice is honoured</td><td class="status"><span class="pill done">✅ done</span></td></tr>
+          <tr><td><span class="where">5d · Inert interactive controls<br><small>Share a pet, Edit access, Add/Edit care note</small></span></td><td><b>Scope picker</b> radio cards (Full dossier / Care / Health / Emergency) didn't respond; "Mark as warning" <b>toggle</b> didn't switch</td><td><code>onclick</code> to move the <code>.selected</code> state / toggle <code>.on</code></td><td class="status"><span class="pill done">✅ done</span></td></tr>
+          <tr><td><span class="where">Screens created to close 5a–5c</span></td><td>Some fixes needed a screen that didn't exist: inert photo avatar; "Edit" opened a blank <em>Add</em>; documents were write-only; a new dossier looked broken-empty</td><td>Add <b>Add photo</b>, <b>Edit an existing record</b>, <b>Document view</b>, <b>brand-new dossier + "Add info" hub</b> — <a href="https://github.com/anaferens/pet-pal/blob/main/research/sitemap.md">sitemap.md</a> Sc22–Sc26</td><td class="status"><span class="pill done">✅ done</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
   <!-- RESIDUE -->
   <section id="residue">
     <div class="residue">
       <h3>Honest residue (not silently hidden)</h3>
       <ul>
         <li><b>R4</b> and <b>E3</b> remain <b>empty rows on purpose</b> — parked, not solved. R4 needs the RC/R4 validation round before any "Updates from carer" feature; E3 is genuinely offline and may never be a PetPal screen.</li>
-        <li>The <b>single-pet auto-land</b> and <b>1-tap emergency</b> rules are navigation <em>rules</em>, not yet drawn into the screen tree's structure — they must be honoured when wireframing or the depth risk returns.</li>
-        <li>Several in-scope screens still have <b>no flow</b> exercising them (Who has access, Vet messages, etc.) — a coverage gap to close when those flows are drawn.</li>
+        <li><b>Single-pet auto-land — now realized</b> ✅ (was a rule only): the prototype builds it as <code>home-success-single.html</code> (no switcher, opens straight onto the one pet). <b>1-tap emergency — realized in-flow</b> ✅; still worth a dedicated home-surface entry when the home screen is designed.</li>
+        <li><b>Flow coverage — improved, not complete.</b> The new <b>new-pet setup (full journey)</b> flow now exercises previously flow-less screens (every dossier section, Add/Edit, Document view, Share). <b>Vet messages</b> and a standalone <b>Who has access</b> flow are still undrawn — the remaining gap.</li>
       </ul>
     </div>
   </section>
