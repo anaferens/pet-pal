@@ -100,14 +100,19 @@ flowchart TD
   SaveErr -->|retry| Setup
   Q1 -->|yes| NewDoss["Pet dossier - brand new, empty"]
   NewDoss --> AddInfo{"+ Add info: what to add?"}
-  AddInfo -->|Health & jabs| AddHealth["Add health record"]
+  AddInfo -->|Health & jabs| HealthEmpty["Health & jabs - empty, brand-new pet"]
+  HealthEmpty -->|+ Add first vaccine| AddHealth["Add a vaccine / health record"]
   AddInfo -->|Documents & passport| AddDoc["Add / update a record - documents"]
   AddInfo -->|Insurance| AddIns["Add / update a record - insurance"]
   AddInfo -->|Personality & care| AddCare["Add care note - behaviour"]
   AddInfo -->|Vet & appointments| AddVet["Add / update a record - vet"]
   AddInfo -->|Emergency info & authorisation| EmergSetup["Emergency authorization setup"]
-  AddHealth --> RecLoad("Loading: saving")
-  AddDoc --> RecLoad
+  AddHealth --> HealthSave("Loading: saving")
+  HealthSave --> Qh{"Saved?"}
+  Qh -->|no| RecErr
+  Qh -->|yes| HealthOne["Health & jabs - just the one vaccine (first-run)"]
+  HealthOne --> Filled
+  AddDoc --> RecLoad("Loading: saving")
   AddIns --> RecLoad
   AddCare --> RecLoad
   AddVet --> RecLoad
@@ -139,8 +144,8 @@ flowchart TD
   classDef success fill:#d3f9d8,stroke:#2f9e44,color:#14532d;
   classDef start fill:#f1f3f5,stroke:#868e96,color:#343a40;
   class Start start;
-  class Setup,Photo,NewDoss,AddHealth,AddDoc,AddIns,AddCare,AddVet,EmergSetup,Filled,EditRec,DocView,Share,Sitter screen;
-  class PetsLoad,EmptyPets,SaveLoad,RecLoad,LinkLoad state;
+  class Setup,Photo,NewDoss,HealthEmpty,AddHealth,HealthOne,AddDoc,AddIns,AddCare,AddVet,EmergSetup,Filled,EditRec,DocView,Share,Sitter screen;
+  class PetsLoad,EmptyPets,SaveLoad,HealthSave,RecLoad,LinkLoad state;
   class SaveErr,RecErr,LinkErr error;
   class Done success;
 ```
@@ -148,6 +153,7 @@ flowchart TD
 **What this flow added to the product picture**
 - **Add photo** is its own step (take photo / choose from library), reachable from both *Set up a pet* and *Edit pet identity* — no longer an inert avatar.
 - The **brand-new dossier** has a dedicated empty state (encouraging copy + a single **"+ Add info"** call-to-action) instead of dropping the owner into a dossier that looks "broken but empty."
+- **State-truthful sections.** A section a brand-new pet hasn't filled shows its **empty** state, and immediately after adding the first entry it shows **only that entry** — not the fully-populated demo. Realized for Health & jabs: `Health-and-jabs-empty.html` (nothing yet) → add a vaccine → `Health-and-jabs-firstrun.html` (just the one, no conditions card, empty health-records list). *(The other sections follow the same empty → one-entry pattern.)*
 - **"What do you want to add?"** is a section-picker modal — each of the six cards opens the matching form with the **section pre-selected** (e.g. Personality → *Behaviour* pre-chosen), so the owner never re-picks what they just chose.
 - Every list item (document, jab, health record, appointment, care note, access grant) opens its **own pre-filled Edit/View screen** — "Edit" means edit *that* entry, not a blank Add form.
 
@@ -289,5 +295,5 @@ My Pets · Set up a pet · Pet dossier · Health & jabs · Personality & care ·
 *(Recovery nodes — re-share, show owner contact, offline cache, retry — are **states of existing screens**, not new screens.)*
 
 **New screen nodes introduced by the interactive prototype** (all in [wireframes/](../wireframes/), added to [sitemap.md](sitemap.md) §"Screens realized in the interactive wireframes"):
-**Add photo** (`Upload-photo.html`) · **Pet dossier — brand-new empty state / "Add info" hub** (`home-new.html`) · **Add health record** (`Add-health-record.html`, a typed variant of *Add / update a record*) · **Edit an existing record** (`Edit-health-record.html`, `Edit-care-note.html`) · **Document view** (`Document-view.html`) · **Pet dossier — single-pet auto-land** (`home-success-single.html`, realizes the single-pet 0-tap rule).
+**Add photo** (`Upload-photo.html`) · **Pet dossier — brand-new empty state / "Add info" hub** (`home-new.html`) · **Add health record** (`Add-health-record.html`, a typed variant of *Add / update a record*) · **Health & jabs — first-run, one vaccine** (`Health-and-jabs-firstrun.html`, the state right after a new pet's first vaccine — no conditions card, empty health-records list) · **Edit an existing record** (`Edit-health-record.html`, `Edit-care-note.html`) · **Document view** (`Document-view.html`) · **Pet dossier — single-pet auto-land** (`home-success-single.html`, realizes the single-pet 0-tap rule).
 *("Add info" section-picker is a modal on the brand-new dossier, not a separate page.)*
