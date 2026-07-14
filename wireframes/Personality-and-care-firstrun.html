@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Documents & passport (loading) — PetPal wireframe</title>
+<title>Personality & care · first note — PetPal wireframe</title>
 <style>
   :root {
     --wf-bg:         #ffffff;
@@ -124,7 +124,8 @@
 
   /* MOBILE LAYOUT */
   .content-mobile { flex: 1; display: flex; justify-content: center; padding: 24px; min-height: 100vh; }
-  .phone { width: 375px; min-height: 812px; background: var(--wf-bg); border: 1.5px solid var(--wf-border); border-radius: 12px; display: flex; flex-direction: column; overflow: hidden; box-shadow: 0 1px 4px rgba(0,0,0,0.06); }
+  .phone { position: relative; width: 375px; min-height: 812px; background: var(--wf-bg); border: 1.5px solid var(--wf-border); border-radius: 12px; display: flex; flex-direction: column; overflow: hidden; box-shadow: 0 1px 4px rgba(0,0,0,0.06); }
+  .fab { position: absolute; right: 16px; bottom: 76px; width: 56px; height: 56px; border-radius: 50%; background: var(--wf-btn); color: var(--wf-btn-text); font-size: 28px; line-height: 1; border: none; cursor: pointer; display: flex; align-items: center; justify-content: center; text-decoration: none; box-shadow: 0 4px 14px rgba(0,0,0,0.28); z-index: 10; }
   .m-header { display: flex; align-items: center; justify-content: space-between; padding: 12px 16px; border-bottom: 1px solid var(--wf-border); min-height: 48px; }
   .m-header .back { font-size: 14px; color: var(--wf-text); background: none; border: none; cursor: pointer; }
   .m-header h1 { font-size: 17px; font-weight: 600; }
@@ -377,11 +378,11 @@
               <li><a href="Health-and-jabs-firstrun.html">first record</a></li>
             </ul>
           </li>
-          <li><a href="Documents-and-passport.html" class="active">Documents &amp; passport</a>
+          <li><a href="Documents-and-passport.html">Documents &amp; passport</a>
             <ul class="state-list">
               <li><a href="Documents-and-passport.html">success</a></li>
               <li><a href="Documents-and-passport-empty.html">empty</a></li>
-              <li><a href="Documents-and-passport-loading.html" class="active">loading</a></li>
+              <li><a href="Documents-and-passport-loading.html">loading</a></li>
               <li><a href="Documents-and-passport-error.html">error</a></li>
               <li><a href="Documents-and-passport-firstrun.html">first document</a></li>
             </ul>
@@ -394,13 +395,13 @@
               <li><a href="Insurance-error.html">error</a></li>
             </ul>
           </li>
-          <li><a href="Personality-and-care.html">Personality &amp; care</a>
+          <li><a href="Personality-and-care.html" class="active">Personality &amp; care</a>
             <ul class="state-list">
-              <li><a href="Personality-and-care.html">success</a></li>
+              <li><a href="Personality-and-care.html" class="active">success</a></li>
               <li><a href="Personality-and-care-empty.html">empty</a></li>
               <li><a href="Personality-and-care-loading.html">loading</a></li>
               <li><a href="Personality-and-care-error.html">error</a></li>
-              <li><a href="Personality-and-care-firstrun.html">first note</a></li>
+              <li><a class="active" href="Personality-and-care-firstrun.html">first note</a></li>
             </ul>
           </li>
           <li><a href="Vet-and-appointments.html">Vet &amp; appointments</a>
@@ -543,20 +544,20 @@
     <div class="phone">
 
       <div class="state-bar" aria-label="Screen states">
-        <a href="Documents-and-passport.html">Success</a>
-        <a href="Documents-and-passport-empty.html">Empty</a>
-        <a href="Documents-and-passport-loading.html" class="current">Loading</a>
-        <a href="Documents-and-passport-error.html">Error</a>
+        <a href="Personality-and-care.html" class="current">Success</a>
+        <a href="Personality-and-care-empty.html">Empty</a>
+        <a href="Personality-and-care-loading.html">Loading</a>
+        <a href="Personality-and-care-error.html">Error</a>
       </div>
 
       <div class="flow-step">
-        <span class="zone-label">Main, R3</span> Main + R3 · <span>Pet dossier → ★ Documents & passport</span>
+        <span class="zone-label">R2</span> R2 · <span>Pet dossier → ★ Personality & care</span>
       </div>
 
       <header class="m-header">
         <a href="home-success.html" style="text-decoration:none;"><button class="back" aria-label="Back">← Dossier</button></a>
-        <h1>Documents & passport</h1>
-        <a href="Add-record.html?type=documents"><button class="action-btn">Upload</button></a>
+        <h1>Personality & care</h1>
+        <span style="width:60px;" aria-hidden="true"></span>
       </header>
 
       <div class="m-main">
@@ -568,13 +569,25 @@
             <p class="pet-meta" style="font-size:12px;">Dog · Border Terrier · Female</p>
           </div>
         </section>
-        <section class="skeleton-area" aria-label="Loading">
-          <p class="skeleton-label">Loading Miso's documents… <a href="Documents-and-passport.html" style="color:var(--wf-muted);font-size:11px;">→ when loaded</a></p>
-          <div class="skeleton-block"></div>
-          <div class="skeleton-block"></div>
-          <div class="skeleton-block"></div>
-        </section>
+
+        <p style="padding:10px 16px;font-size:11px;color:var(--wf-muted);background:var(--wf-surface);border-bottom:1px solid var(--wf-border);">This is what your sitter will see in the shared view.</p>
+
+        <div class="personality-section">
+          <div style="display:flex;justify-content:space-between;align-items:baseline;"><h3>Favourite food &amp; treats</h3><a href="Edit-care-note.html?note=food" style="font-size:12px;color:var(--wf-muted);">Edit</a></div>
+          <p>Royal Canin Maxi Adult, 350 g twice daily (morning + evening). Loves dried chicken strips as training treats. No rawhide — causes stomach upset.</p>
+        </div>
+
+        
+
+        
+
+        <div style="padding:16px;display:flex;flex-direction:column;gap:10px;align-items:center;">
+          <a href="Add-care-note.html" style="width:100%;"><button class="btn-primary" style="width:100%;font-size:13px;">+ Add another note</button></a>
+          <button class="btn-secondary" style="width:100%;font-size:13px;" onclick="window.location.href='Shared-pet-view.html'+window.location.search">Preview as sitter</button>
+        </div>
       </div>
+
+      <a href="Add-care-note.html" class="fab" aria-label="Add">+</a>
 
       <nav class="phone-nav" aria-label="Main navigation">
         <a href="My-Pets.html" class="active">
@@ -594,14 +607,14 @@
   <div class="content-desktop view-desktop">
 
       <div class="state-bar" aria-label="Screen states">
-        <a href="Documents-and-passport.html">Success</a>
-        <a href="Documents-and-passport-empty.html">Empty</a>
-        <a href="Documents-and-passport-loading.html" class="current">Loading</a>
-        <a href="Documents-and-passport-error.html">Error</a>
+        <a href="Personality-and-care.html" class="current">Success</a>
+        <a href="Personality-and-care-empty.html">Empty</a>
+        <a href="Personality-and-care-loading.html">Loading</a>
+        <a href="Personality-and-care-error.html">Error</a>
       </div>
 
     <div class="flow-step" style="text-align:left;padding-left:32px;">
-      Main + R3 · <span>Pet dossier → ★ Documents & passport</span>
+      R2 · <span>Pet dossier → ★ Personality & care</span>
     </div>
 
     <nav class="top-nav" aria-label="Main navigation (desktop)">
@@ -620,12 +633,22 @@
             <p class="pet-meta" style="font-size:12px;">Dog · Border Terrier · Female</p>
           </div>
         </section>
-        <section class="skeleton-area" aria-label="Loading">
-          <p class="skeleton-label">Loading Miso's documents… <a href="Documents-and-passport.html" style="color:var(--wf-muted);font-size:11px;">→ when loaded</a></p>
-          <div class="skeleton-block"></div>
-          <div class="skeleton-block"></div>
-          <div class="skeleton-block"></div>
-        </section>
+
+        <p style="padding:10px 16px;font-size:11px;color:var(--wf-muted);background:var(--wf-surface);border-bottom:1px solid var(--wf-border);">This is what your sitter will see in the shared view.</p>
+
+        <div class="personality-section">
+          <div style="display:flex;justify-content:space-between;align-items:baseline;"><h3>Favourite food &amp; treats</h3><a href="Edit-care-note.html?note=food" style="font-size:12px;color:var(--wf-muted);">Edit</a></div>
+          <p>Royal Canin Maxi Adult, 350 g twice daily (morning + evening). Loves dried chicken strips as training treats. No rawhide — causes stomach upset.</p>
+        </div>
+
+        
+
+        
+
+        <div style="padding:16px;display:flex;flex-direction:column;gap:10px;align-items:center;">
+          <a href="Add-care-note.html" style="width:100%;"><button class="btn-primary" style="width:100%;font-size:13px;">+ Add another note</button></a>
+          <button class="btn-secondary" style="width:100%;font-size:13px;" onclick="window.location.href='Shared-pet-view.html'+window.location.search">Preview as sitter</button>
+        </div>
     </div>
   </div>
 
