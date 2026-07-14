@@ -551,7 +551,7 @@
 
       <header class="m-header">
         <a href="Documents-and-passport.html" style="text-decoration:none;"><button class="back" aria-label="Back">← Documents</button></a>
-        <h1>EU Pet Passport</h1>
+        <h1 class="dv-title">EU Pet Passport</h1>
         <span style="width:60px;" aria-hidden="true"></span>
       </header>
 
@@ -566,17 +566,12 @@
         </section>
 
         <div style="margin:16px;border:1.5px dashed var(--wf-border);border-radius:10px;background:var(--wf-surface);height:340px;display:flex;align-items:center;justify-content:center;color:var(--wf-muted);font-size:13px;">
-          document preview
+          <span class="dv-thumb">document preview</span>
         </div>
 
         <div style="padding:0 16px;">
           <div class="zone-label">Document details</div>
-          <div style="font-size:13px;line-height:2;border-bottom:1px solid var(--wf-border);padding-bottom:12px;">
-            <div style="display:flex;justify-content:space-between;"><span style="color:var(--wf-muted);">Number</span><strong>DE-0812345</strong></div>
-            <div style="display:flex;justify-content:space-between;"><span style="color:var(--wf-muted);">Status</span><strong>Valid</strong></div>
-            <div style="display:flex;justify-content:space-between;"><span style="color:var(--wf-muted);">Issued</span><strong>15 Jan 2024</strong></div>
-            <div style="display:flex;justify-content:space-between;"><span style="color:var(--wf-muted);">File</span><strong>EU_Pet_Passport_Miso.pdf · 2.1 MB</strong></div>
-          </div>
+          <div class="dv-rows" style="font-size:13px;line-height:2;border-bottom:1px solid var(--wf-border);padding-bottom:12px;"></div>
         </div>
 
         <div style="display:flex;gap:8px;padding:16px;">
@@ -634,20 +629,15 @@
         </section>
 
         <div style="padding:12px 16px;"><a href="Documents-and-passport.html" style="font-size:13px;color:var(--wf-muted);text-decoration:none;">← Back to Documents &amp; passport</a></div>
-        <h2 style="padding:0 16px 8px;font-size:20px;font-weight:700;">EU Pet Passport</h2>
+        <h2 class="dv-title" style="padding:0 16px 8px;font-size:20px;font-weight:700;">EU Pet Passport</h2>
 
         <div style="margin:8px 16px;border:1.5px dashed var(--wf-border);border-radius:10px;background:var(--wf-surface);height:420px;display:flex;align-items:center;justify-content:center;color:var(--wf-muted);font-size:13px;">
-          document preview
+          <span class="dv-thumb">document preview</span>
         </div>
 
         <div style="padding:0 16px;max-width:560px;">
           <div class="zone-label">Document details</div>
-          <div style="font-size:13px;line-height:2;border-bottom:1px solid var(--wf-border);padding-bottom:12px;">
-            <div style="display:flex;justify-content:space-between;"><span style="color:var(--wf-muted);">Number</span><strong>DE-0812345</strong></div>
-            <div style="display:flex;justify-content:space-between;"><span style="color:var(--wf-muted);">Status</span><strong>Valid</strong></div>
-            <div style="display:flex;justify-content:space-between;"><span style="color:var(--wf-muted);">Issued</span><strong>15 Jan 2024</strong></div>
-            <div style="display:flex;justify-content:space-between;"><span style="color:var(--wf-muted);">File</span><strong>EU_Pet_Passport_Miso.pdf · 2.1 MB</strong></div>
-          </div>
+          <div class="dv-rows" style="font-size:13px;line-height:2;border-bottom:1px solid var(--wf-border);padding-bottom:12px;"></div>
         </div>
 
         <div style="display:flex;gap:8px;padding:16px;max-width:560px;">
@@ -664,6 +654,26 @@
 </div>
 
 <script>
+function populateDoc() {
+  var docs = {
+    passport:  { title: 'EU Pet Passport', rows: [['Number','DE-0812345'],['Status','Valid'],['Issued','15 Jan 2024'],['File','EU_Pet_Passport_Miso.pdf \u00b7 2.1 MB']] },
+    microchip: { title: 'Microchip registration', rows: [['Chip number','276 098 106 412 345'],['Registry','EUROPETNET'],['Registered','10 Jan 2024'],['File','Microchip_cert_Miso.pdf \u00b7 0.9 MB']] },
+    rabies:    { title: 'Rabies vaccination certificate', rows: [['Vaccine','Rabies (Nobivac)'],['Given','15 Mar 2026'],['Valid until','15 Mar 2027'],['File','Rabies_cert_Miso.jpg \u00b7 1.4 MB']] },
+    pedigree:  { title: 'Pedigree papers', rows: [['Registry','VDH / FCI'],['Breed','Border Terrier'],['Issued','20 Dec 2023'],['File','Pedigree_Miso.pdf \u00b7 3.2 MB']] },
+    policy:    { title: 'Insurance policy document', rows: [['Provider','Lassie Haustierversicherung'],['Plan','OP-Schutz Plus'],['Policy no.','LA-2024-556677'],['File','Lassie_OP-Schutz_Miso.pdf \u00b7 1.2 MB']] }
+  };
+  var key = new URLSearchParams(window.location.search).get('doc') || 'passport';
+  var d = docs[key] || docs.passport;
+  document.querySelectorAll('.dv-title').forEach(function(t){ t.textContent = d.title; });
+  var ext = d.rows[d.rows.length-1][1].split(' ')[0].split('.').pop().toUpperCase();
+  document.querySelectorAll('.dv-thumb').forEach(function(t){ t.textContent = ext + ' preview'; });
+  var html = d.rows.map(function(r){
+    return '<div style="display:flex;justify-content:space-between;"><span style="color:var(--wf-muted);">'+r[0]+'</span><strong>'+r[1]+'</strong></div>';
+  }).join('');
+  document.querySelectorAll('.dv-rows').forEach(function(el){ el.innerHTML = html; });
+  document.title = d.title + ' \u2014 PetPal wireframe';
+}
+populateDoc();
 function setView(mode) {
   document.body.classList.toggle('is-desktop', mode === 'desktop');
   document.getElementById('btn-mobile').classList.toggle('active', mode === 'mobile');

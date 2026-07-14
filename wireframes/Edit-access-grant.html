@@ -1079,7 +1079,7 @@
             <div class="zone-label">Recipient (read-only)</div>
             <div class="recipient-info-header">
               <div class="recipient-avatar">M</div>
-              <div class="recipient-name">Marie (dog walker)</div>
+              <div class="recipient-name eag-name">Marie (dog walker)</div>
             </div>
             <div class="recipient-details">
               <strong>Shared via:</strong> Link<br>
@@ -1164,7 +1164,7 @@
           <section class="danger-zone" aria-label="Danger zone">
             <div class="danger-zone-label">Danger zone</div>
             <button type="button" class="btn-secondary" style="border-color:var(--wf-muted);" onclick="window.location.href='Who-has-access.html'+window.location.search">Revoke access</button>
-            <p class="helper">Marie will immediately lose access to Miso's info. You can re-share later.</p>
+            <p class="helper"><span class="eag-first">Marie</span> will immediately lose access to Miso's info. You can re-share later.</p>
           </section>
 
         </form>
@@ -1217,7 +1217,7 @@
 
       <section aria-label="Page header" style="margin-bottom:24px;">
         <h1 style="font-size:24px;font-weight:700;">Edit access</h1>
-        <p style="font-size:14px;color:var(--wf-muted);margin-top:4px;">Modify Marie's access to Miso's information, or revoke it entirely.</p>
+        <p style="font-size:14px;color:var(--wf-muted);margin-top:4px;">Modify <span class="eag-first">Marie</span>'s access to Miso's information, or revoke it entirely.</p>
       </section>
 
       <form>
@@ -1228,7 +1228,7 @@
           <div class="recipient-info-header">
             <div class="recipient-avatar" style="width:48px;height:48px;font-size:16px;">M</div>
             <div>
-              <div class="recipient-name" style="font-size:18px;">Marie (dog walker)</div>
+              <div class="recipient-name eag-name" style="font-size:18px;">Marie (dog walker)</div>
               <div style="font-size:13px;color:var(--wf-muted);margin-top:2px;">Carer · read-only</div>
             </div>
           </div>
@@ -1316,7 +1316,7 @@
           <div class="danger-zone-label">Danger zone</div>
           <div style="display:flex;align-items:center;gap:16px;">
             <button type="button" class="btn-secondary" style="border-color:var(--wf-muted);flex-shrink:0;" onclick="window.location.href='Who-has-access.html'+window.location.search">Revoke access</button>
-            <p style="font-size:12px;color:var(--wf-muted);line-height:1.5;">Marie will immediately lose access to Miso's info. You can re-share later.</p>
+            <p style="font-size:12px;color:var(--wf-muted);line-height:1.5;"><span class="eag-first">Marie</span> will immediately lose access to Miso's info. You can re-share later.</p>
           </div>
         </section>
 
@@ -1332,6 +1332,24 @@
 </div>
 
 <script>
+function populateGrant() {
+  var people = {
+    marie:  { name:'Marie (dog walker)', first:'Marie', role:'Carer (read-only)' },
+    drmuller:{ name:'Dr. M\u00fcller (Tierklinik am Stadtpark)', first:'Dr. M\u00fcller', role:'Vet (can add records)' },
+    thomas: { name:'Thomas (brother)', first:'Thomas', role:'Co-owner (full edit)' },
+    eva:    { name:'Eva (owner)', first:'Eva', role:'Co-owner (full edit)' },
+    backup: { name:'Backup contact', first:'Your backup contact', role:'Carer (read-only)' }
+  };
+  var key = new URLSearchParams(window.location.search).get('person') || 'marie';
+  var p = people[key] || people.marie;
+  document.querySelectorAll('.eag-name').forEach(function(e){ e.textContent = p.name; });
+  document.querySelectorAll('.eag-first').forEach(function(e){ e.textContent = p.first; });
+  document.querySelectorAll('#role-select').forEach(function(sel){
+    for (var i=0;i<sel.options.length;i++){ if(sel.options[i].text.trim()===p.role){ sel.selectedIndex=i; break; } }
+  });
+  document.title = 'Edit access: ' + p.first + ' \u2014 PetPal wireframe';
+}
+populateGrant();
 function setView(mode) {
   document.body.classList.toggle('is-desktop', mode === 'desktop');
   document.getElementById('btn-mobile').classList.toggle('active', mode === 'mobile');

@@ -573,28 +573,28 @@
 
           <div class="form-group">
             <label>Record title <span class="req">*</span></label>
-            <input type="text" value="Dental cleaning">
+            <input type="text" class="ehr-title" value="Dental cleaning">
           </div>
 
           <div class="form-group">
             <label>Date <span class="req">*</span></label>
-            <input type="date" value="2026-05-20">
+            <input type="date" class="ehr-date" value="2026-05-20">
           </div>
 
           <div class="form-group">
             <label>Vet / clinic</label>
-            <input type="text" value="Tierklinik am Stadtpark">
+            <input type="text" class="ehr-vet" value="Tierklinik am Stadtpark">
           </div>
 
           <div class="form-group">
             <label>Follow-up date</label>
-            <input type="date" value="2027-05-20">
+            <input type="date" class="ehr-followup" value="2027-05-20">
             <p class="helper">Used for reminders — leave blank if none.</p>
           </div>
 
           <div class="form-group">
             <label>Outcome / notes</label>
-            <textarea>All clear. Tartar removed under light sedation. Next cleaning recommended in 12 months.</textarea>
+            <textarea class="ehr-notes">All clear. Tartar removed under light sedation. Next cleaning recommended in 12 months.</textarea>
           </div>
 
           <div class="form-group">
@@ -662,28 +662,28 @@
 
           <div class="form-group">
             <label>Record title <span class="req">*</span></label>
-            <input type="text" value="Dental cleaning">
+            <input type="text" class="ehr-title" value="Dental cleaning">
           </div>
 
           <div class="form-group">
             <label>Date <span class="req">*</span></label>
-            <input type="date" value="2026-05-20">
+            <input type="date" class="ehr-date" value="2026-05-20">
           </div>
 
           <div class="form-group">
             <label>Vet / clinic</label>
-            <input type="text" value="Tierklinik am Stadtpark">
+            <input type="text" class="ehr-vet" value="Tierklinik am Stadtpark">
           </div>
 
           <div class="form-group">
             <label>Follow-up date</label>
-            <input type="date" value="2027-05-20">
+            <input type="date" class="ehr-followup" value="2027-05-20">
             <p class="helper">Used for reminders — leave blank if none.</p>
           </div>
 
           <div class="form-group">
             <label>Outcome / notes</label>
-            <textarea>All clear. Tartar removed under light sedation. Next cleaning recommended in 12 months.</textarea>
+            <textarea class="ehr-notes">All clear. Tartar removed under light sedation. Next cleaning recommended in 12 months.</textarea>
           </div>
 
           <div class="form-group">
@@ -725,6 +725,29 @@ function preselectType() {
   });
 }
 preselectType();
+function populateRec() {
+  var recs = {
+    dental:     { type:'Health & jabs', title:'Dental cleaning', date:'2026-05-20', vet:'Tierklinik am Stadtpark', followup:'2027-05-20', notes:'All clear. Tartar removed under light sedation. Next cleaning recommended in 12 months.' },
+    checkup:    { type:'Health & jabs', title:'Annual checkup', date:'2026-03-12', vet:'Dr. M\u00fcller', followup:'2027-03-12', notes:'All clear \u2014 healthy weight, good dental condition. Continue current diet and Apoquel.' },
+    rabies:     { type:'Vaccination', title:'Rabies', date:'2026-03-12', vet:'Dr. M\u00fcller', followup:'2027-03-15', notes:'Nobivac Rabies. No adverse reaction. Batch #LR-2026-041.' },
+    dhpp:       { type:'Vaccination', title:'DHPP (Distemper combo)', date:'2026-03-12', vet:'Dr. M\u00fcller', followup:'2027-03-12', notes:'Combined distemper, hepatitis, parvo, parainfluenza. No reaction.' },
+    lepto:      { type:'Vaccination', title:'Leptospirosis', date:'2026-01-05', vet:'Dr. M\u00fcller', followup:'2026-07-05', notes:'6-month booster due soon. Recommended for dogs with outdoor/water exposure.' },
+    vetvax:     { type:'Vet & appointments', title:'Vaccination (Rabies + DHPP)', date:'2026-03-12', vet:'Dr. M\u00fcller', followup:'', notes:'Annual boosters administered. Next due March 2027.' },
+    dermatitis: { type:'Vet & appointments', title:'Dermatitis follow-up', date:'2026-02-05', vet:'Dr. M\u00fcller', followup:'', notes:'Apoquel dosage adjusted to 16 mg once daily. Skin improving. Review in 3 months.' }
+  };
+  var key = new URLSearchParams(window.location.search).get('rec') || 'dental';
+  var r = recs[key] || recs.dental;
+  document.querySelectorAll('.ehr-title').forEach(function(e){ e.value = r.title; });
+  document.querySelectorAll('.ehr-date').forEach(function(e){ e.value = r.date; });
+  document.querySelectorAll('.ehr-vet').forEach(function(e){ e.value = r.vet; });
+  document.querySelectorAll('.ehr-followup').forEach(function(e){ e.value = r.followup; });
+  document.querySelectorAll('.ehr-notes').forEach(function(e){ e.value = r.notes; });
+  document.querySelectorAll('form select').forEach(function(sel){
+    for (var i=0;i<sel.options.length;i++){ if(sel.options[i].text.trim()===r.type){ sel.selectedIndex=i; break; } }
+  });
+  document.title = 'Edit: ' + r.title + ' \u2014 PetPal wireframe';
+}
+populateRec();
 function setView(mode) {
   document.body.classList.toggle('is-desktop', mode === 'desktop');
   document.getElementById('btn-mobile').classList.toggle('active', mode === 'mobile');
