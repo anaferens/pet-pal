@@ -962,6 +962,13 @@ flowchart TD
       if (!file) return;
       node.classList.add('wf-clickable');
       node.style.cursor = 'pointer';
+      // mark the node as having a live prototype screen
+      const lab = node.querySelector('.nodeLabel p') || node.querySelector('.nodeLabel') || node.querySelector('text');
+      if (lab && !/✅/.test(lab.textContent)) {
+        lab.insertAdjacentText('beforeend', ' ✅');
+        const fo = node.querySelector('foreignObject');
+        if (fo) fo.setAttribute('width', (parseFloat(fo.getAttribute('width')) || 0) + 20);
+      }
       node.addEventListener('mouseenter', () => showPreview(file, file, node));
       node.addEventListener('mouseleave', hidePreview);
       node.addEventListener('click', () => window.open('../wireframes/' + file, '_blank'));
