@@ -902,11 +902,25 @@ flowchart TD
     if (t.includes('could not open dossier')) return 'home-error.html';
     if (t.includes('no records yet')) return 'Health-and-jabs-empty.html';
     if (t.includes('fetching reminders')) return 'Whats-due-loading.html';
+    if (t.includes('could not load reminders')) return 'Whats-due-error.html';
     if (t.includes('last-saved reminders')) return 'Whats-due-offline.html';
     if (t.includes('creating link')) return 'Share-a-pet-loading.html';
     if (t.includes('could not create link')) return 'Share-a-pet-error.html';
     if (t.includes('opening shared view')) return 'Shared-pet-view-loading.html';
-    if (t.includes('link expired') || t.includes('could not load view')) return 'Shared-pet-view-error.html';
+    if (t.includes('link expired') || t.includes('could not load shared view') || t.includes('could not load view')) return 'Shared-pet-view-error.html';
+    // remaining error states
+    if (t.includes('could not save')) return 'Set-up-a-pet-error.html';
+    if (t.includes('save failed')) return 'Add-record-error.html';
+    if (t.includes('could not load')) return 'Emergency-info-error.html';   // R5 critical-info load error
+    // success / partial endings → their confirmation or destination screen
+    if (t.includes('handoff sent') || t.includes('link sent') || t.includes('dossier filled and shared')) return 'Share-success.html';
+    if (t.includes('acted in time')) return 'Reminder-done.html';
+    if (t.includes('nothing due')) return 'Whats-due-empty.html';
+    if (t.includes('record consulted')) return 'home-success.html';
+    if (t.includes('carer understands')) return 'Shared-pet-view.html';
+    if (t.includes('has the facts') || t.includes('has a number to call') || t.includes('allowed to do')) return 'Emergency-allowed.html';
+    if (t.includes('owner contact')) return 'Shared-pet-view-empty.html';
+    if (t.includes('can verify')) return 'Emergency-info.html';
     if (t.includes('offline')) return 'Whats-due-offline.html';
     if (t.includes('reminder detail')) return 'Whats-due-detail.html';
     if (t.includes('reminder settings') || t.includes('reminder channel')) return 'Reminder-settings.html';

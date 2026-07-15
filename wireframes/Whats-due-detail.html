@@ -524,6 +524,7 @@
               <li><a href="Share-a-pet.html">success</a></li>
               <li><a href="Share-a-pet-loading.html">loading</a></li>
               <li><a href="Share-a-pet-error.html">error</a></li>
+              <li><a href="Share-success.html">link ready (success)</a></li>
             </ul>
           </li>
           <li><a href="Who-has-access.html">Who has access</a>
@@ -552,6 +553,7 @@
               <li><a href="Whats-due-empty.html">empty</a></li>
               <li><a href="Whats-due-loading.html">loading</a></li>
               <li><a href="Whats-due-error.html">error</a></li>
+              <li><a href="Reminder-done.html">reminder done (success)</a></li>
               <li><a class="active" href="Whats-due-detail.html">reminder detail</a></li><li><a href="Whats-due-offline.html">offline</a></li>
             </ul>
           </li>
@@ -640,7 +642,7 @@
         </div>
 
         <div style="display:flex;gap:8px;padding:16px;">
-          <button class="btn-primary" style="flex:1;" onclick="this.textContent='Marked done ✓';this.disabled=true">Mark done</button>
+          <button class="btn-primary" style="flex:1;" onclick="window.location.href='Reminder-done.html'+window.location.search">Mark done</button>
           <button class="btn-secondary" style="flex:1;" onclick="this.textContent='Snoozed 1 week ✓'">Snooze</button>
         </div>
         <div style="padding:0 16px 10px;">
@@ -711,7 +713,7 @@
         </div>
 
         <div style="display:flex;gap:8px;padding:16px;max-width:560px;">
-          <button class="btn-primary" style="flex:1;" onclick="this.textContent='Marked done ✓';this.disabled=true">Mark done</button>
+          <button class="btn-primary" style="flex:1;" onclick="window.location.href='Reminder-done.html'+window.location.search">Mark done</button>
           <button class="btn-secondary" style="flex:1;" onclick="this.textContent='Snoozed 1 week ✓'">Snooze</button>
           <a class="rd-primary" href="Add-vet-record.html" style="flex:1;text-decoration:none;"><button class="btn-secondary" style="width:100%;">Action</button></a>
         </div>
