@@ -398,13 +398,18 @@ flowchart TD
   Dossier --> VetAppt["Vet & appointments · R1/R5"]
   Dossier --> Emerg
   Dossier --> AddRec["Add / update a record · Main/R1/R3"]
+  AddRec --> AddForms["Typed add forms: record · health · document · insurance · vet · care note"]
+  AddForms -.->|saving| Saving["Saving… → section first-run"]
   AddRec -.->|edit existing entry| EditRec["Edit a record · Main/R1/R3"]
+  Pers -.->|edit existing note| EditNote["Edit care note · R2"]
+  Dossier -.->|new-pet setup| FirstRun["Section first-run states · one-entry per section"]
   Dossier --> EditId["Edit pet identity & lifecycle · Main"]
   EditId -.-> Photo
   Emerg --> EmergSetup["Emergency authorization setup · R5/F6"]
   Whats -.->|tap a reminder| RemDetail["Reminder detail · R1"]
   RemDetail -.->|act on item| AddRec
   Whats --> RemSet["Reminder settings · R1"]
+  Whats -.->|offline| RemOffline["What's due · offline · R1"]
   Share --> WhoAccess["Who has access · S1"]
   WhoAccess --> EditGrant["Edit / revoke a grant · S1"]
   Share -.->|creates| SharedView
@@ -419,7 +424,7 @@ flowchart TD
   class Root,OwnerApp,Recipient entry;
   class Pets,Whats,Share global;
   class Setup,Dossier,Health,Docs,Ins,Pers,VetAppt,Emerg,VetMsg,Photo,DocView screen;
-  class AddRec,RemSet,RemDetail,NewDoss,EditRec contextual;
+  class AddRec,RemSet,RemDetail,NewDoss,EditRec,EditNote,AddForms,Saving,FirstRun,RemOffline contextual;
   class EmergSetup,EditGrant,EditId deep;
   class SharedView,EmergAllowed recipient;
       </pre>

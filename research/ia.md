@@ -42,8 +42,12 @@ flowchart TD
   Dossier --> VetAppt["Vet & appointments · R1/R5"]
   Dossier --> Emerg
   Dossier --> AddRec["Add / update a record · Main/R1/R3"]
+  AddRec --> AddForms["Typed add forms: record · health · document · insurance · vet · care note"]
+  AddForms -.->|saving| Saving["Saving… → section first-run"]
   AddRec -.->|edit existing entry| EditRec["Edit a record · Main/R1/R3"]
+  Pers -.->|edit existing note| EditNote["Edit care note · R2"]
   Docs --> DocView["Document view · Main/R3"]
+  Dossier -.->|new-pet setup| FirstRun["Section first-run states · one-entry per section"]
   Dossier --> EditId["Edit pet identity & lifecycle · Main"]
   EditId -.-> Photo
   Emerg --> EmergSetup["Emergency authorization setup · R5/F6"]
@@ -52,6 +56,7 @@ flowchart TD
   Whats -.->|tap a reminder| RemDetail["Reminder detail · R1"]
   RemDetail -.->|act on item| AddRec
   Whats --> RemSet["Reminder settings · R1"]
+  Whats -.->|offline| RemOffline["What's due · offline · R1"]
 
   %% ---- Share cluster ----
   Share --> WhoAccess["Who has access · S1"]
@@ -71,12 +76,12 @@ flowchart TD
   class Root,OwnerApp,Recipient entry;
   class Pets,Whats,Share global;
   class Setup,Dossier,Health,Docs,Ins,Pers,VetAppt,Emerg,VetMsg,Photo,DocView screen;
-  class AddRec,RemSet,RemDetail,NewDoss,EditRec contextual;
+  class AddRec,RemSet,RemDetail,NewDoss,EditRec,EditNote,AddForms,Saving,FirstRun,RemOffline contextual;
   class EmergSetup,EditGrant,EditId deep;
   class SharedView,EmergAllowed recipient;
 ```
 
-> **v2 (wireframe-realized) nodes** are folded in above: **Add photo** (from *Set up a pet* and *Edit pet identity*), **New-pet dossier + Add-info hub** (first-run empty state with its section-picker), **Edit a record** (edit an existing entry, distinct from blank Add), and **Document view** (read/download side of a Document); plus for R1 the **Reminder detail** (act on a reminder), **Reminder settings**, and the **What's due offline** recovery. Dotted edges are shortcuts / cross-links; see [sitemap.md §"Screens realized in the interactive wireframes"](sitemap.md) for the codes (Sc22–Sc26) and jobs.
+> **v2 (wireframe-realized) nodes** are folded in above: **Add photo**, **New-pet dossier + Add-info hub**, **Edit a record**, **Edit care note**, **Document view**, the **typed add forms** (record · health · document · insurance · vet · care note) and their shared **Saving…** transient, the per-section **first-run** one-entry states, and for R1 the **Reminder detail**, **Reminder settings**, and **What's due offline** recovery. Dotted edges are shortcuts / cross-links; solid edges are the primary path. **First-run / empty / loading / error / saving are *states* of their parent screen**, shown here because they were built as distinct wireframes — see the [prototype guide](../wireframes/README.md) and [sitemap.md §"Screens realized in the interactive wireframes"](sitemap.md) (codes Sc22–Sc26).
 
 ---
 
@@ -86,28 +91,30 @@ flowchart TD
 PetPal
 │
 ├─ OWNER APP · signed in
-│  ├─ ⌂ My Pets · Main                         (global)
+│  ├─ ⌂ My Pets · Main                         (global)   states: success · empty · loading · error
 │  │   ├─ Set up a pet · Main
 │  │   │   └─ Add photo · Main                  (camera / library; also from Edit pet identity)
-│  │   ├─ New-pet dossier + "Add info" hub · Main   (first-run empty state → section picker)
-│  │   ├─ Pet dossier · Main   (single-pet auto-land → 0 taps)
-│  │   │   ├─ Health & jabs · R1/R3
-│  │   │   ├─ Documents & passport · Main/R3
-│  │   │   │   └─ Document view · Main/R3        (view / download / re-share / replace)
-│  │   │   ├─ Insurance · R1
-│  │   │   ├─ Personality & care · R2
-│  │   │   ├─ Vet & appointments · R1/R5
-│  │   │   ├─ Emergency info & authorization · R5
+│  │   ├─ New-pet dossier + "Add info" hub · Main   (first-run empty state → "What to add?" section picker)
+│  │   ├─ Pet dossier · Main   (single-pet auto-land variant → 0 taps)
+│  │   │   ├─ Health & jabs · R1/R3          setup states: empty → Add record → first record
+│  │   │   │   └─ Edit a record · R1/R3/Main  (edit existing jab / health record, pre-filled + delete)
+│  │   │   ├─ Documents & passport · Main/R3  setup states: empty → Add document → first document
+│  │   │   │   └─ Document view · Main/R3      (view / download / re-share / replace)
+│  │   │   ├─ Insurance · R1                   setup states: empty → Add insurance → first policy
+│  │   │   ├─ Personality & care · R2          setup states: empty → Add care note → first note
+│  │   │   │   └─ Edit care note · R2          (edit existing note, pre-filled)
+│  │   │   ├─ Vet & appointments · R1/R5       setup states: empty → Add vet record → first appointment
+│  │   │   ├─ Emergency info & authorization · R5   setup states: empty → Emergency auth setup → newly set up
 │  │   │   │   └─ Emergency authorization setup · R5/F6   (deep)
-│  │   │   ├─ Add / update a record · Main/R1/R3          (contextual, type pre-selected from launcher)
-│  │   │   │   └─ Edit a record · Main/R1/R3              (edit existing entry, pre-filled + delete)
-│  │   │   └─ Edit pet identity & lifecycle · Main        (deep, incl. archive/delete)
+│  │   │   ├─ Add / update a record · Main/R1/R3   — typed forms: Add record (jab) · Add health record · Add document · Add insurance · Add vet record · Add care note
+│  │   │   │   └─ Saving… · Section-saving     (shared transient save state → returns to the section's first-run)
+│  │   │   └─ Edit pet identity & lifecycle · Main   (deep, incl. archive/delete)
 │  │   └─ ⚡ 1-tap shortcut → Emergency info
-│  ├─ ⌂ What's due · R1                          (global, all pets)
-│  │   ├─ Reminder detail · R1                   (tap a reminder → Mark done / Snooze / act)
+│  ├─ ⌂ What's due · R1                          (global, all pets · filter: All pets / Miso / Cheetah)
+│  │   ├─ Reminder detail · R1                   (tap a reminder → Mark done / Snooze / act; per-reminder via ?rem=)
 │  │   │   └─ act on item → Add / update a record
 │  │   ├─ Reminder settings · R1                 (push/email, lead time, snooze, quiet hours)
-│  │   └─ (offline: last-saved reminders)        (recovery state)
+│  │   └─ What's due · offline · R1              (recovery state: last-saved reminders)
 │  ├─ ⌂ Share a pet · S2                         (global)
 │  │   └─ Who has access · S1
 │  │       └─ Edit / revoke a grant · S1         (deep)
