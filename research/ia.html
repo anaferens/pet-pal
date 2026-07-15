@@ -101,6 +101,35 @@
   }
   .mermaid { display: flex; justify-content: center; min-width: 600px; }
 
+  /* clickable diagram nodes → wireframe screens */
+  .mermaid .node.wf-clickable rect,
+  .mermaid .node.wf-clickable polygon,
+  .mermaid .node.wf-clickable circle { transition: filter .12s, stroke-width .12s; }
+  .mermaid .node.wf-clickable:hover rect,
+  .mermaid .node.wf-clickable:hover polygon,
+  .mermaid .node.wf-clickable:hover circle { filter: brightness(1.25); stroke-width: 2.5px; }
+
+  /* floating live-screen preview */
+  .wf-preview {
+    position: fixed; z-index: 9999; width: 234px;
+    background: #0e0e0e; border: 1px solid #333; border-radius: 10px;
+    box-shadow: 0 12px 40px rgba(0,0,0,.55); overflow: hidden;
+    opacity: 0; transform: translateY(4px); pointer-events: none;
+    transition: opacity .12s ease, transform .12s ease;
+  }
+  .wf-preview.on { opacity: 1; transform: translateY(0); pointer-events: auto; }
+  .wf-preview .wf-frame { width: 234px; height: 316px; overflow: hidden; background: #fff; }
+  .wf-preview iframe {
+    width: 390px; height: 527px; border: 0;
+    transform: scale(.6); transform-origin: top left; pointer-events: none;
+  }
+  .wf-preview .wf-cap {
+    display: flex; flex-direction: column; gap: 2px;
+    padding: 8px 10px; border-top: 1px solid #2a2a2a; background: #131313;
+  }
+  .wf-preview .wf-name { font-size: 11px; font-weight: 600; color: #e6e6e6; }
+  .wf-preview .wf-hint { font-size: 10px; color: #8c8c8c; }
+
   /* legend chips */
   .legend { display: flex; flex-wrap: wrap; gap: 10px; margin: 14px 0 4px; }
   .chip { display: inline-flex; align-items: center; gap: 7px; font-size: 0.74rem; font-weight: 600; padding: 5px 12px; border-radius: 100px; border: 1px solid var(--line); color: var(--text-muted); }
@@ -821,7 +850,7 @@ flowchart TD
 <script type="module">
   import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
   mermaid.initialize({
-    startOnLoad: true,
+    startOnLoad: false,
     theme: 'dark',
     themeVariables: {
       fontFamily: 'Inter, sans-serif',
@@ -832,6 +861,117 @@ flowchart TD
     },
     flowchart: { curve: 'basis', useMaxWidth: true }
   });
+
+  // ---- Map each diagram node to a wireframe screen, then wire hover-preview + click-through ----
+  const SCREENS = {
+    'my pets': 'My-Pets.html',
+    'set up a pet': 'Set-up-a-pet.html',
+    'add photo': 'Upload-photo.html',
+    'pet dossier': 'home-success.html',
+    'health & jabs': 'Health-and-jabs.html',
+    'documents & passport': 'Documents-and-passport.html',
+    'document view': 'Document-view.html',
+    'insurance': 'Insurance.html',
+    'personality & care': 'Personality-and-care.html',
+    'vet & appointments': 'Vet-and-appointments.html',
+    'emergency info & authorization': 'Emergency-info.html',
+    'emergency info': 'Emergency-info.html',
+    'emergency authorization setup': 'Emergency-auth-setup.html',
+    'add / update a record': 'Add-record.html',
+    'edit a record': 'Edit-health-record.html',
+    'edit care note': 'Edit-care-note.html',
+    'edit pet identity & lifecycle': 'Edit-pet.html',
+    "what's due": 'Whats-due.html',
+    'reminder detail': 'Whats-due-detail.html',
+    'reminder settings': 'Reminder-settings.html',
+    'reminder channel setting': 'Reminder-settings.html',
+    'share a pet': 'Share-a-pet.html',
+    'who has access': 'Who-has-access.html',
+    'edit / revoke a grant': 'Edit-access-grant.html',
+    'shared pet view': 'Shared-pet-view.html',
+    "emergency & what i'm allowed to do": 'Emergency-allowed.html'
+  };
+  // keyword overrides win over the exact map (handle the compound / v2 labels)
+  function fileFor(raw) {
+    const t = raw.toLowerCase();
+    // flow-diagram state ovals → their state-variant wireframes (high-confidence only)
+    if (t.includes('no pets yet')) return 'My-Pets-empty.html';
+    if (t.includes('fetching pets')) return 'My-Pets-loading.html';
+    if (t.includes('could not load pets')) return 'My-Pets-error.html';
+    if (t.includes('opening dossier')) return 'home-loading.html';
+    if (t.includes('could not open dossier')) return 'home-error.html';
+    if (t.includes('no records yet')) return 'Health-and-jabs-empty.html';
+    if (t.includes('fetching reminders')) return 'Whats-due-loading.html';
+    if (t.includes('last-saved reminders')) return 'Whats-due-offline.html';
+    if (t.includes('creating link')) return 'Share-a-pet-loading.html';
+    if (t.includes('could not create link')) return 'Share-a-pet-error.html';
+    if (t.includes('opening shared view')) return 'Shared-pet-view-loading.html';
+    if (t.includes('link expired') || t.includes('could not load view')) return 'Shared-pet-view-error.html';
+    if (t.includes('offline')) return 'Whats-due-offline.html';
+    if (t.includes('reminder detail')) return 'Whats-due-detail.html';
+    if (t.includes('reminder settings') || t.includes('reminder channel')) return 'Reminder-settings.html';
+    if (t.includes('add-info hub') || t.includes('add info hub') || t.includes('new-pet dossier')) return 'home-new.html';
+    if (t.includes('typed add forms')) return 'Add-record.html';
+    if (t.includes('saving')) return 'Section-saving.html';
+    if (t.includes('first-run')) return 'Health-and-jabs-firstrun.html';
+    if (t.includes("emergency & what")) return 'Emergency-allowed.html';
+    // exact: strip the " · Job" suffix and leading glyphs
+    let key = raw.split(' · ')[0].replace(/[⌂⚡★⭐]/g, '').trim().toLowerCase();
+    return SCREENS[key] || null;
+  }
+
+  // floating preview panel (a live, scaled iframe of the actual wireframe)
+  const prev = document.createElement('div');
+  prev.className = 'wf-preview';
+  prev.innerHTML = '<div class="wf-frame"><iframe title="screen preview" scrolling="no"></iframe></div>' +
+                   '<div class="wf-cap"><span class="wf-name"></span><span class="wf-hint">click to open in prototype ↗</span></div>';
+  document.body.appendChild(prev);
+  const pIframe = prev.querySelector('iframe');
+  const pName = prev.querySelector('.wf-name');
+  let hideT;
+
+  pIframe.addEventListener('load', () => {
+    try {
+      const d = pIframe.contentDocument;
+      const s = d.createElement('style');
+      s.textContent = '.sidenav,.content-desktop{display:none!important}.layout{display:block!important}' +
+        '.content-mobile{padding:0!important;min-height:auto!important}body{background:#fff!important}';
+      d.head.appendChild(s);
+    } catch (e) { /* cross-origin (file://) — iframe still shows the page */ }
+  });
+
+  function showPreview(file, name, el) {
+    clearTimeout(hideT);
+    if (pIframe.dataset.file !== file) { pIframe.src = '../wireframes/' + file; pIframe.dataset.file = file; }
+    pName.textContent = name;
+    prev.classList.add('on');
+    const r = el.getBoundingClientRect();
+    let x = r.right + 14, y = r.top;
+    if (x + 250 > window.innerWidth) x = r.left - 250;      // flip to the left if off-screen
+    x = Math.max(8, Math.min(x, window.innerWidth - 250));
+    y = Math.max(8, Math.min(y, window.innerHeight - 380));
+    prev.style.left = x + 'px';
+    prev.style.top = y + 'px';
+  }
+  function hidePreview() { hideT = setTimeout(() => prev.classList.remove('on'), 120); }
+
+  function wireNodes() {
+    document.querySelectorAll('.mermaid .node').forEach(node => {
+      const label = (node.textContent || '').replace(/\s+/g, ' ').trim();
+      const file = fileFor(label);
+      if (!file) return;
+      node.classList.add('wf-clickable');
+      node.style.cursor = 'pointer';
+      node.addEventListener('mouseenter', () => showPreview(file, file, node));
+      node.addEventListener('mouseleave', hidePreview);
+      node.addEventListener('click', () => window.open('../wireframes/' + file, '_blank'));
+    });
+    prev.addEventListener('mouseenter', () => clearTimeout(hideT));
+    prev.addEventListener('mouseleave', hidePreview);
+  }
+
+  await mermaid.run({ querySelector: '.mermaid' });
+  wireNodes();
 </script>
 
 <script>
