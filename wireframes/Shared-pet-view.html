@@ -820,15 +820,25 @@
   .nav-tree .flow-screens ol { list-style: none; counter-reset: none; padding-left: 8px; margin: 0 0 4px; border-left: 1px solid var(--nav-line); }
   .nav-tree .flow-screens ol a { font-size: 11px; font-weight: 400; color: var(--nav-text); padding: 3px 8px; display: block; border-radius: 4px; text-decoration: none; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
   .nav-tree .flow-screens ol a:hover { background: var(--nav-active-bg); color: var(--nav-text-active); }
-
-  /* COLLAPSIBLE SHARED SECTIONS */
-  section.collapsible > h3 { display: flex; align-items: center; justify-content: space-between; cursor: pointer; user-select: none; }
-  section.collapsible > h3 .chev { font-size: 12px; color: var(--wf-muted); transition: transform 0.15s; display: inline-block; }
-  section.collapsible.open > h3 .chev { transform: rotate(90deg); }
-  section.collapsible .collapse-body { display: none; }
+  /* COLLAPSIBLE SHARED SECTION CARDS */
+  section.collapsible { background: var(--wf-input-bg); border: 1.5px solid var(--wf-border); border-radius: 12px; margin: 10px 16px; padding: 4px 14px; }
+  section.collapsible > h3 { display: flex; align-items: center; gap: 12px; padding: 12px 0; font-size: 17px; font-weight: 600; cursor: pointer; user-select: none; text-transform: none; letter-spacing: normal; color: var(--wf-text); }
+  section.collapsible > h3 .sec-icon { width: 40px; height: 40px; border-radius: 8px; background: var(--wf-placeholder); flex-shrink: 0; }
+  section.collapsible > h3 .chev { margin-left: auto; font-size: 17px; color: var(--wf-muted); transition: transform 0.15s; display: inline-block; }
+  section.collapsible.open > h3 .chev { transform: rotate(180deg); }
+  section.collapsible .collapse-body { display: none; padding-bottom: 12px; }
   section.collapsible.open .collapse-body { display: block; }
-  section.collapsible > h3 .collapse-hint { font-size: 11px; font-weight: 400; color: var(--wf-muted); margin-left: auto; margin-right: 8px; }
-  section.collapsible.open > h3 .collapse-hint { display: none; }
+
+  /* SHARED HERO + ARCH */
+  .sv-hero { background: #d6d6d6; padding: 16px 16px 0; }
+  .sv-topbar { display: flex; justify-content: space-between; align-items: center; }
+  .sv-topbar .brand { font-weight: 700; font-size: 16px; color: var(--wf-text); }
+  .sv-topbar a { font-size: 14px; color: var(--wf-muted); text-decoration: none; }
+  .sv-photo { width: 170px; height: 170px; border-radius: 50%; background: #b9b9b9; margin: 22px auto -85px; position: relative; z-index: 2; display: flex; align-items: center; justify-content: center; font-size: 11px; color: #8a8a8a; }
+  .sv-arch { background: var(--wf-bg); border-radius: 50% 50% 0 0 / 72px 72px 0 0; padding: 100px 16px 10px; text-align: center; }
+  .sv-arch h2 { font-size: 26px; font-weight: 700; }
+  .sv-arch .meta { font-size: 15px; color: var(--wf-muted); margin-top: 2px; }
+  .sv-arch .chip { font-size: 13px; color: var(--wf-muted); margin-top: 2px; }
 </style>
 </head>
 <body>
@@ -1167,31 +1177,21 @@
         R2 · Recipient view — Link opened → <span>★ Shared pet view</span> → Emergency &amp; allowed
       </div>
 
-      <header class="m-header">
-        <span style="font-size:15px;font-weight:700;">PetPal</span>
-        <h1>Shared with you</h1>
-        <span style="width:40px;"></span>
-      </header>
-
-      <div class="role-badge-strip">
-        You're viewing as: <strong>Carer</strong> (read-only) · Shared by Eva · Expires 12 Jul 2026
-      </div>
-
       <main class="m-main">
 
-        <!-- Pet identity -->
-        <section class="m-pet-identity" aria-label="Pet identity">
-          <figure class="pet-photo pet-photo-m" aria-label="Pet photo placeholder">photo</figure>
-          <div class="pet-info">
-            <h2 style="font-size:20px;font-weight:700;">Miso</h2>
-            <p class="pet-meta" style="font-size:13px;">Dog · Border Terrier · Female</p>
-            <p class="pet-chip" style="font-size:11px;">Microchip 276 098 106 412 345</p>
-          </div>
-        </section>
+        <div class="sv-hero">
+          <div class="sv-topbar"><span class="brand">PetPal</span><a href="My-Pets-empty.html">To the app</a></div>
+          <figure class="sv-photo" aria-label="Pet photo placeholder">photo</figure>
+        </div>
+        <div class="sv-arch">
+          <h2>Miso</h2>
+          <p class="meta">Dog · Border Terrier · Female</p>
+          <p class="chip">Microchip 276 098 106 412 345</p>
+        </div>
 
         <!-- Personality & care -->
         <section class="shared-section collapsible" aria-label="Personality and care">
-          <h3 onclick="this.parentElement.classList.toggle('open')" role="button" aria-expanded="false">Personality &amp; care <span class="collapse-hint">tap to expand</span><span class="chev">▸</span></h3>
+          <h3 onclick="this.parentElement.classList.toggle('open')" role="button" aria-expanded="false"><span class="sec-icon"></span>Personality &amp; Care <span class="chev">↓</span></h3>
           <div class="collapse-body">
 
           <p class="detail-label">Favourite food</p>
@@ -1218,7 +1218,7 @@
 
         <!-- Health summary -->
         <section class="shared-section collapsible" aria-label="Health summary">
-          <h3 onclick="this.parentElement.classList.toggle('open')" role="button" aria-expanded="false">Health summary <span class="collapse-hint">tap to expand</span><span class="chev">▸</span></h3>
+          <h3 onclick="this.parentElement.classList.toggle('open')" role="button" aria-expanded="false"><span class="sec-icon"></span>Health Summary <span class="chev">↓</span></h3>
           <div class="collapse-body">
 
           <p class="detail-label">Conditions</p>
@@ -1242,7 +1242,7 @@
 
         <!-- Vet contact -->
         <section class="shared-section collapsible" aria-label="Vet contact">
-          <h3 onclick="this.parentElement.classList.toggle('open')" role="button" aria-expanded="false">Vet contact <span class="collapse-hint">tap to expand</span><span class="chev">▸</span></h3>
+          <h3 onclick="this.parentElement.classList.toggle('open')" role="button" aria-expanded="false"><span class="sec-icon"></span>Vet Contact <span class="chev">↓</span></h3>
           <div class="collapse-body">
           <div class="vet-card">
             <p class="vet-name">Tierklinik am Stadtpark · Dr. Muller</p>
@@ -1261,7 +1261,7 @@
 
         <!-- Documents -->
         <section class="shared-section collapsible" aria-label="Documents">
-          <h3 onclick="this.parentElement.classList.toggle('open')" role="button" aria-expanded="false">Documents <span class="collapse-hint">tap to expand</span><span class="chev">▸</span></h3>
+          <h3 onclick="this.parentElement.classList.toggle('open')" role="button" aria-expanded="false"><span class="sec-icon"></span>Documents <span class="chev">↓</span></h3>
           <div class="collapse-body">
           <div class="doc-item">
             <div>
@@ -1280,6 +1280,10 @@
         </section>
 
       </main>
+
+      <div style="display:flex;justify-content:flex-end;padding:8px 20px 0;">
+        <div style="width:150px;height:104px;border-radius:14px;background:var(--wf-placeholder);display:flex;align-items:center;justify-content:center;font-size:10px;color:var(--wf-muted);text-align:center;">cute illustration<br>(bone in a bowl)</div>
+      </div>
 
       <!-- Shared footer (replaces bottom nav) -->
       <footer class="shared-footer" aria-label="Shared link info">
@@ -1336,7 +1340,7 @@
 
         <!-- Personality & care -->
         <section class="d-shared-section collapsible" aria-label="Personality and care">
-          <h3 onclick="this.parentElement.classList.toggle('open')" role="button" aria-expanded="false">Personality &amp; care <span class="collapse-hint">tap to expand</span><span class="chev">▸</span></h3>
+          <h3 onclick="this.parentElement.classList.toggle('open')" role="button" aria-expanded="false"><span class="sec-icon"></span>Personality &amp; Care <span class="chev">↓</span></h3>
           <div class="collapse-body">
           <div class="d-two-col">
             <div>
@@ -1367,7 +1371,7 @@
 
         <!-- Health summary -->
         <section class="d-shared-section collapsible" aria-label="Health summary">
-          <h3 onclick="this.parentElement.classList.toggle('open')" role="button" aria-expanded="false">Health summary <span class="collapse-hint">tap to expand</span><span class="chev">▸</span></h3>
+          <h3 onclick="this.parentElement.classList.toggle('open')" role="button" aria-expanded="false"><span class="sec-icon"></span>Health Summary <span class="chev">↓</span></h3>
           <div class="collapse-body">
           <div class="d-two-col">
             <div>
@@ -1395,7 +1399,7 @@
 
         <!-- Vet contact -->
         <section class="d-shared-section collapsible" aria-label="Vet contact">
-          <h3 onclick="this.parentElement.classList.toggle('open')" role="button" aria-expanded="false">Vet contact <span class="collapse-hint">tap to expand</span><span class="chev">▸</span></h3>
+          <h3 onclick="this.parentElement.classList.toggle('open')" role="button" aria-expanded="false"><span class="sec-icon"></span>Vet Contact <span class="chev">↓</span></h3>
           <div class="collapse-body">
           <div class="vet-card" style="max-width:400px;">
             <p class="vet-name">Tierklinik am Stadtpark · Dr. Muller</p>
@@ -1414,7 +1418,7 @@
 
         <!-- Documents -->
         <section class="d-shared-section collapsible" aria-label="Documents">
-          <h3 onclick="this.parentElement.classList.toggle('open')" role="button" aria-expanded="false">Documents <span class="collapse-hint">tap to expand</span><span class="chev">▸</span></h3>
+          <h3 onclick="this.parentElement.classList.toggle('open')" role="button" aria-expanded="false"><span class="sec-icon"></span>Documents <span class="chev">↓</span></h3>
           <div class="collapse-body">
           <div class="doc-item">
             <div>
