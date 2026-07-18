@@ -1,0 +1,1376 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pet dossier · setup 1/6 — PetPal wireframe</title>
+<style>
+  :root {
+    --wf-bg:         #ffffff;
+    --wf-surface:    #f5f5f5;
+    --wf-border:     #e0e0e0;
+    --wf-text:       #1a1a1a;
+    --wf-muted:      #757575;
+    --wf-placeholder:#d0d0d0;
+    --wf-input-bg:   #fafafa;
+    --wf-btn:        #333333;
+    --wf-btn-text:   #ffffff;
+    --wf-btn-sec:    transparent;
+
+    --nav-bg:        #f9f9f9;
+    --nav-active-bg: #eaeaea;
+    --nav-text:      #555555;
+    --nav-text-active:#1a1a1a;
+    --nav-cap:       #999999;
+    --nav-line:      #e0e0e0;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+    background: var(--wf-bg);
+    color: var(--wf-text);
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ══════════════════════════════════════════
+     LAYOUT: sidebar + content
+     ══════════════════════════════════════════ */
+  .layout {
+    display: flex;
+    align-items: flex-start;
+    min-height: 100vh;
+  }
+
+  /* ── SIDEBAR NAV PANEL ── */
+  .sidenav {
+    position: sticky;
+    top: 0;
+    align-self: flex-start;
+    height: 100vh;
+    width: 240px;
+    flex-shrink: 0;
+    padding: 20px 12px 20px 16px;
+    border-right: 1px solid var(--nav-line);
+    background: var(--nav-bg);
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+  .sidenav .brand {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--wf-text);
+    text-decoration: none;
+    padding: 0 8px 8px;
+    letter-spacing: 0.02em;
+  }
+  .nav-divider {
+    height: 1px;
+    background: var(--nav-line);
+    margin: 6px 4px;
+  }
+
+  /* ── VIEWPORT TOGGLE ── */
+  .viewport-toggle {
+    display: flex;
+    background: var(--nav-active-bg);
+    border-radius: 6px;
+    padding: 3px;
+    margin: 0 4px 4px;
+  }
+  .viewport-toggle button {
+    flex: 1;
+    padding: 6px 0;
+    font-size: 11px;
+    font-weight: 600;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    background: transparent;
+    color: var(--nav-text);
+    transition: all 0.15s;
+  }
+  .viewport-toggle button.active {
+    background: var(--wf-bg);
+    color: var(--nav-text-active);
+    box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+  }
+
+  /* tree list */
+  .nav-tree, .nav-tree ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  .nav-tree ul { padding-left: 14px; }
+  .nav-tree li { margin: 0; }
+  .nav-tree .nav-section {
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--nav-cap);
+    padding: 10px 8px 3px;
+    display: block;
+  }
+  .nav-tree a {
+    display: block;
+    color: var(--nav-text);
+    text-decoration: none;
+    font-size: 12px;
+    font-weight: 500;
+    padding: 4px 8px;
+    border-radius: 5px;
+    transition: background 0.12s;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .nav-tree a:hover {
+    background: var(--nav-active-bg);
+    color: var(--nav-text-active);
+  }
+  .nav-tree a.active {
+    background: var(--nav-active-bg);
+    color: var(--nav-text-active);
+    font-weight: 700;
+  }
+  .nav-tree .state-list a {
+    font-size: 11px;
+    font-weight: 400;
+    color: var(--nav-cap);
+    padding: 2px 8px;
+  }
+  .nav-tree .state-list a:hover {
+    color: var(--nav-text);
+    background: var(--nav-active-bg);
+  }
+  .nav-tree .state-list a.active {
+    color: var(--nav-text-active);
+    font-weight: 600;
+    background: var(--nav-active-bg);
+  }
+
+  /* PERSONA FLOWS */
+  .persona-flow {
+    display: block; padding: 8px 10px; margin: 3px 0;
+    border: 1.5px solid var(--wf-border); border-radius: 8px;
+    text-decoration: none; color: var(--nav-text);
+    font-size: 11px; line-height: 1.5; transition: border-color 0.15s, background 0.15s;
+  }
+  .persona-flow:hover { border-color: var(--nav-text); background: var(--nav-active-bg); }
+  .persona-flow strong { font-size: 12px; display: block; margin-bottom: 2px; }
+  .persona-flow .flow-steps {
+    color: var(--nav-cap); font-size: 10px; line-height: 1.6;
+  }
+
+  /* FLOW TOOLTIP */
+  .flow-tooltip {
+    display: none; background: #1a1a1a; color: #fff;
+    padding: 10px 14px; font-size: 12px; line-height: 1.5;
+    position: relative; z-index: 50;
+  }
+  .flow-tooltip.visible { display: flex; align-items: center; gap: 10px; }
+  .flow-tooltip .ft-step {
+    font-size: 10px; font-weight: 700; background: rgba(255,255,255,0.2);
+    border-radius: 4px; padding: 2px 7px; white-space: nowrap; flex-shrink: 0;
+  }
+  .flow-tooltip .ft-text { flex: 1; }
+  .flow-tooltip .ft-nav {
+    display: flex; gap: 4px; flex-shrink: 0;
+  }
+  .flow-tooltip .ft-nav a {
+    display: flex; align-items: center; justify-content: center;
+    width: 26px; height: 26px; border-radius: 50%;
+    background: rgba(255,255,255,0.15); color: #fff;
+    text-decoration: none; font-size: 14px; font-weight: 600;
+    transition: background 0.15s;
+  }
+  .flow-tooltip .ft-nav a:hover { background: rgba(255,255,255,0.3); }
+  .flow-tooltip .ft-nav a.ft-disabled { opacity: 0.3; pointer-events: none; }
+  .flow-tooltip .ft-close {
+    background: none; border: none; color: rgba(255,255,255,0.5);
+    font-size: 16px; cursor: pointer; padding: 0 2px; margin-left: 4px;
+  }
+  .flow-tooltip .ft-close:hover { color: #fff; }
+
+  /* ══════════════════════════════════════════
+     ZONE LABEL
+     ══════════════════════════════════════════ */
+  .zone-label {
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--wf-muted);
+    border: 1px dashed var(--wf-border);
+    border-radius: 2px;
+    padding: 1px 5px;
+    display: inline-block;
+    margin-bottom: 6px;
+  }
+
+  /* ══════════════════════════════════════════
+     FLOW STEP BANNER (shared)
+     ══════════════════════════════════════════ */
+  .flow-step {
+    background: var(--wf-surface);
+    border-bottom: 1px solid var(--wf-border);
+    padding: 6px 16px;
+    font-size: 10px;
+    color: var(--wf-muted);
+    text-align: center;
+    letter-spacing: 0.02em;
+  }
+  .flow-step span { font-weight: 600; color: var(--wf-text); }
+
+  .state-bar { display: flex; gap: 0; border-bottom: 1px solid var(--wf-border); background: var(--wf-surface); font-size: 11px; }
+  .state-bar a { flex: 1; text-align: center; padding: 7px 4px; text-decoration: none; color: var(--wf-muted); font-weight: 500; border-bottom: 2px solid transparent; }
+  .state-bar a:hover { color: var(--wf-text); }
+  .state-bar a.current { color: var(--wf-text); font-weight: 700; border-bottom-color: var(--wf-text); }
+
+  /* PET SWITCHER */
+  .pet-switcher { display: flex; align-items: center; gap: 4px; padding: 8px 16px; border-bottom: 1px solid var(--wf-border); background: var(--wf-bg); }
+  .pet-switcher-label { font-size: 11px; color: var(--wf-muted); margin-right: 4px; }
+  .pet-pill { display: flex; align-items: center; gap: 6px; padding: 6px 14px; border-radius: 20px; border: 1.5px solid var(--wf-border); background: var(--wf-bg); text-decoration: none; color: var(--wf-muted); font-size: 13px; font-weight: 500; cursor: pointer; transition: all 0.15s; }
+  .pet-pill:hover { border-color: var(--wf-muted); color: var(--wf-text); }
+  .pet-pill.active { background: var(--wf-text); color: var(--wf-btn-text); border-color: var(--wf-text); font-weight: 600; }
+  .pet-pill .pill-avatar { width: 22px; height: 22px; border-radius: 50%; background: var(--wf-placeholder); display: flex; align-items: center; justify-content: center; font-size: 8px; flex-shrink: 0; }
+  .pet-pill.active .pill-avatar { background: var(--wf-muted); }
+
+  /* ══════════════════════════════════════════
+     TOGGLE VISIBILITY
+     ══════════════════════════════════════════ */
+  .view-mobile  { display: block; }
+  .view-desktop { display: none;  }
+  body.is-desktop .view-mobile  { display: none;  }
+  body.is-desktop .view-desktop { display: flex; flex-direction: column; }
+
+  /* ══════════════════════════════════════════════
+     MOBILE LAYOUT: phone frame
+     ══════════════════════════════════════════════ */
+  .content-mobile {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    padding: 24px;
+    min-height: 100vh;
+  }
+  .phone {
+    width: 375px;
+    min-height: 812px;
+    background: var(--wf-bg);
+    border: 1.5px solid var(--wf-border);
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+  }
+
+  /* mobile header */
+  .m-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 16px;
+    border-bottom: 1px solid var(--wf-border);
+    min-height: 48px;
+  }
+  .m-header .back {
+    font-size: 14px;
+    color: var(--wf-text);
+    background: none;
+    border: none;
+    cursor: pointer;
+  }
+  .m-header h1 {
+    font-size: 17px;
+    font-weight: 600;
+  }
+  .m-header .action-edit {
+    font-size: 13px;
+    color: var(--wf-muted);
+    background: none;
+    border: none;
+    cursor: pointer;
+  }
+
+  /* mobile main */
+  .m-main {
+    flex: 1;
+    overflow-y: auto;
+    padding-bottom: 20px;
+  }
+
+  /* mobile pet identity */
+  .m-pet-identity {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 16px;
+    border-bottom: 1px solid var(--wf-border);
+  }
+
+  /* shared pet photo */
+  .pet-photo {
+    border-radius: 50%;
+    background: var(--wf-placeholder);
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 10px;
+    color: var(--wf-muted);
+  }
+  .pet-photo-m { width: 64px; height: 64px; }
+  .pet-photo-d { width: 88px; height: 88px; font-size: 11px; }
+
+  .pet-info h2, .pet-info h1 { line-height: 1.2; }
+  .pet-info .pet-meta { color: var(--wf-muted); margin-top: 2px; }
+  .pet-info .pet-chip { color: var(--wf-muted); margin-top: 2px; }
+
+  /* mobile quick actions */
+  .m-quick-actions {
+    display: flex;
+    gap: 8px;
+    padding: 12px 16px;
+    border-bottom: 1px solid var(--wf-border);
+  }
+  .m-quick-actions button {
+    flex: 1;
+    padding: 10px 0;
+    font-size: 13px;
+    font-weight: 600;
+    border-radius: 6px;
+    cursor: pointer;
+  }
+
+  /* shared button styles */
+  .btn-primary {
+    background: var(--wf-btn);
+    color: var(--wf-btn-text);
+    border: none;
+  }
+  .btn-secondary {
+    background: var(--wf-btn-sec);
+    color: var(--wf-text);
+    border: 1.5px solid var(--wf-border);
+  }
+
+  /* mobile fill counter */
+  .m-fill-counter {
+    padding: 14px 16px 6px;
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+  }
+  .count { font-size: 14px; font-weight: 600; }
+  .status { font-size: 12px; color: var(--wf-muted); }
+
+  /* mobile search */
+  .m-search-filter { padding: 0 16px 12px; }
+  .search-bar {
+    padding: 10px 12px;
+    font-size: 14px;
+    border: 1.5px solid var(--wf-border);
+    border-radius: 6px;
+    background: var(--wf-input-bg);
+    color: var(--wf-text);
+    outline: none;
+  }
+  .search-bar::placeholder { color: var(--wf-placeholder); }
+  .m-search-filter .search-bar { width: 100%; }
+
+  /* mobile section list */
+  .m-section-list {
+    list-style: none;
+    padding: 0 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  /* mobile section card */
+  .m-section-card {
+    background: var(--wf-surface);
+    border: 1.5px solid var(--wf-border);
+    border-radius: 8px;
+    padding: 14px;
+    cursor: pointer;
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+  }
+  .m-section-card:hover { border-color: var(--wf-muted); }
+
+  .card-icon {
+    border-radius: 6px;
+    background: var(--wf-placeholder);
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 9px;
+    color: var(--wf-muted);
+  }
+  .card-icon-m { width: 36px; height: 36px; }
+  .card-icon-d { width: 40px; height: 40px; border-radius: 8px; }
+
+  .card-body { flex: 1; min-width: 0; }
+  .card-body h3 { font-size: 15px; font-weight: 600; line-height: 1.3; }
+  .card-detail {
+    font-size: 12px;
+    color: var(--wf-muted);
+    margin-top: 3px;
+    line-height: 1.4;
+  }
+  .card-detail strong { color: var(--wf-text); font-weight: 600; }
+  .card-arrow {
+    color: var(--wf-muted);
+    font-size: 16px;
+    align-self: center;
+    flex-shrink: 0;
+  }
+
+  /* mobile bottom nav */
+  .phone-nav {
+    border-top: 1px solid var(--wf-border);
+    display: flex;
+    background: var(--wf-bg);
+  }
+  .phone-nav a {
+    flex: 1;
+    text-align: center;
+    padding: 10px 0 8px;
+    font-size: 11px;
+    color: var(--wf-muted);
+    text-decoration: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 3px;
+  }
+  .phone-nav a.active { color: var(--wf-text); font-weight: 700; }
+  .phone-nav .nav-icon {
+    width: 22px; height: 22px; border-radius: 4px;
+    background: var(--wf-placeholder); display: inline-block;
+  }
+  .phone-nav a.active .nav-icon { background: var(--wf-muted); }
+
+  /* ══════════════════════════════════════════════
+     DESKTOP LAYOUT
+     ══════════════════════════════════════════════ */
+  .content-desktop {
+    flex: 1;
+    min-width: 0;
+    min-height: 100vh;
+  }
+
+  /* desktop top nav */
+  .top-nav {
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid var(--wf-border);
+    padding: 0 32px;
+  }
+  .top-nav .nav-brand {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--wf-text);
+    margin-right: 32px;
+    padding: 14px 0;
+  }
+  .top-nav a {
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--wf-muted);
+    padding: 14px 16px;
+    border-bottom: 2px solid transparent;
+    transition: all 0.12s;
+  }
+  .top-nav a:hover { color: var(--wf-text); }
+  .top-nav a.active {
+    color: var(--wf-text);
+    font-weight: 700;
+    border-bottom-color: var(--wf-text);
+  }
+  .top-nav .nav-spacer { flex: 1; }
+  .top-nav .nav-action {
+    font-size: 13px;
+    color: var(--wf-muted);
+    padding: 8px 16px;
+    border: 1.5px solid var(--wf-border);
+    border-radius: 6px;
+    background: none;
+    cursor: pointer;
+  }
+
+  /* desktop main */
+  .d-main {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 32px;
+    width: 100%;
+  }
+
+  /* desktop pet hero */
+  .d-pet-hero {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    padding: 24px;
+    background: var(--wf-surface);
+    border: 1.5px solid var(--wf-border);
+    border-radius: 10px;
+    margin-bottom: 24px;
+  }
+  .d-pet-hero .pet-info { flex: 1; }
+  .d-pet-hero .pet-info h1 { font-size: 26px; font-weight: 700; }
+  .d-pet-hero .pet-info .pet-meta { font-size: 15px; margin-top: 4px; }
+  .d-pet-hero .pet-info .pet-chip { font-size: 12px; margin-top: 4px; }
+  .d-pet-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    flex-shrink: 0;
+  }
+  .d-pet-actions button {
+    padding: 10px 20px;
+    font-size: 13px;
+    font-weight: 600;
+    border-radius: 6px;
+    cursor: pointer;
+    white-space: nowrap;
+  }
+
+  /* desktop toolbar */
+  .d-toolbar {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 20px;
+  }
+  .d-toolbar .spacer { flex: 1; }
+  .d-toolbar .search-bar { width: 280px; }
+
+  /* desktop card grid */
+  .d-section-grid {
+    list-style: none;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+  .d-section-card {
+    background: var(--wf-surface);
+    border: 1.5px solid var(--wf-border);
+    border-radius: 10px;
+    padding: 20px;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    transition: border-color 0.12s;
+  }
+  .d-section-card:hover { border-color: var(--wf-muted); }
+  .d-card-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .d-card-header h3 { font-size: 16px; font-weight: 600; flex: 1; }
+  .d-section-card .card-detail { font-size: 13px; line-height: 1.5; }
+
+  .d-footer {
+    border-top: 1px solid var(--wf-border);
+    padding: 16px 32px;
+    font-size: 11px;
+    color: var(--wf-muted);
+    text-align: center;
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 700px) {
+    .layout { flex-direction: column; }
+    .sidenav {
+      position: sticky; top: 0; height: auto; width: 100%; z-index: 50;
+      border-right: none; border-bottom: 1px solid var(--nav-line);
+      padding: 12px 16px; max-height: 50vh; overflow-y: auto;
+    }
+    .content-mobile { padding: 16px; }
+    .phone { min-height: auto; }
+    .d-main { padding: 20px 16px; }
+    .d-section-grid { grid-template-columns: 1fr; }
+    .d-pet-hero { flex-direction: column; text-align: center; }
+    .d-pet-actions { flex-direction: row; }
+    .d-toolbar { flex-wrap: wrap; }
+    .d-toolbar .search-bar { width: 100%; }
+  }
+  .nav-tree .flow-screens { margin: 2px 0 4px 6px; }
+  .nav-tree .flow-screens summary { font-size: 10px; font-weight: 600; letter-spacing: .04em; text-transform: uppercase; color: var(--nav-cap); cursor: pointer; padding: 4px 8px; list-style: none; }
+  .nav-tree .flow-screens summary::-webkit-details-marker { display: none; }
+  .nav-tree .flow-screens summary::before { content: "\25b8  "; }
+  .nav-tree .flow-screens[open] summary::before { content: "\25be  "; }
+  .nav-tree .flow-screens ol { list-style: none; counter-reset: none; padding-left: 8px; margin: 0 0 4px; border-left: 1px solid var(--nav-line); }
+  .nav-tree .flow-screens ol a { font-size: 11px; font-weight: 400; color: var(--nav-text); padding: 3px 8px; display: block; border-radius: 4px; text-decoration: none; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .nav-tree .flow-screens ol a:hover { background: var(--nav-active-bg); color: var(--nav-text-active); }
+</style>
+</head>
+<body>
+
+<div class="layout">
+
+  <!-- ═══════════════════════════════════════════
+       SIDEBAR
+       ═══════════════════════════════════════════ -->
+
+  <aside class="sidenav" aria-label="Wireframe navigation">
+    <a class="brand" href="#">PetPal Wireframes</a>
+
+    <!-- VIEWPORT TOGGLE -->
+    <div class="viewport-toggle" role="radiogroup" aria-label="Layout toggle">
+      <button id="btn-mobile" class="active" aria-pressed="true" onclick="setView('mobile')">Mobile</button>
+      <button id="btn-desktop" aria-pressed="false" onclick="setView('desktop')">Desktop</button>
+    </div>
+
+    <div class="nav-divider"></div>
+
+    <ul class="nav-tree">
+      <li><span class="nav-section">Persona flows</span>
+        <ul style="padding-left:0;">
+          <li>
+            <a href="My-Pets.html?flow=owner" class="persona-flow">
+              <strong>Pet owner (Ana)</strong>
+              <span class="flow-steps">7 screens &middot; consult &amp; share</span>
+            </a>
+            <details class="flow-screens">
+              <summary>Screens</summary>
+              <ol>
+              <li><a href="My-Pets.html?flow=owner">1 &middot; My Pets</a></li>
+              <li><a href="home-success.html?flow=owner">2 &middot; Pet dossier</a></li>
+              <li><a href="Health-and-jabs.html?flow=owner">3 &middot; Health &amp; jabs</a></li>
+              <li><a href="Documents-and-passport.html?flow=owner">4 &middot; Documents &amp; passport</a></li>
+              <li><a href="Personality-and-care.html?flow=owner">5 &middot; Personality &amp; care</a></li>
+              <li><a href="Share-a-pet.html?flow=owner">6 &middot; Share a pet</a></li>
+              <li><a href="Whats-due.html?flow=owner">7 &middot; What&rsquo;s due</a></li>
+              </ol>
+            </details>
+          </li>
+          <li>
+            <a href="My-Pets-empty.html?flow=setup" class="persona-flow">
+              <strong>New pet setup (full journey)</strong>
+              <span class="flow-steps">40 screens &middot; every state truthful, section by section</span>
+            </a>
+            <details class="flow-screens">
+              <summary>Screens</summary>
+              <ol>
+              <li><a href="My-Pets-empty.html?flow=setup">1 &middot; Empty: no pets</a></li>
+              <li><a href="Set-up-a-pet.html?flow=setup">2 &middot; Set up a pet</a></li>
+              <li><a href="home-new.html?flow=setup">3 &middot; New dossier &middot; Add info</a></li>
+              <li><a href="Health-and-jabs-empty.html?flow=setup">4 &middot; Health &amp; jabs &middot; empty</a></li>
+              <li><a href="Add-record.html?flow=setup">5 &middot; Add vaccine</a></li>
+              <li><a href="Health-and-jabs-firstrun.html?flow=setup">6 &middot; Health &amp; jabs &middot; 1 record</a></li>
+              <li><a href="Documents-and-passport-empty.html?flow=setup">7 &middot; Documents &middot; empty</a></li>
+              <li><a href="Add-document.html?flow=setup">8 &middot; Add document</a></li>
+              <li><a href="Documents-and-passport-firstrun.html?flow=setup">9 &middot; Documents &middot; 1 doc</a></li>
+              <li><a href="Insurance-empty.html?flow=setup">10 &middot; Insurance &middot; empty</a></li>
+              <li><a href="Add-insurance.html?flow=setup">11 &middot; Add insurance</a></li>
+              <li><a href="Insurance-firstrun.html?flow=setup">12 &middot; Insurance &middot; 1 policy</a></li>
+              <li><a href="Personality-and-care-empty.html?flow=setup">13 &middot; Personality &middot; empty</a></li>
+              <li><a href="Add-care-note.html?flow=setup">14 &middot; Add care note</a></li>
+              <li><a href="Personality-and-care-firstrun.html?flow=setup">15 &middot; Personality &middot; 1 note</a></li>
+              <li><a href="Vet-and-appointments-empty.html?flow=setup">16 &middot; Vet &middot; empty</a></li>
+              <li><a href="Add-vet-record.html?flow=setup">17 &middot; Add vet record</a></li>
+              <li><a href="Vet-and-appointments-firstrun.html?flow=setup">18 &middot; Vet &middot; 1 appointment</a></li>
+              <li><a href="Emergency-info-empty.html?flow=setup">19 &middot; Emergency &middot; empty</a></li>
+              <li><a href="Emergency-auth-setup.html?flow=setup">20 &middot; Emergency auth setup</a></li>
+              <li><a href="Emergency-info-firstrun.html?flow=setup">21 &middot; Emergency &middot; set up</a></li>
+              <li><a href="Share-a-pet.html?flow=setup">22 &middot; Share a pet</a></li>
+              <li><a href="Shared-pet-view.html?flow=setup">23 &middot; Sitter view</a></li>
+              </ol>
+            </details>
+          </li>
+          <li>
+            <a href="Shared-pet-view.html?flow=sitter" class="persona-flow">
+              <strong>Pet sitter (recipient)</strong>
+              <span class="flow-steps">2 screens &middot; no account, via link</span>
+            </a>
+            <details class="flow-screens">
+              <summary>Screens</summary>
+              <ol>
+              <li><a href="Shared-pet-view.html?flow=sitter">1 &middot; Shared pet view</a></li>
+              <li><a href="Emergency-allowed.html?flow=sitter">2 &middot; Emergency &amp; allowed</a></li>
+              </ol>
+            </details>
+          </li>
+        </ul>
+      </li>
+
+      <li><div class="nav-divider"></div></li>
+
+      <li><span class="nav-section">My Pets</span>
+        <ul>
+          <li><a href="My-Pets.html">My Pets</a>
+            <ul class="state-list">
+              <li><a href="My-Pets.html">success</a></li>
+              <li><a href="My-Pets-empty.html">empty</a></li>
+              <li><a href="My-Pets-loading.html">loading</a></li>
+              <li><a href="My-Pets-error.html">error</a></li>
+            </ul>
+          </li>
+          <li><a href="Set-up-a-pet.html">Set up a pet</a>
+            <ul class="state-list">
+              <li><a href="Set-up-a-pet.html">success</a></li>
+              <li><a href="Set-up-a-pet-loading.html">loading</a></li>
+              <li><a href="Set-up-a-pet-error.html">error</a></li>
+            </ul>
+          </li>
+          <li><a href="Upload-photo.html">Upload photo</a></li><li><a href="Add-document.html">Add document</a></li><li><a href="Add-insurance.html">Add insurance</a></li><li><a href="Add-vet-record.html">Add vet record</a></li><li><a href="Add-vet-clinic.html">Add vet clinic</a></li><li><a href="Add-emergency-contact.html">Add emergency contact</a></li><li><a href="Section-saving.html">Saving…</a></li>
+        </ul>
+      </li>
+
+      <li><div class="nav-divider"></div></li>
+
+      <li><span class="nav-section">Pet dossier</span>
+        <ul>
+          <li><a href="home-success.html" class="active">Pet dossier</a>
+            <ul class="state-list">
+              <li><a href="home-success.html">success</a></li>
+              <li><a href="home-success-single.html" class="active">success · 1 pet</a></li>
+              <li><a href="home-empty.html">empty</a></li>
+              <li><a href="home-new.html">new pet</a></li>
+              <li><a href="home-progress-1.html">setup 1/6</a></li><li><a href="home-progress-2.html">setup 2/6</a></li><li><a href="home-progress-3.html">setup 3/6</a></li><li><a href="home-progress-4.html">setup 4/6</a></li><li><a href="home-progress-5.html">setup 5/6</a></li><li><a href="home-progress-6.html">setup 6/6</a></li>
+              <li><a href="home-loading.html">loading</a></li>
+              <li><a href="home-error.html">error</a></li>
+            </ul>
+          </li>
+          <li><a href="Health-and-jabs.html">Health &amp; jabs</a>
+            <ul class="state-list">
+              <li><a href="Health-and-jabs.html">success</a></li>
+              <li><a href="Health-and-jabs-empty.html">empty</a></li>
+              <li><a href="Health-and-jabs-loading.html">loading</a></li>
+              <li><a href="Health-and-jabs-error.html">error</a></li>
+              <li><a href="Health-and-jabs-firstrun.html">first record</a></li>
+              <li><a href="Health-and-jabs-record1.html">1 health record</a></li>
+            </ul>
+          </li>
+          <li><a href="Documents-and-passport.html">Documents &amp; passport</a>
+            <ul class="state-list">
+              <li><a href="Documents-and-passport.html">success</a></li>
+              <li><a href="Documents-and-passport-empty.html">empty</a></li>
+              <li><a href="Documents-and-passport-loading.html">loading</a></li>
+              <li><a href="Documents-and-passport-error.html">error</a></li>
+              <li><a href="Documents-and-passport-firstrun.html">first document</a></li>
+            </ul>
+          </li>
+          <li><a href="Insurance.html">Insurance</a>
+            <ul class="state-list">
+              <li><a href="Insurance.html">success</a></li>
+              <li><a href="Insurance-empty.html">empty</a></li>
+              <li><a href="Insurance-loading.html">loading</a></li>
+              <li><a href="Insurance-error.html">error</a></li>
+              <li><a href="Insurance-firstrun.html">first policy</a></li>
+            </ul>
+          </li>
+          <li><a href="Personality-and-care.html">Personality &amp; care</a>
+            <ul class="state-list">
+              <li><a href="Personality-and-care.html">success</a></li>
+              <li><a href="Personality-and-care-empty.html">empty</a></li>
+              <li><a href="Personality-and-care-loading.html">loading</a></li>
+              <li><a href="Personality-and-care-error.html">error</a></li>
+              <li><a href="Personality-and-care-firstrun.html">first note</a></li>
+              <li><a href="Personality-and-care-fill1.html">notes 1/6</a></li><li><a href="Personality-and-care-fill2.html">notes 2/6</a></li><li><a href="Personality-and-care-fill3.html">notes 3/6</a></li><li><a href="Personality-and-care-fill4.html">notes 4/6</a></li><li><a href="Personality-and-care-fill5.html">notes 5/6</a></li><li><a href="Personality-and-care-fill6.html">notes 6/6</a></li>
+            </ul>
+          </li>
+          <li><a href="Vet-and-appointments.html">Vet &amp; appointments</a>
+            <ul class="state-list">
+              <li><a href="Vet-and-appointments.html">success</a></li>
+              <li><a href="Vet-and-appointments-empty.html">empty</a></li>
+              <li><a href="Vet-and-appointments-loading.html">loading</a></li>
+              <li><a href="Vet-and-appointments-error.html">error</a></li>
+              <li><a href="Vet-and-appointments-firstrun.html">first appointment</a></li>
+              <li><a href="Vet-and-appointments-clinic.html">clinic only</a></li>
+            </ul>
+          </li>
+          <li><a href="Emergency-info.html">Emergency info</a>
+            <ul class="state-list">
+              <li><a href="Emergency-info.html">success</a></li>
+              <li><a href="Emergency-info-empty.html">empty</a></li>
+              <li><a href="Emergency-info-loading.html">loading</a></li>
+              <li><a href="Emergency-info-error.html">error</a></li>
+              <li><a href="Emergency-info-firstrun.html">newly set up</a></li>
+              <li><a href="Emergency-info-fill1.html">setup 1/3</a></li><li><a href="Emergency-info-fill2.html">setup 2/3</a></li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+
+      <li><div class="nav-divider"></div></li>
+
+      <li><span class="nav-section">Actions</span>
+        <ul>
+          <li><a href="Add-record.html">Add / update a record</a>
+            <ul class="state-list">
+              <li><a href="Add-record.html">success</a></li>
+              <li><a href="Add-record-loading.html">loading</a></li>
+              <li><a href="Add-record-error.html">error</a></li>
+            </ul>
+          </li>
+          <li><a href="Add-health-record.html">Add health record</a></li>
+          <li><a href="Edit-health-record.html">Edit health record</a></li>
+          <li><a href="Document-view.html">Document view</a></li>
+          <li><a href="Add-care-note.html">Add care note</a>
+            <ul class="state-list">
+              <li><a href="Add-care-note.html">success</a></li>
+              <li><a href="Add-care-note-loading.html">loading</a></li>
+              <li><a href="Add-care-note-error.html">error</a></li>
+            </ul>
+          </li>
+          <li><a href="Edit-care-note.html">Edit care note</a>
+            <ul class="state-list">
+              <li><a href="Edit-care-note.html">success</a></li>
+              <li><a href="Edit-care-note-loading.html">loading</a></li>
+              <li><a href="Edit-care-note-error.html">error</a></li>
+            </ul>
+          </li>
+          <li><a href="Edit-pet.html">Edit pet identity</a>
+            <ul class="state-list">
+              <li><a href="Edit-pet.html">success</a></li>
+              <li><a href="Edit-pet-loading.html">loading</a></li>
+              <li><a href="Edit-pet-error.html">error</a></li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+
+      <li><div class="nav-divider"></div></li>
+
+      <li><span class="nav-section">Share</span>
+        <ul>
+          <li><a href="Share-a-pet.html">Share a pet</a>
+            <ul class="state-list">
+              <li><a href="Share-a-pet.html">success</a></li>
+              <li><a href="Share-a-pet-loading.html">loading</a></li>
+              <li><a href="Share-a-pet-error.html">error</a></li>
+              <li><a href="Share-success.html">link ready (success)</a></li>
+            </ul>
+          </li>
+          <li><a href="Who-has-access.html">Who has access</a>
+            <ul class="state-list">
+              <li><a href="Who-has-access.html">success</a></li>
+              <li><a href="Who-has-access-empty.html">empty</a></li>
+              <li><a href="Who-has-access-loading.html">loading</a></li>
+              <li><a href="Who-has-access-error.html">error</a></li>
+            </ul>
+          </li>
+          <li><a href="Edit-access-grant.html">Edit / revoke grant</a>
+            <ul class="state-list">
+              <li><a href="Edit-access-grant.html">success</a></li>
+              <li><a href="Edit-access-grant-loading.html">loading</a></li>
+              <li><a href="Edit-access-grant-error.html">error</a></li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+
+      <li><div class="nav-divider"></div></li>
+
+      <li><span class="nav-section">What's due</span>
+        <ul>
+          <li><a href="Whats-due.html">What's due</a>
+            <ul class="state-list">
+              <li><a href="Whats-due.html">success</a></li>
+              <li><a href="Whats-due-empty.html">empty</a></li>
+              <li><a href="Whats-due-loading.html">loading</a></li>
+              <li><a href="Whats-due-error.html">error</a></li>
+              <li><a href="Reminder-done.html">reminder done (success)</a></li>
+              <li><a href="Whats-due-detail.html">reminder detail</a></li><li><a href="Whats-due-offline.html">offline</a></li>
+            </ul>
+          </li>
+        <li><a href="Reminder-settings.html">Reminder settings</a></li>
+        </ul>
+      </li>
+
+      <li><div class="nav-divider"></div></li>
+
+      <li><span class="nav-section">Recipient</span>
+        <ul>
+          <li><a href="Shared-pet-view.html">Shared pet view</a>
+            <ul class="state-list">
+              <li><a href="Shared-pet-view.html">success</a></li>
+              <li><a href="Shared-pet-view-empty.html">empty</a></li>
+              <li><a href="Shared-pet-view-loading.html">loading</a></li>
+              <li><a href="Shared-pet-view-error.html">error</a></li>
+            </ul>
+          </li>
+          <li><a href="Emergency-allowed.html">Emergency &amp; allowed</a>
+            <ul class="state-list">
+              <li><a href="Emergency-allowed.html">success</a></li>
+              <li><a href="Emergency-allowed-empty.html">empty</a></li>
+              <li><a href="Emergency-allowed-loading.html">loading</a></li>
+              <li><a href="Emergency-allowed-error.html">error</a></li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+
+      <li><div class="nav-divider"></div></li>
+
+      <li><span class="nav-section">Deep actions</span>
+        <ul>
+          <li><a href="Emergency-auth-setup.html">Emergency auth setup</a>
+            <ul class="state-list">
+              <li><a href="Emergency-auth-setup.html">success</a></li>
+              <li><a href="Emergency-auth-setup-loading.html">loading</a></li>
+              <li><a href="Emergency-auth-setup-error.html">error</a></li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </aside>
+
+
+  <!-- ═══════════════════════════════════════════════════════
+       MOBILE VIEW (phone frame)
+       ═══════════════════════════════════════════════════════ -->
+
+  <div class="content-mobile view-mobile">
+    <div class="phone">
+
+      <div class="state-bar" aria-label="Screen states">
+        <a href="home-success.html">Success</a>
+        <a href="home-empty.html">Empty</a>
+        <a href="home-loading.html">Loading</a>
+        <a href="home-error.html">Error</a>
+      </div>
+
+      <div class="flow-step">
+        Main job · step 2 of 4 — <span>My Pets → ★ Pet dossier</span> → sections → Share
+      </div>
+
+      <header class="m-header">
+        <a href="My-Pets.html" style="text-decoration:none;"><button class="back" aria-label="Back to My Pets">← My Pets</button></a>
+        <h1>Miso</h1>
+        <a href="Edit-pet.html" style="text-decoration:none;"><button class="action-edit">Edit</button></a>
+      </header>
+
+      <div class="m-main">
+
+        <section class="m-pet-identity" aria-label="Pet identity">
+          <div class="zone-label">Pet identity</div>
+          <figure class="pet-photo pet-photo-m" aria-label="Pet photo placeholder">photo</figure>
+          <div class="pet-info">
+            <h2 style="font-size:20px;font-weight:700;">Miso</h2>
+            <p class="pet-meta" style="font-size:13px;">Dog · Border Terrier · Female</p>
+            <p class="pet-chip" style="font-size:11px;">Microchip 276 098 106 412 345</p>
+          </div>
+        </section>
+
+        <section class="m-quick-actions" aria-label="Quick actions">
+          <a href="Share-a-pet.html"><button class="btn-primary">Share Miso's info</button></a>
+          <a href="Set-up-a-pet.html"><button class="btn-secondary">Edit pet details</button></a>
+        </section>
+
+        <section class="m-fill-counter" aria-label="Dossier completeness">
+          <div class="zone-label">Counter</div>
+          <span class="count">1 of 6 sections filled</span>
+          <span class="status">Just now</span>
+        </section>
+
+        <section class="m-search-filter" aria-label="Search sections">
+          <div class="zone-label">Search &amp; filter</div>
+          <input class="search-bar" type="search" placeholder="Search sections, records, documents…" aria-label="Search sections">
+        </section>
+
+                <ul class="m-section-list" aria-label="Dossier sections">
+
+<li>
+            <a href="Health-and-jabs-firstrun.html" style="text-decoration:none;color:inherit;display:block;"><article class="m-section-card">
+              <div class="card-icon card-icon-m">icon</div>
+              <div class="card-body">
+                <div class="zone-label">Card entry point → Health &amp; jabs</div>
+                <h3>Health &amp; jabs</h3>
+                <p class="card-detail">
+                  <strong>2 records</strong> · Just now<br>
+                  Rabies (due 15 Mar 2027) · General check-up
+                </p>
+              </div>
+              <span class="card-arrow" aria-hidden="true">→</span>
+            </article></a>
+          </li>
+
+<li>
+            <a href="Documents-and-passport-empty.html" style="text-decoration:none;color:inherit;display:block;"><article class="m-section-card" style="border-style:dashed;opacity:.8;">
+              <div class="card-icon card-icon-m">icon</div>
+              <div class="card-body">
+                <div class="zone-label">Card entry point → Documents &amp; passport</div>
+                <h3>Documents &amp; passport</h3>
+                <p class="card-detail">
+                  <strong>Empty — tap to add</strong><br>
+                  EU pet passport, microchip cert, pedigree papers
+                </p>
+              </div>
+              <span class="card-arrow" aria-hidden="true">→</span>
+            </article></a>
+          </li>
+
+<li>
+            <a href="Insurance-empty.html" style="text-decoration:none;color:inherit;display:block;"><article class="m-section-card" style="border-style:dashed;opacity:.8;">
+              <div class="card-icon card-icon-m">icon</div>
+              <div class="card-body">
+                <div class="zone-label">Card entry point → Insurance</div>
+                <h3>Insurance</h3>
+                <p class="card-detail">
+                  <strong>Empty — tap to add</strong><br>
+                  Policy, coverage and renewal reminders
+                </p>
+              </div>
+              <span class="card-arrow" aria-hidden="true">→</span>
+            </article></a>
+          </li>
+
+<li>
+            <a href="Personality-and-care-empty.html" style="text-decoration:none;color:inherit;display:block;"><article class="m-section-card" style="border-style:dashed;opacity:.8;">
+              <div class="card-icon card-icon-m">icon</div>
+              <div class="card-body">
+                <div class="zone-label">Card entry point → Personality &amp; care</div>
+                <h3>Personality &amp; care</h3>
+                <p class="card-detail">
+                  <strong>Empty — tap to add</strong><br>
+                  Food, temperament, warnings, routines — what a sitter needs
+                </p>
+              </div>
+              <span class="card-arrow" aria-hidden="true">→</span>
+            </article></a>
+          </li>
+
+<li>
+            <a href="Vet-and-appointments-empty.html" style="text-decoration:none;color:inherit;display:block;"><article class="m-section-card" style="border-style:dashed;opacity:.8;">
+              <div class="card-icon card-icon-m">icon</div>
+              <div class="card-body">
+                <div class="zone-label">Card entry point → Vet &amp; appointments</div>
+                <h3>Vet &amp; appointments</h3>
+                <p class="card-detail">
+                  <strong>Empty — tap to add</strong><br>
+                  Your vet clinic and upcoming appointments
+                </p>
+              </div>
+              <span class="card-arrow" aria-hidden="true">→</span>
+            </article></a>
+          </li>
+
+<li>
+            <a href="Emergency-info-empty.html" style="text-decoration:none;color:inherit;display:block;"><article class="m-section-card" style="border-style:dashed;opacity:.8;">
+              <div class="card-icon card-icon-m">icon</div>
+              <div class="card-body">
+                <div class="zone-label">Card entry point → Emergency info &amp; authorisation</div>
+                <h3>Emergency info &amp; authorisation</h3>
+                <p class="card-detail">
+                  <strong>Empty — tap to add</strong><br>
+                  Emergency contact, vet, and what a carer may do
+                </p>
+              </div>
+              <span class="card-arrow" aria-hidden="true">→</span>
+            </article></a>
+          </li>
+
+        </ul>
+      </div>
+
+      <nav class="phone-nav" aria-label="Main navigation">
+        <a href="My-Pets.html" class="active">
+          <span class="nav-icon" aria-hidden="true"></span> Pets
+        </a>
+        <a href="Whats-due.html">
+          <span class="nav-icon" aria-hidden="true"></span> What's due
+        </a>
+        <a href="Share-a-pet.html">
+          <span class="nav-icon" aria-hidden="true"></span> Share
+        </a>
+      </nav>
+
+    </div>
+  </div>
+
+
+  <!-- ═══════════════════════════════════════════════════════
+       DESKTOP VIEW (full-width)
+       ═══════════════════════════════════════════════════════ -->
+
+  <div class="content-desktop view-desktop">
+
+    <div class="state-bar" aria-label="Screen states">
+      <a href="home-success.html">Success</a>
+      <a href="home-empty.html">Empty</a>
+      <a href="home-loading.html">Loading</a>
+      <a href="home-error.html">Error</a>
+    </div>
+
+    <div class="flow-step" style="text-align:left;padding-left:32px;">
+      <span class="zone-label">Desktop</span> &nbsp;
+      Main job · step 2 of 4 — <span>My Pets → ★ Pet dossier</span> → sections → Share
+    </div>
+
+    <nav class="top-nav" aria-label="Main navigation (desktop)">
+      <span class="nav-brand">PetPal</span>
+      <a href="My-Pets.html" class="active">Pets</a>
+      <a href="Whats-due.html">What's due</a>
+      <a href="Share-a-pet.html">Share</a>
+      <span class="nav-spacer"></span>
+      <a href="Set-up-a-pet.html"><button class="nav-action">Edit pet details</button></a>
+    </nav>
+
+    <div class="d-main">
+
+      <section class="d-pet-hero" aria-label="Pet identity">
+        <div class="zone-label">Pet identity · desktop hero</div>
+        <figure class="pet-photo pet-photo-d" aria-label="Pet photo placeholder">photo</figure>
+        <div class="pet-info">
+          <h1>Miso</h1>
+          <p class="pet-meta" style="font-size:15px;">Dog · Border Terrier · Female</p>
+          <p class="pet-chip" style="font-size:12px;">Microchip 276 098 106 412 345</p>
+        </div>
+        <div class="d-pet-actions">
+          <a href="Share-a-pet.html"><button class="btn-primary">Share Miso's info</button></a>
+          <a href="Set-up-a-pet.html"><button class="btn-secondary">Edit pet details</button></a>
+        </div>
+      </section>
+
+      <section class="d-toolbar" aria-label="Dossier toolbar">
+        <div class="zone-label">Counter</div>
+        <span class="count">1 of 6 sections filled</span>
+        <span class="status">· Updated 2 days ago</span>
+        <span class="spacer"></span>
+        <div class="zone-label">Search &amp; filter</div>
+        <input class="search-bar" type="search" placeholder="Search sections, records, documents…" aria-label="Search sections">
+      </section>
+
+            <ul class="d-section-grid" aria-label="Dossier sections">
+
+<li>
+          <a href="Health-and-jabs-firstrun.html" style="text-decoration:none;color:inherit;display:block;"><article class="d-section-card">
+            <div class="d-card-header">
+              <div class="card-icon card-icon-d">icon</div>
+              <h3>Health &amp; jabs</h3>
+              <span class="card-arrow" aria-hidden="true">→</span>
+            </div>
+            <p class="card-detail">
+                  <strong>2 records</strong> · Just now<br>
+                  Rabies (due 15 Mar 2027) · General check-up
+                </p>
+          </article></a>
+        </li>
+
+<li>
+          <a href="Documents-and-passport-empty.html" style="text-decoration:none;color:inherit;display:block;"><article class="d-section-card" style="border-style:dashed;opacity:.8;">
+            <div class="d-card-header">
+              <div class="card-icon card-icon-d">icon</div>
+              <h3>Documents &amp; passport</h3>
+              <span class="card-arrow" aria-hidden="true">→</span>
+            </div>
+            <p class="card-detail">
+                  <strong>Empty — tap to add</strong><br>
+                  EU pet passport, microchip cert, pedigree papers
+                </p>
+          </article></a>
+        </li>
+
+<li>
+          <a href="Insurance-empty.html" style="text-decoration:none;color:inherit;display:block;"><article class="d-section-card" style="border-style:dashed;opacity:.8;">
+            <div class="d-card-header">
+              <div class="card-icon card-icon-d">icon</div>
+              <h3>Insurance</h3>
+              <span class="card-arrow" aria-hidden="true">→</span>
+            </div>
+            <p class="card-detail">
+                  <strong>Empty — tap to add</strong><br>
+                  Policy, coverage and renewal reminders
+                </p>
+          </article></a>
+        </li>
+
+<li>
+          <a href="Personality-and-care-empty.html" style="text-decoration:none;color:inherit;display:block;"><article class="d-section-card" style="border-style:dashed;opacity:.8;">
+            <div class="d-card-header">
+              <div class="card-icon card-icon-d">icon</div>
+              <h3>Personality &amp; care</h3>
+              <span class="card-arrow" aria-hidden="true">→</span>
+            </div>
+            <p class="card-detail">
+                  <strong>Empty — tap to add</strong><br>
+                  Food, temperament, warnings, routines — what a sitter needs
+                </p>
+          </article></a>
+        </li>
+
+<li>
+          <a href="Vet-and-appointments-empty.html" style="text-decoration:none;color:inherit;display:block;"><article class="d-section-card" style="border-style:dashed;opacity:.8;">
+            <div class="d-card-header">
+              <div class="card-icon card-icon-d">icon</div>
+              <h3>Vet &amp; appointments</h3>
+              <span class="card-arrow" aria-hidden="true">→</span>
+            </div>
+            <p class="card-detail">
+                  <strong>Empty — tap to add</strong><br>
+                  Your vet clinic and upcoming appointments
+                </p>
+          </article></a>
+        </li>
+
+<li>
+          <a href="Emergency-info-empty.html" style="text-decoration:none;color:inherit;display:block;"><article class="d-section-card" style="border-style:dashed;opacity:.8;">
+            <div class="d-card-header">
+              <div class="card-icon card-icon-d">icon</div>
+              <h3>Emergency info &amp; authorisation</h3>
+              <span class="card-arrow" aria-hidden="true">→</span>
+            </div>
+            <p class="card-detail">
+                  <strong>Empty — tap to add</strong><br>
+                  Emergency contact, vet, and what a carer may do
+                </p>
+          </article></a>
+        </li>
+
+        </ul>
+    </div>
+
+    <footer class="d-footer">
+      Pet dossier · desktop adaptation · same content as mobile, layout expanded for wide screens
+    </footer>
+  </div>
+
+</div>
+
+<script>
+function setView(mode) {
+  document.body.classList.toggle('is-desktop', mode === 'desktop');
+  document.getElementById('btn-mobile').classList.toggle('active', mode === 'mobile');
+  document.getElementById('btn-desktop').classList.toggle('active', mode === 'desktop');
+  document.getElementById('btn-mobile').setAttribute('aria-pressed', mode === 'mobile');
+  document.getElementById('btn-desktop').setAttribute('aria-pressed', mode === 'desktop');
+}
+
+(function() {
+  var flows = {
+    owner: [
+      { file: 'My-Pets.html', tip: 'Tap on Miso to open her full pet dossier' },
+      { file: 'home-success.html', tip: 'Browse Miso\u2019s dossier overview. Tap any section card to explore' },
+      { file: 'Health-and-jabs.html', tip: 'Review vaccination records, conditions, and upcoming jabs' },
+      { file: 'Documents-and-passport.html', tip: 'Check EU pet passport and uploaded documents' },
+      { file: 'Personality-and-care.html', tip: 'Read care notes. Tap “+ Add” to create a new note' },
+      { file: 'Share-a-pet.html', tip: 'Set sharing scope and role, then create a link or show QR code' },
+      { file: 'Whats-due.html', tip: 'Check upcoming reminders — vaccinations, vet visits, renewals' }
+    ],
+    setup: [
+      { file: 'My-Pets-empty.html', tip: 'You have no pets yet. Tap \u201c+ Add your first pet\u201d to get started' },
+      { file: 'Set-up-a-pet.html', tip: 'Fill in your pet\u2019s details and add a photo, then tap \u201cSave pet\u201d' },
+      { file: 'home-new.html', tip: 'Your pet is created! Tap \u201c+ Add info\u201d and pick \u201cHealth & jabs\u201d' },
+      { file: 'Add-health-record.html', tip: 'Record type is pre-selected. Fill in the health record, then save' },
+      { file: 'Health-and-jabs-record1.html', tip: 'Your first health record is here. Tap \u201c+\u201d and choose \u201cAdd vaccine\u201d' },
+      { file: 'Add-record.html', tip: 'Fill in the vaccine \u2014 name, date, next due \u2014 then save' },
+      { file: 'Health-and-jabs-firstrun.html', tip: '1 vaccine + 1 health record saved. Tap \u201c\u2190 Dossier\u201d' },
+      { file: 'home-progress-1.html', tip: '1 of 6 sections filled. Tap \u201cDocuments & passport\u201d' },
+      { file: 'Documents-and-passport-empty.html', tip: 'No documents yet. Tap the CTA to add the passport' },
+      { file: 'Add-document.html', tip: 'Fill in the EU Pet Passport details, then save' },
+      { file: 'Documents-and-passport-firstrun.html', tip: 'Passport saved. Tap \u201c\u2190 Dossier\u201d' },
+      { file: 'home-progress-2.html', tip: '2 of 6 filled. Tap \u201cInsurance\u201d' },
+      { file: 'Insurance-empty.html', tip: 'No insurance yet. Tap the CTA to add your policy' },
+      { file: 'Add-insurance.html', tip: 'Fill in the policy and upload the PDF, then save' },
+      { file: 'Insurance-firstrun.html', tip: 'Policy saved. Tap \u201c\u2190 Dossier\u201d' },
+      { file: 'home-progress-3.html', tip: '3 of 6 filled. Tap \u201cPersonality & care\u201d' },
+      { file: 'Personality-and-care-empty.html', tip: 'Six empty notes. Add them one by one \u2014 start with food' },
+      { file: 'Add-care-note.html', tip: 'Category is pre-selected. Write the note, then save' },
+      { file: 'Personality-and-care-fill1.html', tip: '1 of 6 notes done. Keep going \u2014 add the next one' },
+      { file: 'Personality-and-care-fill2.html', tip: '2 of 6 notes done. Add the next one' },
+      { file: 'Personality-and-care-fill3.html', tip: '3 of 6 notes done. Add the next one' },
+      { file: 'Personality-and-care-fill4.html', tip: '4 of 6 notes done. Add the next one' },
+      { file: 'Personality-and-care-fill5.html', tip: '5 of 6 notes done. One left' },
+      { file: 'Personality-and-care-fill6.html', tip: 'All 6 notes done! Tap \u201c\u2190 Dossier\u201d' },
+      { file: 'home-progress-4.html', tip: '4 of 6 filled. Tap \u201cVet & appointments\u201d' },
+      { file: 'Vet-and-appointments-empty.html', tip: 'No vet yet. Tap \u201cAdd vet clinic\u201d' },
+      { file: 'Add-vet-clinic.html', tip: 'Fill in the clinic \u2014 name, doctor, phone \u2014 then save' },
+      { file: 'Vet-and-appointments-clinic.html', tip: 'Clinic saved. Now tap \u201c+ Add appointment\u201d' },
+      { file: 'Add-vet-record.html', tip: 'Fill in the appointment details, then save' },
+      { file: 'Vet-and-appointments-firstrun.html', tip: 'Clinic + 1 upcoming appointment. Tap \u201c\u2190 Dossier\u201d' },
+      { file: 'home-progress-5.html', tip: '5 of 6 filled. Tap \u201cEmergency info & authorisation\u201d' },
+      { file: 'Emergency-info-empty.html', tip: 'Three things to set up. Start with the emergency contact' },
+      { file: 'Add-emergency-contact.html', tip: 'Fill in the contact \u2014 name, phone, role \u2014 then save' },
+      { file: 'Emergency-info-fill1.html', tip: '1 of 3 done. Now add the vet clinic' },
+      { file: 'Emergency-info-fill2.html', tip: '2 of 3 done. Add the authorization & allowed meds' },
+      { file: 'Emergency-auth-setup.html', tip: 'Set the spend cap and allowed meds, then save' },
+      { file: 'Emergency-info-firstrun.html', tip: 'Emergency info complete! Tap \u201c\u2190 Dossier\u201d' },
+      { file: 'home-progress-6.html', tip: 'All 6 sections filled \u2014 the dossier is complete! Now share it' },
+      { file: 'Share-a-pet.html', tip: 'Choose scope and role, then create the share link' },
+      { file: 'Shared-pet-view.html', tip: 'Done! This is what your sitter sees' }
+    ],
+    sitter: [
+      { file: 'Shared-pet-view.html', tip: 'You received a shared pet link. Review the pet\u2019s profile and care info' },
+      { file: 'Emergency-allowed.html', tip: 'Check emergency contacts, vet details, and what you\u2019re allowed to do' }
+    ]
+  };
+
+  var params = new URLSearchParams(window.location.search);
+  var flowName = params.get('flow');
+  if (!flowName || !flows[flowName]) return;
+
+  var steps = flows[flowName];
+  var currentFile = window.location.pathname.split('/').pop().split('?')[0];
+  var idx = steps.findIndex(function(s) { return s.file === currentFile; });
+
+  function tagLinks() {
+    document.querySelectorAll('.phone a, .desktop-view a, .content-mobile a, .content-desktop a').forEach(function(a) {
+      var href = a.getAttribute('href');
+      if (!href || href.startsWith('#') || href.startsWith('http') || href.includes('?flow=')) return;
+      if (href.endsWith('.html')) a.setAttribute('href', href + '?flow=' + flowName);
+      else if (href.indexOf('.html?') !== -1) a.setAttribute('href', href + '&flow=' + flowName);
+    });
+  }
+
+  tagLinks();
+
+  if (idx === -1) {
+    var base = currentFile.replace(/-loading\.html$/, '.html').replace(/-error\.html$/, '.html');
+    var loadingOf = steps.findIndex(function(s) { return s.file === base; });
+    if (loadingOf !== -1) {
+      var next = loadingOf < steps.length - 1 ? steps[loadingOf + 1].file : steps[loadingOf].file;
+      setTimeout(function() { window.location.href = next + '?flow=' + flowName; }, 1200);
+    }
+    return;
+  }
+
+  var step = steps[idx];
+  var prevHref = idx > 0 ? steps[idx - 1].file + '?flow=' + flowName : null;
+  var nextHref = idx < steps.length - 1 ? steps[idx + 1].file + '?flow=' + flowName : null;
+
+  var bar = document.createElement('div');
+  bar.className = 'flow-tooltip visible';
+  bar.innerHTML =
+    '<span class="ft-step">' + (idx + 1) + '/' + steps.length + '</span>' +
+    '<span class="ft-text">' + step.tip + '</span>' +
+    '<span class="ft-nav">' +
+      '<a href="' + (prevHref || '#') + '" class="' + (!prevHref ? 'ft-disabled' : '') + '">&lsaquo;</a>' +
+      '<a href="' + (nextHref || '#') + '" class="' + (!nextHref ? 'ft-disabled' : '') + '">&rsaquo;</a>' +
+    '</span>' +
+    '<button class="ft-close" onclick="this.parentElement.remove();history.replaceState(null,\'\',location.pathname)">&times;</button>';
+
+  var phone = document.querySelector('.phone');
+  if (phone) phone.insertBefore(bar, phone.firstChild);
+
+  var dv = document.querySelector('.desktop-view');
+  if (dv) {
+    var bar2 = bar.cloneNode(true);
+    bar2.querySelector('.ft-close').onclick = function() { bar.remove(); bar2.remove(); history.replaceState(null, '', location.pathname); };
+    dv.insertBefore(bar2, dv.firstChild);
+  }
+
+})();
+</script>
+
+</body>
+</html>

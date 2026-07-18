@@ -21,7 +21,7 @@ Pick one from the sidebar, or add `?flow=…` to any URL. In flow mode, in-page 
 | Flow (`?flow=`) | Persona | Path |
 |---|---|---|
 | **`owner`** — Pet owner (Ana) | ⭐ Organised Owner | My Pets → Miso's dossier → Health & jabs → Documents → Personality & care → Share a pet → What's due |
-| **`setup`** — New pet setup (full journey) | ⭐ Organised Owner, first run | Empty state → Set up a pet → *(Add photo)* → new-pet dossier → **+ Add info** → Health, Documents, Insurance, Personality, Vet, Emergency → Share → Sitter view *(13 steps)* |
+| **`setup`** — New pet setup (full journey) | ⭐ Organised Owner, first run | Empty state → Set up a pet → new-pet dossier → **+ Add info** → each section: *empty → add form → saving → filled state* → **progressive dossier (1/6 … 6/6)** → Share → Sitter view *(40 steps)* |
 | **`sitter`** — Pet sitter (recipient) | ◦ Receiving Caregiver | Shared pet view → Emergency & what I'm allowed to do |
 
 ---
@@ -73,7 +73,7 @@ Each base screen also has **Empty / Loading / Error** variants (`*-empty.html`, 
 
 - **Context-carried pre-selection.** Add/Edit forms and detail pages read a URL param and pre-fill accordingly — `?type=` (record type), `?cat=` / `?note=` (care-note category / which note), `?doc=` (which document), `?rec=` (which record), `?person=` (which grant). Clicking "Edit" on *Annual checkup* opens *Annual checkup*, not a blank form.
 - **One add affordance.** A floating **+** action button on every dossier section (expands on Health & jabs) — replacing the old, inconsistent header "Add/Upload/Edit" text buttons.
-- **Uniform, state-truthful setup (23 steps).** Every section walks the same path — **empty → its own add form → one-entry first-run view** — so a brand-new pet never sees the fully-populated demo. Each section has a dedicated add form (`Add-record`, `Add-document`, `Add-insurance`, `Add-care-note`, `Add-vet-record`, `Emergency-auth-setup`) so flow navigation stays unambiguous, a shared `Section-saving.html?next=…` animates the save, and each lands on its `*-firstrun.html` one-entry screen.
+- **Uniform, state-truthful setup (40 steps).** Every section walks the same path — **empty → its own add form → one-entry first-run view** — so a brand-new pet never sees the fully-populated demo. Each section has a dedicated add form (`Add-record`, `Add-document`, `Add-insurance`, `Add-care-note`, `Add-vet-record`, `Emergency-auth-setup`) so flow navigation stays unambiguous, a shared `Section-saving.html?next=…` animates the save, and each lands on its `*-firstrun.html` one-entry screen.
 - **State variants** for every screen the flows touch (Empty / Loading / Error), each with a recovery path (retry / back-to-dossier / show owner contact).
 - **Responsive.** One file renders both mobile and desktop; toggle in the sidebar.
 

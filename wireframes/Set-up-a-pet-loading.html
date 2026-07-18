@@ -341,7 +341,7 @@
           <li>
             <a href="My-Pets-empty.html?flow=setup" class="persona-flow">
               <strong>New pet setup (full journey)</strong>
-              <span class="flow-steps">23 screens &middot; empty &rarr; add &rarr; one-entry per section</span>
+              <span class="flow-steps">40 screens &middot; every state truthful, section by section</span>
             </a>
             <details class="flow-screens">
               <summary>Screens</summary>
@@ -407,7 +407,7 @@
               <li><a href="Set-up-a-pet-error.html">error</a></li>
             </ul>
           </li>
-          <li><a href="Upload-photo.html">Upload photo</a></li><li><a href="Add-document.html">Add document</a></li><li><a href="Add-insurance.html">Add insurance</a></li><li><a href="Add-vet-record.html">Add vet record</a></li><li><a href="Section-saving.html">Saving…</a></li>
+          <li><a href="Upload-photo.html">Upload photo</a></li><li><a href="Add-document.html">Add document</a></li><li><a href="Add-insurance.html">Add insurance</a></li><li><a href="Add-vet-record.html">Add vet record</a></li><li><a href="Add-vet-clinic.html">Add vet clinic</a></li><li><a href="Add-emergency-contact.html">Add emergency contact</a></li><li><a href="Section-saving.html">Saving…</a></li>
         </ul>
       </li>
       <li><div class="nav-divider"></div></li>
@@ -419,6 +419,7 @@
               <li><a href="home-success-single.html">success · 1 pet</a></li>
               <li><a href="home-empty.html">empty</a></li>
               <li><a href="home-new.html">new pet</a></li>
+              <li><a href="home-progress-1.html">setup 1/6</a></li><li><a href="home-progress-2.html">setup 2/6</a></li><li><a href="home-progress-3.html">setup 3/6</a></li><li><a href="home-progress-4.html">setup 4/6</a></li><li><a href="home-progress-5.html">setup 5/6</a></li><li><a href="home-progress-6.html">setup 6/6</a></li>
               <li><a href="home-loading.html">loading</a></li>
               <li><a href="home-error.html">error</a></li>
             </ul>
@@ -430,6 +431,7 @@
               <li><a href="Health-and-jabs-loading.html">loading</a></li>
               <li><a href="Health-and-jabs-error.html">error</a></li>
               <li><a href="Health-and-jabs-firstrun.html">first record</a></li>
+              <li><a href="Health-and-jabs-record1.html">1 health record</a></li>
             </ul>
           </li>
           <li><a href="Documents-and-passport.html">Documents &amp; passport</a>
@@ -457,6 +459,7 @@
               <li><a href="Personality-and-care-loading.html">loading</a></li>
               <li><a href="Personality-and-care-error.html">error</a></li>
               <li><a href="Personality-and-care-firstrun.html">first note</a></li>
+              <li><a href="Personality-and-care-fill1.html">notes 1/6</a></li><li><a href="Personality-and-care-fill2.html">notes 2/6</a></li><li><a href="Personality-and-care-fill3.html">notes 3/6</a></li><li><a href="Personality-and-care-fill4.html">notes 4/6</a></li><li><a href="Personality-and-care-fill5.html">notes 5/6</a></li><li><a href="Personality-and-care-fill6.html">notes 6/6</a></li>
             </ul>
           </li>
           <li><a href="Vet-and-appointments.html">Vet &amp; appointments</a>
@@ -466,6 +469,7 @@
               <li><a href="Vet-and-appointments-loading.html">loading</a></li>
               <li><a href="Vet-and-appointments-error.html">error</a></li>
               <li><a href="Vet-and-appointments-firstrun.html">first appointment</a></li>
+              <li><a href="Vet-and-appointments-clinic.html">clinic only</a></li>
             </ul>
           </li>
           <li><a href="Emergency-info.html">Emergency info</a>
@@ -475,6 +479,7 @@
               <li><a href="Emergency-info-loading.html">loading</a></li>
               <li><a href="Emergency-info-error.html">error</a></li>
               <li><a href="Emergency-info-firstrun.html">newly set up</a></li>
+              <li><a href="Emergency-info-fill1.html">setup 1/3</a></li><li><a href="Emergency-info-fill2.html">setup 2/3</a></li>
             </ul>
           </li>
         </ul>
@@ -680,29 +685,46 @@ function setView(mode) {
       { file: 'Whats-due.html', tip: 'Check upcoming reminders \u2014 vaccinations, vet visits, renewals' }
     ],
     setup: [
-      { file: 'My-Pets-empty.html', tip: 'You have no pets yet. Tap “+ Add your first pet” to get started' },
-      { file: 'Set-up-a-pet.html', tip: 'Fill in your pet’s details — name, breed, sex, microchip number' },
-      { file: 'home-new.html', tip: 'Nice! Tap “+ Add info” to begin adding notes' },
-      { file: 'Health-and-jabs-empty.html', tip: 'No records yet. Tap “Add” to log your pet’s first vaccine' },
-      { file: 'Add-record.html', tip: 'Add the first vaccine — name, date, next due — then save' },
-      { file: 'Health-and-jabs-firstrun.html', tip: 'Your first vaccine is saved — just this one so far. Add more, or continue' },
-      { file: 'Documents-and-passport-empty.html', tip: 'No documents yet. Tap “Add” to upload the first one' },
-      { file: 'Add-document.html', tip: 'Add a document — EU pet passport, certificate or policy — then save' },
-      { file: 'Documents-and-passport-firstrun.html', tip: 'Your first document is saved — just this one so far' },
-      { file: 'Insurance-empty.html', tip: 'No insurance yet. Tap “Add” to enter your policy' },
-      { file: 'Add-insurance.html', tip: 'Add the insurer, policy number and renewal date, then save' },
-      { file: 'Insurance-firstrun.html', tip: 'Your first policy is saved — renewal reminders appear in What’s due' },
-      { file: 'Personality-and-care-empty.html', tip: 'No care notes yet. Tap “+ Add” to write the first one' },
-      { file: 'Add-care-note.html', tip: 'Pick a category, write a title and details, then save' },
-      { file: 'Personality-and-care-firstrun.html', tip: 'Your first care note is saved — just this one so far' },
-      { file: 'Vet-and-appointments-empty.html', tip: 'No appointments yet. Tap “Add” to add your vet and first visit' },
-      { file: 'Add-vet-record.html', tip: 'Add your vet clinic and the appointment date, then save' },
-      { file: 'Vet-and-appointments-firstrun.html', tip: 'Vet clinic and your first appointment are saved' },
-      { file: 'Emergency-info-empty.html', tip: 'Nothing set up yet. Tap to set up emergency authorization' },
-      { file: 'Emergency-auth-setup.html', tip: 'Set the vet, emergency contact and spend limit, then save' },
-      { file: 'Emergency-info-firstrun.html', tip: 'Emergency contact and vet saved — meds and conditions fill in from Health' },
-      { file: 'Share-a-pet.html', tip: 'Choose what to share, pick the sitter role, and create a link' },
-      { file: 'Shared-pet-view.html', tip: 'Done! This is what your pet sitter sees when they open the link' }
+      { file: 'My-Pets-empty.html', tip: 'You have no pets yet. Tap \u201c+ Add your first pet\u201d to get started' },
+      { file: 'Set-up-a-pet.html', tip: 'Fill in your pet\u2019s details and add a photo, then tap \u201cSave pet\u201d' },
+      { file: 'home-new.html', tip: 'Your pet is created! Tap \u201c+ Add info\u201d and pick \u201cHealth & jabs\u201d' },
+      { file: 'Add-health-record.html', tip: 'Record type is pre-selected. Fill in the health record, then save' },
+      { file: 'Health-and-jabs-record1.html', tip: 'Your first health record is here. Tap \u201c+\u201d and choose \u201cAdd vaccine\u201d' },
+      { file: 'Add-record.html', tip: 'Fill in the vaccine \u2014 name, date, next due \u2014 then save' },
+      { file: 'Health-and-jabs-firstrun.html', tip: '1 vaccine + 1 health record saved. Tap \u201c\u2190 Dossier\u201d' },
+      { file: 'home-progress-1.html', tip: '1 of 6 sections filled. Tap \u201cDocuments & passport\u201d' },
+      { file: 'Documents-and-passport-empty.html', tip: 'No documents yet. Tap the CTA to add the passport' },
+      { file: 'Add-document.html', tip: 'Fill in the EU Pet Passport details, then save' },
+      { file: 'Documents-and-passport-firstrun.html', tip: 'Passport saved. Tap \u201c\u2190 Dossier\u201d' },
+      { file: 'home-progress-2.html', tip: '2 of 6 filled. Tap \u201cInsurance\u201d' },
+      { file: 'Insurance-empty.html', tip: 'No insurance yet. Tap the CTA to add your policy' },
+      { file: 'Add-insurance.html', tip: 'Fill in the policy and upload the PDF, then save' },
+      { file: 'Insurance-firstrun.html', tip: 'Policy saved. Tap \u201c\u2190 Dossier\u201d' },
+      { file: 'home-progress-3.html', tip: '3 of 6 filled. Tap \u201cPersonality & care\u201d' },
+      { file: 'Personality-and-care-empty.html', tip: 'Six empty notes. Add them one by one \u2014 start with food' },
+      { file: 'Add-care-note.html', tip: 'Category is pre-selected. Write the note, then save' },
+      { file: 'Personality-and-care-fill1.html', tip: '1 of 6 notes done. Keep going \u2014 add the next one' },
+      { file: 'Personality-and-care-fill2.html', tip: '2 of 6 notes done. Add the next one' },
+      { file: 'Personality-and-care-fill3.html', tip: '3 of 6 notes done. Add the next one' },
+      { file: 'Personality-and-care-fill4.html', tip: '4 of 6 notes done. Add the next one' },
+      { file: 'Personality-and-care-fill5.html', tip: '5 of 6 notes done. One left' },
+      { file: 'Personality-and-care-fill6.html', tip: 'All 6 notes done! Tap \u201c\u2190 Dossier\u201d' },
+      { file: 'home-progress-4.html', tip: '4 of 6 filled. Tap \u201cVet & appointments\u201d' },
+      { file: 'Vet-and-appointments-empty.html', tip: 'No vet yet. Tap \u201cAdd vet clinic\u201d' },
+      { file: 'Add-vet-clinic.html', tip: 'Fill in the clinic \u2014 name, doctor, phone \u2014 then save' },
+      { file: 'Vet-and-appointments-clinic.html', tip: 'Clinic saved. Now tap \u201c+ Add appointment\u201d' },
+      { file: 'Add-vet-record.html', tip: 'Fill in the appointment details, then save' },
+      { file: 'Vet-and-appointments-firstrun.html', tip: 'Clinic + 1 upcoming appointment. Tap \u201c\u2190 Dossier\u201d' },
+      { file: 'home-progress-5.html', tip: '5 of 6 filled. Tap \u201cEmergency info & authorisation\u201d' },
+      { file: 'Emergency-info-empty.html', tip: 'Three things to set up. Start with the emergency contact' },
+      { file: 'Add-emergency-contact.html', tip: 'Fill in the contact \u2014 name, phone, role \u2014 then save' },
+      { file: 'Emergency-info-fill1.html', tip: '1 of 3 done. Now add the vet clinic' },
+      { file: 'Emergency-info-fill2.html', tip: '2 of 3 done. Add the authorization & allowed meds' },
+      { file: 'Emergency-auth-setup.html', tip: 'Set the spend cap and allowed meds, then save' },
+      { file: 'Emergency-info-firstrun.html', tip: 'Emergency info complete! Tap \u201c\u2190 Dossier\u201d' },
+      { file: 'home-progress-6.html', tip: 'All 6 sections filled \u2014 the dossier is complete! Now share it' },
+      { file: 'Share-a-pet.html', tip: 'Choose scope and role, then create the share link' },
+      { file: 'Shared-pet-view.html', tip: 'Done! This is what your sitter sees' }
     ],
     sitter: [
       { file: 'Shared-pet-view.html', tip: 'You received a shared pet link. Review the pet\u2019s profile and care info' },
