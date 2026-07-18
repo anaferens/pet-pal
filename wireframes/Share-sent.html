@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Personality & care · 2 of 6 notes — PetPal wireframe</title>
+<title>Shared! — PetPal wireframe</title>
 <style>
   :root {
     --wf-bg:         #ffffff;
@@ -124,8 +124,7 @@
 
   /* MOBILE LAYOUT */
   .content-mobile { flex: 1; display: flex; justify-content: center; padding: 24px; min-height: 100vh; }
-  .phone { position: relative; width: 375px; min-height: 812px; background: var(--wf-bg); border: 1.5px solid var(--wf-border); border-radius: 12px; display: flex; flex-direction: column; overflow: hidden; box-shadow: 0 1px 4px rgba(0,0,0,0.06); }
-  .fab { position: absolute; right: 16px; bottom: 76px; width: 56px; height: 56px; border-radius: 50%; background: var(--wf-btn); color: var(--wf-btn-text); font-size: 28px; line-height: 1; border: none; cursor: pointer; display: flex; align-items: center; justify-content: center; text-decoration: none; box-shadow: 0 4px 14px rgba(0,0,0,0.28); z-index: 10; }
+  .phone { width: 375px; min-height: 812px; background: var(--wf-bg); border: 1.5px solid var(--wf-border); border-radius: 12px; display: flex; flex-direction: column; overflow: hidden; box-shadow: 0 1px 4px rgba(0,0,0,0.06); }
   .m-header { display: flex; align-items: center; justify-content: space-between; padding: 12px 16px; border-bottom: 1px solid var(--wf-border); min-height: 48px; }
   .m-header .back { font-size: 14px; color: var(--wf-text); background: none; border: none; cursor: pointer; }
   .m-header h1 { font-size: 17px; font-weight: 600; }
@@ -410,10 +409,10 @@
 
 <li><span class="nav-section">My Pets</span>
         <ul>
-          <li><a href="My-Pets.html">My Pets</a>
+          <li><a href="My-Pets.html" class="active">My Pets</a>
             <ul class="state-list">
               <li><a href="My-Pets.html">success</a></li>
-              <li><a href="My-Pets-empty.html">empty</a></li>
+              <li><a href="My-Pets-empty.html" class="active">empty</a></li>
               <li><a href="My-Pets-loading.html">loading</a></li>
               <li><a href="My-Pets-error.html">error</a></li>
             </ul>
@@ -470,9 +469,9 @@
               <li><a href="Insurance-firstrun.html">first policy</a></li>
             </ul>
           </li>
-          <li><a href="Personality-and-care.html" class="active">Personality &amp; care</a>
+          <li><a href="Personality-and-care.html">Personality &amp; care</a>
             <ul class="state-list">
-              <li><a href="Personality-and-care.html" class="active">success</a></li>
+              <li><a href="Personality-and-care.html">success</a></li>
               <li><a href="Personality-and-care-empty.html">empty</a></li>
               <li><a href="Personality-and-care-loading.html">loading</a></li>
               <li><a href="Personality-and-care-error.html">error</a></li>
@@ -546,8 +545,6 @@
               <li><a href="Share-a-pet.html">success</a></li>
               <li><a href="Share-a-pet-loading.html">loading</a></li>
               <li><a href="Share-a-pet-error.html">error</a></li>
-              <li><a href="Share-success.html">link ready (success)</a></li>
-              <li><a href="Share-sent.html">shared! (confirmation)</a></li>
             </ul>
           </li>
           <li><a href="Who-has-access.html">Who has access</a>
@@ -627,80 +624,40 @@
     <div class="phone">
 
       <div class="state-bar" aria-label="Screen states">
-        <a href="Personality-and-care-fill2.html" class="current">Success</a>
-        <a href="Personality-and-care-empty.html">Empty</a>
-        <a href="Personality-and-care-loading.html">Loading</a>
-        <a href="Personality-and-care-error.html">Error</a>
+        <a href="Share-sent.html" class="current">Success</a>
+        <a href="Share-a-pet-empty.html">Empty</a>
+        <a href="Share-a-pet-loading.html">Loading</a>
+        <a href="Share-a-pet-error.html">Error</a>
       </div>
 
       <div class="flow-step">
-        <span class="zone-label">R2</span> R2 · <span>Pet dossier → ★ Personality & care</span>
+        <span class="zone-label">S2</span> S2 · <span>Share a pet → ★ Link ready</span> → handoff sent
       </div>
 
       <header class="m-header">
-        <a href="home-progress-3.html" style="text-decoration:none;"><button class="back" aria-label="Back">← Dossier</button></a>
-        <h1>Personality & care</h1>
-        <span style="width:60px;" aria-hidden="true"></span>
+        <span></span>
+        <h1>Shared!</h1>
+        <span></span>
       </header>
 
       <div class="m-main">
 
-        <section class="m-pet-identity" aria-label="Pet identity">
-          <figure class="pet-photo pet-photo-s" aria-label="Pet photo placeholder">photo</figure>
-          <div class="pet-info">
-            <h2 style="font-size:15px;font-weight:700;">Miso</h2>
-            <p class="pet-meta" style="font-size:12px;">Dog · Border Terrier · Female</p>
-          </div>
+        <section class="empty-state" aria-label="Shared confirmation">
+          <figure class="empty-illustration" aria-label="Illustration placeholder">cute illustration<br>(Miso with friends)</figure>
+          <h2 class="empty-headline">Your pet's info was shared! 🎉</h2>
+          <p class="empty-body">Now more people know about your Miso — and can care for her exactly the way she needs.</p>
+          <a href="Who-has-access.html"><button class="btn-primary empty-cta" style="width:100%;max-width:300px;">Got it</button></a>
         </section>
-
-        <p style="padding:10px 16px;font-size:11px;color:var(--wf-muted);background:var(--wf-surface);border-bottom:1px solid var(--wf-border);">This is what your sitter will see in the shared view.</p>
-
-        <div class="personality-section">
-          <div style="display:flex;justify-content:space-between;align-items:baseline;"><h3>Favourite food &amp; treats</h3><a href="Edit-care-note.html?note=food" style="font-size:12px;color:var(--wf-muted);">Edit</a></div>
-          <p>Royal Canin Maxi Adult, 350 g twice daily (morning + evening). Loves dried chicken strips as training treats. No rawhide — causes stomach upset.</p>
-        </div>
-
-        <div class="personality-section">
-          <div style="display:flex;justify-content:space-between;align-items:baseline;"><h3>Likes &amp; temperament</h3><a href="Edit-care-note.html?note=likes" style="font-size:12px;color:var(--wf-muted);">Edit</a></div>
-          <p>Calm and affectionate. Loves belly rubs and long walks in the forest. Enjoys meeting other dogs on leash. Sleeps on the sofa — allowed.</p>
-        </div>
-
-        <div class="personality-section" style="border:1.5px dashed var(--wf-border);border-radius:8px;margin:10px 16px;padding:12px 14px;">
-          <div style="display:flex;justify-content:space-between;align-items:baseline;"><h3 style="color:var(--wf-muted);">Not friendly with</h3><a href="Add-care-note.html?cat=warning&next=Personality-and-care-fill3.html" style="font-size:12px;font-weight:600;">+ Add</a></div>
-          <p style="color:var(--wf-muted);">Animals or situations to avoid — highlighted for the sitter</p>
-        </div>
-
-        <div class="personality-section" style="border:1.5px dashed var(--wf-border);border-radius:8px;margin:10px 16px;padding:12px 14px;">
-          <div style="display:flex;justify-content:space-between;align-items:baseline;"><h3 style="color:var(--wf-muted);">Behaviour notes</h3><a href="Add-care-note.html?cat=behaviour&next=Personality-and-care-fill3.html" style="font-size:12px;font-weight:600;">+ Add</a></div>
-          <p style="color:var(--wf-muted);">Habits, quirks, commands she knows, alone-time limits</p>
-        </div>
-
-        <div class="personality-section" style="border:1.5px dashed var(--wf-border);border-radius:8px;margin:10px 16px;padding:12px 14px;">
-          <div style="display:flex;justify-content:space-between;align-items:baseline;"><h3 style="color:var(--wf-muted);">Walking &amp; routines</h3><a href="Add-care-note.html?cat=walking&next=Personality-and-care-fill3.html" style="font-size:12px;font-weight:600;">+ Add</a></div>
-          <p style="color:var(--wf-muted);">Walk times, routes, leash rules</p>
-        </div>
-
-        <div class="personality-section" style="border:1.5px dashed var(--wf-border);border-radius:8px;margin:10px 16px;padding:12px 14px;">
-          <div style="display:flex;justify-content:space-between;align-items:baseline;"><h3 style="color:var(--wf-muted);">Special requirements</h3><a href="Add-care-note.html?cat=special&next=Personality-and-care-fill3.html" style="font-size:12px;font-weight:600;">+ Add</a></div>
-          <p style="color:var(--wf-muted);">Meds with meals, grooming, anything non-obvious</p>
-        </div>
-
-        <div style="padding:16px;display:flex;flex-direction:column;gap:10px;align-items:center;">
-          <a href="Add-care-note.html?cat=warning&next=Personality-and-care-fill3.html" style="width:100%;"><button class="btn-primary" style="width:100%;font-size:13px;">+ Add another note</button></a>
-          <button class="btn-secondary" style="width:100%;font-size:13px;" onclick="window.location.href='Shared-pet-view.html'+window.location.search">Preview as sitter</button>
-        </div>
       </div>
 
-      <a href="Add-care-note.html" class="fab" aria-label="Add">+</a>
-
       <nav class="phone-nav" aria-label="Main navigation">
-        <a href="My-Pets.html" class="active">
+        <a href="My-Pets.html">
           <span class="nav-icon" aria-hidden="true"></span> Pets
         </a>
         <a href="Whats-due.html">
           <span class="nav-icon" aria-hidden="true"></span> What's due
         </a>
-        <a href="Share-a-pet.html">
+        <a href="Share-a-pet.html" class="active">
           <span class="nav-icon" aria-hidden="true"></span> Share
         </a>
       </nav>
@@ -711,69 +668,31 @@
   <div class="content-desktop view-desktop">
 
       <div class="state-bar" aria-label="Screen states">
-        <a href="Personality-and-care-fill2.html" class="current">Success</a>
-        <a href="Personality-and-care-empty.html">Empty</a>
-        <a href="Personality-and-care-loading.html">Loading</a>
-        <a href="Personality-and-care-error.html">Error</a>
+        <a href="Share-sent.html" class="current">Success</a>
+        <a href="Share-a-pet-empty.html">Empty</a>
+        <a href="Share-a-pet-loading.html">Loading</a>
+        <a href="Share-a-pet-error.html">Error</a>
       </div>
 
     <div class="flow-step" style="text-align:left;padding-left:32px;">
-      R2 · <span>Pet dossier → ★ Personality & care</span>
+      S2 · <span>Share a pet → ★ Link ready</span> → handoff sent
     </div>
 
     <nav class="top-nav" aria-label="Main navigation (desktop)">
       <span class="nav-brand">PetPal</span>
-      <a href="My-Pets.html" class="active">Pets</a>
+      <a href="My-Pets.html">Pets</a>
       <a href="Whats-due.html">What's due</a>
-      <a href="Share-a-pet.html">Share</a>
+      <a href="Share-a-pet.html" class="active">Share</a>
     </nav>
 
     <div class="d-main">
 
-        <section class="m-pet-identity" aria-label="Pet identity">
-          <figure class="pet-photo pet-photo-s" aria-label="Pet photo placeholder">photo</figure>
-          <div class="pet-info">
-            <h2 style="font-size:15px;font-weight:700;">Miso</h2>
-            <p class="pet-meta" style="font-size:12px;">Dog · Border Terrier · Female</p>
-          </div>
+        <section class="empty-state" aria-label="Shared confirmation">
+          <figure class="empty-illustration" aria-label="Illustration placeholder">cute illustration<br>(Miso with friends)</figure>
+          <h2 class="empty-headline">Your pet's info was shared! 🎉</h2>
+          <p class="empty-body">Now more people know about your Miso — and can care for her exactly the way she needs.</p>
+          <a href="Who-has-access.html"><button class="btn-primary empty-cta" style="width:100%;max-width:300px;">Got it</button></a>
         </section>
-
-        <p style="padding:10px 16px;font-size:11px;color:var(--wf-muted);background:var(--wf-surface);border-bottom:1px solid var(--wf-border);">This is what your sitter will see in the shared view.</p>
-
-        <div class="personality-section">
-          <div style="display:flex;justify-content:space-between;align-items:baseline;"><h3>Favourite food &amp; treats</h3><a href="Edit-care-note.html?note=food" style="font-size:12px;color:var(--wf-muted);">Edit</a></div>
-          <p>Royal Canin Maxi Adult, 350 g twice daily (morning + evening). Loves dried chicken strips as training treats. No rawhide — causes stomach upset.</p>
-        </div>
-
-        <div class="personality-section">
-          <div style="display:flex;justify-content:space-between;align-items:baseline;"><h3>Likes &amp; temperament</h3><a href="Edit-care-note.html?note=likes" style="font-size:12px;color:var(--wf-muted);">Edit</a></div>
-          <p>Calm and affectionate. Loves belly rubs and long walks in the forest. Enjoys meeting other dogs on leash. Sleeps on the sofa — allowed.</p>
-        </div>
-
-        <div class="personality-section" style="border:1.5px dashed var(--wf-border);border-radius:8px;margin:10px 16px;padding:12px 14px;">
-          <div style="display:flex;justify-content:space-between;align-items:baseline;"><h3 style="color:var(--wf-muted);">Not friendly with</h3><a href="Add-care-note.html?cat=warning&next=Personality-and-care-fill3.html" style="font-size:12px;font-weight:600;">+ Add</a></div>
-          <p style="color:var(--wf-muted);">Animals or situations to avoid — highlighted for the sitter</p>
-        </div>
-
-        <div class="personality-section" style="border:1.5px dashed var(--wf-border);border-radius:8px;margin:10px 16px;padding:12px 14px;">
-          <div style="display:flex;justify-content:space-between;align-items:baseline;"><h3 style="color:var(--wf-muted);">Behaviour notes</h3><a href="Add-care-note.html?cat=behaviour&next=Personality-and-care-fill3.html" style="font-size:12px;font-weight:600;">+ Add</a></div>
-          <p style="color:var(--wf-muted);">Habits, quirks, commands she knows, alone-time limits</p>
-        </div>
-
-        <div class="personality-section" style="border:1.5px dashed var(--wf-border);border-radius:8px;margin:10px 16px;padding:12px 14px;">
-          <div style="display:flex;justify-content:space-between;align-items:baseline;"><h3 style="color:var(--wf-muted);">Walking &amp; routines</h3><a href="Add-care-note.html?cat=walking&next=Personality-and-care-fill3.html" style="font-size:12px;font-weight:600;">+ Add</a></div>
-          <p style="color:var(--wf-muted);">Walk times, routes, leash rules</p>
-        </div>
-
-        <div class="personality-section" style="border:1.5px dashed var(--wf-border);border-radius:8px;margin:10px 16px;padding:12px 14px;">
-          <div style="display:flex;justify-content:space-between;align-items:baseline;"><h3 style="color:var(--wf-muted);">Special requirements</h3><a href="Add-care-note.html?cat=special&next=Personality-and-care-fill3.html" style="font-size:12px;font-weight:600;">+ Add</a></div>
-          <p style="color:var(--wf-muted);">Meds with meals, grooming, anything non-obvious</p>
-        </div>
-
-        <div style="padding:16px;display:flex;flex-direction:column;gap:10px;align-items:center;">
-          <a href="Add-care-note.html?cat=warning&next=Personality-and-care-fill3.html" style="width:100%;"><button class="btn-primary" style="width:100%;font-size:13px;">+ Add another note</button></a>
-          <button class="btn-secondary" style="width:100%;font-size:13px;" onclick="window.location.href='Shared-pet-view.html'+window.location.search">Preview as sitter</button>
-        </div>
     </div>
   </div>
 
