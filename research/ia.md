@@ -1,6 +1,6 @@
 # PetPal — Information Architecture (unified navigation)
 
-One tree for the whole product, consolidating **every page** from [sitemap.md](sitemap.md) and [flows.md](flows.md). Each node carries its job(s) ([jtbd.md](jtbd.md)). Reflects the post-[critique](sitemap-critique.md) structure (Archive/delete merged into *Edit pet identity*, Account-prefs removed, single-pet auto-land + 1-tap emergency).
+One tree for the whole product, consolidating **every page** from [sitemap.md](sitemap.md) and [flows.md](flows.md). Each node carries its job(s) ([jtbd.md](jtbd.md)). Reflects the post-[critique](sitemap-critique.md) structure (Archive/delete merged into *Edit pet identity*, Account-prefs removed — later revisited in v3 as the narrow **"Me" profile tab** (GDPR erasure + log out, no settings creep; see [sitemap.md](sitemap.md) §Deliberately absent), single-pet auto-land + 1-tap emergency).
 
 **Legend**
 - 🟪 **entry** — app / journey root · 🟦 **global** — always-visible nav · ⬜ **screen** — standard page
