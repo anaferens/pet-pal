@@ -1,6 +1,6 @@
 # PetPal — Information Architecture (unified navigation)
 
-One tree for the whole product, consolidating **every page** from [sitemap.md](sitemap.md) and [flows.md](flows.md). Each node carries its job(s) ([jtbd.md](jtbd.md)). Reflects the post-[critique](sitemap-critique.md) structure (Archive/delete merged into *Edit pet identity*, Account-prefs removed — later revisited in v3 as the narrow **"Me" profile tab** (GDPR erasure + log out, no settings creep; see [sitemap.md](sitemap.md) §Deliberately absent), single-pet auto-land + 1-tap emergency).
+One tree for the whole product, consolidating **every page** from [sitemap.md](sitemap.md) and [flows.md](flows.md). Each node carries its job(s) ([jtbd.md](jtbd.md)). Reflects the post-[critique](sitemap-critique.md) structure (Archive/delete merged into *Edit pet identity*, Account-prefs removed — later revisited in v3 as the narrow **"Owner" profile tab** (GDPR erasure + log out, no settings creep; see [sitemap.md](sitemap.md) §Deliberately absent), single-pet auto-land + 1-tap emergency).
 
 **Legend**
 - 🟪 **entry** — app / journey root · 🟦 **global** — always-visible nav · ⬜ **screen** — standard page
@@ -115,7 +115,7 @@ PetPal
 │  │   │   └─ act on item → Add / update a record
 │  │   ├─ Reminder settings · R1                 (push/email, lead time, snooze, quiet hours)
 │  │   └─ What's due · offline · R1              (recovery state: last-saved reminders)
-│  ├─ ⌂ Me · owner profile                        (global, 4th tab — v3)
+│  ├─ ⌂ Owner · profile                          (global, 4th tab — v3)
 │  │   ├─ profile fields · log out → Signed out
 │  │   └─ delete profile → Signed out (deleted)
 │  ├─ ⌂ Share a pet · S2                         (global)

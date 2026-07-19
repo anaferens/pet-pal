@@ -175,7 +175,7 @@ RECIPIENT entry — no account  (the RC journey)
 
 - **Updates-from-carer / "proof okay while away"** — would serve **R4**, but R4 has **no feature** (flagged gap, [jtbd.md R4](jtbd.md)). No screen until that's decided.
 - **Account settings / notification preferences** — no standalone job today; would be `[ORPHAN]`. Reminder channel choice lives *with* "What's due" (R1) until a real job demands its own screen.
-  **v3 revision — partially reversed.** The prototype now ships a **"Me" owner-profile tab** (`Me.html` + `Logged-out.html`). This is *not* a JTBD reversal: no reminder/consult/share job gained a screen. It's **account hygiene and compliance infrastructure** — the owner must be able to see and correct what PetPal stores about *them* (name, contact, language), end a session (**log out**), and exercise **GDPR right-to-erasure** (**delete profile**, wiping account + dossiers + share links). The brief's EU scope makes erasure a hard requirement, not a preference. The orphan rule stands for job-bearing *features*; Me is the account-control layer every identity-holding product owes its user. The **master reminder settings stay in What's due** (Sc28) per the original decision — Me carries only a global notifications on/off.
+  **v3 revision — partially reversed.** The prototype now ships an **"Owner" profile tab** (`Me.html` + `Logged-out.html`). This is *not* a JTBD reversal: no reminder/consult/share job gained a screen. It's **account hygiene and compliance infrastructure** — the owner must be able to see and correct what PetPal stores about *them* (name, contact, language), end a session (**log out**), and exercise **GDPR right-to-erasure** (**delete profile**, wiping account + dossiers + share links). The brief's EU scope makes erasure a hard requirement, not a preference. The orphan rule stands for job-bearing *features*; The Owner tab is the account-control layer every identity-holding product owes its user. The **master reminder settings stay in What's due** (Sc28) per the original decision — the Owner tab carries only a global notifications on/off.
 - **Emotional jobs E1 (calm), E2 (nothing forgotten), E3 (spare pet stress)** — served *through* the screens above (reliability, a complete share, low-friction), **not** as their own nodes. E3 currently has no feature at all.
 - **Carer discovery / reviews / trust ratings** — the "find a carer" job is a **hypothesis** PetPal doesn't serve ([jtbd.md Hypotheses](jtbd.md)); no node.
 
@@ -232,7 +232,7 @@ Pets (first screen)  →  tap a pet  →  Pet dossier  =  the "one trusted place
 - **Emergency authorization setup** (spend cap, payment, who-may-authorize) `[?]` — set once, seldom touched ([research.md F6](research.md)).
 - **Edit / revoke a specific access grant** — inside *Who has access*.
 - **Edit pet identity & lifecycle** (microchip, passport details, **archive / delete a pet**) — infrequent; the destructive archive/delete action lives here, **not** as a standalone screen. `[Main]` *(merged per [critique](sitemap-critique.md) — was orphan Sc20.)*
-- ~~Account & notification preferences~~ — **removed** (was orphan Sc21, no job): the only job-bearing setting, **reminder-channel choice**, now lives in **What's due** (R1); true account preferences are **backlog**. *(v3: the backlog item landed, narrowed to account hygiene — see the **"Me" tab** note under "Deliberately absent". Global nav is now 4 items: Pets · What's due · Share · Me.)*
+- ~~Account & notification preferences~~ — **removed** (was orphan Sc21, no job): the only job-bearing setting, **reminder-channel choice**, now lives in **What's due** (R1); true account preferences are **backlog**. *(v3: the backlog item landed, narrowed to account hygiene — see the **"Owner" tab** note under "Deliberately absent". Global nav is now 4 items: Pets · What's due · Share · Owner.)*
 
 ### 4. Navigation rules (from the [critique](sitemap-critique.md))
 
@@ -336,7 +336,7 @@ Coverage matrix: **rows = every job** ([jtbd.md](jtbd.md)) · **columns = every 
 ### ⛔ Orphan screens (empty columns) — ✅ resolved
 
 - **Sc20 — Archive / delete a pet.** A real data-lifecycle need, but **no job** drove a whole screen. → **Done: merged** as a destructive action under **Sc19 Edit pet identity & lifecycle**; removed as a standalone node.
-- **Sc21 — Account & notification preferences.** Existed out of habit. → **Done: removed** for MVP; the reminder-channel setting **moved to What's due (Sc10/R1)**; true account prefs → **backlog**. *(v3: revisited — rebuilt as the **"Me" profile tab**, justified by GDPR erasure + session hygiene rather than a JTBD; reminder settings did **not** move back. See "Deliberately absent" for the full argument.)*
+- **Sc21 — Account & notification preferences.** Existed out of habit. → **Done: removed** for MVP; the reminder-channel setting **moved to What's due (Sc10/R1)**; true account prefs → **backlog**. *(v3: revisited — rebuilt as the **"Owner" profile tab**, justified by GDPR erasure + session hygiene rather than a JTBD; reminder settings did **not** move back. See "Deliberately absent" for the full argument.)*
 
 ### ⛔ Orphan jobs (empty rows) — ⏸ parked
 
