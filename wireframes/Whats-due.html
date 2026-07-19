@@ -786,6 +786,17 @@
   .nav-tree .flow-screens ol { list-style: none; counter-reset: none; padding-left: 8px; margin: 0 0 4px; border-left: 1px solid var(--nav-line); }
   .nav-tree .flow-screens ol a { font-size: 11px; font-weight: 400; color: var(--nav-text); padding: 3px 8px; display: block; border-radius: 4px; text-decoration: none; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
   .nav-tree .flow-screens ol a:hover { background: var(--nav-active-bg); color: var(--nav-text-active); }
+
+  /* DATE STRIP */
+  .wd-month { text-align: center; font-size: 18px; font-weight: 700; padding: 10px 0 2px; }
+  .date-strip { display: flex; gap: 8px; overflow-x: auto; padding: 8px 16px 12px; -webkit-overflow-scrolling: touch; scrollbar-width: none; }
+  .date-strip::-webkit-scrollbar { display: none; }
+  .day-cell { min-width: 48px; padding: 6px 0; border: 1.5px solid var(--wf-border); border-radius: 10px; background: var(--wf-input-bg); display: flex; flex-direction: column; align-items: center; gap: 2px; cursor: pointer; font-family: inherit; flex-shrink: 0; }
+  .day-cell .dc-dow { font-size: 10px; color: var(--wf-muted); }
+  .day-cell .dc-num { font-size: 16px; font-weight: 700; color: var(--wf-text); }
+  .day-cell.sel { background: var(--wf-btn); border-color: var(--wf-btn); }
+  .day-cell.sel .dc-dow, .day-cell.sel .dc-num { color: #fff; }
+  .day-empty { padding: 4px 16px 12px; font-size: 13px; color: var(--wf-muted); }
 </style>
 </head>
 <body>
@@ -1156,6 +1167,9 @@
       <main class="m-main">
 
         <!-- Pet filter tabs -->
+        <div class="wd-month"></div>
+        <div class="date-strip" aria-label="Pick a date"></div>
+
         <nav class="pet-filter-tabs" aria-label="Filter by pet">
           <button class="active" onclick="segSelect(this)">All pets</button>
           <button onclick="segSelect(this)">Miso</button>
@@ -1163,11 +1177,17 @@
         </nav>
 
         <!-- Overdue section -->
+        <section class="day-section" style="display:none;" aria-label="Selected day">
+          <h2 class="urgency-heading">On <span class="day-label"></span></h2>
+          <ul class="reminder-list day-list"></ul>
+          <div class="day-empty" style="display:none;">Nothing due on this day — pick another date, or browse below.</div>
+        </section>
+
         <section aria-label="Overdue reminders">
           <h2 class="urgency-heading">Overdue</h2>
           <ul class="reminder-list">
             <li>
-              <a href="Whats-due-detail.html?rem=rabies" class="reminder-card" data-pet="Miso">
+              <a href="Whats-due-detail.html?rem=rabies" data-date="2026-06-15" class="reminder-card" data-pet="Miso">
                 <div class="card-icon card-icon-m">icon</div>
                 <article class="reminder-body">
                   <h3>Rabies booster — Miso</h3>
@@ -1185,7 +1205,7 @@
           <h2 class="urgency-heading">Due this month</h2>
           <ul class="reminder-list">
             <li>
-              <a href="Whats-due-detail.html?rem=insurance" class="reminder-card" data-pet="Miso">
+              <a href="Whats-due-detail.html?rem=insurance" data-date="2026-10-01" class="reminder-card" data-pet="Miso">
                 <div class="card-icon card-icon-m">icon</div>
                 <article class="reminder-body">
                   <h3>Insurance renewal — Miso</h3>
@@ -1196,7 +1216,7 @@
               </a>
             </li>
             <li>
-              <a href="Whats-due-detail.html?rem=checkup" class="reminder-card" data-pet="Miso">
+              <a href="Whats-due-detail.html?rem=checkup" data-date="2026-08-15" class="reminder-card" data-pet="Miso">
                 <div class="card-icon card-icon-m">icon</div>
                 <article class="reminder-body">
                   <h3>Annual checkup — Miso</h3>
@@ -1214,7 +1234,7 @@
           <h2 class="urgency-heading">Coming up</h2>
           <ul class="reminder-list">
             <li>
-              <a href="Whats-due-detail.html?rem=fvrcp" class="reminder-card" data-pet="Cheetah">
+              <a href="Whats-due-detail.html?rem=fvrcp" data-date="2026-11-12" class="reminder-card" data-pet="Cheetah">
                 <div class="card-icon card-icon-m">icon</div>
                 <article class="reminder-body">
                   <h3>FVRCP booster — Cheetah</h3>
@@ -1225,7 +1245,7 @@
               </a>
             </li>
             <li>
-              <a href="Whats-due-detail.html?rem=passport" class="reminder-card" data-pet="Miso">
+              <a href="Whats-due-detail.html?rem=passport" data-date="2027-03-01" class="reminder-card" data-pet="Miso">
                 <div class="card-icon card-icon-m">icon</div>
                 <article class="reminder-body">
                   <h3>EU Passport renewal — Miso</h3>
@@ -1300,6 +1320,9 @@
       </div>
 
       <!-- Desktop pet filter tabs -->
+      <div class="wd-month"></div>
+      <div class="date-strip" aria-label="Pick a date"></div>
+
       <nav class="d-pet-filter" aria-label="Filter by pet">
         <button class="active" onclick="segSelect(this)">All pets</button>
         <button onclick="segSelect(this)">Miso</button>
@@ -1307,11 +1330,17 @@
       </nav>
 
       <!-- Overdue -->
+      <section class="day-section" style="display:none;" aria-label="Selected day">
+        <h2 class="d-urgency-heading">On <span class="day-label"></span></h2>
+        <ul class="d-reminder-list day-list"></ul>
+        <div class="day-empty" style="display:none;">Nothing due on this day — pick another date, or browse below.</div>
+      </section>
+
       <section aria-label="Overdue reminders">
         <h2 class="d-urgency-heading">Overdue</h2>
         <ul class="d-reminder-list">
           <li>
-            <a href="Whats-due-detail.html?rem=rabies" class="d-reminder-card" data-pet="Miso">
+            <a href="Whats-due-detail.html?rem=rabies" data-date="2026-06-15" class="d-reminder-card" data-pet="Miso">
               <div class="card-icon card-icon-d">icon</div>
               <article class="d-reminder-body">
                 <h3>Rabies booster — Miso</h3>
@@ -1329,7 +1358,7 @@
         <h2 class="d-urgency-heading">Due this month</h2>
         <ul class="d-reminder-list">
           <li>
-            <a href="Whats-due-detail.html?rem=insurance" class="d-reminder-card" data-pet="Miso">
+            <a href="Whats-due-detail.html?rem=insurance" data-date="2026-10-01" class="d-reminder-card" data-pet="Miso">
               <div class="card-icon card-icon-d">icon</div>
               <article class="d-reminder-body">
                 <h3>Insurance renewal — Miso</h3>
@@ -1340,7 +1369,7 @@
             </a>
           </li>
           <li>
-            <a href="Whats-due-detail.html?rem=checkup" class="d-reminder-card" data-pet="Miso">
+            <a href="Whats-due-detail.html?rem=checkup" data-date="2026-08-15" class="d-reminder-card" data-pet="Miso">
               <div class="card-icon card-icon-d">icon</div>
               <article class="d-reminder-body">
                 <h3>Annual checkup — Miso</h3>
@@ -1358,7 +1387,7 @@
         <h2 class="d-urgency-heading">Coming up</h2>
         <ul class="d-reminder-list">
           <li>
-            <a href="Whats-due-detail.html?rem=fvrcp" class="d-reminder-card" data-pet="Cheetah">
+            <a href="Whats-due-detail.html?rem=fvrcp" data-date="2026-11-12" class="d-reminder-card" data-pet="Cheetah">
               <div class="card-icon card-icon-d">icon</div>
               <article class="d-reminder-body">
                 <h3>FVRCP booster — Cheetah</h3>
@@ -1369,7 +1398,7 @@
             </a>
           </li>
           <li>
-            <a href="Whats-due-detail.html?rem=passport" class="d-reminder-card" data-pet="Miso">
+            <a href="Whats-due-detail.html?rem=passport" data-date="2027-03-01" class="d-reminder-card" data-pet="Miso">
               <div class="card-icon card-icon-d">icon</div>
               <article class="d-reminder-body">
                 <h3>EU Passport renewal — Miso</h3>
@@ -1392,26 +1421,77 @@
 </div>
 
 <script>
-function segSelect(btn) {
-  Array.from(btn.parentElement.children).forEach(function(b) { b.classList.remove('active'); });
-  btn.classList.add('active');
-  filterByPet(btn.textContent.trim());
+var wdSelPet = 'All pets', wdSelDate = null, wdHome = [];
+function wdIso(d) {
+  return d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0');
 }
-function filterByPet(pet) {
-  // show/hide each reminder (hide its <li> so list spacing collapses)
-  document.querySelectorAll('.reminder-card, .d-reminder-card').forEach(function(card) {
-    var show = (pet === 'All pets' || card.getAttribute('data-pet') === pet);
+function wdBuildStrips() {
+  var start = new Date(2026, 6, 20);
+  document.querySelectorAll('.date-strip').forEach(function (strip) {
+    strip.innerHTML = '';
+    for (var i = 0; i < 32; i++) {
+      var d = new Date(2026, 6, 20 + i);
+      var iso = wdIso(d);
+      var el = document.createElement('button');
+      el.className = 'day-cell';
+      el.setAttribute('data-date', iso);
+      el.innerHTML = '<span class="dc-dow">' + ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'][d.getDay()] + '</span><span class="dc-num">' + d.getDate() + '</span>';
+      el.onclick = (function (isoV) { return function () { wdSelDate = (wdSelDate === isoV ? null : isoV); wdRefresh(); }; })(iso);
+      strip.appendChild(el);
+    }
+  });
+}
+function wdInit() {
+  document.querySelectorAll('.reminder-card, .d-reminder-card').forEach(function (card) {
+    var li = card.closest('li');
+    if (li) wdHome.push({ li: li, parent: li.parentElement });
+  });
+  wdBuildStrips();
+  wdRefresh();
+}
+function wdRefresh() {
+  var lab = wdSelDate ? new Date(wdSelDate + 'T12:00:00') : new Date(2026, 6, 21);
+  document.querySelectorAll('.wd-month').forEach(function (m) { m.textContent = lab.toLocaleString('en', { month: 'long' }); });
+  document.querySelectorAll('.day-cell').forEach(function (cel) {
+    var on = cel.getAttribute('data-date') === wdSelDate;
+    cel.classList.toggle('sel', on);
+    if (on) cel.scrollIntoView({ block: 'nearest', inline: 'center', behavior: 'smooth' });
+  });
+  wdHome.forEach(function (h) { if (h.li.parentElement !== h.parent) h.parent.appendChild(h.li); });
+  document.querySelectorAll('.day-section').forEach(function (sec) {
+    var root = sec.closest('.view-mobile, .view-desktop') || document;
+    var list = sec.querySelector('.day-list');
+    var empty = sec.querySelector('.day-empty');
+    if (!wdSelDate) { sec.style.display = 'none'; return; }
+    sec.style.display = '';
+    var d = new Date(wdSelDate + 'T12:00:00');
+    sec.querySelector('.day-label').textContent = d.getDate() + ' ' + d.toLocaleString('en', { month: 'short' }) + ' ' + d.getFullYear();
+    var moved = 0;
+    root.querySelectorAll('.reminder-card, .d-reminder-card').forEach(function (card) {
+      if (card.getAttribute('data-date') === wdSelDate) { list.appendChild(card.closest('li')); moved++; }
+    });
+    empty.style.display = moved ? 'none' : '';
+  });
+  document.querySelectorAll('.reminder-card, .d-reminder-card').forEach(function (card) {
+    var show = (wdSelPet === 'All pets' || card.getAttribute('data-pet') === wdSelPet);
     (card.closest('li') || card).style.display = show ? '' : 'none';
   });
-  // hide urgency-group sections (Overdue / Due this month / Coming up) that have no visible reminders
-  document.querySelectorAll('.urgency-heading, .d-urgency-heading').forEach(function(h) {
+  document.querySelectorAll('.urgency-heading, .d-urgency-heading').forEach(function (h) {
     var sec = h.closest('section') || h.parentElement;
-    var anyVisible = Array.from(sec.querySelectorAll('.reminder-card, .d-reminder-card')).some(function(card) {
+    if (sec.classList.contains('day-section')) return;
+    var any = Array.prototype.some.call(sec.querySelectorAll('.reminder-card, .d-reminder-card'), function (card) {
       return (card.closest('li') || card).style.display !== 'none';
     });
-    sec.style.display = anyVisible ? '' : 'none';
+    sec.style.display = any ? '' : 'none';
   });
 }
+function segSelect(btn) {
+  Array.prototype.forEach.call(btn.parentElement.children, function (b) { b.classList.remove('active'); });
+  btn.classList.add('active');
+  wdSelPet = btn.textContent.trim();
+  wdRefresh();
+}
+wdInit();
 function setView(mode) {
   document.body.classList.toggle('is-desktop', mode === 'desktop');
   document.getElementById('btn-mobile').classList.toggle('active', mode === 'mobile');
