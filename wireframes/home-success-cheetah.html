@@ -620,6 +620,19 @@
   .nav-tree .flow-screens ol { list-style: none; counter-reset: none; padding-left: 8px; margin: 0 0 4px; border-left: 1px solid var(--nav-line); }
   .nav-tree .flow-screens ol a { font-size: 11px; font-weight: 400; color: var(--nav-text); padding: 3px 8px; display: block; border-radius: 4px; text-decoration: none; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
   .nav-tree .flow-screens ol a:hover { background: var(--nav-active-bg); color: var(--nav-text-active); }
+
+  /* DOSSIER v3: hero + arch + card list */
+  .v3-header { background: #d6d6d6 !important; border-bottom: none !important; }
+  .dv3-hero { background: #d6d6d6; }
+  .dv3-photo { width: 150px; height: 150px; border-radius: 50%; background: #b9b9b9; margin: 6px auto -75px; position: relative; z-index: 2; display: flex; align-items: center; justify-content: center; font-size: 11px; color: #8a8a8a; }
+  .dv3-arch { background: var(--wf-bg); border-radius: 50% 50% 0 0 / 64px 64px 0 0; padding: 88px 16px 4px; text-align: center; }
+  .dv3-arch h2 { font-size: 24px; font-weight: 700; }
+  .dv3-arch .meta { font-size: 14px; color: var(--wf-muted); margin-top: 2px; }
+  .dv3-arch .chip { font-size: 12px; color: var(--wf-muted); margin-top: 2px; }
+  .m-section-card.v3, .d-section-card.v3 { align-items: center; border-radius: 12px; }
+  .m-section-card.v3 h3, .d-section-card.v3 h3 { font-size: 16px; font-weight: 700; display: flex; align-items: center; gap: 6px; }
+  .v3 .check { width: 18px; height: 18px; border-radius: 50%; background: var(--wf-btn); color: #fff; font-size: 11px; display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0; }
+  .v3 .card-meta { font-size: 13px; color: var(--wf-muted); margin-top: 2px; line-height: 1.45; }
 </style>
 </head>
 <body>
@@ -973,29 +986,28 @@
         Main job · step 2 of 4 — <span>My Pets → ★ Pet dossier</span> → sections → Share
       </div>
 
-      <header class="m-header">
+      <header class="m-header v3-header">
         <a href="My-Pets.html" style="text-decoration:none;"><button class="back" aria-label="Back to My Pets">← My Pets</button></a>
-        <h1>Cheetah</h1>
+        <h1>My pet</h1>
         <a href="Edit-pet.html" style="text-decoration:none;"><button class="action-edit">Edit</button></a>
       </header>
 
       <div class="m-main">
 
-        <div class="pet-switcher" aria-label="Switch pet">
+        <div class="dv3-hero">
+          <figure class="dv3-photo" aria-label="Pet photo placeholder">photo</figure>
+        </div>
+        <div class="dv3-arch">
+          <h2>Cheetah</h2>
+          <p class="meta">Cat · Tabby stray · Female</p>
+          <p class="chip">No microchip registered</p>
+        </div>
+
+                <div class="pet-switcher" aria-label="Switch pet">
           <span class="pet-switcher-label">Pet:</span>
           <a href="home-success.html" class="pet-pill"><span class="pill-avatar">M</span> Miso</a>
           <a href="home-success-cheetah.html" class="pet-pill active"><span class="pill-avatar">C</span> Cheetah</a>
         </div>
-
-        <section class="m-pet-identity" aria-label="Pet identity">
-          <div class="zone-label">Pet identity</div>
-          <figure class="pet-photo pet-photo-m" aria-label="Pet photo placeholder">photo</figure>
-          <div class="pet-info">
-            <h2 style="font-size:20px;font-weight:700;">Cheetah</h2>
-            <p class="pet-meta" style="font-size:13px;">Cat · Tabby stray · Female</p>
-            <p class="pet-chip" style="font-size:11px;">Microchip 941 000 024 567 890</p>
-          </div>
-        </section>
 
         <section class="m-quick-actions" aria-label="Quick actions">
           <a href="Share-a-pet.html"><button class="btn-primary">Share Cheetah's info</button></a>
@@ -1004,7 +1016,7 @@
 
         <section class="m-fill-counter" aria-label="Dossier completeness">
           <div class="zone-label">Counter</div>
-          <span class="count">2 of 6 sections filled</span>
+          <span class="count">4 of 6 sections filled</span>
           <span class="status">Updated 1 week ago</span>
         </section>
 
@@ -1016,104 +1028,77 @@
                 <ul class="m-section-list" aria-label="Dossier sections">
 
           <li>
-            <a href="Health-and-jabs.html" style="text-decoration:none;color:inherit;display:block;"><article class="m-section-card">
+            <a href="Health-and-jabs.html" style="text-decoration:none;color:inherit;display:block;"><article class="m-section-card v3">
               <div class="card-icon card-icon-m">icon</div>
               <div class="card-body">
-                <div class="zone-label">Card entry point → Health &amp; jabs</div>
-                <h3>Health &amp; jabs</h3>
-                <p class="card-detail">
-                  <strong>2 records</strong> · Updated 1 week ago<br>
-                  Rabies (due 10 Apr 2027) · FVRCP<br>
-                  No known conditions
-                </p>
+                <h3>Health &amp; jabs <span class="check">✓</span></h3>
+                <p class="card-meta">2 records · Updated 1 week ago</p>
               </div>
               <span class="card-arrow" aria-hidden="true">→</span>
             </article></a>
           </li>
 
           <li>
-            <a href="Documents-and-passport.html" style="text-decoration:none;color:inherit;display:block;"><article class="m-section-card">
+            <a href="Documents-and-passport.html" style="text-decoration:none;color:inherit;display:block;"><article class="m-section-card v3">
               <div class="card-icon card-icon-m">icon</div>
               <div class="card-body">
-                <div class="zone-label">Card entry point → Documents &amp; passport</div>
-                <h3>Documents &amp; passport</h3>
-                <p class="card-detail">
-                  <strong>1 document</strong> · Updated 2 weeks ago<br>
-                  Adoption certificate from local shelter<br>
-                  No passport yet
-                </p>
+                <h3>Documents &amp; passport <span class="check">✓</span></h3>
+                <p class="card-meta">1 document · Updated 2 weeks ago</p>
               </div>
               <span class="card-arrow" aria-hidden="true">→</span>
             </article></a>
           </li>
 
           <li>
-            <a href="Insurance.html" style="text-decoration:none;color:inherit;display:block;"><article class="m-section-card">
+            <a href="Insurance-empty.html" style="text-decoration:none;color:inherit;display:block;"><article class="m-section-card v3" style="border-style:dashed;">
               <div class="card-icon card-icon-m">icon</div>
               <div class="card-body">
-                <div class="zone-label">Card entry point → Insurance</div>
                 <h3>Insurance</h3>
-                <p class="card-detail">
-                  <strong>Not filled yet</strong><br>
-                  Add an insurance policy to track coverage<br>
-                  and renewal dates
-                </p>
+                <p class="card-meta"><strong>Not filled yet</strong><br>Policy, coverage and renewal reminders</p>
               </div>
               <span class="card-arrow" aria-hidden="true">→</span>
             </article></a>
           </li>
 
           <li>
-            <a href="Personality-and-care.html" style="text-decoration:none;color:inherit;display:block;"><article class="m-section-card">
+            <a href="Personality-and-care.html" style="text-decoration:none;color:inherit;display:block;"><article class="m-section-card v3">
               <div class="card-icon card-icon-m">icon</div>
               <div class="card-body">
-                <div class="zone-label">Card entry point → Personality &amp; care</div>
-                <h3>Personality &amp; care</h3>
-                <p class="card-detail">
-                  <strong>Partially filled</strong> · Updated 1 week ago<br>
-                  Indoor cat, curious and playful<br>
-                  Loves window perches and feather toys<br>
-                  Food: Whiskas Indoor, 200 g twice daily
-                </p>
+                <h3>Personality &amp; care <span class="check">✓</span></h3>
+                <p class="card-meta">Partially filled · Updated 1 week ago</p>
               </div>
               <span class="card-arrow" aria-hidden="true">→</span>
             </article></a>
           </li>
 
           <li>
-            <a href="Vet-and-appointments.html" style="text-decoration:none;color:inherit;display:block;"><article class="m-section-card">
+            <a href="Vet-and-appointments.html" style="text-decoration:none;color:inherit;display:block;"><article class="m-section-card v3">
               <div class="card-icon card-icon-m">icon</div>
               <div class="card-body">
-                <div class="zone-label">Card entry point → Vet &amp; appointments</div>
-                <h3>Vet &amp; appointments</h3>
-                <p class="card-detail">
-                  <strong>Tierklinik am Stadtpark</strong> · Dr. Müller<br>
-                  No upcoming appointments<br>
-                  Last visit: adoption checkup, 1 Jun 2026
-                </p>
+                <h3>Vet &amp; appointments <span class="check">✓</span></h3>
+                <p class="card-meta">Tierklinik am Stadtpark</p>
               </div>
               <span class="card-arrow" aria-hidden="true">→</span>
             </article></a>
           </li>
 
           <li>
-            <article class="m-section-card" style="border-style: dashed;">
+            <a href="Emergency-info-empty.html" style="text-decoration:none;color:inherit;display:block;"><article class="m-section-card v3" style="border-style:dashed;">
               <div class="card-icon card-icon-m">icon</div>
               <div class="card-body">
-                <div class="zone-label">Card entry point → Emergency info (step 08)</div>
                 <h3>Emergency info &amp; authorisation</h3>
-                <p class="card-detail">
-                  <strong>Not filled yet</strong><br>
-                  Vet contact, current meds, conditions, emergency contact — what a carer needs if something goes wrong
-                </p>
+                <p class="card-meta"><strong>Not filled yet</strong><br>Vet contact, current meds, conditions, emergency contact — what a carer needs if something goes wrong</p>
               </div>
               <span class="card-arrow" aria-hidden="true">→</span>
-            </article>
+            </article></a>
           </li>
 
         </ul>
       </div>
 
+      <div style="display:flex;justify-content:flex-end;padding:4px 20px 8px;">
+        <div style="width:130px;height:92px;border-radius:14px;background:var(--wf-placeholder);display:flex;align-items:center;justify-content:center;font-size:10px;color:var(--wf-muted);text-align:center;">cute illustration<br>(bone in a bowl)</div>
+      </div>
       <nav class="phone-nav" aria-label="Main navigation">
         <a href="My-Pets.html" class="active">
           <span class="nav-icon" aria-hidden="true"></span> Pets
@@ -1181,7 +1166,7 @@
 
       <section class="d-toolbar" aria-label="Dossier toolbar">
         <div class="zone-label">Counter</div>
-        <span class="count">2 of 6 sections filled</span>
+        <span class="count">4 of 6 sections filled</span>
         <span class="status">· Updated 1 week ago</span>
         <span class="spacer"></span>
         <div class="zone-label">Search &amp; filter</div>
@@ -1190,97 +1175,73 @@
 
             <ul class="d-section-grid" aria-label="Dossier sections">
 
-        <li>
-          <a href="Health-and-jabs.html" style="text-decoration:none;color:inherit;display:block;"><article class="d-section-card">
-            <div class="d-card-header">
+          <li>
+            <a href="Health-and-jabs.html" style="text-decoration:none;color:inherit;display:block;"><article class="d-section-card v3">
               <div class="card-icon card-icon-d">icon</div>
-              <h3>Health &amp; jabs</h3>
+              <div class="card-body">
+                <h3>Health &amp; jabs <span class="check">✓</span></h3>
+                <p class="card-meta">2 records · Updated 1 week ago</p>
+              </div>
               <span class="card-arrow" aria-hidden="true">→</span>
-            </div>
-            <p class="card-detail">
-              <strong>6 records</strong> · Updated 3 days ago<br>
-              Rabies (due 15 Mar 2027) · DHPP · Leptospirosis<br>
-              Condition: atopic dermatitis · Apoquel 16 mg daily
-            </p>
-          </article></a>
-        </li>
+            </article></a>
+          </li>
 
-        <li>
-          <a href="Documents-and-passport.html" style="text-decoration:none;color:inherit;display:block;"><article class="d-section-card">
-            <div class="d-card-header">
+          <li>
+            <a href="Documents-and-passport.html" style="text-decoration:none;color:inherit;display:block;"><article class="d-section-card v3">
               <div class="card-icon card-icon-d">icon</div>
-              <h3>Documents &amp; passport</h3>
+              <div class="card-body">
+                <h3>Documents &amp; passport <span class="check">✓</span></h3>
+                <p class="card-meta">1 document · Updated 2 weeks ago</p>
+              </div>
               <span class="card-arrow" aria-hidden="true">→</span>
-            </div>
-            <p class="card-detail">
-              <strong>4 documents</strong> · Updated 1 week ago<br>
-              EU Pet Passport DE-0812345 · Microchip registration<br>
-              Rabies certificate · Pedigree papers
-            </p>
-          </article></a>
-        </li>
+            </article></a>
+          </li>
 
-        <li>
-          <a href="Insurance.html" style="text-decoration:none;color:inherit;display:block;"><article class="d-section-card">
-            <div class="d-card-header">
+          <li>
+            <a href="Insurance-empty.html" style="text-decoration:none;color:inherit;display:block;"><article class="d-section-card v3" style="border-style:dashed;">
               <div class="card-icon card-icon-d">icon</div>
-              <h3>Insurance</h3>
+              <div class="card-body">
+                <h3>Insurance</h3>
+                <p class="card-meta"><strong>Not filled yet</strong><br>Policy, coverage and renewal reminders</p>
+              </div>
               <span class="card-arrow" aria-hidden="true">→</span>
-            </div>
-            <p class="card-detail">
-              <strong>1 active policy</strong> · Renews 1 Oct 2026<br>
-              Lassie Haustierversicherung · OP-Schutz Plus<br>
-              Premium €29.90 / month · Covers surgery, inpatient
-            </p>
-          </article></a>
-        </li>
+            </article></a>
+          </li>
 
-        <li>
-          <a href="Personality-and-care.html" style="text-decoration:none;color:inherit;display:block;"><article class="d-section-card">
-            <div class="d-card-header">
+          <li>
+            <a href="Personality-and-care.html" style="text-decoration:none;color:inherit;display:block;"><article class="d-section-card v3">
               <div class="card-icon card-icon-d">icon</div>
-              <h3>Personality &amp; care</h3>
+              <div class="card-body">
+                <h3>Personality &amp; care <span class="check">✓</span></h3>
+                <p class="card-meta">Partially filled · Updated 1 week ago</p>
+              </div>
               <span class="card-arrow" aria-hidden="true">→</span>
-            </div>
-            <p class="card-detail">
-              <strong>Profile filled</strong> · Updated 5 days ago<br>
-              Calm, affectionate, loves belly rubs<br>
-              Not friendly with: small rodents, off-leash terriers<br>
-              Food: Royal Canin Maxi Adult, 350 g twice daily
-            </p>
-          </article></a>
-        </li>
+            </article></a>
+          </li>
 
-        <li>
-          <a href="Vet-and-appointments.html" style="text-decoration:none;color:inherit;display:block;"><article class="d-section-card">
-            <div class="d-card-header">
+          <li>
+            <a href="Vet-and-appointments.html" style="text-decoration:none;color:inherit;display:block;"><article class="d-section-card v3">
               <div class="card-icon card-icon-d">icon</div>
-              <h3>Vet &amp; appointments</h3>
+              <div class="card-body">
+                <h3>Vet &amp; appointments <span class="check">✓</span></h3>
+                <p class="card-meta">Tierklinik am Stadtpark</p>
+              </div>
               <span class="card-arrow" aria-hidden="true">→</span>
-            </div>
-            <p class="card-detail">
-              <strong>Tierklinik am Stadtpark</strong> · Dr. Müller<br>
-              Next: annual checkup, 15 Aug 2026, 10:00<br>
-              Last visit: dental cleaning, 20 May 2026
-            </p>
-          </article></a>
-        </li>
+            </article></a>
+          </li>
 
-        <li>
-          <article class="d-section-card" style="border-style: dashed;">
-            <div class="d-card-header">
+          <li>
+            <a href="Emergency-info-empty.html" style="text-decoration:none;color:inherit;display:block;"><article class="d-section-card v3" style="border-style:dashed;">
               <div class="card-icon card-icon-d">icon</div>
-              <h3>Emergency info &amp; authorisation</h3>
+              <div class="card-body">
+                <h3>Emergency info &amp; authorisation</h3>
+                <p class="card-meta"><strong>Not filled yet</strong><br>Vet contact, current meds, conditions, emergency contact — what a carer needs if something goes wrong</p>
+              </div>
               <span class="card-arrow" aria-hidden="true">→</span>
-            </div>
-            <p class="card-detail">
-              <strong>Not filled yet</strong><br>
-              Vet contact, current meds, conditions, emergency contact — what a carer needs if something goes wrong
-            </p>
-          </article>
-        </li>
+            </article></a>
+          </li>
 
-      </ul>
+        </ul>
     </div>
 
     <footer class="d-footer">
@@ -1319,7 +1280,7 @@ function setView(mode) {
       { file: 'Health-and-jabs-record1.html', tip: 'Your first health record is here. Tap \u201c+\u201d and choose \u201cAdd vaccine\u201d' },
       { file: 'Add-record.html', tip: 'Fill in the vaccine \u2014 name, date, next due \u2014 then save' },
       { file: 'Health-and-jabs-firstrun.html', tip: '1 vaccine + 1 health record saved. Tap \u201c\u2190 Dossier\u201d' },
-      { file: 'home-progress-1.html', tip: '1 of 6 sections filled. Tap \u201cDocuments & passport\u201d' },
+      { file: 'home-progress-1.html', tip: '4 of 6 sections filled. Tap \u201cDocuments & passport\u201d' },
       { file: 'Documents-and-passport-empty.html', tip: 'No documents yet. Tap the CTA to add the passport' },
       { file: 'Add-document.html', tip: 'Fill in the EU Pet Passport details, then save' },
       { file: 'Documents-and-passport-firstrun.html', tip: 'Passport saved. Tap \u201c\u2190 Dossier\u201d' },

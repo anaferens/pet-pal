@@ -823,7 +823,9 @@
   /* COLLAPSIBLE SHARED SECTION CARDS */
   section.collapsible { background: var(--wf-input-bg); border: 1.5px solid var(--wf-border); border-radius: 12px; margin: 10px 16px; padding: 4px 14px; }
   section.collapsible > h3 { display: flex; align-items: center; gap: 12px; padding: 12px 0; font-size: 17px; font-weight: 600; cursor: pointer; user-select: none; text-transform: none; letter-spacing: normal; color: var(--wf-text); }
-  section.collapsible > h3 .sec-icon { width: 40px; height: 40px; border-radius: 8px; background: var(--wf-placeholder); flex-shrink: 0; }
+  section.collapsible > h3 .sec-icon { width: 40px; height: 40px; border-radius: 50%; background: var(--wf-placeholder); flex-shrink: 0; }
+  section.collapsible > h3 .sec-text { display: flex; flex-direction: column; }
+  section.collapsible > h3 .sec-meta { font-size: 13px; color: var(--wf-muted); font-weight: 400; margin-top: 1px; }
   section.collapsible > h3 .chev { margin-left: auto; font-size: 17px; color: var(--wf-muted); transition: transform 0.15s; display: inline-block; }
   section.collapsible.open > h3 .chev { transform: rotate(180deg); }
   section.collapsible .collapse-body { display: none; padding-bottom: 12px; }
@@ -1191,7 +1193,7 @@
 
         <!-- Personality & care -->
         <section class="shared-section collapsible" aria-label="Personality and care">
-          <h3 onclick="this.parentElement.classList.toggle('open')" role="button" aria-expanded="false"><span class="sec-icon"></span>Personality &amp; Care <span class="chev">↓</span></h3>
+          <h3 onclick="this.parentElement.classList.toggle('open')" role="button" aria-expanded="false"><span class="sec-icon"></span><span class="sec-text">Personality &amp; Care<span class="sec-meta">Profile filled · Updated 5 days ago</span></span><span class="chev">↓</span></h3>
           <div class="collapse-body">
 
           <p class="detail-label">Favourite food</p>
@@ -1218,7 +1220,7 @@
 
         <!-- Health summary -->
         <section class="shared-section collapsible" aria-label="Health summary">
-          <h3 onclick="this.parentElement.classList.toggle('open')" role="button" aria-expanded="false"><span class="sec-icon"></span>Health Summary <span class="chev">↓</span></h3>
+          <h3 onclick="this.parentElement.classList.toggle('open')" role="button" aria-expanded="false"><span class="sec-icon"></span><span class="sec-text">Health Summary<span class="sec-meta">6 records · Updated 3 days ago</span></span><span class="chev">↓</span></h3>
           <div class="collapse-body">
 
           <p class="detail-label">Conditions</p>
@@ -1242,7 +1244,7 @@
 
         <!-- Vet contact -->
         <section class="shared-section collapsible" aria-label="Vet contact">
-          <h3 onclick="this.parentElement.classList.toggle('open')" role="button" aria-expanded="false"><span class="sec-icon"></span>Vet Contact <span class="chev">↓</span></h3>
+          <h3 onclick="this.parentElement.classList.toggle('open')" role="button" aria-expanded="false"><span class="sec-icon"></span><span class="sec-text">Vet Contact<span class="sec-meta">Tierklinik am Stadtpark</span></span><span class="chev">↓</span></h3>
           <div class="collapse-body">
           <div class="vet-card">
             <p class="vet-name">Tierklinik am Stadtpark · Dr. Muller</p>
@@ -1261,7 +1263,7 @@
 
         <!-- Documents -->
         <section class="shared-section collapsible" aria-label="Documents">
-          <h3 onclick="this.parentElement.classList.toggle('open')" role="button" aria-expanded="false"><span class="sec-icon"></span>Documents <span class="chev">↓</span></h3>
+          <h3 onclick="this.parentElement.classList.toggle('open')" role="button" aria-expanded="false"><span class="sec-icon"></span><span class="sec-text">Documents<span class="sec-meta">4 documents · Updated 1 week ago</span></span><span class="chev">↓</span></h3>
           <div class="collapse-body">
           <div class="doc-item">
             <div>
@@ -1340,7 +1342,7 @@
 
         <!-- Personality & care -->
         <section class="d-shared-section collapsible" aria-label="Personality and care">
-          <h3 onclick="this.parentElement.classList.toggle('open')" role="button" aria-expanded="false"><span class="sec-icon"></span>Personality &amp; Care <span class="chev">↓</span></h3>
+          <h3 onclick="this.parentElement.classList.toggle('open')" role="button" aria-expanded="false"><span class="sec-icon"></span><span class="sec-text">Personality &amp; Care<span class="sec-meta">Profile filled · Updated 5 days ago</span></span><span class="chev">↓</span></h3>
           <div class="collapse-body">
           <div class="d-two-col">
             <div>
@@ -1371,7 +1373,7 @@
 
         <!-- Health summary -->
         <section class="d-shared-section collapsible" aria-label="Health summary">
-          <h3 onclick="this.parentElement.classList.toggle('open')" role="button" aria-expanded="false"><span class="sec-icon"></span>Health Summary <span class="chev">↓</span></h3>
+          <h3 onclick="this.parentElement.classList.toggle('open')" role="button" aria-expanded="false"><span class="sec-icon"></span><span class="sec-text">Health Summary<span class="sec-meta">6 records · Updated 3 days ago</span></span><span class="chev">↓</span></h3>
           <div class="collapse-body">
           <div class="d-two-col">
             <div>
@@ -1399,7 +1401,7 @@
 
         <!-- Vet contact -->
         <section class="d-shared-section collapsible" aria-label="Vet contact">
-          <h3 onclick="this.parentElement.classList.toggle('open')" role="button" aria-expanded="false"><span class="sec-icon"></span>Vet Contact <span class="chev">↓</span></h3>
+          <h3 onclick="this.parentElement.classList.toggle('open')" role="button" aria-expanded="false"><span class="sec-icon"></span><span class="sec-text">Vet Contact<span class="sec-meta">Tierklinik am Stadtpark</span></span><span class="chev">↓</span></h3>
           <div class="collapse-body">
           <div class="vet-card" style="max-width:400px;">
             <p class="vet-name">Tierklinik am Stadtpark · Dr. Muller</p>
@@ -1418,7 +1420,7 @@
 
         <!-- Documents -->
         <section class="d-shared-section collapsible" aria-label="Documents">
-          <h3 onclick="this.parentElement.classList.toggle('open')" role="button" aria-expanded="false"><span class="sec-icon"></span>Documents <span class="chev">↓</span></h3>
+          <h3 onclick="this.parentElement.classList.toggle('open')" role="button" aria-expanded="false"><span class="sec-icon"></span><span class="sec-text">Documents<span class="sec-meta">4 documents · Updated 1 week ago</span></span><span class="chev">↓</span></h3>
           <div class="collapse-body">
           <div class="doc-item">
             <div>
