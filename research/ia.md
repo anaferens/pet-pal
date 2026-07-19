@@ -16,14 +16,27 @@ One tree for the whole product, consolidating **every page** from [sitemap.md](s
 flowchart TD
   Root(["PetPal"])
 
+  Root --> Auth{{"Auth · not signed in"}}
   Root --> OwnerApp{{"Owner app · signed in"}}
   Root --> Recipient{{"Recipient · no account, via link"}}
+
+  %% ---- Auth (v3) ----
+  Auth --> Login["Log in"]
+  Auth --> SignUp["Sign up"]
+  Auth --> Forgot["Forgot password"]
+  Login -.->|success| Pets
+  SignUp -.->|new account, first run| Pets
+  Forgot -.->|reset link sent| Login
+  Login -.->|create account| SignUp
 
   %% ---- Global nav (owner) ----
   OwnerApp --> Pets["My Pets · Main"]
   OwnerApp --> Whats["What's due · R1"]
   OwnerApp --> Share["Share a pet · S2"]
+  OwnerApp --> OwnerTab["Owner · profile"]
   OwnerApp --> VetMsg["Vet messages · R3"]
+  OwnerTab -.->|log out / delete profile| SignedOut["Signed out"]
+  SignedOut -.->|log back in| Login
 
   %% ---- Pets cluster ----
   Pets --> Setup["Set up a pet · Main"]
@@ -73,8 +86,9 @@ flowchart TD
   classDef contextual fill:#fff3bf,stroke:#f08c00,color:#663c00;
   classDef deep fill:#ececec,stroke:#868e96,color:#343a40;
   classDef recipient fill:#e6fcf5,stroke:#0ca678,color:#08503b;
-  class Root,OwnerApp,Recipient entry;
-  class Pets,Whats,Share global;
+  class Root,Auth,OwnerApp,Recipient entry;
+  class Pets,Whats,Share,OwnerTab global;
+  class Login,SignUp,Forgot,SignedOut screen;
   class Setup,Dossier,Health,Docs,Ins,Pers,VetAppt,Emerg,VetMsg,Photo,DocView screen;
   class AddRec,RemSet,RemDetail,NewDoss,EditRec,EditNote,AddForms,Saving,FirstRun,RemOffline contextual;
   class EmergSetup,EditGrant,EditId deep;

@@ -19,6 +19,50 @@ Mermaid `flowchart TD`. Every `["screen"]` node exists in [sitemap.md](sitemap.m
 
 ---
 
+## Auth — log in, sign up, recover *(v3, realized in the prototype)*
+*Every signed-in journey starts here; the recipient (sitter) never needs it. Entry points: app open while signed out, the Signed-out screen's "Log back in", and the sitter card's "To the app".*
+
+```mermaid
+flowchart TD
+  Start("Open app") --> Q0{"Signed in?"}
+  Q0 -->|yes| Pets["My Pets"]
+  Q0 -->|no| Login["Log in"]
+  Login --> Q1{"Have an account?"}
+  Q1 -->|no| SignUp["Sign up"]
+  SignUp --> SULoad("Loading: creating account & logging in")
+  SULoad --> EmptyPets("Empty: no pets yet")
+  EmptyPets -->|feeds the new-pet setup journey| SetupJourney(["→ New-pet setup flow"])
+  Q1 -->|yes| Creds{"Credentials ok?"}
+  Login -->|Google / Apple| LLoad
+  Creds -->|yes| LLoad("Loading: logging in")
+  LLoad --> Pets
+  Creds -->|no| LErr("Error: email or password doesn't match")
+  LErr -->|retry| Login
+  LErr -->|reset| Forgot["Forgot password"]
+  Login -->|forgot password| Forgot
+  Forgot --> Sent("Sent: reset link in inbox, valid 1 h")
+  Sent -->|back to log in| Login
+  Pets --> Done(["Success: signed in, everything where you left it"])
+
+  OwnerTab["Owner · profile"] -.->|log out / delete profile| SignedOut("Signed out / profile deleted")
+  SignedOut -.->|log back in| Login
+
+  classDef screen fill:#e7f5ff,stroke:#1971c2,color:#0b3d66;
+  classDef state fill:#fff3bf,stroke:#f08c00,color:#663c00;
+  classDef error fill:#ffe3e3,stroke:#e03131,color:#7a1212;
+  classDef success fill:#d3f9d8,stroke:#2f9e44,color:#14532d;
+  classDef start fill:#f1f3f5,stroke:#868e96,color:#343a40;
+  class Start start;
+  class Login,SignUp,Forgot,Pets,OwnerTab screen;
+  class LLoad,SULoad,EmptyPets,Sent,SignedOut state;
+  class LErr error;
+  class Done,SetupJourney success;
+```
+
+**Screens:** `Login.html` (+ `-loading` / `-error`) · `Sign-up.html` · `Forgot-password.html` (inline "sent" state) · `Logged-out.html` (signed-out / deleted). Sign-up deliberately lands on **My Pets (empty)** so a new account flows straight into the 40-step setup journey.
+
+---
+
 ## Main job — keep everything in one trusted place: consult & pass on
 *Primary persona: Organised Owner.*
 

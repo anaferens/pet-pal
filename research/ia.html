@@ -406,12 +406,23 @@
       <pre class="mermaid">
 flowchart TD
   Root(["PetPal"])
+  Root --> Auth{{"Auth · not signed in"}}
   Root --> OwnerApp{{"Owner app · signed in"}}
   Root --> Recipient{{"Recipient · no account, via link"}}
+  Auth --> Login["Log in"]
+  Auth --> SignUp["Sign up"]
+  Auth --> Forgot["Forgot password"]
+  Login -.->|success| Pets
+  SignUp -.->|new account, first run| Pets
+  Forgot -.->|reset link sent| Login
+  Login -.->|create account| SignUp
   OwnerApp --> Pets["My Pets · Main"]
   OwnerApp --> Whats["What's due · R1"]
   OwnerApp --> Share["Share a pet · S2"]
+  OwnerApp --> OwnerTab["Owner · profile"]
   OwnerApp --> VetMsg["Vet messages · R3"]
+  OwnerTab -.->|log out / delete profile| SignedOut["Signed out"]
+  SignedOut -.->|log back in| Login
   Pets --> Setup["Set up a pet · Main"]
   Setup --> Photo["Add photo · Main"]
   Pets --> Dossier["Pet dossier · Main"]
@@ -450,8 +461,9 @@ flowchart TD
   classDef contextual fill:#fff3bf,stroke:#f08c00,color:#663c00;
   classDef deep fill:#ececec,stroke:#868e96,color:#343a40;
   classDef recipient fill:#e6fcf5,stroke:#0ca678,color:#08503b;
-  class Root,OwnerApp,Recipient entry;
-  class Pets,Whats,Share global;
+  class Root,Auth,OwnerApp,Recipient entry;
+  class Pets,Whats,Share,OwnerTab global;
+  class Login,SignUp,Forgot,SignedOut screen;
   class Setup,Dossier,Health,Docs,Ins,Pers,VetAppt,Emerg,VetMsg,Photo,DocView screen;
   class AddRec,RemSet,RemDetail,NewDoss,EditRec,EditNote,AddForms,Saving,FirstRun,RemOffline contextual;
   class EmergSetup,EditGrant,EditId deep;
@@ -889,6 +901,12 @@ flowchart TD
     'who has access': 'Who-has-access.html',
     'edit / revoke a grant': 'Edit-access-grant.html',
     'shared pet view': 'Shared-pet-view.html',
+    'log in': 'Login.html',
+    'sign up': 'Sign-up.html',
+    'forgot password': 'Forgot-password.html',
+    'signed out': 'Logged-out.html',
+    'owner · profile': 'Me.html',
+    'owner': 'Me.html',
     "emergency & what i'm allowed to do": 'Emergency-allowed.html'
   };
   // keyword overrides win over the exact map (handle the compound / v2 labels)
