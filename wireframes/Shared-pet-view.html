@@ -688,21 +688,28 @@
 
   /* Emergency link */
   .emergency-link {
-    display: block;
-    padding: 14px 16px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 20px 16px;
+    margin: 14px 0;
+    border-top: 1px solid var(--wf-border);
     border-bottom: 1px solid var(--wf-border);
     text-decoration: none;
     color: var(--wf-text);
-    font-size: 14px;
-    font-weight: 600;
+    font-size: 17px;
+    font-weight: 700;
+    line-height: 1.35;
     background: var(--wf-surface);
   }
   .emergency-link:hover {
     background: var(--wf-border);
   }
   .emergency-link .arrow {
-    float: right;
-    color: var(--wf-muted);
+    flex-shrink: 0;
+    font-size: 19px;
+    color: var(--wf-text);
   }
 
   /* Document list */
@@ -1413,7 +1420,7 @@
         </section>
 
         <!-- Emergency info link -->
-        <a href="Emergency-allowed.html" class="emergency-link" style="border-radius:10px;border:1.5px solid var(--wf-border);" aria-label="View emergency info">
+        <a href="Emergency-allowed.html" class="emergency-link" aria-label="View emergency info">
           View emergency info &amp; what you're allowed to do
           <span class="arrow" aria-hidden="true">→</span>
         </a>
