@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Emergency info · set up — PetPal wireframe</title>
+<title>Logging in — PetPal wireframe</title>
 <style>
   :root {
     --wf-bg:         #ffffff;
@@ -124,15 +124,14 @@
 
   /* MOBILE LAYOUT */
   .content-mobile { flex: 1; display: flex; justify-content: center; padding: 24px; min-height: 100vh; }
-  .phone { position: relative; width: 375px; min-height: 812px; background: var(--wf-bg); border: 1.5px solid var(--wf-border); border-radius: 12px; display: flex; flex-direction: column; overflow: hidden; box-shadow: 0 1px 4px rgba(0,0,0,0.06); }
-  .fab { position: absolute; right: 16px; bottom: 76px; width: 56px; height: 56px; border-radius: 50%; background: var(--wf-btn); color: var(--wf-btn-text); font-size: 28px; line-height: 1; border: none; cursor: pointer; display: flex; align-items: center; justify-content: center; text-decoration: none; box-shadow: 0 4px 14px rgba(0,0,0,0.28); z-index: 10; }
+  .phone { width: 375px; min-height: 812px; background: var(--wf-bg); border: 1.5px solid var(--wf-border); border-radius: 12px; display: flex; flex-direction: column; overflow: hidden; box-shadow: 0 1px 4px rgba(0,0,0,0.06); }
   .m-header { display: flex; align-items: center; justify-content: space-between; padding: 12px 16px; border-bottom: 1px solid var(--wf-border); min-height: 48px; }
   .m-header .back { font-size: 14px; color: var(--wf-text); background: none; border: none; cursor: pointer; }
   .m-header h1 { font-size: 17px; font-weight: 600; }
   .m-header .action-btn { font-size: 13px; color: var(--wf-muted); background: none; border: none; cursor: pointer; }
   .m-main { flex: 1; overflow-y: auto; padding-bottom: 20px; }
 
-  /* PET IDENTITY STRIP */
+  /* PET IDENTITY STRIP (small, for sections) */
   .m-pet-identity { display: flex; align-items: center; gap: 10px; padding: 12px 16px; border-bottom: 1px solid var(--wf-border); }
   .pet-photo { border-radius: 50%; background: var(--wf-placeholder); flex-shrink: 0; display: flex; align-items: center; justify-content: center; font-size: 10px; color: var(--wf-muted); }
   .pet-photo-s { width: 40px; height: 40px; }
@@ -140,64 +139,39 @@
   .pet-photo-d { width: 88px; height: 88px; font-size: 11px; }
   .pet-info h2, .pet-info h1 { line-height: 1.2; }
   .pet-info .pet-meta { color: var(--wf-muted); margin-top: 2px; }
+  .pet-info .pet-chip { color: var(--wf-muted); margin-top: 2px; }
 
   /* BUTTONS */
   .btn-primary { background: var(--wf-btn); color: var(--wf-btn-text); border: none; padding: 10px 20px; font-size: 14px; font-weight: 600; border-radius: 6px; cursor: pointer; }
   .btn-secondary { background: var(--wf-btn-sec); color: var(--wf-text); border: 1.5px solid var(--wf-border); padding: 10px 20px; font-size: 14px; font-weight: 600; border-radius: 6px; cursor: pointer; }
   .btn-primary:disabled { opacity: 0.5; cursor: not-allowed; }
 
-  /* SECTION HEADING */
-  .section-heading { padding: 16px 16px 8px; font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em; color: var(--wf-muted); }
+  /* PET CARD (My Pets) */
+  .pet-card { background: var(--wf-surface); border: 1.5px solid var(--wf-border); border-radius: 8px; padding: 16px; display: flex; gap: 14px; align-items: center; cursor: pointer; }
+  .pet-card:hover { border-color: var(--wf-muted); }
+  .pet-card-info { flex: 1; }
+  .pet-card-info h3 { font-size: 17px; font-weight: 600; }
+  .pet-card-info .pet-meta { font-size: 13px; color: var(--wf-muted); margin-top: 2px; }
+  .pet-card-info .fill-hint { font-size: 12px; color: var(--wf-muted); margin-top: 4px; }
+  .card-arrow { color: var(--wf-muted); font-size: 16px; flex-shrink: 0; }
 
-  /* VET CARD */
-  .vet-card { margin: 12px 16px; padding: 16px; background: var(--wf-surface); border: 1.5px solid var(--wf-border); border-radius: 8px; }
-  .vet-card h3 { font-size: 16px; font-weight: 600; margin-bottom: 8px; }
-  .vet-field { display: flex; align-items: baseline; gap: 8px; padding: 4px 0; font-size: 13px; }
-  .vet-label { color: var(--wf-muted); min-width: 60px; }
+  /* SECTION CARD (dossier) */
+  .m-section-card { background: var(--wf-surface); border: 1.5px solid var(--wf-border); border-radius: 8px; padding: 14px; cursor: pointer; display: flex; gap: 12px; align-items: flex-start; }
+  .m-section-card:hover { border-color: var(--wf-muted); }
+  .card-icon { border-radius: 6px; background: var(--wf-placeholder); flex-shrink: 0; display: flex; align-items: center; justify-content: center; font-size: 9px; color: var(--wf-muted); }
+  .card-icon-m { width: 36px; height: 36px; }
+  .card-body { flex: 1; min-width: 0; }
+  .card-body h3 { font-size: 15px; font-weight: 600; line-height: 1.3; }
+  .card-detail { font-size: 12px; color: var(--wf-muted); margin-top: 3px; line-height: 1.4; }
+  .card-detail strong { color: var(--wf-text); font-weight: 600; }
 
-  /* PINNED CARD */
-  .pinned-card { margin: 12px 16px; padding: 14px; background: var(--wf-surface); border: 1.5px solid var(--wf-border); border-radius: 8px; }
-  .pinned-card h3 { font-size: 14px; font-weight: 600; margin-bottom: 6px; }
-  .pinned-card p { font-size: 12px; color: var(--wf-muted); line-height: 1.5; }
-
-  /* EMERGENCY CONTACT ENTRY */
-  .contact-entry { display: flex; align-items: center; gap: 12px; padding: 12px 16px; border-bottom: 1px solid var(--wf-border); }
-  .contact-entry:last-child { border-bottom: none; }
-  .contact-avatar { width: 36px; height: 36px; border-radius: 50%; background: var(--wf-placeholder); flex-shrink: 0; display: flex; align-items: center; justify-content: center; font-size: 10px; color: var(--wf-muted); }
-  .contact-info { flex: 1; }
-  .contact-info h4 { font-size: 14px; font-weight: 600; }
-  .contact-info .contact-meta { font-size: 12px; color: var(--wf-muted); margin-top: 1px; }
-  .contact-role { font-size: 11px; color: var(--wf-muted); font-weight: 500; padding: 2px 8px; background: var(--wf-surface); border: 1px solid var(--wf-border); border-radius: 4px; flex-shrink: 0; }
-
-  /* AUTHORIZATION SECTION */
-  .auth-card { margin: 12px 16px; padding: 14px; background: var(--wf-surface); border: 1.5px solid var(--wf-border); border-radius: 8px; }
-  .auth-card h3 { font-size: 14px; font-weight: 600; margin-bottom: 6px; }
-  .auth-status { font-size: 13px; margin-bottom: 4px; }
-  .auth-detail { font-size: 12px; color: var(--wf-muted); margin-bottom: 8px; }
-  .auth-link { font-size: 13px; color: var(--wf-text); font-weight: 500; text-decoration: underline; }
-
-  /* LAST UPDATED FOOTER */
-  .info-footer { padding: 16px; text-align: center; font-size: 12px; color: var(--wf-muted); }
-
-  /* EMPTY STATE */
-  .empty-state { text-align: center; padding: 60px 32px; }
-  .empty-illustration { width: 120px; height: 120px; border-radius: 12px; background: var(--wf-placeholder); margin: 0 auto 20px; display: flex; align-items: center; justify-content: center; font-size: 11px; color: var(--wf-muted); }
-  .empty-headline { font-size: 18px; font-weight: 600; margin-bottom: 8px; }
-  .empty-body { font-size: 14px; color: var(--wf-muted); margin-bottom: 20px; line-height: 1.5; }
-
-  /* ERROR STATE */
-  .error-state { text-align: center; padding: 60px 32px; }
-  .error-headline { font-size: 18px; font-weight: 600; margin-bottom: 8px; }
-  .error-body { font-size: 14px; color: var(--wf-muted); margin-bottom: 20px; line-height: 1.5; }
-
-  /* SKELETON */
-  .skeleton-area { padding: 16px; }
-  .skeleton-label { font-size: 12px; color: var(--wf-muted); margin-bottom: 12px; }
-  .skeleton-block { height: 72px; background: var(--wf-placeholder); border-radius: 8px; margin-bottom: 10px; opacity: 0.5; }
-
-  /* INLINE ERROR BANNER */
-  .error-banner { margin: 12px 16px; padding: 12px; background: var(--wf-surface); border: 1.5px solid var(--wf-border); border-radius: 6px; }
-  .error-banner p { font-size: 13px; color: var(--wf-text); }
+  /* RECORD ENTRY */
+  .record-entry { display: flex; align-items: flex-start; justify-content: space-between; padding: 14px 16px; border-bottom: 1px solid var(--wf-border); }
+  .record-entry:last-child { border-bottom: none; }
+  .record-info h3 { font-size: 15px; font-weight: 600; }
+  .record-info .record-meta { font-size: 12px; color: var(--wf-muted); margin-top: 2px; }
+  .record-status { font-size: 11px; font-weight: 600; padding: 3px 8px; border-radius: 4px; background: var(--wf-surface); border: 1px solid var(--wf-border); flex-shrink: 0; margin-left: 8px; align-self: center; }
+  .record-action { font-size: 12px; color: var(--wf-muted); background: none; border: none; cursor: pointer; flex-shrink: 0; align-self: center; }
 
   /* FORM */
   .form-group { padding: 0 16px; margin-bottom: 16px; }
@@ -209,6 +183,92 @@
   .form-group input::placeholder, .form-group textarea::placeholder { color: var(--wf-placeholder); }
   .form-actions { padding: 16px; display: flex; gap: 8px; }
   .form-actions button { flex: 1; }
+
+  /* SECTION HEADING */
+  .section-heading { padding: 16px 16px 8px; font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em; color: var(--wf-muted); }
+
+  /* PINNED CARD (conditions/meds) */
+  .pinned-card { margin: 12px 16px; padding: 14px; background: var(--wf-surface); border: 1.5px solid var(--wf-border); border-radius: 8px; }
+  .pinned-card h3 { font-size: 14px; font-weight: 600; margin-bottom: 6px; }
+  .pinned-card p { font-size: 12px; color: var(--wf-muted); line-height: 1.5; }
+
+  /* DOCUMENT CARD */
+  .doc-card { display: flex; gap: 12px; padding: 14px 16px; border-bottom: 1px solid var(--wf-border); align-items: center; }
+  .doc-thumb { width: 48px; height: 48px; border-radius: 6px; background: var(--wf-placeholder); flex-shrink: 0; display: flex; align-items: center; justify-content: center; font-size: 9px; color: var(--wf-muted); }
+  .doc-info { flex: 1; }
+  .doc-info h3 { font-size: 14px; font-weight: 600; }
+  .doc-info .doc-meta { font-size: 12px; color: var(--wf-muted); margin-top: 2px; }
+
+  /* POLICY CARD */
+  .policy-card { margin: 12px 16px; padding: 16px; background: var(--wf-surface); border: 1.5px solid var(--wf-border); border-radius: 8px; }
+  .policy-card h3 { font-size: 16px; font-weight: 600; margin-bottom: 4px; }
+  .policy-card .policy-field { display: flex; justify-content: space-between; padding: 6px 0; border-bottom: 1px solid var(--wf-border); font-size: 13px; }
+  .policy-card .policy-field:last-child { border-bottom: none; }
+  .policy-card .policy-label { color: var(--wf-muted); }
+  .policy-card .policy-value { font-weight: 500; }
+
+  /* PERSONALITY SECTIONS */
+  .personality-section { padding: 14px 16px; border-bottom: 1px solid var(--wf-border); }
+  .personality-section h3 { font-size: 14px; font-weight: 600; margin-bottom: 4px; }
+  .personality-section p { font-size: 13px; color: var(--wf-muted); line-height: 1.5; }
+  .personality-section.warning { background: var(--wf-surface); }
+  .personality-section.warning h3::before { content: "⚠ "; }
+
+  /* VET CARD */
+  .vet-card { margin: 12px 16px; padding: 16px; background: var(--wf-surface); border: 1.5px solid var(--wf-border); border-radius: 8px; }
+  .vet-card h3 { font-size: 16px; font-weight: 600; margin-bottom: 8px; }
+  .vet-field { display: flex; align-items: baseline; gap: 8px; padding: 4px 0; font-size: 13px; }
+  .vet-label { color: var(--wf-muted); min-width: 60px; }
+
+  /* APPOINTMENT */
+  .appt-entry { display: flex; justify-content: space-between; padding: 12px 16px; border-bottom: 1px solid var(--wf-border); }
+  .appt-info h3 { font-size: 14px; font-weight: 600; }
+  .appt-info .appt-meta { font-size: 12px; color: var(--wf-muted); margin-top: 2px; }
+  .appt-status { font-size: 11px; font-weight: 600; align-self: center; padding: 3px 8px; border-radius: 4px; background: var(--wf-surface); border: 1px solid var(--wf-border); }
+
+  /* SHARE FORM */
+  .share-scope { padding: 12px 16px; }
+  .scope-option { display: flex; align-items: center; gap: 10px; padding: 10px 12px; border: 1.5px solid var(--wf-border); border-radius: 6px; margin-bottom: 8px; cursor: pointer; }
+  .scope-option.selected { border-color: var(--wf-text); }
+  .scope-radio { width: 18px; height: 18px; border-radius: 50%; border: 2px solid var(--wf-border); flex-shrink: 0; }
+  .scope-option.selected .scope-radio { border-color: var(--wf-text); background: var(--wf-text); }
+  .scope-label { font-size: 14px; font-weight: 500; }
+  .scope-desc { font-size: 12px; color: var(--wf-muted); }
+  .share-result { text-align: center; padding: 20px 16px; }
+  .share-link { display: block; padding: 12px; background: var(--wf-surface); border: 1.5px solid var(--wf-border); border-radius: 6px; font-size: 13px; color: var(--wf-muted); margin: 12px 16px; word-break: break-all; }
+  .share-actions { display: flex; gap: 8px; padding: 0 16px; }
+  .share-actions button { flex: 1; }
+
+  /* EMPTY STATE */
+  .empty-state { text-align: center; padding: 60px 32px; }
+  .empty-illustration { width: 120px; height: 120px; border-radius: 12px; background: var(--wf-placeholder); margin: 0 auto 20px; display: flex; align-items: center; justify-content: center; font-size: 11px; color: var(--wf-muted); }
+  .empty-headline { font-size: 18px; font-weight: 600; margin-bottom: 8px; }
+  .empty-body { font-size: 14px; color: var(--wf-muted); margin-bottom: 20px; line-height: 1.5; }
+  .empty-cta { font-size: 14px; }
+
+  /* ERROR STATE */
+  .error-state { text-align: center; padding: 60px 32px; }
+  .error-headline { font-size: 18px; font-weight: 600; margin-bottom: 8px; }
+  .error-body { font-size: 14px; color: var(--wf-muted); margin-bottom: 20px; line-height: 1.5; }
+  .error-cta { font-size: 14px; }
+
+  /* SKELETON */
+  .skeleton-area { padding: 16px; }
+  .skeleton-label { font-size: 12px; color: var(--wf-muted); margin-bottom: 12px; }
+  .skeleton-block { height: 72px; background: var(--wf-placeholder); border-radius: 8px; margin-bottom: 10px; opacity: 0.5; }
+
+  /* PLACEHOLDER STATE */
+  .placeholder-state { text-align: center; padding: 60px 32px; }
+  .placeholder-why { font-size: 14px; color: var(--wf-muted); font-style: italic; border: 1px dashed var(--wf-border); border-radius: 8px; padding: 20px; }
+
+  /* INLINE ERROR BANNER (for form saves) */
+  .error-banner { margin: 12px 16px; padding: 12px; background: var(--wf-surface); border: 1.5px solid var(--wf-border); border-radius: 6px; }
+  .error-banner p { font-size: 13px; color: var(--wf-text); }
+  .error-banner .error-detail { font-size: 12px; color: var(--wf-muted); margin-top: 4px; }
+
+  /* STICKY FOOTER ACTION */
+  .sticky-action { padding: 12px 16px; border-top: 1px solid var(--wf-border); background: var(--wf-bg); }
+  .sticky-action button { width: 100%; }
 
   /* BOTTOM NAV */
   .phone-nav { border-top: 1px solid var(--wf-border); display: flex; background: var(--wf-bg); }
@@ -226,7 +286,6 @@
   .top-nav a.active { color: var(--wf-text); font-weight: 700; border-bottom-color: var(--wf-text); }
   .top-nav .nav-spacer { flex: 1; }
   .d-main { max-width: 720px; margin: 0 auto; padding: 32px; width: 100%; }
-  .d-footer { border-top: 1px solid var(--wf-border); padding: 16px 32px; font-size: 11px; color: var(--wf-muted); text-align: center; }
 
   /* RESPONSIVE */
   @media (max-width: 700px) {
@@ -236,6 +295,7 @@
     .phone { min-height: auto; }
     .d-main { padding: 20px 16px; }
   }
+
   .nav-tree .flow-screens { margin: 2px 0 4px 6px; }
   .nav-tree .flow-screens summary { font-size: 10px; font-weight: 600; letter-spacing: .04em; text-transform: uppercase; color: var(--nav-cap); cursor: pointer; padding: 4px 8px; list-style: none; }
   .nav-tree .flow-screens summary::-webkit-details-marker { display: none; }
@@ -244,13 +304,26 @@
   .nav-tree .flow-screens ol { list-style: none; counter-reset: none; padding-left: 8px; margin: 0 0 4px; border-left: 1px solid var(--nav-line); }
   .nav-tree .flow-screens ol a { font-size: 11px; font-weight: 400; color: var(--nav-text); padding: 3px 8px; display: block; border-radius: 4px; text-decoration: none; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
   .nav-tree .flow-screens ol a:hover { background: var(--nav-active-bg); color: var(--nav-text-active); }
+
+  /* AUTH */
+  .form-group { padding: 0 16px; margin-bottom: 14px; text-align: left; }
+  .form-group label { display: block; font-size: 13px; font-weight: 600; margin-bottom: 4px; }
+  .form-group input { width: 100%; padding: 10px 12px; font-size: 14px; border: 1.5px solid var(--wf-border); border-radius: 6px; background: var(--wf-input-bg); color: var(--wf-text); }
+  .auth-wrap { max-width: 340px; margin: 0 auto; padding: 28px 0 20px; text-align: center; }
+  .auth-brand { font-size: 24px; font-weight: 800; letter-spacing: 0.01em; margin-bottom: 4px; }
+  .auth-sub { font-size: 14px; color: var(--wf-muted); margin-bottom: 16px; }
+  .auth-illustration { width: 110px; height: 110px; border-radius: 16px; background: var(--wf-placeholder); margin: 0 auto 18px; display: flex; align-items: center; justify-content: center; font-size: 10px; color: var(--wf-muted); }
+  .auth-divider { display: flex; align-items: center; gap: 10px; color: var(--wf-muted); font-size: 11px; margin: 16px 16px; }
+  .auth-divider::before, .auth-divider::after { content: ""; flex: 1; height: 1px; background: var(--wf-border); }
+  .auth-alt { display: flex; flex-direction: column; gap: 8px; padding: 0 16px; }
+  .auth-foot { font-size: 13px; color: var(--wf-muted); margin-top: 18px; }
+  .auth-error { margin: 0 16px 14px; padding: 10px 12px; border: 1.5px solid #e03131; background: #fff5f5; color: #c92a2a; border-radius: 8px; font-size: 13px; text-align: left; }
 </style>
 </head>
 <body>
 
 <div class="layout">
 
-  <!-- SIDEBAR -->
   <aside class="sidenav" aria-label="Wireframe navigation">
     <a class="brand" href="#">PetPal Wireframes</a>
     <div class="viewport-toggle" role="radiogroup" aria-label="Layout toggle">
@@ -365,10 +438,10 @@
 
       <li><span class="nav-section">My Pets</span>
         <ul>
-          <li><a href="My-Pets.html">My Pets</a>
+          <li><a href="My-Pets.html" class="active">My Pets</a>
             <ul class="state-list">
               <li><a href="My-Pets.html">success</a></li>
-              <li><a href="My-Pets-empty.html">empty</a></li>
+              <li><a href="My-Pets-empty.html" class="active">empty</a></li>
               <li><a href="My-Pets-loading.html">loading</a></li>
               <li><a href="My-Pets-error.html">error</a></li>
             </ul>
@@ -445,13 +518,14 @@
               <li><a href="Vet-and-appointments-clinic.html">clinic only</a></li>
             </ul>
           </li>
-          <li><a href="Emergency-info.html" class="active">Emergency info</a>
+          <li><a href="Emergency-info.html">Emergency info</a>
             <ul class="state-list">
-              <li><a href="Emergency-info.html" class="active">success</a></li>
+              <li><a href="Emergency-info.html">success</a></li>
               <li><a href="Emergency-info-empty.html">empty</a></li>
               <li><a href="Emergency-info-loading.html">loading</a></li>
               <li><a href="Emergency-info-error.html">error</a></li>
-              <li><a class="active" href="Emergency-info-firstrun.html">newly set up</a></li>
+              <li><a href="Emergency-info-firstrun.html">newly set up</a></li>
+              <li><a href="Emergency-info-fill1.html">setup 1/3</a></li><li><a href="Emergency-info-fill2.html">setup 2/3</a></li>
             </ul>
           </li>
         </ul>
@@ -498,7 +572,6 @@
           <li><a href="Share-a-pet.html">Share a pet</a>
             <ul class="state-list">
               <li><a href="Share-a-pet.html">success</a></li>
-              <li><a href="Share-a-pet-empty.html">empty</a></li>
               <li><a href="Share-a-pet-loading.html">loading</a></li>
               <li><a href="Share-a-pet-error.html">error</a></li>
               <li><a href="Share-success.html">link ready (success)</a></li>
@@ -538,11 +611,13 @@
         <li><a href="Reminder-settings.html">Reminder settings</a></li>
         </ul>
       </li>
+
       <li><div class="nav-divider"></div></li>
+
       <li><span class="nav-section">Owner</span>
         <ul>
           <li><a href="Me.html">Owner profile</a></li>
-          <li><a href="Logged-out.html">Signed out</a></li>
+          <li><a class="active" href="Logged-out.html">Signed out</a></li>
         </ul>
       </li>
       <li><div class="nav-divider"></div></li>
@@ -567,7 +642,9 @@
           </li>
         </ul>
       </li>
+
       <li><div class="nav-divider"></div></li>
+
       <li><span class="nav-section">Deep actions</span>
         <ul>
           <li><a href="Emergency-auth-setup.html">Emergency auth setup</a>
@@ -582,130 +659,71 @@
     </ul>
   </aside>
 
-
-  <!-- MOBILE VIEW -->
   <div class="content-mobile view-mobile">
     <div class="phone">
 
       <div class="state-bar" aria-label="Screen states">
-        <a href="Emergency-info.html" class="current">Success</a>
-        <a href="Emergency-info-empty.html">Empty</a>
-        <a href="Emergency-info-loading.html">Loading</a>
-        <a href="Emergency-info-error.html">Error</a>
+        <a href="Login.html">Success</a>
+        <a href="Login-loading.html" class="current">Loading</a>
+        <a href="Login-error.html">Error</a>
       </div>
 
       <div class="flow-step">
-        R5 · Emergency — <span>My Pets → ★ Emergency info</span>
+        <span class="zone-label">Auth</span> Auth · <span>Logging in…</span> → My Pets
       </div>
 
       <header class="m-header">
-        <a href="home-progress-6.html" style="text-decoration:none;"><button class="back" aria-label="Back to dossier">&larr; Dossier</button></a>
-        <h1>Emergency info</h1>
+        <span></span>
+        <h1>PetPal</h1>
         <span></span>
       </header>
 
       <div class="m-main">
 
-        <section class="m-pet-identity" aria-label="Pet identity">
-          <figure class="pet-photo pet-photo-s" aria-label="Pet photo placeholder">photo</figure>
-          <div class="pet-info">
-            <h2 style="font-size:15px;font-weight:700;">Miso</h2>
-            <p class="pet-meta" style="font-size:12px;">Dog &middot; Border Terrier &middot; Female</p>
-          </div>
+        <section class="empty-state" aria-label="Logging in">
+          <figure class="empty-illustration" aria-label="Illustration placeholder">illustration</figure>
+          <h2 class="empty-headline">Logging you in…</h2>
+          <p class="empty-body">Fetching your pets and reminders so everything is where you left it.</p>
         </section>
-
-        <div style="margin:10px 16px;padding:12px 14px;border:1.5px solid var(--wf-border);border-radius:8px;">
-          <h3 style="font-size:14px;font-weight:600;">Emergency contact</h3>
-          <p style="font-size:13px;margin-top:6px;"><strong>Eva Schmidt</strong> · Owner<br><a href="tel:+491719876543" style="color:var(--wf-muted);">+49 171 9876543</a></p>
-        </div>
-
-        <div style="margin:10px 16px;padding:12px 14px;border:1.5px solid var(--wf-border);border-radius:8px;">
-          <h3 style="font-size:14px;font-weight:600;">Vet clinic</h3>
-          <p style="font-size:13px;margin-top:6px;"><strong>Tierklinik am Stadtpark</strong> · Dr. Müller<br>Parkstraße 12, 10115 Berlin</p>
-          <a href="tel:+493012345670" style="text-decoration:none;"><button class="btn-secondary" style="width:100%;margin-top:8px;font-size:13px;">Call vet</button></a>
-        </div>
-
-        <div style="margin:10px 16px;padding:12px 14px;border:1.5px solid var(--wf-border);border-radius:8px;">
-          <h3 style="font-size:14px;font-weight:600;">Important — authorization &amp; allowed meds</h3>
-          <p style="font-size:13px;margin-top:6px;"><strong>Set up ✓</strong> · Carer may seek emergency vet care up to €500<br>Allowed meds list: Apoquel (with vet approval) · No aspirin</p>
-          <a href="Emergency-auth-setup.html" style="font-size:12px;">Edit authorization →</a>
-        </div>
-      
-      <nav class="phone-nav" aria-label="Main navigation">
-        <a href="My-Pets.html" class="active">
-          <span class="nav-icon" aria-hidden="true"></span> Pets
-        </a>
-        <a href="Whats-due.html">
-          <span class="nav-icon" aria-hidden="true"></span> What's due
-        </a>
-        <a href="Share-a-pet.html">
-          <span class="nav-icon" aria-hidden="true"></span> Share
-        </a>
-              <a href="Me.html">
-          <span class="nav-icon" aria-hidden="true"></span> Owner
-        </a>
-      </nav>
+      </div>
 
     </div>
   </div>
 
-
-  <!-- DESKTOP VIEW -->
   <div class="content-desktop view-desktop">
 
-    <div class="state-bar" aria-label="Screen states">
-      <a href="Emergency-info.html" class="current">Success</a>
-      <a href="Emergency-info-empty.html">Empty</a>
-      <a href="Emergency-info-loading.html">Loading</a>
-      <a href="Emergency-info-error.html">Error</a>
-    </div>
+      <div class="state-bar" aria-label="Screen states">
+        <a href="Login.html">Success</a>
+        <a href="Login-loading.html" class="current">Loading</a>
+        <a href="Login-error.html">Error</a>
+      </div>
 
     <div class="flow-step" style="text-align:left;padding-left:32px;">
-      R5 · Emergency — <span>My Pets → ★ Emergency info</span>
+      Auth · <span>Logging in…</span> → My Pets
     </div>
 
     <nav class="top-nav" aria-label="Main navigation (desktop)">
       <span class="nav-brand">PetPal</span>
-      <a href="My-Pets.html" class="active">Pets</a>
-      <a href="Whats-due.html">What's due</a>
-      <a href="Share-a-pet.html">Share</a>
-          <a href="Me.html">Owner</a>
     </nav>
 
     <div class="d-main">
 
-      <section class="m-pet-identity" aria-label="Pet identity">
-        <figure class="pet-photo pet-photo-s" aria-label="Pet photo placeholder">photo</figure>
-        <div class="pet-info">
-          <h2 style="font-size:15px;font-weight:700;">Miso</h2>
-          <p class="pet-meta" style="font-size:12px;">Dog &middot; Border Terrier &middot; Female</p>
-        </div>
-      </section>
-
-      <div style="margin:10px 16px;padding:12px 14px;border:1.5px solid var(--wf-border);border-radius:8px;">
-          <h3 style="font-size:14px;font-weight:600;">Emergency contact</h3>
-          <p style="font-size:13px;margin-top:6px;"><strong>Eva Schmidt</strong> · Owner<br><a href="tel:+491719876543" style="color:var(--wf-muted);">+49 171 9876543</a></p>
-        </div>
-
-      <div style="margin:10px 16px;padding:12px 14px;border:1.5px solid var(--wf-border);border-radius:8px;">
-          <h3 style="font-size:14px;font-weight:600;">Vet clinic</h3>
-          <p style="font-size:13px;margin-top:6px;"><strong>Tierklinik am Stadtpark</strong> · Dr. Müller<br>Parkstraße 12, 10115 Berlin</p>
-          <a href="tel:+493012345670" style="text-decoration:none;"><button class="btn-secondary" style="width:100%;margin-top:8px;font-size:13px;">Call vet</button></a>
-        </div>
-
-      <div style="margin:10px 16px;padding:12px 14px;border:1.5px solid var(--wf-border);border-radius:8px;">
-          <h3 style="font-size:14px;font-weight:600;">Important — authorization &amp; allowed meds</h3>
-          <p style="font-size:13px;margin-top:6px;"><strong>Set up ✓</strong> · Carer may seek emergency vet care up to €500<br>Allowed meds list: Apoquel (with vet approval) · No aspirin</p>
-          <a href="Emergency-auth-setup.html" style="font-size:12px;">Edit authorization →</a>
-        </div>
-
+        <section class="empty-state" aria-label="Logging in">
+          <figure class="empty-illustration" aria-label="Illustration placeholder">illustration</figure>
+          <h2 class="empty-headline">Logging you in…</h2>
+          <p class="empty-body">Fetching your pets and reminders so everything is where you left it.</p>
+        </section>
     </div>
-
   </div>
 
 </div>
 
 <script>
+(function () {
+  var p = new URLSearchParams(window.location.search);
+  var next = p.get('next') || 'My-Pets.html';
+  setTimeout(function () { window.location.href = next; }, 1500);
+})();
 function setView(mode) {
   document.body.classList.toggle('is-desktop', mode === 'desktop');
   document.getElementById('btn-mobile').classList.toggle('active', mode === 'mobile');

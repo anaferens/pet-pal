@@ -90,6 +90,12 @@ flowchart TD
 ```
 PetPal
 │
+├─ AUTH · not signed in (v3)
+│  ├─ Log in  (email/password · Google · Apple)   states: loading → My Pets · error
+│  ├─ Sign up → logging in → My Pets (empty) → new-pet setup
+│  ├─ Forgot password → reset-link sent → back to log in
+│  └─ entries: Signed-out "Log back in" · sitter card "To the app"
+│
 ├─ OWNER APP · signed in
 │  ├─ ⌂ My Pets · Main                         (global)   states: success · empty · loading · error
 │  │   ├─ Set up a pet · Main

@@ -30,6 +30,12 @@ Pick one from the sidebar, or add `?flow=…` to any URL. In flow mode, in-page 
 
 Each base screen also has **Empty / Loading / Error** variants (`*-empty.html`, `*-loading.html`, `*-error.html`) where the flow needs them. **★ = new in v2** (added while building the interactive prototype — see [sitemap.md §"Screens realized in the interactive wireframes"](../research/sitemap.md)).
 
+**Auth (v3)**
+- ★ `Login.html` — email/password + Google/Apple, forgot-password link, create-account link; states: loading (auto-advances into the app) / error (mismatch banner).
+- ★ `Sign-up.html` — name/email/password → logging-in → **My Pets (empty)**, feeding straight into the new-pet setup journey.
+- ★ `Forgot-password.html` — email → "Check your inbox" confirmation → back to log in.
+- `Logged-out.html` "Log back in" and the sitter card's "To the app" both enter here.
+
 **Owner — pets & dossier**
 - `My-Pets.html` — pet list (Miso + Cheetah); each card opens *that* pet's dossier.
 - `Set-up-a-pet.html` — create a pet (name, species, breed, sex, microchip, photo).
