@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Documents & passport (error) — PetPal wireframe</title>
+<title>Signed out — PetPal wireframe</title>
 <style>
   :root {
     --wf-bg:         #ffffff;
@@ -409,10 +409,10 @@
 
 <li><span class="nav-section">My Pets</span>
         <ul>
-          <li><a href="My-Pets.html">My Pets</a>
+          <li><a href="My-Pets.html" class="active">My Pets</a>
             <ul class="state-list">
               <li><a href="My-Pets.html">success</a></li>
-              <li><a href="My-Pets-empty.html">empty</a></li>
+              <li><a href="My-Pets-empty.html" class="active">empty</a></li>
               <li><a href="My-Pets-loading.html">loading</a></li>
               <li><a href="My-Pets-error.html">error</a></li>
             </ul>
@@ -451,12 +451,12 @@
               <li><a href="Health-and-jabs-record1.html">1 health record</a></li>
             </ul>
           </li>
-          <li><a href="Documents-and-passport.html" class="active">Documents &amp; passport</a>
+          <li><a href="Documents-and-passport.html">Documents &amp; passport</a>
             <ul class="state-list">
               <li><a href="Documents-and-passport.html">success</a></li>
               <li><a href="Documents-and-passport-empty.html">empty</a></li>
               <li><a href="Documents-and-passport-loading.html">loading</a></li>
-              <li><a href="Documents-and-passport-error.html" class="active">error</a></li>
+              <li><a href="Documents-and-passport-error.html">error</a></li>
               <li><a href="Documents-and-passport-firstrun.html">first document</a></li>
             </ul>
           </li>
@@ -588,7 +588,7 @@
       <li><span class="nav-section">Me</span>
         <ul>
           <li><a href="Me.html">My profile</a></li>
-          <li><a href="Logged-out.html">Signed out</a></li>
+          <li><a class="active" href="Logged-out.html">Signed out</a></li>
         </ul>
       </li>
       <li><div class="nav-divider"></div></li>
@@ -634,52 +634,28 @@
     <div class="phone">
 
       <div class="state-bar" aria-label="Screen states">
-        <a href="Documents-and-passport.html">Success</a>
-        <a href="Documents-and-passport-empty.html">Empty</a>
-        <a href="Documents-and-passport-loading.html">Loading</a>
-        <a href="Documents-and-passport-error.html" class="current">Error</a>
+        <a href="Logged-out.html" class="current">Success</a>
       </div>
 
       <div class="flow-step">
-        <span class="zone-label">Main, R3</span> Main + R3 · <span>Pet dossier → ★ Documents & passport</span>
+        <span class="zone-label">Me</span> <span>Signed out</span> — session ended (log out / profile deleted)
       </div>
 
       <header class="m-header">
-        <a href="home-success.html" style="text-decoration:none;"><button class="back" aria-label="Back">← Dossier</button></a>
-        <h1>Documents & passport</h1>
-        <a href="Add-record.html?type=documents"><button class="action-btn">Upload</button></a>
+        <span></span>
+        <h1>PetPal</h1>
+        <span></span>
       </header>
 
       <div class="m-main">
 
-        <section class="m-pet-identity" aria-label="Pet identity">
-          <figure class="pet-photo pet-photo-s" aria-label="Pet photo placeholder">photo</figure>
-          <div class="pet-info">
-            <h2 style="font-size:15px;font-weight:700;">Miso</h2>
-            <p class="pet-meta" style="font-size:12px;">Dog · Border Terrier · Female</p>
-          </div>
-        </section>
-        <section class="error-state" aria-label="Error state">
-          <h2 class="error-headline">Something went wrong</h2>
-          <p class="error-body">Couldn't load Miso's documents. Check your connection and try again.</p>
-          <a href="Documents-and-passport-loading.html"><button class="btn-primary error-cta">Try again</button></a>
+        <section class="empty-state" aria-label="Signed out">
+          <figure class="empty-illustration" aria-label="Illustration placeholder">illustration</figure>
+          <h2 class="empty-headline" id="lo-head">You're signed out</h2>
+          <p class="empty-body" id="lo-body">Your pets' data is safe. Log back in any time to pick up where you left off.</p>
+          <a href="My-Pets.html"><button class="btn-primary empty-cta">Log back in</button></a>
         </section>
       </div>
-
-      <nav class="phone-nav" aria-label="Main navigation">
-        <a href="My-Pets.html" class="active">
-          <span class="nav-icon" aria-hidden="true"></span> Pets
-        </a>
-        <a href="Whats-due.html">
-          <span class="nav-icon" aria-hidden="true"></span> What's due
-        </a>
-        <a href="Share-a-pet.html">
-          <span class="nav-icon" aria-hidden="true"></span> Share
-        </a>
-              <a href="Me.html">
-          <span class="nav-icon" aria-hidden="true"></span> Me
-        </a>
-      </nav>
 
     </div>
   </div>
@@ -687,37 +663,24 @@
   <div class="content-desktop view-desktop">
 
       <div class="state-bar" aria-label="Screen states">
-        <a href="Documents-and-passport.html">Success</a>
-        <a href="Documents-and-passport-empty.html">Empty</a>
-        <a href="Documents-and-passport-loading.html">Loading</a>
-        <a href="Documents-and-passport-error.html" class="current">Error</a>
+        <a href="Logged-out.html" class="current">Success</a>
       </div>
 
     <div class="flow-step" style="text-align:left;padding-left:32px;">
-      Main + R3 · <span>Pet dossier → ★ Documents & passport</span>
+      <span>Signed out</span> — session ended (log out / profile deleted)
     </div>
 
     <nav class="top-nav" aria-label="Main navigation (desktop)">
       <span class="nav-brand">PetPal</span>
-      <a href="My-Pets.html" class="active">Pets</a>
-      <a href="Whats-due.html">What's due</a>
-      <a href="Share-a-pet.html">Share</a>
-          <a href="Me.html">Me</a>
     </nav>
 
     <div class="d-main">
 
-        <section class="m-pet-identity" aria-label="Pet identity">
-          <figure class="pet-photo pet-photo-s" aria-label="Pet photo placeholder">photo</figure>
-          <div class="pet-info">
-            <h2 style="font-size:15px;font-weight:700;">Miso</h2>
-            <p class="pet-meta" style="font-size:12px;">Dog · Border Terrier · Female</p>
-          </div>
-        </section>
-        <section class="error-state" aria-label="Error state">
-          <h2 class="error-headline">Something went wrong</h2>
-          <p class="error-body">Couldn't load Miso's documents. Check your connection and try again.</p>
-          <a href="Documents-and-passport-loading.html"><button class="btn-primary error-cta">Try again</button></a>
+        <section class="empty-state" aria-label="Signed out">
+          <figure class="empty-illustration" aria-label="Illustration placeholder">illustration</figure>
+          <h2 class="empty-headline" id="lo-head-d">You're signed out</h2>
+          <p class="empty-body" id="lo-body-d">Your pets' data is safe. Log back in any time to pick up where you left off.</p>
+          <a href="My-Pets.html"><button class="btn-primary empty-cta">Log back in</button></a>
         </section>
     </div>
   </div>
@@ -725,6 +688,11 @@
 </div>
 
 <script>
+(function () {
+  if (new URLSearchParams(window.location.search).get('deleted') !== '1') return;
+  ['lo-head','lo-head-d'].forEach(function(i){ var e=document.getElementById(i); if(e) e.textContent='Profile deleted'; });
+  ['lo-body','lo-body-d'].forEach(function(i){ var e=document.getElementById(i); if(e) e.textContent='Your account and all pet data have been removed. Thanks for trying PetPal — you can create a new profile any time.'; });
+})();
 function setView(mode) {
   document.body.classList.toggle('is-desktop', mode === 'desktop');
   document.getElementById('btn-mobile').classList.toggle('active', mode === 'mobile');

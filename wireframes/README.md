@@ -63,6 +63,10 @@ Each base screen also has **Empty / Loading / Error** variants (`*-empty.html`, 
 - `Edit-access-grant.html` — edit/revoke one grant (per-person via `?person=`).
 - `Emergency-auth-setup.html` — emergency authorization (deep action).
 
+**Owner — profile ("Me" tab)**
+- ★ `Me.html` — owner profile: name, email, phone, language, reminder-notifications toggle; **Log out** and **Delete profile** with confirm modals.
+- ★ `Logged-out.html` — signed-out landing (`?deleted=1` flips it to "Profile deleted"); "Log back in" returns to the app.
+
 **Recipient (no account)**
 - `Shared-pet-view.html` — the sitter's read-only projection of the dossier.
 - `Emergency-allowed.html` — emergency contacts, vet, and what the sitter may do.

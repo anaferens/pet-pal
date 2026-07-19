@@ -115,6 +115,9 @@ PetPal
 │  │   │   └─ act on item → Add / update a record
 │  │   ├─ Reminder settings · R1                 (push/email, lead time, snooze, quiet hours)
 │  │   └─ What's due · offline · R1              (recovery state: last-saved reminders)
+│  ├─ ⌂ Me · owner profile                        (global, 4th tab — v3)
+│  │   ├─ profile fields · log out → Signed out
+│  │   └─ delete profile → Signed out (deleted)
 │  ├─ ⌂ Share a pet · S2                         (global)
 │  │   └─ Who has access · S1
 │  │       └─ Edit / revoke a grant · S1         (deep)

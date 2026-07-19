@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Documents & passport (error) — PetPal wireframe</title>
+<title>Me · profile — PetPal wireframe</title>
 <style>
   :root {
     --wf-bg:         #ffffff;
@@ -304,6 +304,30 @@
   .nav-tree .flow-screens ol { list-style: none; counter-reset: none; padding-left: 8px; margin: 0 0 4px; border-left: 1px solid var(--nav-line); }
   .nav-tree .flow-screens ol a { font-size: 11px; font-weight: 400; color: var(--nav-text); padding: 3px 8px; display: block; border-radius: 4px; text-decoration: none; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
   .nav-tree .flow-screens ol a:hover { background: var(--nav-active-bg); color: var(--nav-text-active); }
+
+  /* ME / PROFILE */
+  .form-group { padding: 0 16px; margin-bottom: 14px; text-align: left; }
+  .form-group label { display: block; font-size: 13px; font-weight: 600; margin-bottom: 4px; }
+  .form-group input, .form-group select { width: 100%; padding: 10px 12px; font-size: 14px; border: 1.5px solid var(--wf-border); border-radius: 6px; background: var(--wf-input-bg); color: var(--wf-text); }
+  .me-avatar { width: 96px; height: 96px; border-radius: 50%; background: var(--wf-placeholder); margin: 18px auto 8px; display: flex; align-items: center; justify-content: center; font-size: 10px; color: var(--wf-muted); }
+  .me-name { text-align: center; font-size: 20px; font-weight: 700; margin-bottom: 2px; }
+  .me-sub { text-align: center; font-size: 13px; color: var(--wf-muted); margin-bottom: 14px; }
+  .toggle-row { display: flex; align-items: center; justify-content: space-between; padding: 12px 16px; border-top: 1px solid var(--wf-border); border-bottom: 1px solid var(--wf-border); margin: 4px 0 14px; text-align: left; }
+  .toggle-row .t-label { font-size: 14px; font-weight: 500; }
+  .toggle-row .t-desc { font-size: 12px; color: var(--wf-muted); margin-top: 2px; }
+  .toggle-switch { width: 44px; height: 24px; border-radius: 12px; background: var(--wf-border); flex-shrink: 0; position: relative; cursor: pointer; }
+  .toggle-switch::after { content: ""; position: absolute; top: 3px; left: 3px; width: 18px; height: 18px; border-radius: 50%; background: white; transition: left 0.15s; }
+  .toggle-switch.on { background: var(--wf-btn); }
+  .toggle-switch.on::after { left: 23px; }
+  .danger-link { background: none; border: none; color: #c92a2a; font-size: 13px; text-decoration: underline; cursor: pointer; }
+  .me-modal { display: none; position: fixed; inset: 0; z-index: 120; background: rgba(0,0,0,0.5); align-items: center; justify-content: center; padding: 20px; }
+  .me-modal.open { display: flex; }
+  .me-sheet { text-align: center; background: var(--wf-bg); border-radius: 16px; width: 100%; max-width: 340px; padding: 24px 20px 20px; box-shadow: 0 8px 32px rgba(0,0,0,0.25); }
+  .me-sheet h3 { font-size: 18px; font-weight: 700; margin-bottom: 8px; }
+  .me-sheet p { font-size: 13px; color: var(--wf-muted); line-height: 1.5; margin-bottom: 16px; }
+  .me-sheet .row { display: flex; gap: 8px; }
+  .me-sheet .row > * { flex: 1; }
+  .btn-danger { background: #c92a2a; color: #fff; border: none; padding: 10px 20px; font-size: 14px; font-weight: 600; border-radius: 6px; cursor: pointer; }
 </style>
 </head>
 <body>
@@ -409,10 +433,10 @@
 
 <li><span class="nav-section">My Pets</span>
         <ul>
-          <li><a href="My-Pets.html">My Pets</a>
+          <li><a href="My-Pets.html" class="active">My Pets</a>
             <ul class="state-list">
               <li><a href="My-Pets.html">success</a></li>
-              <li><a href="My-Pets-empty.html">empty</a></li>
+              <li><a href="My-Pets-empty.html" class="active">empty</a></li>
               <li><a href="My-Pets-loading.html">loading</a></li>
               <li><a href="My-Pets-error.html">error</a></li>
             </ul>
@@ -451,12 +475,12 @@
               <li><a href="Health-and-jabs-record1.html">1 health record</a></li>
             </ul>
           </li>
-          <li><a href="Documents-and-passport.html" class="active">Documents &amp; passport</a>
+          <li><a href="Documents-and-passport.html">Documents &amp; passport</a>
             <ul class="state-list">
               <li><a href="Documents-and-passport.html">success</a></li>
               <li><a href="Documents-and-passport-empty.html">empty</a></li>
               <li><a href="Documents-and-passport-loading.html">loading</a></li>
-              <li><a href="Documents-and-passport-error.html" class="active">error</a></li>
+              <li><a href="Documents-and-passport-error.html">error</a></li>
               <li><a href="Documents-and-passport-firstrun.html">first document</a></li>
             </ul>
           </li>
@@ -587,7 +611,7 @@
 
       <li><span class="nav-section">Me</span>
         <ul>
-          <li><a href="Me.html">My profile</a></li>
+          <li><a class="active" href="Me.html">My profile</a></li>
           <li><a href="Logged-out.html">Signed out</a></li>
         </ul>
       </li>
@@ -634,40 +658,81 @@
     <div class="phone">
 
       <div class="state-bar" aria-label="Screen states">
-        <a href="Documents-and-passport.html">Success</a>
-        <a href="Documents-and-passport-empty.html">Empty</a>
-        <a href="Documents-and-passport-loading.html">Loading</a>
-        <a href="Documents-and-passport-error.html" class="current">Error</a>
+        <a href="Me.html" class="current">Success</a>
       </div>
 
       <div class="flow-step">
-        <span class="zone-label">Main, R3</span> Main + R3 · <span>Pet dossier → ★ Documents & passport</span>
+        <span class="zone-label">Me</span> Owner profile · <span>★ Me</span> — account, contact details, log out
       </div>
 
       <header class="m-header">
-        <a href="home-success.html" style="text-decoration:none;"><button class="back" aria-label="Back">← Dossier</button></a>
-        <h1>Documents & passport</h1>
-        <a href="Add-record.html?type=documents"><button class="action-btn">Upload</button></a>
+        <span></span>
+        <h1>Me</h1>
+        <span></span>
       </header>
 
       <div class="m-main">
 
-        <section class="m-pet-identity" aria-label="Pet identity">
-          <figure class="pet-photo pet-photo-s" aria-label="Pet photo placeholder">photo</figure>
-          <div class="pet-info">
-            <h2 style="font-size:15px;font-weight:700;">Miso</h2>
-            <p class="pet-meta" style="font-size:12px;">Dog · Border Terrier · Female</p>
+        <div class="me-avatar">photo</div>
+        <div class="me-name">Eva Schmidt</div>
+        <div class="me-sub">Pet owner · 2 pets · Berlin</div>
+
+        <form aria-label="Profile" onsubmit="return false;">
+          <div class="form-group">
+            <label>Full name</label>
+            <input type="text" value="Eva Schmidt">
           </div>
-        </section>
-        <section class="error-state" aria-label="Error state">
-          <h2 class="error-headline">Something went wrong</h2>
-          <p class="error-body">Couldn't load Miso's documents. Check your connection and try again.</p>
-          <a href="Documents-and-passport-loading.html"><button class="btn-primary error-cta">Try again</button></a>
-        </section>
+          <div class="form-group">
+            <label>Email</label>
+            <input type="email" value="eva.schmidt@example.com">
+          </div>
+          <div class="form-group">
+            <label>Phone</label>
+            <input type="tel" value="+49 171 9876543">
+          </div>
+          <div class="form-group">
+            <label>Language</label>
+            <select><option selected>English</option><option>Deutsch</option></select>
+          </div>
+          <div class="toggle-row">
+            <div><div class="t-label">Reminder notifications</div><div class="t-desc">Push &amp; email for What's due</div></div>
+            <div class="toggle-switch on" role="switch" onclick="this.classList.toggle('on')"></div>
+          </div>
+          <div class="form-group">
+            <button type="button" class="btn-primary" style="width:100%;" onclick="this.textContent='Saved ✓'">Save changes</button>
+          </div>
+          <div class="form-group">
+            <button type="button" class="btn-secondary" style="width:100%;" onclick="openMeModal('logout-modal')">Log out</button>
+          </div>
+          <div style="text-align:center;padding:2px 16px 20px;">
+            <button type="button" class="danger-link" onclick="openMeModal('delete-modal')">Delete profile</button>
+          </div>
+        </form>
+
+        <div class="me-modal" id="logout-modal" onclick="if(event.target===this)closeMeModals()">
+          <div class="me-sheet" role="dialog" aria-label="Log out?">
+            <h3>Log out?</h3>
+            <p>Your pets' data stays safe. You can log back in any time.</p>
+            <div class="row">
+              <button class="btn-secondary" onclick="closeMeModals()">Cancel</button>
+              <a href="Logged-out.html"><button class="btn-primary" style="width:100%;">Log out</button></a>
+            </div>
+          </div>
+        </div>
+        <div class="me-modal" id="delete-modal" onclick="if(event.target===this)closeMeModals()">
+          <div class="me-sheet" role="dialog" aria-label="Delete profile?">
+            <h3>Delete profile?</h3>
+            <p>This permanently removes your account, Miso's and Cheetah's dossiers, and every share link. This cannot be undone.</p>
+            <div class="row">
+              <button class="btn-secondary" onclick="closeMeModals()">Cancel</button>
+              <a href="Logged-out.html?deleted=1"><button class="btn-danger" style="width:100%;">Delete</button></a>
+            </div>
+          </div>
+        </div>
       </div>
 
       <nav class="phone-nav" aria-label="Main navigation">
-        <a href="My-Pets.html" class="active">
+        <a href="My-Pets.html">
           <span class="nav-icon" aria-hidden="true"></span> Pets
         </a>
         <a href="Whats-due.html">
@@ -676,7 +741,7 @@
         <a href="Share-a-pet.html">
           <span class="nav-icon" aria-hidden="true"></span> Share
         </a>
-              <a href="Me.html">
+              <a href="Me.html" class="active">
           <span class="nav-icon" aria-hidden="true"></span> Me
         </a>
       </nav>
@@ -687,44 +752,87 @@
   <div class="content-desktop view-desktop">
 
       <div class="state-bar" aria-label="Screen states">
-        <a href="Documents-and-passport.html">Success</a>
-        <a href="Documents-and-passport-empty.html">Empty</a>
-        <a href="Documents-and-passport-loading.html">Loading</a>
-        <a href="Documents-and-passport-error.html" class="current">Error</a>
+        <a href="Me.html" class="current">Success</a>
       </div>
 
     <div class="flow-step" style="text-align:left;padding-left:32px;">
-      Main + R3 · <span>Pet dossier → ★ Documents & passport</span>
+      Owner profile · <span>★ Me</span> — account, contact details, log out
     </div>
 
     <nav class="top-nav" aria-label="Main navigation (desktop)">
       <span class="nav-brand">PetPal</span>
-      <a href="My-Pets.html" class="active">Pets</a>
+      <a href="My-Pets.html">Pets</a>
       <a href="Whats-due.html">What's due</a>
       <a href="Share-a-pet.html">Share</a>
-          <a href="Me.html">Me</a>
+          <a href="Me.html" class="active">Me</a>
     </nav>
 
     <div class="d-main">
 
-        <section class="m-pet-identity" aria-label="Pet identity">
-          <figure class="pet-photo pet-photo-s" aria-label="Pet photo placeholder">photo</figure>
-          <div class="pet-info">
-            <h2 style="font-size:15px;font-weight:700;">Miso</h2>
-            <p class="pet-meta" style="font-size:12px;">Dog · Border Terrier · Female</p>
+        <div style="max-width:420px;margin:0 auto;"><div class="me-avatar">photo</div>
+        <div class="me-name">Eva Schmidt</div>
+        <div class="me-sub">Pet owner · 2 pets · Berlin</div>
+
+        <form aria-label="Profile" onsubmit="return false;">
+          <div class="form-group">
+            <label>Full name</label>
+            <input type="text" value="Eva Schmidt">
           </div>
-        </section>
-        <section class="error-state" aria-label="Error state">
-          <h2 class="error-headline">Something went wrong</h2>
-          <p class="error-body">Couldn't load Miso's documents. Check your connection and try again.</p>
-          <a href="Documents-and-passport-loading.html"><button class="btn-primary error-cta">Try again</button></a>
-        </section>
+          <div class="form-group">
+            <label>Email</label>
+            <input type="email" value="eva.schmidt@example.com">
+          </div>
+          <div class="form-group">
+            <label>Phone</label>
+            <input type="tel" value="+49 171 9876543">
+          </div>
+          <div class="form-group">
+            <label>Language</label>
+            <select><option selected>English</option><option>Deutsch</option></select>
+          </div>
+          <div class="toggle-row">
+            <div><div class="t-label">Reminder notifications</div><div class="t-desc">Push &amp; email for What's due</div></div>
+            <div class="toggle-switch on" role="switch" onclick="this.classList.toggle('on')"></div>
+          </div>
+          <div class="form-group">
+            <button type="button" class="btn-primary" style="width:100%;" onclick="this.textContent='Saved ✓'">Save changes</button>
+          </div>
+          <div class="form-group">
+            <button type="button" class="btn-secondary" style="width:100%;" onclick="openMeModal('logout-modal')">Log out</button>
+          </div>
+          <div style="text-align:center;padding:2px 16px 20px;">
+            <button type="button" class="danger-link" onclick="openMeModal('delete-modal')">Delete profile</button>
+          </div>
+        </form>
+
+        <div class="me-modal" id="logout-modal" onclick="if(event.target===this)closeMeModals()">
+          <div class="me-sheet" role="dialog" aria-label="Log out?">
+            <h3>Log out?</h3>
+            <p>Your pets' data stays safe. You can log back in any time.</p>
+            <div class="row">
+              <button class="btn-secondary" onclick="closeMeModals()">Cancel</button>
+              <a href="Logged-out.html"><button class="btn-primary" style="width:100%;">Log out</button></a>
+            </div>
+          </div>
+        </div>
+        <div class="me-modal" id="delete-modal" onclick="if(event.target===this)closeMeModals()">
+          <div class="me-sheet" role="dialog" aria-label="Delete profile?">
+            <h3>Delete profile?</h3>
+            <p>This permanently removes your account, Miso's and Cheetah's dossiers, and every share link. This cannot be undone.</p>
+            <div class="row">
+              <button class="btn-secondary" onclick="closeMeModals()">Cancel</button>
+              <a href="Logged-out.html?deleted=1"><button class="btn-danger" style="width:100%;">Delete</button></a>
+            </div>
+          </div>
+        </div></div>
     </div>
   </div>
 
 </div>
 
 <script>
+function openMeModal(id) { document.getElementById(id).classList.add('open'); }
+function closeMeModals() { document.querySelectorAll('.me-modal').forEach(function(m){ m.classList.remove('open'); }); }
 function setView(mode) {
   document.body.classList.toggle('is-desktop', mode === 'desktop');
   document.getElementById('btn-mobile').classList.toggle('active', mode === 'mobile');
