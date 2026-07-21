@@ -359,3 +359,19 @@ Files: `My-Pets.html`, `My-Pets-empty.html`, `My-Pets-error.html`, `My-Pets-load
 | My Pets · loading | Loading text | Loading your pets… | Loading your pets… | *Unchanged* — names exactly what is loading (Microcopy · Loading). |
 
 **Four strings changed** (heading ×1, empty body, error headline, error body); the rest were already on-voice and are logged as unchanged for a complete before/after. No markup or structure changed — text nodes only.
+
+### Batch 2 · Emoji & celebration sweep
+
+Triggered by a 🎉 spotted on the share-success screen. Scanned all 123 files for emoji in product copy: **only two decorative pictographic emoji existed** (both 🎉, both already on the Forbidden list), plus two bare celebratory `✓`. All removed, and the celebratory copy around them rewritten per the Success rule (state the fact, don't celebrate).
+
+| Screen | Element | Before | After | Rule applied |
+|---|---|---|---|---|
+| Share-sent | Screen heading | Shared**!** | **Shared** | Forbidden — drop the "!". |
+| Share-sent | Success headline | Your pet's info was shared! **🎉** | **Miso's card is shared** | Forbidden (emoji + "!"); Glossary (**card**); Microcopy · Success — no celebrating. |
+| Share-sent | Success body | Now more people know about your Miso — and can care for her exactly the way she needs. | **Your sitter can open Miso's card from the link — no app or account needed. It lasts a month, and you can stop it any time.** | Principle 4 (sharing is safe: no account + revocable) + Principle 2 (precise); glossary (**card, sitter**). Facts aligned with `Share-success.html`. |
+| home-progress-6 | Completion heading | Awesome — all set up! **🎉** | **Miso's card is ready** | Forbidden (emoji + "!" + "Awesome"); Glossary (**card**). |
+| home-progress-6 | Completion body | Miso's **dossier** is **complete**. Everything is stored safely here — and you can share it with your trusted person or pet sitter any moment. | **It's all saved and stored safely. You can share Miso's card with your sitter whenever you like.** | Principle 1 (drop the completeness claim "complete"); Glossary (**dossier → card**); Principle 4. |
+| Forgot-password | Success heading | Check your inbox **✓** | **Check your inbox** | Forbidden — decorative ✓. |
+| Emergency-info-firstrun | Status label | Set up **✓** | **Set up** | Forbidden — decorative ✓. |
+
+**Kept — functional glyphs, not emoji:** the `<span class="check">✓</span>` section-complete marks (9 screens), the `✕` close buttons (4 screens), and the `★`/`→` breadcrumb flow-markers (prototype chrome). These carry UI meaning, so they stay. If you want the section-complete ✓ gone too, say so and I'll swap it for a text state.
