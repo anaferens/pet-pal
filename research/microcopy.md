@@ -335,3 +335,27 @@ Wireframe **zone-labels** are visible on screen but are scaffolding, not UI text
 ---
 
 *Next step (not this pass): turn §11 into decisions — one canonical term per concept, one label per action, an error/empty/success voice spec — and apply them back across the 123 screens.*
+
+---
+
+## 12 · Rewrite log — Batch 1 · My Pets + states
+
+First screens rewritten against [`voice.md`](voice.md). Product copy only — headings, buttons, state messages. **Prototype chrome** (left sidebar nav, breadcrumb flow-steps, page `<title>`, CSS comments) still say "My Pets" by their screen name; that is scaffolding (§10/§E), out of scope, left untouched. **User content** (pet names, notes) untouched (§10, 📝).
+
+Files: `My-Pets.html`, `My-Pets-empty.html`, `My-Pets-error.html`, `My-Pets-loading.html`.
+
+| Screen | Element | Before | After | Rule applied |
+|---|---|---|---|---|
+| My Pets (all states) | Screen heading `<h1>` | My Pets | **Your pets** | Glossary — address the reader as **you**, not first-person "My"; sentence case (owner app). |
+| My Pets (list) | Button | Add a pet | Add a pet | *Unchanged* — action verb + object (Microcopy · Button). |
+| My Pets (list) | Card status | 5 of 6 sections filled · Updated 2 days ago | 5 of 6 sections filled · Updated 2 days ago | *Unchanged* — glossary term **section**; on-voice. |
+| My Pets (list) | Card titles / notes | Miso · Cheetah · … | *(untouched)* | 📝 user content (§10) — never rewritten. |
+| My Pets · empty | Empty headline | No pets yet | No pets yet | *Unchanged* — glossary **"No … yet"** pattern. |
+| My Pets · empty | Empty body | Add your first pet to keep their health, documents, and care info in one place. | **Add your first pet to start their card — jabs, documents, and care, ready for the vet or a sitter.** | Principle 1 (drop the completeness cliché "in one place") + Principle 3 (end on the moment) + Glossary (**card, jabs**); Microcopy · Empty state leads to the action. |
+| My Pets · empty | Empty CTA | Add your first pet | Add your first pet | *Unchanged* — action verb + object (Microcopy · Button). |
+| My Pets · error | Error headline | ~~Something went wrong~~ | **Couldn't load your pets** | **Forbidden** list — replace the cliché; Microcopy · Error names what failed. |
+| My Pets · error | Error body | Couldn't load your pets. Check your connection and try again. | **Check your connection and try again.** | Microcopy · Error — "what happened" moves to the heading, body carries "what to do" (no duplication, no apology). |
+| My Pets · error | Error button | Try again | Try again | *Unchanged* — action verb; canonical retry label (§11-B winner). |
+| My Pets · loading | Loading text | Loading your pets… | Loading your pets… | *Unchanged* — names exactly what is loading (Microcopy · Loading). |
+
+**Four strings changed** (heading ×1, empty body, error headline, error body); the rest were already on-voice and are logged as unchanged for a complete before/after. No markup or structure changed — text nodes only.
