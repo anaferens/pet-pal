@@ -168,3 +168,42 @@ Building the [sitemap / flows / IA](sitemap.md) surfaced three structural points
 - **Carer→owner updates (R4)** — the IA has *no page* for "proof my pet's okay while away" because there's no validated need or caregiver voice (parked, [jtbd.md R4](jtbd.md)). If owners actually want this, the tree is missing a branch — **needs RC-side validation**.
 - **In-app vet *messaging* vs. record-*sharing* (R3)** — the tree carries a *Vet messages* page, but whether real-time messaging (not just sharing a record) is wanted at MVP is **still the open PM question** above — unvalidated demand for a whole page.
 - **Emergency authorization data (F6)** — *Emergency info & authorization* is now a real screen, but the **spend-cap / payment / who-may-authorize** data behind it is a documented caregiver need (F6) with **no owner-side evidence** that owners will fill it in. Capture-friction risk (F4) applies doubly here.
+
+---
+
+## Competitor Language
+
+Verbatim UI/marketing copy pulled from live product pages and app stores (accessed **Jul 2026**) — collected to see where the whole category *sounds the same*, so PetPal's voice can stand apart. Quotes are word-for-word; each carries its source.
+
+| # | Competitor | Verbatim line | What it names | Pattern |
+|---|---|---|---|---|
+| 1 | 11pets | "The most complete pet care app" | tagline | completeness claim |
+| 2 | 11pets | "From nose to tail and everything in between" | scope | completeness claim |
+| 3 | 11pets | "Track your pet's weight, vital signs, and activities all in one place" | features | "all in one place" + list |
+| 4 | 11pets | "medical records, veterinary visits, unlimited pet seats" | features | clinical feature inventory |
+| 5 | 11pets | "Track flea & tick medication, medical/vet incidents, vaccinations" | health section | clinical labels |
+| 6 | 11pets | "you are the owner of your data at all times" | trust | data-ownership cue |
+| 7 | Pet Health | "A Professional Health Application for Your Pets." | positioning | clinical |
+| 8 | Pet Health | "Your pet's digital booklet. Keep it next to yours." | tagline | warm + clever *(exception)* |
+| 9 | Pet Health | "Never forget a treatment, the app will remind you." | reminders | functional |
+| 10 | MyTherapy | "your personal, digital health companion" | positioning | warm *(the bar)* |
+| 11 | MyTherapy | "a safe and uncomplicated one-time code … share … at the push of a button" | sharing | trust + effortless |
+| 12 | Lassie | "Care more. Get more." | tagline | warm, punchy |
+| 13 | Lassie | "Most pet insurers only know your pet when it's sick. Lassie is there every day." | positioning | warm, relationship |
+| 14 | Lassie | "Cover vet costs, support healthier years, feel calmer doing it." | benefit | ends on a feeling |
+| 15 | Lassie | "Kind help from real pet lovers" | support | warm, human |
+| 16 | Rover | "care instructions" — fields *feeding, medication, bathroom routine* | the sitter-facing profile | warm section name (not "records") |
+| 17 | Rover | "You haven't added care instructions for Buster and Kelce yet" | empty state | plain, uses pet names |
+| 18 | PetVax *(F1)* | "replace the crumbling paper card with a clean Health Passport that vets and boarding facilities prefer" | positioning | proof/trust for third parties |
+| 19 | owners, PetNoter *(F10)* | "it's difficult to keep track of all paperwork" | the felt pain | the need in the owner's own words |
+
+Sources: [11pets App Store](https://apps.apple.com/us/app/11pets-pet-care/id1232470530) · [11pets.com](https://11pets.com/en/) · [Pet Health App Store](https://apps.apple.com/us/app/pet-health/id6447807502) · [mytherapyapp.com](https://www.mytherapyapp.com/) · [lassie.co](https://lassie.co/en) · [Rover community — "care instructions" empty state](https://www.rover.com/community/question/48885/why-do-i-keep-seeing-you-havent-added-care-instructions-for-buster-and-kelce-yet/) · PetVax/PetNoter as cited in §F1/§F10 above. All accessed Jul 2026.
+
+**Three things the whole category does — so PetPal shouldn't:**
+1. **Claims completeness.** "Most complete" · "everything in between" · "all in one place" (#1–3). The category competes on *how much* it holds — table stakes, and nobody owns *trust*.
+2. **Names things clinically.** "medical records" · "medical/vet incidents" · "A Professional Health Application" (#4,5,7). Admin, cold, hospital-flavoured. **Rover is the lone warm exception** — "care instructions", pet names in the empty state (#16,17).
+3. **Lists features.** "Track X, Y, Z" (#3,5) — an inventory of what the database stores, not what the owner is trying to *do*.
+
+**Where the good ones point (our bar):** MyTherapy's "personal, digital health companion" and "safe and uncomplicated one-time code"; Lassie's "there every day" / "feel calmer doing it"; Pet Health's "Keep it next to yours." Warmth, relationship, and **a feeling at the end of the line** — never a spec sheet.
+
+**The gap PetPal takes:** everyone says *complete* → we say **trusted**. Everyone lists *records* → we speak to the **moment**: *"for every walk, vet visit, and weekend away."*
