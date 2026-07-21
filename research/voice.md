@@ -130,3 +130,64 @@ Always the **informal, singular "you"** — the reader is one person, spoken to 
 | **"successfully"** | *Saved successfully.* | *Saved.* The word adds nothing; a plain "Saved." is calmer and reads as *more* certain, not less. |
 
 *Emojis and wit aren't banned everywhere — they're fine in genuinely light moments (a first-run greeting, the personality section). They are banned in **system messages**: saves, errors, confirmations, anything touching health, money, legal, or emergencies. That boundary is [Principle 2](#2--warm-by-default-precise-under-pressure).*
+
+---
+
+## Microcopy
+
+Rules by element type. Every rule applies the principles and the glossary above; every example is written for a real PetPal screen. **This is the last section — from here on, all product copy is written to this file.**
+
+### Button
+
+**Rule.** Label a button with the verb for what it does *and* the thing it acts on, so the result is obvious before the tap. Never a generic *OK*, *Next*, *Submit*, or *Done* — the verb should match the outcome the glossary names.
+
+**PetPal.** *Add a jab* · *Create share link* · *Call the vet* — not *OK* / *Next*. (P3: speak to the moment.)
+
+### Screen heading
+
+**Rule.** A heading says what *kind of place* you're in, in glossary words — the **pet card**, one of its **sections**, or the **shared pet card** — never a vague *Details* or the app's internal screen name, and never a greeting.
+
+**PetPal.** *Miso's card* · *Health & jabs* · *Who can see Miso's card* — each names the place. Not *Welcome back* or *Profile*.
+
+### Form field
+
+**Rule.** The **label** says plainly what to enter; the **hint** shows how, with a real example; the **validation error** says exactly what to fix and, where it matters, why. Never a bare *Invalid input* or *Required*.
+
+**PetPal** — the "date of a jab" field:
+- **Label:** *Date of the jab*
+- **Hint:** *The day it was given. Approximate is fine.*
+- **Error:** *Add a date — kennels and groomers ask for proof.* (P1: the trust moment, [research §F9](research.md).)
+
+### Empty state
+
+**Rule.** Say *why* the screen is empty and give the one next step, in the moment's terms — the **"No … yet"** pattern, naming what belongs here and why it's worth adding. Not a blank page, not a motivational "journey."
+
+**PetPal.** *No jabs yet. Add Miso's first so kennels and groomers have proof.* + button *Add a jab*. (P3 + glossary.)
+
+### Error
+
+**Rule.** State *what failed* and the *one action* to take, naming the specific thing (*this jab*, *Miso's card*). No *Something went wrong*, no *Oops*, no apology, no joke — and when it's urgent, the action can escalate.
+
+**PetPal.** Heading *Couldn't save the jab* · body *Check your connection and try again.* For the emergency screen: *…If it's urgent, call the vet or owner directly.* (Forbidden list; P2.)
+
+### Loading
+
+**Rule.** Either stay silent (a skeleton or spinner alone) **or** name exactly what's loading. Never filler — no *Please wait*, no cheerful aside, no emoji.
+
+**PetPal.** *Saving the jab…* · *Loading Miso's card…* — or nothing but the skeleton. Not *Hang tight!*
+
+### Success
+
+**Rule.** State what happened and the next step in one calm line. No celebration, no exclamation mark, no emoji, no *Congratulations*, no *successfully* — the fact is the reward.
+
+**PetPal.** *Saved. Miso's card is shared with Marie — she can open it, no account needed.* (P4: names who + no-account; Forbidden list.)
+
+### Destructive action
+
+**Rule.** Before the owner confirms, spell out exactly what will be removed and that it **can't be undone** — name the real losses (jabs, documents, notes, share links) — and make the confirm button specific, never *OK*.
+
+**PetPal.** *Delete Miso's card? This removes every jab, document, note, and share link. It can't be undone.* + buttons *Keep card* / *Delete card*. (P2: precise under pressure.)
+
+---
+
+*voice.md is complete: **Principles → Glossary → Forbidden → Microcopy**. It is the source of truth for all PetPal product text. New copy is written to it; existing copy is rewritten against it — the backlog of what to fix is [`microcopy.md`](microcopy.md).*
