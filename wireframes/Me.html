@@ -328,6 +328,14 @@
   .me-sheet .row { display: flex; gap: 8px; }
   .me-sheet .row > * { flex: 1; }
   .btn-danger { background: #c92a2a; color: #fff; border: none; padding: 10px 20px; font-size: 14px; font-weight: 600; border-radius: 6px; cursor: pointer; }
+
+  /* OWNER HERO (same as dossier) */
+  .v3-header { background: #d6d6d6 !important; border-bottom: none !important; }
+  .dv3-hero { background: #d6d6d6; padding: 36px 0 100px; }
+  .dv3-photo { width: 104px; height: 104px; border-radius: 50%; background: #b0b0b0; margin: 0 auto; position: relative; z-index: 2; display: flex; align-items: center; justify-content: center; font-size: 11px; color: #8a8a8a; }
+  .dv3-arch { background: var(--wf-bg); border-radius: 50% 50% 0 0 / 104px 104px 0 0; margin-top: -104px; padding: 40px 16px 4px; text-align: center; position: relative; }
+  .dv3-arch h2 { font-size: 24px; font-weight: 700; }
+  .dv3-arch .meta { font-size: 14px; color: var(--wf-muted); margin-top: 2px; margin-bottom: 8px; }
 </style>
 </head>
 <body>
@@ -680,7 +688,7 @@
         <span class="zone-label">Owner</span> Owner profile · <span>★ Owner</span> — account, contact details, log out
       </div>
 
-      <header class="m-header">
+      <header class="m-header v3-header">
         <span></span>
         <h1>Owner</h1>
         <span></span>
@@ -688,9 +696,13 @@
 
       <div class="m-main">
 
-        <div class="me-avatar">photo</div>
-        <div class="me-name">Eva Schmidt</div>
-        <div class="me-sub">Pet owner · 2 pets · Berlin</div>
+        <div class="dv3-hero">
+          <figure class="dv3-photo" aria-label="Owner photo placeholder">photo</figure>
+        </div>
+        <div class="dv3-arch">
+          <h2>Eva Schmidt</h2>
+          <p class="meta">Pet owner · 2 pets · Berlin</p>
+        </div>
 
         <form aria-label="Profile" onsubmit="return false;">
           <div class="form-group">
@@ -784,9 +796,13 @@
 
     <div class="d-main">
 
-        <div style="max-width:420px;margin:0 auto;"><div class="me-avatar">photo</div>
-        <div class="me-name">Eva Schmidt</div>
-        <div class="me-sub">Pet owner · 2 pets · Berlin</div>
+        <div style="max-width:420px;margin:0 auto;"><div class="dv3-hero">
+          <figure class="dv3-photo" aria-label="Owner photo placeholder">photo</figure>
+        </div>
+        <div class="dv3-arch">
+          <h2>Eva Schmidt</h2>
+          <p class="meta">Pet owner · 2 pets · Berlin</p>
+        </div>
 
         <form aria-label="Profile" onsubmit="return false;">
           <div class="form-group">
