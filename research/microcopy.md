@@ -1,6 +1,15 @@
 # PetPal — Microcopy Inventory
 
-> **Status: inventory only.** This is a complete pass over every product-facing string in [`wireframes/*.html`](../wireframes/) (123 files, 622 unique strings). **Nothing here is rewritten** — this document only *records* and *flags*. By end of lesson it becomes the single source of truth that the rewrites are made against.
+> **Source of truth for PetPal product copy.** Written against [voice.md](voice.md).
+>
+> **How to read this document — the sections are chronological, not all current:**
+> - **§1–§10** — the *original* inventory, captured **before** the rewrite. Its strings (`← Dossier`, `Something went wrong`, `My pet`, `Profile filled`…) were the *source material* for the rewrite and **no longer appear on screens.** Read them as history, not current copy.
+> - **§11** — consistency findings from that inventory.
+> - **§12–§13** — the rewrite logs (Before → After). **§13 is the current copy.**
+> - **§14** — cross-screen consistency audit + reconciliation.
+> - **§15** — post-rewrite defect-fix pass.
+>
+> To find the copy on a screen *today*, use §13 (+ §14/§15 for later fixes).
 
 **Scope.** Extracted from the on-device content (mobile view; desktop is an identical copy). **Excluded as prototype chrome, not product text:** the left sidebar catalog, the Success/Empty/Loading/Error state-bar, the flow-step breadcrumb, and the persona-flow tooltips. **Method:** [`scratchpad/extract_copy.py`](../../..) — regex over each screen's content region, deduplicated to one row per unique string with a "seen on" count.
 
@@ -779,3 +788,31 @@ After all 15 clusters landed, every final wireframe was grepped for competing la
 
 - Stale **`aria-label`s** (`Back to Miso's profile`, `Back to Dossier`, `Delete profile?`) — visible text is correct; the attributes lag because the pass was text-nodes-only. Worth a separate accessibility sync.
 - `No appointments yet.` carries a trailing period the other empty headlines drop; `Loading emergency info&hellip;` uses the HTML entity where siblings use the `…` character.
+
+---
+
+## 15 · Defect-fix pass (post-rewrite QA)
+
+A full review of every screen against [voice.md](voice.md) surfaced 18 defects. The 15 copy defects are fixed on the screens **and** logged here so this file stays the source of truth:
+
+| # | Screen(s) | Before | After |
+|---|---|---|---|
+| 1 | Share-success | `Manage who has access →` | `Who can see your pets' cards →` |
+| 2 | Who-has-access | `Revoke` | `Stop sharing` |
+| 3 | Edit-access-grant | `Recipient (read-only)` · `Recipient role` | `Sitter (read-only)` · `Role` |
+| 4 | Share-a-pet | `…what the recipient can see` · `The recipient opens the link…` | `…what your sitter can see` · `Your sitter opens the link…` |
+| 5 | Add-document | record-type option `Vaccination` (+ JS map) | `Jab` |
+| 6 | Shared-pet-view | `Vaccinations` | `Jabs` |
+| 7 | Emergency-info | `+ Add vet clinic` | `Add a clinic` |
+| 8 | Emergency-info | `+ Add emergency contact` | `Add an emergency contact` |
+| 9 | Health-and-jabs (FAB) | `+ Add a jab` · `+ Add a health record` | `Add a jab` · `Add a health record` |
+| 10 | home-new | `+ Add a section` | `Add a section` |
+| 11 | Edit-care-note · Edit-health-record · Edit-pet | `Delete this note` · `Delete this record` · `Permanently delete Miso` | `Delete note` · `Delete record` · `Delete Miso` |
+| 12 | Emergency-allowed | `Call vet now` | `Call vet` |
+| 13 | Share-sent | `Got it` | `See who has access` |
+| 14 | Reminder-settings | `Save settings` | `Save` |
+| 15 | Shared-pet-view-error | `Contact Eva: …` (email) | `Email Eva: …` |
+
+**Kept by decision (#16):** the section-complete `✓` in home-progress headings (`<span class="check">✓</span>`) is a **functional** completion mark, not a decorative emoji — kept. Functional glyphs (`✓` complete, `✕` close) are allowed; only decorative symbols are forbidden.
+
+**Doc-sync (#17–18):** §1–§10 is the **original pre-rewrite inventory** (its strings — `← Dossier`, `Something went wrong`, `Add vaccine`, `My pet`, `Profile filled` — were the *source* for the rewrite and no longer appear on screens). Current copy lives in §13, the consistency audit in §14, and reconciliation strings now on screens (`← Your pets`, `Archive & delete`, `Stop sharing` caption, `Add a photo`, the aria-label syncs) are recorded in §14. **Accepted, not changed:** `QR code` (standard technical term, treated like `PDF`).

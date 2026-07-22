@@ -725,7 +725,7 @@
             <a href="Health-and-jabs.html"><button type="button" class="btn-primary">Save</button></a>
           </div>
           <div style="text-align:center;padding:4px 16px 20px;">
-            <button type="button" style="background:none;border:none;color:var(--wf-muted);font-size:12px;text-decoration:underline;cursor:pointer;" onclick="window.location.href='Health-and-jabs.html'+window.location.search">Delete this record</button>
+            <button type="button" style="background:none;border:none;color:var(--wf-muted);font-size:12px;text-decoration:underline;cursor:pointer;" onclick="window.location.href='Health-and-jabs.html'+window.location.search">Delete record</button>
           </div>
         </form>
       </div>
@@ -815,7 +815,7 @@
             <a href="Health-and-jabs.html"><button type="button" class="btn-primary">Save</button></a>
           </div>
           <div style="text-align:center;padding:4px 16px 20px;">
-            <button type="button" style="background:none;border:none;color:var(--wf-muted);font-size:12px;text-decoration:underline;cursor:pointer;" onclick="window.location.href='Health-and-jabs.html'+window.location.search">Delete this record</button>
+            <button type="button" style="background:none;border:none;color:var(--wf-muted);font-size:12px;text-decoration:underline;cursor:pointer;" onclick="window.location.href='Health-and-jabs.html'+window.location.search">Delete record</button>
           </div>
         </form>
     </div>
@@ -827,7 +827,7 @@
 function preselectType() {
   var t = new URLSearchParams(window.location.search).get('type');
   if (!t) return;
-  var map = { vaccination: 'Vaccination', health: 'Health & jabs', documents: 'Documents & passport', insurance: 'Insurance', vet: 'Vet & appointments', personality: 'Personality & care' };
+  var map = { vaccination: 'Jab', health: 'Health & jabs', documents: 'Documents & passport', insurance: 'Insurance', vet: 'Vet & appointments', personality: 'Personality & care' };
   var want = map[t.toLowerCase()];
   if (!want) return;
   document.querySelectorAll('form select').forEach(function(sel) {

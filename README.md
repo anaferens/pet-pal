@@ -40,6 +40,19 @@ Every screen traces to a job; every job (in scope) traces to a screen.
 
 ---
 
+## Voice
+
+All product copy follows a defined voice. Two files hold it:
+
+| File | What's inside |
+|---|---|
+| [`voice.md`](research/voice.md) | The voice spec — **Principles → Glossary → Forbidden → Microcopy rules**. The source of truth every string is written to. |
+| [`microcopy.md`](research/microcopy.md) | The full copy record — original inventory (§1–§10), rewrite logs (§12–§13), cross-screen consistency audit (§14), and defect-fix pass (§15). |
+
+**In one line:** *Everything about your pet, in one trusted place.* Calm confidence — warm by default, precise on anything touching health, money, or legal. One term per concept (pet card, jab, sitter, authorisation), addressed to the reader as "you"; no clichés, no "successfully," no exclamation marks or emoji in system copy. Every screen has been rewritten and audited against it.
+
+---
+
 ## Status
 
 | Phase | Status |

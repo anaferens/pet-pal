@@ -129,6 +129,27 @@ Warm, friendly, lifestyle app — not clinical. Think companion app, not medical
 
 ---
 
+## Voice
+
+Full spec: [`research/voice.md`](research/voice.md) — **Principles → Glossary → Forbidden → Microcopy rules**. Every product string is written to it; the inventory, rewrite logs, consistency audit, and defect-fix pass live in [`research/microcopy.md`](research/microcopy.md). All 123 wireframe screens have been rewritten and audited against it.
+
+**Master line:** *Everything about your pet, in one trusted place.* · *For every walk, vet visit, and weekend away.*
+**Stance:** calm confidence — warm by default, precise when it matters (health, money, legal, emergencies).
+
+**Principles**
+1. Own "trusted," not "complete."
+2. Warm by default, precise under pressure.
+3. Speak to the moment, not the feature.
+4. Make sharing feel safe and effortless.
+
+**Glossary — one term per concept:** pet card (never dossier/profile) · section · **jab** (everyday) / vaccination (formal proof only) · **sitter** (never carer) · owner (never user/account holder) · **Call** (never Contact) · **Create account** + **Log in** (never a "Sign up" button) · **authorisation** and British spelling throughout · **"No … yet"** empty pattern. Address the reader as informal singular **you**. Loanwords allowed: App, Link, PDF, Chip, QR code, Sitter, Update, Vet. Refused: Dashboard, Onboarding, Manage, CTA.
+
+**Never:** "Something went wrong," "Oops," "Welcome," "successfully," "Awesome/Congratulations," exclamation marks or emoji in system copy, motivational filler ("Start your pet journey"). Functional glyphs (`✓` complete, `✕` close) are fine.
+
+**Microcopy by element:** button = verb + object (`Add a jab`, not `OK`) · heading = names the place in glossary words · error = what failed + what to do, no apology or joke · empty = `No … yet` + the next step · loading = silent, or `Loading …` · success = the fact + next step, no celebration · destructive = what's removed + "It can't be undone."
+
+---
+
 ## Compliance Notes
 - EU market: GDPR applies to all user and pet data
 - Pet passport format follows EU regulation (Regulation (EU) No 576/2013)
