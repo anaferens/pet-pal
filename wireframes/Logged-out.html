@@ -666,7 +666,7 @@
 
         <section class="empty-state" aria-label="Signed out">
           <figure class="empty-illustration" aria-label="Illustration placeholder">illustration</figure>
-          <h2 class="empty-headline" id="lo-head">You're signed out</h2>
+          <h2 class="empty-headline" id="lo-head">You're logged out</h2>
           <p class="empty-body" id="lo-body">Your pets' data is safe. Log back in any time to pick up where you left off.</p>
           <a href="Login.html"><button class="btn-primary empty-cta">Log back in</button></a>
         </section>
@@ -693,7 +693,7 @@
 
         <section class="empty-state" aria-label="Signed out">
           <figure class="empty-illustration" aria-label="Illustration placeholder">illustration</figure>
-          <h2 class="empty-headline" id="lo-head-d">You're signed out</h2>
+          <h2 class="empty-headline" id="lo-head-d">You're logged out</h2>
           <p class="empty-body" id="lo-body-d">Your pets' data is safe. Log back in any time to pick up where you left off.</p>
           <a href="Login.html"><button class="btn-primary empty-cta">Log back in</button></a>
         </section>
@@ -705,8 +705,8 @@
 <script>
 (function () {
   if (new URLSearchParams(window.location.search).get('deleted') !== '1') return;
-  ['lo-head','lo-head-d'].forEach(function(i){ var e=document.getElementById(i); if(e) e.textContent='Profile deleted'; });
-  ['lo-body','lo-body-d'].forEach(function(i){ var e=document.getElementById(i); if(e) e.textContent='Your account and all pet data have been removed. Thanks for trying PetPal — you can create a new profile any time.'; });
+  ['lo-head','lo-head-d'].forEach(function(i){ var e=document.getElementById(i); if(e) e.textContent='Account deleted'; });
+  ['lo-body','lo-body-d'].forEach(function(i){ var e=document.getElementById(i); if(e) e.textContent='Your account and all pet data have been removed. Thanks for trying PetPal — you can create a new account any time.'; });
 })();
 function setView(mode) {
   document.body.classList.toggle('is-desktop', mode === 'desktop');

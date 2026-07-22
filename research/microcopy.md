@@ -375,3 +375,407 @@ Triggered by a 🎉 spotted on the share-success screen. Scanned all 123 files f
 | Emergency-info-firstrun | Status label | Set up **✓** | **Set up** | Forbidden — decorative ✓. |
 
 **Kept — functional glyphs, not emoji:** the `<span class="check">✓</span>` section-complete marks (9 screens), the `✕` close buttons (4 screens), and the `★`/`→` breadcrumb flow-markers (prototype chrome). These carry UI meaning, so they stay. If you want the section-complete ✓ gone too, say so and I'll swap it for a text state.
+
+---
+
+## 13 · Rewrite log — Batch 3 · all remaining screens
+
+The remaining screen set (110 files, 15 clusters) rewritten to [voice.md](voice.md) by parallel sub-agents — one per screen-cluster — then reconciled for cross-screen consistency (§14 below). Rows are grouped by cluster, Before → After. User-authored content (§10) and prototype chrome (§E) were left untouched throughout; this pass covers headings, buttons, field labels/hints, and empty/error/loading/success/destructive messages.
+
+### Account & auth
+
+| Screen | Area | Element | Before | After |
+|---|---|---|---|---|
+| Login | main | hint (tagline) | One trusted place for everything about your pet. | Everything about your pet, in one trusted place. |
+| Login | main | heading | Welcome back | Log in |
+| Login | main | field label (link) | Forgot password? | Forgot your password? |
+| Login-error | main | hint (tagline) | One trusted place for everything about your pet. | Everything about your pet, in one trusted place. |
+| Login-error | main | heading | Welcome back | Log in |
+| Login-error | main | field label (link) | Forgot password? | Forgot your password? |
+| Sign-up | main | hint (tagline) | Create a profile — then set up your first pet. | Create your account — then set up your first pet. |
+| Logged-out | main | heading | You're signed out | You're logged out |
+| Logged-out | main | status (deleted state, via script) | Profile deleted | Account deleted |
+| Logged-out | main | success (deleted state, via script) | Your account and all pet data have been removed. Thanks for trying PetPal — you can create a new profile any time. | Your account and all pet data have been removed. Thanks for trying PetPal — you can create a new account any time. |
+| Me | main | destructive button | Delete profile | Delete account |
+| Me | modal | destructive heading | Delete profile? | Delete account? |
+| Me | modal | destructive body | This permanently removes your account, Miso's and Cheetah's dossiers, and every share link. This cannot be undone. | This permanently removes your account, Miso's and Cheetah's cards, and every share link. It can't be undone. |
+| Me | modal | destructive (confirm button) | Delete | Delete account |
+
+### Home / dashboard
+
+| Screen | Area | Element | Before | After |
+|---|---|---|---|---|
+| Home · search empty (home-empty.html) | main | empty | Nothing in Miso's dossier matches "rabies cert." Try a broader term or clear the search to see all sections. | Nothing in Miso's card matches "rabies cert." Try a broader term or clear the search to see all sections. |
+| Home · error (home-error.html) | main | error | Something went wrong | Couldn't load Miso's card |
+| Home · error (home-error.html) | main | error | Couldn't load Miso's dossier. Check your connection and try again. | Check your connection and try again. |
+| Home · loading (home-loading.html) | main | loading | Loading… | Loading Miso's card… |
+| Home · new pet (home-new.html) | main | empty | Nice — Miso's dossier is ready! | Miso's card is set up |
+| Home · new pet (home-new.html) | main | empty | Let's add some notes: jabs, health records, personality & care, emergency info, vet & appointment notes, pet passport, insurance — keep everything in one place and share it when needed. | Add jabs, documents, and care notes whenever it suits you — ready for the vet or a sitter when it matters. |
+| Home · new pet (home-new.html) | main | button | + Add info | + Add a section |
+| Home · new pet (home-new.html) | modal | hint | Add important health related info about your pet | Jabs, check-ups, and health records |
+| Home · new pet (home-new.html) | modal | hint | Add official documents like passport, so you always have them nearby | EU pet passport, microchip cert, pedigree papers |
+| Home · new pet (home-new.html) | modal | hint | Add your pet's insurance | Policy, coverage and renewal reminders |
+| Home · new pet (home-new.html) | modal | hint | Anything about your pet's personality, preferences, behaviour etc | Food, temperament, warnings, routines — what a sitter needs |
+| Home · new pet (home-new.html) | modal | hint | Have an appointment soon? Keep it here so we can remind you on time | Your vet clinic and upcoming appointments |
+| Home · setup 1/6–6/6, success (Miso), success (single pet) | header | heading | My pet | Miso |
+| Home · success (Cheetah) | header | heading | My pet | Cheetah |
+| Home · success (Miso), success (single pet) | main | status | Profile filled · Updated 5 days ago | Filled · Updated 5 days ago |
+| Home · success (Miso), success (single pet) | main | status | Set up · Vet, meds, contacts, authorization | Set up · Vet, meds, contacts, authorisation |
+
+### Set up a pet & identity
+
+| Screen | Area | Element | Before | After |
+|---|---|---|---|---|
+| Set-up-a-pet, Set-up-a-pet-empty, Set-up-a-pet-error | header | button | ← My Pets | ← Your pets |
+| Set-up-a-pet | main | hint | e.g. Miso, Miso, Buddy | e.g. Miso, Buddy |
+| Set-up-a-pet | main | hint | MVP: dogs and cats only. | Dogs and cats only, for now. |
+| Set-up-a-pet | main | button | Save pet | Save |
+| Set-up-a-pet-empty | main | empty | Add your first pet to start building their health records, documents, and care notes — all in one place. | Add your first pet to start their card — jabs, documents, and care, ready for the vet or a sitter. |
+| Set-up-a-pet-empty | main | button | + Add your first pet | Add your first pet |
+| Set-up-a-pet-loading | main | loading | Saving… | Saving your pet… |
+| Set-up-a-pet-loading, Edit-pet-loading | main | loading | Let us save your updated info so we can store it and keep it accessible for you at any moment. | *(removed — heading already names what's saving)* |
+| Upload-photo | main | status | photo selected ✓ | photo selected |
+| Edit-pet, Edit-pet-error | header | button | ← Dossier | ← Miso's card |
+| Edit-pet, Edit-pet-error, Edit-pet-loading | header | button | ← Back to Dossier | ← Back to Miso's card |
+| Edit-pet, Edit-pet-error | main | field label | EU Passport number | EU Pet Passport number |
+| Edit-pet, Edit-pet-error | main | status | Photo removed ✓ | Photo removed |
+| Edit-pet | main | button | Save changes | Save |
+| Edit-pet, Edit-pet-error | main | destructive | Are you sure? This action cannot be undone. | Are you sure? |
+| Edit-pet, Edit-pet-error, Edit-pet-loading | main | destructive | This removes all of Miso's data -- dossier, records, documents, shares -- and cannot be undone. | This removes all of Miso's jabs, documents, notes, and share links. It can't be undone. |
+| Edit-pet-error | main | error | Couldn't save changes to Miso's profile. | Couldn't save Miso's details. |
+| Edit-pet-loading | main | loading | Saving… | Saving Miso's details… |
+
+### Health & jabs
+
+| Screen | Area | Element | Before | After |
+|---|---|---|---|---|
+| Health & jabs | header | button | ← Dossier | ← Miso's card |
+| Health & jabs | main | Section heading | Vaccinations | Jabs |
+| Health & jabs | main | button | + Add (inline, next to "Jabs", desktop) | + Add a jab |
+| Health & jabs | main | button | + Add (inline, next to "Health records", desktop) | + Add a health record |
+| Health & jabs | main | button | + Add vaccine (FAB menu) | + Add a jab |
+| Health & jabs | main | button | + Add health record (FAB menu) | + Add a health record |
+| Health & jabs · empty | header | button | ← Dossier | ← Miso's card |
+| Health & jabs · empty | header | button | Add | Add a jab |
+| Health & jabs · empty | main | Empty headline | No health records yet | No jabs yet |
+| Health & jabs · empty | main | Empty body | Add Miso's first vaccination or health record. Track jabs, checkups, conditions, and medications — all in one place. | Add Miso's first jab — kennels and groomers will ask for it. |
+| Health & jabs · empty | main | Empty CTA | Add first health record | Add a jab |
+| Health & jabs · error | header | button | ← Dossier | ← Miso's card |
+| Health & jabs · error | header | button | Add | Add a jab |
+| Health & jabs · error | main | Error headline | Something went wrong | Couldn't load Miso's health records |
+| Health & jabs · error | main | Error body | Couldn't load Miso's health records. Check your connection and try again. | Check your connection and try again. |
+| Health & jabs · loading | header | button | ← Dossier | ← Miso's card |
+| Health & jabs · loading | header | button | Add | Add a jab |
+| Health & jabs · first record | header | button | ← Dossier | ← Miso's card |
+| Health & jabs · first record | main | Section heading | Vaccinations | Jabs |
+| Health & jabs · first record | main | button | + Add (inline, next to "Jabs", desktop) | + Add a jab |
+| Health & jabs · first record | main | button | + Add (inline, next to "Health records", desktop) | + Add a health record |
+| Health & jabs · first record | main | button | + Add vaccine (FAB menu) | + Add a jab |
+| Health & jabs · first record | main | button | + Add health record (FAB menu) | + Add a health record |
+| Health & jabs · 1 record | header | button | ← Dossier | ← Miso's card |
+| Health & jabs · 1 record | main | Section heading | Vaccinations | Jabs |
+| Health & jabs · 1 record | main | Empty (inline) | No vaccines yet — tap + and choose "Add vaccine". | No jabs yet — tap + and choose "Add a jab". |
+| Health & jabs · 1 record | main | button | + Add (inline, next to "Jabs", desktop) | + Add a jab |
+| Health & jabs · 1 record | main | button | + Add (inline, next to "Health records", desktop) | + Add a health record |
+| Health & jabs · 1 record | main | button | + Add vaccine (FAB menu) | + Add a jab |
+| Health & jabs · 1 record | main | button | + Add health record (FAB menu) | + Add a health record |
+| Add health record | main | hint | Context-aware form — fields adapt to record type. Shown: health record. | Record type is pre-selected — change it if this belongs somewhere else. |
+| Add health record | main | field option | Vaccination (Record type dropdown option) | Jab |
+| Add health record | main | button | Save record | Save |
+| Edit health record | main | field option | Vaccination (Record type dropdown option) | Jab |
+| Edit health record | main | button | Save changes | Save |
+
+### Documents & passport
+
+| Screen | Area | Element | Before | After |
+|---|---|---|---|---|
+| Documents & passport | header | button (back) | ← Dossier | ← Miso's card |
+| Documents & passport · empty | header | button (back) | ← Dossier | ← Miso's card |
+| Documents & passport · empty | header | button | Upload | Add a document |
+| Documents & passport · empty | main | empty | Upload Miso's first document — pet passport, microchip registration, insurance policy, or vaccination certificate. | Add Miso's first document — the EU Pet Passport, microchip registration, insurance policy, or vaccination certificate — ready for the vet or a sitter. |
+| Documents & passport · empty | main | button | Upload first document | Add a document |
+| Documents & passport · error | header | button (back) | ← Dossier | ← Miso's card |
+| Documents & passport · error | header | button | Upload | Add a document |
+| Documents & passport · error | main | error | Something went wrong | Couldn't load Miso's documents |
+| Documents & passport · error | main | error | Couldn't load Miso's documents. Check your connection and try again. | Check your connection and try again. |
+| Documents & passport · firstrun | header | button (back) | ← Dossier | ← Miso's card |
+| Documents & passport · loading | header | button (back) | ← Dossier | ← Miso's card |
+| Documents & passport · loading | header | button | Upload | Add a document |
+| Document view | main | field label | Vaccine | Vaccination |
+| Document view | main | field label | Chip number | Microchip number |
+| Document view | main | button (link) | Replace / update this document → | Update this document → |
+| Add document | main | hint | e.g. EU pet passport, insurance policy | e.g. EU Pet Passport, insurance policy |
+| Add document | main | hint | The document file — passport, certificate, or policy (PDF or photo). | The document file — EU Pet Passport, certificate, or policy (PDF or photo). |
+| Add document | main | hint | e.g. No adverse reaction. Batch #LR-2026-041. | e.g. Where you keep the original, or anything else worth noting. |
+
+### Insurance
+
+| Screen | Area | Element | Before | After |
+|---|---|---|---|---|
+| Insurance | header | button | ← Dossier | ← Miso's card |
+| Insurance (empty) | header | button | ← Dossier | ← Miso's card |
+| Insurance (empty) | main | empty | No insurance added | No insurance yet |
+| Insurance (empty) | main | empty | Add Miso's insurance policy to track renewal dates, coverage details, and keep the policy document handy for vets and sitters. | Add Miso's insurance policy — renewal date, coverage, and the policy document, ready for the vet or a sitter. |
+| Insurance (empty) | main | button | Add insurance | Add a policy |
+| Insurance (error) | header | button | ← Dossier | ← Miso's card |
+| Insurance (error) | main | error | Something went wrong | Couldn't load Miso's insurance |
+| Insurance (error) | main | error | Couldn't load Miso's insurance data. Check your connection and try again. | Check your connection and try again. |
+| Insurance (first policy) | header | button | ← Dossier | ← Miso's card |
+| Insurance (loading) | header | button | ← Dossier | ← Miso's card |
+| Add insurance | header | heading | Add insurance | Add a policy |
+| Add insurance | main | hint | Context-aware form — fields adapt to record type. Shown: insurance. | *(removed — left empty, matching the fix already applied in Add-record.html)* |
+| Add insurance | main | field label | Vaccination *(record-type dropdown option)* | Jab |
+| Add insurance | main | field label | Date | Start date |
+| Add insurance | main | field label | Next due date | Renewal date |
+
+### Personality & care
+
+| Screen | Area | Element | Before | After |
+|---|---|---|---|---|
+| Personality & care (all 11 states: success, empty, error, loading, fill1–6, firstrun) | header | button | ← Dossier | ← Miso's card |
+| Personality & care (success, fill1–6, firstrun) | main | status | This is what your sitter will see in the shared view. | This is what your sitter sees on Miso's shared card. |
+| Personality & care (success, fill1–6, firstrun) | main | button | + Add another note | Add a note |
+| Personality & care (success, fill1–6, firstrun) | main | button (FAB, accessibility label) | Add | Add a note |
+| Personality & care (empty, fill1–fill5 — one row per not-yet-filled category card) | main | button | + Add | Add |
+| Personality & care · error | main | error | Something went wrong | Couldn't load Miso's care notes |
+| Personality & care · error | main | error | Couldn't load Miso's care profile. Check your connection and try again. | Check your connection and try again. |
+| Personality & care · loading | main | loading | Loading Miso's care profile… | Loading Miso's care notes… |
+
+### Care notes
+
+| Screen | Area | Element | Before | After |
+|---|---|---|---|---|
+| Add care note | header | heading | Add note | Add a note |
+| Add care note | main | hint | Add a note about Miso's personality, food, routines, or anything a sitter should know. This will appear in the shared profile. | Add a note about Miso's personality, food, routines, or anything a sitter should know. This will appear on Miso's card. |
+| Add care note | main | hint | Determines where this note appears in the profile. | Determines where this note appears in Personality & care. |
+| Add care note | main | button | Save note | Save |
+| Add care note (error) | header | heading | Add note | Add a note |
+| Add care note (error) | main | error | Could not save note. | Couldn't save the note. |
+| Add care note (error) | main | error | Something went wrong on our end. Your text is still here — try saving again. | Check your connection and try again. Your note is still here. |
+| Add care note (error) | main | button | Retry save | Try again |
+| Add care note (loading) | main | loading | Saving… | Saving the note… |
+| Add care note (loading) | main | loading | Let us save your updated info so we can store it and keep it accessible for you at any moment. | *(removed — heading alone now names what's loading)* |
+| Edit care note | main | hint | Edit this note. Changes will be visible to anyone you've shared Miso's profile with. | Edit this note. Changes will be visible to anyone you've shared Miso's card with. |
+| Edit care note | main | button | Save changes | Save |
+| Edit care note (error) | main | error | Could not save note. | Couldn't save the note. |
+| Edit care note (error) | main | error | Something went wrong on our end. Your text is still here — try saving again. | Check your connection and try again. Your note is still here. |
+| Edit care note (error) | main | button | Retry save | Try again |
+| Edit care note (loading) | main | loading | Saving… | Saving the note… |
+| Edit care note (loading) | main | loading | Let us save your updated info so we can store it and keep it accessible for you at any moment. | *(removed — heading alone now names what's loading)* |
+
+### Vet & appointments
+
+| Screen | Area | Element | Before | After |
+|---|---|---|---|---|
+| Vet & appointments (success) | header | button | ← Dossier | ← Miso's card |
+| Vet & appointments · clinic only | header | button | ← Dossier | ← Miso's card |
+| Vet & appointments · clinic only | main | button | + Add appointment | Add an appointment |
+| Vet & appointments · empty | header | button | ← Dossier | ← Miso's card |
+| Vet & appointments · empty | header | button | Add | Add an appointment |
+| Vet & appointments · empty | main | empty (heading) | No vet clinic saved | No vet clinic yet |
+| Vet & appointments · empty | main | empty (body) | Add Miso's vet clinic so you can call them in one tap when it matters. You can also track upcoming and past appointments here. | Add Miso's vet clinic — call them in one tap when it matters, and track appointments here too. |
+| Vet & appointments · empty | main | empty (button) | Add vet clinic | Add a clinic |
+| Vet & appointments · error | header | button | ← Dossier | ← Miso's card |
+| Vet & appointments · error | header | button | Add | Add an appointment |
+| Vet & appointments · error | main | error (heading) | Something went wrong | Couldn't load Miso's vet information |
+| Vet & appointments · error | main | error (body) | Couldn't load Miso's vet information. Check your connection and try again. | Check your connection and try again. |
+| Vet & appointments · firstrun | header | button | ← Dossier | ← Miso's card |
+| Vet & appointments · firstrun | main | button | + Add appointment | Add an appointment |
+| Vet & appointments · loading | header | button | ← Dossier | ← Miso's card |
+| Vet & appointments · loading | header | button | Add | Add an appointment |
+| Vet & appointments · loading | main | loading | Loading Miso's vet info… | Loading Miso's vet information… |
+| Add a vet clinic | header | heading | Add vet clinic | Add a clinic |
+| Add an appointment | header | heading | Add appointment | Add an appointment |
+| Add an appointment | main | hint (stray dev note) | Context-aware form — fields adapt to record type. Shown: vet & appointments. | *(removed — leaked dev/meta note, not product copy; emptied the text node, left the `<p>` tag in place)* |
+| Add an appointment | main | field label | Date | Date of the appointment |
+| Add an appointment | main | field label (dropdown option) | Vaccination | Jab |
+
+**Unchanged but reviewed (kept — already on-voice or out of scope):**
+- Screen heading "Vet & appointments" — canonical section name from the glossary, correct as-is.
+- Status badges "Confirmed" / "Up to date" — canonical, already consistent app-wide.
+- "No appointments yet." (Vet-and-appointments-clinic.html, inline sub-section message) — already matches the "No … yet" pattern.
+- Vet clinic data (clinic name, doctor, phone, address), appointment titles/dates (Annual checkup, Dental cleaning, Vaccination (Rabies + DHPP), Dermatitis follow-up), and all form input values — user/sample data per microcopy.md §10, left untouched.
+- Field labels "Clinic / vet", "Next due date", "Administering vet", "Notes", "Proof / attachment", and all `e.g. …` placeholders — already clear, already matched the approved examples in microcopy.md §7.
+- "Save" / "Cancel" / "← Cancel" on both Add-* forms — already match voice.md exactly; "← Cancel" is the sanctioned pattern-exception for form-cancel back buttons (confirmed against the already-rewritten Add-record.html, which also left it untouched).
+- Zone-label annotations "Vet clinic (1-tap call)" — treated as prototype/wireframe scaffolding (like the breadcrumb and sidebar), not shipped product copy; confirmed by precedent (Health-and-jabs.html's sibling zone-label "Conditions & current meds (pinned)" was also left untouched by that screen's rewrite).
+
+### Emergency
+
+| Screen | Area | Element | Before | After |
+|---|---|---|---|---|
+| Emergency info (success/empty/error/fill1/fill2/firstrun/loading) | header | button | ← Dossier | ← Miso's card |
+| Emergency info (error) | main | error | Back to dossier | Back to Miso's card |
+| Emergency info (success) | main | heading | Emergency authorization | Emergency authorisation |
+| Emergency info (success/firstrun) | main | button | Edit authorization → | Edit authorisation → |
+| Emergency info (empty/fill1/fill2/firstrun) | main | heading | Important — authorization & allowed meds | Important — authorisation & allowed meds |
+| Emergency info (empty/fill1/fill2) | main | button | + Add important / allowed meds list | + Set up authorisation & allowed meds |
+| Emergency info (error) | main | error | Something went wrong | Couldn't load Miso's emergency info |
+| Emergency info (error) | main | error | Couldn't load Miso's emergency info. Check your connection and try again. | Check your connection and try again. |
+| Emergency & allowed (success/empty/error/loading) | header | button | ← Miso's profile | ← Miso's card |
+| Emergency & allowed (success/empty/error/loading) | header | button | ← Back to Miso's profile | ← Back to Miso's card |
+| Emergency & allowed (success/empty/error/loading) | header | button | Contact owner | Call owner |
+| Emergency & allowed (success) | main | heading | Contact the owner | Call the owner |
+| Emergency & allowed (success) | main | status | Eva has authorized you to seek emergency vet care | Eva has authorised you to seek emergency vet care |
+| Emergency & allowed (success) | main | status | Up to EUR 500 | Up to €500 |
+| Emergency & allowed (empty) | main | empty | No emergency info available | No emergency info yet |
+| Emergency & allowed (empty) | main | empty | Eva hasn't set up emergency instructions for Miso yet. Contact Eva directly if you need guidance. | Eva hasn't set up Miso's emergency info yet. Call Eva directly if you need guidance. |
+| Emergency & allowed (loading) | main | loading | Loading emergency info... | Loading emergency info… |
+| Emergency auth setup (success/error/loading) | header | heading | Emergency authorization | Emergency authorisation |
+| Emergency auth setup (success/error) | main | hint | The maximum your carer may authorize for emergency treatment. | The maximum your carer may authorise for emergency treatment. |
+| Emergency auth setup (success) | main | button | Save authorization | Save |
+| Emergency auth setup (error) | main | error | Couldn't save your authorization settings. Check your connection and try again. | Couldn't save your authorisation settings. Check your connection and try again. |
+| Emergency auth setup (loading) | main | loading | Let us save your updated info so we can store it and keep it accessible for you at any moment. | Miso's authorisation settings are being saved. |
+
+### What's due & reminders
+
+| Screen | Area | Element | Before | After |
+|---|---|---|---|---|
+| Whats-due.html | main / bottom | button | Add reminder | Add a reminder |
+| Whats-due-offline.html | main | button | Add reminder | Add a reminder |
+| Whats-due-offline.html | main | button | Retry | Try again |
+| Whats-due-offline.html | main | status | Offline — showing last saved. Some items may be out of date. | Offline — showing your last saved reminders. Some may be out of date. |
+| Whats-due-empty.html | main | empty | Nothing due right now | No reminders yet |
+| Whats-due-empty.html | main | empty | When you add vaccinations, appointments, or insurance, their due dates appear here automatically. | When you add jabs, appointments, or insurance, their due dates appear here automatically. |
+| Whats-due-empty.html | main | button | Go to My Pets | Go to your pets |
+| Whats-due-error.html | main | error | Something went wrong | Couldn't load your reminders |
+| Whats-due-error.html | main | error | Couldn't load your reminders. Check your connection and try again. | Check your connection and try again. |
+| Whats-due-error.html | main | link | View last saved (offline) → | View your last saved reminders → |
+| Whats-due-detail.html | main | button | Action | Book vet appointment |
+| Whats-due-detail.html | main | field value | Vaccination (Type row, rabies \& fvrcp reminders) | Jab |
+| Whats-due-detail.html | main | status | Snoozed 1 week ✓ | Snoozed 1 week |
+| Reminder-done.html | main | success | Nice — marked done | Marked done |
+| Reminder-done.html | main | status | Restored ✓ | Restored |
+| Reminder-settings.html | main | hint | Choose how and when PetPal reminds you about what's due — vaccinations, renewals and appointments across all your pets. | Choose how and when PetPal reminds you about what's due — jabs, renewals and appointments across all your pets. |
+| Reminder-settings.html | main | field hint | Applies to vaccinations, insurance renewals and passport expiry. | Applies to jabs, insurance renewals and passport expiry. |
+
+Notes:
+- Whats-due-loading.html: no changes — "Loading your reminders…" already matches the reference "Loading <thing>…" pattern.
+- "What's due" screen name and heading kept verbatim throughout (established name per brief).
+- Badges (Overdue / Due soon / Upcoming), urgency-group headings (Overdue / Due this month / Coming up), pet filter tabs (All pets / Miso / Cheetah), and the day-filter fallback ("Nothing due on this day — pick another date, or browse below.") were reviewed and left unchanged — already on-voice, consistent controlled vocabulary.
+- Reminder titles, due dates, clinic/policy names, and pet identity (Miso, Cheetah, breed, sex) were left untouched as user data throughout, per instructions.
+- The `<footer class="d-footer">` line on every screen (e.g. "What's due · desktop adaptation · reminders hub across all pets") was left untouched — confirmed via cross-file grep to be a site-wide wireframe/dev scaffolding template ("[screen] · [state] · [note]", e.g. "error state · fetch failed", "loading state · skeleton placeholder") used identically across ~35 other screens, not real product copy.
+
+### Share a pet
+
+| Screen | Area | Element | Before | After |
+|---|---|---|---|---|
+| Share a pet | header | button | ← Dossier | ← Miso's card |
+| Share a pet | header | heading | Share Miso | Share Miso's card |
+| Share a pet | main | field label | Full dossier | Full card |
+| Share a pet | main | hint | Care info only | Personality & care only |
+| Share a pet | main | field label | Health info only | Health & jabs only |
+| Share a pet | main | hint | Vaccinations, conditions, meds — for a vet visit | Jabs, conditions, meds — for a vet visit |
+| Share a pet | main | field label | Emergency only | Emergency info only |
+| Share a pet | main | field label | Carer (read-only) | Sitter (read-only) |
+| Share a pet | main | hint | Default: carer — read-only, no account needed. | Default: sitter — read-only, no account needed. |
+| Share a pet | main | hint | The recipient opens the link in a browser or scans the QR — no sign-up or app install needed. | The recipient opens the link in a browser or scans the QR code — no app or account needed. |
+| Share a pet | modal | status | Full dossier · Carer (read-only) | Full card · Sitter (read-only) |
+| Share a pet | modal | hint | QR matches your scope and role selection above. | Matches what you picked above. |
+| Share a pet | modal | hint | Scan to open Miso's shared profile — no app needed. | Scan to open Miso's shared pet card — no app needed. |
+| Share a pet | modal | button | Save QR image | Save QR code |
+| Share a pet | modal | button | Print QR | Print QR code |
+| Share a pet (empty) | header | button | ← Dossier | ← Miso's card |
+| Share a pet (empty) | header | heading | Share Miso | Share Miso's card |
+| Share a pet (error) | header | button | ← Dossier | ← Miso's card |
+| Share a pet (error) | header | heading | Share Miso | Share Miso's card |
+| Share a pet (error) | main | error | Couldn't create the link | Couldn't create the share link |
+| Share a pet (error) | main | error | Something went wrong while generating Miso's share link. Check your connection and try again, or go back to the dossier and try later. Back to dossier | Check your connection and try again, or go back to Miso's card and try later. Back to Miso's card |
+| Share a pet (loading) | header | button | ← Dossier | ← Miso's card |
+| Share a pet (loading) | header | heading | Share Miso | Share Miso's card |
+| Share a pet (loading) | main | loading | Setting up Miso's shared view with full dossier access for a carer. | Setting up Miso's shared pet card — full access for a sitter. |
+
+### Access management
+
+| Screen | Area | Element | Before | After |
+|---|---|---|---|---|
+| Who has access (all states) | header | heading | Who has access | Who can see your pets' cards |
+| Who has access | main | heading | Manage who can see your pets' information. Edit roles, scopes, or revoke access at any time. | Change what each person can see, or stop sharing with them any time. |
+| Who has access | main | field label | Full dossier | Full card |
+| Who has access · empty | main | empty | No one has access yet | No one can see your pets' cards yet |
+| Who has access · empty | main | empty | Share your pet's info with a carer, vet, or co-owner. You control exactly what they can see. | Share your pet's card with a carer, vet, or co-owner. You control exactly what they can see. |
+| Who has access · error | main | error | Something went wrong | Couldn't load your sharing settings |
+| Who has access · error | main | error | Couldn't load your sharing settings. Check your connection and try again. | Check your connection and try again. |
+| Who has access · loading | main | loading | Loading access list... | Loading your sharing settings… |
+| Edit access grant (all states) | header | heading | Edit access | Marie's access |
+| Edit access grant (all states) | main | heading | Modify Marie's access to Miso's information, or revoke it entirely. | Change what Marie can see on Miso's card, or stop sharing it with her. |
+| Edit access grant (all states) | main | field label | Full dossier | Full card |
+| Edit access grant (all states) | main | field label | Vaccinations, conditions, meds — for a vet visit | Jabs, conditions, meds — for a vet visit |
+| Edit access grant | main | button | Save changes | Save |
+| Edit access grant (all states) | main | destructive | Revoke access | Stop sharing |
+| Edit access grant (all states) | main | destructive | Marie will immediately lose access to Miso's info. You can re-share later. | Marie can no longer open Miso's card — this happens immediately. You can share it with her again later. |
+| Edit access grant · loading | main | loading | Saving... | Saving changes… |
+
+### Shared pet view (sitter)
+
+| Screen | Area | Element | Before | After |
+|---|---|---|---|---|
+| Shared pet view (success) | main | heading | Personality & Care | Personality & care |
+| Shared pet view (success) | main | status | Profile filled · Updated 5 days ago | Filled · Updated 5 days ago |
+| Shared pet view (success) | main | heading | Health Summary | Health summary |
+| Shared pet view (success) | main | heading | Vet Contact | Vet contact |
+| Shared pet view (success) | bottom nav | status | Shared via PetPal · This link expires 12 Jul 2026 · Contact owner: Eva · Questions? Ask Eva directly. | Shared via PetPal · This link expires 12 Jul 2026 · Questions? Call Eva directly. |
+| Shared pet view (success) | header | button | Contact owner | Call owner |
+| Shared pet view (empty) | main | empty | Eva hasn't added care info yet. Contact her to ask. | Eva hasn't added care info yet. Call her to ask. |
+| Shared pet view (empty) | main | empty | No vet details added yet. Contact Eva directly in an emergency. | No vet details added yet. Call Eva directly in an emergency. |
+| Shared pet view (empty) | main | empty | For care details, health info, or emergencies — contact Eva directly. | For care details, health info, or emergencies — call Eva directly. |
+| Shared pet view (empty) | main | button | Contact Eva | Call Eva |
+| Shared pet view (empty) | bottom nav | status | Shared via PetPal · This link expires 12 Jul 2026 · Contact owner: Eva · Questions? Ask Eva directly. | Shared via PetPal · This link expires 12 Jul 2026 · Questions? Call Eva directly. |
+| Shared pet view (empty) | header | button | Contact owner | Call owner |
+| Shared pet view (empty) | main | empty | Eva shared Miso's profile, but hasn't filled in the details yet. | Eva shared Miso's card, but hasn't filled in the details yet. |
+| Shared pet view (empty) | main | empty | Contact Eva directly if you need care instructions, health info, or emergency details. | Call Eva directly if you need care instructions, health info, or emergency details. |
+| Shared pet view (error) | main | error | This link has expired | This link is no longer available |
+| Shared pet view (error) | main | error | Eva's shared link for Miso is no longer active. Ask Eva to send a new one. | It may have expired, or Eva may have stopped sharing it. Ask her to send a new one. |
+| Shared pet view (loading) | main | loading | Loading Miso's shared profile... | Loading Miso's card… |
+| Shared pet view (loading) | header | button | Contact owner | Call owner |
+
+### Add / update a record
+
+| Screen | Area | Element | Before | After |
+|---|---|---|---|---|
+| Add a record (success / empty / error) | header | heading | Add vaccination | Add a record |
+| Add a record | main | field label | Vaccine name | Jab name |
+| Add a record | main | field label | Date given | Date of the jab |
+| Add a record | main | field label | Vaccination | Jab |
+| Add a record | main | button | Save record | Add a record |
+| Add a record | main | hint | Context-aware form — fields adapt to record type. Shown: vaccination. | *(removed — leaked dev/meta note, not real product copy)* |
+| Add a record · error | main | field label | Vaccine name | Jab name |
+| Add a record · error | main | field label | Date given | Date of the jab |
+| Add a record · loading | main | loading | Saving… | Saving the record… |
+| Add a record · loading | main | loading | Let us save your updated info so we can store it and keep it accessible for you at any moment. | *(removed — filler, violates Loading rule)* |
+| Section-saving | main | loading | Saving… | Saving the section… |
+| Section-saving | main | loading | Let us save your updated info so we can store it and keep it accessible for you at any moment. | *(removed — filler, violates Loading rule)* |
+
+
+---
+
+## 14 · Cross-screen consistency audit
+
+After all 15 clusters landed, every final wireframe was grepped for competing labels of the same action/term. **Forbidden clichés confirmed gone site-wide** (`Something went wrong` / `successfully` / `Welcome back` / `Oops` / `Awesome` / `Congratulations` = 0). `Dossier` / `profile` / `authorization` survive **only in prototype chrome** (sidebar nav, breadcrumb, JS flow-tooltips) and a few `aria-label`s — not in visible product copy.
+
+### Reconciled — fixed in this pass
+
+| Action / thing | Was (drift) | Now (canonical) | Scope |
+|---|---|---|---|
+| Back to the pet list | `← My Pets` | `← Your pets` | 13 home screens (the My-Pets heading was renamed to "Your pets"; back-buttons hadn't followed) |
+| Add-form heading | `Add document` · `Add health record` · `Add emergency contact` | `Add a document` · `Add a health record` · `Add an emergency contact` | 3 forms (5 sibling add-forms already used the article) |
+| Save (owner profile) | `Save changes` | `Save` | Me.html (26 other Save buttons are bare "Save") |
+
+### Consistent by design — no change needed
+
+- **Error-headline possessive** tracks whose data it is: pet-section screens say *"Couldn't load **Miso's** X"*; cross-pet / account / settings screens say *"Couldn't load **your** X"*; the sitter view says neither. Intentional, not drift.
+- **`Add a …`** button pattern, **`Try again`** (retry ×42 — zero `Retry` left), **`No … yet`** empty pattern, **`Call`** for phone actions, **`It can't be undone.`** destructive tail — all uniform across clusters.
+
+### Needs a decision — NOT auto-changed
+
+| # | Item | Variants (where) | Recommendation |
+|---|---|---|---|
+| 1 | **Carer vs Sitter** — the trusted person | `Sitter (read-only)` (Share) vs `Carer` / `carer` (Emergency, Access, Shared-view — ~13 files) | Standardise to **Sitter** (glossary term). Touches the role dropdown (Carer / Vet / Co-owner), so confirm before changing ~13 files. |
+| 2 | **`Save settings`** (Reminder settings) | vs canonical `Save` | Keep `Save settings` (clearer here) *or* unify to `Save` |
+| 3 | **Bare `Add` / `Edit`** inline per-category (Personality, 6 files) | vs `Add a note` | Keep the compact inline pair *or* promote to `Add a note` |
+| 4 | **`Add photo` vs `Add a photo`** (Upload-photo) | H1 vs button, same screen | Align H1 → `Add a photo` |
+| 5 | **`Danger zone`** label (Edit-pet, Edit-access-grant) | used consistently, but alarmed vs the "calm confidence" voice | Optional: drop / soften |
+
+### Cosmetic / non-visible — noted
+
+- Stale **`aria-label`s** (`Back to Miso's profile`, `Back to Dossier`, `Delete profile?`) — visible text is correct; the attributes lag because the pass was text-nodes-only. Worth a separate accessibility sync.
+- `No appointments yet.` carries a trailing period the other empty headlines drop; `Loading emergency info&hellip;` uses the HTML entity where siblings use the `…` character.

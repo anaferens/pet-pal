@@ -661,7 +661,7 @@
 
       <header class="m-header">
         <a href="Set-up-a-pet.html" style="text-decoration:none;"><button class="back" aria-label="Back">← Cancel</button></a>
-        <h1>Add photo</h1>
+        <h1>Add a photo</h1>
         <span></span>
       </header>
 
@@ -753,7 +753,7 @@
 
 <script>
 function selectPhoto(btn) {
-  document.querySelectorAll('.photo-preview').forEach(function(p) { p.textContent = 'photo selected \u2713'; p.style.background = 'var(--wf-border)'; });
+  document.querySelectorAll('.photo-preview').forEach(function(p) { p.textContent = 'photo selected'; p.style.background = 'var(--wf-border)'; });
 }
 function setView(mode) {
   document.body.classList.toggle('is-desktop', mode === 'desktop');

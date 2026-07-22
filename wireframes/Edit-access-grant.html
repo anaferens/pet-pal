@@ -1177,7 +1177,7 @@
 
       <header class="m-header">
         <a href="Who-has-access.html" style="text-decoration:none;"><button class="back" aria-label="Back to Who has access">← Who has access</button></a>
-        <h1>Edit access</h1>
+        <h1>Marie's access</h1>
         <span></span>
       </header>
 
@@ -1204,11 +1204,11 @@
             <div class="form-group">
               <legend><label for="role-select">Recipient role</label></legend>
               <select id="role-select">
-                <option selected>Carer (read-only)</option>
+                <option selected>Sitter (read-only)</option>
                 <option>Vet (can add records)</option>
                 <option>Co-owner (full edit)</option>
               </select>
-              <p class="helper">Carers can view but not edit. Vets can add medical records.</p>
+              <p class="helper">Sitters can view but not edit. Vets can add medical records.</p>
             </div>
           </fieldset>
 
@@ -1220,7 +1220,7 @@
                 <input type="radio" name="scope" value="full" style="display:none;">
                 <div class="scope-radio"></div>
                 <div>
-                  <div class="scope-label-text">Full dossier</div>
+                  <div class="scope-label-text">Full card</div>
                   <div class="scope-desc">Health, documents, personality, vet — everything</div>
                 </div>
               </label>
@@ -1237,7 +1237,7 @@
                 <div class="scope-radio"></div>
                 <div>
                   <div class="scope-label-text">Health info only</div>
-                  <div class="scope-desc">Vaccinations, conditions, meds — for a vet visit</div>
+                  <div class="scope-desc">Jabs, conditions, meds — for a vet visit</div>
                 </div>
               </label>
               <label class="scope-option" onclick="selectScope(this)">
@@ -1267,15 +1267,15 @@
 
           <!-- Form actions -->
           <div class="form-actions" style="flex-direction:column;gap:10px;">
-            <a href="Edit-access-grant-loading.html" style="display:block;"><button type="button" class="btn-primary" style="width:100%;">Save changes</button></a>
+            <a href="Edit-access-grant-loading.html" style="display:block;"><button type="button" class="btn-primary" style="width:100%;">Save</button></a>
             <a href="Who-has-access.html" style="display:block;"><button type="button" class="btn-secondary" style="width:100%;">Cancel</button></a>
           </div>
 
           <!-- Danger zone -->
           <section class="danger-zone" aria-label="Danger zone">
-            <div class="danger-zone-label">Danger zone</div>
-            <button type="button" class="btn-secondary" style="border-color:var(--wf-muted);" onclick="window.location.href='Who-has-access.html'+window.location.search">Revoke access</button>
-            <p class="helper"><span class="eag-first">Marie</span> will immediately lose access to Miso's info. You can re-share later.</p>
+            <div class="danger-zone-label">Stop sharing</div>
+            <button type="button" class="btn-secondary" style="border-color:var(--wf-muted);" onclick="window.location.href='Who-has-access.html'+window.location.search">Stop sharing</button>
+            <p class="helper"><span class="eag-first">Marie</span> can no longer open Miso's card — this happens immediately. You can share it with her again later.</p>
           </section>
 
         </form>
@@ -1331,8 +1331,8 @@
     <div class="d-main">
 
       <section aria-label="Page header" style="margin-bottom:24px;">
-        <h1 style="font-size:24px;font-weight:700;">Edit access</h1>
-        <p style="font-size:14px;color:var(--wf-muted);margin-top:4px;">Modify <span class="eag-first">Marie</span>'s access to Miso's information, or revoke it entirely.</p>
+        <h1 style="font-size:24px;font-weight:700;">Marie's access</h1>
+        <p style="font-size:14px;color:var(--wf-muted);margin-top:4px;">Change what <span class="eag-first">Marie</span> can see on Miso's card, or stop sharing it with her.</p>
       </section>
 
       <form>
@@ -1344,7 +1344,7 @@
             <div class="recipient-avatar" style="width:48px;height:48px;font-size:16px;">M</div>
             <div>
               <div class="recipient-name eag-name" style="font-size:18px;">Marie (dog walker)</div>
-              <div style="font-size:13px;color:var(--wf-muted);margin-top:2px;">Carer · read-only</div>
+              <div style="font-size:13px;color:var(--wf-muted);margin-top:2px;">Sitter · read-only</div>
             </div>
           </div>
           <div class="recipient-details" style="padding-left:58px;display:flex;gap:24px;flex-wrap:wrap;">
@@ -1360,11 +1360,11 @@
             <div class="form-group">
               <legend><label for="d-role-select">Recipient role</label></legend>
               <select id="d-role-select">
-                <option selected>Carer (read-only)</option>
+                <option selected>Sitter (read-only)</option>
                 <option>Vet (can add records)</option>
                 <option>Co-owner (full edit)</option>
               </select>
-              <p class="helper">Carers can view but not edit. Vets can add medical records.</p>
+              <p class="helper">Sitters can view but not edit. Vets can add medical records.</p>
             </div>
           </fieldset>
           <fieldset style="border:none;padding:0;margin:0;flex:1;">
@@ -1389,7 +1389,7 @@
               <input type="radio" name="d-scope" value="full" style="display:none;">
               <div class="scope-radio"></div>
               <div>
-                <div class="scope-label-text">Full dossier</div>
+                <div class="scope-label-text">Full card</div>
                 <div class="scope-desc">Health, documents, personality, vet — everything</div>
               </div>
             </label>
@@ -1406,7 +1406,7 @@
               <div class="scope-radio"></div>
               <div>
                 <div class="scope-label-text">Health info only</div>
-                <div class="scope-desc">Vaccinations, conditions, meds — for a vet visit</div>
+                <div class="scope-desc">Jabs, conditions, meds — for a vet visit</div>
               </div>
             </label>
             <label class="scope-option" onclick="selectScope(this)">
@@ -1422,16 +1422,16 @@
 
         <!-- Form actions -->
         <div style="display:flex;gap:12px;margin-bottom:32px;">
-          <a href="Edit-access-grant-loading.html" style="text-decoration:none;"><button type="button" class="btn-primary" style="padding:12px 32px;font-size:14px;font-weight:600;border-radius:6px;">Save changes</button></a>
+          <a href="Edit-access-grant-loading.html" style="text-decoration:none;"><button type="button" class="btn-primary" style="padding:12px 32px;font-size:14px;font-weight:600;border-radius:6px;">Save</button></a>
           <a href="Who-has-access.html" style="text-decoration:none;"><button type="button" class="btn-secondary" style="padding:12px 32px;font-size:14px;font-weight:600;border-radius:6px;">Cancel</button></a>
         </div>
 
         <!-- Danger zone -->
         <section class="danger-zone" style="margin:0;" aria-label="Danger zone">
-          <div class="danger-zone-label">Danger zone</div>
+          <div class="danger-zone-label">Stop sharing</div>
           <div style="display:flex;align-items:center;gap:16px;">
-            <button type="button" class="btn-secondary" style="border-color:var(--wf-muted);flex-shrink:0;" onclick="window.location.href='Who-has-access.html'+window.location.search">Revoke access</button>
-            <p style="font-size:12px;color:var(--wf-muted);line-height:1.5;"><span class="eag-first">Marie</span> will immediately lose access to Miso's info. You can re-share later.</p>
+            <button type="button" class="btn-secondary" style="border-color:var(--wf-muted);flex-shrink:0;" onclick="window.location.href='Who-has-access.html'+window.location.search">Stop sharing</button>
+            <p style="font-size:12px;color:var(--wf-muted);line-height:1.5;"><span class="eag-first">Marie</span> can no longer open Miso's card — this happens immediately. You can share it with her again later.</p>
           </div>
         </section>
 
@@ -1449,11 +1449,11 @@
 <script>
 function populateGrant() {
   var people = {
-    marie:  { name:'Marie (dog walker)', first:'Marie', role:'Carer (read-only)' },
+    marie:  { name:'Marie (dog walker)', first:'Marie', role:'Sitter (read-only)' },
     drmuller:{ name:'Dr. M\u00fcller (Tierklinik am Stadtpark)', first:'Dr. M\u00fcller', role:'Vet (can add records)' },
     thomas: { name:'Thomas (brother)', first:'Thomas', role:'Co-owner (full edit)' },
     eva:    { name:'Eva (owner)', first:'Eva', role:'Co-owner (full edit)' },
-    backup: { name:'Backup contact', first:'Your backup contact', role:'Carer (read-only)' }
+    backup: { name:'Backup contact', first:'Your backup contact', role:'Sitter (read-only)' }
   };
   var key = new URLSearchParams(window.location.search).get('person') || 'marie';
   var p = people[key] || people.marie;

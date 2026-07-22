@@ -575,7 +575,7 @@
       </div>
 
       <header class="m-header">
-        <a href="home-success.html" style="text-decoration:none;"><button class="back" aria-label="Back to Dossier">&larr; Dossier</button></a>
+        <a href="home-success.html" style="text-decoration:none;"><button class="back" aria-label="Back to Dossier">&larr; Miso's card</button></a>
         <h1>Edit Miso</h1>
         <span></span>
       </header>
@@ -589,7 +589,7 @@
             <figure class="photo-placeholder" aria-label="Current pet photo">photo</figure>
             <div class="photo-actions">
               <button type="button" class="btn-secondary" onclick="window.location.href='Upload-photo.html'+window.location.search">Change photo</button>
-              <button type="button" class="text-link" onclick="this.textContent='Photo removed ✓'">Remove photo</button>
+              <button type="button" class="text-link" onclick="this.textContent='Photo removed'">Remove photo</button>
             </div>
           </section>
 
@@ -642,7 +642,7 @@
             </div>
 
             <div class="form-group">
-              <label for="pet-passport">EU Passport number</label>
+              <label for="pet-passport">EU Pet Passport number</label>
               <input type="text" id="pet-passport" value="DE-0812345">
             </div>
 
@@ -651,7 +651,7 @@
 
           <!-- Form actions -->
           <div class="form-actions">
-            <a href="Edit-pet-loading.html" style="flex:1;text-decoration:none;"><button type="button" class="btn-primary" style="width:100%;">Save changes</button></a>
+            <a href="Edit-pet-loading.html" style="flex:1;text-decoration:none;"><button type="button" class="btn-primary" style="width:100%;">Save</button></a>
             <a href="home-success.html" style="flex:1;text-decoration:none;"><button type="button" class="btn-secondary" style="width:100%;">Cancel</button></a>
           </div>
 
@@ -659,18 +659,18 @@
 
         <!-- Danger zone -->
         <section class="danger-zone" aria-label="Danger zone">
-          <p class="danger-zone-label">Danger zone</p>
+          <p class="danger-zone-label">Archive &amp; delete</p>
 
           <div class="danger-action">
             <button type="button" onclick="window.location.href='My-Pets.html'+window.location.search">Archive Miso</button>
             <p class="helper">Archived pets are hidden from your list but all data is preserved. You can restore later.</p>
-            <p class="helper" style="font-style:italic;">Are you sure? This action cannot be undone.</p>
+            <p class="helper" style="font-style:italic;">Are you sure?</p>
           </div>
 
           <div class="danger-action">
             <button type="button" onclick="window.location.href='My-Pets-empty.html'+window.location.search">Permanently delete Miso</button>
-            <p class="helper">This removes all of Miso's data -- dossier, records, documents, shares -- and cannot be undone.</p>
-            <p class="helper" style="font-style:italic;">Are you sure? This action cannot be undone.</p>
+            <p class="helper">This removes all of Miso's jabs, documents, notes, and share links. It can't be undone.</p>
+            <p class="helper" style="font-style:italic;">Are you sure?</p>
           </div>
         </section>
 
@@ -724,7 +724,7 @@
     <div class="d-main">
 
       <h1 style="font-size:24px;font-weight:700;margin-bottom:24px;">
-        <a href="home-success.html" style="text-decoration:none;color:var(--wf-muted);font-weight:500;font-size:14px;">&larr; Back to Dossier</a><br>
+        <a href="home-success.html" style="text-decoration:none;color:var(--wf-muted);font-weight:500;font-size:14px;">&larr; Back to Miso's card</a><br>
         Edit Miso
       </h1>
 
@@ -735,7 +735,7 @@
           <figure class="photo-placeholder" aria-label="Current pet photo">photo</figure>
           <div class="photo-actions">
             <button type="button" class="btn-secondary" onclick="window.location.href='Upload-photo.html'+window.location.search">Change photo</button>
-            <button type="button" class="text-link" onclick="this.textContent='Photo removed ✓'">Remove photo</button>
+            <button type="button" class="text-link" onclick="this.textContent='Photo removed'">Remove photo</button>
           </div>
         </section>
 
@@ -797,7 +797,7 @@
               <input type="text" id="d-pet-microchip" value="276 098 106 412 345">
             </div>
             <div class="form-group">
-              <label for="d-pet-passport">EU Passport number</label>
+              <label for="d-pet-passport">EU Pet Passport number</label>
               <input type="text" id="d-pet-passport" value="DE-0812345">
             </div>
           </div>
@@ -807,7 +807,7 @@
 
         <!-- Form actions -->
         <div style="display:flex;gap:12px;margin-bottom:32px;">
-          <a href="Edit-pet-loading.html" style="text-decoration:none;"><button type="button" class="btn-primary">Save changes</button></a>
+          <a href="Edit-pet-loading.html" style="text-decoration:none;"><button type="button" class="btn-primary">Save</button></a>
           <a href="home-success.html" style="text-decoration:none;"><button type="button" class="btn-secondary">Cancel</button></a>
         </div>
 
@@ -815,18 +815,18 @@
 
       <!-- Danger zone -->
       <section class="d-danger-zone" aria-label="Danger zone">
-        <p class="danger-zone-label">Danger zone</p>
+        <p class="danger-zone-label">Archive &amp; delete</p>
 
         <div class="d-danger-actions">
           <div class="danger-action">
             <button type="button" onclick="window.location.href='My-Pets.html'+window.location.search">Archive Miso</button>
             <p class="helper">Archived pets are hidden from your list but all data is preserved. You can restore later.</p>
-            <p class="helper" style="font-style:italic;">Are you sure? This action cannot be undone.</p>
+            <p class="helper" style="font-style:italic;">Are you sure?</p>
           </div>
           <div class="danger-action">
             <button type="button" onclick="window.location.href='My-Pets-empty.html'+window.location.search">Permanently delete Miso</button>
-            <p class="helper">This removes all of Miso's data -- dossier, records, documents, shares -- and cannot be undone.</p>
-            <p class="helper" style="font-style:italic;">Are you sure? This action cannot be undone.</p>
+            <p class="helper">This removes all of Miso's jabs, documents, notes, and share links. It can't be undone.</p>
+            <p class="helper" style="font-style:italic;">Are you sure?</p>
           </div>
         </div>
       </section>

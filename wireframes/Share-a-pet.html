@@ -695,8 +695,8 @@
       </div>
 
       <header class="m-header">
-        <a href="home-success.html" style="text-decoration:none;"><button class="back" aria-label="Back">← Dossier</button></a>
-        <h1>Share Miso</h1>
+        <a href="home-success.html" style="text-decoration:none;"><button class="back" aria-label="Back">← Miso's card</button></a>
+        <h1>Share Miso's card</h1>
         <span></span>
       </header>
 
@@ -717,28 +717,28 @@
           <div class="scope-option selected" onclick="selectScope(this)">
             <div class="scope-radio"></div>
             <div>
-              <div class="scope-label">Full dossier</div>
+              <div class="scope-label">Full card</div>
               <div class="scope-desc">Health, documents, personality, vet — everything</div>
             </div>
           </div>
           <div class="scope-option" onclick="selectScope(this)">
             <div class="scope-radio"></div>
             <div>
-              <div class="scope-label">Care info only</div>
+              <div class="scope-label">Personality &amp; care only</div>
               <div class="scope-desc">Personality, food, routines, warnings — for a sitter</div>
             </div>
           </div>
           <div class="scope-option" onclick="selectScope(this)">
             <div class="scope-radio"></div>
             <div>
-              <div class="scope-label">Health info only</div>
-              <div class="scope-desc">Vaccinations, conditions, meds — for a vet visit</div>
+              <div class="scope-label">Health &amp; jabs only</div>
+              <div class="scope-desc">Jabs, conditions, meds — for a vet visit</div>
             </div>
           </div>
           <div class="scope-option" onclick="selectScope(this)">
             <div class="scope-radio"></div>
             <div>
-              <div class="scope-label">Emergency only</div>
+              <div class="scope-label">Emergency info only</div>
               <div class="scope-desc">Vet contact, conditions, meds — the essentials</div>
             </div>
           </div>
@@ -746,8 +746,8 @@
 
         <div class="form-group">
           <label>Recipient role</label>
-          <select><option>Carer (read-only)</option><option>Vet (can add records)</option><option>Co-owner (full edit)</option></select>
-          <p class="helper">Default: carer — read-only, no account needed.</p>
+          <select><option>Sitter (read-only)</option><option>Vet (can add records)</option><option>Co-owner (full edit)</option></select>
+          <p class="helper">Default: sitter — read-only, no account needed.</p>
         </div>
 
         <div class="form-group">
@@ -760,7 +760,7 @@
           <button type="button" class="btn-secondary" style="width:100%;" onclick="document.getElementById('qr-modal').classList.add('open');">Show QR code</button>
         </div>
 
-        <p style="padding:0 16px 12px;font-size:11px;color:var(--wf-muted);text-align:center;">The recipient opens the link in a browser or scans the QR — no sign-up or app install needed.</p>
+        <p style="padding:0 16px 12px;font-size:11px;color:var(--wf-muted);text-align:center;">The recipient opens the link in a browser or scans the QR code — no app or account needed.</p>
 
       </div>
 
@@ -771,13 +771,13 @@
             <button class="modal-close" onclick="document.getElementById('qr-modal').classList.remove('open');" aria-label="Close">&#x2715;</button>
           </div>
           <div class="modal-body">
-            <p style="font-size:14px;font-weight:600;margin-bottom:4px;">Full dossier · Carer (read-only)</p>
-            <p style="font-size:12px;color:var(--wf-muted);margin-bottom:16px;">QR matches your scope and role selection above.</p>
+            <p style="font-size:14px;font-weight:600;margin-bottom:4px;">Full card · Sitter (read-only)</p>
+            <p style="font-size:12px;color:var(--wf-muted);margin-bottom:16px;">Matches what you picked above.</p>
             <div style="width:180px;height:180px;margin:0 auto 16px;background:var(--wf-surface);border:1.5px solid var(--wf-border);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:11px;color:var(--wf-muted);">QR code<br>placeholder</div>
-            <p style="font-size:12px;color:var(--wf-muted);margin-bottom:16px;">Scan to open Miso's shared profile — no app needed.</p>
+            <p style="font-size:12px;color:var(--wf-muted);margin-bottom:16px;">Scan to open Miso's shared pet card — no app needed.</p>
             <div style="display:flex;gap:8px;">
-              <button class="btn-secondary" style="flex:1;font-size:13px;padding:10px;" onclick="this.textContent='Saved ✓'">Save QR image</button>
-              <button class="btn-secondary" style="flex:1;font-size:13px;padding:10px;" onclick="this.textContent='Sent to printer ✓'">Print QR</button>
+              <button class="btn-secondary" style="flex:1;font-size:13px;padding:10px;" onclick="this.textContent='Saved ✓'">Save QR code</button>
+              <button class="btn-secondary" style="flex:1;font-size:13px;padding:10px;" onclick="this.textContent='Sent to printer ✓'">Print QR code</button>
             </div>
           </div>
         </div>
@@ -833,28 +833,28 @@
           <div class="scope-option selected" onclick="selectScope(this)">
             <div class="scope-radio"></div>
             <div>
-              <div class="scope-label">Full dossier</div>
+              <div class="scope-label">Full card</div>
               <div class="scope-desc">Health, documents, personality, vet — everything</div>
             </div>
           </div>
           <div class="scope-option" onclick="selectScope(this)">
             <div class="scope-radio"></div>
             <div>
-              <div class="scope-label">Care info only</div>
+              <div class="scope-label">Personality &amp; care only</div>
               <div class="scope-desc">Personality, food, routines, warnings — for a sitter</div>
             </div>
           </div>
           <div class="scope-option" onclick="selectScope(this)">
             <div class="scope-radio"></div>
             <div>
-              <div class="scope-label">Health info only</div>
-              <div class="scope-desc">Vaccinations, conditions, meds — for a vet visit</div>
+              <div class="scope-label">Health &amp; jabs only</div>
+              <div class="scope-desc">Jabs, conditions, meds — for a vet visit</div>
             </div>
           </div>
           <div class="scope-option" onclick="selectScope(this)">
             <div class="scope-radio"></div>
             <div>
-              <div class="scope-label">Emergency only</div>
+              <div class="scope-label">Emergency info only</div>
               <div class="scope-desc">Vet contact, conditions, meds — the essentials</div>
             </div>
           </div>
@@ -862,8 +862,8 @@
 
         <div class="form-group">
           <label>Recipient role</label>
-          <select><option>Carer (read-only)</option><option>Vet (can add records)</option><option>Co-owner (full edit)</option></select>
-          <p class="helper">Default: carer — read-only, no account needed.</p>
+          <select><option>Sitter (read-only)</option><option>Vet (can add records)</option><option>Co-owner (full edit)</option></select>
+          <p class="helper">Default: sitter — read-only, no account needed.</p>
         </div>
 
         <div class="form-group">
@@ -876,7 +876,7 @@
           <button type="button" class="btn-secondary" style="width:100%;" onclick="document.getElementById('qr-modal').classList.add('open');">Show QR code</button>
         </div>
 
-        <p style="padding:0 16px 12px;font-size:11px;color:var(--wf-muted);text-align:center;">The recipient opens the link in a browser or scans the QR — no sign-up or app install needed.</p>
+        <p style="padding:0 16px 12px;font-size:11px;color:var(--wf-muted);text-align:center;">The recipient opens the link in a browser or scans the QR code — no app or account needed.</p>
 
     </div>
   </div>

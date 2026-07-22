@@ -689,10 +689,10 @@
 
         <div style="display:flex;gap:8px;padding:16px;">
           <button class="btn-primary" style="flex:1;" onclick="window.location.href='Reminder-done.html'+window.location.search">Mark done</button>
-          <button class="btn-secondary" style="flex:1;" onclick="this.textContent='Snoozed 1 week ✓'">Snooze</button>
+          <button class="btn-secondary" style="flex:1;" onclick="this.textContent='Snoozed 1 week'">Snooze</button>
         </div>
         <div style="padding:0 16px 10px;">
-          <a class="rd-primary" href="Add-vet-record.html"><button class="btn-secondary" style="width:100%;">Action</button></a>
+          <a class="rd-primary" href="Add-vet-record.html"><button class="btn-secondary" style="width:100%;">Book vet appointment</button></a>
         </div>
         <div style="padding:0 16px 16px;">
           <a class="rd-view" href="Health-and-jabs.html" style="font-size:12px;color:var(--wf-muted);">View in section →</a>
@@ -764,8 +764,8 @@
 
         <div style="display:flex;gap:8px;padding:16px;max-width:560px;">
           <button class="btn-primary" style="flex:1;" onclick="window.location.href='Reminder-done.html'+window.location.search">Mark done</button>
-          <button class="btn-secondary" style="flex:1;" onclick="this.textContent='Snoozed 1 week ✓'">Snooze</button>
-          <a class="rd-primary" href="Add-vet-record.html" style="flex:1;text-decoration:none;"><button class="btn-secondary" style="width:100%;">Action</button></a>
+          <button class="btn-secondary" style="flex:1;" onclick="this.textContent='Snoozed 1 week'">Snooze</button>
+          <a class="rd-primary" href="Add-vet-record.html" style="flex:1;text-decoration:none;"><button class="btn-secondary" style="width:100%;">Book vet appointment</button></a>
         </div>
         <div style="padding:0 16px 16px;max-width:560px;">
           <a class="rd-view" href="Health-and-jabs.html" style="font-size:12px;color:var(--wf-muted);">View in section →</a>
@@ -780,7 +780,7 @@
 function populateReminder() {
   var R = {
     rabies:    { badge:'Overdue', title:'Rabies booster — Miso', due:'Was due 15 Jun 2026',
-                 rows:[['Pet','Miso'],['Type','Vaccination'],['Source','Health & jabs record']],
+                 rows:[['Pet','Miso'],['Type','Jab'],['Source','Health & jabs record']],
                  primary:['Book vet appointment','Add-vet-record.html'], view:['View in Health & jabs','Health-and-jabs.html'] },
     insurance: { badge:'Due soon', title:'Insurance renewal — Miso', due:'Due 1 Oct 2026 · Lassie OP-Schutz Plus',
                  rows:[['Pet','Miso'],['Type','Insurance renewal'],['Premium','€29.90 / month']],
@@ -789,7 +789,7 @@ function populateReminder() {
                  rows:[['Pet','Miso'],['Type','Appointment'],['Clinic','Tierklinik am Stadtpark']],
                  primary:['Add to calendar','Vet-and-appointments.html'], view:['View in Vet & appointments','Vet-and-appointments.html'] },
     fvrcp:     { badge:'Upcoming', title:'FVRCP booster — Cheetah', due:'Due 12 Nov 2026',
-                 rows:[['Pet','Cheetah'],['Type','Vaccination'],['Source','Health & jabs record']],
+                 rows:[['Pet','Cheetah'],['Type','Jab'],['Source','Health & jabs record']],
                  primary:['Book vet appointment','Add-vet-record.html'], view:['View in Health & jabs','Health-and-jabs.html'] },
     passport:  { badge:'Upcoming', title:'EU Passport renewal — Miso', due:'Expires 1 Mar 2027',
                  rows:[['Pet','Miso'],['Type','Document expiry'],['Document','EU Pet Passport']],
