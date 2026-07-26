@@ -93,7 +93,7 @@ Chosen directly by the designer. The through-line: **clean, disciplined layouts 
 | Decision | Value | From | Fights |
 |---|---|---|---|
 | Surfaces | **base near-white `#faf8f4`** · **Warm Sand `#f8f3eb` = secondary surface** (section bands, panel behind cards) · white floating cards; breaks by background change, no dividers | August Health | A2 |
-| Headline type | **italic serif** display for hero + emphasis (Kinhive); roman serif section headings; clean **sans** body | August Health + Kinhive | A1 · A2 |
+| Headline type | serif display that **carries the message** (Kinhive's cut) — **roman = clarity/credibility, italic = warmth**; e.g. the hero pairs upright "Credible enough for a vet." with italic "Warm enough to hand to a sitter." Roman section headings; clean **sans** body | August Health + Kinhive | A1 · A2 |
 | Body-text colour | **warm near-black brown** (~`#321004`), not pure black/gray | Finn | A2 / A3 |
 | Colour budget | **one action colour**; saturated hues only in small accents/illustrations; trust-green as *supporting accent, not a status colour* | Headspace | A4 |
 | Card shape | **16px radius, floating** (soft shadow, no border) | August Health | A2 |
