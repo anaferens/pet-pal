@@ -54,10 +54,11 @@
 
 ## Screens *(web patterns — how real products solve our specific screens)*
 
-### A · Pet dossier / profile → **Aboard — Personal information**
-- **Link:** https://refero.design/pages/78ddf817-ec6b-4f63-9937-895a9f088d0d (source: app.aboardhr.com)
-- **Technique selected:** **centred avatar + single-column "label → value" list with one right-aligned `Edit`** — a quiet, scannable identity block (name, breed, chip, etc.) with editing tucked to the side, not competing buttons per row.
-- **Persona anxiety:** **A1 / A3** — a clean complete-looking field list signals "this record is real and finished," and the sitter scans it in seconds.
+### A · Pet dossier / profile → **Headspace** (card structure) + **Aboard** (info list)
+- **Links:** structure — https://refero.design/screens/06d8035a-4e19-4713-a58e-1f77561c5305 (Headspace, iOS profile) · info list — https://refero.design/pages/78ddf817-ec6b-4f63-9937-895a9f088d0d (Aboard)
+- **The shell — from Headspace *(arched element as the card foundation)*:** the profile is built on an **arched colour hero** — a curved gradient banner across the top — with the **circular pet avatar centred over the arch** (half on the colour, half on the white below), then the **pet's name + one quiet meta line** (breed · age), then content stacked in soft white cards beneath. The arch is the *one* warm, colourful moment; everything under it stays calm and white — colour in the brand layer, exactly as the warmth strategy requires.
+- **The content — from Aboard *(how the card is organised)*:** inside, a single-column **"label → value" list with one right-aligned `Edit`** — a scannable identity block (name, breed, chip, DOB…) with editing tucked to the side, not competing buttons per row.
+- **Persona anxiety:** **A2 / A3 / A1** — the arch + centred pet photo is the emotional anchor at the handoff (A2) and instant recognition for a sitter (A3); the clean, complete-looking field list reads "real, finished record" to a vet (A1).
 
 ### B · Shared card with petsitter → **Airbnb — share via link**
 - **Link:** https://refero.design/pages/e57be91c-4934-4cd0-a9e5-a3680fe67429 (source: airbnb.com; named benchmark)
@@ -85,14 +86,9 @@ Chosen directly by the designer. The through-line: **clean, disciplined layouts 
 - **Technique:** a disciplined monochrome grid — white content sections, oversized bold headlines, rounded cards, generous whitespace — that takes its *twist* from **playful vector mascots, colour-blob accents and orbital line motifs** layered on top. Personality from illustration, not from a coloured background.
 - **Persona anxiety:** A2 (warmth at the handoff) while holding A1 (the clean grid still reads credible).
 
-### Cofounder — clean white + warm hand-drawn illustration
-- **Link:** https://refero.design/search?site_id[id][]=746 · cofounder.co · Refero site 746
-- **Technique:** monochrome white + serif headings + **warm hand-drawn character / nature illustration** (the "Connie" mascot, a sunflower on the welcome screen) as the personality anchor, on a **single subtle accent** (yellow). Serious *and* warm at once — the Endel register the designer named in the Taste list.
-- **Persona anxiety:** A2 + A3 (a friendly illustrated character makes the shared card feel human and approachable to a nervous sitter).
-
 ### Aboard by Teamtailor — "joyful HR": colour blocks on a clean base
 - **Link:** https://refero.design/flows/406 · aboardhr.com · Refero site 545 · flow *"Employee sign-up & verification"* — **the direction the designer picked back in.**
-- **Technique:** a **clean white base + bold sans display face** (Haffer XH headings, Inter body) that earns its warmth entirely from **pastel colour blocks in a bento grid + smiling character illustrations** (cloud / flower mascots) — personality in the *content* layer, never coloured chrome. Records are calm white cards with quiet "label → value" rows; sign-up is a single centred white card + a 6-digit email verification; empty states are **dashed cards with plain "No … yet" copy** under a personalized greeting. It is living proof of PetPal's warmth strategy — *colour blocks + illustration on a clean base, not a warm surface* — so it reinforces decision (b). We keep our near-white `#faf8f4` + one pine action colour, and **drop the emoji** Aboard uses in its greeting (voice.md).
+- **Technique:** a **clean white base + bold sans display face** (Haffer XH headings, Inter body) that earns its warmth entirely from **pastel colour blocks in a bento grid + smiling character illustrations** (cloud / flower mascots) — personality in the *content* layer, never coloured chrome. Records are calm white cards with quiet "label → value" rows; sign-up is a single centred white card + a 6-digit email verification; empty states are **dashed cards with plain "No … yet" copy** under a personalized greeting. It is living proof of PetPal's warmth strategy — *colour blocks + illustration on a clean base, not a warm surface* — so it reinforces decision (b), and its colour-block warmth **echoes Headspace** (the same colour language in a joyful register, which is why the two sit so well together). We keep our near-white `#faf8f4` + one pine action colour, and **drop the emoji** Aboard uses in its greeting (voice.md).
 - **Persona anxiety:** **A2** (joyful-but-organized eases the handoff) + **A1** (the calm white record still reads credible) + **A3** (clean empty states + a greeting orient a first-time sitter fast).
 
 **Warmth strategy (decided):** PetPal's warmth comes from **bold, on-point illustration + real pet photography + occasional colour blocks**, all on the clean near-white base — *not* from warm surfaces. Colour blocks live in the **brand / illustration layer** (à la Kinhive & Notion); the functional UI keeps its **single pine action colour**, so Headspace's colour discipline still holds. This resolves the only tension: colour blocks are expression, not chrome.
@@ -109,10 +105,10 @@ Chosen directly by the designer. The through-line: **clean, disciplined layouts 
 | Colour budget | **one action colour**; saturated hues only in small accents/illustrations; trust-green as *supporting accent, not a status colour* | Headspace | A4 |
 | Card shape | **16px radius, floating** (soft shadow, no border) | August Health | A2 |
 | Badge shape | **fully pill** (~9999px) | August Health | A1 |
-| Emotional anchor | **the pet's real photo in a soft circular mask** | August Health + Airbnb | A2 / A3 |
-| Warmth | **bold illustration + real photography + occasional colour blocks**, on the clean base — never warm surfaces; colour blocks stay in the brand/illustration layer, one pine action colour holds | Notion · Kinhive · Cofounder · Airbnb · **Aboard** | A2 / A3 |
+| Emotional anchor | **the pet's real photo in a soft circular mask, centred over the arched hero** | August Health + Headspace + Airbnb | A2 / A3 |
+| Warmth | **bold illustration + real photography + occasional colour blocks**, on the clean base — never warm surfaces; colour blocks stay in the brand/illustration layer, one pine action colour holds | Notion · Kinhive · Airbnb · **Aboard** | A2 / A3 |
 | Share screen | **explicit "who can see this" line** under the share options | Airbnb | A5 |
-| Dossier | **avatar + label→value list + one `Edit`** | Aboard | A1 / A3 |
+| Dossier | **arched colour hero as the card foundation + circular pet avatar centred over the arch + name/meta**, then a **label→value list + one `Edit`** beneath | Headspace + Aboard | A1 / A3 / A2 |
 | Sign-up + verification | **single centred white card, one field per row, one action button** → **6-box email verification** with inline "Invalid code." + spam hint | Aboard | A1 / A5 |
 | Empty states | **dashed card + plain "No … yet" line**, under a personalized greeting (no emoji) | Aboard | A3 |
 
