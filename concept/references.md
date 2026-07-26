@@ -65,6 +65,29 @@
 
 ---
 
+## Hand-picked references — designer's own ("clean, with a twist")
+
+Chosen directly by the designer. The through-line: **clean, disciplined layouts that earn personality from one confident move**, with warmth delivered by **bold on-point illustration, real photography, and occasional colour blocks — on the clean base, never via warm surfaces.** This reinforces the (b) surface decision and pairs with the Designer's Taste in [`concept.md`](concept.md).
+
+### Notion — clean grid, playful illustration twist
+- **Link:** https://styles.refero.design/style/2bf4c61f-de10-4614-ba1b-20c0453bd2a9 · Refero index equivalents: notion.com styles `c6c2363f-…`, `7c05f5bd-…`
+- **Technique:** a disciplined monochrome grid — white content sections, oversized bold headlines, rounded cards, generous whitespace — that takes its *twist* from **playful vector mascots, colour-blob accents and orbital line motifs** layered on top. Personality from illustration, not from a coloured background.
+- **Persona anxiety:** A2 (warmth at the handoff) while holding A1 (the clean grid still reads credible).
+
+### Kinhive — clean white + a bold colour-block signature
+- **Link:** https://refero.design/search?site_id[id][]=691 · kinhive.com · Refero site 691
+- **Technique:** minimal white forms with **serif headings**, then one confident **dark-brown colour-block band (the footer) carrying an oversized decorative wordmark**. The twist is a single bold block + big type, not scattered decoration; saturated colour (orange) is reserved for error/attention only.
+- **Persona anxiety:** A1 (serious, credible) + A2 (the colour block gives warmth and identity without clutter).
+
+### Cofounder — clean white + warm hand-drawn illustration
+- **Link:** https://refero.design/search?site_id[id][]=746 · cofounder.co · Refero site 746
+- **Technique:** monochrome white + serif headings + **warm hand-drawn character / nature illustration** (the "Connie" mascot, a sunflower on the welcome screen) as the personality anchor, on a **single subtle accent** (yellow). Serious *and* warm at once — the Endel register the designer named in the Taste list.
+- **Persona anxiety:** A2 + A3 (a friendly illustrated character makes the shared card feel human and approachable to a nervous sitter).
+
+**Warmth strategy (decided):** PetPal's warmth comes from **bold, on-point illustration + real pet photography + occasional colour blocks**, all on the clean near-white base — *not* from warm surfaces. Colour blocks live in the **brand / illustration layer** (à la Kinhive & Notion); the functional UI keeps its **single pine action colour**, so Headspace's colour discipline still holds. This resolves the only tension: colour blocks are expression, not chrome.
+
+---
+
 ## Committed direction for PetPal *(the concrete kit these choices produce)*
 
 | Decision | Value | From | Fights |
@@ -76,6 +99,7 @@
 | Card shape | **16px radius, floating** (soft shadow, no border) | August Health | A2 |
 | Badge shape | **fully pill** (~9999px) | August Health | A1 |
 | Emotional anchor | **the pet's real photo in a soft circular mask** | August Health + Finn | A2 / A3 |
+| Warmth | **bold illustration + real photography + occasional colour blocks**, on the clean base — never warm surfaces; colour blocks stay in the brand/illustration layer, one pine action colour holds | Notion · Kinhive · Cofounder · Airbnb | A2 / A3 |
 | Share screen | **explicit "who can see this" line** under the share options | Airbnb | A5 |
 | Dossier | **avatar + label→value list + one `Edit`** | Aboard | A1 / A3 |
 
