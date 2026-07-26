@@ -46,7 +46,7 @@ Five opposing pairs for PetPal. Each is **`X, not Y ← data point (source); tec
 
 ### 5 · Warm and credible, not cosy-cliché nor clinical  ⚠
 - **← Data:** [voice.md](../research/voice.md) — *"calm confidence — warm by default, precise when it matters,"* and *own "trusted," not "complete."* PetPal must read as a record credible enough for a vet (A1) yet warm enough to hand to a friend without guilt (A2).
-- **← Technique:** August Health's **serif headline over a warm surface** (credibility + warmth in one move) + Headspace's **restraint** (one action colour).
+- **← Technique:** August Health's system + **Kinhive's italic serif** headline (warmth in the letterforms, reserved for hero/emphasis) on the clean near-white base + Headspace's **restraint** (one action colour).
 - **Resolved → (b):** base is a **near-white `#faf8f4`**; Warm Sand stays only as a *secondary* section surface — warm, but never a cream ground. (See the decision below.)
 
 ### ✓ Where research and taste diverged — decided: (b)

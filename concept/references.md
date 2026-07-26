@@ -26,7 +26,7 @@
 - **Why the foundation (not a copy):** it's the only reference that is *literally* "healthcare seriousness **with** cheerful warmth" — the exact balance PetPal's voice already committed to ("own *trusted*, not *complete*; warm by default, precise when it matters"). Its senior-care EHR job is close to ours: sensitive records that families and professionals must both trust.
 - **Design techniques adopted (concrete, not impression):**
   1. **Two-surface system, no hard dividers** — white canvas `#ffffff` ↔ **Warm Sand `#f8f3eb`**; sections are separated by a *background-colour change*, never a rule/border line. (Softer, calmer than boxed sections.)
-  2. **Serif display headline + clean sans body** — Reckless Neue-style serif for headings, Inter/Saans for body. The serif is the credibility cue; the sans keeps records legible.
+  2. **Italic serif display headline + clean sans body** — an elegant serif for headings (the credibility cue), a clean sans for body (records stay legible). PetPal takes the **italic** cut of that serif from **Kinhive** (August's close sibling — same clean-white + serif family) for the hero and key emphasis: warmth in the letterforms, kept reserved so it never costs legibility.
   3. **16px floating cards** — `border-radius:16px`, `32px` padding, **no borders**, only a very soft layered shadow. Fully-pill **badges** (`radius ~9999px`).
   4. **Authentic photo in a soft circular/blob mask** — human, real, warm. *(Already matches PetPal's dossier hero: circular pet photo over the arch.)*
   5. **One primary accent only** — a single action colour; "maintain a restrained palette with one primary accent."
@@ -76,7 +76,7 @@ Chosen directly by the designer. The through-line: **clean, disciplined layouts 
 
 ### Kinhive — clean white + a bold colour-block signature
 - **Link:** https://refero.design/search?site_id[id][]=691 · kinhive.com · Refero site 691
-- **Technique:** minimal white forms with **serif headings**, then one confident **dark-brown colour-block band (the footer) carrying an oversized decorative wordmark**. The twist is a single bold block + big type, not scattered decoration; saturated colour (orange) is reserved for error/attention only.
+- **Technique:** **August Health's close sibling** — same clean-white + serif family. Minimal white forms with **serif headings** whose *italic* cut PetPal adopts as its display treatment (warmer, more editorial than August's upright serif), then one confident **dark-brown colour-block band (the footer) carrying an oversized decorative wordmark**. The twist is a single bold block + big type, not scattered decoration; saturated colour (orange) is reserved for error/attention only.
 - **Persona anxiety:** A1 (serious, credible) + A2 (the colour block gives warmth and identity without clutter).
 
 ### Cofounder — clean white + warm hand-drawn illustration
@@ -93,7 +93,7 @@ Chosen directly by the designer. The through-line: **clean, disciplined layouts 
 | Decision | Value | From | Fights |
 |---|---|---|---|
 | Surfaces | **base near-white `#faf8f4`** · **Warm Sand `#f8f3eb` = secondary surface** (section bands, panel behind cards) · white floating cards; breaks by background change, no dividers | August Health | A2 |
-| Headline type | **serif** display; clean **sans** body | August Health | A1 |
+| Headline type | **italic serif** display for hero + emphasis (Kinhive); roman serif section headings; clean **sans** body | August Health + Kinhive | A1 · A2 |
 | Body-text colour | **warm near-black brown** (~`#321004`), not pure black/gray | Finn | A2 / A3 |
 | Colour budget | **one action colour**; saturated hues only in small accents/illustrations; trust-green as *supporting accent, not a status colour* | Headspace | A4 |
 | Card shape | **16px radius, floating** (soft shadow, no border) | August Health | A2 |
