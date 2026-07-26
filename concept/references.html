@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>PetPal &mdash; Visual Direction</title>
+<style>
+  :root{
+    --ground:#faf8f4; --surface:#ffffff; --surface-2:#f3ede1;
+    --ink:#321004; --ink-1:#5b4433; --ink-2:#8a7361;
+    --line:#e7dccb; --line-2:#efe7d9;
+    --accent:#2f6a4d; --accent-ink:#255a40; --on-accent:#ffffff;
+    --shadow:0 1px 2px rgba(60,40,20,.05), 0 14px 30px -18px rgba(60,40,20,.28);
+    --serif:"Iowan Old Style","Palatino Linotype",Palatino,Georgia,"Times New Roman",serif;
+    --sans:system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    --mono:ui-monospace,"SF Mono","Cascadia Mono",Menlo,Consolas,monospace;
+    --r-card:16px; --r-pill:999px; --measure:64ch;
+  }
+  @media (prefers-color-scheme:dark){
+    :root{
+      --ground:#17120d; --surface:#211a13; --surface-2:#1b1510;
+      --ink:#efe4d4; --ink-1:#c4b4a1; --ink-2:#93826f;
+      --line:#352a1f; --line-2:#2b2118;
+      --accent:#74c39a; --accent-ink:#8fd3ad; --on-accent:#0f2419;
+      --shadow:0 1px 2px rgba(0,0,0,.4), 0 16px 34px -20px rgba(0,0,0,.7);
+    }
+  }
+  :root[data-theme="light"]{
+    --ground:#faf8f4; --surface:#ffffff; --surface-2:#f3ede1;
+    --ink:#321004; --ink-1:#5b4433; --ink-2:#8a7361;
+    --line:#e7dccb; --line-2:#efe7d9;
+    --accent:#2f6a4d; --accent-ink:#255a40; --on-accent:#ffffff;
+    --shadow:0 1px 2px rgba(60,40,20,.05), 0 14px 30px -18px rgba(60,40,20,.28);
+  }
+  :root[data-theme="dark"]{
+    --ground:#17120d; --surface:#211a13; --surface-2:#1b1510;
+    --ink:#efe4d4; --ink-1:#c4b4a1; --ink-2:#93826f;
+    --line:#352a1f; --line-2:#2b2118;
+    --accent:#74c39a; --accent-ink:#8fd3ad; --on-accent:#0f2419;
+    --shadow:0 1px 2px rgba(0,0,0,.4), 0 16px 34px -20px rgba(0,0,0,.7);
+  }
+
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--ground);color:var(--ink);font-family:var(--sans);
+    line-height:1.6;-webkit-font-smoothing:antialiased;font-size:17px;
+    background-image:radial-gradient(120% 60% at 100% -10%, color-mix(in oklab, var(--accent) 7%, transparent), transparent 60%);}
+  .wrap{max-width:960px;margin:0 auto;padding:0 24px 96px}
+  a{color:var(--accent-ink);text-underline-offset:3px;text-decoration-thickness:1px}
+  a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:4px}
+
+  /* label / eyebrow */
+  .eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-2)}
+  .rule{height:1px;background:var(--line);border:0;margin:0}
+
+  /* top bar */
+  .top{display:flex;justify-content:space-between;align-items:center;gap:16px;padding:26px 0 8px}
+  .brand{display:flex;align-items:center;gap:10px;font-family:var(--mono);font-size:12.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-1)}
+  .paw{width:22px;height:22px;border-radius:7px;background:var(--accent);color:var(--on-accent);display:grid;place-items:center;font-size:12px}
+  .toggle{font-family:var(--mono);font-size:11.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-1);
+    background:var(--surface);border:1px solid var(--line);border-radius:var(--r-pill);padding:7px 13px;cursor:pointer}
+  .toggle:hover{border-color:var(--accent)}
+
+  /* hero */
+  header.hero{padding:40px 0 30px;border-bottom:1px solid var(--line)}
+  .hero h1{font-family:var(--serif);font-weight:600;font-size:clamp(30px,5.4vw,54px);line-height:1.05;
+    letter-spacing:-.01em;margin:.35em 0 .28em;text-wrap:balance;max-width:18ch}
+  .hero .lede{font-size:clamp(17px,2.2vw,20px);color:var(--ink-1);max-width:var(--measure);margin:0}
+  .hero .lede b{color:var(--ink);font-weight:600}
+  .method{margin-top:22px;font-size:14px;color:var(--ink-2);max-width:var(--measure)}
+  .method code{font-family:var(--mono);font-size:12.5px;background:var(--surface-2);border:1px solid var(--line-2);padding:1px 6px;border-radius:6px;color:var(--ink-1)}
+
+  section{padding:44px 0 8px}
+  h2{font-family:var(--serif);font-weight:600;font-size:clamp(22px,3.2vw,30px);letter-spacing:-.01em;margin:0 0 6px}
+  .sec-lede{color:var(--ink-1);max-width:var(--measure);margin:0 0 26px}
+  h3{font-family:var(--serif);font-weight:600;font-size:21px;margin:0 0 2px;letter-spacing:-.005em}
+
+  /* anxieties */
+  .anx{display:grid;gap:12px}
+  .anx-row{display:grid;grid-template-columns:auto 1fr;gap:16px;align-items:start;
+    background:var(--surface);border:1px solid var(--line);border-radius:var(--r-card);padding:15px 18px;box-shadow:var(--shadow)}
+  .code{font-family:var(--mono);font-size:12px;font-weight:600;letter-spacing:.04em;color:var(--accent-ink);
+    background:color-mix(in oklab,var(--accent) 12%, var(--surface));border:1px solid color-mix(in oklab,var(--accent) 30%, var(--line));
+    border-radius:var(--r-pill);padding:6px 11px;white-space:nowrap}
+  .anx-row p{margin:0;font-size:15px}
+  .anx-row .src{display:block;color:var(--ink-2);font-size:12.5px;font-family:var(--mono);margin-top:4px}
+
+  /* style cards */
+  .cards{display:grid;gap:18px}
+  .card{background:var(--surface);border:1px solid var(--line);border-radius:var(--r-card);box-shadow:var(--shadow);padding:22px 22px 20px}
+  .card.foundation{border-color:color-mix(in oklab,var(--accent) 34%, var(--line));
+    background:linear-gradient(180deg, color-mix(in oklab,var(--accent) 6%, var(--surface)), var(--surface) 42%)}
+  .badge{display:inline-flex;align-items:center;gap:7px;font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;
+    color:var(--ink-2);margin-bottom:10px}
+  .badge.f{color:var(--accent-ink)}
+  .badge .dot{width:7px;height:7px;border-radius:50%;background:currentColor}
+  .card .head{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:baseline;gap:8px 16px}
+  .card .link{font-family:var(--mono);font-size:12.5px}
+  .why{color:var(--ink-1);font-size:15px;margin:10px 0 14px;max-width:60ch}
+  .tech{margin:0 0 4px;padding:0;list-style:none;display:grid;gap:7px}
+  .tech li{position:relative;padding-left:18px;font-size:15px}
+  .tech li::before{content:"";position:absolute;left:0;top:.62em;width:7px;height:7px;border-radius:2px;background:var(--accent);opacity:.9}
+  .tech b{font-weight:600}
+  .k{font-family:var(--mono);font-size:12.5px;background:var(--surface-2);border:1px solid var(--line-2);padding:.5px 5px;border-radius:5px;color:var(--ink-1)}
+
+  /* swatch strip */
+  .sw{display:flex;flex-wrap:wrap;gap:8px;margin:15px 0 4px}
+  .chip{display:flex;align-items:center;gap:8px;background:var(--surface-2);border:1px solid var(--line-2);border-radius:var(--r-pill);padding:5px 11px 5px 6px}
+  .chip i{width:16px;height:16px;border-radius:50%;border:1px solid rgba(0,0,0,.14);display:block;flex:none}
+  .chip span{font-family:var(--mono);font-size:11.5px;color:var(--ink-1);letter-spacing:.02em;font-variant-numeric:tabular-nums}
+  .fights{margin-top:14px;font-size:13.5px;color:var(--ink-1)}
+  .fights .code{padding:3px 8px;font-size:11px}
+
+  /* screens */
+  .screens{display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(240px,1fr))}
+  .screen{background:var(--surface);border:1px solid var(--line);border-radius:var(--r-card);padding:18px;box-shadow:var(--shadow)}
+  .screen .map{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--accent-ink);margin-bottom:8px}
+  .screen h3{font-size:18px}
+  .screen p{font-size:14px;color:var(--ink-1);margin:8px 0 12px}
+  .screen .link{font-family:var(--mono);font-size:12px}
+
+  /* committed kit */
+  .kit{background:var(--surface);border:1px solid var(--line);border-radius:var(--r-card);box-shadow:var(--shadow);overflow:hidden}
+  .kit .row{display:grid;grid-template-columns:170px 1fr;gap:8px 20px;padding:14px 20px;border-top:1px solid var(--line-2);align-items:center}
+  .kit .row:first-child{border-top:0}
+  .kit dt{font-family:var(--mono);font-size:12px;letter-spacing:.03em;text-transform:uppercase;color:var(--ink-2);margin:0}
+  .kit dd{margin:0;font-size:15px}
+  .kit dd .k{margin-right:2px}
+  .toks{display:flex;flex-wrap:wrap;gap:10px}
+  .tok{display:flex;align-items:center;gap:9px}
+  .tok i{width:26px;height:26px;border-radius:8px;border:1px solid rgba(0,0,0,.14);flex:none}
+  .tok b{font-family:var(--mono);font-size:12px;color:var(--ink);font-weight:600;font-variant-numeric:tabular-nums;display:block;line-height:1.3}
+  .tok em{font-style:normal;font-size:11.5px;color:var(--ink-2)}
+  .radii{display:flex;gap:16px;align-items:flex-end;flex-wrap:wrap}
+  .radii figure{margin:0;text-align:center}
+  .radii .box{width:56px;height:40px;background:var(--surface-2);border:1px solid var(--line);box-shadow:var(--shadow)}
+  .radii .box.pill{width:64px;height:26px;border-radius:999px;background:var(--accent);border-color:transparent}
+  .radii figcaption{font-family:var(--mono);font-size:11px;color:var(--ink-2);margin-top:6px}
+  .typ-serif{font-family:var(--serif);font-weight:600;font-size:22px}
+  .typ-sans{font-family:var(--sans);font-size:15px;color:var(--ink-1)}
+
+  footer{margin-top:52px;padding-top:22px;border-top:1px solid var(--line);color:var(--ink-2);font-size:13.5px}
+  footer a{font-family:var(--mono);font-size:12.5px}
+  .srcs{display:grid;gap:4px;margin:10px 0 0}
+
+  .reveal{opacity:0;transform:translateY(10px);animation:rise .7s cubic-bezier(.2,.7,.2,1) forwards}
+  @keyframes rise{to{opacity:1;transform:none}}
+  @media (prefers-reduced-motion:reduce){.reveal{animation:none;opacity:1;transform:none}}
+  @media (max-width:560px){ .kit .row{grid-template-columns:1fr;gap:4px} .anx-row{grid-template-columns:1fr;gap:10px} }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="top">
+    <div class="brand"><span class="paw">&#128062;</span> PetPal &middot; Concept &middot; Step 03</div>
+    <button class="toggle" id="tt" aria-label="Toggle colour theme">Theme</button>
+  </div>
+
+  <header class="hero reveal">
+    <p class="eyebrow">Visual direction &mdash; Refero synthesis</p>
+    <h1>Credible enough for a vet. Warm enough to hand to a sitter.</h1>
+    <p class="lede"><b>August Health</b> sets the foundation &mdash; calm, credible healthcare-warmth. We borrow exactly two things: <b>Headspace's</b> colour discipline and <b>Finn's</b> warm brown text with real-pet photography. Not a copy of any one &mdash; one foundation, two concrete techniques.</p>
+    <p class="method">Sourced via the <b>Refero MCP</b>, grounded in the trust benchmarks and persona anxieties already in <code>research.md</code> and <code>personas.md</code>. No new competitor search. Named benchmarks in play: Headspace, Airbnb, Lassie, MyTherapy, Rover.</p>
+  </header>
+
+  <section class="reveal">
+    <h2>Anxieties we design against</h2>
+    <p class="sec-lede">Every technique below is chosen to reduce a specific, sourced persona anxiety &mdash; the &ldquo;why,&rdquo; not decoration.</p>
+    <div class="anx">
+      <div class="anx-row"><span class="code">A1 &middot; Proof</span><p>Verbal &ldquo;he&rsquo;s up-to-date&rdquo; isn&rsquo;t accepted &mdash; Eva needs a record a vet, kennel or groomer will <b>believe</b>.<span class="src">personas.md &middot; research.md &sect;F9</span></p></div>
+      <div class="anx-row"><span class="code">A2 &middot; Handoff</span><p><b>56%</b> feel &ldquo;overwhelming guilt and anxiety&rdquo; leaving their pet; the handoff is emotionally loaded.<span class="src">research.md &sect;F11</span></p></div>
+      <div class="anx-row"><span class="code">A3 &middot; Sitter</span><p>A stranger must understand the animal fast &mdash; what it eats, what scares it &mdash; and not mess up.<span class="src">personas.md &middot; &ldquo;The Sitter&rdquo;</span></p></div>
+      <div class="anx-row"><span class="code">A4 &middot; Panic</span><p>Emergency moment: a busy or alarming screen <b>adds</b> stress at the worst time.<span class="src">personas.md &middot; R5</span></p></div>
+      <div class="anx-row"><span class="code">A5 &middot; Sharing</span><p>&ldquo;Who can actually see my pet&rsquo;s data?&rdquo; &mdash; the fear of over-sharing.<span class="src">research.md &sect;68</span></p></div>
+    </div>
+  </section>
+
+  <section class="reveal">
+    <h2>Styles</h2>
+    <p class="sec-lede">One foundation, taken as the mood and density; two borrowed techniques, each a concrete move &mdash; not a general impression.</p>
+    <div class="cards">
+
+      <article class="card foundation">
+        <div class="badge f"><span class="dot"></span>Foundation</div>
+        <div class="head">
+          <h3>August Health EHR</h3>
+          <a class="link" href="https://www.augusthealth.com">augusthealth.com &#8599;</a>
+        </div>
+        <p class="why">The only reference that is literally &ldquo;healthcare seriousness <em>with</em> cheerful warmth&rdquo; &mdash; the exact balance PetPal&rsquo;s voice committed to: <b>own <em>trusted</em>, not <em>complete</em></b>. A senior-care records job close to ours: sensitive data that families and professionals must both trust.</p>
+        <ul class="tech">
+          <li><b>Two-surface system, no dividers</b> &mdash; white &harr; Warm Sand; sections break by <em>background change</em>, never a rule line.</li>
+          <li><b>Serif headline + clean sans body</b> &mdash; the serif is the credibility cue; the sans keeps records legible.</li>
+          <li><b>16px floating cards</b> <span class="k">radius 16 &middot; no border</span> &mdash; soft layered shadow only; fully-pill badges.</li>
+          <li><b>Real photo in a soft circular mask</b> &mdash; already matches PetPal&rsquo;s dossier hero.</li>
+          <li><b>One primary accent only</b> &mdash; a restrained palette, single action colour.</li>
+        </ul>
+        <div class="sw" aria-label="August Health palette">
+          <span class="chip"><i style="background:#f8f3eb"></i><span>#f8f3eb sand</span></span>
+          <span class="chip"><i style="background:#4865ff"></i><span>#4865ff action</span></span>
+          <span class="chip"><i style="background:#328a3b"></i><span>#328a3b green</span></span>
+          <span class="chip"><i style="background:#ff6d39"></i><span>#ff6d39 accent</span></span>
+          <span class="chip"><i style="background:#080331"></i><span>#080331 ink</span></span>
+        </div>
+        <p class="fights"><span class="code">A1</span> &nbsp;the serif + calm clinical-but-warm polish makes the shared card read as a <b>real health record</b> a vet trusts &nbsp;&middot;&nbsp; <span class="code">A2</span> warmth keeps it from feeling bureaucratic at the handoff.</p>
+      </article>
+
+      <article class="card">
+        <div class="badge"><span class="dot"></span>Borrow #1 &middot; the amount of colour</div>
+        <div class="head">
+          <h3>Headspace</h3>
+          <a class="link" href="https://headspace.com">headspace.com &#8599;</a>
+        </div>
+        <p class="why">We take the <b>discipline, not the whimsy</b> &mdash; Headspace&rsquo;s playful blobs would undercut credibility.</p>
+        <ul class="tech">
+          <li><b>Colour budget:</b> a warm off-white base, <b>one action colour</b> for every interactive element, and saturated hues <b>quarantined to illustrations &amp; icons only</b> &mdash; never text blocks or large surfaces.</li>
+          <li><b>Flat 2px lift</b> <span class="k">0 2px 0 rgba(65,61,69,.2)</span> instead of heavy shadow.</li>
+        </ul>
+        <div class="sw" aria-label="Headspace palette">
+          <span class="chip"><i style="background:#f9f4f2"></i><span>#f9f4f2 base</span></span>
+          <span class="chip"><i style="background:#0061ef"></i><span>#0061ef action</span></span>
+          <span class="chip"><i style="background:#ffce00"></i><span>#ffce00 accent</span></span>
+          <span class="chip"><i style="background:#3b197f"></i><span>#3b197f plum</span></span>
+        </div>
+        <p class="fights"><span class="code">A4</span> &nbsp;a screen that&rsquo;s 90% calm neutral, colour only where you act, stays <b>quiet under stress</b> and makes the one right tap obvious &nbsp;&middot;&nbsp; <span class="code">A2</span></p>
+      </article>
+
+      <article class="card">
+        <div class="badge"><span class="dot"></span>Borrow #2 &middot; warm text + real photography</div>
+        <div class="head">
+          <h3>Finn</h3>
+          <a class="link" href="https://petfinn.com">petfinn.com &#8599;</a>
+        </div>
+        <p class="why">An actual warm-yet-trustworthy <b>pet</b> brand. We keep only the text warmth and photo-as-anchor, not the e-commerce loudness.</p>
+        <ul class="tech">
+          <li><b>Warm brown body text</b> <span class="k">#321004</span> instead of pure black or cool grey &mdash; reads human at body size, full contrast kept.</li>
+          <li><b>The pet&rsquo;s own photo as the emotional / social-proof anchor</b> &mdash; expressive real animals, not stock icons.</li>
+        </ul>
+        <div class="sw" aria-label="Finn palette">
+          <span class="chip"><i style="background:#321004"></i><span>#321004 text</span></span>
+          <span class="chip"><i style="background:#161345"></i><span>#161345 primary</span></span>
+          <span class="chip"><i style="background:#feafbb"></i><span>#feafbb blush</span></span>
+          <span class="chip"><i style="background:#ff7f00"></i><span>#ff7f00 rating</span></span>
+        </div>
+        <p class="fights"><span class="code">A3</span> &nbsp;warm copy beside a real photo of <em>this</em> pet feels like a friend&rsquo;s note, not a cold database &mdash; a nervous sitter reads it fast &nbsp;&middot;&nbsp; <span class="code">A2</span></p>
+      </article>
+    </div>
+  </section>
+
+  <section class="reveal">
+    <h2>Screens</h2>
+    <p class="sec-lede">Real web patterns for our three hardest screens &mdash; each a concrete technique, each tied to an anxiety.</p>
+    <div class="screens">
+      <article class="screen">
+        <div class="map">Pet dossier</div>
+        <h3>Aboard &mdash; Personal information</h3>
+        <p><b>Avatar + single-column &ldquo;label &rarr; value&rdquo; list with one right-aligned <span class="k">Edit</span></b> &mdash; a quiet, scannable identity block, not competing buttons per row.</p>
+        <p class="fights" style="margin:0 0 10px"><span class="code">A1</span> <span class="code">A3</span></p>
+        <a class="link" href="https://refero.design/pages/78ddf817-ec6b-4f63-9937-895a9f088d0d">refero &#8599;</a>
+      </article>
+      <article class="screen">
+        <div class="map">Shared card &middot; sitter</div>
+        <h3>Airbnb &mdash; share via link</h3>
+        <p><b>Share grid (copy-link / email / message) with an explicit visibility-disclaimer line + &ldquo;learn more&rdquo; directly beneath</b> &mdash; who can see this, and for how long.</p>
+        <p class="fights" style="margin:0 0 10px"><span class="code">A5</span></p>
+        <a class="link" href="https://refero.design/pages/e57be91c-4934-4cd0-a9e5-a3680fe67429">refero &#8599;</a>
+      </article>
+      <article class="screen">
+        <div class="map">Sitter care info</div>
+        <h3>Care.com &mdash; caregiver notes</h3>
+        <p><b>One free-text &ldquo;extra details&rdquo; field with an inline helper-tip link</b> &mdash; the human nuances a form can&rsquo;t capture (&ldquo;he hides during thunderstorms&rdquo;).</p>
+        <p class="fights" style="margin:0 0 10px"><span class="code">A3</span> <span class="code">A2</span></p>
+        <a class="link" href="https://refero.design/pages/fa74b13a-ba68-4537-adb4-4ec1342b04d9">refero &#8599;</a>
+      </article>
+    </div>
+  </section>
+
+  <section class="reveal">
+    <h2>Committed direction</h2>
+    <p class="sec-lede">The concrete kit these choices produce &mdash; the tokens this very page is built from.</p>
+    <dl class="kit">
+      <div class="row">
+        <dt>Surfaces</dt>
+        <dd>
+          <div class="toks">
+            <span class="tok"><i style="background:#faf8f4"></i><b>#faf8f4<em>base &middot; near-white</em></b></span>
+            <span class="tok"><i style="background:#f8f3eb"></i><b>#f8f3eb<em>warm sand &middot; secondary</em></b></span>
+          </div>
+          <div style="margin-top:8px;font-size:13.5px;color:var(--ink-1)">Near-white base; Warm Sand for section bands. Breaks by background change &mdash; <b>no dividers.</b></div>
+        </dd>
+      </div>
+      <div class="row">
+        <dt>Ink &amp; accent</dt>
+        <dd><div class="toks">
+          <span class="tok"><i style="background:#321004"></i><b>#321004<em>warm ink</em></b></span>
+          <span class="tok"><i style="background:#2f6a4d"></i><b>#2f6a4d<em>pine &mdash; one action colour</em></b></span>
+        </div></dd>
+      </div>
+      <div class="row">
+        <dt>Colour budget</dt>
+        <dd>One action colour; saturated hues live <b>only in small accents &amp; illustrations</b>. Trust-green is a supporting accent &mdash; <b>not</b> a status colour.</dd>
+      </div>
+      <div class="row">
+        <dt>Shape</dt>
+        <dd><div class="radii">
+          <figure><div class="box" style="border-radius:16px"></div><figcaption>cards &middot; 16px &middot; float</figcaption></figure>
+          <figure><div class="box pill"></div><figcaption>badge &middot; pill</figcaption></figure>
+        </div></dd>
+      </div>
+      <div class="row">
+        <dt>Type</dt>
+        <dd><span class="typ-serif">Serif display</span> &nbsp;&middot;&nbsp; <span class="typ-sans">humanist sans body</span> &nbsp;&middot;&nbsp; <span class="k">mono for data</span></dd>
+      </div>
+      <div class="row">
+        <dt>Emotional anchor</dt>
+        <dd>The pet&rsquo;s <b>real photo in a soft circular mask</b> &mdash; already the dossier hero.</dd>
+      </div>
+    </dl>
+  </section>
+
+  <footer class="reveal">
+    <div>Not a copy of any one reference &mdash; one foundation (August Health) + two concrete borrows (Headspace colour discipline, Finn warm text). Refero styles set the visual <em>language</em>; the three screens ground the product patterns. Home-screen results skewed to finance dashboards, so home is anchored on the dossier + share patterns instead.</div>
+    <div class="srcs">
+      <a href="https://www.augusthealth.com">August Health &mdash; augusthealth.com</a>
+      <a href="https://headspace.com">Headspace &mdash; headspace.com</a>
+      <a href="https://petfinn.com">Finn &mdash; petfinn.com</a>
+    </div>
+  </footer>
+</div>
+
+<script>
+  (function(){
+    var b=document.getElementById('tt'), r=document.documentElement;
+    function cur(){ return r.getAttribute('data-theme') || (matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light'); }
+    try{ var s=localStorage.getItem('petpal-theme'); if(s) r.setAttribute('data-theme',s); }catch(e){}
+    b.addEventListener('click',function(){
+      var n=cur()==='dark'?'light':'dark';
+      r.setAttribute('data-theme',n);
+      try{ localStorage.setItem('petpal-theme',n); }catch(e){}
+    });
+  })();
+</script>
+
+</body>
+</html>
