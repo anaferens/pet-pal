@@ -56,7 +56,7 @@
 
 ### A · Pet dossier / profile → **Headspace** (card structure) + **Aboard** (info list)
 - **Links:** structure — https://refero.design/screens/06d8035a-4e19-4713-a58e-1f77561c5305 (Headspace, iOS profile) · info list — https://refero.design/pages/78ddf817-ec6b-4f63-9937-895a9f088d0d (Aboard)
-- **The shell — from Headspace *(arched element as the card foundation)*:** the profile is built on an **arched colour hero** — a curved gradient banner across the top — with the **circular pet avatar centred over the arch** (half on the colour, half on the white below), then the **pet's name + one quiet meta line** (breed · age), then content stacked in soft white cards beneath. The arch is the *one* warm, colourful moment; everything under it stays calm and white — colour in the brand layer, exactly as the warmth strategy requires.
+- **The shell — from Headspace *(arched element as the card foundation)*:** the profile is built on an **arched colour hero** — a **rainbow of concentric warm arcs** across the top (Headspace's signature) — with the **circular pet avatar centred over the arch** (half on the colour, half on the white below), then the **pet's name + one quiet meta line** (breed · age), then content stacked in soft white cards beneath. The arch is the *one* warm, colourful moment; everything under it stays calm and white — colour in the brand layer, exactly as the warmth strategy requires.
 - **The content — from Aboard *(how the card is organised)*:** inside, a single-column **"label → value" list with one right-aligned `Edit`** — a scannable identity block (name, breed, chip, DOB…) with editing tucked to the side, not competing buttons per row.
 - **Persona anxiety:** **A2 / A3 / A1** — the arch + centred pet photo is the emotional anchor at the handoff (A2) and instant recognition for a sitter (A3); the clean, complete-looking field list reads "real, finished record" to a vet (A1).
 
@@ -108,7 +108,7 @@ Chosen directly by the designer. The through-line: **clean, disciplined layouts 
 | Emotional anchor | **the pet's real photo in a soft circular mask, centred over the arched hero** | August Health + Headspace + Airbnb | A2 / A3 |
 | Warmth | **bold illustration + real photography + occasional colour blocks**, on the clean base — never warm surfaces; colour blocks stay in the brand/illustration layer, one pine action colour holds | Notion · Kinhive · Airbnb · **Aboard** | A2 / A3 |
 | Share screen | **explicit "who can see this" line** under the share options | Airbnb | A5 |
-| Dossier | **arched colour hero as the card foundation + circular pet avatar centred over the arch + name/meta**, then a **label→value list + one `Edit`** beneath | Headspace + Aboard | A1 / A3 / A2 |
+| Dossier | **arched colour hero (rainbow of warm arcs) as the card foundation + circular pet avatar centred over the arch + name/meta**, then a **label→value list + one `Edit`** beneath | Headspace + Aboard | A1 / A3 / A2 |
 | Sign-up + verification | **single centred white card, one field per row, one action button** → **6-box email verification** with inline "Invalid code." + spam hint | Aboard | A1 / A5 |
 | Empty states | **dashed card + plain "No … yet" line**, under a personalized greeting (no emoji) | Aboard | A3 |
 
