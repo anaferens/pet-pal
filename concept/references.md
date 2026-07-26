@@ -26,19 +26,25 @@
 - **Why the foundation (not a copy):** it's the only reference that is *literally* "healthcare seriousness **with** cheerful warmth" — the exact balance PetPal's voice already committed to ("own *trusted*, not *complete*; warm by default, precise when it matters"). Its senior-care EHR job is close to ours: sensitive records that families and professionals must both trust.
 - **Design techniques adopted (concrete, not impression):**
   1. **Two-surface system, no hard dividers** — white canvas `#ffffff` ↔ **Warm Sand `#f8f3eb`**; sections are separated by a *background-colour change*, never a rule/border line. (Softer, calmer than boxed sections.)
-  2. **Italic serif display headline + clean sans body** — an elegant serif for headings (the credibility cue), a clean sans for body (records stay legible). PetPal takes the **italic** cut of that serif from **Kinhive** (August's close sibling — same clean-white + serif family) for the hero and key emphasis: warmth in the letterforms, kept reserved so it never costs legibility.
+  2. **Serif display headline + clean sans body** — an elegant serif for headings (the credibility cue), a clean sans for body (records stay legible). The **roman ↔ italic** treatment of that serif is **Kinhive's borrow, below**.
   3. **16px floating cards** — `border-radius:16px`, `32px` padding, **no borders**, only a very soft layered shadow. Fully-pill **badges** (`radius ~9999px`).
   4. **Authentic photo in a soft circular/blob mask** — human, real, warm. *(Already matches PetPal's dossier hero: circular pet photo over the arch.)*
   5. **One primary accent only** — a single action colour; "maintain a restrained palette with one primary accent."
 - **Persona anxiety it reduces:** **A1 (proof)** — the serif + calm clinical-but-warm polish makes the shared card read as a *real health record*, so a kennel/vet trusts it. Secondarily **A2** — the warmth keeps it from feeling cold/bureaucratic at the emotional handoff.
 
-### 2 · BORROW — Headspace  *(technique: the amount of colour on the screen)*
+### 2 · BORROW — Kinhive  *(technique: serif + italic serif = credibility + warmth)*
+- **Link:** https://refero.design/search?site_id[id][]=691 · kinhive.com · Refero site 691 · **August Health's close sibling** (same clean-white + serif family)
+- **The one concrete technique borrowed — *the type carries the message*:** Kinhive pairs an **upright roman serif** with an **italic serif** in the same headline. PetPal makes this its core credibility-and-warmth device — **roman for the credible/clear words, italic for the warm ones**. The master line already does it: upright "Credible enough for a vet." + italic "Warm enough to hand to a sitter." Warmth lives in the letterforms, before a single colour or photo loads.
+- **Why not adopt wholesale:** Kinhive's dark colour-block footer + oversized wordmark is its own brand signature; we take only the roman/italic *type* method.
+- **Persona anxiety:** **A1** — roman reads *credible / legit* to a vet or kennel; **A2** — italic reads *warm* at the handoff. One typeface, both jobs.
+
+### 3 · BORROW — Headspace  *(technique: the amount of colour on the screen)*
 - **Link:** https://headspace.com · Refero style `c73224da-e583-4833-bf39-3f414c317474` · [preview](https://images.refero.design/styles/headspace.com/c73224da-e583-4833-bf39-3f414c317474/preview_0.jpg)
 - **The one concrete technique borrowed — *colour budget*:** a **warm off-white base** (`Cloud Whisper #f9f4f2`), **one bold action colour** for *every* interactive element (Headspace uses `#0061ef` for all CTAs/links/active states), and saturated hues (yellow, plum, blush) **quarantined to illustrations and icons only** — their rule: *"do not use highly saturated colours for large text blocks; reserve them for accents, illustrations, and interactive elements."* Plus the signature **flat 2px lift** (`0 2px 0 rgba(65,61,69,.2)`) instead of heavy shadow.
 - **Why not adopt wholesale:** Headspace's playful blobs would undercut A1 (credibility). We take only the *discipline*, not the whimsy.
 - **Persona anxiety it reduces:** **A4 (worried-moment) + A2** — a screen that is 90% calm neutral with colour only where you act stays *quiet* under stress; the single action colour makes the one right thing to tap obvious in an emergency, and never feels alarming.
 
-### 3 · BORROW — Finn  *(technique: warm text colour + real-pet photography)*
+### 4 · BORROW — Finn  *(technique: warm text colour + real-pet photography)*
 - **Link:** https://petfinn.com · Refero style `197e0d84-4ad0-40bd-be82-b6c76c5f45b6` · [preview](https://images.refero.design/styles/petfinn.com/197e0d84-4ad0-40bd-be82-b6c76c5f45b6/preview_0.jpg)
 - **The one concrete technique borrowed — *warm text, not black***: body text and links in **Cedar Brown `#321004`** instead of pure black or cool gray (Finn: *"leverage Cedar Brown to maintain warm readability"*). A near-black *brown* reads warm and human at body size while keeping full contrast. Secondary borrow: **the pet's own photo used as the emotional/social-proof anchor** (Finn leads with expressive real-dog photography, not stock icons).
 - **Why not adopt wholesale:** Finn's vivid pink hero + e-commerce energy is too loud for a records tool — we keep only the *text warmth* and *photo-as-anchor*.
@@ -73,11 +79,6 @@ Chosen directly by the designer. The through-line: **clean, disciplined layouts 
 - **Link:** https://styles.refero.design/style/2bf4c61f-de10-4614-ba1b-20c0453bd2a9 · Refero index equivalents: notion.com styles `c6c2363f-…`, `7c05f5bd-…`
 - **Technique:** a disciplined monochrome grid — white content sections, oversized bold headlines, rounded cards, generous whitespace — that takes its *twist* from **playful vector mascots, colour-blob accents and orbital line motifs** layered on top. Personality from illustration, not from a coloured background.
 - **Persona anxiety:** A2 (warmth at the handoff) while holding A1 (the clean grid still reads credible).
-
-### Kinhive — clean white + a bold colour-block signature
-- **Link:** https://refero.design/search?site_id[id][]=691 · kinhive.com · Refero site 691
-- **Technique:** **August Health's close sibling** — same clean-white + serif family. Minimal white forms with **serif headings** whose *italic* cut PetPal adopts as its display treatment (warmer, more editorial than August's upright serif), then one confident **dark-brown colour-block band (the footer) carrying an oversized decorative wordmark**. The twist is a single bold block + big type, not scattered decoration; saturated colour (orange) is reserved for error/attention only.
-- **Persona anxiety:** A1 (serious, credible) + A2 (the colour block gives warmth and identity without clutter).
 
 ### Cofounder — clean white + warm hand-drawn illustration
 - **Link:** https://refero.design/search?site_id[id][]=746 · cofounder.co · Refero site 746
