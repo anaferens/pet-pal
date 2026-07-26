@@ -1,6 +1,6 @@
 # PetPal — Visual References (Concept, Step 03)
 
-> **Method.** Sourced via the **Refero MCP** server, grounded in the trust benchmarks and persona anxieties already recorded in [`research.md`](../research/research.md) (Step 02) and [`personas.md`](../research/personas.md). **No new competitor search.** This is a *synthesis*, not a copy: **one foundation style + three borrowed, concrete techniques** — plus three real web screens for specific patterns. Named benchmarks in play: **Headspace** and **Airbnb** (from CLAUDE.md), **Lassie / MyTherapy / Rover** (from research.md).
+> **Method.** Sourced via the **Refero MCP** server, grounded in the trust benchmarks and persona anxieties already recorded in [`research.md`](../research/research.md) (Step 02) and [`personas.md`](../research/personas.md). **No new competitor search.** This is a *synthesis*, not a copy: **one foundation style + three borrowed, concrete techniques** — plus four real web screens for specific patterns. Named benchmarks in play: **Headspace** and **Airbnb** (from CLAUDE.md), **Lassie / MyTherapy / Rover** (from research.md).
 
 ## The direction in one line
 
@@ -69,6 +69,11 @@
 - **Technique selected:** **one free-text "extra details" field with an inline helper-tip link** guiding what a caregiver actually needs — the unstructured human nuances a form can't capture (Rover's "care instructions" pattern from research.md §16).
 - **Persona anxiety:** **A3 / A2** — gives Eva a place to say "he hides during thunderstorms," which is exactly what calms a first-time sitter.
 
+### D · Create account + email verification → **Aboard — sign-up flow**
+- **Link:** https://refero.design/flows/406 (source: aboardhr.com; flow steps 2–5) — **the flow the designer picked back in.**
+- **Technique selected:** a **single centred white card, one field per row** (work email, name, …) with **one primary action button**, then a **6-box segmented verification-code screen** with an inline **"Invalid code."** error + a *check-your-spam* hint. One decision per screen — calm auth, not a wall of fields.
+- **Persona anxiety:** **A1 / A5** — a verified account (email confirmation) is the first credibility + safety signal, and the EU/GDPR account PetPal needs; one field per row keeps sign-up from feeling like a chore.
+
 ---
 
 ## Hand-picked references — designer's own ("clean, with a twist")
@@ -85,6 +90,11 @@ Chosen directly by the designer. The through-line: **clean, disciplined layouts 
 - **Technique:** monochrome white + serif headings + **warm hand-drawn character / nature illustration** (the "Connie" mascot, a sunflower on the welcome screen) as the personality anchor, on a **single subtle accent** (yellow). Serious *and* warm at once — the Endel register the designer named in the Taste list.
 - **Persona anxiety:** A2 + A3 (a friendly illustrated character makes the shared card feel human and approachable to a nervous sitter).
 
+### Aboard by Teamtailor — "joyful HR": colour blocks on a clean base
+- **Link:** https://refero.design/flows/406 · aboardhr.com · Refero site 545 · flow *"Employee sign-up & verification"* — **the direction the designer picked back in.**
+- **Technique:** a **clean white base + bold sans display face** (Haffer XH headings, Inter body) that earns its warmth entirely from **pastel colour blocks in a bento grid + smiling character illustrations** (cloud / flower mascots) — personality in the *content* layer, never coloured chrome. Records are calm white cards with quiet "label → value" rows; sign-up is a single centred white card + a 6-digit email verification; empty states are **dashed cards with plain "No … yet" copy** under a personalized greeting. It is living proof of PetPal's warmth strategy — *colour blocks + illustration on a clean base, not a warm surface* — so it reinforces decision (b). We keep our near-white `#faf8f4` + one pine action colour, and **drop the emoji** Aboard uses in its greeting (voice.md).
+- **Persona anxiety:** **A2** (joyful-but-organized eases the handoff) + **A1** (the calm white record still reads credible) + **A3** (clean empty states + a greeting orient a first-time sitter fast).
+
 **Warmth strategy (decided):** PetPal's warmth comes from **bold, on-point illustration + real pet photography + occasional colour blocks**, all on the clean near-white base — *not* from warm surfaces. Colour blocks live in the **brand / illustration layer** (à la Kinhive & Notion); the functional UI keeps its **single pine action colour**, so Headspace's colour discipline still holds. This resolves the only tension: colour blocks are expression, not chrome.
 
 ---
@@ -100,10 +110,12 @@ Chosen directly by the designer. The through-line: **clean, disciplined layouts 
 | Card shape | **16px radius, floating** (soft shadow, no border) | August Health | A2 |
 | Badge shape | **fully pill** (~9999px) | August Health | A1 |
 | Emotional anchor | **the pet's real photo in a soft circular mask** | August Health + Airbnb | A2 / A3 |
-| Warmth | **bold illustration + real photography + occasional colour blocks**, on the clean base — never warm surfaces; colour blocks stay in the brand/illustration layer, one pine action colour holds | Notion · Kinhive · Cofounder · Airbnb | A2 / A3 |
+| Warmth | **bold illustration + real photography + occasional colour blocks**, on the clean base — never warm surfaces; colour blocks stay in the brand/illustration layer, one pine action colour holds | Notion · Kinhive · Cofounder · Airbnb · **Aboard** | A2 / A3 |
 | Share screen | **explicit "who can see this" line** under the share options | Airbnb | A5 |
 | Dossier | **avatar + label→value list + one `Edit`** | Aboard | A1 / A3 |
+| Sign-up + verification | **single centred white card, one field per row, one action button** → **6-box email verification** with inline "Invalid code." + spam hint | Aboard | A1 / A5 |
+| Empty states | **dashed card + plain "No … yet" line**, under a personalized greeting (no emoji) | Aboard | A3 |
 
 **Surface decision — resolved to (b):** the base is a **near-white `#faf8f4`** (Headspace's whisper-warm off-white register), with **Warm Sand `#f8f3eb` kept only as a secondary section surface** (August Health's own usage). Warmth is carried by pet **photography**, the **warm brown ink `#321004`**, and the **serif headline** — not by a cream ground. This keeps the direction faithful to August Health / Airbnb / Headspace (all near-white-based) and clears the Designer's-Taste anti-reference. See [`concept.md`](concept.md).
 
-*Note: Refero "styles" are drawn from web marketing/product pages, so these set the visual **language** (colour, type, shape, imagery role); the three **screens** ground the product-UI patterns. The home-screen references Refero surfaced skewed to finance dashboards, so the home layout is anchored on the dossier + share patterns above rather than a weak direct match.*
+*Note: Refero "styles" are drawn from web marketing/product pages, so these set the visual **language** (colour, type, shape, imagery role); the four **screens** ground the product-UI patterns. The home-screen references Refero surfaced skewed to finance dashboards, so the home layout is anchored on the dossier + share patterns above rather than a weak direct match.*
