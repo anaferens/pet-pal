@@ -32,11 +32,11 @@ Five opposing pairs for PetPal. Each is **`X, not Y ← data point (source); tec
 
 ### 2 · Trust signals visible, not hidden
 - **← Data:** [jtbd.md R3](../research/jtbd.md) — *"give a professional an accurate picture quickly… facts, not guesswork,"* and the Main job is *"somewhere I **trust** and can pass on."* Verbal "he's up-to-date" isn't accepted by kennels/vets (personas.md · A1 proof).
-- **← Technique:** a **verification / "up-to-date" badge placed next to the section or block** — August Health's fully-pill badge + Finn's small warm trust-accent (star/checkmark), sitting where the eye already is, never buried in a menu.
+- **← Technique:** a **verification / "up-to-date" badge placed next to the section or block** — August Health's fully-pill badge + Airbnb's small trust badges (a compact verified / checkmark mark), sitting where the eye already is, never buried in a menu.
 
 ### 3 · Real imagery — pet photography + purposeful illustration — not grey-gradient placeholders
 - **← Data:** [jtbd.md R2](../research/jtbd.md) — *"make a stranger understand my pet fast"* (the strongest match to Rover's care card); the sitter *"has never met this animal and needs to understand it fast"* (personas.md · A3). A real photo of *this* pet is both recognition and emotional anchor.
-- **← Technique:** **Finn's expressive real-pet photography** as the emotional/social-proof anchor + **August Health's soft circular photo mask**; *serious* flat illustration (Endel / Headspace register) reserved for empty states and onboarding — **never** a grey gradient standing in for a missing image.
+- **← Technique:** **Airbnb's photography-carries-the-screen approach** (real, emotional imagery doing the social-proof work) + **August Health's soft circular photo mask**; *serious* flat illustration (Endel / Headspace register) reserved for empty states and onboarding — **never** a grey gradient standing in for a missing image.
 - *Taste-consistent:* reconciles both likes — **Airbnb** (photography carries the screen) for the pet, **Endel** (serious illustration) for the light moments — against the **grey-gradient** anti-reference.
 
 ### 4 · Icon-supported, not text-only

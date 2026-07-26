@@ -1,10 +1,10 @@
 # PetPal — Visual References (Concept, Step 03)
 
-> **Method.** Sourced via the **Refero MCP** server, grounded in the trust benchmarks and persona anxieties already recorded in [`research.md`](../research/research.md) (Step 02) and [`personas.md`](../research/personas.md). **No new competitor search.** This is a *synthesis*, not a copy: **one foundation style + two borrowed, concrete techniques** — plus three real web screens for specific patterns. Named benchmarks in play: **Headspace** and **Airbnb** (from CLAUDE.md), **Lassie / MyTherapy / Rover** (from research.md).
+> **Method.** Sourced via the **Refero MCP** server, grounded in the trust benchmarks and persona anxieties already recorded in [`research.md`](../research/research.md) (Step 02) and [`personas.md`](../research/personas.md). **No new competitor search.** This is a *synthesis*, not a copy: **one foundation style + three borrowed, concrete techniques** — plus three real web screens for specific patterns. Named benchmarks in play: **Headspace** and **Airbnb** (from CLAUDE.md), **Lassie / MyTherapy / Rover** (from research.md).
 
 ## The direction in one line
 
-**Foundation:** August Health's *calm, credible healthcare-warmth*. **Borrow #1:** Headspace's **colour discipline** (how much colour is on the screen). **Borrow #2:** Finn's **warm brown body text + real-pet photography**. → A record that looks **credible enough for a vet/kennel** yet **warm enough to hand to a sitter without guilt**.
+**Foundation:** August Health's *calm, credible healthcare-warmth*. **Borrow #1:** Kinhive's **serif + italic serif** (roman = credibility, italic = warmth — carried in the type itself). **Borrow #2:** Headspace's **colour discipline** (how much colour is on the screen). **Borrow #3:** Airbnb's **photography-led warmth on a clean, tidy canvas** — emotion through real imagery, colour used sparingly. → A record that looks **credible enough for a vet/kennel** yet **warm enough to hand to a sitter without guilt**.
 
 ## Persona anxieties we design against
 *(from personas.md / research.md — the "why" each technique is chosen)*
@@ -44,11 +44,11 @@
 - **Why not adopt wholesale:** Headspace's playful blobs would undercut A1 (credibility). We take only the *discipline*, not the whimsy.
 - **Persona anxiety it reduces:** **A4 (worried-moment) + A2** — a screen that is 90% calm neutral with colour only where you act stays *quiet* under stress; the single action colour makes the one right thing to tap obvious in an emergency, and never feels alarming.
 
-### 4 · BORROW — Finn  *(technique: warm text colour + real-pet photography)*
-- **Link:** https://petfinn.com · Refero style `197e0d84-4ad0-40bd-be82-b6c76c5f45b6` · [preview](https://images.refero.design/styles/petfinn.com/197e0d84-4ad0-40bd-be82-b6c76c5f45b6/preview_0.jpg)
-- **The one concrete technique borrowed — *warm text, not black***: body text and links in **Cedar Brown `#321004`** instead of pure black or cool gray (Finn: *"leverage Cedar Brown to maintain warm readability"*). A near-black *brown* reads warm and human at body size while keeping full contrast. Secondary borrow: **the pet's own photo used as the emotional/social-proof anchor** (Finn leads with expressive real-dog photography, not stock icons).
-- **Why not adopt wholesale:** Finn's vivid pink hero + e-commerce energy is too loud for a records tool — we keep only the *text warmth* and *photo-as-anchor*.
-- **Persona anxiety it reduces:** **A3 (sitter) + A2** — warm brown copy beside a real photo of *this* pet makes the shared card feel like a friend's note, not a cold database, so a nervous sitter reads it fast and the owner feels okay handing it over.
+### 4 · BORROW — Airbnb  *(technique: photography carries the emotion on a clean, tidy canvas)*
+- **Link:** https://www.airbnb.com · Refero style `afd145ca-269e-4847-9843-62126a839ccf` · **the designer's warmth pick over Finn** — *"Airbnb does the warmth better: illustration, clean, tidy, but with emotion."*
+- **The one concrete technique borrowed — *let the image do the feeling***: Airbnb keeps the interface **airy, clean and tidy** (near-white canvas, generous whitespace, precise alignment) and lets **emotional, full-bleed imagery** — real photography and friendly illustration, never stock or grey placeholders — carry the warmth. Colour is **used sparingly, almost ceremonially** (one accent), so warmth reads as *emotion*, not decoration. Images sit in **rounded ~20px "photo-print" cards** with small **trust badges**.
+- **Why not adopt wholesale:** Airbnb is a travel marketplace — we take the *photography-led warmth + colour scarcity + tidy layout*, not its browsing/booking patterns.
+- **Persona anxiety it reduces:** **A2 (owner) + A3 (sitter)** — a warm, real photo of *this* pet on a clean, tidy card carries the emotion at the handoff and lets a sitter who has never met the animal connect to it instantly: clean and tidy, but with feeling.
 
 ---
 
@@ -95,11 +95,11 @@ Chosen directly by the designer. The through-line: **clean, disciplined layouts 
 |---|---|---|---|
 | Surfaces | **base near-white `#faf8f4`** · **Warm Sand `#f8f3eb` = secondary surface** (section bands, panel behind cards) · white floating cards; breaks by background change, no dividers | August Health | A2 |
 | Headline type | serif display that **carries the message** (Kinhive's cut) — **roman = clarity/credibility, italic = warmth**; e.g. the hero pairs upright "Credible enough for a vet." with italic "Warm enough to hand to a sitter." Roman section headings; clean **sans** body | August Health + Kinhive | A1 · A2 |
-| Body-text colour | **warm near-black brown** (~`#321004`), not pure black/gray | Finn | A2 / A3 |
+| Body-text colour | **warm near-black brown** (~`#321004`), not pure black/gray | house (warm ink) | A2 / A3 |
 | Colour budget | **one action colour**; saturated hues only in small accents/illustrations; trust-green as *supporting accent, not a status colour* | Headspace | A4 |
 | Card shape | **16px radius, floating** (soft shadow, no border) | August Health | A2 |
 | Badge shape | **fully pill** (~9999px) | August Health | A1 |
-| Emotional anchor | **the pet's real photo in a soft circular mask** | August Health + Finn | A2 / A3 |
+| Emotional anchor | **the pet's real photo in a soft circular mask** | August Health + Airbnb | A2 / A3 |
 | Warmth | **bold illustration + real photography + occasional colour blocks**, on the clean base — never warm surfaces; colour blocks stay in the brand/illustration layer, one pine action colour holds | Notion · Kinhive · Cofounder · Airbnb | A2 / A3 |
 | Share screen | **explicit "who can see this" line** under the share options | Airbnb | A5 |
 | Dossier | **avatar + label→value list + one `Edit`** | Aboard | A1 / A3 |
