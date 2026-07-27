@@ -68,7 +68,7 @@ From the three worlds explored in [`directions.html`](directions.html) (via the 
 
 - **World:** enamel ID-tag / transit wayfinding — confident, findable, calm under pressure. Not the category's cream-and-terracotta reflex, nor the generic pastel health-app.
 - **Colour (Restrained):** white `#ffffff` · ink `#141414` · **one signal amber-gold `#FFBF00`** (black text as on-accent) · light-grey `#f4f4f4` secondary · `#5c5c5c` meta.
-- **Type:** Bricolage Grotesque (display) + Hanken Grotesk (body) — both off the training-default face list.
+- **Type:** Bricolage Grotesque (display) + Hanken Grotesk (body) + **EB Garamond** italic (names — pet + owner).
 - **Shape:** **pill** buttons; flat enamel "up-to-date" tag; cards float on a soft shadow — **no black outlines**.
 - **Icons:** Solar **bold**.
 - **Imagery:** real pet photography leads the card (Airbnb-style); icons for fast scanning.
