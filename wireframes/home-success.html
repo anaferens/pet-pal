@@ -4,25 +4,35 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Pet dossier — PetPal wireframe</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700&family=Hanken+Grotesk:wght@400;500;600;700&family=EB+Garamond:ital,wght@0,600;1,600;1,700&display=swap" rel="stylesheet">
 <style>
   :root {
     --wf-bg:         #ffffff;
-    --wf-surface:    #f5f5f5;
-    --wf-border:     #e0e0e0;
-    --wf-text:       #1a1a1a;
-    --wf-muted:      #757575;
-    --wf-placeholder:#d0d0d0;
-    --wf-input-bg:   #fafafa;
-    --wf-btn:        #333333;
+    --wf-surface:    #f4f4f4;
+    --wf-border:     #e7e7e7;
+    --wf-text:       #141414;
+    --wf-muted:      #5c5c5c;
+    --wf-placeholder:#eaeaea;
+    --wf-input-bg:   #ffffff;
+    --wf-btn:        #141414;
     --wf-btn-text:   #ffffff;
-    --wf-btn-sec:    transparent;
+    --wf-btn-sec:    #f4f4f4;
 
-    --nav-bg:        #f9f9f9;
-    --nav-active-bg: #eaeaea;
-    --nav-text:      #555555;
-    --nav-text-active:#1a1a1a;
-    --nav-cap:       #999999;
-    --nav-line:      #e0e0e0;
+    --nav-bg:        #ffffff;
+    --nav-active-bg: #f4f4f4;
+    --nav-text:      #5c5c5c;
+    --nav-text-active:#141414;
+    --nav-cap:       #8a8a8a;
+    --nav-line:      #e7e7e7;
+
+    /* ── The Signal tokens (from concept.html) ── */
+    --signal:#ffbf00; --signal-ink:#8a6b00; --success:#0c6b3b; --danger:#9a2820;
+    --disp:"Bricolage Grotesque",system-ui,sans-serif;
+    --body:"Hanken Grotesk",system-ui,-apple-system,sans-serif;
+    --serif:"EB Garamond",Georgia,"Times New Roman",serif;
+    --sh-card:0 10px 24px -18px rgba(20,20,20,.13), 0 2px 6px -4px rgba(20,20,20,.05);
   }
 
   * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -632,6 +642,106 @@
   .m-section-card.v3 h3, .d-section-card.v3 h3 { font-size: 16px; font-weight: 700; display: flex; align-items: center; gap: 6px; }
   .v3 .check { width: 18px; height: 18px; border-radius: 50%; background: var(--wf-btn); color: #fff; font-size: 11px; display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0; }
   .v3 .card-meta { font-size: 13px; color: var(--wf-muted); margin-top: 2px; line-height: 1.45; }
+
+  /* ═══════════ THE SIGNAL — visual language applied (concept.html) ═══════════ */
+  body, input, button, .search-bar { font-family: var(--body); }
+  h1, h2, h3 { font-family: var(--disp); letter-spacing:-0.01em; }
+  /* names carry the serif — EB Garamond italic (pet name) */
+  .dv3-arch h2, .d-pet-hero .pet-info h1, .m-header h1, .pet-info h1, .pet-info h2 { font-family: var(--serif); font-style:italic; font-weight:700; letter-spacing:0; }
+
+  /* buttons → pill, Signal fills; every instance */
+  .btn-primary, .btn-secondary, .m-quick-actions button, .d-pet-actions button { border-radius:999px; border:none; padding:12px 16px; }
+  .btn-primary { background:var(--wf-btn); color:#fff; }
+  .btn-secondary { background:var(--wf-surface); color:var(--wf-text); }
+  /* pet switcher = one segmented control: grey track, active segment is an ink pill */
+  /* toggle spacing: 24px gap above (4px arch + 20px), +24px breathing room below */
+  .pet-switcher { padding-top:20px; padding-bottom:32px; }
+  .pet-seg { display:inline-flex; gap:0; background:var(--wf-surface); border-radius:999px; padding:0; }
+  .m-main .pet-seg { display:flex; width:100%; }
+  .m-main .pet-seg .pet-pill { flex:1; justify-content:center; }
+  .pet-pill { border-radius:999px; border:none; background:transparent; padding:7px 14px; color:var(--wf-muted); }
+  .pet-pill:hover { color:var(--wf-text); }
+  .pet-pill.active { background:var(--wf-text); color:#fff; font-weight:600; }
+  /* active segment: outer corners stay pill, inner edge (facing the other pet) squares off */
+  .pet-seg .pet-pill.active:first-child { border-radius:999px 0 0 999px; }
+  .pet-seg .pet-pill.active:last-child  { border-radius:0 999px 999px 0; }
+  .pet-pill .pill-avatar { background:rgba(20,20,20,.10); color:var(--wf-text); font-weight:700; }
+  .pet-pill.active .pill-avatar { background:rgba(255,255,255,.22); color:#fff; }
+  /* round edit button on the photo */
+  .dv3-photo-wrap { position:relative; width:88px; margin:0 auto; z-index:3; }
+  .dv3-photo-wrap .dv3-photo { margin:0; }
+  .photo-edit { position:absolute; right:-2px; bottom:2px; width:30px; height:30px; border-radius:50%; z-index:4;
+    background:#fff url("https://api.iconify.design/solar/pen-bold.svg?color=%23141414") center / 14px no-repeat;
+    box-shadow:0 2px 8px -2px rgba(20,20,20,.35); display:block; }
+  /* round share button beside the pet name */
+  .dv3-arch h2 { font-size:36px; line-height:1.06; }   /* 24px × 1.5 */
+  .name-row { display:flex; align-items:center; justify-content:center; gap:10px; }
+  .name-share { width:26px; height:26px; border-radius:50%; flex:0 0 auto;
+    background:var(--wf-text) url("https://api.iconify.design/solar/share-bold.svg?color=%23ffffff") center / 13px no-repeat;
+    display:block; }
+  /* full-width share CTA at the end of the card */
+  .m-share-cta { padding:8px 16px 20px; }
+  .m-share-cta a { display:block; text-decoration:none; }
+  .btn-share { width:100%; display:inline-flex; align-items:center; justify-content:center; gap:10px;
+    padding:15px 16px; font-size:15px; font-weight:600; }
+  .btn-share::before { content:""; width:18px; height:18px; flex:0 0 auto;
+    background:url("https://api.iconify.design/solar/share-bold.svg?color=%23ffffff") center / 18px no-repeat; }
+  .top-nav .nav-action { border-radius:999px; border:1px solid var(--wf-border); }
+
+  /* cards → white, 16px radius, soft shadow (not grey boxes) */
+  .m-section-card, .m-section-card.v3, .d-section-card, .d-section-card.v3, .d-pet-hero {
+    background:#fff; border:1px solid var(--wf-border); box-shadow:var(--sh-card); border-radius:16px; }
+  .m-section-card:hover, .d-section-card:hover { border-color:var(--wf-border); box-shadow:var(--sh-card); }
+
+  /* search input → 12px, amber focus ring */
+  .search-bar { border-radius:12px; border:1px solid var(--wf-border); background:#fff; }
+  .search-bar:focus { border-color:var(--wf-text); box-shadow:0 0 0 3px rgba(255,191,0,.5); }
+  .search-bar::placeholder { color:var(--wf-muted); }
+
+  /* arched hero → soft amber band + real pet photo on a white ring */
+  /* app bar sits on the amber hero — no white band, on-signal ink for AA */
+  .v3-header { background:#ffbf00 !important; }
+  .v3-header .action-edit { color:var(--wf-text); }
+  /* Headspace profile-arch geometry, scaled to the 375px frame:
+     avatar 23% of width · arch rise 25% of width · avatar centred on the arch line (50% above / 50% below) */
+  .dv3-hero { background:#ffbf00; padding:22px 0 50px; }
+  .dv3-photo { width:88px; height:88px; background:#eaeaea url("https://images.unsplash.com/photo-1543466835-00a7907e9de1?w=320&q=80&auto=format&fit=crop") center/cover no-repeat !important; color:transparent !important; font-size:0 !important; border:3px solid #fff; box-shadow:none; }
+  .dv3-arch { border-radius:50% 50% 0 0 / 94px 94px 0 0; margin-top:-94px; padding:70px 16px 4px; }
+  .dv3-arch { background:#fff; }
+
+  /* completeness check → green success (white ✓ on green = 5.8:1 AA) */
+  /* completion tick = scalloped verified badge (Solar), not a plain circle */
+  .v3 .check { width:18px; height:18px; border-radius:0; background:url("https://api.iconify.design/solar/verified-check-bold.svg?color=%230c6b3b") center / 18px no-repeat;
+    color:transparent; font-size:0; }
+
+  /* section icons → Solar bold (Iconify SVG) on a neutral tile */
+  .card-icon { background-color:#f4f4f4 !important; border-radius:12px; color:transparent !important; font-size:0 !important;
+    background-repeat:no-repeat; background-position:center; background-size:22px; }
+  .m-section-list > li:nth-child(1) .card-icon, .d-section-grid > li:nth-child(1) .card-icon { background-image:url("https://api.iconify.design/solar/syringe-bold.svg?color=%23141414"); }
+  .m-section-list > li:nth-child(2) .card-icon, .d-section-grid > li:nth-child(2) .card-icon { background-image:url("https://api.iconify.design/solar/document-text-bold.svg?color=%23141414"); }
+  .m-section-list > li:nth-child(3) .card-icon, .d-section-grid > li:nth-child(3) .card-icon { background-image:url("https://api.iconify.design/solar/shield-check-bold.svg?color=%23141414"); }
+  .m-section-list > li:nth-child(4) .card-icon, .d-section-grid > li:nth-child(4) .card-icon { background-image:url("https://api.iconify.design/solar/heart-bold.svg?color=%23141414"); }
+  .m-section-list > li:nth-child(5) .card-icon, .d-section-grid > li:nth-child(5) .card-icon { background-image:url("https://api.iconify.design/solar/stethoscope-bold.svg?color=%23141414"); }
+  .m-section-list > li:nth-child(6) .card-icon, .d-section-grid > li:nth-child(6) .card-icon { background-image:url("https://api.iconify.design/solar/siren-bold.svg?color=%23141414"); }
+
+  /* bottom tab bar → Solar icons + amber active indicator */
+  .phone-nav a { position:relative; }
+  .phone-nav a.active { color:var(--wf-text); }
+  .phone-nav a.active::before { content:""; position:absolute; top:0; left:50%; transform:translateX(-50%); width:24px; height:3px; border-radius:3px; background:var(--signal); }
+  .phone-nav .nav-icon { width:24px; height:24px; border-radius:0; background:none; background-repeat:no-repeat; background-position:center; background-size:24px; }
+  .phone-nav a:nth-child(1) .nav-icon { background-image:url("https://api.iconify.design/solar/paw-bold.svg?color=%235c5c5c"); }
+  .phone-nav a:nth-child(2) .nav-icon { background-image:url("https://api.iconify.design/solar/calendar-minimalistic-bold.svg?color=%235c5c5c"); }
+  .phone-nav a:nth-child(3) .nav-icon { background-image:url("https://api.iconify.design/solar/share-bold.svg?color=%235c5c5c"); }
+  .phone-nav a:nth-child(4) .nav-icon { background-image:url("https://api.iconify.design/solar/user-circle-bold.svg?color=%235c5c5c"); }
+  .phone-nav a.active:nth-child(1) .nav-icon { background-image:url("https://api.iconify.design/solar/paw-bold.svg?color=%23141414"); }
+  /* tab bar pinned to concept.html nav-bar spec */
+  .phone-nav { justify-content:space-around; }
+  .phone-nav a { font-size:10.5px; font-weight:500; }
+  .phone-nav a.active { font-weight:700; }
+  .phone-nav .nav-icon { width:23px; height:23px; background-size:23px; }
+  /* clear the prototype's grey square on the active tab (it also reset background-size) */
+  .phone-nav a.active .nav-icon { background-color:transparent; background-size:23px; }
+  .phone-nav a.active::before { top:-1px; width:22px; }
 </style>
 </head>
 <body>
@@ -1009,7 +1119,7 @@
       </div>
 
       <header class="m-header v3-header">
-        <a href="My-Pets.html" style="text-decoration:none;"><button class="back" aria-label="Back to your pets">← Your pets</button></a>
+        <a href="My-Pets.html" style="text-decoration:none;"><button class="back" aria-label="Back to your pets">←</button></a>
         <h1>Miso</h1>
         <a href="Edit-pet.html" style="text-decoration:none;"><button class="action-edit">Edit</button></a>
       </header>
@@ -1017,34 +1127,29 @@
       <div class="m-main">
 
         <div class="dv3-hero">
-          <figure class="dv3-photo" aria-label="Pet photo placeholder">photo</figure>
+          <div class="dv3-photo-wrap">
+            <figure class="dv3-photo" aria-label="Pet photo placeholder">photo</figure>
+            <a href="Edit-pet.html" class="photo-edit" aria-label="Edit Miso's photo"></a>
+          </div>
         </div>
         <div class="dv3-arch">
-          <h2>Miso</h2>
+          <div class="name-row">
+            <h2>Miso</h2>
+            <a href="Share-a-pet.html" class="name-share" aria-label="Share Miso's card"></a>
+          </div>
           <p class="meta">Dog · Border Terrier · Female</p>
-          <p class="chip">Microchip 276 098 106 412 345</p>
         </div>
 
                 <div class="pet-switcher" aria-label="Switch pet">
-          <span class="pet-switcher-label">Pet:</span>
-          <a href="home-success.html" class="pet-pill active"><span class="pill-avatar">M</span> Miso</a>
-          <a href="home-success-cheetah.html" class="pet-pill"><span class="pill-avatar">C</span> Cheetah</a>
+          <div class="pet-seg">
+            <a href="home-success.html" class="pet-pill active" aria-current="page"><span class="pill-avatar">M</span> Miso</a>
+            <a href="home-success-cheetah.html" class="pet-pill"><span class="pill-avatar">C</span> Cheetah</a>
+          </div>
         </div>
 
-        <section class="m-quick-actions" aria-label="Quick actions">
-          <a href="Share-a-pet.html"><button class="btn-primary">Share Miso's info</button></a>
-          <a href="Set-up-a-pet.html"><button class="btn-secondary">Edit pet details</button></a>
-        </section>
-
         <section class="m-fill-counter" aria-label="Card completeness">
-          <div class="zone-label">Counter</div>
           <span class="count">6 of 6 sections filled</span>
           <span class="status">Updated 2 days ago</span>
-        </section>
-
-        <section class="m-search-filter" aria-label="Search sections">
-          <div class="zone-label">Search &amp; filter</div>
-          <input class="search-bar" type="search" placeholder="Search sections, records, documents…" aria-label="Search sections">
         </section>
 
                 <ul class="m-section-list" aria-label="Card sections">
@@ -1116,22 +1221,23 @@
           </li>
 
         </ul>
+
+        <section class="m-share-cta">
+          <a href="Share-a-pet.html"><button class="btn-primary btn-share">Share Miso's card</button></a>
+        </section>
       </div>
 
-      <div style="display:flex;justify-content:flex-end;padding:4px 20px 8px;">
-        <div style="width:130px;height:92px;border-radius:14px;background:var(--wf-placeholder);display:flex;align-items:center;justify-content:center;font-size:10px;color:var(--wf-muted);text-align:center;">cute illustration<br>(bone in a bowl)</div>
-      </div>
       <nav class="phone-nav" aria-label="Main navigation">
         <a href="My-Pets.html" class="active">
           <span class="nav-icon" aria-hidden="true"></span> Pets
         </a>
         <a href="Whats-due.html">
-          <span class="nav-icon" aria-hidden="true"></span> What's due
+          <span class="nav-icon" aria-hidden="true"></span> Reminders
         </a>
         <a href="Share-a-pet.html">
           <span class="nav-icon" aria-hidden="true"></span> Share
         </a>
-              <a href="Me.html">
+        <a href="Me.html">
           <span class="nav-icon" aria-hidden="true"></span> Owner
         </a>
       </nav>
@@ -1171,9 +1277,10 @@
     <div class="d-main">
 
       <div class="pet-switcher" aria-label="Switch pet">
-        <span class="pet-switcher-label">Pet:</span>
-        <a href="home-success.html" class="pet-pill active"><span class="pill-avatar">M</span> Miso</a>
-        <a href="home-success-cheetah.html" class="pet-pill"><span class="pill-avatar">C</span> Cheetah</a>
+        <div class="pet-seg">
+          <a href="home-success.html" class="pet-pill active" aria-current="page"><span class="pill-avatar">M</span> Miso</a>
+          <a href="home-success-cheetah.html" class="pet-pill"><span class="pill-avatar">C</span> Cheetah</a>
+        </div>
       </div>
 
       <section class="d-pet-hero" aria-label="Pet identity">
@@ -1191,12 +1298,8 @@
       </section>
 
       <section class="d-toolbar" aria-label="Card toolbar">
-        <div class="zone-label">Counter</div>
         <span class="count">6 of 6 sections filled</span>
         <span class="status">· Updated 2 days ago</span>
-        <span class="spacer"></span>
-        <div class="zone-label">Search &amp; filter</div>
-        <input class="search-bar" type="search" placeholder="Search sections, records, documents…" aria-label="Search sections">
       </section>
 
             <ul class="d-section-grid" aria-label="Card sections">

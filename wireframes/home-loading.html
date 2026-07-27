@@ -4,13 +4,21 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Pet dossier · loading — PetPal wireframe</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700&family=Hanken+Grotesk:wght@400;500;600;700&family=EB+Garamond:ital,wght@0,600;1,600;1,700&display=swap" rel="stylesheet">
 <style>
   :root {
-    --wf-bg:#ffffff;--wf-surface:#f5f5f5;--wf-border:#e0e0e0;--wf-text:#1a1a1a;
-    --wf-muted:#757575;--wf-placeholder:#d0d0d0;--wf-input-bg:#fafafa;
-    --wf-btn:#333333;--wf-btn-text:#ffffff;--wf-btn-sec:transparent;
-    --nav-bg:#f9f9f9;--nav-active-bg:#eaeaea;--nav-text:#555555;
-    --nav-text-active:#1a1a1a;--nav-cap:#999999;--nav-line:#e0e0e0;
+    --wf-bg:#ffffff;--wf-surface:#f4f4f4;--wf-border:#e7e7e7;--wf-text:#141414;
+    --wf-muted:#5c5c5c;--wf-placeholder:#eaeaea;--wf-input-bg:#ffffff;
+    --wf-btn:#141414;--wf-btn-text:#ffffff;--wf-btn-sec:#f4f4f4;
+    --nav-bg:#ffffff;--nav-active-bg:#f4f4f4;--nav-text:#5c5c5c;
+    --nav-text-active:#141414;--nav-cap:#8a8a8a;--nav-line:#e7e7e7;
+    --signal:#ffbf00; --signal-ink:#8a6b00; --success:#0c6b3b; --danger:#9a2820;
+    --disp:"Bricolage Grotesque",system-ui,sans-serif;
+    --body:"Hanken Grotesk",system-ui,-apple-system,sans-serif;
+    --serif:"EB Garamond",Georgia,"Times New Roman",serif;
+    --sh-card:0 10px 24px -18px rgba(20,20,20,.13), 0 2px 6px -4px rgba(20,20,20,.05);
   }
   *{box-sizing:border-box;margin:0;padding:0}
   body{font-family:-apple-system,BlinkMacSystemFont,sans-serif;background:var(--wf-bg);color:var(--wf-text);line-height:1.5;-webkit-font-smoothing:antialiased}
@@ -120,6 +128,34 @@
   .nav-tree .flow-screens ol { list-style: none; counter-reset: none; padding-left: 8px; margin: 0 0 4px; border-left: 1px solid var(--nav-line); }
   .nav-tree .flow-screens ol a { font-size: 11px; font-weight: 400; color: var(--nav-text); padding: 3px 8px; display: block; border-radius: 4px; text-decoration: none; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
   .nav-tree .flow-screens ol a:hover { background: var(--nav-active-bg); color: var(--nav-text-active); }
+
+  /* ═══════════ THE SIGNAL — visual language applied (concept.html) ═══════════ */
+  body, input, button { font-family: var(--body); }
+  h1, h2, h3 { font-family: var(--disp); letter-spacing:-0.01em; }
+  .m-header h1, .pet-info h1, .pet-info h2 { font-family: var(--serif); font-style:italic; font-weight:700; letter-spacing:0; }
+  .btn-primary, .btn-secondary { border-radius:999px; border:none; padding:12px 16px; }
+  .btn-primary { background:var(--wf-btn); color:#fff; }
+  .btn-secondary { background:var(--wf-surface); color:var(--wf-text); }
+  /* loading skeletons → Signal card shape, neutral grey placeholders */
+  .skeleton-card, .d-pet-hero-skeleton { background:#fff; border:1px solid var(--wf-border); box-shadow:var(--sh-card); border-radius:16px; }
+  .skeleton-icon { border-radius:12px; }
+  .skeleton-line { border-radius:6px; }
+  .phone-nav a { position:relative; }
+  .phone-nav a.active::before { content:""; position:absolute; top:0; left:50%; transform:translateX(-50%); width:24px; height:3px; border-radius:3px; background:var(--signal); }
+  .phone-nav .nav-icon { width:24px; height:24px; border-radius:0; background:none; background-repeat:no-repeat; background-position:center; background-size:24px; }
+  .phone-nav a:nth-child(1) .nav-icon { background-image:url("https://api.iconify.design/solar/paw-bold.svg?color=%235c5c5c"); }
+  .phone-nav a:nth-child(2) .nav-icon { background-image:url("https://api.iconify.design/solar/calendar-minimalistic-bold.svg?color=%235c5c5c"); }
+  .phone-nav a:nth-child(3) .nav-icon { background-image:url("https://api.iconify.design/solar/share-bold.svg?color=%235c5c5c"); }
+  .phone-nav a:nth-child(4) .nav-icon { background-image:url("https://api.iconify.design/solar/user-circle-bold.svg?color=%235c5c5c"); }
+  .phone-nav a.active:nth-child(1) .nav-icon { background-image:url("https://api.iconify.design/solar/paw-bold.svg?color=%23141414"); }
+  /* tab bar pinned to concept.html nav-bar spec */
+  .phone-nav { justify-content:space-around; }
+  .phone-nav a { font-size:10.5px; font-weight:500; }
+  .phone-nav a.active { font-weight:700; }
+  .phone-nav .nav-icon { width:23px; height:23px; background-size:23px; }
+  /* clear the prototype's grey square on the active tab (it also reset background-size) */
+  .phone-nav a.active .nav-icon { background-color:transparent; background-size:23px; }
+  .phone-nav a.active::before { top:-1px; width:22px; }
 </style>
 </head>
 <body>
@@ -305,7 +341,7 @@
       </div>
 
       <header class="m-header">
-        <a href="My-Pets.html" style="text-decoration:none;"><button class="back">← Your pets</button></a>
+        <a href="My-Pets.html" style="text-decoration:none;"><button class="back" aria-label="Back to your pets">←</button></a>
         <h1>Miso</h1>
       </header>
 
@@ -375,11 +411,9 @@
 
       <nav class="phone-nav">
         <a href="My-Pets.html" class="active"><span class="nav-icon"></span> Pets</a>
-        <a href="Whats-due.html"><span class="nav-icon"></span> What's due</a>
+        <a href="Whats-due.html"><span class="nav-icon"></span> Reminders</a>
         <a href="Share-a-pet.html"><span class="nav-icon"></span> Share</a>
-              <a href="Me.html">
-          <span class="nav-icon" aria-hidden="true"></span> Owner
-        </a>
+        <a href="Me.html"><span class="nav-icon"></span> Owner</a>
       </nav>
     </div>
   </div>

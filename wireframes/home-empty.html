@@ -4,13 +4,21 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Pet dossier · empty — PetPal wireframe</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700&family=Hanken+Grotesk:wght@400;500;600;700&family=EB+Garamond:ital,wght@0,600;1,600;1,700&display=swap" rel="stylesheet">
 <style>
   :root {
-    --wf-bg:#ffffff;--wf-surface:#f5f5f5;--wf-border:#e0e0e0;--wf-text:#1a1a1a;
-    --wf-muted:#757575;--wf-placeholder:#d0d0d0;--wf-input-bg:#fafafa;
-    --wf-btn:#333333;--wf-btn-text:#ffffff;--wf-btn-sec:transparent;
-    --nav-bg:#f9f9f9;--nav-active-bg:#eaeaea;--nav-text:#555555;
-    --nav-text-active:#1a1a1a;--nav-cap:#999999;--nav-line:#e0e0e0;
+    --wf-bg:#ffffff;--wf-surface:#f4f4f4;--wf-border:#e7e7e7;--wf-text:#141414;
+    --wf-muted:#5c5c5c;--wf-placeholder:#eaeaea;--wf-input-bg:#ffffff;
+    --wf-btn:#141414;--wf-btn-text:#ffffff;--wf-btn-sec:#f4f4f4;
+    --nav-bg:#ffffff;--nav-active-bg:#f4f4f4;--nav-text:#5c5c5c;
+    --nav-text-active:#141414;--nav-cap:#8a8a8a;--nav-line:#e7e7e7;
+    --signal:#ffbf00; --signal-ink:#8a6b00; --success:#0c6b3b; --danger:#9a2820;
+    --disp:"Bricolage Grotesque",system-ui,sans-serif;
+    --body:"Hanken Grotesk",system-ui,-apple-system,sans-serif;
+    --serif:"EB Garamond",Georgia,"Times New Roman",serif;
+    --sh-card:0 10px 24px -18px rgba(20,20,20,.13), 0 2px 6px -4px rgba(20,20,20,.05);
   }
   *{box-sizing:border-box;margin:0;padding:0}
   body{font-family:-apple-system,BlinkMacSystemFont,sans-serif;background:var(--wf-bg);color:var(--wf-text);line-height:1.5;-webkit-font-smoothing:antialiased}
@@ -148,6 +156,53 @@
   .nav-tree .flow-screens ol { list-style: none; counter-reset: none; padding-left: 8px; margin: 0 0 4px; border-left: 1px solid var(--nav-line); }
   .nav-tree .flow-screens ol a { font-size: 11px; font-weight: 400; color: var(--nav-text); padding: 3px 8px; display: block; border-radius: 4px; text-decoration: none; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
   .nav-tree .flow-screens ol a:hover { background: var(--nav-active-bg); color: var(--nav-text-active); }
+
+  /* ═══════════ THE SIGNAL — visual language applied (concept.html) ═══════════ */
+  body, input, button, .search-bar { font-family: var(--body); }
+  h1, h2, h3 { font-family: var(--disp); letter-spacing:-0.01em; }
+  .dv3-arch h2, .d-pet-hero .pet-info h1, .m-header h1, .pet-info h1, .pet-info h2 { font-family: var(--serif); font-style:italic; font-weight:700; letter-spacing:0; }
+  .empty-illustration { background:#fdf3d3 url("https://api.iconify.design/solar/magnifer-bold-duotone.svg?color=%238a6b00") center / 56px no-repeat !important; color:transparent !important; font-size:0 !important; border-radius:16px !important; }
+  .d-empty-block .empty-illustration { background-size:72px !important; }
+  .btn-primary, .btn-secondary, .m-quick-actions button, .d-pet-actions button { border-radius:999px; border:none; padding:12px 16px; }
+  .empty-block button, .d-empty-block button { border-radius:999px; }
+  .btn-primary { background:var(--wf-btn); color:#fff; }
+  .btn-secondary { background:var(--wf-surface); color:var(--wf-text); }
+  .pet-pill { border-radius:999px; border:1px solid var(--wf-border); }
+  .pet-pill.active { background:var(--wf-text); color:#fff; border-color:var(--wf-text); }
+  .pet-pill .pill-avatar { background:var(--wf-surface); color:var(--wf-text); font-weight:700; }
+  .pet-pill.active .pill-avatar { background:rgba(255,255,255,.22); color:#fff; }
+  .top-nav .nav-action { border-radius:999px; border:1px solid var(--wf-border); }
+  .m-section-card, .m-section-card.v3, .d-section-card, .d-section-card.v3, .d-pet-hero { background:#fff; border:1px solid var(--wf-border); box-shadow:var(--sh-card); border-radius:16px; }
+  .m-section-card:hover, .d-section-card:hover { border-color:var(--wf-border); box-shadow:var(--sh-card); }
+  .search-bar { border-radius:12px; border:1px solid var(--wf-border); background:#fff; }
+  .search-bar:focus { border-color:var(--wf-text); box-shadow:0 0 0 3px rgba(255,191,0,.5); }
+  .search-bar::placeholder { color:var(--wf-muted); }
+  .v3 .check { background:var(--success); color:#fff; }
+  .pet-photo { background:#eaeaea url("https://images.unsplash.com/photo-1543466835-00a7907e9de1?w=200&q=80&auto=format&fit=crop") center/cover no-repeat !important; color:transparent !important; font-size:0 !important; border:3px solid #fff; box-shadow:0 4px 12px -6px rgba(20,20,20,.28); }
+  .card-icon { background-color:#f4f4f4 !important; border-radius:12px; color:transparent !important; font-size:0 !important; background-repeat:no-repeat; background-position:center; background-size:22px; }
+  .m-section-list > li:nth-child(1) .card-icon, .d-section-grid > li:nth-child(1) .card-icon { background-image:url("https://api.iconify.design/solar/syringe-bold.svg?color=%23141414"); }
+  .m-section-list > li:nth-child(2) .card-icon, .d-section-grid > li:nth-child(2) .card-icon { background-image:url("https://api.iconify.design/solar/document-text-bold.svg?color=%23141414"); }
+  .m-section-list > li:nth-child(3) .card-icon, .d-section-grid > li:nth-child(3) .card-icon { background-image:url("https://api.iconify.design/solar/shield-check-bold.svg?color=%23141414"); }
+  .m-section-list > li:nth-child(4) .card-icon, .d-section-grid > li:nth-child(4) .card-icon { background-image:url("https://api.iconify.design/solar/heart-bold.svg?color=%23141414"); }
+  .m-section-list > li:nth-child(5) .card-icon, .d-section-grid > li:nth-child(5) .card-icon { background-image:url("https://api.iconify.design/solar/stethoscope-bold.svg?color=%23141414"); }
+  .m-section-list > li:nth-child(6) .card-icon, .d-section-grid > li:nth-child(6) .card-icon { background-image:url("https://api.iconify.design/solar/siren-bold.svg?color=%23141414"); }
+  .phone-nav a { position:relative; }
+  .phone-nav a.active { color:var(--wf-text); }
+  .phone-nav a.active::before { content:""; position:absolute; top:0; left:50%; transform:translateX(-50%); width:24px; height:3px; border-radius:3px; background:var(--signal); }
+  .phone-nav .nav-icon { width:24px; height:24px; border-radius:0; background:none; background-repeat:no-repeat; background-position:center; background-size:24px; }
+  .phone-nav a:nth-child(1) .nav-icon { background-image:url("https://api.iconify.design/solar/paw-bold.svg?color=%235c5c5c"); }
+  .phone-nav a:nth-child(2) .nav-icon { background-image:url("https://api.iconify.design/solar/calendar-minimalistic-bold.svg?color=%235c5c5c"); }
+  .phone-nav a:nth-child(3) .nav-icon { background-image:url("https://api.iconify.design/solar/share-bold.svg?color=%235c5c5c"); }
+  .phone-nav a:nth-child(4) .nav-icon { background-image:url("https://api.iconify.design/solar/user-circle-bold.svg?color=%235c5c5c"); }
+  .phone-nav a.active:nth-child(1) .nav-icon { background-image:url("https://api.iconify.design/solar/paw-bold.svg?color=%23141414"); }
+  /* tab bar pinned to concept.html nav-bar spec */
+  .phone-nav { justify-content:space-around; }
+  .phone-nav a { font-size:10.5px; font-weight:500; }
+  .phone-nav a.active { font-weight:700; }
+  .phone-nav .nav-icon { width:23px; height:23px; background-size:23px; }
+  /* clear the prototype's grey square on the active tab (it also reset background-size) */
+  .phone-nav a.active .nav-icon { background-color:transparent; background-size:23px; }
+  .phone-nav a.active::before { top:-1px; width:22px; }
 </style>
 </head>
 <body>
@@ -333,7 +388,7 @@
       </div>
 
       <header class="m-header">
-        <a href="My-Pets.html" style="text-decoration:none;"><button class="back">← Your pets</button></a>
+        <a href="My-Pets.html" style="text-decoration:none;"><button class="back" aria-label="Back to your pets">←</button></a>
         <h1>Miso</h1>
         <a href="Edit-pet.html" style="text-decoration:none;"><button class="action-edit">Edit</button></a>
       </header>
@@ -374,11 +429,9 @@
 
       <nav class="phone-nav">
         <a href="My-Pets.html" class="active"><span class="nav-icon"></span> Pets</a>
-        <a href="Whats-due.html"><span class="nav-icon"></span> What's due</a>
+        <a href="Whats-due.html"><span class="nav-icon"></span> Reminders</a>
         <a href="Share-a-pet.html"><span class="nav-icon"></span> Share</a>
-              <a href="Me.html">
-          <span class="nav-icon" aria-hidden="true"></span> Owner
-        </a>
+        <a href="Me.html"><span class="nav-icon"></span> Owner</a>
       </nav>
     </div>
   </div>
