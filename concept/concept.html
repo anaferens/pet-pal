@@ -74,10 +74,9 @@
   .petcard.plain{box-shadow:var(--sh-card)}
   .petcard .ph{position:relative}
   .petcard .ph img{width:100%;height:150px;object-fit:cover;display:block}
-  .tagflag{position:absolute;left:12px;bottom:-13px;background:var(--signal);color:var(--on-signal);
-    border-radius:var(--r-tag);padding:8px 12px 8px 22px;font-weight:700;font-size:11px;letter-spacing:.02em;
+  .tagflag{position:absolute;left:12px;bottom:-13px;background:var(--success-bg);color:var(--success);
+    border-radius:999px;padding:7px 13px;font-weight:600;font-size:12px;
     display:inline-flex;align-items:center;gap:6px}
-  .tagflag::before{content:"";position:absolute;left:10px;top:50%;transform:translateY(-50%);width:7px;height:7px;border-radius:50%;background:#fff;box-shadow:inset 0 0 0 1px rgba(20,20,20,.16)}
   .petcard .body{padding:22px 15px 16px}
   .petcard .n{font-family:var(--disp);font-weight:700;font-size:22px;line-height:1.05}
   .petcard .b{color:var(--meta);font-size:13px;margin-top:1px}
@@ -105,6 +104,10 @@
   .btn.loading::after{content:"";position:absolute;width:16px;height:16px;border-radius:50%;
     border:2px solid rgba(255,255,255,.4);border-top-color:#fff;animation:spin .7s linear infinite}
   @keyframes spin{to{transform:rotate(360deg)}}
+  .fab{width:54px;height:54px;border-radius:50%;background:var(--ink);color:#fff;border:0;cursor:pointer;
+    display:grid;place-items:center;font-size:30px;font-weight:400;line-height:0;box-shadow:var(--sh-pop);
+    transition:transform .12s ease, filter .15s ease}
+  .fab:hover{filter:brightness(1.3)} .fab:active{transform:scale(.95)}
 
   /* ---- badges / status chips ---- */
   .chip{display:inline-flex;align-items:center;gap:6px;font-weight:600;font-size:12px;padding:5px 11px;border-radius:var(--r-chip);line-height:1}
@@ -208,7 +211,7 @@
             <div class="petcard">
               <div class="ph">
                 <img src="https://images.unsplash.com/photo-1552053831-71594a27632d?w=560&q=80&auto=format&fit=crop" alt="Pixel, a Welsh corgi">
-                <span class="tagflag"><iconify-icon icon="solar:check-circle-bold"></iconify-icon>UP TO DATE</span>
+                <span class="tagflag"><iconify-icon icon="solar:check-circle-bold"></iconify-icon>Up to date</span>
               </div>
               <div class="body">
                 <div class="n">Pixel</div>
@@ -237,7 +240,7 @@
         <p class="lbl">What the direction promises</p>
         <p style="font-size:15px;color:#2a2a2a;max-width:46ch">Colour appears <b>only where you act or where status matters</b>. The photo of the pet leads; ink carries the facts; one amber signal marks the live moment. Nothing shouts, so the one urgent thing can.</p>
         <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:18px">
-          <span class="chip brand"><iconify-icon icon="solar:check-circle-bold"></iconify-icon>Up to date</span>
+          <span class="chip ok"><iconify-icon icon="solar:check-circle-bold"></iconify-icon>Up to date</span>
           <span class="chip warn"><iconify-icon icon="solar:clock-circle-bold"></iconify-icon>Due soon</span>
           <span class="chip bad"><iconify-icon icon="solar:danger-triangle-bold"></iconify-icon>Overdue</span>
         </div>
@@ -260,13 +263,17 @@
         <p class="lbl">1 · Action button</p>
         <div style="display:flex;flex-direction:column;gap:12px;max-width:320px">
           <button class="btn primary block"><iconify-icon icon="solar:share-bold"></iconify-icon>Share card</button>
-          <button class="btn signal block"><iconify-icon icon="solar:plus-circle-bold" ></iconify-icon>Add a record</button>
+          <button class="btn signal block"><iconify-icon icon="solar:add-circle-bold" ></iconify-icon>Add a record</button>
           <button class="btn quiet block"><iconify-icon icon="solar:pen-2-bold"></iconify-icon>Edit details</button>
           <div style="display:flex;gap:10px">
             <button class="btn primary loading block">Sharing</button>
             <button class="btn primary block" disabled>Unavailable</button>
           </div>
-          <p style="font-size:12px;color:var(--meta);margin:2px 0 0">Pill radius · ink primary, amber signal (used sparingly), quiet grey · states: default · hover · loading · disabled.</p>
+          <div style="display:flex;align-items:center;gap:14px;margin-top:4px">
+            <button class="fab" aria-label="Add a pet">+</button>
+            <span style="font-size:12px;color:var(--meta)">Round black FAB — the primary “add” action.</span>
+          </div>
+          <p style="font-size:12px;color:var(--meta);margin:2px 0 0">Pill radius · ink primary, amber signal (used sparingly), quiet grey · round FAB for add · states: default · hover · loading · disabled.</p>
         </div>
       </div>
 
@@ -297,7 +304,7 @@
         <div class="petcard plain" style="max-width:320px">
           <div class="ph">
             <img src="https://images.unsplash.com/photo-1543466835-00a7907e9de1?w=560&q=80&auto=format&fit=crop" alt="Nala, a golden retriever">
-            <span class="tagflag"><iconify-icon icon="solar:check-circle-bold"></iconify-icon>UP TO DATE</span>
+            <span class="tagflag"><iconify-icon icon="solar:check-circle-bold"></iconify-icon>Up to date</span>
           </div>
           <div class="body">
             <div class="n">Nala</div>
@@ -434,8 +441,8 @@
     <div class="icoset">
       <div class="who"><b>Badge</b><span>status marks</span></div>
       <div class="items">
-        <div class="ico"><div class="g on"><iconify-icon icon="solar:check-circle-bold"></iconify-icon></div><small>Up to date</small></div>
-        <div class="ico"><div class="g ok"><iconify-icon icon="solar:verified-check-bold"></iconify-icon></div><small>Verified</small></div>
+        <div class="ico"><div class="g ok"><iconify-icon icon="solar:check-circle-bold"></iconify-icon></div><small>Up to date</small></div>
+        <div class="ico"><div class="g on"><iconify-icon icon="solar:verified-check-bold"></iconify-icon></div><small>Verified</small></div>
         <div class="ico"><div class="g warn"><iconify-icon icon="solar:clock-circle-bold"></iconify-icon></div><small>Due soon</small></div>
         <div class="ico"><div class="g bad"><iconify-icon icon="solar:danger-triangle-bold"></iconify-icon></div><small>Overdue</small></div>
       </div>
@@ -446,7 +453,7 @@
         <div class="ico"><div class="g"><iconify-icon icon="solar:share-bold"></iconify-icon></div><small>Share</small></div>
         <div class="ico"><div class="g"><iconify-icon icon="solar:pen-2-bold"></iconify-icon></div><small>Edit</small></div>
         <div class="ico"><div class="g"><iconify-icon icon="solar:camera-bold"></iconify-icon></div><small>Add photo</small></div>
-        <div class="ico"><div class="g"><iconify-icon icon="solar:plus-circle-bold"></iconify-icon></div><small>Add</small></div>
+        <div class="ico"><div class="g"><iconify-icon icon="solar:add-circle-bold"></iconify-icon></div><small>Add</small></div>
         <div class="ico"><div class="g"><iconify-icon icon="solar:magnifer-bold"></iconify-icon></div><small>Search</small></div>
       </div>
     </div>
