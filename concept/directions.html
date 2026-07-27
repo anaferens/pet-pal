@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<!--
+  PetPal — concept decision page. THREE contrasting visual worlds for one product.
+  Not variations: different colour STRATEGY, type register and cultural source each.
+  A · The Passport  — Committed  (EU pet passport / official vet record)
+  B · The Field Guide — Drenched (naturalist specimen catalogue)
+  C · The Signal    — Restrained (enamel ID tag / wayfinding)
+  Slop test applied: none is cream+terracotta, none is the generic pastel health-app.
+  Fonts are off the training-default list. Photos: Unsplash. Icons: Solar (Iconify).
+-->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>PetPal — Three visual directions</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,500;0,6..96,600;0,6..96,700;1,6..96,400;1,6..96,500&family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700;12..96,800&family=Hanken+Grotesk:wght@400;500;600;700&family=Schibsted+Grotesk:wght@400;500;600;700&family=Spline+Sans+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<script src="https://code.iconify.design/iconify-icon/2.1.0/iconify-icon.min.js"></script>
+<style>
+  *{box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%}
+  body{margin:0;background:#e9e9ea;color:#141414;
+    font-family:"Hanken Grotesk",system-ui,-apple-system,sans-serif;line-height:1.55;
+    -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+  iconify-icon{display:inline-block;vertical-align:-0.15em}
+
+  /* ---------- masthead ---------- */
+  .masthead{max-width:1500px;margin:0 auto;padding:34px 28px 22px}
+  .masthead .kick{font-family:"Spline Sans Mono",monospace;font-size:12px;letter-spacing:.18em;
+    text-transform:uppercase;color:#6a6a6a}
+  .masthead h1{font-family:"Schibsted Grotesk",sans-serif;font-weight:600;letter-spacing:-0.03em;
+    font-size:clamp(26px,3.4vw,40px);margin:.35em 0 .15em;max-width:20ch}
+  .masthead p{margin:0;color:#4a4a4a;font-size:16px;max-width:64ch}
+  .masthead .note{margin-top:10px;font-size:12.5px;color:#8a8a8a}
+
+  /* ---------- three-column comparison ---------- */
+  .grid{max-width:1500px;margin:0 auto 40px;padding:0 12px 12px;
+    display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+  .dir{border-radius:20px;overflow:hidden;display:flex;flex-direction:column;
+    box-shadow:0 18px 44px -26px rgba(20,20,20,.5), 0 2px 6px -3px rgba(20,20,20,.25)}
+  .dir .pad{padding:26px 24px 30px;display:flex;flex-direction:column;gap:22px;flex:1}
+
+  /* header block shared shape, world-specific skin */
+  .dhead{display:flex;flex-direction:column;gap:9px}
+  .dhead .row{display:flex;align-items:baseline;gap:10px}
+  .letter{font-weight:700;font-size:14px;width:26px;height:26px;border-radius:50%;
+    display:grid;place-items:center;flex:0 0 auto;font-family:"Spline Sans Mono",monospace}
+  .wname{font-size:24px;letter-spacing:-0.02em;line-height:1.1}
+  .strategy{font-family:"Spline Sans Mono",monospace;font-size:11px;letter-spacing:.08em;text-transform:uppercase}
+  .thesis{font-size:14.5px;line-height:1.5}
+
+  .block-label{font-family:"Spline Sans Mono",monospace;font-size:10.5px;letter-spacing:.16em;
+    text-transform:uppercase;margin:0 0 10px;opacity:.65}
+
+  /* palette */
+  .swatches{display:flex;gap:7px}
+  .sw{flex:1;min-width:0}
+  .sw .chip{height:42px;border-radius:8px;border:1px solid rgba(20,20,20,.10)}
+  .sw .hex{font-family:"Spline Sans Mono",monospace;font-size:10px;margin-top:6px;letter-spacing:.01em}
+  .sw .role{font-size:10px;opacity:.6;line-height:1.25}
+
+  /* type specimen */
+  .type .aa{font-size:52px;line-height:1;letter-spacing:-0.02em}
+  .type .spec-line{font-size:18px;margin-top:4px;letter-spacing:-0.01em}
+  .type .meta{font-size:11.5px;opacity:.6;margin-top:8px;font-family:"Spline Sans Mono",monospace;letter-spacing:.03em}
+  .type .body-samp{font-size:13.5px;margin-top:12px;line-height:1.6;max-width:40ch}
+
+  /* listing card frame */
+  .card-shell{border-radius:16px;overflow:hidden}
+  .card-photo{width:100%;display:block;object-fit:cover}
+  .metarow{display:flex;flex-direction:column;gap:9px}
+  .metarow .m{display:flex;align-items:center;gap:9px;font-size:12.5px}
+  .btn{display:inline-flex;align-items:center;gap:8px;border:0;cursor:pointer;
+    font-family:inherit;font-weight:600;font-size:14px;line-height:1}
+  .badge{display:inline-flex;align-items:center;gap:6px;font-weight:600;line-height:1}
+
+  /* components strip */
+  .comp{display:flex;flex-direction:column;gap:14px}
+  .iconrow{display:flex;gap:14px;align-items:center;font-size:26px}
+  .comp .pair{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+
+  /* ============ A · THE PASSPORT — committed passport-ink ============ */
+  .dir-a{background:#ffffff;color:#111820}
+  .dir-a .letter{background:#0b3a4a;color:#eaf1f3}
+  .dir-a .wname{font-family:"Schibsted Grotesk",sans-serif;font-weight:600;color:#0b3a4a}
+  .dir-a .strategy{color:#0b3a4a}
+  .dir-a .thesis{color:#33424a}
+  .dir-a .block-label{color:#0b3a4a}
+  .dir-a .type .aa,.dir-a .type .spec-line{font-family:"Schibsted Grotesk",sans-serif;color:#0b3a4a;font-weight:600}
+  .dir-a .type .body-samp{color:#33424a}
+  /* passport card */
+  .pp{border:1px solid #d6e0e2;border-radius:14px;overflow:hidden;background:#fff;
+    box-shadow:0 10px 24px -16px rgba(11,58,74,.5)}
+  .pp .band{background:#0b3a4a;color:#eaf1f3;padding:14px 15px;display:flex;gap:13px;align-items:center;position:relative}
+  .pp .band::after{content:"";position:absolute;left:0;right:0;bottom:0;height:3px;
+    background:repeating-linear-gradient(90deg,#c0a24d 0 7px,transparent 7px 12px);opacity:.8}
+  .pp .ppphoto{width:58px;height:70px;border-radius:5px;object-fit:cover;border:2px solid #eaf1f3;flex:0 0 auto}
+  .pp .pptitle .t{font-family:"Spline Sans Mono",monospace;font-size:9.5px;letter-spacing:.22em;opacity:.75}
+  .pp .pptitle .n{font-family:"Schibsted Grotesk",sans-serif;font-size:21px;font-weight:600;letter-spacing:-0.02em;margin:1px 0}
+  .pp .pptitle .s{font-family:"Spline Sans Mono",monospace;font-size:10.5px;opacity:.8}
+  .pp .body{padding:15px}
+  .pp .mrz{font-family:"Spline Sans Mono",monospace;font-size:11.5px;color:#0b3a4a;
+    background:#f2f6f7;border:1px dashed #c4d3d6;border-radius:6px;padding:8px 10px;letter-spacing:.02em;word-spacing:.1em}
+  .pp .fields{display:grid;grid-template-columns:1fr 1fr;gap:9px 14px;margin:13px 0}
+  .pp .fields .f .k{font-family:"Spline Sans Mono",monospace;font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:#7d8d91}
+  .pp .fields .f .v{font-size:13px;font-weight:500;color:#111820}
+  .pp .guilloche{height:8px;margin:4px 0 13px;background:
+    radial-gradient(circle at 6px 4px,transparent 3px,#e2ebec 3px 3.6px,transparent 3.7px) 0 0/12px 8px;opacity:.9}
+  .dir-a .badge{background:#fff;border:1px solid #0b3a4a;color:#0b3a4a;border-radius:999px;padding:6px 12px;font-size:12px}
+  .dir-a .badge iconify-icon{color:#1e7a5a}
+  .dir-a .m iconify-icon{color:#0b3a4a}
+  .dir-a .m{color:#3a4a50}
+  .dir-a .btn{background:#0b3a4a;color:#fff;border-radius:9px;padding:12px 16px}
+  .dir-a .btn.wide{width:100%;justify-content:center;margin-top:14px}
+  .dir-a .iconrow{color:#0b3a4a}
+  .dir-a .seal{width:34px;height:34px;border-radius:50%;border:1.5px solid #c0392b;color:#c0392b;
+    display:grid;place-items:center;font-size:18px;transform:rotate(-8deg)}
+
+  /* ============ B · THE FIELD GUIDE — drenched herbarium green ============ */
+  .dir-b{background:#1b3a2c;color:#ede6d6}
+  .dir-b .letter{background:#c9a227;color:#12291f}
+  .dir-b .wname{font-family:"Bodoni Moda",serif;font-weight:600;color:#ede6d6}
+  .dir-b .strategy{color:#c9a227}
+  .dir-b .thesis{color:#c3d0c2}
+  .dir-b .block-label{color:#c9a227}
+  .dir-b .sw .chip{border-color:rgba(237,230,214,.18)}
+  .dir-b .sw .hex,.dir-b .sw .role{color:#c3d0c2}
+  .dir-b .type .aa{font-family:"Bodoni Moda",serif;color:#ede6d6;font-weight:600}
+  .dir-b .type .spec-line{font-family:"Bodoni Moda",serif;font-style:italic;color:#c9a227;font-weight:500}
+  .dir-b .type .meta{color:#9db0a0}
+  .dir-b .type .body-samp{color:#c3d0c2}
+  /* specimen plate card */
+  .plate{background:#12291f;border:1px solid #c9a227;border-radius:10px;padding:20px 18px;position:relative}
+  .plate .plno{position:absolute;top:14px;right:16px;font-family:"Spline Sans Mono",monospace;
+    font-size:10px;letter-spacing:.18em;color:#c9a227}
+  .plate .oval{width:118px;height:140px;margin:4px auto 14px;border-radius:50%;overflow:hidden;
+    border:1px solid #c9a227;box-shadow:0 0 0 5px #12291f,0 0 0 6px rgba(201,162,39,.35)}
+  .plate .oval img{width:100%;height:100%;object-fit:cover;filter:sepia(.28) saturate(.85) contrast(1.03)}
+  .plate .pname{font-family:"Bodoni Moda",serif;font-size:30px;font-weight:600;text-align:center;line-height:1.05;color:#ede6d6}
+  .plate .latin{font-family:"Bodoni Moda",serif;font-style:italic;font-size:15px;text-align:center;color:#c9a227;margin-top:2px}
+  .plate .classif{text-align:center;font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:#9db0a0;margin-top:9px}
+  .plate .rule{display:flex;align-items:center;gap:8px;margin:16px 0}
+  .plate .rule::before,.plate .rule::after{content:"";flex:1;height:1px;background:rgba(201,162,39,.5)}
+  .plate .rule span{color:#c9a227;font-size:11px}
+  .dir-b .badge{background:transparent;border:1px solid #c9a227;color:#c9a227;border-radius:999px;padding:6px 13px;font-size:11.5px;letter-spacing:.03em}
+  .dir-b .badge iconify-icon{color:#c9a227}
+  .dir-b .m{color:#c3d0c2}
+  .dir-b .m iconify-icon{color:#c9a227}
+  .dir-b .btn{background:#c9a227;color:#12291f;border-radius:7px;padding:12px 16px}
+  .dir-b .btn.wide{width:100%;justify-content:center;margin-top:16px}
+  .dir-b .iconrow{color:#e6c65a}
+
+  /* ============ C · THE SIGNAL — restrained ink + enamel yellow ============ */
+  .dir-c{background:#ffffff;color:#141414}
+  .dir-c .letter{background:#141414;color:#ffbf00}
+  .dir-c .wname{font-family:"Bricolage Grotesque",sans-serif;font-weight:700;color:#141414}
+  .dir-c .strategy{color:#141414}
+  .dir-c .thesis{color:#3d3d3d}
+  .dir-c .block-label{color:#141414}
+  .dir-c .type .aa,.dir-c .type .spec-line{font-family:"Bricolage Grotesque",sans-serif;font-weight:700;color:#141414}
+  .dir-c .type .body-samp{color:#3d3d3d}
+  /* tag card */
+  .tag{border-radius:16px;overflow:hidden;background:#fff;position:relative;
+    box-shadow:0 16px 34px -20px rgba(20,20,20,.30), 0 3px 10px -6px rgba(20,20,20,.10)}
+  .tag .ph{position:relative}
+  .tag .ph img{width:100%;height:150px;object-fit:cover;display:block}
+  .tag .enamel{position:absolute;left:12px;bottom:-14px;background:#ffbf00;color:#141414;
+    border-radius:9px;padding:8px 12px 8px 22px;font-weight:700;font-size:11.5px;
+    letter-spacing:.02em;display:inline-flex;align-items:center;gap:6px}
+  .tag .enamel::before{content:"";position:absolute;left:10px;top:50%;transform:translateY(-50%);
+    width:7px;height:7px;border-radius:50%;background:#fff;box-shadow:inset 0 0 0 1px rgba(20,20,20,.16)}
+  .tag .body{padding:24px 16px 18px}
+  .tag .n{font-family:"Bricolage Grotesque",sans-serif;font-weight:700;font-size:23px;letter-spacing:-0.02em;line-height:1.05}
+  .tag .b{color:#5c5c5c;font-size:13px;margin-top:1px}
+  .tag .hl{display:inline-block;margin:13px 0 4px;font-weight:600;font-size:13px}
+  .dir-c .badge{background:#ffbf00;color:#141414;border-radius:8px;padding:7px 13px;font-size:12px}
+  .dir-c .m{color:#2a2a2a;font-weight:500}
+  .dir-c .m iconify-icon{color:#141414}
+  .dir-c .btn{background:#141414;color:#fff;border-radius:999px;padding:13px 22px}
+  .dir-c .btn.wide{width:100%;justify-content:center;margin-top:16px}
+  .dir-c .btn.ghost{background:#ffbf00;color:#141414}
+  .dir-c .iconrow iconify-icon{color:#141414}
+  .dir-c .iconrow .hot{color:#141414;background:#ffbf00;border-radius:8px;padding:5px}
+
+  /* ---------- responsive ---------- */
+  @media (max-width:920px){
+    .grid{grid-template-columns:1fr;gap:16px}
+  }
+  @media (prefers-reduced-motion:no-preference){
+    .dir{transition:transform .5s cubic-bezier(.2,.7,.2,1)}
+  }
+</style>
+</head>
+<body>
+
+  <header class="masthead">
+    <div class="kick">PetPal · Concept · Step 03 · direction</div>
+    <h1>Three genuinely different worlds for the same product.</h1>
+    <p>Same product truth — a pet-care record that a vet trusts and a sitter understands fast — resolved three ways. Different colour strategy, type register and cultural source each, not three shades of one idea. Open each, then tell me <strong>A</strong>, <strong>B</strong> or <strong>C</strong>.</p>
+    <div class="note">Photos: Unsplash (placeholder pets, to be replaced with owners' own). Icons: Solar via Iconify. None of the three is the category's cream-and-terracotta reflex.</div>
+  </header>
+
+  <main class="grid">
+
+    <!-- ========================= A · THE PASSPORT ========================= -->
+    <section class="dir dir-a" aria-label="Direction A — The Passport">
+      <div class="pad">
+        <div class="dhead">
+          <div class="row"><span class="letter">A</span><span class="wname">The Passport</span></div>
+          <div class="strategy">Committed · passport-ink over white</div>
+          <p class="thesis">Official enough that a vet, kennel or border officer can’t argue with it. The EU pet passport, gone digital — stamps, machine-readable IDs, security hairlines.</p>
+        </div>
+
+        <div>
+          <p class="block-label">Palette</p>
+          <div class="swatches">
+            <div class="sw"><div class="chip" style="background:#0b3a4a"></div><div class="hex">#0B3A4A</div><div class="role">Passport ink</div></div>
+            <div class="sw"><div class="chip" style="background:#ffffff"></div><div class="hex">#FFFFFF</div><div class="role">Paper</div></div>
+            <div class="sw"><div class="chip" style="background:#eaf1f3"></div><div class="hex">#EAF1F3</div><div class="role">Security tint</div></div>
+            <div class="sw"><div class="chip" style="background:#1e7a5a"></div><div class="hex">#1E7A5A</div><div class="role">Validation</div></div>
+            <div class="sw"><div class="chip" style="background:#c0392b"></div><div class="hex">#C0392B</div><div class="role">Stamp (rare)</div></div>
+          </div>
+        </div>
+
+        <div class="type">
+          <p class="block-label">Type · Schibsted Grotesk / Hanken Grotesk / Spline Mono</p>
+          <div class="aa">Aa</div>
+          <div class="spec-line">Credible enough for a vet.</div>
+          <div class="meta">MICROCHIP 826 0981 00042 7311</div>
+          <p class="body-samp">Body in Hanken Grotesk keeps the record legible; official IDs sit in a machine-readable mono, exactly where a passport puts them.</p>
+        </div>
+
+        <div>
+          <p class="block-label">Listing card</p>
+          <div class="pp">
+            <div class="band">
+              <img class="ppphoto" src="https://images.unsplash.com/photo-1543466835-00a7907e9de1?w=200&q=80&auto=format&fit=crop" alt="Nala, a golden retriever">
+              <div class="pptitle">
+                <div class="t">EU PET PASSPORT</div>
+                <div class="n">Nala</div>
+                <div class="s">GB · No. PP·204·7731</div>
+              </div>
+            </div>
+            <div class="body">
+              <div class="mrz">P&lt;GBRNALA&lt;&lt;GOLDEN&lt;RETRIEVER&lt;&lt;&lt;&lt;&lt;&lt;&lt;<br>8260981000427311&lt;4GBR2103F&lt;&lt;&lt;&lt;06</div>
+              <div class="fields">
+                <div class="f"><div class="k">Species</div><div class="v">Dog</div></div>
+                <div class="f"><div class="k">Breed</div><div class="v">Golden Retriever</div></div>
+                <div class="f"><div class="k">Born</div><div class="v">21 Mar 2021</div></div>
+                <div class="f"><div class="k">Neutered</div><div class="v">Yes</div></div>
+              </div>
+              <div class="guilloche"></div>
+              <span class="badge"><iconify-icon icon="solar:verified-check-linear"></iconify-icon>Vaccinations up to date</span>
+              <div class="metarow" style="margin-top:13px">
+                <div class="m"><iconify-icon icon="solar:calendar-linear"></iconify-icon>Rabies booster · Mar 2026</div>
+                <div class="m"><iconify-icon icon="solar:shield-check-linear"></iconify-icon>Insured · Petplan</div>
+                <div class="m"><iconify-icon icon="solar:map-point-linear"></iconify-icon>Registered · EU / DEFRA</div>
+              </div>
+              <button class="btn wide"><iconify-icon icon="solar:document-medicine-linear"></iconify-icon>Open passport</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="comp">
+          <p class="block-label">Components · Solar linear</p>
+          <div class="pair">
+            <button class="btn"><iconify-icon icon="solar:pen-linear"></iconify-icon>Edit record</button>
+            <span class="badge"><iconify-icon icon="solar:verified-check-linear"></iconify-icon>Verified</span>
+            <span class="seal">✶</span>
+          </div>
+          <div class="iconrow">
+            <iconify-icon icon="solar:shield-check-linear"></iconify-icon>
+            <iconify-icon icon="solar:calendar-linear"></iconify-icon>
+            <iconify-icon icon="solar:document-text-linear"></iconify-icon>
+            <iconify-icon icon="solar:map-point-linear"></iconify-icon>
+            <iconify-icon icon="solar:checklist-linear"></iconify-icon>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================= B · THE FIELD GUIDE ========================= -->
+    <section class="dir dir-b" aria-label="Direction B — The Field Guide">
+      <div class="pad">
+        <div class="dhead">
+          <div class="row"><span class="letter">B</span><span class="wname">The Field Guide</span></div>
+          <div class="strategy">Drenched · herbarium green + antique gold</div>
+          <p class="thesis">Every animal catalogued like a treasured specimen. The naturalist’s field guide — engraved plates, gilt classification labels, a specimen number — heritage and care, never a cosy scrapbook.</p>
+        </div>
+
+        <div>
+          <p class="block-label">Palette</p>
+          <div class="swatches">
+            <div class="sw"><div class="chip" style="background:#1b3a2c"></div><div class="hex">#1B3A2C</div><div class="role">Herbarium</div></div>
+            <div class="sw"><div class="chip" style="background:#12291f"></div><div class="hex">#12291F</div><div class="role">Plate panel</div></div>
+            <div class="sw"><div class="chip" style="background:#ede6d6"></div><div class="hex">#EDE6D6</div><div class="role">Bone ink</div></div>
+            <div class="sw"><div class="chip" style="background:#c9a227"></div><div class="hex">#C9A227</div><div class="role">Antique gold</div></div>
+            <div class="sw"><div class="chip" style="background:#9db0a0"></div><div class="hex">#9DB0A0</div><div class="role">Sage</div></div>
+          </div>
+        </div>
+
+        <div class="type">
+          <p class="block-label">Type · Bodoni Moda / Hanken Grotesk</p>
+          <div class="aa">Aa</div>
+          <div class="spec-line">Warm enough to hand over.</div>
+          <div class="meta">ORDER · CARNIVORA — PL. XIV</div>
+          <p class="body-samp">A high-contrast engraved serif carries the plate title and the Latin; body and labels stay in a quiet grotesque, so the page reads scientific, not sentimental.</p>
+        </div>
+
+        <div>
+          <p class="block-label">Listing card</p>
+          <div class="plate">
+            <div class="plno">PL. XIV · No. 042</div>
+            <div class="oval"><img src="https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?w=360&q=80&auto=format&fit=crop" alt="Miso, a black-and-white cat"></div>
+            <div class="pname">Miso</div>
+            <div class="latin">Felis catus</div>
+            <div class="classif">Black-and-white · shorthair · 3 yr · ♀</div>
+            <div class="rule"><span>❧</span></div>
+            <div style="text-align:center"><span class="badge"><iconify-icon icon="solar:medal-ribbons-star-bold-duotone"></iconify-icon>Catalogued 2024</span></div>
+            <div class="metarow" style="margin-top:15px">
+              <div class="m"><iconify-icon icon="solar:heart-bold-duotone"></iconify-icon>Temperament · gentle, shy of thunder</div>
+              <div class="m"><iconify-icon icon="solar:leaf-bold-duotone"></iconify-icon>Diet · grain-free, twice daily</div>
+              <div class="m"><iconify-icon icon="solar:stethoscope-bold-duotone"></iconify-icon>Last examined · Feb 2026</div>
+            </div>
+            <button class="btn wide"><iconify-icon icon="solar:notebook-bold-duotone"></iconify-icon>Open record</button>
+          </div>
+        </div>
+
+        <div class="comp">
+          <p class="block-label">Components · Solar bold-duotone</p>
+          <div class="pair">
+            <button class="btn"><iconify-icon icon="solar:pen-2-bold"></iconify-icon>Edit plate</button>
+            <span class="badge"><iconify-icon icon="solar:diploma-verified-bold-duotone"></iconify-icon>Verified</span>
+          </div>
+          <div class="iconrow">
+            <iconify-icon icon="solar:cat-bold-duotone"></iconify-icon>
+            <iconify-icon icon="solar:bone-bold-duotone"></iconify-icon>
+            <iconify-icon icon="solar:leaf-bold-duotone"></iconify-icon>
+            <iconify-icon icon="solar:heart-bold-duotone"></iconify-icon>
+            <iconify-icon icon="solar:calendar-bold-duotone"></iconify-icon>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================= C · THE SIGNAL ========================= -->
+    <section class="dir dir-c" aria-label="Direction C — The Signal">
+      <div class="pad">
+        <div class="dhead">
+          <div class="row"><span class="letter">C</span><span class="wname">The Signal</span></div>
+          <div class="strategy">Restrained · ink on white + one signal amber</div>
+          <p class="thesis">The organised owner’s tool: nothing precious, everything findable in a tap. Built like an enamel ID tag and transit signage — bold, high-contrast, calm under pressure.</p>
+        </div>
+
+        <div>
+          <p class="block-label">Palette</p>
+          <div class="swatches">
+            <div class="sw"><div class="chip" style="background:#141414"></div><div class="hex">#141414</div><div class="role">Ink</div></div>
+            <div class="sw"><div class="chip" style="background:#ffffff"></div><div class="hex">#FFFFFF</div><div class="role">Paper</div></div>
+            <div class="sw"><div class="chip" style="background:#ffbf00"></div><div class="hex">#FFBF00</div><div class="role">Signal amber</div></div>
+            <div class="sw"><div class="chip" style="background:#f4f4f4"></div><div class="hex">#F4F4F4</div><div class="role">Light grey</div></div>
+            <div class="sw"><div class="chip" style="background:#5c5c5c"></div><div class="hex">#5C5C5C</div><div class="role">Meta grey</div></div>
+          </div>
+        </div>
+
+        <div class="type">
+          <p class="block-label">Type · Bricolage Grotesque / Hanken Grotesk</p>
+          <div class="aa">Aa</div>
+          <div class="spec-line">Everything, one tap away.</div>
+          <div class="meta" style="font-family:'Hanken Grotesk';letter-spacing:0;opacity:.55">Confident display, quiet workhorse body</div>
+          <p class="body-samp">A characterful grotesque gives the interface a spine; Hanken Grotesk does the reading. Colour appears only where you act — never as decoration.</p>
+        </div>
+
+        <div>
+          <p class="block-label">Listing card</p>
+          <div class="tag">
+            <div class="ph">
+              <img src="https://images.unsplash.com/photo-1552053831-71594a27632d?w=520&q=80&auto=format&fit=crop" alt="Pixel, a Welsh corgi">
+              <span class="enamel"><iconify-icon icon="solar:check-circle-bold"></iconify-icon>UP TO DATE</span>
+            </div>
+            <div class="body">
+              <div class="n">Pixel</div>
+              <div class="b">Welsh Corgi · 2 years · microchipped</div>
+              <div class="hl">Next: rabies booster, 14 Mar</div>
+              <div class="metarow" style="margin-top:12px">
+                <div class="m"><iconify-icon icon="solar:shield-check-bold"></iconify-icon>Insured · cover active</div>
+                <div class="m"><iconify-icon icon="solar:bell-bold"></iconify-icon>Reminders on</div>
+                <div class="m"><iconify-icon icon="solar:map-point-bold"></iconify-icon>Registered · Petlog</div>
+              </div>
+              <button class="btn wide"><iconify-icon icon="solar:share-bold"></iconify-icon>Share card</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="comp">
+          <p class="block-label">Components · Solar bold</p>
+          <div class="pair">
+            <button class="btn ghost"><iconify-icon icon="solar:pen-2-bold"></iconify-icon>Edit</button>
+            <span class="badge"><iconify-icon icon="solar:check-circle-bold"></iconify-icon>Up to date</span>
+          </div>
+          <div class="iconrow">
+            <iconify-icon icon="solar:heart-bold" class="hot"></iconify-icon>
+            <iconify-icon icon="solar:shield-check-bold"></iconify-icon>
+            <iconify-icon icon="solar:bell-bold"></iconify-icon>
+            <iconify-icon icon="solar:map-point-bold"></iconify-icon>
+            <iconify-icon icon="solar:paw-bold"></iconify-icon>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+</body>
+</html>
