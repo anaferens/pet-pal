@@ -56,6 +56,6 @@ Five opposing pairs for PetPal. Each is **`X, not Y ← data point (source); tec
 
 - **Base → near-white `#faf8f4`** — Headspace's whisper-warm off-white register. Clean and credible, not clinical.
 - **Warm Sand `#f8f3eb` → secondary surface only** — section bands and the panel behind floating cards, exactly how August Health uses it.
-- **Warmth is carried by** the pet photography, the warm brown ink `#321004`, and the serif headline — layered on, not painted across the background.
+- **Warmth is carried by** the pet photography, the warm-orange accent + arched hero, and the serif headline — layered on, not painted across the background. (Body ink is a neutral near-black `#1a1a1a`.)
 
 This keeps pair #5's sweet spot (*warm and credible, not cosy-cliché nor clinical*) and can't read as the AI cosy-cream reflex. One rule holds regardless: **never cream + terracotta.** Locked into [`references.md`](references.md) and the design system.

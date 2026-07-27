@@ -7,9 +7,9 @@
 <style>
   :root{
     --ground:#faf8f4; --surface:#ffffff; --surface-2:#f3ede1;
-    --ink:#321004; --ink-1:#5b4433; --ink-2:#8a7361;
+    --ink:#1a1a1a; --ink-1:#525252; --ink-2:#8a8a8a;
     --line:#e7dccb; --line-2:#efe7d9;
-    --accent:#2f6a4d; --accent-ink:#255a40; --on-accent:#ffffff;
+    --accent:#ef7d3a; --accent-ink:#b0531f; --on-accent:#1a1a1a;
     --shadow:0 1px 2px rgba(60,40,20,.05), 0 14px 30px -18px rgba(60,40,20,.28);
     --serif:"Iowan Old Style","Palatino Linotype",Palatino,Georgia,"Times New Roman",serif;
     --sans:system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
@@ -19,17 +19,17 @@
   @media (prefers-color-scheme:dark){
     :root{
       --ground:#17120d; --surface:#211a13; --surface-2:#1b1510;
-      --ink:#efe4d4; --ink-1:#c4b4a1; --ink-2:#93826f;
+      --ink:#ededed; --ink-1:#b0b0b0; --ink-2:#828282;
       --line:#352a1f; --line-2:#2b2118;
-      --accent:#74c39a; --accent-ink:#8fd3ad; --on-accent:#0f2419;
+      --accent:#ef7d3a; --accent-ink:#f4a05a; --on-accent:#1a1a1a;
       --shadow:0 1px 2px rgba(0,0,0,.4), 0 16px 34px -20px rgba(0,0,0,.7);
     }
   }
   :root[data-theme="light"]{
     --ground:#faf8f4; --surface:#ffffff; --surface-2:#f3ede1;
-    --ink:#321004; --ink-1:#5b4433; --ink-2:#8a7361;
+    --ink:#1a1a1a; --ink-1:#525252; --ink-2:#8a8a8a;
     --line:#e7dccb; --line-2:#efe7d9;
-    --accent:#2f6a4d; --accent-ink:#255a40; --on-accent:#ffffff;
+    --accent:#ef7d3a; --accent-ink:#b0531f; --on-accent:#1a1a1a;
     --shadow:0 1px 2px rgba(60,40,20,.05), 0 14px 30px -18px rgba(60,40,20,.28);
   }
   :root[data-theme="dark"]{
@@ -313,7 +313,7 @@
         <a class="link" href="https://refero.design/flows/406">refero &#8599;</a>
       </article>
     </div>
-    <p class="method" style="margin-top:20px"><b>Warmth strategy:</b> warmth comes from bold illustration + real photography + occasional colour blocks, on the clean base &mdash; never warm surfaces. Colour blocks stay in the brand / illustration layer; the functional UI keeps its single pine action colour, so Headspace's discipline holds.</p>
+    <p class="method" style="margin-top:20px"><b>Warmth strategy:</b> warmth comes from bold illustration + real photography + occasional colour blocks, on the clean base &mdash; never warm surfaces. Colour blocks stay in the brand / illustration layer; the functional UI keeps its single warm-orange action colour, so Headspace's discipline holds.</p>
   </section>
 
   <section class="reveal">
@@ -333,8 +333,8 @@
       <div class="row">
         <dt>Ink &amp; accent</dt>
         <dd><div class="toks">
-          <span class="tok"><i style="background:#321004"></i><b>#321004<em>warm ink</em></b></span>
-          <span class="tok"><i style="background:#2f6a4d"></i><b>#2f6a4d<em>pine &mdash; one action colour</em></b></span>
+          <span class="tok"><i style="background:#1a1a1a"></i><b>#1a1a1a<em>near-black ink</em></b></span>
+          <span class="tok"><i style="background:#ef7d3a"></i><b>#ef7d3a<em>warm orange &mdash; one action colour</em></b></span>
         </div></dd>
       </div>
       <div class="row">
@@ -364,8 +364,8 @@
               <div style="position:absolute;left:50%;transform:translateX(-50%);width:520px;height:520px;border-radius:50%;background:#ef7d3a;top:-90px"></div>
               <div style="position:absolute;left:50%;transform:translateX(-50%);width:520px;height:520px;border-radius:50%;background:#fff;top:70px"></div>
               <div style="position:absolute;left:50%;top:22px;transform:translateX(-50%);width:52px;height:52px;border-radius:50%;background:radial-gradient(circle at 50% 38%,#f2e6cf,#d8c3a3);border:3px solid #fff;box-shadow:0 3px 8px rgba(50,16,4,.22)"></div>
-              <div style="position:absolute;left:0;right:0;top:82px;text-align:center;font-size:14px;font-weight:800;color:#321004">Bella</div>
-              <div style="position:absolute;left:0;right:0;top:102px;text-align:center;font-size:10.5px;color:#6b5c50">Beagle &middot; 3 years</div>
+              <div style="position:absolute;left:0;right:0;top:82px;text-align:center;font-size:14px;font-weight:800;color:#1a1a1a">Bella</div>
+              <div style="position:absolute;left:0;right:0;top:102px;text-align:center;font-size:10.5px;color:#6b6b6b">Beagle &middot; 3 years</div>
             </div>
             <div style="font-size:13.5px;color:var(--ink-1);flex:1;min-width:200px"><b>Arched colour hero</b> &mdash; a <b>single warm colour</b> curving across the top (the Headspace arch shape, in one colour) &mdash; as the card foundation; the circular pet avatar sits <b>centred over the arch</b>, then name + one meta line, then a <b>label &rarr; value</b> list + <span class="k">Edit</span>. The arch is the one colourful hero moment; the rest stays calm and white. <span style="color:var(--ink-2);font-size:12px">Headspace + Aboard</span></div>
           </div>
@@ -373,7 +373,7 @@
       </div>
       <div class="row">
         <dt>Warmth</dt>
-        <dd><b>Illustration + photography + colour blocks</b> on the clean base &mdash; never warm surfaces; the colour blocks live in the brand / illustration layer (<b>Aboard</b>, Notion), one pine action colour holds.</dd>
+        <dd><b>Illustration + photography + colour blocks</b> on the clean base &mdash; never warm surfaces; the colour blocks live in the brand / illustration layer (<b>Aboard</b>, Notion), one warm-orange action colour holds.</dd>
       </div>
       <div class="row">
         <dt>Sign-up + verify</dt>
