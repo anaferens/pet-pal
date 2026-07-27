@@ -14,7 +14,7 @@
 <title>PetPal — The Signal · Language board</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700;12..96,800&family=Hanken+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700;12..96,800&family=Hanken+Grotesk:wght@400;500;600;700&family=Spectral:ital,wght@0,500;0,600;1,400;1,500&display=swap" rel="stylesheet">
 <script src="https://code.iconify.design/iconify-icon/2.1.0/iconify-icon.min.js"></script>
 <style>
   :root{
@@ -30,6 +30,7 @@
     --sh-phone:0 40px 80px -30px rgba(20,20,20,.45), 0 10px 26px -14px rgba(20,20,20,.22);
     --disp:"Bricolage Grotesque",system-ui,sans-serif;
     --body:"Hanken Grotesk",system-ui,-apple-system,sans-serif;
+    --serif:"Spectral",Georgia,"Times New Roman",serif;
   }
   *{box-sizing:border-box}
   html{-webkit-text-size-adjust:100%}
@@ -42,9 +43,9 @@
   /* masthead */
   .mast{padding:40px 0 26px}
   .mast .eyebrow{font-family:var(--body);font-size:12px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--meta)}
-  .mast h1{font-size:clamp(34px,5vw,52px);font-weight:700;margin:.28em 0 .18em}
-  .mast h1 em{font-style:normal;color:var(--ink);position:relative;white-space:nowrap}
-  .mast h1 em::after{content:"";position:absolute;left:-2px;right:-2px;bottom:.06em;height:.34em;background:var(--signal);z-index:-1;border-radius:2px}
+  .mast h1{font-family:var(--serif);font-size:clamp(34px,5.2vw,54px);font-weight:600;line-height:1.08;letter-spacing:-0.01em;margin:.24em 0 .2em}
+  .mast h1 .rom{font-style:normal}
+  .mast h1 em{font-style:italic;font-weight:500}
   .mast p{font-size:17px;color:#333;max-width:60ch;margin:0}
 
   /* section frame */
@@ -78,7 +79,7 @@
     border-radius:999px;padding:7px 13px;font-weight:600;font-size:12px;
     display:inline-flex;align-items:center;gap:6px}
   .petcard .body{padding:22px 15px 16px}
-  .petcard .n{font-family:var(--disp);font-weight:700;font-size:22px;line-height:1.05}
+  .petcard .n{font-family:var(--serif);font-style:italic;font-weight:500;font-size:26px;line-height:1.06}
   .petcard .b{color:var(--meta);font-size:13px;margin-top:1px}
   .metarow{display:flex;flex-direction:column;gap:9px;margin-top:13px}
   .metarow .m{display:flex;align-items:center;gap:9px;font-size:13px;color:#2a2a2a}
@@ -189,7 +190,7 @@
 
   <header class="mast">
     <div class="eyebrow">PetPal · Concept · The Signal · language board</div>
-    <h1>The record you can hand over in <em>one tap</em>.</h1>
+    <h1><span class="rom">The record you can hand over</span> <em>in one tap.</em></h1>
     <p>Direction C, selected. An enamel ID-tag / wayfinding world — white and ink, one signal colour, built to be scanned fast and stay calm under pressure. The language is shown alive first; the specification follows.</p>
   </header>
 
@@ -354,22 +355,28 @@
   <!-- ================= TYPOGRAPHY ================= -->
   <section class="band">
     <div class="sec-head"><h2>Typography</h2><span class="n">pair + scale</span></div>
-    <p class="sec-lede">A characterful grotesque gives the interface a spine; a quiet workhorse does the reading.</p>
-    <div class="grid cols-2" style="margin-bottom:20px">
+    <p class="sec-lede">A characterful grotesque gives the interface a spine; a quiet workhorse does the reading; an italic serif warms the pet’s name and the promise.</p>
+    <div class="grid cols-3" style="margin-bottom:20px">
       <div style="border:1px solid var(--line);border-radius:14px;padding:18px 20px">
         <div style="font-family:var(--disp);font-weight:700;font-size:46px;line-height:1">Aa</div>
         <div style="font-weight:700;margin-top:6px">Bricolage Grotesque</div>
-        <div style="font-size:12.5px;color:var(--meta)">Display · headings, names, numbers. Weights 600 / 700.</div>
+        <div style="font-size:12.5px;color:var(--meta)">Display · section headings, numbers. Weights 600 / 700.</div>
       </div>
       <div style="border:1px solid var(--line);border-radius:14px;padding:18px 20px">
         <div style="font-family:var(--body);font-weight:600;font-size:46px;line-height:1">Aa</div>
         <div style="font-weight:700;margin-top:6px">Hanken Grotesk</div>
         <div style="font-size:12.5px;color:var(--meta)">Body · records, labels, buttons. Weights 400 / 500 / 600.</div>
       </div>
+      <div style="border:1px solid var(--line);border-radius:14px;padding:18px 20px">
+        <div style="font-family:var(--serif);font-style:italic;font-weight:500;font-size:48px;line-height:1">Aa</div>
+        <div style="font-weight:700;margin-top:6px">Spectral <span style="font-family:var(--serif);font-style:italic;font-weight:500">italic</span></div>
+        <div style="font-size:12.5px;color:var(--meta)">Expressive serif · pet names + the hero’s warm clause. Roman 600 / italic 500.</div>
+      </div>
     </div>
     <p class="lbl">Type scale</p>
     <div>
       <div class="scale-row"><div class="spec"><b>Display</b> · 44 / 1.05<br>Bricolage 700 · -0.02em</div><div class="samp" style="font-family:var(--disp);font-weight:700;font-size:44px;letter-spacing:-.02em">Everything, one tap</div></div>
+      <div class="scale-row"><div class="spec"><b>Name</b> · 26 · italic<br>Spectral italic 500</div><div class="samp" style="font-family:var(--serif);font-style:italic;font-weight:500;font-size:26px">Pixel · Nala · Miso</div></div>
       <div class="scale-row"><div class="spec"><b>H1</b> · 32 / 1.1<br>Bricolage 700</div><div class="samp" style="font-family:var(--disp);font-weight:700;font-size:32px">Pixel’s records</div></div>
       <div class="scale-row"><div class="spec"><b>H2</b> · 24 / 1.15<br>Bricolage 700</div><div class="samp" style="font-family:var(--disp);font-weight:700;font-size:24px">Vaccinations</div></div>
       <div class="scale-row"><div class="spec"><b>H3</b> · 19 / 1.2<br>Bricolage 600</div><div class="samp" style="font-family:var(--disp);font-weight:600;font-size:19px">Rabies booster</div></div>
