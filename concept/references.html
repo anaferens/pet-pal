@@ -6,11 +6,11 @@
 <title>PetPal &mdash; Visual Direction</title>
 <style>
   :root{
-    --ground:#faf8f4; --surface:#ffffff; --surface-2:#f3ede1;
+    --ground:#ffffff; --surface:#ffffff; --surface-2:#f4f4f4;
     --ink:#1a1a1a; --ink-1:#525252; --ink-2:#8a8a8a;
-    --line:#e7dccb; --line-2:#efe7d9;
+    --line:#e7e7e7; --line-2:#efefef;
     --accent:#ef7d3a; --accent-ink:#b0531f; --on-accent:#1a1a1a;
-    --shadow:0 1px 2px rgba(60,40,20,.05), 0 14px 30px -18px rgba(60,40,20,.28);
+    --shadow:0 1px 2px rgba(20,20,20,.06), 0 14px 30px -18px rgba(20,20,20,.22);
     --serif:"Iowan Old Style","Palatino Linotype",Palatino,Georgia,"Times New Roman",serif;
     --sans:system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
     --mono:ui-monospace,"SF Mono","Cascadia Mono",Menlo,Consolas,monospace;
@@ -18,19 +18,19 @@
   }
   @media (prefers-color-scheme:dark){
     :root{
-      --ground:#17120d; --surface:#211a13; --surface-2:#1b1510;
+      --ground:#141414; --surface:#1f1f1f; --surface-2:#191919;
       --ink:#ededed; --ink-1:#b0b0b0; --ink-2:#828282;
-      --line:#352a1f; --line-2:#2b2118;
+      --line:#333333; --line-2:#2a2a2a;
       --accent:#ef7d3a; --accent-ink:#f4a05a; --on-accent:#1a1a1a;
       --shadow:0 1px 2px rgba(0,0,0,.4), 0 16px 34px -20px rgba(0,0,0,.7);
     }
   }
   :root[data-theme="light"]{
-    --ground:#faf8f4; --surface:#ffffff; --surface-2:#f3ede1;
+    --ground:#ffffff; --surface:#ffffff; --surface-2:#f4f4f4;
     --ink:#1a1a1a; --ink-1:#525252; --ink-2:#8a8a8a;
-    --line:#e7dccb; --line-2:#efe7d9;
+    --line:#e7e7e7; --line-2:#efefef;
     --accent:#ef7d3a; --accent-ink:#b0531f; --on-accent:#1a1a1a;
-    --shadow:0 1px 2px rgba(60,40,20,.05), 0 14px 30px -18px rgba(60,40,20,.28);
+    --shadow:0 1px 2px rgba(20,20,20,.06), 0 14px 30px -18px rgba(20,20,20,.22);
   }
   :root[data-theme="dark"]{
     --ground:#17120d; --surface:#211a13; --surface-2:#1b1510;
@@ -324,10 +324,10 @@
         <dt>Surfaces</dt>
         <dd>
           <div class="toks">
-            <span class="tok"><i style="background:#faf8f4"></i><b>#faf8f4<em>base &middot; near-white</em></b></span>
-            <span class="tok"><i style="background:#f8f3eb"></i><b>#f8f3eb<em>warm sand &middot; secondary</em></b></span>
+            <span class="tok"><i style="background:#ffffff;border:1px solid var(--line)"></i><b>#ffffff<em>white &middot; canvas</em></b></span>
+            <span class="tok"><i style="background:#f4f4f4"></i><b>#f4f4f4<em>light grey &middot; secondary</em></b></span>
           </div>
-          <div style="margin-top:8px;font-size:13.5px;color:var(--ink-1)">Near-white base; Warm Sand for section bands. Breaks by background change &mdash; <b>no dividers.</b></div>
+          <div style="margin-top:8px;font-size:13.5px;color:var(--ink-1)">White canvas; a light neutral grey for section bands. Breaks by background change &mdash; <b>no dividers.</b></div>
         </dd>
       </div>
       <div class="row">
@@ -360,10 +360,10 @@
         <dt>Profile card</dt>
         <dd>
           <div style="display:flex;gap:18px;align-items:center;flex-wrap:wrap">
-            <div style="position:relative;width:200px;height:140px;background:#fff;border-radius:16px;overflow:hidden;flex:0 0 auto;box-shadow:0 6px 18px rgba(50,16,4,.12)">
+            <div style="position:relative;width:200px;height:140px;background:#fff;border-radius:16px;overflow:hidden;flex:0 0 auto;box-shadow:0 6px 18px rgba(20,20,20,.12)">
               <div style="position:absolute;left:50%;transform:translateX(-50%);width:520px;height:520px;border-radius:50%;background:#ef7d3a;top:-90px"></div>
               <div style="position:absolute;left:50%;transform:translateX(-50%);width:520px;height:520px;border-radius:50%;background:#fff;top:70px"></div>
-              <div style="position:absolute;left:50%;top:22px;transform:translateX(-50%);width:52px;height:52px;border-radius:50%;background:radial-gradient(circle at 50% 38%,#f2e6cf,#d8c3a3);border:3px solid #fff;box-shadow:0 3px 8px rgba(50,16,4,.22)"></div>
+              <div style="position:absolute;left:50%;top:22px;transform:translateX(-50%);width:52px;height:52px;border-radius:50%;background:radial-gradient(circle at 50% 38%,#f2e6cf,#d8c3a3);border:3px solid #fff;box-shadow:0 3px 8px rgba(20,20,20,.22)"></div>
               <div style="position:absolute;left:0;right:0;top:82px;text-align:center;font-size:14px;font-weight:800;color:#1a1a1a">Bella</div>
               <div style="position:absolute;left:0;right:0;top:102px;text-align:center;font-size:10.5px;color:#6b6b6b">Beagle &middot; 3 years</div>
             </div>

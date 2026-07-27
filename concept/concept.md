@@ -46,16 +46,16 @@ Five opposing pairs for PetPal. Each is **`X, not Y ← data point (source); tec
 
 ### 5 · Warm and credible, not cosy-cliché nor clinical  ⚠
 - **← Data:** [voice.md](../research/voice.md) — *"calm confidence — warm by default, precise when it matters,"* and *own "trusted," not "complete."* PetPal must read as a record credible enough for a vet (A1) yet warm enough to hand to a friend without guilt (A2).
-- **← Technique:** August Health's system + **Kinhive's italic serif**, used to *carry the message itself* — roman for the credible/clear clause, italic for the warm one (the hero pairs both) — on the clean near-white base + Headspace's **restraint** (one action colour).
-- **Resolved → (b):** base is a **near-white `#faf8f4`**; Warm Sand stays only as a *secondary* section surface — warm, but never a cream ground. (See the decision below.)
+- **← Technique:** August Health's system + **Kinhive's italic serif**, used to *carry the message itself* — roman for the credible/clear clause, italic for the warm one (the hero pairs both) — on the clean white base + Headspace's **restraint** (one action colour).
+- **Resolved → white canvas:** base is a **white canvas `#ffffff`**; a **light neutral grey** stays only as a *secondary* section surface — never a warm or cream ground. (See the decision below.)
 
 ### ✓ Where research and taste diverged — decided: (b)
 [`references.md`](references.md) had committed the base surface to **Warm Sand `#f8f3eb`** (a warm cream), inherited from August Health. Your **#1 anti-reference** is exactly that warm-cream "cosy" look — a genuine tension.
 
 **Decision (b), 2026-07-26.** The three references this direction is built on — **August Health, Airbnb, Headspace** — are all in fact **white / near-white based** (August's page base is `#ffffff`, with Warm Sand only a *secondary* surface; Airbnb is white; Headspace is `Cloud Whisper #f9f4f2`). A cream page ground pulls *away* from them, and it fights Airbnb-style photography. Resolved to:
 
-- **Base → near-white `#faf8f4`** — Headspace's whisper-warm off-white register. Clean and credible, not clinical.
-- **Warm Sand `#f8f3eb` → secondary surface only** — section bands and the panel behind floating cards, exactly how August Health uses it.
+- **Base → white `#ffffff`** — clean and neutral. (Refined from the earlier warm near-white `#faf8f4`, which read too creamy and warm.)
+- **Secondary surface → light neutral grey `#f4f4f4`** — section bands and the panel behind floating cards (the two-surface rhythm, neutralised from Warm Sand so nothing reads cream).
 - **Warmth is carried by** the pet photography, the warm-orange accent + arched hero, and the serif headline — layered on, not painted across the background. (Body ink is a neutral near-black `#1a1a1a`.)
 
 This keeps pair #5's sweet spot (*warm and credible, not cosy-cliché nor clinical*) and can't read as the AI cosy-cream reflex. One rule holds regardless: **never cream + terracotta.** Locked into [`references.md`](references.md) and the design system.
