@@ -19,11 +19,11 @@
 <style>
   :root{
     --ink:#141414; --paper:#ffffff; --surface:#f4f4f4; --line:#e7e7e7; --meta:#5c5c5c;
-    --signal:#ffbf00; --signal-deep:#e0a400; --on-signal:#141414;
-    --success:#188e52; --success-bg:#e6f3ec;
-    --warning:#c77800; --warning-bg:#fbeed6;
-    --danger:#c4362e; --danger-bg:#f9e7e6;
-    --info:#2d6e8e; --info-bg:#e5f0f4;
+    --signal:#ffbf00; --signal-deep:#e0a400; --signal-ink:#8a6b00; --on-signal:#141414;
+    --success:#0c6b3b; --success-bg:#e6f3ec;
+    --warning:#8a5800; --warning-bg:#fbeed6;
+    --danger:#9a2820; --danger-bg:#f9e7e6;
+    --info:#235a73; --info-bg:#e5f0f4;
     --r-pill:999px; --r-card:16px; --r-tag:9px; --r-chip:8px; --r-input:12px; --r-thumb:12px;
     --sh-card:0 16px 34px -20px rgba(20,20,20,.26), 0 3px 10px -6px rgba(20,20,20,.10);
     --sh-pop:0 26px 50px -22px rgba(20,20,20,.34), 0 6px 16px -10px rgba(20,20,20,.16);
@@ -52,7 +52,7 @@
   section.band{background:var(--paper);border-radius:22px;padding:34px 30px 38px;margin:0 0 18px;box-shadow:var(--sh-card)}
   .sec-head{display:flex;align-items:baseline;gap:12px;margin-bottom:6px}
   .sec-head h2{font-size:24px;font-weight:700}
-  .sec-head .n{font-family:var(--body);font-size:13px;font-weight:600;color:var(--signal-deep)}
+  .sec-head .n{font-family:var(--body);font-size:13px;font-weight:600;color:var(--signal-ink)}
   .sec-lede{color:var(--meta);font-size:15px;margin:0 0 26px;max-width:62ch}
 
   /* ---- living language: app-alive phone ---- */
@@ -118,6 +118,26 @@
   .chip.info{background:var(--info-bg);color:var(--info)}
   .chip.brand{background:var(--signal);color:var(--on-signal)}
 
+  /* attribute tags — every decision labelled by the attribute it serves */
+  .atags{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0 0}
+  .atag{display:inline-flex;align-items:center;gap:5px;font-size:11px;font-weight:600;color:var(--ink);
+    background:var(--surface);border-radius:999px;padding:4px 10px;line-height:1.3}
+  .atag::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--signal);flex:0 0 auto}
+  /* form input field */
+  .field label{display:block;font-size:13px;font-weight:600;margin:0 0 6px;color:var(--ink)}
+  .field .inp{width:100%;padding:0 14px;min-height:46px;display:flex;align-items:center;border:1px solid var(--line);
+    border-radius:var(--r-input);background:#fff;font-size:15px;color:var(--ink)}
+  .field .inp.ph{color:var(--meta)}
+  .field .inp.focus{border-color:var(--ink);box-shadow:0 0 0 3px rgba(255,191,0,.55)}
+  .field .inp.err{border-color:var(--danger)}
+  .field .caret{display:inline-block;width:2px;height:18px;background:var(--ink);margin-left:1px}
+  .field .help{font-size:12.5px;color:var(--meta);margin:6px 0 0}
+  .field .help.bad{color:var(--danger);display:flex;align-items:center;gap:6px}
+  .field .help.bad iconify-icon{font-size:15px;flex:0 0 auto}
+  /* verification badge on card */
+  .verimark{position:absolute;right:12px;top:12px;background:var(--signal);color:var(--on-signal);
+    border-radius:999px;padding:6px 11px;font-weight:600;font-size:11.5px;display:inline-flex;align-items:center;gap:5px}
+
   /* ---- generic spec grids ---- */
   .grid{display:grid;gap:14px}
   .cols-2{grid-template-columns:repeat(2,minmax(0,1fr))}
@@ -175,7 +195,7 @@
   .imgrule .cap{padding:12px 14px 15px}
   .imgrule .cap b{font-size:14px}
   .imgrule .cap p{margin:3px 0 0;font-size:12.5px;color:var(--meta);line-height:1.4}
-  .imgrule .cap .k{font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--signal-deep)}
+  .imgrule .cap .k{font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--signal-ink)}
 
   @media (max-width:840px){
     .cols-3,.cols-4{grid-template-columns:repeat(2,minmax(0,1fr))}
@@ -256,15 +276,15 @@
   <!-- ================= LIVE COMPONENTS ================= -->
   <section class="band">
     <div class="sec-head"><h2>Components</h2><span class="n">three live pieces</span></div>
-    <p class="sec-lede">Reusable in The Signal's grammar — an action button, a listing card, a tab bar — with the states each ships with.</p>
+    <p class="sec-lede">Reusable in The Signal's grammar — an action button, a listing card with a verification badge, and a form input field, each shown with its states. Every decision carries the <b>attribute</b> it serves.</p>
 
     <div class="grid cols-2" style="align-items:start;gap:30px">
-      <!-- action button + states -->
+      <!-- 1 · action button -->
       <div>
         <p class="lbl">1 · Action button</p>
         <div style="display:flex;flex-direction:column;gap:12px;max-width:320px">
           <button class="btn primary block"><iconify-icon icon="solar:share-bold"></iconify-icon>Share card</button>
-          <button class="btn signal block"><iconify-icon icon="solar:add-circle-bold" ></iconify-icon>Add a record</button>
+          <button class="btn signal block"><iconify-icon icon="solar:add-circle-bold"></iconify-icon>Add a record</button>
           <button class="btn quiet block"><iconify-icon icon="solar:pen-2-bold"></iconify-icon>Edit details</button>
           <div style="display:flex;gap:10px">
             <button class="btn primary loading block">Sharing</button>
@@ -274,37 +294,18 @@
             <button class="fab" aria-label="Add a pet">+</button>
             <span style="font-size:12px;color:var(--meta)">Round black FAB — the primary “add” action.</span>
           </div>
-          <p style="font-size:12px;color:var(--meta);margin:2px 0 0">Pill radius · ink primary, amber signal (used sparingly), quiet grey · round FAB for add · states: default · hover · loading · disabled.</p>
+          <p style="font-size:12px;color:var(--meta);margin:2px 0 0">Pill radius · ink primary, amber signal (used sparingly), quiet grey · round FAB · states: default · hover · loading · disabled.</p>
+          <div class="atags"><span class="atag">Calm — colour only where you act</span><span class="atag">Icon-supported</span></div>
         </div>
       </div>
 
-      <!-- tab bar -->
+      <!-- 2 · listing card + verification badge -->
       <div>
-        <p class="lbl">3 · Tab bar</p>
-        <nav class="tabbar" style="border:1px solid var(--line);border-radius:16px">
-          <span class="tab active"><iconify-icon icon="solar:home-smile-bold"></iconify-icon>Home</span>
-          <span class="tab"><iconify-icon icon="solar:paw-bold"></iconify-icon>Pets</span>
-          <span class="tab"><iconify-icon icon="solar:calendar-minimalistic-bold"></iconify-icon>Reminders</span>
-          <span class="tab"><iconify-icon icon="solar:user-circle-bold"></iconify-icon>Profile</span>
-        </nav>
-        <p style="font-size:12px;color:var(--meta);margin:12px 0 0">Four destinations · Solar bold · active = ink label + amber indicator bar; the rest sit in meta grey.</p>
-
-        <p class="lbl" style="margin-top:26px">Badges &amp; states</p>
-        <div style="display:flex;gap:8px;flex-wrap:wrap">
-          <span class="chip ok"><iconify-icon icon="solar:check-circle-bold"></iconify-icon>Complete</span>
-          <span class="chip warn"><iconify-icon icon="solar:clock-circle-bold"></iconify-icon>Due soon</span>
-          <span class="chip bad"><iconify-icon icon="solar:danger-triangle-bold"></iconify-icon>Overdue</span>
-          <span class="chip info"><iconify-icon icon="solar:info-circle-bold"></iconify-icon>Note</span>
-          <span class="chip brand"><iconify-icon icon="solar:verified-check-bold"></iconify-icon>Verified</span>
-        </div>
-      </div>
-
-      <!-- listing card -->
-      <div>
-        <p class="lbl">2 · Listing card</p>
+        <p class="lbl">2 · Listing card + verification badge</p>
         <div class="petcard plain" style="max-width:320px">
           <div class="ph">
             <img src="https://images.unsplash.com/photo-1543466835-00a7907e9de1?w=560&q=80&auto=format&fit=crop" alt="Nala, a golden retriever">
+            <span class="verimark"><iconify-icon icon="solar:verified-check-bold"></iconify-icon>Verified</span>
             <span class="tagflag"><iconify-icon icon="solar:check-circle-bold"></iconify-icon>Up to date</span>
           </div>
           <div class="body">
@@ -318,6 +319,53 @@
             <button class="btn primary block" style="margin-top:16px"><iconify-icon icon="solar:share-bold"></iconify-icon>Share card</button>
           </div>
         </div>
+        <div class="atags"><span class="atag">Real imagery — the pet leads</span><span class="atag">Trust visible — verified + up-to-date</span></div>
+      </div>
+
+      <!-- 3 · form input field -->
+      <div>
+        <p class="lbl">3 · Form input field</p>
+        <div style="display:flex;flex-direction:column;gap:16px;max-width:340px">
+          <div class="field">
+            <label>Pet's name</label>
+            <div class="inp ph">e.g. Pixel</div>
+            <p class="help">Default — ink hairline, 46px tap target, quiet on white.</p>
+          </div>
+          <div class="field">
+            <label>Pet's name</label>
+            <div class="inp focus">Pixel<span class="caret"></span></div>
+            <p class="help">Focus — the one amber signal, only where you act.</p>
+          </div>
+          <div class="field">
+            <label>Owner email</label>
+            <div class="inp err">maya@petpal</div>
+            <p class="help bad"><iconify-icon icon="solar:danger-triangle-bold"></iconify-icon>Enter a valid email — names the problem and the fix.</p>
+          </div>
+          <div class="atags"><span class="atag">Calm — signal only on focus</span><span class="atag">Trust — clear error &amp; recovery</span></div>
+        </div>
+      </div>
+
+      <!-- tab bar + badges (supporting) -->
+      <div>
+        <p class="lbl">Tab bar</p>
+        <nav class="tabbar" style="border:1px solid var(--line);border-radius:16px">
+          <span class="tab active"><iconify-icon icon="solar:home-smile-bold"></iconify-icon>Home</span>
+          <span class="tab"><iconify-icon icon="solar:paw-bold"></iconify-icon>Pets</span>
+          <span class="tab"><iconify-icon icon="solar:calendar-minimalistic-bold"></iconify-icon>Reminders</span>
+          <span class="tab"><iconify-icon icon="solar:user-circle-bold"></iconify-icon>Profile</span>
+        </nav>
+        <p style="font-size:12px;color:var(--meta);margin:12px 0 0">Four destinations · Solar bold · active = ink label + amber indicator bar; the rest sit in meta grey.</p>
+        <div class="atags"><span class="atag">Icon-supported — scan by icon</span><span class="atag">Calm — one active signal</span></div>
+
+        <p class="lbl" style="margin-top:26px">Status badges &amp; states</p>
+        <div style="display:flex;gap:8px;flex-wrap:wrap">
+          <span class="chip ok"><iconify-icon icon="solar:check-circle-bold"></iconify-icon>Complete</span>
+          <span class="chip warn"><iconify-icon icon="solar:clock-circle-bold"></iconify-icon>Due soon</span>
+          <span class="chip bad"><iconify-icon icon="solar:danger-triangle-bold"></iconify-icon>Overdue</span>
+          <span class="chip info"><iconify-icon icon="solar:info-circle-bold"></iconify-icon>Note</span>
+          <span class="chip brand"><iconify-icon icon="solar:verified-check-bold"></iconify-icon>Verified</span>
+        </div>
+        <div class="atags"><span class="atag">Trust signals visible</span><span class="atag">WCAG AA · text ≥ 4.5:1</span></div>
       </div>
     </div>
 
@@ -339,7 +387,7 @@
             <div style="display:flex;align-items:center;gap:12px;padding:11px 0;border-bottom:1px solid var(--line)">
               <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=120&q=80&auto=format&fit=crop" alt="Maya Chen" style="width:38px;height:38px;border-radius:50%;object-fit:cover">
               <span style="font-family:var(--serif);font-style:italic;font-weight:700;font-size:18px;flex:1">Maya Chen</span>
-              <span style="font-size:12px;color:var(--meta);display:inline-flex;align-items:center;gap:5px"><iconify-icon icon="solar:crown-minimalistic-bold" style="font-size:15px;color:var(--signal-deep)"></iconify-icon>Primary</span>
+              <span style="font-size:12px;color:var(--meta);display:inline-flex;align-items:center;gap:5px"><iconify-icon icon="solar:crown-minimalistic-bold" style="font-size:15px;color:var(--signal-ink)"></iconify-icon>Primary</span>
             </div>
             <div style="display:flex;align-items:center;gap:12px;padding:11px 0">
               <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=120&q=80&auto=format&fit=crop" alt="Tom Rees" style="width:38px;height:38px;border-radius:50%;object-fit:cover">
@@ -355,12 +403,13 @@
   <!-- ================= PALETTE ================= -->
   <section class="band">
     <div class="sec-head"><h2>Palette</h2><span class="n">primary · accent · neutral · semantic</span></div>
-    <p class="sec-lede">One signal colour does the emphasis; everything else is ink on white. Each colour is labelled by the attribute — the job it is allowed to do.</p>
+    <p class="sec-lede">One signal colour does the emphasis; everything else is ink on white. Each colour is labelled by the attribute — the job it is allowed to do. <b>All pairings meet WCAG AA (text ≥ 4.5:1)</b>: near-black on the amber signal reads 11:1, and amber is a fill — never text on white (amber text uses a deep amber-ink <span style="font-family:var(--mono);font-size:12px">#8A6B00</span>).</p>
+    <div class="atags"><span class="atag">Calm — one action colour</span><span class="atag">Trust — status semantics</span><span class="atag">Warm + credible</span></div>
 
     <p class="lbl">Primary &amp; accent</p>
     <div class="grid cols-4" style="margin-bottom:24px">
       <div class="sw"><div class="swatch" style="background:#141414"></div><div class="cap"><div class="role" style="color:#141414">Ink</div><div class="hex">#141414</div><div class="attr">Primary. Headings, body, primary button fill.</div></div></div>
-      <div class="sw"><div class="swatch" style="background:#ffbf00"></div><div class="cap"><div class="role" style="color:var(--signal-deep)">Signal amber</div><div class="hex">#FFBF00</div><div class="attr">Accent. The one signal — active state, key badge, highlight. Black text on top.</div></div></div>
+      <div class="sw"><div class="swatch" style="background:#ffbf00"></div><div class="cap"><div class="role" style="color:var(--signal-ink)">Signal amber</div><div class="hex">#FFBF00</div><div class="attr">Accent. The one signal — active state, key badge, highlight. Black text on top.</div></div></div>
       <div class="sw"><div class="swatch" style="background:#ffffff"></div><div class="cap"><div class="role">Paper</div><div class="hex">#FFFFFF</div><div class="attr">Neutral. The canvas; cards float on it.</div></div></div>
       <div class="sw"><div class="swatch" style="background:#f4f4f4"></div><div class="cap"><div class="role">Surface</div><div class="hex">#F4F4F4</div><div class="attr">Neutral. Quiet buttons, fills, section bands.</div></div></div>
     </div>
@@ -375,10 +424,10 @@
 
     <p class="lbl">Semantic — status only, never decoration</p>
     <div class="grid cols-4">
-      <div class="sw"><div class="swatch" style="background:#188e52"></div><div class="cap"><div class="role" style="color:#188e52">Success</div><div class="hex">#188E52</div><div class="attr">Up to date, complete, current.</div></div></div>
-      <div class="sw"><div class="swatch" style="background:#c77800"></div><div class="cap"><div class="role" style="color:#c77800">Warning</div><div class="hex">#C77800</div><div class="attr">Due soon, attention needed.</div></div></div>
-      <div class="sw"><div class="swatch" style="background:#c4362e"></div><div class="cap"><div class="role" style="color:#c4362e">Danger</div><div class="hex">#C4362E</div><div class="attr">Overdue, expired, error.</div></div></div>
-      <div class="sw"><div class="swatch" style="background:#2d6e8e"></div><div class="cap"><div class="role" style="color:#2d6e8e">Info</div><div class="hex">#2D6E8E</div><div class="attr">Neutral note, help, tip.</div></div></div>
+      <div class="sw"><div class="swatch" style="background:#0c6b3b"></div><div class="cap"><div class="role" style="color:#0c6b3b">Success</div><div class="hex">#0C6B3B</div><div class="attr">Up to date, complete, current.</div></div></div>
+      <div class="sw"><div class="swatch" style="background:#8a5800"></div><div class="cap"><div class="role" style="color:#8a5800">Warning</div><div class="hex">#8A5800</div><div class="attr">Due soon, attention needed.</div></div></div>
+      <div class="sw"><div class="swatch" style="background:#9a2820"></div><div class="cap"><div class="role" style="color:#9a2820">Danger</div><div class="hex">#9A2820</div><div class="attr">Overdue, expired, error.</div></div></div>
+      <div class="sw"><div class="swatch" style="background:#235a73"></div><div class="cap"><div class="role" style="color:#235a73">Info</div><div class="hex">#235A73</div><div class="attr">Neutral note, help, tip.</div></div></div>
     </div>
   </section>
 
@@ -386,6 +435,7 @@
   <section class="band">
     <div class="sec-head"><h2>Typography</h2><span class="n">pair + scale</span></div>
     <p class="sec-lede">A characterful grotesque gives the interface a spine; a quiet workhorse does the reading; an italic serif warms the pet’s name and the promise.</p>
+    <div class="atags"><span class="atag">Warm + credible — serif names, grotesque UI</span></div>
     <div class="grid cols-3" style="margin-bottom:20px">
       <div style="border:1px solid var(--line);border-radius:14px;padding:18px 20px">
         <div style="font-family:var(--disp);font-weight:700;font-size:46px;line-height:1">Aa</div>
@@ -421,6 +471,7 @@
   <section class="band">
     <div class="sec-head"><h2>Form</h2><span class="n">radii · shadow · spacing</span></div>
     <p class="sec-lede">Soft, rounded, floating — never a hard outline. Depth comes from a real offset shadow, not a border.</p>
+    <div class="atags"><span class="atag">Calm — soft, no hard outlines</span></div>
 
     <p class="lbl">Border radii</p>
     <div class="radii" style="margin-bottom:26px">
@@ -454,6 +505,7 @@
   <section class="band">
     <div class="sec-head"><h2>Iconography</h2><span class="n">Solar · bold</span></div>
     <p class="sec-lede">One family, one weight — Solar bold — so a dense record scans at a glance. Coverage plan below.</p>
+    <div class="atags"><span class="atag">Icon-supported — one family, one weight</span></div>
 
     <div class="icoset">
       <div class="who"><b>Tab bar</b><span>the four destinations</span></div>
@@ -510,6 +562,7 @@
   <section class="band" style="margin-bottom:40px">
     <div class="sec-head"><h2>Imagery</h2><span class="n">content → photo</span></div>
     <p class="sec-lede">Real photographs carry the emotion; the UI recedes around them. Each content type has one rule — never a grey-gradient placeholder.</p>
+    <div class="atags"><span class="atag">Real imagery — photo, never grey gradient</span></div>
     <div class="grid cols-3">
       <div class="imgrule">
         <div class="thumb"><img src="https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?w=520&q=80&auto=format&fit=crop" alt="A cat"></div>

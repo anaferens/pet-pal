@@ -72,3 +72,11 @@ From the three worlds explored in [`directions.html`](directions.html) (via the 
 - **Shape:** **pill** buttons; flat enamel "up-to-date" tag; cards float on a soft shadow — **no black outlines**.
 - **Icons:** Solar **bold**.
 - **Imagery:** real pet photography leads the card (Airbnb-style); icons for fast scanning.
+
+### Alternatives — documented, not selected *(kept for reference; see [`directions.html`](directions.html))*
+
+**A · The Passport** — *Committed colour strategy.* The EU pet passport / official vet record: a deep **passport-ink** field (`#0B3A4A`) carrying the header and ID band on white, with machine-readable **mono IDs**, security guilloche hairlines, an official stamp accent, and a validation-green tick. Type: Schibsted Grotesk + Hanken Grotesk + Spline Mono. Reads *credible / official* — leans hardest into A1 (proof). Set aside as too document-formal for the warmth PetPal wants at the handoff.
+
+**B · The Field Guide** — *Drenched colour strategy.* A naturalist specimen catalogue: a deep **herbarium-green** ground (`#1B3A2C`) with **bone** text and **antique-gold** classification labels, an engraved oval plate for the pet photo, Latin binomial, and a specimen number. Type: Bodoni Moda (engraved-plate display) + Hanken Grotesk. Reads *heritage / scientific* — warm via illustration, not surface. Set aside as too dark/editorial for a fast, calm records tool — but a strong reference for empty states or a premium tier.
+
+Both remain viable worlds: if The Signal ever needs more gravitas (A) or more heritage warmth (B), the material is here.
