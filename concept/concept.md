@@ -62,7 +62,7 @@ This keeps pair #5's sweet spot (*warm and credible, not cosy-cliché nor clinic
 
 ---
 
-## Chosen direction — C · The Signal *(2026-07-27)*
+## Directions — selected: C · The Signal *(2026-07-27)*
 
 From the three worlds explored in [`directions.html`](directions.html) (via the impeccable flow + slop test), the designer chose **C · The Signal**. This **supersedes** the earlier synthesis's *"Committed direction"* table in [`references.md`](references.md) — that phase stays as evidence/anti-reference; the durable token set + craft floor get recorded in `DESIGN.md` (next step).
 

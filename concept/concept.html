@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<!--
+  PetPal — "The Signal" trial language board (concept.html)
+  Direction C, selected. World: enamel ID-tag / transit wayfinding — confident, findable, calm.
+  Living language first (app-alive: pet card + buttons + tab bar), spec below.
+  Tokens: white #fff / ink #141414 / one signal amber #FFBF00 (black on-accent) / neutral greys / semantics.
+  Type: Bricolage Grotesque (display) + Hanken Grotesk (body). Pill buttons, flat tag, soft shadow (no outline).
+  Icons: Solar bold (Iconify). Photos: Unsplash — pet→animal, person→portrait, room→interior.
+-->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>PetPal — The Signal · Language board</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700;12..96,800&family=Hanken+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<script src="https://code.iconify.design/iconify-icon/2.1.0/iconify-icon.min.js"></script>
+<style>
+  :root{
+    --ink:#141414; --paper:#ffffff; --surface:#f4f4f4; --line:#e7e7e7; --meta:#5c5c5c;
+    --signal:#ffbf00; --signal-deep:#e0a400; --on-signal:#141414;
+    --success:#188e52; --success-bg:#e6f3ec;
+    --warning:#c77800; --warning-bg:#fbeed6;
+    --danger:#c4362e; --danger-bg:#f9e7e6;
+    --info:#2d6e8e; --info-bg:#e5f0f4;
+    --r-pill:999px; --r-card:16px; --r-tag:9px; --r-chip:8px; --r-input:12px; --r-thumb:12px;
+    --sh-card:0 16px 34px -20px rgba(20,20,20,.26), 0 3px 10px -6px rgba(20,20,20,.10);
+    --sh-pop:0 26px 50px -22px rgba(20,20,20,.34), 0 6px 16px -10px rgba(20,20,20,.16);
+    --sh-phone:0 40px 80px -30px rgba(20,20,20,.45), 0 10px 26px -14px rgba(20,20,20,.22);
+    --disp:"Bricolage Grotesque",system-ui,sans-serif;
+    --body:"Hanken Grotesk",system-ui,-apple-system,sans-serif;
+  }
+  *{box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%}
+  body{margin:0;background:#ececec;color:var(--ink);font-family:var(--body);line-height:1.55;
+    -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+  iconify-icon{display:inline-block;vertical-align:-0.15em}
+  h1,h2,h3{font-family:var(--disp);margin:0;letter-spacing:-0.02em;line-height:1.1}
+  .wrap{max-width:1080px;margin:0 auto;padding:0 24px}
+
+  /* masthead */
+  .mast{padding:40px 0 26px}
+  .mast .eyebrow{font-family:var(--body);font-size:12px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--meta)}
+  .mast h1{font-size:clamp(34px,5vw,52px);font-weight:700;margin:.28em 0 .18em}
+  .mast h1 em{font-style:normal;color:var(--ink);position:relative;white-space:nowrap}
+  .mast h1 em::after{content:"";position:absolute;left:-2px;right:-2px;bottom:.06em;height:.34em;background:var(--signal);z-index:-1;border-radius:2px}
+  .mast p{font-size:17px;color:#333;max-width:60ch;margin:0}
+
+  /* section frame */
+  section.band{background:var(--paper);border-radius:22px;padding:34px 30px 38px;margin:0 0 18px;box-shadow:var(--sh-card)}
+  .sec-head{display:flex;align-items:baseline;gap:12px;margin-bottom:6px}
+  .sec-head h2{font-size:24px;font-weight:700}
+  .sec-head .n{font-family:var(--body);font-size:13px;font-weight:600;color:var(--signal-deep)}
+  .sec-lede{color:var(--meta);font-size:15px;margin:0 0 26px;max-width:62ch}
+
+  /* ---- living language: app-alive phone ---- */
+  .stage{display:flex;gap:36px;flex-wrap:wrap;align-items:flex-start}
+  .phone{width:330px;flex:0 0 auto;background:var(--paper);border-radius:34px;padding:12px;box-shadow:var(--sh-phone)}
+  .screen{background:var(--paper);border-radius:24px;overflow:hidden;border:1px solid var(--line)}
+  .appbar{display:flex;align-items:center;justify-content:space-between;padding:16px 16px 10px}
+  .appbar .title{font-family:var(--disp);font-weight:700;font-size:22px}
+  .appbar .tools{display:flex;gap:8px;align-items:center;color:var(--ink);font-size:22px}
+  .appbar .avatar{width:30px;height:30px;border-radius:50%;object-fit:cover}
+  .screen-body{padding:4px 16px 14px}
+  .tabbar{display:flex;justify-content:space-around;padding:9px 6px 12px;border-top:1px solid var(--line);background:var(--paper)}
+  .tab{display:flex;flex-direction:column;align-items:center;gap:3px;font-size:10.5px;color:var(--meta);font-weight:500;position:relative;padding-top:6px}
+  .tab iconify-icon{font-size:23px}
+  .tab.active{color:var(--ink);font-weight:700}
+  .tab.active::before{content:"";position:absolute;top:-1px;width:22px;height:3px;border-radius:3px;background:var(--signal)}
+
+  /* ---- pet listing card (the core component) ---- */
+  .petcard{border-radius:var(--r-card);overflow:hidden;background:var(--paper);box-shadow:var(--sh-card)}
+  .petcard.plain{box-shadow:var(--sh-card)}
+  .petcard .ph{position:relative}
+  .petcard .ph img{width:100%;height:150px;object-fit:cover;display:block}
+  .tagflag{position:absolute;left:12px;bottom:-13px;background:var(--signal);color:var(--on-signal);
+    border-radius:var(--r-tag);padding:8px 12px 8px 22px;font-weight:700;font-size:11px;letter-spacing:.02em;
+    display:inline-flex;align-items:center;gap:6px}
+  .tagflag::before{content:"";position:absolute;left:10px;top:50%;transform:translateY(-50%);width:7px;height:7px;border-radius:50%;background:#fff;box-shadow:inset 0 0 0 1px rgba(20,20,20,.16)}
+  .petcard .body{padding:22px 15px 16px}
+  .petcard .n{font-family:var(--disp);font-weight:700;font-size:22px;line-height:1.05}
+  .petcard .b{color:var(--meta);font-size:13px;margin-top:1px}
+  .metarow{display:flex;flex-direction:column;gap:9px;margin-top:13px}
+  .metarow .m{display:flex;align-items:center;gap:9px;font-size:13px;color:#2a2a2a}
+  .metarow .m iconify-icon{font-size:19px;color:var(--ink);flex:0 0 auto}
+  .metarow .m .s-ok{color:var(--success)} .metarow .m .s-warn{color:var(--warning)} .metarow .m .s-bad{color:var(--danger)}
+  .cardbtns{display:flex;gap:8px;margin-top:16px}
+
+  /* ---- buttons ---- */
+  .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;border:0;cursor:pointer;
+    font-family:var(--body);font-weight:600;font-size:14px;line-height:1;padding:13px 20px;border-radius:var(--r-pill);
+    transition:transform .12s ease, filter .15s ease}
+  .btn iconify-icon{font-size:18px}
+  .btn:active{transform:scale(.98)}
+  .btn.primary{background:var(--ink);color:#fff}
+  .btn.primary:hover{filter:brightness(1.25)}
+  .btn.signal{background:var(--signal);color:var(--on-signal)}
+  .btn.signal:hover{background:var(--signal-deep)}
+  .btn.quiet{background:var(--surface);color:var(--ink)}
+  .btn.quiet:hover{background:#e8e8e8}
+  .btn.block{width:100%}
+  .btn[disabled]{background:var(--surface);color:#a6a6a6;cursor:not-allowed}
+  .btn.loading{color:transparent;position:relative;pointer-events:none}
+  .btn.loading::after{content:"";position:absolute;width:16px;height:16px;border-radius:50%;
+    border:2px solid rgba(255,255,255,.4);border-top-color:#fff;animation:spin .7s linear infinite}
+  @keyframes spin{to{transform:rotate(360deg)}}
+
+  /* ---- badges / status chips ---- */
+  .chip{display:inline-flex;align-items:center;gap:6px;font-weight:600;font-size:12px;padding:5px 11px;border-radius:var(--r-chip);line-height:1}
+  .chip.ok{background:var(--success-bg);color:var(--success)}
+  .chip.warn{background:var(--warning-bg);color:var(--warning)}
+  .chip.bad{background:var(--danger-bg);color:var(--danger)}
+  .chip.info{background:var(--info-bg);color:var(--info)}
+  .chip.brand{background:var(--signal);color:var(--on-signal)}
+
+  /* ---- generic spec grids ---- */
+  .grid{display:grid;gap:14px}
+  .cols-2{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .cols-3{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .cols-4{grid-template-columns:repeat(4,minmax(0,1fr))}
+  .lbl{font-size:11px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--meta);margin:0 0 12px}
+
+  /* palette */
+  .sw{border-radius:12px;overflow:hidden;background:var(--paper);box-shadow:0 2px 8px -4px rgba(20,20,20,.14);border:1px solid var(--line)}
+  .sw .cap{padding:11px 13px 13px}
+  .sw .swatch{height:76px}
+  .sw .role{font-weight:700;font-size:14px}
+  .sw .hex{font-size:12px;color:var(--meta);margin-top:1px}
+  .sw .attr{font-size:11.5px;color:var(--meta);margin-top:5px;line-height:1.35}
+
+  /* typography scale */
+  .scale-row{display:flex;align-items:baseline;gap:18px;padding:12px 0;border-top:1px solid var(--line)}
+  .scale-row:first-child{border-top:0}
+  .scale-row .spec{flex:0 0 168px;font-size:12px;color:var(--meta);line-height:1.4}
+  .scale-row .spec b{color:var(--ink);font-weight:600}
+  .scale-row .samp{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+
+  /* form tokens */
+  .radii{display:flex;gap:16px;flex-wrap:wrap}
+  .radii figure{margin:0;text-align:center}
+  .radii .box{width:74px;height:52px;background:var(--surface);border:1px solid var(--line)}
+  .radii figcaption{font-size:11.5px;color:var(--meta);margin-top:7px}
+  .shrow{display:flex;gap:20px;flex-wrap:wrap}
+  .shrow figure{margin:0;text-align:center}
+  .shrow .box{width:120px;height:64px;background:var(--paper);border-radius:12px}
+  .shrow figcaption{font-size:11.5px;color:var(--meta);margin-top:10px}
+  .space-ramp{display:flex;align-items:flex-end;gap:12px}
+  .space-ramp .u{background:var(--signal);width:26px;border-radius:4px 4px 0 0}
+  .space-ramp figure{margin:0;text-align:center}
+  .space-ramp figcaption{font-size:11px;color:var(--meta);margin-top:6px}
+
+  /* icon coverage */
+  .icoset{border-top:1px solid var(--line);padding:15px 0;display:flex;gap:16px;align-items:flex-start;flex-wrap:wrap}
+  .icoset:first-of-type{border-top:0}
+  .icoset .who{flex:0 0 150px}
+  .icoset .who b{font-size:14px;font-weight:700} .icoset .who span{display:block;font-size:12px;color:var(--meta)}
+  .icoset .items{display:flex;gap:14px;flex-wrap:wrap;flex:1}
+  .ico{display:flex;flex-direction:column;align-items:center;gap:5px;width:64px}
+  .ico .g{width:46px;height:46px;border-radius:12px;background:var(--surface);display:grid;place-items:center;font-size:24px;color:var(--ink)}
+  .ico .g.on{background:var(--signal);color:var(--on-signal)}
+  .ico .g.ok{color:var(--success)} .ico .g.warn{color:var(--warning)} .ico .g.bad{color:var(--danger)} .ico .g.info{color:var(--info)}
+  .ico small{font-size:10.5px;color:var(--meta);text-align:center;line-height:1.2}
+
+  /* imagery rules */
+  .imgrule{border-radius:14px;overflow:hidden;background:var(--paper);border:1px solid var(--line)}
+  .imgrule .thumb{height:132px;background:var(--surface)}
+  .imgrule .thumb img{width:100%;height:100%;object-fit:cover;display:block}
+  .imgrule.person .thumb{display:grid;place-items:center;background:var(--paper);padding:14px 0}
+  .imgrule.person .thumb img{width:96px;height:96px;border-radius:50%}
+  .imgrule .cap{padding:12px 14px 15px}
+  .imgrule .cap b{font-size:14px}
+  .imgrule .cap p{margin:3px 0 0;font-size:12.5px;color:var(--meta);line-height:1.4}
+  .imgrule .cap .k{font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--signal-deep)}
+
+  @media (max-width:840px){
+    .cols-3,.cols-4{grid-template-columns:repeat(2,minmax(0,1fr))}
+    .scale-row{flex-direction:column;gap:4px}
+    .scale-row .spec{flex:none}
+  }
+  @media (max-width:560px){ .cols-2{grid-template-columns:1fr} }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="mast">
+    <div class="eyebrow">PetPal · Concept · The Signal · language board</div>
+    <h1>The record you can hand over in <em>one tap</em>.</h1>
+    <p>Direction C, selected. An enamel ID-tag / wayfinding world — white and ink, one signal colour, built to be scanned fast and stay calm under pressure. The language is shown alive first; the specification follows.</p>
+  </header>
+
+  <!-- ================= LIVING LANGUAGE ================= -->
+  <section class="band">
+    <div class="sec-head"><h2>Living language</h2><span class="n">the direction, alive</span></div>
+    <p class="sec-lede">The card, buttons and tab bar working together — the same treatment chosen in the directions board, in a real screen.</p>
+    <div class="stage">
+      <div class="phone">
+        <div class="screen">
+          <div class="appbar">
+            <span class="title">Pets</span>
+            <span class="tools">
+              <iconify-icon icon="solar:magnifer-bold" aria-label="Search"></iconify-icon>
+              <img class="avatar" src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=120&q=80&auto=format&fit=crop" alt="Your profile">
+            </span>
+          </div>
+          <div class="screen-body">
+            <div class="petcard">
+              <div class="ph">
+                <img src="https://images.unsplash.com/photo-1552053831-71594a27632d?w=560&q=80&auto=format&fit=crop" alt="Pixel, a Welsh corgi">
+                <span class="tagflag"><iconify-icon icon="solar:check-circle-bold"></iconify-icon>UP TO DATE</span>
+              </div>
+              <div class="body">
+                <div class="n">Pixel</div>
+                <div class="b">Welsh Corgi · 2 years · microchipped</div>
+                <div class="metarow">
+                  <div class="m"><iconify-icon icon="solar:syringe-bold"></iconify-icon>Rabies booster <span class="s-warn" style="margin-left:auto;font-weight:600">Due 14 Mar</span></div>
+                  <div class="m"><iconify-icon icon="solar:shield-check-bold"></iconify-icon>Insured · cover active</div>
+                </div>
+                <div class="cardbtns">
+                  <button class="btn primary block"><iconify-icon icon="solar:share-bold"></iconify-icon>Share card</button>
+                  <button class="btn quiet" aria-label="Edit"><iconify-icon icon="solar:pen-2-bold"></iconify-icon></button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <nav class="tabbar">
+            <span class="tab active"><iconify-icon icon="solar:paw-bold"></iconify-icon>Pets</span>
+            <span class="tab"><iconify-icon icon="solar:calendar-bold"></iconify-icon>Reminders</span>
+            <span class="tab"><iconify-icon icon="solar:bell-bold"></iconify-icon>Alerts</span>
+            <span class="tab"><iconify-icon icon="solar:user-circle-bold"></iconify-icon>Profile</span>
+          </nav>
+        </div>
+      </div>
+
+      <div style="flex:1;min-width:260px">
+        <p class="lbl">What the direction promises</p>
+        <p style="font-size:15px;color:#2a2a2a;max-width:46ch">Colour appears <b>only where you act or where status matters</b>. The photo of the pet leads; ink carries the facts; one amber signal marks the live moment. Nothing shouts, so the one urgent thing can.</p>
+        <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:18px">
+          <span class="chip brand"><iconify-icon icon="solar:check-circle-bold"></iconify-icon>Up to date</span>
+          <span class="chip warn"><iconify-icon icon="solar:clock-circle-bold"></iconify-icon>Due soon</span>
+          <span class="chip bad"><iconify-icon icon="solar:danger-triangle-bold"></iconify-icon>Overdue</span>
+        </div>
+        <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:16px">
+          <button class="btn primary"><iconify-icon icon="solar:share-bold"></iconify-icon>Share card</button>
+          <button class="btn signal"><iconify-icon icon="solar:camera-bold"></iconify-icon>Add photo</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= LIVE COMPONENTS ================= -->
+  <section class="band">
+    <div class="sec-head"><h2>Components</h2><span class="n">three live pieces</span></div>
+    <p class="sec-lede">Reusable in The Signal's grammar — an action button, a listing card, a tab bar — with the states each ships with.</p>
+
+    <div class="grid cols-2" style="align-items:start;gap:30px">
+      <!-- action button + states -->
+      <div>
+        <p class="lbl">1 · Action button</p>
+        <div style="display:flex;flex-direction:column;gap:12px;max-width:320px">
+          <button class="btn primary block"><iconify-icon icon="solar:share-bold"></iconify-icon>Share card</button>
+          <button class="btn signal block"><iconify-icon icon="solar:plus-circle-bold" ></iconify-icon>Add a record</button>
+          <button class="btn quiet block"><iconify-icon icon="solar:pen-2-bold"></iconify-icon>Edit details</button>
+          <div style="display:flex;gap:10px">
+            <button class="btn primary loading block">Sharing</button>
+            <button class="btn primary block" disabled>Unavailable</button>
+          </div>
+          <p style="font-size:12px;color:var(--meta);margin:2px 0 0">Pill radius · ink primary, amber signal (used sparingly), quiet grey · states: default · hover · loading · disabled.</p>
+        </div>
+      </div>
+
+      <!-- tab bar -->
+      <div>
+        <p class="lbl">3 · Tab bar</p>
+        <nav class="tabbar" style="border:1px solid var(--line);border-radius:16px">
+          <span class="tab active"><iconify-icon icon="solar:home-2-bold"></iconify-icon>Home</span>
+          <span class="tab"><iconify-icon icon="solar:paw-bold"></iconify-icon>Pets</span>
+          <span class="tab"><iconify-icon icon="solar:calendar-bold"></iconify-icon>Reminders</span>
+          <span class="tab"><iconify-icon icon="solar:user-circle-bold"></iconify-icon>Profile</span>
+        </nav>
+        <p style="font-size:12px;color:var(--meta);margin:12px 0 0">Four destinations · Solar bold · active = ink label + amber indicator bar; the rest sit in meta grey.</p>
+
+        <p class="lbl" style="margin-top:26px">Badges &amp; states</p>
+        <div style="display:flex;gap:8px;flex-wrap:wrap">
+          <span class="chip ok"><iconify-icon icon="solar:check-circle-bold"></iconify-icon>Complete</span>
+          <span class="chip warn"><iconify-icon icon="solar:clock-circle-bold"></iconify-icon>Due soon</span>
+          <span class="chip bad"><iconify-icon icon="solar:danger-triangle-bold"></iconify-icon>Overdue</span>
+          <span class="chip info"><iconify-icon icon="solar:info-circle-bold"></iconify-icon>Note</span>
+          <span class="chip brand"><iconify-icon icon="solar:verified-check-bold"></iconify-icon>Verified</span>
+        </div>
+      </div>
+
+      <!-- listing card -->
+      <div>
+        <p class="lbl">2 · Listing card</p>
+        <div class="petcard plain" style="max-width:320px">
+          <div class="ph">
+            <img src="https://images.unsplash.com/photo-1543466835-00a7907e9de1?w=560&q=80&auto=format&fit=crop" alt="Nala, a golden retriever">
+            <span class="tagflag"><iconify-icon icon="solar:check-circle-bold"></iconify-icon>UP TO DATE</span>
+          </div>
+          <div class="body">
+            <div class="n">Nala</div>
+            <div class="b">Golden Retriever · 5 years · spayed</div>
+            <div class="metarow">
+              <div class="m"><iconify-icon icon="solar:syringe-bold"></iconify-icon>Vaccinations<span class="s-ok" style="margin-left:auto;font-weight:600">Current</span></div>
+              <div class="m"><iconify-icon icon="solar:weigher-bold"></iconify-icon>Weight · 28.4 kg</div>
+              <div class="m"><iconify-icon icon="solar:map-point-bold"></iconify-icon>Registered · Petlog</div>
+            </div>
+            <button class="btn primary block" style="margin-top:16px"><iconify-icon icon="solar:share-bold"></iconify-icon>Share card</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= PALETTE ================= -->
+  <section class="band">
+    <div class="sec-head"><h2>Palette</h2><span class="n">primary · accent · neutral · semantic</span></div>
+    <p class="sec-lede">One signal colour does the emphasis; everything else is ink on white. Each colour is labelled by the attribute — the job it is allowed to do.</p>
+
+    <p class="lbl">Primary &amp; accent</p>
+    <div class="grid cols-4" style="margin-bottom:24px">
+      <div class="sw"><div class="swatch" style="background:#141414"></div><div class="cap"><div class="role" style="color:#141414">Ink</div><div class="hex">#141414</div><div class="attr">Primary. Headings, body, primary button fill.</div></div></div>
+      <div class="sw"><div class="swatch" style="background:#ffbf00"></div><div class="cap"><div class="role" style="color:var(--signal-deep)">Signal amber</div><div class="hex">#FFBF00</div><div class="attr">Accent. The one signal — active state, key badge, highlight. Black text on top.</div></div></div>
+      <div class="sw"><div class="swatch" style="background:#ffffff"></div><div class="cap"><div class="role">Paper</div><div class="hex">#FFFFFF</div><div class="attr">Neutral. The canvas; cards float on it.</div></div></div>
+      <div class="sw"><div class="swatch" style="background:#f4f4f4"></div><div class="cap"><div class="role">Surface</div><div class="hex">#F4F4F4</div><div class="attr">Neutral. Quiet buttons, fills, section bands.</div></div></div>
+    </div>
+
+    <p class="lbl">Neutral scale</p>
+    <div class="grid cols-4" style="margin-bottom:24px">
+      <div class="sw"><div class="swatch" style="background:#e7e7e7"></div><div class="cap"><div class="role">Line</div><div class="hex">#E7E7E7</div><div class="attr">Hairline dividers, card edges.</div></div></div>
+      <div class="sw"><div class="swatch" style="background:#5c5c5c"></div><div class="cap"><div class="role" style="color:#5c5c5c">Meta</div><div class="hex">#5C5C5C</div><div class="attr">Secondary text, captions, labels.</div></div></div>
+      <div class="sw"><div class="swatch" style="background:#a6a6a6"></div><div class="cap"><div class="role" style="color:#767676">Muted</div><div class="hex">#A6A6A6</div><div class="attr">Disabled text, placeholders.</div></div></div>
+      <div class="sw"><div class="swatch" style="background:#141414"></div><div class="cap"><div class="role" style="color:#141414">On-signal</div><div class="hex">#141414</div><div class="attr">Text/icons placed on the amber signal.</div></div></div>
+    </div>
+
+    <p class="lbl">Semantic — status only, never decoration</p>
+    <div class="grid cols-4">
+      <div class="sw"><div class="swatch" style="background:#188e52"></div><div class="cap"><div class="role" style="color:#188e52">Success</div><div class="hex">#188E52</div><div class="attr">Up to date, complete, current.</div></div></div>
+      <div class="sw"><div class="swatch" style="background:#c77800"></div><div class="cap"><div class="role" style="color:#c77800">Warning</div><div class="hex">#C77800</div><div class="attr">Due soon, attention needed.</div></div></div>
+      <div class="sw"><div class="swatch" style="background:#c4362e"></div><div class="cap"><div class="role" style="color:#c4362e">Danger</div><div class="hex">#C4362E</div><div class="attr">Overdue, expired, error.</div></div></div>
+      <div class="sw"><div class="swatch" style="background:#2d6e8e"></div><div class="cap"><div class="role" style="color:#2d6e8e">Info</div><div class="hex">#2D6E8E</div><div class="attr">Neutral note, help, tip.</div></div></div>
+    </div>
+  </section>
+
+  <!-- ================= TYPOGRAPHY ================= -->
+  <section class="band">
+    <div class="sec-head"><h2>Typography</h2><span class="n">pair + scale</span></div>
+    <p class="sec-lede">A characterful grotesque gives the interface a spine; a quiet workhorse does the reading.</p>
+    <div class="grid cols-2" style="margin-bottom:20px">
+      <div style="border:1px solid var(--line);border-radius:14px;padding:18px 20px">
+        <div style="font-family:var(--disp);font-weight:700;font-size:46px;line-height:1">Aa</div>
+        <div style="font-weight:700;margin-top:6px">Bricolage Grotesque</div>
+        <div style="font-size:12.5px;color:var(--meta)">Display · headings, names, numbers. Weights 600 / 700.</div>
+      </div>
+      <div style="border:1px solid var(--line);border-radius:14px;padding:18px 20px">
+        <div style="font-family:var(--body);font-weight:600;font-size:46px;line-height:1">Aa</div>
+        <div style="font-weight:700;margin-top:6px">Hanken Grotesk</div>
+        <div style="font-size:12.5px;color:var(--meta)">Body · records, labels, buttons. Weights 400 / 500 / 600.</div>
+      </div>
+    </div>
+    <p class="lbl">Type scale</p>
+    <div>
+      <div class="scale-row"><div class="spec"><b>Display</b> · 44 / 1.05<br>Bricolage 700 · -0.02em</div><div class="samp" style="font-family:var(--disp);font-weight:700;font-size:44px;letter-spacing:-.02em">Everything, one tap</div></div>
+      <div class="scale-row"><div class="spec"><b>H1</b> · 32 / 1.1<br>Bricolage 700</div><div class="samp" style="font-family:var(--disp);font-weight:700;font-size:32px">Pixel’s records</div></div>
+      <div class="scale-row"><div class="spec"><b>H2</b> · 24 / 1.15<br>Bricolage 700</div><div class="samp" style="font-family:var(--disp);font-weight:700;font-size:24px">Vaccinations</div></div>
+      <div class="scale-row"><div class="spec"><b>H3</b> · 19 / 1.2<br>Bricolage 600</div><div class="samp" style="font-family:var(--disp);font-weight:600;font-size:19px">Rabies booster</div></div>
+      <div class="scale-row"><div class="spec"><b>Body L</b> · 17 / 1.6<br>Hanken 400</div><div class="samp" style="font-size:17px">A record a vet trusts and a sitter reads fast.</div></div>
+      <div class="scale-row"><div class="spec"><b>Body</b> · 15 / 1.55<br>Hanken 400</div><div class="samp" style="font-size:15px">Welsh Corgi · 2 years · microchipped · insured.</div></div>
+      <div class="scale-row"><div class="spec"><b>Label</b> · 13 / 1.3<br>Hanken 600</div><div class="samp" style="font-size:13px;font-weight:600">Share card · Edit details</div></div>
+      <div class="scale-row"><div class="spec"><b>Caption</b> · 12 / 1.3<br>Hanken 500 · meta</div><div class="samp" style="font-size:12px;font-weight:500;color:var(--meta)">Last examined · Feb 2026</div></div>
+    </div>
+  </section>
+
+  <!-- ================= FORM ================= -->
+  <section class="band">
+    <div class="sec-head"><h2>Form</h2><span class="n">radii · shadow · spacing</span></div>
+    <p class="sec-lede">Soft, rounded, floating — never a hard outline. Depth comes from a real offset shadow, not a border.</p>
+
+    <p class="lbl">Border radii</p>
+    <div class="radii" style="margin-bottom:26px">
+      <figure><div class="box" style="border-radius:999px;width:100px"></div><figcaption>Pill · 999 — buttons</figcaption></figure>
+      <figure><div class="box" style="border-radius:16px"></div><figcaption>Card · 16</figcaption></figure>
+      <figure><div class="box" style="border-radius:12px"></div><figcaption>Input / thumb · 12</figcaption></figure>
+      <figure><div class="box" style="border-radius:9px"></div><figcaption>Tag · 9</figcaption></figure>
+      <figure><div class="box" style="border-radius:8px"></div><figcaption>Chip · 8</figcaption></figure>
+    </div>
+
+    <p class="lbl">Elevation — offset + blur, no zero-offset halos</p>
+    <div class="shrow" style="margin-bottom:26px">
+      <figure><div class="box" style="box-shadow:0 2px 8px -4px rgba(20,20,20,.14)"></div><figcaption>Raise · chips, swatches</figcaption></figure>
+      <figure><div class="box" style="box-shadow:var(--sh-card)"></div><figcaption>Card · floating</figcaption></figure>
+      <figure><div class="box" style="box-shadow:var(--sh-pop)"></div><figcaption>Pop · sheets, menus</figcaption></figure>
+    </div>
+
+    <p class="lbl">Spacing — 4-based ramp</p>
+    <div class="space-ramp">
+      <figure><div class="u" style="height:8px"></div><figcaption>4</figcaption></figure>
+      <figure><div class="u" style="height:16px"></div><figcaption>8</figcaption></figure>
+      <figure><div class="u" style="height:24px"></div><figcaption>12</figcaption></figure>
+      <figure><div class="u" style="height:32px"></div><figcaption>16</figcaption></figure>
+      <figure><div class="u" style="height:48px"></div><figcaption>24</figcaption></figure>
+      <figure><div class="u" style="height:64px"></div><figcaption>32</figcaption></figure>
+      <figure><div class="u" style="height:88px"></div><figcaption>48</figcaption></figure>
+    </div>
+  </section>
+
+  <!-- ================= ICONOGRAPHY ================= -->
+  <section class="band">
+    <div class="sec-head"><h2>Iconography</h2><span class="n">Solar · bold</span></div>
+    <p class="sec-lede">One family, one weight — Solar bold — so a dense record scans at a glance. Coverage plan below.</p>
+
+    <div class="icoset">
+      <div class="who"><b>Tab bar</b><span>the four destinations</span></div>
+      <div class="items">
+        <div class="ico"><div class="g on"><iconify-icon icon="solar:home-2-bold"></iconify-icon></div><small>Home · active</small></div>
+        <div class="ico"><div class="g"><iconify-icon icon="solar:paw-bold"></iconify-icon></div><small>Pets</small></div>
+        <div class="ico"><div class="g"><iconify-icon icon="solar:calendar-bold"></iconify-icon></div><small>Reminders</small></div>
+        <div class="ico"><div class="g"><iconify-icon icon="solar:user-circle-bold"></iconify-icon></div><small>Profile</small></div>
+      </div>
+    </div>
+    <div class="icoset">
+      <div class="who"><b>Metadata</b><span>facts on a card</span></div>
+      <div class="items">
+        <div class="ico"><div class="g"><iconify-icon icon="solar:syringe-bold"></iconify-icon></div><small>Vaccine</small></div>
+        <div class="ico"><div class="g"><iconify-icon icon="solar:pill-bold"></iconify-icon></div><small>Meds</small></div>
+        <div class="ico"><div class="g"><iconify-icon icon="solar:weigher-bold"></iconify-icon></div><small>Weight</small></div>
+        <div class="ico"><div class="g"><iconify-icon icon="solar:calendar-bold"></iconify-icon></div><small>Date</small></div>
+        <div class="ico"><div class="g"><iconify-icon icon="solar:map-point-bold"></iconify-icon></div><small>Registry</small></div>
+        <div class="ico"><div class="g"><iconify-icon icon="solar:shield-check-bold"></iconify-icon></div><small>Insured</small></div>
+      </div>
+    </div>
+    <div class="icoset">
+      <div class="who"><b>Badge</b><span>status marks</span></div>
+      <div class="items">
+        <div class="ico"><div class="g on"><iconify-icon icon="solar:check-circle-bold"></iconify-icon></div><small>Up to date</small></div>
+        <div class="ico"><div class="g ok"><iconify-icon icon="solar:verified-check-bold"></iconify-icon></div><small>Verified</small></div>
+        <div class="ico"><div class="g warn"><iconify-icon icon="solar:clock-circle-bold"></iconify-icon></div><small>Due soon</small></div>
+        <div class="ico"><div class="g bad"><iconify-icon icon="solar:danger-triangle-bold"></iconify-icon></div><small>Overdue</small></div>
+      </div>
+    </div>
+    <div class="icoset">
+      <div class="who"><b>Buttons</b><span>the verbs</span></div>
+      <div class="items">
+        <div class="ico"><div class="g"><iconify-icon icon="solar:share-bold"></iconify-icon></div><small>Share</small></div>
+        <div class="ico"><div class="g"><iconify-icon icon="solar:pen-2-bold"></iconify-icon></div><small>Edit</small></div>
+        <div class="ico"><div class="g"><iconify-icon icon="solar:camera-bold"></iconify-icon></div><small>Add photo</small></div>
+        <div class="ico"><div class="g"><iconify-icon icon="solar:plus-circle-bold"></iconify-icon></div><small>Add</small></div>
+        <div class="ico"><div class="g"><iconify-icon icon="solar:magnifer-bold"></iconify-icon></div><small>Search</small></div>
+      </div>
+    </div>
+    <div class="icoset">
+      <div class="who"><b>States</b><span>system feedback</span></div>
+      <div class="items">
+        <div class="ico"><div class="g ok"><iconify-icon icon="solar:check-circle-bold"></iconify-icon></div><small>Success</small></div>
+        <div class="ico"><div class="g bad"><iconify-icon icon="solar:danger-triangle-bold"></iconify-icon></div><small>Error</small></div>
+        <div class="ico"><div class="g info"><iconify-icon icon="solar:info-circle-bold"></iconify-icon></div><small>Info</small></div>
+        <div class="ico"><div class="g"><iconify-icon icon="solar:refresh-bold"></iconify-icon></div><small>Loading</small></div>
+        <div class="ico"><div class="g"><iconify-icon icon="solar:inbox-bold"></iconify-icon></div><small>Empty</small></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= IMAGERY ================= -->
+  <section class="band" style="margin-bottom:40px">
+    <div class="sec-head"><h2>Imagery</h2><span class="n">content → photo</span></div>
+    <p class="sec-lede">Real photographs carry the emotion; the UI recedes around them. Each content type has one rule — never a grey-gradient placeholder.</p>
+    <div class="grid cols-3">
+      <div class="imgrule">
+        <div class="thumb"><img src="https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?w=520&q=80&auto=format&fit=crop" alt="A cat"></div>
+        <div class="cap"><div class="k">Pet</div><b>The animal itself</b><p>Full-bleed in a rounded card — the pet leads every screen it appears on.</p></div>
+      </div>
+      <div class="imgrule person">
+        <div class="thumb"><img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=200&q=80&auto=format&fit=crop" alt="A sitter, portrait"></div>
+        <div class="cap"><div class="k">Person</div><b>A portrait</b><p>Sitter, owner or vet — a circular avatar, warm and human, cropped to the face.</p></div>
+      </div>
+      <div class="imgrule">
+        <div class="thumb"><img src="https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?w=520&q=80&auto=format&fit=crop" alt="An interior"></div>
+        <div class="cap"><div class="k">Room</div><b>An interior</b><p>A boarding or home stay — the place, softly lit, in a rounded thumbnail.</p></div>
+      </div>
+    </div>
+  </section>
+
+</div>
+</body>
+</html>
