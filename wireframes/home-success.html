@@ -682,8 +682,12 @@
   /* full-width share CTA at the end of the card */
   .m-share-cta { padding:8px 16px 20px; }
   .m-share-cta a { display:block; text-decoration:none; }
-  .btn-share { width:100%; display:inline-flex; align-items:center; justify-content:center; gap:10px;
-    padding:15px 16px; font-size:15px; font-weight:600; }
+  /* matches concept.html .btn.primary.block exactly */
+  .btn-share { width:100%; display:inline-flex; align-items:center; justify-content:center; gap:8px;
+    border:0; cursor:pointer; font-family:var(--body); font-weight:600; font-size:14px; line-height:1;
+    padding:13px 20px; border-radius:999px; transition:transform .12s ease, filter .15s ease; }
+  .btn-share:hover { filter:brightness(1.25); }
+  .btn-share:active { transform:scale(.98); }
   .btn-share::before { content:""; width:18px; height:18px; flex:0 0 auto;
     background:url("https://api.iconify.design/solar/share-bold.svg?color=%23ffffff") center / 18px no-repeat; }
   .top-nav .nav-action { border-radius:999px; border:1px solid var(--wf-border); }
