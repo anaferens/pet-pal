@@ -59,3 +59,16 @@ Five opposing pairs for PetPal. Each is **`X, not Y ← data point (source); tec
 - **Warmth is carried by** the pet photography, the warm-orange accent + arched hero, and the serif headline — layered on, not painted across the background. (Body ink is a neutral near-black `#1a1a1a`.)
 
 This keeps pair #5's sweet spot (*warm and credible, not cosy-cliché nor clinical*) and can't read as the AI cosy-cream reflex. One rule holds regardless: **never cream + terracotta.** Locked into [`references.md`](references.md) and the design system.
+
+---
+
+## Chosen direction — C · The Signal *(2026-07-27)*
+
+From the three worlds explored in [`directions.html`](directions.html) (via the impeccable flow + slop test), the designer chose **C · The Signal**. This **supersedes** the earlier synthesis's *"Committed direction"* table in [`references.md`](references.md) — that phase stays as evidence/anti-reference; the durable token set + craft floor get recorded in `DESIGN.md` (next step).
+
+- **World:** enamel ID-tag / transit wayfinding — confident, findable, calm under pressure. Not the category's cream-and-terracotta reflex, nor the generic pastel health-app.
+- **Colour (Restrained):** white `#ffffff` · ink `#141414` · **one signal amber-gold `#FFBF00`** (black text as on-accent) · light-grey `#f4f4f4` secondary · `#5c5c5c` meta.
+- **Type:** Bricolage Grotesque (display) + Hanken Grotesk (body) — both off the training-default face list.
+- **Shape:** **pill** buttons; flat enamel "up-to-date" tag; cards float on a soft shadow — **no black outlines**.
+- **Icons:** Solar **bold**.
+- **Imagery:** real pet photography leads the card (Airbnb-style); icons for fast scanning.
