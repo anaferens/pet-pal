@@ -64,12 +64,12 @@ This keeps pair #5's sweet spot (*warm and credible, not cosy-cliché nor clinic
 
 ## Directions — selected: C · The Signal *(2026-07-27)*
 
-From the three worlds explored in [`directions.html`](directions.html) (via the impeccable flow + slop test), the designer chose **C · The Signal**. This **supersedes** the earlier synthesis's *"Committed direction"* table in [`references.md`](references.md) — that phase stays as evidence/anti-reference; the durable token set + craft floor get recorded in `DESIGN.md` (next step).
+From the three worlds explored in [`directions.html`](directions.html) (via the impeccable flow + slop test), the designer chose **C · The Signal**. This **supersedes** the earlier synthesis's *"Committed direction"* table in [`references.md`](references.md) — that phase stays as evidence/anti-reference. The durable token set is recorded in [**Tokens**](#tokens) below, and rendered live in [`concept.html`](concept.html), which is the source of truth for component values.
 
 - **World:** enamel ID-tag / transit wayfinding — confident, findable, calm under pressure. Not the category's cream-and-terracotta reflex, nor the generic pastel health-app.
 - **Colour (Restrained):** white `#ffffff` · ink `#141414` · **one signal amber-gold `#FFBF00`** (black text as on-accent) · light-grey `#f4f4f4` secondary · `#5c5c5c` meta.
 - **Type:** Bricolage Grotesque (display) + Hanken Grotesk (body) + **EB Garamond** italic (names — pet + owner).
-- **Shape:** **pill** buttons; flat enamel "up-to-date" tag; cards float on a soft shadow — **no black outlines**.
+- **Shape:** **pill** buttons; flat enamel "up-to-date" tag (`--r-tag`, built as `.uptodate` — on the pet card under the name); cards float on a soft shadow — **no black outlines**.
 - **Icons:** Solar **bold**.
 - **Imagery:** real pet photography leads the card (Airbnb-style); icons for fast scanning.
 
@@ -80,3 +80,64 @@ From the three worlds explored in [`directions.html`](directions.html) (via the 
 **B · The Field Guide** — *Drenched colour strategy.* A naturalist specimen catalogue: a deep **herbarium-green** ground (`#1B3A2C`) with **bone** text and **antique-gold** classification labels, an engraved oval plate for the pet photo, Latin binomial, and a specimen number. Type: Bodoni Moda (engraved-plate display) + Hanken Grotesk. Reads *heritage / scientific* — warm via illustration, not surface. Set aside as too dark/editorial for a fast, calm records tool — but a strong reference for empty states or a premium tier.
 
 Both remain viable worlds: if The Signal ever needs more gravitas (A) or more heritage warmth (B), the material is here.
+
+---
+
+## Tokens
+
+The full set in use, each tied to the **Attribute** it serves. Anything on a PetPal screen must resolve to a token below; a value that can't is a decision invented from scratch and gets removed. Live in [`concept.html`](concept.html) `:root`.
+
+### Colour
+
+| Token | Value | Serves | Why this value |
+|---|---|---|---|
+| `--paper` | `#ffffff` | 5 · Warm and credible | The white canvas decided above — refuses the cream-and-terracotta anti-reference. |
+| `--ink` | `#141414` | 1 · Calm | Near-black, not pure black: sits calmer on white while holding 18.4:1. |
+| `--surface` | `#f4f4f4` | 5 | The neutral secondary surface — the two-surface rhythm, de-creamed from Warm Sand. |
+| `--line` | `#e7e7e7` | 1 · Calm | Hairline separation instead of a border. Cards are told apart by shadow, not outline (Shape: *no black outlines*). |
+| `--meta` | `#5c5c5c` | 1 · Calm | Secondary text that recedes but still clears AA on white (6.7:1). |
+| `--signal` | `#ffbf00` | 2 · Trust signals visible | The one action colour. Headspace's discipline: saturated hue only in small accents. |
+| `--on-signal` | `#141414` | 2 | Ink is the only text colour allowed on amber — 11.2:1. Muted grey on amber is 4.05:1 and **fails**. |
+| `--signal-deep` | `#e0a400` | 1 · Calm | Hover/pressed for amber. Darkens rather than brightens, so feedback never flashes. |
+| `--signal-ink` | `#8a6b00` | 3 · Real imagery | Amber dark enough to be *text or a glyph*. Carries illustration glyphs on tint at 4.5:1. |
+| `--signal-tint` | `#fdf3d3` | 3 · Real imagery | The illustration-tile ground. Warmth without a grey placeholder — the anti-reference this replaces. |
+| `--success` / `--success-bg` | `#0c6b3b` / `#e6f3ec` | 2 · Trust signals visible | The verified mark and the enamel *up-to-date* tag. The designer approved green as the one supporting accent. |
+| `--warning` / `--warning-bg` | `#8a5800` / `#fbeed6` | 1 · Calm | *Due soon.* Amber-brown, distinct from `--signal` so a warning is never mistaken for a button. |
+| `--danger` / `--danger-bg` | `#9a2820` / `#f9e7e6` | 1 · Calm | *Overdue* and destructive actions. Deep, not alarm-red — [voice.md](../research/voice.md) P2 asks for precise, never panicked. |
+| `--info` / `--info-bg` | `#235a73` / `#e5f0f4` | 1 · Calm | *Upcoming.* The quietest status, so the far future doesn't compete with what's due. |
+
+**Semantic colour is status only, never decoration.** All four pairs clear AA on their own ground (5.3–6.5:1).
+
+### Type
+
+| Token | Value | Serves | Why |
+|---|---|---|---|
+| `--disp` | Bricolage Grotesque 600/700 | 5 · Warm and credible | Headings. Confident without shouting. |
+| `--body` | Hanken Grotesk 400–700 | 4 · Icon-supported | UI and body. Neutral, highly legible at 13px. |
+| `--serif` | EB Garamond italic 700 | 5 · Warm and credible | **Names only** — pet and owner. Kinhive's italic serif carrying the warm clause. Never a label: Me.html's app bar reads "Owner", which is a label, so it stays sans. |
+
+### Shape
+
+| Token | Value | Serves | Why |
+|---|---|---|---|
+| `--r-pill` | `999px` | 2 · Trust | Buttons and the segmented switcher. The committed *pill* shape. |
+| `--r-card` | `16px` | 1 · Calm | Cards, sheets, illustration tiles. |
+| `--r-input` | `12px` | 1 · Calm | Inputs, selects, icon tiles, calendar tiles — anything you act on inside a card. |
+| `--r-tag` | `9px` | 2 · Trust | The flat enamel *up-to-date* tag. The enamel ID-tag radius the direction is named for. |
+| `--r-chip` | `8px` | 2 · Trust | Status chips (*Overdue*, *Due soon*). |
+| `--r-thumb` | `12px` | 3 · Real imagery | Photo thumbnails. |
+
+### Elevation
+
+| Token | Serves | Why |
+|---|---|---|
+| `--sh-card` | 1 · Calm | Cards float on a soft shadow instead of an outline. Offset + blur, never a zero-offset halo. Lightened once on the designer's note that the first value was too intense. |
+| `--sh-pop` | 1 · Calm | Confirm sheets and the QR sheet — one step above a card. |
+| `--sh-phone` | — | Prototype chrome only (the device frame), not product UI. |
+
+### Standing rules
+
+- **Tap targets ≥ 44×44** (WCAG 2.5.5). Buttons are `15px 20px` for a 44px box.
+- **Every form control needs a programmatic label** — `id` + `for`, not a visually adjacent `<label>`.
+- **Icons are Solar only.** Where Solar has no glyph — it has no bare checkmark and no bowl — draw it in CSS rather than importing a second family.
+- **No grey placeholder fills.** A missing image is the `--signal-tint` illustration tile with one content-matched Solar glyph; a real photo where the content is a pet or a person (Attribute 3).

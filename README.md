@@ -29,7 +29,7 @@ The information architecture lives in [`research/`](research/):
 |---|---|
 | [`sitemap.md`](research/sitemap.md) | **Entities** (the objects a person touches), the **Screens** tree (every screen tagged with the job it serves), the **Navigation** model (3 global items, depth-to-main-job, global/contextual/deep), and the **Traceability** matrix (jobs × screens, with orphan decisions). Now includes §"Screens realized in the interactive wireframes (v2)" — the screens the clickable prototype added (Sc22–Sc26). |
 | [`flows.md`](research/flows.md) | All **user flows** as colour-coded Mermaid diagrams — main job + **new-pet setup (full onboarding)** + R1/R2/R5 — with screen nodes, decision points, loading/empty/error states, and success/partial endings (no dead ends). |
-| [`ia.md`](research/ia.md) · [`ia.html`](research/ia.html) | The **unified IA tree** combining every page from sitemap + flows (incl. the v2 wireframe nodes: Add photo, new-pet dossier + Add-info hub, Edit a record, Document view); `ia.html` also renders the live flows and the traceability matrix. |
+| [`ia.md`](research/ia.md) · [`ia.html`](research/ia.html) | The **unified IA tree** combining every page from sitemap + flows (incl. the v2 wireframe nodes: Add photo, new pet card + Add-info hub, Edit a record, Document view); `ia.html` also renders the live flows and the traceability matrix. |
 | [`personas.md`](research/personas.md) · [`jtbd.md`](research/jtbd.md) | Personas and jobs-to-be-done the IA is built from — incl. the mapping from the three interactive persona-walkthroughs to the personas. |
 | [`sitemap-critique.md`](research/sitemap-critique.md) · [`.html`](research/sitemap-critique.html) | Defect review (dead ends, missing states, depth, orphans) and the applied fixes. |
 | [`wireframes/README.md`](wireframes/README.md) | **Interactive prototype guide** — the three persona flows, the full screen catalog, the new screens, and the prototype mechanics (flow mode, tooltips, param-driven pre-selection, no dead ends). |
@@ -53,6 +53,22 @@ All product copy follows a defined voice. Two files hold it:
 
 ---
 
+## Concept
+
+One visual direction is selected and applied: **C · The Signal**. An enamel ID-tag / transit-wayfinding world — confident, findable, calm under pressure, and deliberately not the category's cream-and-terracotta reflex.
+
+| File | What's inside |
+|---|---|
+| [`concept.md`](concept/concept.md) | The **why** — Designer's Taste (named products, not adjectives), the five **Attributes** every decision is checked against, the white-canvas decision, and the **Tokens** table: every colour, type, shape and elevation token tied to the Attribute it serves. Directions A and B stay documented as alternatives. |
+| [`concept.html`](concept/concept.html) | The **live language board** — the source of truth for component values. Action button, listing card + verification badge, form field, select, segmented control, choice card, confirm sheet, switch, round icon buttons, status chips, the enamel *up-to-date* tag, illustration tiles, calendar tiles, and the tab bar. |
+| [`directions.html`](concept/directions.html) | The three worlds explored before C was chosen (A · The Passport, B · The Field Guide, C · The Signal). |
+
+**In one line:** white canvas, near-black ink, **one** signal amber-gold `#FFBF00`; Bricolage Grotesque + Hanken Grotesk, with EB Garamond italic reserved for *names*; pill buttons, 16px cards floating on a soft shadow with no outlines, a flat enamel *up-to-date* tag; Solar bold icons; real pet photography leading the card, and never a grey placeholder.
+
+Every value on a screen resolves to a token in concept.md — anything that can't is an invention and gets removed. Applied and verified across the pet card, owner, share, shared-card and reminders screens: shared components compute byte-identically, all text clears WCAG AA, tap targets are ≥ 44×44, and every form control carries a programmatic label.
+
+---
+
 ## Status
 
 | Phase | Status |
@@ -60,7 +76,7 @@ All product copy follows a defined voice. Two files hold it:
 | Brief | ✅ Done |
 | Competitor research | ✅ Done |
 | Wireframes | ✅ Interactive prototype — all flows clickable, no dead ends ([wireframes/](wireframes/)) |
-| Concept | — |
+| Concept | ✅ C · The Signal selected and applied ([concept/](concept/)) |
 | Design system | — |
 | Handoff | — |
 

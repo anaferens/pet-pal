@@ -3,6 +3,17 @@
 ## Concept
 PetPal is a mobile-first lifestyle app that keeps everything related to your pet in one place — health records, reminders, documents, care preferences, and vet communication — all easily transferable and accessible.
 
+**Visual concept — C · The Signal** *(selected 2026-07-27)*. An enamel ID-tag / transit-wayfinding world: confident, findable, calm under pressure — deliberately not the category's cream-and-terracotta reflex. White canvas, near-black ink, **one** signal amber-gold, Bricolage Grotesque + Hanken Grotesk with EB Garamond italic reserved for names. Real pet photography leads the card; Solar bold icons make it scannable.
+
+Two files govern it, and product work must resolve to them:
+
+| File | Role |
+|---|---|
+| [`concept/concept.md`](concept/concept.md) | The **why** — Designer's Taste, the five Attributes every decision is checked against, and the **Tokens** table tying each token to the Attribute it serves. |
+| [`concept/concept.html`](concept/concept.html) | The **what** — the live language board. Source of truth for component values (buttons, fields, cards, switcher, switch, chips, illustration tiles, tab bar). |
+
+**Standing rules:** every value on a screen resolves to a token in concept.md — a value that can't is an invention and gets removed. Tap targets ≥ 44×44. Every form control carries a programmatic label. Solar icons only. No grey placeholder fills — a missing image is the signal-tint illustration tile with one content-matched glyph. Product copy follows [`research/voice.md`](research/voice.md), whose Glossary is binding (it's **pet card**, never "dossier" or "profile").
+
 ## Problem
 Pet owners miss important checks, vaccinations, insurance renewals, and legal deadlines. Records are scattered across clinics, paper, and email. Dog walkers and sitters lack access to essential pet care info. Vets have no shared record baseline with owners.
 
@@ -82,7 +93,7 @@ Top 5 most common pets in the EU:
 ### Top-level sitemap
 ```
 Owner app (signed in)
-├─ My Pets → Pet dossier → {Health & jabs · Documents & passport · Insurance ·
+├─ My Pets → Pet card → {Health & jabs · Documents & passport · Insurance ·
 │                           Personality & care · Vet & appointments · Emergency info}
 ├─ What's due   (reminders, all pets)
 ├─ Share a pet → Who has access
@@ -93,7 +104,7 @@ Recipient (no account, via link)
 
 ### Main flow (primary persona)
 Keep everything in one trusted place and pass it on:
-**My Pets → Pet dossier → (add/update records) → Share a pet → handoff sent.** Every error/empty state has a recovery — no dead ends.
+**My Pets → Pet card → (add/update records) → Share a pet → handoff sent.** Every error/empty state has a recovery — no dead ends.
 
 ### Navigation
 3 global items, one per verb of the main job: **Pets** (consult) · **What's due** (act in time) · **Share** (pass on). Vet messages is contextual; Emergency is a 1-tap shortcut.

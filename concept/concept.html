@@ -118,6 +118,12 @@
   .chip.bad{background:var(--danger-bg);color:var(--danger)}
   .chip.info{background:var(--info-bg);color:var(--info)}
   .chip.brand{background:var(--signal);color:var(--on-signal)}
+  /* enamel "up-to-date" tag — the pet card's headline trust signal.
+     Chip family, but FLAT (no shadow) and on --r-tag, the enamel ID-tag radius. */
+  .uptodate{display:inline-flex;align-items:center;gap:6px;font-weight:600;font-size:12px;
+    padding:5px 11px;border-radius:var(--r-tag);line-height:1;
+    background:var(--success-bg);color:var(--success)}
+  .uptodate iconify-icon{font-size:14px}
 
   /* attribute tags — every decision labelled by the attribute it serves */
   .atags{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0 0}
@@ -221,6 +227,21 @@
   .iconbtn.onphoto{width:30px;height:30px;background:var(--paper);color:var(--ink);
     box-shadow:0 2px 8px -2px rgba(20,20,20,.35)}
   .iconbtn.onphoto iconify-icon{font-size:14px}
+
+  /* calendar tile — the date strip on the reminders screen */
+  .daystrip{display:flex;gap:8px;overflow-x:auto;padding:2px 0}
+  .daycell{min-width:48px;padding:7px 0;border:1px solid var(--line);border-radius:var(--r-input);
+    background:var(--paper);display:flex;flex-direction:column;align-items:center;gap:2px;flex:0 0 auto}
+  .daycell .dow{font-size:10px;color:var(--meta)}
+  .daycell .num{font-family:var(--disp);font-size:16px;font-weight:700;color:var(--ink);line-height:1.2}
+  .daycell.sel{background:var(--ink);border-color:var(--ink)}
+  .daycell.sel .dow,.daycell.sel .num{color:#fff}
+
+  /* pet pair — overlapping avatars, as on the reminders hero */
+  .petpair{display:flex;justify-content:center}
+  .petpair > span{width:88px;height:88px;border-radius:50%;border:3px solid var(--paper);flex:0 0 auto;
+    background:#eaeaea center / cover no-repeat;position:relative}
+  .petpair > span + span{margin-left:-22px;z-index:1}
 
   /* ---- generic spec grids ---- */
   .grid{display:grid;gap:14px}
@@ -333,10 +354,10 @@
             </div>
           </div>
           <nav class="tabbar">
-            <span class="tab"><iconify-icon icon="solar:home-smile-bold"></iconify-icon>Home</span>
             <span class="tab active"><iconify-icon icon="solar:paw-bold"></iconify-icon>Pets</span>
             <span class="tab"><iconify-icon icon="solar:calendar-minimalistic-bold"></iconify-icon>Reminders</span>
-            <span class="tab"><iconify-icon icon="solar:user-circle-bold"></iconify-icon>Profile</span>
+            <span class="tab"><iconify-icon icon="solar:share-bold"></iconify-icon>Share</span>
+            <span class="tab"><iconify-icon icon="solar:user-circle-bold"></iconify-icon>Owner</span>
           </nav>
         </div>
       </div>
@@ -431,15 +452,24 @@
 
       <!-- tab bar + badges (supporting) -->
       <div>
-        <p class="lbl">Tab bar</p>
+        <p class="lbl">Main tab bar <span style="font-weight:500;text-transform:none;letter-spacing:0;color:var(--meta)">— Pets · Reminders · Share · Owner</span></p>
         <nav class="tabbar" style="border:1px solid var(--line);border-radius:16px">
+          <span class="tab active"><iconify-icon icon="solar:paw-bold"></iconify-icon>Pets</span>
+          <span class="tab"><iconify-icon icon="solar:calendar-minimalistic-bold"></iconify-icon>Reminders</span>
+          <span class="tab"><iconify-icon icon="solar:share-bold"></iconify-icon>Share</span>
+          <span class="tab"><iconify-icon icon="solar:user-circle-bold"></iconify-icon>Owner</span>
+        </nav>
+        <p style="font-size:12px;color:var(--meta);margin:12px 0 0">Four destinations · Solar bold · active = ink label + amber indicator bar; the rest sit in meta grey. <b>This is the set the wireframes use</b> — Pets · Reminders · Share · Owner.</p>
+        <div class="atags"><span class="atag">Icon-supported — scan by icon</span><span class="atag">Calm — one active signal</span></div>
+
+        <p class="lbl" style="margin-top:22px">Tab bar <span style="font-weight:500;text-transform:none;letter-spacing:0;color:var(--meta)">— earlier proposal, superseded</span></p>
+        <nav class="tabbar" style="border:1px solid var(--line);border-radius:16px;opacity:.55">
           <span class="tab active"><iconify-icon icon="solar:home-smile-bold"></iconify-icon>Home</span>
           <span class="tab"><iconify-icon icon="solar:paw-bold"></iconify-icon>Pets</span>
           <span class="tab"><iconify-icon icon="solar:calendar-minimalistic-bold"></iconify-icon>Reminders</span>
           <span class="tab"><iconify-icon icon="solar:user-circle-bold"></iconify-icon>Profile</span>
         </nav>
-        <p style="font-size:12px;color:var(--meta);margin:12px 0 0">Four destinations · Solar bold · active = ink label + amber indicator bar; the rest sit in meta grey.</p>
-        <div class="atags"><span class="atag">Icon-supported — scan by icon</span><span class="atag">Calm — one active signal</span></div>
+        <p style="font-size:12px;color:var(--meta);margin:12px 0 0">Kept for reference. It proposed a <i>Home</i> destination the app never built and called the last tab <i>Profile</i>; sharing had no tab at all. Same shape and icon weight — only the destinations differ.</p>
 
         <p class="lbl" style="margin-top:26px">Status badges &amp; states</p>
         <div style="display:flex;gap:8px;flex-wrap:wrap">
@@ -450,6 +480,11 @@
           <span class="chip brand"><iconify-icon icon="solar:verified-check-bold"></iconify-icon>Verified</span>
         </div>
         <div class="atags"><span class="atag">Trust signals visible</span><span class="atag">WCAG AA · text ≥ 4.5:1</span></div>
+
+        <p class="lbl" style="margin-top:26px">Enamel “up-to-date” tag</p>
+        <span class="uptodate"><iconify-icon icon="solar:verified-check-bold"></iconify-icon>Up to date</span>
+        <p style="font-size:12px;color:var(--meta);margin:12px 0 0">The card's headline trust signal, and the one component on <code>--r-tag</code> (9px) — the enamel ID-tag radius the direction is named for. Chip family, but deliberately <b>flat</b>: no shadow, so it reads as stamped into the card rather than floating above it. Success green with the verified mark; it states a fact, never celebrates.</p>
+        <div class="atags"><span class="atag">Trust signals visible — proof where the eye already is</span><span class="atag">Calm — a fact, not a fanfare</span></div>
 
         <p class="lbl" style="margin-top:26px">Switch</p>
         <div style="display:flex;gap:30px;align-items:center">
@@ -488,8 +523,33 @@
           <span class="on"><span class="av">M</span>Miso</span>
           <span><span class="av">C</span>Cheetah</span>
         </div>
-        <p style="font-size:12px;color:var(--meta);margin:12px 0 0">One shared <code>--surface</code> track at <b>pill</b> radius with no inset. The active segment is an ink pill that keeps its outer corners round and <b>squares the edge facing its neighbour</b> — written <code>:first-child</code>/<code>:last-child</code> so it works whichever pet is active. Full width on mobile; 24px clear above and below.</p>
+        <div class="seg" style="margin-top:10px">
+          <span class="on">All pets</span>
+          <span>Miso</span>
+          <span>Cheetah</span>
+        </div>
+        <p style="font-size:12px;color:var(--meta);margin:12px 0 0">One shared <code>--surface</code> track at <b>pill</b> radius with no inset. The active segment is an ink pill that keeps its outer corners round and <b>squares the edge facing its neighbour</b> — written <code>:first-child</code>/<code>:last-child</code> so it works whichever segment is active. Scales to three (the pet filter on the reminders screen): a middle segment active squares <i>both</i> inner edges. Full width on mobile; 24px clear above and below.</p>
         <div class="atags"><span class="atag">Calm — one active signal</span><span class="atag">Trust — the current pet is unambiguous</span></div>
+
+        <p class="lbl" style="margin-top:26px">Calendar tile — date strip</p>
+        <div class="daystrip">
+          <span class="daycell"><span class="dow">Mon</span><span class="num">20</span></span>
+          <span class="daycell sel"><span class="dow">Tue</span><span class="num">21</span></span>
+          <span class="daycell"><span class="dow">Wed</span><span class="num">22</span></span>
+          <span class="daycell"><span class="dow">Thu</span><span class="num">23</span></span>
+          <span class="daycell"><span class="dow">Fri</span><span class="num">24</span></span>
+          <span class="daycell"><span class="dow">Sat</span><span class="num">25</span></span>
+        </div>
+        <p style="font-size:12px;color:var(--meta);margin:12px 0 0">48px minimum tap width · <b>input</b> radius · 1px <code>--line</code> hairline on <code>--paper</code>. Day-of-week in <code>--meta</code> at 10px, the date in the display face at 16px/700. Selected inverts to an ink fill with white text — the same ink used by the active segment and the primary button, so "chosen" reads identically everywhere.</p>
+        <div class="atags"><span class="atag">Calm — quiet until picked</span><span class="atag">Icon-supported — scannable row</span></div>
+
+        <p class="lbl" style="margin-top:26px">Pet pair — overlapping avatars</p>
+        <div class="petpair">
+          <span style="background-image:url('https://images.unsplash.com/photo-1543466835-00a7907e9de1?w=320&amp;q=80&amp;auto=format&amp;fit=crop')"></span>
+          <span style="background-image:url('../wireframes/assets/cat.png');background-position:center 32%"></span>
+        </div>
+        <p style="font-size:12px;color:var(--meta);margin:12px 0 0">The same 88px circle and 3px <code>--paper</code> ring as the single photo in a hero, overlapped by <b>22px</b> with the second pet on top. Used when a screen is about <i>all</i> the pets rather than one — it sits centred 50/50 on the arch line, exactly like the single photo does.</p>
+        <div class="atags"><span class="atag">Real imagery — the pets lead</span><span class="atag">Calm — one warm focal point</span></div>
 
         <p class="lbl" style="margin-top:26px">Section row — the dossier's listing element</p>
         <div style="display:flex;flex-direction:column;gap:10px;max-width:360px">
