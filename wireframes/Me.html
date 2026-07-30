@@ -4,24 +4,35 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Owner · profile — PetPal wireframe</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700&family=Hanken+Grotesk:wght@400;500;600;700&family=EB+Garamond:ital,wght@0,600;1,600;1,700&display=swap" rel="stylesheet">
 <style>
   :root {
     --wf-bg:         #ffffff;
-    --wf-surface:    #f5f5f5;
-    --wf-border:     #e0e0e0;
-    --wf-text:       #1a1a1a;
-    --wf-muted:      #757575;
-    --wf-placeholder:#d0d0d0;
-    --wf-input-bg:   #fafafa;
-    --wf-btn:        #333333;
+    --wf-surface:    #f4f4f4;
+    --wf-border:     #e7e7e7;
+    --wf-text:       #141414;
+    --wf-muted:      #5c5c5c;
+    --wf-placeholder:#eaeaea;
+    --wf-input-bg:   #ffffff;
+    --wf-btn:        #141414;
     --wf-btn-text:   #ffffff;
-    --wf-btn-sec:    transparent;
-    --nav-bg:        #f9f9f9;
-    --nav-active-bg: #eaeaea;
-    --nav-text:      #555555;
-    --nav-text-active:#1a1a1a;
-    --nav-cap:       #999999;
-    --nav-line:      #e0e0e0;
+    --wf-btn-sec:    #f4f4f4;
+    --nav-bg:        #ffffff;
+    --nav-active-bg: #f4f4f4;
+    --nav-text:      #5c5c5c;
+    --nav-text-active:#141414;
+    --nav-cap:       #8a8a8a;
+    --nav-line:      #e7e7e7;
+
+    /* ── The Signal tokens (from concept.html) ── */
+    --signal:#ffbf00; --signal-ink:#8a6b00; --success:#0c6b3b; --danger:#9a2820;
+    --disp:"Bricolage Grotesque",system-ui,sans-serif;
+    --body:"Hanken Grotesk",system-ui,-apple-system,sans-serif;
+    --serif:"EB Garamond",Georgia,"Times New Roman",serif;
+    --sh-card:0 10px 24px -18px rgba(20,20,20,.13), 0 2px 6px -4px rgba(20,20,20,.05);
+    --sh-pop:0 26px 50px -22px rgba(20,20,20,.34), 0 6px 16px -10px rgba(20,20,20,.16);
   }
   * { box-sizing: border-box; margin: 0; padding: 0; }
   body {
@@ -336,6 +347,85 @@
   .dv3-arch { background: var(--wf-bg); border-radius: 50% 50% 0 0 / 104px 104px 0 0; margin-top: -104px; padding: 40px 16px 4px; text-align: center; position: relative; }
   .dv3-arch h2 { font-size: 24px; font-weight: 700; }
   .dv3-arch .meta { font-size: 14px; color: var(--wf-muted); margin-top: 2px; margin-bottom: 8px; }
+
+  /* ═══════════ THE SIGNAL — visual language applied (concept.html + home-success.html) ═══════════ */
+  body, input, button, select, textarea { font-family: var(--body); }
+  h1, h2, h3 { font-family: var(--disp); letter-spacing:-0.01em; }
+  /* names carry the serif — same rule as the pet name; "Owner" in the app bar is a label, not a name */
+  .dv3-arch h2 { font-family: var(--serif); font-style:italic; font-weight:700; letter-spacing:0;
+    font-size:36px; line-height:1.06; }
+
+  /* buttons → pill, concept.html .btn spec; every instance */
+  .btn-primary, .btn-secondary, .btn-danger { border-radius:999px; border:none; padding:13px 20px;
+    font-family:var(--body); font-weight:600; font-size:14px; line-height:1; cursor:pointer;
+    transition:transform .12s ease, filter .15s ease; }
+  .btn-primary { background:var(--wf-btn); color:#fff; }
+  .btn-secondary { background:var(--wf-surface); color:var(--wf-text); }
+  .btn-danger { background:var(--danger); color:#fff; }
+  .btn-primary:hover, .btn-danger:hover { filter:brightness(1.25); }
+  .btn-secondary:hover { background:#e8e8e8; }
+  .btn-primary:active, .btn-secondary:active, .btn-danger:active { transform:scale(.98); }
+  .danger-link { color:var(--danger); }
+  .top-nav .nav-action { border-radius:999px; border:1px solid var(--wf-border); }
+
+  /* form fields → concept.html .field spec (46px tall, 12px radius, amber focus ring) */
+  .form-group label { font-size:13px; font-weight:600; color:var(--wf-text); margin-bottom:6px; }
+  .form-group input, .form-group select, .form-group textarea { min-height:46px; padding:0 14px;
+    font-size:15px; border:1px solid var(--wf-border); border-radius:12px; background:#fff; color:var(--wf-text); }
+  .form-group textarea { padding:12px 14px; }
+  .form-group input:focus, .form-group select:focus, .form-group textarea:focus { outline:none;
+    border-color:var(--wf-text); box-shadow:0 0 0 3px rgba(255,191,0,.55); }
+  .form-group .helper { font-size:12.5px; color:var(--wf-muted); }
+  .form-group input::placeholder, .form-group textarea::placeholder { color:var(--wf-muted); }
+
+  /* toggle → design-kit shape: ink track when on, elevated white knob carrying a check.
+     Check is drawn in CSS (Solar has no bare checkmark) so it stays on the ink token
+     instead of importing a second icon family. */
+  .toggle-row { border-top:1px solid var(--wf-border); border-bottom:1px solid var(--wf-border); }
+  /* track 48×28 ≈ the kit's 1.75:1; knob fills 93% of the height so it reads thick, not slim */
+  .toggle-switch { width:48px; height:28px; border-radius:999px; background:var(--wf-border); }
+  .toggle-switch::after { top:1px; left:1px; width:26px; height:26px; z-index:1;
+    box-shadow:0 1px 4px rgba(20,20,20,.32); transition:left .15s; }
+  .toggle-switch.on { background:var(--wf-text); }
+  .toggle-switch.on::after { left:21px; }
+  .toggle-switch::before { content:""; position:absolute; z-index:2; opacity:0;
+    width:6px; height:11px; border:solid var(--wf-text); border-width:0 2.5px 2.5px 0;
+    top:50%; left:34px; transform:translate(-50%,-60%) rotate(45deg); transition:opacity .12s; }
+  .toggle-switch.on::before { opacity:1; }
+
+  /* confirm sheets → card radius + the popover shadow token */
+  .me-sheet { border-radius:16px; box-shadow:var(--sh-pop); }
+  .me-sheet .row a { text-decoration:none; }
+
+  /* cards → identical values to home-success (white, 16px, soft shadow) */
+  .pet-card, .m-section-card, .d-section-card { background:#fff; border:1px solid var(--wf-border);
+    box-shadow:var(--sh-card); border-radius:16px; }
+  .pet-card:hover, .m-section-card:hover, .d-section-card:hover { border-color:var(--wf-border); box-shadow:var(--sh-card); }
+
+  /* app bar sits on the amber hero — no white band, on-signal ink for AA */
+  .v3-header { background:#ffbf00 !important; }
+  /* Headspace profile-arch geometry — identical values to home-success:
+     photo 23% of frame width · arch rise 25% of width · photo centred on the arch line (50/50) */
+  .dv3-hero { background:#ffbf00; padding:22px 0 50px; }
+  .dv3-photo { width:88px; height:88px; background:#eaeaea url("https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=320&q=80&auto=format&fit=crop") center/cover no-repeat !important;
+    color:transparent !important; font-size:0 !important; border:3px solid #fff; box-shadow:none; }
+  .dv3-arch { background:#fff; border-radius:50% 50% 0 0 / 94px 94px 0 0; margin-top:-94px; padding:70px 16px 4px; }
+
+  /* bottom tab bar → identical to home-success; Owner is the active tab here */
+  .phone-nav { justify-content:space-around; }
+  .phone-nav a { position:relative; font-size:10.5px; font-weight:500; }
+  .phone-nav a.active { color:var(--wf-text); font-weight:700; }
+  .phone-nav a.active::before { content:""; position:absolute; top:-1px; left:50%; transform:translateX(-50%);
+    width:22px; height:3px; border-radius:3px; background:var(--signal); }
+  .phone-nav .nav-icon { width:23px; height:23px; border-radius:0; background:none;
+    background-repeat:no-repeat; background-position:center; background-size:23px; }
+  .phone-nav a:nth-child(1) .nav-icon { background-image:url("https://api.iconify.design/solar/paw-bold.svg?color=%235c5c5c"); }
+  .phone-nav a:nth-child(2) .nav-icon { background-image:url("https://api.iconify.design/solar/calendar-minimalistic-bold.svg?color=%235c5c5c"); }
+  .phone-nav a:nth-child(3) .nav-icon { background-image:url("https://api.iconify.design/solar/share-bold.svg?color=%235c5c5c"); }
+  .phone-nav a:nth-child(4) .nav-icon { background-image:url("https://api.iconify.design/solar/user-circle-bold.svg?color=%235c5c5c"); }
+  .phone-nav a.active:nth-child(4) .nav-icon { background-image:url("https://api.iconify.design/solar/user-circle-bold.svg?color=%23141414"); }
+  /* clear the prototype's grey square on the active tab (it also reset background-size) */
+  .phone-nav a.active .nav-icon { background-color:transparent; background-size:23px; }
 </style>
 </head>
 <body>
@@ -763,7 +853,7 @@
           <span class="nav-icon" aria-hidden="true"></span> Pets
         </a>
         <a href="Whats-due.html">
-          <span class="nav-icon" aria-hidden="true"></span> What's due
+          <span class="nav-icon" aria-hidden="true"></span> Reminders
         </a>
         <a href="Share-a-pet.html">
           <span class="nav-icon" aria-hidden="true"></span> Share

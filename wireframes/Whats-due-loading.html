@@ -4,25 +4,40 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>What's due (loading) — PetPal wireframe</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700&family=Hanken+Grotesk:wght@400;500;600;700&family=EB+Garamond:ital,wght@0,600;1,600;1,700&display=swap" rel="stylesheet">
 <style>
   :root {
     --wf-bg:         #ffffff;
-    --wf-surface:    #f5f5f5;
-    --wf-border:     #e0e0e0;
-    --wf-text:       #1a1a1a;
-    --wf-muted:      #757575;
-    --wf-placeholder:#d0d0d0;
-    --wf-input-bg:   #fafafa;
-    --wf-btn:        #333333;
+    --wf-surface:    #f4f4f4;
+    --wf-border:     #e7e7e7;
+    --wf-text:       #141414;
+    --wf-muted:      #5c5c5c;
+    --wf-placeholder:#eaeaea;
+    --wf-input-bg:   #ffffff;
+    --wf-btn:        #141414;
     --wf-btn-text:   #ffffff;
-    --wf-btn-sec:    transparent;
+    --wf-btn-sec:    #f4f4f4;
 
-    --nav-bg:        #f9f9f9;
-    --nav-active-bg: #eaeaea;
-    --nav-text:      #555555;
-    --nav-text-active:#1a1a1a;
-    --nav-cap:       #999999;
-    --nav-line:      #e0e0e0;
+    --nav-bg:        #ffffff;
+    --nav-active-bg: #f4f4f4;
+    --nav-text:      #5c5c5c;
+    --nav-text-active:#141414;
+    --nav-cap:       #8a8a8a;
+    --nav-line:      #e7e7e7;
+
+    /* ── The Signal tokens (from concept.html) ── */
+    --signal:#ffbf00; --signal-ink:#8a6b00; --signal-tint:#fdf3d3;
+    --success:#0c6b3b; --success-bg:#e6f3ec;
+    --warning:#8a5800; --warning-bg:#fbeed6;
+    --danger:#9a2820;  --danger-bg:#f9e7e6;
+    --info:#235a73;    --info-bg:#e5f0f4;
+    --disp:"Bricolage Grotesque",system-ui,sans-serif;
+    --body:"Hanken Grotesk",system-ui,-apple-system,sans-serif;
+    --serif:"EB Garamond",Georgia,"Times New Roman",serif;
+    --sh-card:0 10px 24px -18px rgba(20,20,20,.13), 0 2px 6px -4px rgba(20,20,20,.05);
+    --sh-pop:0 26px 50px -22px rgba(20,20,20,.34), 0 6px 16px -10px rgba(20,20,20,.16);
   }
 
   * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -410,6 +425,108 @@
   .nav-tree .flow-screens ol { list-style: none; counter-reset: none; padding-left: 8px; margin: 0 0 4px; border-left: 1px solid var(--nav-line); }
   .nav-tree .flow-screens ol a { font-size: 11px; font-weight: 400; color: var(--nav-text); padding: 3px 8px; display: block; border-radius: 4px; text-decoration: none; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
   .nav-tree .flow-screens ol a:hover { background: var(--nav-active-bg); color: var(--nav-text-active); }
+
+  /* ═════ THE SIGNAL — applied (concept.html + home-success / Me / Share-a-pet) ═════ */
+  body, input, button, select, textarea { font-family: var(--body); }
+  h1, h2, h3, h4 { font-family: var(--disp); letter-spacing:-0.01em; }
+  .urgency-heading, .d-urgency-heading { font-family: var(--body); color:var(--wf-muted); }
+
+  /* centre the page title regardless of the side slots' widths (back arrow is narrower
+     than "Settings", which pushed it 17px off-centre) */
+  .m-header { position:relative; }
+  .m-header h1 { position:absolute; left:0; right:0; text-align:center; pointer-events:none; }
+
+  /* buttons → concept.html .btn spec; every instance incl. block-scoped CTAs */
+  .btn-primary, .btn-secondary { border-radius:999px; border:none; padding:13px 20px;
+    font-family:var(--body); font-weight:600; font-size:14px; line-height:1; cursor:pointer;
+    transition:transform .12s ease, filter .15s ease; }
+  .btn-primary { background:var(--wf-btn); color:#fff; }
+  .btn-secondary { background:var(--wf-surface); color:var(--wf-text); }
+  .btn-primary:hover { filter:brightness(1.25); }
+  .btn-secondary:hover { background:#e8e8e8; }
+  .btn-primary:active, .btn-secondary:active { transform:scale(.98); }
+  /* block-scoped button rules (0,1,1) out-specify .btn-primary (0,1,0) — name every one */
+  .empty-state button, .error-state button, .empty-cta, .error-cta,
+  .m-quick-actions button, .d-pet-actions button, .d-reminder-actions button,
+  .fab-add button, .d-fab-add button {
+    border-radius:999px; padding:13px 20px; }
+  .m-header .action-edit { color:var(--wf-text); }
+
+  /* form fields → concept.html .field spec */
+  .form-group label { font-size:13px; font-weight:600; color:var(--wf-text); margin-bottom:6px; }
+  .form-group input, .form-group select, .form-group textarea { min-height:46px; padding:0 14px;
+    font-size:15px; border:1px solid var(--wf-border); border-radius:12px; background:#fff; color:var(--wf-text); }
+  .form-group select { appearance:none; -webkit-appearance:none; padding-right:42px;
+    background-image:url("https://api.iconify.design/solar/alt-arrow-down-linear.svg?color=%23141414");
+    background-repeat:no-repeat; background-position:right 14px center; background-size:18px; }
+  .form-group input:focus, .form-group select:focus, .form-group textarea:focus { outline:none;
+    border-color:var(--wf-text); box-shadow:0 0 0 3px rgba(255,191,0,.55); }
+
+  /* listing cards → the SAME values as home-success's section card */
+  .reminder-card, .m-section-card, .d-section-card, .pet-card, .d-reminder-card, .skeleton-card {
+    background:#fff; border:1px solid var(--wf-border); box-shadow:var(--sh-card);
+    border-radius:16px; align-items:center; }
+  .reminder-card:hover, .m-section-card:hover, .d-section-card:hover { border-color:var(--wf-border);
+    box-shadow:var(--sh-card); }
+  .reminder-body h3, .d-reminder-body h3 { font-size:16px; font-weight:700; line-height:1.3; }
+  .reminder-meta { font-size:13px; line-height:1.45; color:var(--wf-muted); margin-top:2px; }
+
+  /* icon tile + content-matched Solar glyph, keyed off each card's own href */
+  .card-icon { background-color:var(--wf-surface) !important; border-radius:12px;
+    color:transparent !important; font-size:0 !important; flex:0 0 auto;
+    background-repeat:no-repeat; background-position:center; background-size:22px; }
+  a[href*="rem=rabies"]    .card-icon,
+  a[href*="rem=fvrcp"]     .card-icon { background-image:url("https://api.iconify.design/solar/syringe-bold.svg?color=%23141414"); }
+  a[href*="rem=insurance"] .card-icon { background-image:url("https://api.iconify.design/solar/shield-check-bold.svg?color=%23141414"); }
+  a[href*="rem=checkup"]   .card-icon { background-image:url("https://api.iconify.design/solar/stethoscope-bold.svg?color=%23141414"); }
+  a[href*="rem=passport"]  .card-icon { background-image:url("https://api.iconify.design/solar/document-text-bold.svg?color=%23141414"); }
+
+  /* status badge → concept.html chip; urgency comes from each section's own aria-label,
+     so the three states read differently without touching the markup */
+  .reminder-badge, .rd-badge { display:inline-flex; align-items:center; font-size:12px; font-weight:600;
+    padding:5px 11px; border-radius:8px; line-height:1; margin-top:6px;
+    background:var(--warning-bg); color:var(--warning); }
+  section[aria-label="Overdue reminders"] .reminder-badge { background:var(--danger-bg); color:var(--danger); }
+  section[aria-label="Due this month"]    .reminder-badge { background:var(--warning-bg); color:var(--warning); }
+  section[aria-label="Coming up"]         .reminder-badge { background:var(--info-bg); color:var(--info); }
+
+  /* pet filter → the segmented control from home-success / Share-a-pet */
+  .pet-filter-tabs { gap:0; padding:12px 16px 20px; border-bottom:none; }
+  .pet-filter-tabs button { flex:1; padding:7px 14px; font-size:13px; font-weight:500;
+    color:var(--wf-muted); background:var(--wf-surface); border:none; border-bottom:none;
+    border-radius:0; cursor:pointer; }
+  .pet-filter-tabs button:first-of-type { border-radius:999px 0 0 999px; }
+  .pet-filter-tabs button:last-of-type  { border-radius:0 999px 999px 0; }
+  .pet-filter-tabs button.active { background:var(--wf-text); color:#fff; font-weight:600;
+    border-bottom-color:transparent; }
+
+  /* empty-state illustration → signal-tint tile + one Solar glyph, never a grey fill */
+  .empty-illustration { width:120px !important; height:120px !important; border-radius:16px !important;
+    background:var(--signal-tint) url("https://api.iconify.design/solar/calendar-minimalistic-bold-duotone.svg?color=%238a6b00") center / 56px no-repeat !important;
+    color:transparent !important; font-size:0 !important; }
+
+  /* names carry the serif — pet names only, not labels */
+  .pet-info h1, .pet-info h2, .dv3-arch h2 { font-family:var(--serif); font-style:italic;
+    font-weight:700; letter-spacing:0; }
+
+  /* bottom tab bar → identical to the reference screens; ink icon for whichever tab is active */
+  .phone-nav { justify-content:space-around; }
+  .phone-nav a { position:relative; font-size:10.5px; font-weight:500; }
+  .phone-nav a.active { color:var(--wf-text); font-weight:700; }
+  .phone-nav a.active::before { content:""; position:absolute; top:-1px; left:50%;
+    transform:translateX(-50%); width:22px; height:3px; border-radius:3px; background:var(--signal); }
+  .phone-nav .nav-icon { width:23px; height:23px; border-radius:0; background:none;
+    background-repeat:no-repeat; background-position:center; background-size:23px; }
+  .phone-nav a:nth-child(1) .nav-icon { background-image:url("https://api.iconify.design/solar/paw-bold.svg?color=%235c5c5c"); }
+  .phone-nav a:nth-child(2) .nav-icon { background-image:url("https://api.iconify.design/solar/calendar-minimalistic-bold.svg?color=%235c5c5c"); }
+  .phone-nav a:nth-child(3) .nav-icon { background-image:url("https://api.iconify.design/solar/share-bold.svg?color=%235c5c5c"); }
+  .phone-nav a:nth-child(4) .nav-icon { background-image:url("https://api.iconify.design/solar/user-circle-bold.svg?color=%235c5c5c"); }
+  .phone-nav a.active:nth-child(1) .nav-icon { background-image:url("https://api.iconify.design/solar/paw-bold.svg?color=%23141414"); }
+  .phone-nav a.active:nth-child(2) .nav-icon { background-image:url("https://api.iconify.design/solar/calendar-minimalistic-bold.svg?color=%23141414"); }
+  .phone-nav a.active:nth-child(3) .nav-icon { background-image:url("https://api.iconify.design/solar/share-bold.svg?color=%23141414"); }
+  .phone-nav a.active:nth-child(4) .nav-icon { background-image:url("https://api.iconify.design/solar/user-circle-bold.svg?color=%23141414"); }
+  /* clear the prototype's grey square on the active tab (it also reset background-size) */
+  .phone-nav a.active .nav-icon { background-color:transparent; background-size:23px; }
 </style>
 </head>
 <body>
@@ -768,8 +885,8 @@
       </div>
 
       <header class="m-header">
-        <span></span>
-        <h1>What's due</h1>
+        <a href="home-success.html" style="text-decoration:none;"><button class="back" aria-label="Back">&#8592;</button></a>
+        <h1>Reminders</h1>
         <span></span>
       </header>
 

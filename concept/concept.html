@@ -20,12 +20,13 @@
   :root{
     --ink:#141414; --paper:#ffffff; --surface:#f4f4f4; --line:#e7e7e7; --meta:#5c5c5c;
     --signal:#ffbf00; --signal-deep:#e0a400; --signal-ink:#8a6b00; --on-signal:#141414;
+    --signal-tint:#fdf3d3;
     --success:#0c6b3b; --success-bg:#e6f3ec;
     --warning:#8a5800; --warning-bg:#fbeed6;
     --danger:#9a2820; --danger-bg:#f9e7e6;
     --info:#235a73; --info-bg:#e5f0f4;
     --r-pill:999px; --r-card:16px; --r-tag:9px; --r-chip:8px; --r-input:12px; --r-thumb:12px;
-    --sh-card:0 16px 34px -20px rgba(20,20,20,.26), 0 3px 10px -6px rgba(20,20,20,.10);
+    --sh-card:0 10px 24px -18px rgba(20,20,20,.13), 0 2px 6px -4px rgba(20,20,20,.05);
     --sh-pop:0 26px 50px -22px rgba(20,20,20,.34), 0 6px 16px -10px rgba(20,20,20,.16);
     --sh-phone:0 40px 80px -30px rgba(20,20,20,.45), 0 10px 26px -14px rgba(20,20,20,.22);
     --disp:"Bricolage Grotesque",system-ui,sans-serif;
@@ -37,7 +38,7 @@
   body{margin:0;background:#ececec;color:var(--ink);font-family:var(--body);line-height:1.55;
     -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
   iconify-icon{display:inline-block;vertical-align:-0.15em}
-  h1,h2,h3{font-family:var(--disp);margin:0;letter-spacing:-0.02em;line-height:1.1}
+  h1,h2,h3,h4,h5,h6{font-family:var(--disp);margin:0;letter-spacing:-0.02em;line-height:1.1}
   .wrap{max-width:1080px;margin:0 auto;padding:0 24px}
 
   /* masthead */
@@ -137,6 +138,89 @@
   /* verification badge on card */
   .verimark{position:absolute;right:12px;top:12px;background:var(--signal);color:var(--on-signal);
     border-radius:999px;padding:6px 11px;font-weight:600;font-size:11.5px;display:inline-flex;align-items:center;gap:5px}
+  /* switch — ink track when on, elevated white knob carrying a check.
+     The check is drawn in CSS, not Solar: the set has no bare checkmark (only bag-/cart-/bill-check
+     and the double check-read), so a glyph would mean importing a second icon family. */
+  .switch{width:48px;height:28px;border-radius:var(--r-pill);background:var(--line);position:relative;flex:0 0 auto}
+  .switch::after{content:"";position:absolute;top:1px;left:1px;width:26px;height:26px;border-radius:50%;
+    background:#fff;box-shadow:0 1px 4px rgba(20,20,20,.32);z-index:1;transition:left .15s}
+  .switch.on{background:var(--ink)}
+  .switch.on::after{left:21px}
+  .switch::before{content:"";position:absolute;z-index:2;opacity:0;width:6px;height:11px;
+    border:solid var(--ink);border-width:0 2.5px 2.5px 0;top:50%;left:34px;
+    transform:translate(-50%,-60%) rotate(45deg);transition:opacity .12s}
+  .switch.on::before{opacity:1}
+  /* empty-state illustration tile — soft signal tint + ONE Solar glyph, content-matched.
+     Replaces the grey placeholder fill the anti-references reject. */
+  .illus{width:120px;height:120px;border-radius:var(--r-card);background:var(--signal-tint);
+    display:flex;align-items:center;justify-content:center;flex:0 0 auto}
+  .illus iconify-icon{font-size:56px;color:var(--signal-ink)}
+  .illus.lg{width:160px;height:160px}
+  .illus.lg iconify-icon{font-size:72px}
+
+  /* segmented control (the pet switcher) — one shared track, active is an ink pill that
+     squares the edge facing its neighbour */
+  .seg{display:flex;background:var(--surface);border-radius:var(--r-pill);max-width:330px}
+  .seg > span{flex:1;display:flex;align-items:center;justify-content:center;gap:7px;padding:7px 14px;
+    font-size:13px;font-weight:500;color:var(--meta);border-radius:var(--r-pill);cursor:pointer}
+  .seg > span.on{background:var(--ink);color:#fff;font-weight:600}
+  .seg > span.on:first-child{border-radius:var(--r-pill) 0 0 var(--r-pill)}
+  .seg > span.on:last-child{border-radius:0 var(--r-pill) var(--r-pill) 0}
+  .seg .av{width:22px;height:22px;border-radius:50%;background:rgba(20,20,20,.10);color:var(--ink);
+    display:flex;align-items:center;justify-content:center;font-size:9px;font-weight:700;flex:0 0 auto}
+  .seg > span.on .av{background:rgba(255,255,255,.22);color:#fff}
+
+  /* section row — the dossier's listing element (icon tile · title + tick · meta · chevron) */
+  .srow{display:flex;align-items:center;gap:12px;background:var(--paper);border:1px solid var(--line);
+    box-shadow:var(--sh-card);border-radius:var(--r-card);padding:14px}
+  .srow .tile{width:38px;height:38px;border-radius:12px;background:var(--surface);flex:0 0 auto;
+    display:flex;align-items:center;justify-content:center}
+  .srow .tile iconify-icon{font-size:22px;color:var(--ink)}
+  .srow .body{flex:1;min-width:0}
+  /* title + meta metrics copied from the wireframe's .card-body h3 / .card-meta */
+  .srow h4{font-family:var(--disp);font-size:16px;font-weight:700;line-height:1.3;margin:0;
+    display:flex;align-items:center;gap:6px}
+  .srow h4 iconify-icon{font-size:18px;color:var(--success);flex:0 0 auto}
+  .srow .body p{font-size:13px;line-height:1.45;color:var(--meta);margin:2px 0 0}
+  .srow .go{color:var(--meta);font-size:17px;flex:0 0 auto}
+
+  /* choice card — radio group; the circle sits on the RIGHT and is a donut, not a filled dot */
+  .choice{display:flex;align-items:center;gap:12px;background:var(--paper);border:1px solid var(--line);
+    box-shadow:var(--sh-card);border-radius:var(--r-card);padding:12px 14px;cursor:pointer}
+  .choice .body{flex:1}
+  .choice b{font-size:14px;font-weight:600;display:block}
+  .choice small{font-size:12.5px;color:var(--meta)}
+  .choice .dot{width:22px;height:22px;border-radius:50%;border:2px solid var(--line);background:#fff;
+    flex:0 0 auto;order:2}
+  .choice.on{border-color:var(--ink);box-shadow:var(--sh-card),0 0 0 3px rgba(255,191,0,.35)}
+  .choice.on .dot{border:6px solid var(--ink)}
+
+  /* select — the .field input with its own chevron, inset to match the text */
+  .field .sel{position:relative}
+  .field .sel::after{content:"";position:absolute;right:14px;top:50%;width:18px;height:18px;
+    transform:translateY(-50%);background:url("https://api.iconify.design/solar/alt-arrow-down-linear.svg?color=%23141414") center / 18px no-repeat}
+
+  /* confirm sheet / dialog */
+  .sheet{background:var(--paper);border-radius:var(--r-card);box-shadow:var(--sh-pop);
+    padding:22px 18px 18px;max-width:330px;text-align:center}
+  .sheet h4{font-family:var(--disp);font-size:18px;font-weight:700;margin-bottom:6px}
+  .sheet > p{font-size:13px;color:var(--meta);line-height:1.5;margin:0 0 14px}
+  .sheet .row{display:flex;gap:8px}
+  .sheet .row > *{flex:1}
+
+  /* danger affordances */
+  .btn.danger{background:var(--danger);color:#fff}
+  .btn.danger:hover{filter:brightness(1.15)}
+  .linkbtn{background:none;border:0;font-size:13px;text-decoration:underline;cursor:pointer;
+    color:var(--danger);font-family:var(--body);font-weight:500}
+
+  /* round icon buttons — ink on light grounds, white when it sits on a photo */
+  .iconbtn{width:26px;height:26px;border-radius:50%;background:var(--ink);color:#fff;
+    display:inline-flex;align-items:center;justify-content:center;flex:0 0 auto}
+  .iconbtn iconify-icon{font-size:13px}
+  .iconbtn.onphoto{width:30px;height:30px;background:var(--paper);color:var(--ink);
+    box-shadow:0 2px 8px -2px rgba(20,20,20,.35)}
+  .iconbtn.onphoto iconify-icon{font-size:14px}
 
   /* ---- generic spec grids ---- */
   .grid{display:grid;gap:14px}
@@ -366,6 +450,99 @@
           <span class="chip brand"><iconify-icon icon="solar:verified-check-bold"></iconify-icon>Verified</span>
         </div>
         <div class="atags"><span class="atag">Trust signals visible</span><span class="atag">WCAG AA · text ≥ 4.5:1</span></div>
+
+        <p class="lbl" style="margin-top:26px">Switch</p>
+        <div style="display:flex;gap:30px;align-items:center">
+          <span style="display:flex;align-items:center;gap:10px">
+            <span class="switch on" role="switch" aria-checked="true"></span>
+            <span style="font-size:12.5px;color:var(--meta)">On</span>
+          </span>
+          <span style="display:flex;align-items:center;gap:10px">
+            <span class="switch" role="switch" aria-checked="false"></span>
+            <span style="font-size:12.5px;color:var(--meta)">Off</span>
+          </span>
+        </div>
+        <p style="font-size:12px;color:var(--meta);margin:12px 0 0">48×28 track · 26px knob filling 93% of the height · ink track when on, with a check inside the knob. Knob carries a soft shadow so it reads lifted in both states.</p>
+        <div class="atags"><span class="atag">Calm — the state is unmistakable</span><span class="atag">Trust — “on” reads as confirmed, not just coloured</span></div>
+
+        <p class="lbl" style="margin-top:26px">Empty-state illustration tile</p>
+        <div style="display:flex;gap:22px;align-items:flex-start;flex-wrap:wrap">
+          <span style="display:flex;flex-direction:column;align-items:center;gap:9px">
+            <span class="illus"><iconify-icon icon="solar:magnifer-bold-duotone"></iconify-icon></span>
+            <span style="font-size:12px;color:var(--meta)">No results</span>
+          </span>
+          <span style="display:flex;flex-direction:column;align-items:center;gap:9px">
+            <span class="illus"><iconify-icon icon="solar:link-bold-duotone"></iconify-icon></span>
+            <span style="font-size:12px;color:var(--meta)">Link ready</span>
+          </span>
+          <span style="display:flex;flex-direction:column;align-items:center;gap:9px">
+            <span class="illus"><iconify-icon icon="solar:check-circle-bold-duotone"></iconify-icon></span>
+            <span style="font-size:12px;color:var(--meta)">Shared</span>
+          </span>
+        </div>
+        <p style="font-size:12px;color:var(--meta);margin:12px 0 0">120px tile (160px on desktop) · <b>card</b> radius · <code>--signal-tint</code> ground with a single <b>bold-duotone</b> Solar glyph in <code>--signal-ink</code> at 56px (72px large). Pick the glyph from what the screen is <i>about</i> — never a generic box. Glyph on tint is 4.53:1, past the 3:1 floor for graphics.</p>
+        <div class="atags"><span class="atag">Real imagery — never a grey placeholder</span><span class="atag">Calm — warm, quiet, not alarming</span><span class="atag">Icon-supported — the glyph names the state</span></div>
+
+        <p class="lbl" style="margin-top:26px">Segmented control — pet switcher</p>
+        <div class="seg">
+          <span class="on"><span class="av">M</span>Miso</span>
+          <span><span class="av">C</span>Cheetah</span>
+        </div>
+        <p style="font-size:12px;color:var(--meta);margin:12px 0 0">One shared <code>--surface</code> track at <b>pill</b> radius with no inset. The active segment is an ink pill that keeps its outer corners round and <b>squares the edge facing its neighbour</b> — written <code>:first-child</code>/<code>:last-child</code> so it works whichever pet is active. Full width on mobile; 24px clear above and below.</p>
+        <div class="atags"><span class="atag">Calm — one active signal</span><span class="atag">Trust — the current pet is unambiguous</span></div>
+
+        <p class="lbl" style="margin-top:26px">Section row — the dossier's listing element</p>
+        <div style="display:flex;flex-direction:column;gap:10px;max-width:360px">
+          <div class="srow">
+            <span class="tile"><iconify-icon icon="solar:syringe-bold"></iconify-icon></span>
+            <span class="body"><h4>Health &amp; jabs <iconify-icon icon="solar:verified-check-bold"></iconify-icon></h4><p>6 records · Updated 3 days ago</p></span>
+            <span class="go">→</span>
+          </div>
+          <div class="srow">
+            <span class="tile"><iconify-icon icon="solar:shield-check-bold"></iconify-icon></span>
+            <span class="body"><h4>Insurance <iconify-icon icon="solar:verified-check-bold"></iconify-icon></h4><p>1 active policy · Renews 1 Oct 2026</p></span>
+            <span class="go">→</span>
+          </div>
+        </div>
+        <p style="font-size:12px;color:var(--meta);margin:12px 0 0">White · 1px <code>--line</code> · <code>--sh-card</code> · <b>card</b> radius. Solar <b>bold</b> glyph on a <code>--surface</code> tile at 12px radius, title carries the scalloped verified badge in <code>--success</code>. <b>These exact values are the "listing element"</b> — choice cards and any other row-shaped card reuse them so the pages read as one product.</p>
+        <div class="atags"><span class="atag">Icon-supported — scan by icon</span><span class="atag">Trust signals visible — badge next to the section</span></div>
+
+        <p class="lbl" style="margin-top:26px">Choice card — radio group</p>
+        <div style="display:flex;flex-direction:column;gap:10px;max-width:360px">
+          <div class="choice on"><span class="body"><b>Full card</b><small>Health, documents, personality, vet — everything</small></span><span class="dot"></span></div>
+          <div class="choice"><span class="body"><b>Health &amp; jabs only</b><small>Jabs, conditions, meds — for a vet visit</small></span><span class="dot"></span></div>
+        </div>
+        <p style="font-size:12px;color:var(--meta);margin:12px 0 0">Same card values as the section row. The circle sits on the <b>right</b> and is a <b>donut</b>: 22px, 2px <code>--line</code> ring unselected, 6px <b>ink</b> ring with the white centre showing through when selected — never a flat filled dot. Selected adds the ink border plus the amber focus ring.</p>
+        <div class="atags"><span class="atag">Calm — selection reads at a glance</span><span class="atag">Trust — the choice is explicit before you share</span></div>
+
+        <p class="lbl" style="margin-top:26px">Select</p>
+        <div class="field" style="max-width:340px">
+          <label>Role</label>
+          <div class="inp sel">Sitter (read-only)</div>
+          <p class="help">Default: sitter — read-only, no account needed.</p>
+        </div>
+        <p style="font-size:12px;color:var(--meta);margin:12px 0 0">The input field with its own chevron. The native browser arrow can't be inset with padding, so use <code>appearance:none</code> and place a Solar <code>alt-arrow-down-linear</code> at <b>right 14px</b> — mirroring the 14px text inset on the left.</p>
+        <div class="atags"><span class="atag">Calm — quiet until focused</span></div>
+
+        <p class="lbl" style="margin-top:26px">Confirm sheet &amp; danger affordances</p>
+        <div class="sheet">
+          <h4>Delete account?</h4>
+          <p>This permanently removes your account, every pet card, and every share link. It can't be undone.</p>
+          <div class="row">
+            <button class="btn quiet">Cancel</button>
+            <button class="btn danger">Delete account</button>
+          </div>
+        </div>
+        <p style="font-size:12px;color:var(--meta);margin:12px 0 0"><b>Card</b> radius on <code>--sh-pop</code>, equal-width button row, the destructive action in <code>--danger</code> (white on danger is 7.78:1). The quiet button always carries the safe choice. A lower-stakes entry point uses the danger <i>link</i> style: <button class="linkbtn">Delete account</button></p>
+        <div class="atags"><span class="atag">Calm — never alarming by default</span><span class="atag">Trust — says exactly what is lost</span></div>
+
+        <p class="lbl" style="margin-top:26px">Round icon buttons</p>
+        <div style="display:flex;gap:26px;align-items:center">
+          <span style="display:flex;align-items:center;gap:9px"><span class="iconbtn"><iconify-icon icon="solar:share-bold"></iconify-icon></span><span style="font-size:12.5px;color:var(--meta)">Beside a name</span></span>
+          <span style="display:flex;align-items:center;gap:9px"><span class="iconbtn onphoto"><iconify-icon icon="solar:pen-bold"></iconify-icon></span><span style="font-size:12.5px;color:var(--meta)">On a photo</span></span>
+        </div>
+        <p style="font-size:12px;color:var(--meta);margin:12px 0 0">26px <b>ink</b> circle beside a name; 30px <b>white</b> circle with a shadow when it sits on a photo, so it stays legible over any image. On a photo it needs a z-index above the photo, or the photo paints over it. <b>Don't repeat an action on the screen that performs it</b> — the share circle belongs on the dossier, not on the share screen.</p>
+        <div class="atags"><span class="atag">Calm — actions stay small until needed</span><span class="atag">Icon-supported</span></div>
       </div>
     </div>
 

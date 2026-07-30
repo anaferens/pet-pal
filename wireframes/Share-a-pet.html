@@ -4,24 +4,35 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Share a pet — PetPal wireframe</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700&family=Hanken+Grotesk:wght@400;500;600;700&family=EB+Garamond:ital,wght@0,600;1,600;1,700&display=swap" rel="stylesheet">
 <style>
   :root {
     --wf-bg:         #ffffff;
-    --wf-surface:    #f5f5f5;
-    --wf-border:     #e0e0e0;
-    --wf-text:       #1a1a1a;
-    --wf-muted:      #757575;
-    --wf-placeholder:#d0d0d0;
-    --wf-input-bg:   #fafafa;
-    --wf-btn:        #333333;
+    --wf-surface:    #f4f4f4;
+    --wf-border:     #e7e7e7;
+    --wf-text:       #141414;
+    --wf-muted:      #5c5c5c;
+    --wf-placeholder:#eaeaea;
+    --wf-input-bg:   #ffffff;
+    --wf-btn:        #141414;
     --wf-btn-text:   #ffffff;
-    --wf-btn-sec:    transparent;
-    --nav-bg:        #f9f9f9;
-    --nav-active-bg: #eaeaea;
-    --nav-text:      #555555;
-    --nav-text-active:#1a1a1a;
-    --nav-cap:       #999999;
-    --nav-line:      #e0e0e0;
+    --wf-btn-sec:    #f4f4f4;
+    --nav-bg:        #ffffff;
+    --nav-active-bg: #f4f4f4;
+    --nav-text:      #5c5c5c;
+    --nav-text-active:#141414;
+    --nav-cap:       #8a8a8a;
+    --nav-line:      #e7e7e7;
+
+    /* ── The Signal tokens (from concept.html) ── */
+    --signal:#ffbf00; --signal-ink:#8a6b00; --success:#0c6b3b; --danger:#9a2820;
+    --disp:"Bricolage Grotesque",system-ui,sans-serif;
+    --body:"Hanken Grotesk",system-ui,-apple-system,sans-serif;
+    --serif:"EB Garamond",Georgia,"Times New Roman",serif;
+    --sh-card:0 10px 24px -18px rgba(20,20,20,.13), 0 2px 6px -4px rgba(20,20,20,.05);
+    --sh-pop:0 26px 50px -22px rgba(20,20,20,.34), 0 6px 16px -10px rgba(20,20,20,.16);
   }
   * { box-sizing: border-box; margin: 0; padding: 0; }
   body {
@@ -269,6 +280,7 @@
   .scope-option.selected .scope-radio { border-color: var(--wf-text); background: var(--wf-text); }
   .scope-label { font-size: 14px; font-weight: 500; }
   .scope-desc { font-size: 12px; color: var(--wf-muted); }
+
   .share-result { text-align: center; padding: 20px 16px; }
   .share-link { display: block; padding: 12px; background: var(--wf-surface); border: 1.5px solid var(--wf-border); border-radius: 6px; font-size: 13px; color: var(--wf-muted); margin: 12px 16px; word-break: break-all; }
   .share-actions { display: flex; gap: 8px; padding: 0 16px; }
@@ -339,6 +351,140 @@
   .nav-tree .flow-screens ol { list-style: none; counter-reset: none; padding-left: 8px; margin: 0 0 4px; border-left: 1px solid var(--nav-line); }
   .nav-tree .flow-screens ol a { font-size: 11px; font-weight: 400; color: var(--nav-text); padding: 3px 8px; display: block; border-radius: 4px; text-decoration: none; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
   .nav-tree .flow-screens ol a:hover { background: var(--nav-active-bg); color: var(--nav-text-active); }
+  /* ═══════════ THE SIGNAL — applied (concept.html + home-success.html + Me.html) ═══════════ */
+  body, input, button, select, textarea { font-family: var(--body); }
+  h1, h2, h3 { font-family: var(--disp); letter-spacing:-0.01em; }
+
+  /* buttons → concept.html .btn spec; every instance */
+  .btn-primary, .btn-secondary { border-radius:999px; border:none; padding:13px 20px;
+    font-family:var(--body); font-weight:600; font-size:14px; line-height:1; cursor:pointer;
+    transition:transform .12s ease, filter .15s ease; }
+  .btn-primary { background:var(--wf-btn); color:#fff; }
+  .btn-secondary { background:var(--wf-surface); color:var(--wf-text); }
+  .btn-primary:hover { filter:brightness(1.25); }
+  .btn-secondary:hover { background:#e8e8e8; }
+  .btn-primary:active, .btn-secondary:active { transform:scale(.98); }
+  .top-nav .nav-action { border-radius:999px; border:1px solid var(--wf-border); }
+
+  /* form fields → concept.html .field spec (46px, 12px radius, amber focus ring) */
+  .form-group label { font-size:13px; font-weight:600; color:var(--wf-text); margin-bottom:6px; }
+  .form-group input, .form-group select, .form-group textarea { min-height:46px; padding:0 14px;
+    font-size:15px; border:1px solid var(--wf-border); border-radius:12px; background:#fff; color:var(--wf-text); }
+  .form-group textarea { padding:12px 14px; }
+  .form-group input:focus, .form-group select:focus, .form-group textarea:focus { outline:none;
+    border-color:var(--wf-text); box-shadow:0 0 0 3px rgba(255,191,0,.55); }
+  .form-group .helper { font-size:12.5px; color:var(--wf-muted); }
+
+  /* cards → identical values to home-success / Me */
+  .pet-card, .m-section-card, .d-section-card { background:#fff; border:1px solid var(--wf-border);
+    box-shadow:var(--sh-card); border-radius:16px; }
+
+  /* pet switcher → the merged segmented control from home-success, achieved without touching the
+     markup: the pills sit flush so they read as one track, active squares its inner edge */
+  /* full-width segmented control, identical to home-success: the "Pet:" label is taken out of the
+     visual flow (kept for screen readers) so the two pills fill the row like the reference */
+  .pet-switcher { gap:0; padding-top:20px; padding-bottom:32px; }
+  .pet-switcher-label { position:absolute; width:1px; height:1px; margin:-1px; padding:0;
+    overflow:hidden; clip:rect(0 0 0 0); white-space:nowrap; border:0; }
+  .pet-pill { border:none; background:var(--wf-surface); border-radius:0; padding:7px 14px;
+    color:var(--wf-muted); font-weight:500; flex:1; justify-content:center; }
+  .pet-pill:first-of-type { border-radius:999px 0 0 999px; }
+  .pet-pill:last-of-type  { border-radius:0 999px 999px 0; }
+  .pet-pill:hover { color:var(--wf-text); }
+  .pet-pill.active { background:var(--wf-text); color:#fff; font-weight:600; }
+  .pet-pill .pill-avatar { background:rgba(20,20,20,.10); color:var(--wf-text); font-weight:700; }
+  .pet-pill.active .pill-avatar { background:rgba(255,255,255,.22); color:#fff; }
+
+  /* scope picker → the SAME listing-card values as home-success's section cards
+     (white · 1px hairline · --sh-card · 16px radius); selected adds the ink border + amber ring */
+  .scope-option { background:#fff; border:1px solid var(--wf-border); box-shadow:var(--sh-card);
+    border-radius:16px; padding:12px 14px; }
+  .scope-option.selected { border-color:var(--wf-text); box-shadow:var(--sh-card), 0 0 0 3px rgba(255,191,0,.35); }
+  /* label → first option: 6px, matching the "Role" label → dropdown gap
+     (section padding-bottom and the p margin are zeroed inline, so this is the whole gap) */
+  .share-scope { padding-top:6px; }
+  /* radio → the kit's donut: thin grey ring unselected, thick ink ring with a white centre when
+     selected (the "dot" is the white background showing through a 6px border) */
+  .scope-radio { width:22px; height:22px; border:2px solid var(--wf-border); background:#fff; }
+  .scope-option.selected .scope-radio { border:6px solid var(--wf-text); background:#fff; }
+  /* circle sits on the RIGHT like the kit — done with flex order so the markup is untouched */
+  .scope-option .scope-radio { order:2; }
+  .scope-option > div:not(.scope-radio) { flex:1; }
+
+  /* ── share-screen hero: pet photo + share-specific illustration elements ──
+     Share-only composition. Photo is the same Unsplash pet shot as home-success; the QR and bone
+     are Solar glyphs already used on this page/system, the bowl is a CSS trapezoid in signal amber. */
+  /* app bar sits on the amber, exactly as on home-success / Me */
+  .m-header { background:#ffbf00; border-bottom:none; }
+  /* amber band + white arch — the same 94px rise as home-success's hero */
+  /* height = apex(94) + rise(94); if it were shorter the curve would clip flat at the edges */
+  .share-hero { position:relative; height:188px; background:#ffbf00; overflow:hidden; }
+  .share-hero::after { content:""; position:absolute; left:0; right:0; bottom:0; height:94px;
+    background:#fff; border-radius:50% 50% 0 0 / 94px 94px 0 0; z-index:1; }
+  /* pet name + round share button + meta — same treatment as home-success */
+  .share-id { text-align:center; padding:0 16px 4px; }
+  .share-id .name-row { display:flex; align-items:center; justify-content:center; gap:10px; }
+  .share-id h2 { font-family:var(--serif); font-style:italic; font-weight:700; font-size:36px;
+    line-height:1.06; letter-spacing:0; }
+  .share-id .meta { font-size:14px; color:var(--wf-muted); margin-top:2px; }
+  .share-hero > span { position:absolute; display:block; }
+  /* photo sits high on the amber, dipping ~35% of its height past the arch line; no ring */
+  .sh-photo { left:50%; top:18px; transform:translateX(-50%); width:118px; height:118px; border-radius:50%;
+    background:#eaeaea url("https://images.unsplash.com/photo-1543466835-00a7907e9de1?w=320&q=80&auto=format&fit=crop") center / cover no-repeat;
+    z-index:3; }
+  /* bowl — amber, flatter, tucked under the bone in front of the arch */
+  .sh-bowl { right:28px; top:106px; width:112px; height:42px; background:var(--signal);
+    border-radius:4px 4px 40px 40px / 4px 4px 26px 26px; z-index:2; }
+  /* bone — near-white so it separates from the amber, soft shadow for definition
+     (a single-colour glyph can't carry the fill+outline of a 3D asset) */
+  .sh-bone { right:22px; top:72px; width:104px; height:104px; z-index:4;
+    background:url("https://api.iconify.design/solar/bone-bold-duotone.svg?color=%23f2f2f2") center / contain no-repeat;
+    filter:drop-shadow(0 2px 4px rgba(20,20,20,.28)); }
+  /* QR card — tilted, white, overlapping the photo's left edge and the arch */
+  .sh-qr { left:30px; top:92px; width:76px; height:76px; border-radius:11px; background:#fff
+      url("https://api.iconify.design/solar/qr-code-bold.svg?color=%23141414") center / 52px no-repeat;
+    border:1px solid var(--wf-border); box-shadow:0 8px 20px -10px rgba(20,20,20,.34); z-index:5;
+    transform:rotate(-14deg); }
+  /* select → own chevron so it clears the border instead of hugging it */
+  .form-group select { appearance:none; -webkit-appearance:none; padding-right:42px;
+    background-image:url("https://api.iconify.design/solar/alt-arrow-down-linear.svg?color=%23141414");
+    background-repeat:no-repeat; background-position:right 14px center; background-size:18px; }
+  .scope-label { font-size:14px; font-weight:600; }
+  .scope-desc { font-size:12.5px; color:var(--wf-muted); }
+
+  /* QR sheet → the confirm-sheet treatment from Me.html */
+  .modal { border-radius:16px; box-shadow:var(--sh-pop); }
+  .modal-header { border-bottom:1px solid var(--wf-border); }
+  .modal-close { border-radius:999px; }
+  /* QR sheet artwork — a REAL QR (segno, version 4, error-correction H) for the demo share link,
+     inlined as a data: URI so the wireframe stays self-contained. ECC-H tolerates ~30% occlusion,
+     which is what lets the pet photo sit in the middle without breaking the code. */
+  #qr-modal .modal-body > div[style*="180px"] { position:relative !important;
+    width:200px !important; height:200px !important; color:transparent !important; font-size:0 !important;
+    border:1px solid var(--wf-border) !important; border-radius:16px !important;
+    background:#fff url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAzNyAzNyIgY2xhc3M9InNlZ25vIj48cGF0aCBmaWxsPSIjZmZmIiBkPSJNMCAwaDM3djM3aC0zN3oiLz48cGF0aCBzdHJva2U9IiMxNDE0MTQiIHN0cm9rZS13aWR0aD0iMSIgc2hhcGUtcmVuZGVyaW5nPSJjcmlzcEVkZ2VzIiBkPSJNMiAyLjVoN20yIDBoMW0xIDBoMW0xIDBoMm0yIDBoMm0zIDBoMW0xIDBoMW0xIDBoN20tMzMgMWgxbTUgMGgxbTEgMGgxbTQgMGg3bTEgMGgybTMgMGgxbTUgMGgxbS0zMyAxaDFtMSAwaDNtMSAwaDFtMSAwaDFtMSAwaDNtNiAwaDRtMSAwaDFtMSAwaDFtMSAwaDNtMSAwaDFtLTMzIDFoMW0xIDBoM20xIDBoMW0xIDBoMW01IDBoMW0yIDBoMW0xIDBoMW0xIDBoM20yIDBoMW0xIDBoM20xIDBoMW0tMzMgMWgxbTEgMGgzbTEgMGgxbTEgMGg1bTEgMGgybTIgMGgybTEgMGg0bTEgMGgxbTEgMGgzbTEgMGgxbS0zMyAxaDFtNSAwaDFtMSAwaDFtMSAwaDFtMyAwaDJtNSAwaDFtMiAwaDFtMSAwaDFtNSAwaDFtLTMzIDFoN20xIDBoMW0xIDBoMW0xIDBoMW0xIDBoMW0xIDBoMW0xIDBoMW0xIDBoMW0xIDBoMW0xIDBoMW0xIDBoN20tMjMgMWgxbTEgMGgxbTMgMGgxbTEgMGgxbTEgMGgxbTEgMGgybS0yMiAxaDFtMiAwaDdtMSAwaDNtMSAwaDFtMiAwaDFtMiAwaDFtMSAwaDFtMSAwaDVtLTMyIDFoMW0yIDBoMW0zIDBoMm0xIDBoM20zIDBoMm0xIDBoMW0zIDBoNW00IDBoMW0tMzEgMWgybTIgMGgxbTIgMGg1bTEgMGgybTEgMGgxbTEgMGg0bTEgMGg2bTEgMGgxbS0zMyAxaDNtNiAwaDFtMSAwaDFtMiAwaDRtOSAwaDFtLTI4IDFoMW0xIDBoOW0zIDBoNG0yIDBoM20xIDBoMW0xIDBoMm0xIDBoMW0xIDBoMm0tMjkgMWgybTEgMGgzbTEgMGgybTEgMGgxbTIgMGgxbTEgMGgxbTEgMGgxbTEgMGgxbTIgMGgybTIgMGgxbTEgMGgxbS0zMiAxaDRtMSAwaDJtMiAwaDFtMSAwaDJtMSAwaDFtMSAwaDFtMiAwaDFtMiAwaDJtNSAwaDFtMSAwaDFtLTMwIDFoMW0zIDBoNG0yIDBoMm00IDBoMW0yIDBoMW0xIDBoM20yIDBoMW0tMjkgMWgxbTIgMGgzbTMgMGgxbTIgMGgxbTEgMGgzbTQgMGgxbTMgMGgybTEgMGgxbTEgMGgybS0yOSAxaDFtMiAwaDZtNCAwaDJtNCAwaDFtNiAwaDNtLTMxIDFoMW0xIDBoMW0xIDBoMW0zIDBoM200IDBoN20xIDBoMm0yIDBoNG0tMzAgMWgxbTEgMGgxbTEgMGgxbTEgMGgybTMgMGgybTMgMGgxbTIgMGgybTEgMGgxbTMgMGgxbTEgMGgxbS0zMiAxaDJtMSAwaDFtMSAwaDVtMSAwaDFtMSAwaDFtMyAwaDFtMSAwaDFtMyAwaDRtLTI2IDFoMW0yIDBoMm0xIDBoMW0xIDBoM20yIDBoNG0zIDBoN20xIDBoMW0xIDBoMm0tMzMgMWgybTEgMGgxbTIgMGgxbTEgMGg0bTEgMGgxbTEgMGgzbTEgMGgxbTMgMGg2bTEgMGgxbTEgMGgxbS0zMSAxaDJtMSAwaDFtMSAwaDNtMSAwaDJtMiAwaDFtNiAwaDJtMyAwaDFtMSAwaDFtLTMwIDFoMm0xIDBoMm0xIDBoNW0yIDBoMW0yIDBoMW0xIDBoMm0yIDBoN20yIDBoMm0tMjUgMWgzbTEgMGgybTEgMGgybTEgMGgxbTEgMGgybTIgMGgxbTMgMGg1bS0zMyAxaDdtMSAwaDNtMyAwaDFtMSAwaDFtMSAwaDFtMSAwaDFtMyAwaDFtMSAwaDFtMSAwaDFtMyAwaDFtLTMzIDFoMW01IDBoMW0xIDBoMW0xIDBoMW0yIDBoMW0xIDBoMW0xIDBoMm0xIDBoMm0xIDBoMm0zIDBoMm0xIDBoMm0tMzMgMWgxbTEgMGgzbTEgMGgxbTMgMGgybTQgMGgxbTEgMGgybTEgMGgxbTEgMGg2bS0yOSAxaDFtMSAwaDNtMSAwaDFtMiAwaDJtMSAwaDFtMSAwaDFtMSAwaDRtMyAwaDFtMSAwaDFtMSAwaDNtMiAwaDFtLTMzIDFoMW0xIDBoM20xIDBoMW0xIDBoMm0xIDBoMW0zIDBoM20zIDBoMW02IDBoMm0xIDBoMm0tMzMgMWgxbTUgMGgxbTIgMGgxbTEgMGgxbTMgMGgxbTEgMGgzbTIgMGgxbTEgMGgxbS0yNSAxaDdtMiAwaDFtMSAwaDFtMiAwaDFtNCAwaDRtMSAwaDFtMSAwaDFtMSAwaDFtMyAwaDEiLz48L3N2Zz4K") center / 100% 100% no-repeat !important;
+    box-shadow:0 2px 10px -6px rgba(20,20,20,.22) !important; }
+  /* pet photo as the centre "sticker" — white ring so it reads as sitting on top of the code */
+  #qr-modal .modal-body > div[style*="180px"]::after { content:""; position:absolute;
+    left:50%; top:50%; transform:translate(-50%,-50%); width:58px; height:58px; border-radius:50%;
+    background:#eaeaea url("https://images.unsplash.com/photo-1543466835-00a7907e9de1?w=320&q=80&auto=format&fit=crop") center / cover no-repeat;
+    border:5px solid #fff; box-shadow:0 3px 10px -4px rgba(20,20,20,.35); }
+
+  /* bottom tab bar → identical to home-success / Me; Share is the active tab here */
+  .phone-nav { justify-content:space-around; }
+  .phone-nav a { position:relative; font-size:10.5px; font-weight:500; }
+  .phone-nav a.active { color:var(--wf-text); font-weight:700; }
+  .phone-nav a.active::before { content:""; position:absolute; top:-1px; left:50%; transform:translateX(-50%);
+    width:22px; height:3px; border-radius:3px; background:var(--signal); }
+  .phone-nav .nav-icon { width:23px; height:23px; border-radius:0; background:none;
+    background-repeat:no-repeat; background-position:center; background-size:23px; }
+  .phone-nav a:nth-child(1) .nav-icon { background-image:url("https://api.iconify.design/solar/paw-bold.svg?color=%235c5c5c"); }
+  .phone-nav a:nth-child(2) .nav-icon { background-image:url("https://api.iconify.design/solar/calendar-minimalistic-bold.svg?color=%235c5c5c"); }
+  .phone-nav a:nth-child(3) .nav-icon { background-image:url("https://api.iconify.design/solar/share-bold.svg?color=%235c5c5c"); }
+  .phone-nav a:nth-child(4) .nav-icon { background-image:url("https://api.iconify.design/solar/user-circle-bold.svg?color=%235c5c5c"); }
+  .phone-nav a.active:nth-child(3) .nav-icon { background-image:url("https://api.iconify.design/solar/share-bold.svg?color=%23141414"); }
+  /* clear the prototype's grey square on the active tab (it also reset background-size) */
+  .phone-nav a.active .nav-icon { background-color:transparent; background-size:23px; }
 </style>
 </head>
 <body>
@@ -695,12 +841,26 @@
       </div>
 
       <header class="m-header">
-        <a href="home-success.html" style="text-decoration:none;"><button class="back" aria-label="Back">← Miso's card</button></a>
-        <h1>Share Miso's card</h1>
+        <a href="home-success.html" style="text-decoration:none;"><button class="back" aria-label="Back to Miso's card">←</button></a>
+        <h1>Share</h1>
         <span></span>
       </header>
 
       <div class="m-main">
+
+        <div class="share-hero" aria-hidden="true">
+          <span class="sh-bowl"></span>
+          <span class="sh-photo"></span>
+          <span class="sh-bone"></span>
+          <span class="sh-qr"></span>
+        </div>
+
+        <div class="share-id">
+          <div class="name-row">
+            <h2>Miso</h2>
+          </div>
+          <p class="meta">Dog &middot; Border Terrier &middot; Female</p>
+        </div>
 
         <div class="pet-switcher" aria-label="Switch pet">
           <span class="pet-switcher-label">Pet:</span>
@@ -708,9 +868,8 @@
           <a href="Share-a-pet.html" class="pet-pill"><span class="pill-avatar">C</span> Cheetah</a>
         </div>
 
-        <section style="padding:16px;">
-          <div class="zone-label">Scope picker</div>
-          <p style="font-size:13px;color:var(--wf-muted);margin-bottom:12px;">Choose what your sitter can see:</p>
+        <section style="padding:16px 16px 0;">
+          <p style="font-size:13px;font-weight:600;color:var(--wf-text);margin-bottom:0;">Choose what your sitter can see:</p>
         </section>
 
         <div class="share-scope">
@@ -788,7 +947,7 @@
           <span class="nav-icon" aria-hidden="true"></span> Pets
         </a>
         <a href="Whats-due.html">
-          <span class="nav-icon" aria-hidden="true"></span> What's due
+          <span class="nav-icon" aria-hidden="true"></span> Reminders
         </a>
         <a href="Share-a-pet.html" class="active">
           <span class="nav-icon" aria-hidden="true"></span> Share
@@ -824,9 +983,8 @@
 
     <div class="d-main">
 
-        <section style="padding:16px;">
-          <div class="zone-label">Scope picker</div>
-          <p style="font-size:13px;color:var(--wf-muted);margin-bottom:12px;">Choose what your sitter can see:</p>
+        <section style="padding:16px 16px 0;">
+          <p style="font-size:13px;font-weight:600;color:var(--wf-text);margin-bottom:0;">Choose what your sitter can see:</p>
         </section>
 
         <div class="share-scope">
