@@ -124,6 +124,10 @@ Three further tokens exist so nothing falls back to a bare hex:
 | `--body` | Hanken Grotesk 400–700 | 4 · Icon-supported | UI and body. Neutral, highly legible at 13px. |
 | `--serif` | EB Garamond italic 700 | 5 · Warm and credible | **Names only** — pet and owner. Kinhive's italic serif carrying the warm clause. Never a label: Me.html's app bar reads "Owner", which is a label, so it stays sans. |
 
+**Standing rule — set the serif 1.25× when it sits inline with the grotesque.** EB Garamond's x-height is 42.1 per 100px against Bricolage's 52.5, so at a shared `font-size` the serif reads about 20% short. Multiply by `52.5 / 42.1 = 1.25` to match x-heights and the two faces look one size; pair it with `line-height:1` so the taller inline box doesn't inflate the line. Cap-heights already agree (66 vs 65.4), which is why only the lowercase looks wrong. Applied to the masthead clause and to the Garamond type specimen (56px against the two 46px sans specimens). A name standing on its own — `.petcard .n`, the row names, the 26px name spec — needs no correction, because nothing sits beside it to be short against.
+
+**The masthead clause is the one deliberate contrast exception.** It is set in `--signal-deep`, which is `1.88:1` on `--board` — below the 3:1 large-text bar. It is expressive display type on a decorative headline and is documented as an exception, not a pattern: amber that has to be *read* uses `--signal-ink` (`5.02:1` on `--paper`). Nothing else in the system takes an exception.
+
 ### Shape
 
 | Token | Value | Serves | Why |

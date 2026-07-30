@@ -47,7 +47,17 @@
   .mast .eyebrow{font-family:var(--body);font-size:12px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--meta)}
   .mast h1{font-family:var(--disp);font-size:clamp(34px,5.2vw,54px);font-weight:700;line-height:1.06;letter-spacing:-0.02em;margin:.24em 0 .2em}
   .mast h1 .rom{font-style:normal}
-  .mast h1 em{font-family:var(--serif);font-style:italic;font-weight:500;letter-spacing:0}
+  /* EB Garamond's x-height is 42.1 per 100px against Bricolage's 52.5, so at a shared
+     font-size the italic clause reads ~20% short. 1.25em (52.5/42.1) matches the x-heights
+     so the two faces look one size; line-height:1 stops the taller inline box inflating
+     the line. Cap-heights already agreed (66 vs 65.4), which is why only the lowercase
+     looked wrong.
+     Colour is --signal-deep, chosen deliberately for the warmer, brighter amber. Note it is
+     1.88:1 on --board, below the 3:1 large-text bar — an intentional expressive exception on
+     this one decorative masthead clause, not a pattern to copy. Amber that has to be *read*
+     uses --signal-ink (5.02:1 on --paper). */
+  .mast h1 em{font-family:var(--serif);font-style:italic;font-weight:500;letter-spacing:0;
+    font-size:1.25em;line-height:1;color:var(--signal-deep)}
   .mast p{font-size:17px;color:var(--meta);max-width:60ch;margin:0}
 
   /* section frame */
@@ -694,7 +704,7 @@
         <div style="font-size:12.5px;color:var(--meta)">Body · records, labels, buttons. Weights 400 / 500 / 600.</div>
       </div>
       <div style="border:1px solid var(--line);border-radius:14px;padding:18px 20px">
-        <div style="font-family:var(--serif);font-style:italic;font-weight:700;font-size:48px;line-height:1">Aa</div>
+        <div style="font-family:var(--serif);font-style:italic;font-weight:700;font-size:56px;line-height:1">Aa</div>
         <div style="font-weight:700;margin-top:6px">EB Garamond <span style="font-family:var(--serif);font-style:italic;font-weight:700">italic</span></div>
         <div style="font-size:12.5px;color:var(--meta)">Expressive serif · pet + owner names (bold italic 700), the hero’s warm clause (roman 600 / italic 500).</div>
       </div>
