@@ -108,6 +108,14 @@ The full set in use, each tied to the **Attribute** it serves. Anything on a Pet
 
 **Semantic colour is status only, never decoration.** All four pairs clear AA on their own ground (5.3–6.5:1).
 
+Three further tokens exist so nothing falls back to a bare hex:
+
+| Token | Value | Role |
+|---|---|---|
+| `--disabled` | `#8a8a8a` | Inactive control text. Exempt from the AA text rule (WCAG 1.4.3 excludes inactive components), but it still needs to be a named value rather than an ad-hoc grey. |
+| `--photo-bg` | `#eaeaea` | The tone behind a photo for the instant before it paints. **Not a placeholder fill** — Attribute 3 bans those. It is never what a user is left looking at. |
+| `--board` | `#ececec` | The language board's own page ground in `concept.html`. Documentation chrome, not product UI. |
+
 ### Type
 
 | Token | Value | Serves | Why |

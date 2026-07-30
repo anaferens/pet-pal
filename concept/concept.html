@@ -21,6 +21,7 @@
     --ink:#141414; --paper:#ffffff; --surface:#f4f4f4; --line:#e7e7e7; --meta:#5c5c5c;
     --signal:#ffbf00; --signal-deep:#e0a400; --signal-ink:#8a6b00; --on-signal:#141414;
     --signal-tint:#fdf3d3;
+    --board:#ececec; --disabled:#8a8a8a; --photo-bg:#eaeaea;
     --success:#0c6b3b; --success-bg:#e6f3ec;
     --warning:#8a5800; --warning-bg:#fbeed6;
     --danger:#9a2820; --danger-bg:#f9e7e6;
@@ -35,7 +36,7 @@
   }
   *{box-sizing:border-box}
   html{-webkit-text-size-adjust:100%}
-  body{margin:0;background:#ececec;color:var(--ink);font-family:var(--body);line-height:1.55;
+  body{margin:0;background:var(--board);color:var(--ink);font-family:var(--body);line-height:1.55;
     -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
   iconify-icon{display:inline-block;vertical-align:-0.15em}
   h1,h2,h3,h4,h5,h6{font-family:var(--disp);margin:0;letter-spacing:-0.02em;line-height:1.1}
@@ -47,7 +48,7 @@
   .mast h1{font-family:var(--disp);font-size:clamp(34px,5.2vw,54px);font-weight:700;line-height:1.06;letter-spacing:-0.02em;margin:.24em 0 .2em}
   .mast h1 .rom{font-style:normal}
   .mast h1 em{font-family:var(--serif);font-style:italic;font-weight:500;letter-spacing:0}
-  .mast p{font-size:17px;color:#333;max-width:60ch;margin:0}
+  .mast p{font-size:17px;color:var(--meta);max-width:60ch;margin:0}
 
   /* section frame */
   section.band{background:var(--paper);border-radius:22px;padding:34px 30px 38px;margin:0 0 18px;box-shadow:var(--sh-card)}
@@ -83,7 +84,7 @@
   .petcard .n{font-family:var(--serif);font-style:italic;font-weight:700;font-size:26px;line-height:1.06}
   .petcard .b{color:var(--meta);font-size:13px;margin-top:1px}
   .metarow{display:flex;flex-direction:column;gap:9px;margin-top:13px}
-  .metarow .m{display:flex;align-items:center;gap:9px;font-size:13px;color:#2a2a2a}
+  .metarow .m{display:flex;align-items:center;gap:9px;font-size:13px;color:var(--ink)}
   .metarow .m iconify-icon{font-size:19px;color:var(--ink);flex:0 0 auto}
   .metarow .m .s-ok{color:var(--success)} .metarow .m .s-warn{color:var(--warning)} .metarow .m .s-bad{color:var(--danger)}
   .cardbtns{display:flex;gap:8px;margin-top:16px}
@@ -101,7 +102,7 @@
   .btn.quiet{background:var(--surface);color:var(--ink)}
   .btn.quiet:hover{background:#e8e8e8}
   .btn.block{width:100%}
-  .btn[disabled]{background:var(--surface);color:#a6a6a6;cursor:not-allowed}
+  .btn[disabled]{background:var(--surface);color:var(--disabled);cursor:not-allowed}
   .btn.loading{color:transparent;position:relative;pointer-events:none}
   .btn.loading::after{content:"";position:absolute;width:16px;height:16px;border-radius:50%;
     border:2px solid rgba(255,255,255,.4);border-top-color:#fff;animation:spin .7s linear infinite}
@@ -184,9 +185,9 @@
   .srow .tile iconify-icon{font-size:22px;color:var(--ink)}
   .srow .body{flex:1;min-width:0}
   /* title + meta metrics copied from the wireframe's .card-body h3 / .card-meta */
-  .srow h4{font-family:var(--disp);font-size:16px;font-weight:700;line-height:1.3;margin:0;
+  .srow h3{font-family:var(--disp);font-size:16px;font-weight:700;line-height:1.3;margin:0;
     display:flex;align-items:center;gap:6px}
-  .srow h4 iconify-icon{font-size:18px;color:var(--success);flex:0 0 auto}
+  .srow h3 iconify-icon{font-size:18px;color:var(--success);flex:0 0 auto}
   .srow .body p{font-size:13px;line-height:1.45;color:var(--meta);margin:2px 0 0}
   .srow .go{color:var(--meta);font-size:17px;flex:0 0 auto}
 
@@ -204,7 +205,7 @@
   /* select — the .field input with its own chevron, inset to match the text */
   .field .sel{position:relative}
   .field .sel::after{content:"";position:absolute;right:14px;top:50%;width:18px;height:18px;
-    transform:translateY(-50%);background:url("https://api.iconify.design/solar/alt-arrow-down-linear.svg?color=%23141414") center / 18px no-repeat}
+    transform:translateY(-50%);background:url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxZW0iIGhlaWdodD0iMWVtIiB2aWV3Qm94PSIwIDAgMjQgMjQiPjxwYXRoIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzE0MTQxNCIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIiBzdHJva2Utd2lkdGg9IjEuNSIgZD0ibTE5IDlsLTcgNmwtNy02Ii8+PC9zdmc+") center / 18px no-repeat}
 
   /* confirm sheet / dialog */
   .sheet{background:var(--paper);border-radius:var(--r-card);box-shadow:var(--sh-pop);
@@ -240,7 +241,7 @@
   /* pet pair — overlapping avatars, as on the reminders hero */
   .petpair{display:flex;justify-content:center}
   .petpair > span{width:88px;height:88px;border-radius:50%;border:3px solid var(--paper);flex:0 0 auto;
-    background:#eaeaea center / cover no-repeat;position:relative}
+    background:var(--photo-bg) center / cover no-repeat;position:relative}
   .petpair > span + span{margin-left:-22px;z-index:1}
 
   /* ---- generic spec grids ---- */
@@ -308,6 +309,14 @@
     .scale-row .spec{flex:none}
   }
   @media (max-width:560px){ .cols-2{grid-template-columns:1fr} }
+
+  /* prefers-reduced-motion — state changes preserved, travel removed */
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { transition-duration:1ms !important; animation-duration:1ms !important;
+      animation-iteration-count:1 !important; scroll-behavior:auto !important; }
+    .btn:active { transform:none !important; }   /* press scale only; the switch's
+       knob animates `left`, and the check's rotate(45deg) is static geometry — both untouched */
+  }
 </style>
 </head>
 <body>
@@ -330,13 +339,13 @@
             <span class="title">Pets</span>
             <span class="tools">
               <iconify-icon icon="solar:magnifer-bold" aria-label="Search"></iconify-icon>
-              <img class="avatar" src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=120&q=80&auto=format&fit=crop" alt="Your profile">
+              <img loading="lazy" class="avatar" src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=120&q=80&auto=format&fit=crop" alt="Your profile">
             </span>
           </div>
           <div class="screen-body">
             <div class="petcard">
               <div class="ph">
-                <img src="https://images.unsplash.com/photo-1552053831-71594a27632d?w=560&q=80&auto=format&fit=crop" alt="Pixel, a Welsh corgi">
+                <img loading="lazy" src="https://images.unsplash.com/photo-1552053831-71594a27632d?w=560&q=80&auto=format&fit=crop" alt="Pixel, a Welsh corgi">
                 <span class="tagflag"><iconify-icon icon="solar:check-circle-bold"></iconify-icon>Up to date</span>
               </div>
               <div class="body">
@@ -364,7 +373,7 @@
 
       <div style="flex:1;min-width:260px">
         <p class="lbl">What the direction promises</p>
-        <p style="font-size:15px;color:#2a2a2a;max-width:46ch">Colour appears <b>only where you act or where status matters</b>. The photo of the pet leads; ink carries the facts; one amber signal marks the live moment. Nothing shouts, so the one urgent thing can.</p>
+        <p style="font-size:15px;color:var(--ink);max-width:46ch">Colour appears <b>only where you act or where status matters</b>. The photo of the pet leads; ink carries the facts; one amber signal marks the live moment. Nothing shouts, so the one urgent thing can.</p>
         <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:18px">
           <span class="chip ok"><iconify-icon icon="solar:check-circle-bold"></iconify-icon>Up to date</span>
           <span class="chip warn"><iconify-icon icon="solar:clock-circle-bold"></iconify-icon>Due soon</span>
@@ -409,7 +418,7 @@
         <p class="lbl">2 · Listing card + verification badge</p>
         <div class="petcard plain" style="max-width:320px">
           <div class="ph">
-            <img src="https://images.unsplash.com/photo-1543466835-00a7907e9de1?w=560&q=80&auto=format&fit=crop" alt="Nala, a golden retriever">
+            <img loading="lazy" src="https://images.unsplash.com/photo-1543466835-00a7907e9de1?w=560&q=80&auto=format&fit=crop" alt="Nala, a golden retriever">
             <span class="verimark"><iconify-icon icon="solar:verified-check-bold"></iconify-icon>Verified</span>
             <span class="tagflag"><iconify-icon icon="solar:check-circle-bold"></iconify-icon>Up to date</span>
           </div>
@@ -483,7 +492,7 @@
 
         <p class="lbl" style="margin-top:26px">Enamel “up-to-date” tag</p>
         <span class="uptodate"><iconify-icon icon="solar:verified-check-bold"></iconify-icon>Up to date</span>
-        <p style="font-size:12px;color:var(--meta);margin:12px 0 0">The card's headline trust signal, and the one component on <code>--r-tag</code> (9px) — the enamel ID-tag radius the direction is named for. Chip family, but deliberately <b>flat</b>: no shadow, so it reads as stamped into the card rather than floating above it. Success green with the verified mark; it states a fact, never celebrates.</p>
+        <p style="font-size:12px;color:var(--meta);margin:12px 0 0">The card's headline trust signal, and the one component on <code>--r-tag</code> (9px) — the enamel ID-tag radius the direction is named for. Chip family, but deliberately <b>flat</b>. No shadow, so it reads as stamped into the card rather than floating above it. Success green with the verified mark; it states a fact, never celebrates.</p>
         <div class="atags"><span class="atag">Trust signals visible — proof where the eye already is</span><span class="atag">Calm — a fact, not a fanfare</span></div>
 
         <p class="lbl" style="margin-top:26px">Switch</p>
@@ -515,7 +524,7 @@
             <span style="font-size:12px;color:var(--meta)">Shared</span>
           </span>
         </div>
-        <p style="font-size:12px;color:var(--meta);margin:12px 0 0">120px tile (160px on desktop) · <b>card</b> radius · <code>--signal-tint</code> ground with a single <b>bold-duotone</b> Solar glyph in <code>--signal-ink</code> at 56px (72px large). Pick the glyph from what the screen is <i>about</i> — never a generic box. Glyph on tint is 4.53:1, past the 3:1 floor for graphics.</p>
+        <p style="font-size:12px;color:var(--meta);margin:12px 0 0">120px tile (160px on desktop) · <b>card</b> radius · <code>--signal-tint</code> ground with a single <b>bold-duotone</b> Solar glyph in <code>--signal-ink</code> at 56px (72px large). Pick the glyph from what the screen is <i>about</i>, never a generic box. Glyph on tint is 4.53:1, past the 3:1 floor for graphics.</p>
         <div class="atags"><span class="atag">Real imagery — never a grey placeholder</span><span class="atag">Calm — warm, quiet, not alarming</span><span class="atag">Icon-supported — the glyph names the state</span></div>
 
         <p class="lbl" style="margin-top:26px">Segmented control — pet switcher</p>
@@ -528,7 +537,7 @@
           <span>Miso</span>
           <span>Cheetah</span>
         </div>
-        <p style="font-size:12px;color:var(--meta);margin:12px 0 0">One shared <code>--surface</code> track at <b>pill</b> radius with no inset. The active segment is an ink pill that keeps its outer corners round and <b>squares the edge facing its neighbour</b> — written <code>:first-child</code>/<code>:last-child</code> so it works whichever segment is active. Scales to three (the pet filter on the reminders screen): a middle segment active squares <i>both</i> inner edges. Full width on mobile; 24px clear above and below.</p>
+        <p style="font-size:12px;color:var(--meta);margin:12px 0 0">One shared <code>--surface</code> track at <b>pill</b> radius with no inset. The active segment is an ink pill that keeps its outer corners round and <b>squares the edge facing its neighbour</b>, written <code>:first-child</code>/<code>:last-child</code> so it works whichever segment is active. Scales to three (the pet filter on the reminders screen): a middle segment active squares <i>both</i> inner edges. Full width on mobile; 24px clear above and below.</p>
         <div class="atags"><span class="atag">Calm — one active signal</span><span class="atag">Trust — the current pet is unambiguous</span></div>
 
         <p class="lbl" style="margin-top:26px">Calendar tile — date strip</p>
@@ -548,19 +557,19 @@
           <span style="background-image:url('https://images.unsplash.com/photo-1543466835-00a7907e9de1?w=320&amp;q=80&amp;auto=format&amp;fit=crop')"></span>
           <span style="background-image:url('../wireframes/assets/cat.png');background-position:center 32%"></span>
         </div>
-        <p style="font-size:12px;color:var(--meta);margin:12px 0 0">The same 88px circle and 3px <code>--paper</code> ring as the single photo in a hero, overlapped by <b>22px</b> with the second pet on top. Used when a screen is about <i>all</i> the pets rather than one — it sits centred 50/50 on the arch line, exactly like the single photo does.</p>
+        <p style="font-size:12px;color:var(--meta);margin:12px 0 0">The same 88px circle and 3px <code>--paper</code> ring as the single photo in a hero, overlapped by <b>22px</b> with the second pet on top. Used when a screen is about <i>all</i> the pets rather than one. It sits centred 50/50 on the arch line, exactly like the single photo does.</p>
         <div class="atags"><span class="atag">Real imagery — the pets lead</span><span class="atag">Calm — one warm focal point</span></div>
 
         <p class="lbl" style="margin-top:26px">Section row — the dossier's listing element</p>
         <div style="display:flex;flex-direction:column;gap:10px;max-width:360px">
           <div class="srow">
             <span class="tile"><iconify-icon icon="solar:syringe-bold"></iconify-icon></span>
-            <span class="body"><h4>Health &amp; jabs <iconify-icon icon="solar:verified-check-bold"></iconify-icon></h4><p>6 records · Updated 3 days ago</p></span>
+            <span class="body"><h3>Health &amp; jabs <iconify-icon icon="solar:verified-check-bold"></iconify-icon></h3><p>6 records · Updated 3 days ago</p></span>
             <span class="go">→</span>
           </div>
           <div class="srow">
             <span class="tile"><iconify-icon icon="solar:shield-check-bold"></iconify-icon></span>
-            <span class="body"><h4>Insurance <iconify-icon icon="solar:verified-check-bold"></iconify-icon></h4><p>1 active policy · Renews 1 Oct 2026</p></span>
+            <span class="body"><h3>Insurance <iconify-icon icon="solar:verified-check-bold"></iconify-icon></h3><p>1 active policy · Renews 1 Oct 2026</p></span>
             <span class="go">→</span>
           </div>
         </div>
@@ -572,7 +581,7 @@
           <div class="choice on"><span class="body"><b>Full card</b><small>Health, documents, personality, vet — everything</small></span><span class="dot"></span></div>
           <div class="choice"><span class="body"><b>Health &amp; jabs only</b><small>Jabs, conditions, meds — for a vet visit</small></span><span class="dot"></span></div>
         </div>
-        <p style="font-size:12px;color:var(--meta);margin:12px 0 0">Same card values as the section row. The circle sits on the <b>right</b> and is a <b>donut</b>: 22px, 2px <code>--line</code> ring unselected, 6px <b>ink</b> ring with the white centre showing through when selected — never a flat filled dot. Selected adds the ink border plus the amber focus ring.</p>
+        <p style="font-size:12px;color:var(--meta);margin:12px 0 0">Same card values as the section row. The circle sits on the <b>right</b> and is a <b>donut</b>: 22px, 2px <code>--line</code> ring unselected, 6px <b>ink</b> ring with the white centre showing through when selected, never a flat filled dot. Selected adds the ink border plus the amber focus ring.</p>
         <div class="atags"><span class="atag">Calm — selection reads at a glance</span><span class="atag">Trust — the choice is explicit before you share</span></div>
 
         <p class="lbl" style="margin-top:26px">Select</p>
@@ -581,7 +590,7 @@
           <div class="inp sel">Sitter (read-only)</div>
           <p class="help">Default: sitter — read-only, no account needed.</p>
         </div>
-        <p style="font-size:12px;color:var(--meta);margin:12px 0 0">The input field with its own chevron. The native browser arrow can't be inset with padding, so use <code>appearance:none</code> and place a Solar <code>alt-arrow-down-linear</code> at <b>right 14px</b> — mirroring the 14px text inset on the left.</p>
+        <p style="font-size:12px;color:var(--meta);margin:12px 0 0">The input field with its own chevron. The native browser arrow can't be inset with padding, so use <code>appearance:none</code> and place a Solar <code>alt-arrow-down-linear</code> at <b>right 14px</b>, mirroring the 14px text inset on the left.</p>
         <div class="atags"><span class="atag">Calm — quiet until focused</span></div>
 
         <p class="lbl" style="margin-top:26px">Confirm sheet &amp; danger affordances</p>
@@ -601,7 +610,7 @@
           <span style="display:flex;align-items:center;gap:9px"><span class="iconbtn"><iconify-icon icon="solar:share-bold"></iconify-icon></span><span style="font-size:12.5px;color:var(--meta)">Beside a name</span></span>
           <span style="display:flex;align-items:center;gap:9px"><span class="iconbtn onphoto"><iconify-icon icon="solar:pen-bold"></iconify-icon></span><span style="font-size:12.5px;color:var(--meta)">On a photo</span></span>
         </div>
-        <p style="font-size:12px;color:var(--meta);margin:12px 0 0">26px <b>ink</b> circle beside a name; 30px <b>white</b> circle with a shadow when it sits on a photo, so it stays legible over any image. On a photo it needs a z-index above the photo, or the photo paints over it. <b>Don't repeat an action on the screen that performs it</b> — the share circle belongs on the dossier, not on the share screen.</p>
+        <p style="font-size:12px;color:var(--meta);margin:12px 0 0">26px <b>ink</b> circle beside a name. 30px <b>white</b> circle with a shadow when it sits on a photo, so it stays legible over any image. On a photo it needs a z-index above the photo, or the photo paints over it. <b>Don't repeat an action on the screen that performs it</b> — the share circle belongs on the dossier, not on the share screen.</p>
         <div class="atags"><span class="atag">Calm — actions stay small until needed</span><span class="atag">Icon-supported</span></div>
       </div>
     </div>
@@ -622,12 +631,12 @@
           <p style="font-size:11px;color:var(--meta);margin:0 0 8px">Profile · owners</p>
           <div style="border:1px solid var(--line);border-radius:14px;padding:4px 15px">
             <div style="display:flex;align-items:center;gap:12px;padding:11px 0;border-bottom:1px solid var(--line)">
-              <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=120&q=80&auto=format&fit=crop" alt="Maya Chen" style="width:38px;height:38px;border-radius:50%;object-fit:cover">
+              <img loading="lazy" src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=120&q=80&auto=format&fit=crop" alt="Maya Chen" style="width:38px;height:38px;border-radius:50%;object-fit:cover">
               <span style="font-family:var(--serif);font-style:italic;font-weight:700;font-size:18px;flex:1">Maya Chen</span>
               <span style="font-size:12px;color:var(--meta);display:inline-flex;align-items:center;gap:5px"><iconify-icon icon="solar:crown-minimalistic-bold" style="font-size:15px;color:var(--signal-ink)"></iconify-icon>Primary</span>
             </div>
             <div style="display:flex;align-items:center;gap:12px;padding:11px 0">
-              <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=120&q=80&auto=format&fit=crop" alt="Tom Rees" style="width:38px;height:38px;border-radius:50%;object-fit:cover">
+              <img loading="lazy" src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=120&q=80&auto=format&fit=crop" alt="Tom Rees" style="width:38px;height:38px;border-radius:50%;object-fit:cover">
               <span style="font-family:var(--serif);font-style:italic;font-weight:700;font-size:18px;flex:1">Tom Rees</span>
               <span style="font-size:12px;color:var(--meta)">Sitter</span>
             </div>
@@ -655,7 +664,7 @@
     <div class="grid cols-4" style="margin-bottom:24px">
       <div class="sw"><div class="swatch" style="background:#e7e7e7"></div><div class="cap"><div class="role">Line</div><div class="hex">#E7E7E7</div><div class="attr">Hairline dividers, card edges.</div></div></div>
       <div class="sw"><div class="swatch" style="background:#5c5c5c"></div><div class="cap"><div class="role" style="color:#5c5c5c">Meta</div><div class="hex">#5C5C5C</div><div class="attr">Secondary text, captions, labels.</div></div></div>
-      <div class="sw"><div class="swatch" style="background:#a6a6a6"></div><div class="cap"><div class="role" style="color:#767676">Muted</div><div class="hex">#A6A6A6</div><div class="attr">Disabled text, placeholders.</div></div></div>
+      <div class="sw"><div class="swatch" style="background:var(--disabled)"></div><div class="cap"><div class="role" style="color:var(--meta)">Disabled</div><div class="hex">#8A8A8A</div><div class="attr">Disabled text, placeholders.</div></div></div>
       <div class="sw"><div class="swatch" style="background:#141414"></div><div class="cap"><div class="role" style="color:#141414">On-signal</div><div class="hex">#141414</div><div class="attr">Text/icons placed on the amber signal.</div></div></div>
     </div>
 
@@ -802,15 +811,15 @@
     <div class="atags"><span class="atag">Real imagery — photo, never grey gradient</span></div>
     <div class="grid cols-3">
       <div class="imgrule">
-        <div class="thumb"><img src="https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?w=520&q=80&auto=format&fit=crop" alt="A cat"></div>
+        <div class="thumb"><img loading="lazy" src="https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?w=520&q=80&auto=format&fit=crop" alt="A cat"></div>
         <div class="cap"><div class="k">Pet</div><b>The animal itself</b><p>Full-bleed in a rounded card — the pet leads every screen it appears on.</p></div>
       </div>
       <div class="imgrule person">
-        <div class="thumb"><img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=200&q=80&auto=format&fit=crop" alt="A sitter, portrait"></div>
+        <div class="thumb"><img loading="lazy" src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=200&q=80&auto=format&fit=crop" alt="A sitter, portrait"></div>
         <div class="cap"><div class="k">Person</div><b>A portrait</b><p>Sitter, owner or vet — a circular avatar, warm and human, cropped to the face.</p></div>
       </div>
       <div class="imgrule">
-        <div class="thumb"><img src="https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?w=520&q=80&auto=format&fit=crop" alt="An interior"></div>
+        <div class="thumb"><img loading="lazy" src="https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?w=520&q=80&auto=format&fit=crop" alt="An interior"></div>
         <div class="cap"><div class="k">Room</div><b>An interior</b><p>A boarding or home stay — the place, softly lit, in a rounded thumbnail.</p></div>
       </div>
     </div>

@@ -643,6 +643,25 @@
   .m-section-card.v3 h3, .d-section-card.v3 h3 { font-size: 16px; font-weight: 700; display: flex; align-items: center; gap: 6px; }
   .v3 .check { width: 18px; height: 18px; border-radius: 50%; background: var(--wf-btn); color: #fff; font-size: 11px; display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0; }
   .v3 .card-meta { font-size: 13px; color: var(--wf-muted); margin-top: 2px; line-height: 1.45; }
+
+  /* ── prefers-reduced-motion ──
+     Not a blanket kill: every state change still happens and still looks the same,
+     it just arrives instantly instead of travelling. Two exceptions are handled
+     explicitly below. */
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      transition-duration: 1ms !important;
+      animation-duration: 1ms !important;
+      animation-iteration-count: 1 !important;
+      scroll-behavior: auto !important;
+    }
+    /* the skeleton shimmer loops forever and never settles — stop it outright and
+       leave the static placeholder tone, which already reads as "loading" */
+    [class*="skel"], .skeleton-line, .skeleton-icon, .skeleton-card { animation: none !important; }
+    /* press feedback drops to colour only; the scale is decoration, the fill is the signal */
+    .btn-primary:active, .btn-secondary:active, .btn:active, .btn-share:active,
+    .btn-danger:active { transform: none !important; }
+  }
 </style>
 </head>
 <body>
