@@ -7,6 +7,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700&family=Hanken+Grotesk:wght@400;500;600;700&family=EB+Garamond:ital,wght@0,600;1,600;1,700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../ui/kit.css">
 <style>
   :root {
     --wf-bg:         #ffffff;
@@ -805,88 +806,88 @@
         <span class="zone-label">Owner</span> Owner profile · <span>★ Owner</span> — account, contact details, log out
       </div>
 
-      <header class="m-header v3-header">
+      <header class="pp-appbar pp-appbar--sm">
         <span></span>
-        <h1>Owner</h1>
+        <h1 class="pp-appbar__title">Owner</h1>
         <span></span>
       </header>
 
       <div class="m-main">
 
-        <div class="dv3-hero">
-          <figure class="dv3-photo" aria-label="Owner photo placeholder">photo</figure>
+        <div class="pp-hero">
+          <figure class="pp-avatar pp-avatar--ring pp-hero__photo" aria-label="Eva Schmidt" style="background-image:url(https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=320&amp;q=80&amp;auto=format&amp;fit=crop)"></figure>
         </div>
-        <div class="dv3-arch">
-          <h2>Eva Schmidt</h2>
-          <p class="meta">Pet owner · 2 pets · Berlin</p>
+        <div class="pp-arch">
+          <h2 class="pp-arch__name">Eva Schmidt</h2>
+          <p class="pp-arch__meta">Pet owner · 2 pets · Berlin</p>
         </div>
 
         <form aria-label="Profile" onsubmit="return false;">
-          <div class="form-group">
-            <label for="m-full-name">Full name</label>
-            <input id="m-full-name" type="text" value="Eva Schmidt">
+          <div class="pp-field pp-field--inset">
+            <label class="pp-field__label" for="m-full-name">Full name</label>
+            <input class="pp-input" id="m-full-name" type="text" value="Eva Schmidt">
           </div>
-          <div class="form-group">
-            <label for="m-email">Email</label>
-            <input id="m-email" type="email" value="eva.schmidt@example.com">
+          <div class="pp-field pp-field--inset">
+            <label class="pp-field__label" for="m-email">Email</label>
+            <input class="pp-input" id="m-email" type="email" value="eva.schmidt@example.com">
           </div>
-          <div class="form-group">
-            <label for="m-phone">Phone</label>
-            <input id="m-phone" type="tel" value="+49 171 9876543">
+          <div class="pp-field pp-field--inset">
+            <label class="pp-field__label" for="m-phone">Phone</label>
+            <input class="pp-input" id="m-phone" type="tel" value="+49 171 9876543">
           </div>
-          <div class="form-group">
-            <label for="m-language">Language</label>
-            <select id="m-language"><option selected>English</option><option>Deutsch</option></select>
+          <div class="pp-field pp-field--inset">
+            <label class="pp-field__label" for="m-language">Language</label>
+            <select class="pp-select" id="m-language"><option selected>English</option><option>Deutsch</option></select>
           </div>
-          <div class="toggle-row">
-            <div><div class="t-label">Reminder notifications</div><div class="t-desc">Push &amp; email for What's due</div></div>
-            <div class="toggle-switch on" role="switch" onclick="this.classList.toggle('on')"></div>
+          <div class="pp-switchrow pp-switchrow--ruled">
+            <div><div class="pp-switchrow__label">Reminder notifications</div><div class="pp-switchrow__desc">Push &amp; email for What's due</div></div>
+            <div class="pp-switch" role="switch" aria-checked="true" tabindex="0" aria-label="Reminder notifications" onclick="this.setAttribute('aria-checked', this.getAttribute('aria-checked')==='true'?'false':'true')"></div>
           </div>
-          <div class="form-group">
-            <button type="button" class="btn-primary" style="width:100%;" onclick="this.textContent='Saved ✓'">Save</button>
+          <div class="pp-field pp-field--inset">
+            <button type="button" class="pp-btn pp-btn--full" onclick="this.textContent='Saved ✓'">Save</button>
           </div>
-          <div class="form-group">
-            <button type="button" class="btn-secondary" style="width:100%;" onclick="openMeModal('logout-modal')">Log out</button>
+          <div class="pp-field pp-field--inset">
+            <button type="button" class="pp-btn pp-btn--secondary pp-btn--full" onclick="openMeModal('logout-modal')">Log out</button>
           </div>
           <div style="text-align:center;padding:2px 16px 20px;">
-            <button type="button" class="danger-link" onclick="openMeModal('delete-modal')">Delete account</button>
+            <button type="button" class="pp-btn pp-btn--dangerlink" onclick="openMeModal('delete-modal')">Delete account</button>
           </div>
         </form>
 
-        <div class="me-modal" id="logout-modal" onclick="if(event.target===this)closeMeModals()">
-          <div class="me-sheet" role="dialog" aria-label="Log out?">
-            <h3>Log out?</h3>
-            <p>Your pets' data stays safe. You can log back in any time.</p>
-            <div class="row">
-              <button class="btn-secondary" onclick="closeMeModals()">Cancel</button>
-              <a href="Logged-out.html"><button class="btn-primary" style="width:100%;">Log out</button></a>
+        <div class="pp-modal" id="logout-modal" onclick="if(event.target===this)closeMeModals()">
+          <div class="pp-sheet" role="dialog" aria-label="Log out?">
+            <h3 class="pp-sheet__title">Log out?</h3>
+            <p class="pp-sheet__body">Your pets' data stays safe. You can log back in any time.</p>
+            <div class="pp-sheet__actions">
+              <button class="pp-btn pp-btn--secondary pp-btn--full" onclick="closeMeModals()">Cancel</button>
+              <a href="Logged-out.html"><button class="pp-btn pp-btn--full">Log out</button></a>
             </div>
           </div>
         </div>
-        <div class="me-modal" id="delete-modal" onclick="if(event.target===this)closeMeModals()">
-          <div class="me-sheet" role="dialog" aria-label="Delete account?">
-            <h3>Delete account?</h3>
-            <p>This permanently removes your account, Miso's and Cheetah's cards, and every share link. It can't be undone.</p>
-            <div class="row">
-              <button class="btn-secondary" onclick="closeMeModals()">Cancel</button>
-              <a href="Logged-out.html?deleted=1"><button class="btn-danger" style="width:100%;">Delete account</button></a>
+        <div class="pp-modal" id="delete-modal" onclick="if(event.target===this)closeMeModals()">
+          <div class="pp-sheet" role="dialog" aria-label="Delete account?">
+            <h3 class="pp-sheet__title">Delete account?</h3>
+            <p class="pp-sheet__body">This permanently removes your account, Miso's and Cheetah's cards, and every share link. It can't be undone.</p>
+            <div class="pp-sheet__actions">
+              <button class="pp-btn pp-btn--secondary pp-btn--full" onclick="closeMeModals()">Cancel</button>
+              <a href="Logged-out.html?deleted=1"><button class="pp-btn pp-btn--danger pp-btn--full">Delete account</button></a>
             </div>
           </div>
         </div>
       </div>
 
-      <nav class="phone-nav" aria-label="Main navigation">
-        <a href="My-Pets.html">
-          <span class="nav-icon" aria-hidden="true"></span> Pets
+      <nav class="pp-tabbar" aria-label="Main navigation">
+        <a href="My-Pets.html" class="pp-tab pp-tab--pets">
+          <span class="pp-tab__icon" aria-hidden="true"></span> Pets
         </a>
-        <a href="Whats-due.html">
-          <span class="nav-icon" aria-hidden="true"></span> Reminders
+        <a href="Whats-due.html" class="pp-tab pp-tab--reminders">
+          <span class="pp-tab__icon" aria-hidden="true"></span> Reminders
         </a>
-        <a href="Share-a-pet.html">
-          <span class="nav-icon" aria-hidden="true"></span> Share
+        <a href="Share-a-pet.html" class="pp-tab pp-tab--share">
+          <span class="pp-tab__icon" aria-hidden="true"></span> Share
         </a>
-              <a href="Me.html" class="active">
-          <span class="nav-icon" aria-hidden="true"></span> Owner
+              <a href="Me.html" class="pp-tab pp-tab--owner" aria-current="page">
+          <span class="pp-tab__icon" aria-hidden="true"></span> Owner
         </a>
       </nav>
 

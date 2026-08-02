@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Personality & care (empty) — PetPal wireframe</title>
+<link rel="stylesheet" href="../ui/kit.css">
 <style>
   :root {
     --wf-bg:         #ffffff;
@@ -678,70 +679,70 @@
         <span class="zone-label">R2</span> R2 · <span>Pet card → ★ Personality & care</span>
       </div>
 
-      <header class="m-header">
-        <a href="home-progress-3.html" style="text-decoration:none;"><button class="back" aria-label="Back">← Miso's card</button></a>
-        <h1>Personality & care</h1>
-        <a href="Add-care-note.html"><button class="action-btn">Edit</button></a>
+      <header class="pp-appbar">
+        <a href="home-progress-3.html" style="text-decoration:none;"><button class="pp-appbar__back" aria-label="Back">← Miso's card</button></a>
+        <h1 class="pp-appbar__title">Personality & care</h1>
+        <a href="Add-care-note.html"><button class="pp-appbar__action">Edit</button></a>
       </header>
 
       <div class="m-main">
 
-        <section class="m-pet-identity" aria-label="Pet identity">
-          <figure class="pet-photo pet-photo-s" aria-label="Pet photo placeholder">photo</figure>
-          <div class="pet-info">
-            <h2 style="font-size:15px;font-weight:700;">Miso</h2>
-            <p class="pet-meta" style="font-size:12px;">Dog · Border Terrier · Female</p>
+        <section class="pp-identity" aria-label="Pet identity">
+          <figure class="pp-avatar pp-avatar--md pp-avatar--miso pp-iconbox" aria-label="Miso">photo</figure>
+          <div class="pp-identity__body">
+            <h2 class="pp-identity__name">Miso</h2>
+            <p class="pp-identity__meta">Dog · Border Terrier · Female</p>
           </div>
         </section>
-        <p style="padding:10px 16px;font-size:11px;color:var(--wf-muted);background:var(--wf-surface);border-bottom:1px solid var(--wf-border);">Fill these in one by one — this is exactly what your sitter will see.</p>
+        <p class="pp-note">Fill these in one by one — this is exactly what your sitter will see.</p>
 
-        <div class="personality-section" style="border:1.5px dashed var(--wf-border);border-radius:8px;margin:10px 16px;padding:12px 14px;">
-          <div style="display:flex;justify-content:space-between;align-items:baseline;"><h3 style="color:var(--wf-muted);">Favourite food &amp; treats</h3><a href="Add-care-note.html?cat=food&next=Personality-and-care-fill1.html" style="font-size:12px;font-weight:600;">Add</a></div>
-          <p style="color:var(--wf-muted);">Feeding amounts, treats, foods to avoid</p>
+        <div class="pp-slot">
+          <div class="pp-headrow"><h3 class="pp-card__title">Favourite food &amp; treats</h3><a href="Add-care-note.html?cat=food&next=Personality-and-care-fill1.html" class="pp-btn pp-btn--link">Add</a></div>
+          <p class="pp-card__body">Feeding amounts, treats, foods to avoid</p>
         </div>
 
-        <div class="personality-section" style="border:1.5px dashed var(--wf-border);border-radius:8px;margin:10px 16px;padding:12px 14px;">
-          <div style="display:flex;justify-content:space-between;align-items:baseline;"><h3 style="color:var(--wf-muted);">Likes &amp; temperament</h3><a href="Add-care-note.html?cat=likes&next=Personality-and-care-fill1.html" style="font-size:12px;font-weight:600;">Add</a></div>
-          <p style="color:var(--wf-muted);">What Miso loves, how she behaves with people and dogs</p>
+        <div class="pp-slot">
+          <div class="pp-headrow"><h3 class="pp-card__title">Likes &amp; temperament</h3><a href="Add-care-note.html?cat=likes&next=Personality-and-care-fill1.html" class="pp-btn pp-btn--link">Add</a></div>
+          <p class="pp-card__body">What Miso loves, how she behaves with people and dogs</p>
         </div>
 
-        <div class="personality-section" style="border:1.5px dashed var(--wf-border);border-radius:8px;margin:10px 16px;padding:12px 14px;">
-          <div style="display:flex;justify-content:space-between;align-items:baseline;"><h3 style="color:var(--wf-muted);">Not friendly with</h3><a href="Add-care-note.html?cat=warning&next=Personality-and-care-fill1.html" style="font-size:12px;font-weight:600;">Add</a></div>
-          <p style="color:var(--wf-muted);">Animals or situations to avoid — highlighted for the sitter</p>
+        <div class="pp-slot">
+          <div class="pp-headrow"><h3 class="pp-card__title">Not friendly with</h3><a href="Add-care-note.html?cat=warning&next=Personality-and-care-fill1.html" class="pp-btn pp-btn--link">Add</a></div>
+          <p class="pp-card__body">Animals or situations to avoid — highlighted for the sitter</p>
         </div>
 
-        <div class="personality-section" style="border:1.5px dashed var(--wf-border);border-radius:8px;margin:10px 16px;padding:12px 14px;">
-          <div style="display:flex;justify-content:space-between;align-items:baseline;"><h3 style="color:var(--wf-muted);">Behaviour notes</h3><a href="Add-care-note.html?cat=behaviour&next=Personality-and-care-fill1.html" style="font-size:12px;font-weight:600;">Add</a></div>
-          <p style="color:var(--wf-muted);">Habits, quirks, commands she knows, alone-time limits</p>
+        <div class="pp-slot">
+          <div class="pp-headrow"><h3 class="pp-card__title">Behaviour notes</h3><a href="Add-care-note.html?cat=behaviour&next=Personality-and-care-fill1.html" class="pp-btn pp-btn--link">Add</a></div>
+          <p class="pp-card__body">Habits, quirks, commands she knows, alone-time limits</p>
         </div>
 
-        <div class="personality-section" style="border:1.5px dashed var(--wf-border);border-radius:8px;margin:10px 16px;padding:12px 14px;">
-          <div style="display:flex;justify-content:space-between;align-items:baseline;"><h3 style="color:var(--wf-muted);">Walking &amp; routines</h3><a href="Add-care-note.html?cat=walking&next=Personality-and-care-fill1.html" style="font-size:12px;font-weight:600;">Add</a></div>
-          <p style="color:var(--wf-muted);">Walk times, routes, leash rules</p>
+        <div class="pp-slot">
+          <div class="pp-headrow"><h3 class="pp-card__title">Walking &amp; routines</h3><a href="Add-care-note.html?cat=walking&next=Personality-and-care-fill1.html" class="pp-btn pp-btn--link">Add</a></div>
+          <p class="pp-card__body">Walk times, routes, leash rules</p>
         </div>
 
-        <div class="personality-section" style="border:1.5px dashed var(--wf-border);border-radius:8px;margin:10px 16px;padding:12px 14px;">
-          <div style="display:flex;justify-content:space-between;align-items:baseline;"><h3 style="color:var(--wf-muted);">Special requirements</h3><a href="Add-care-note.html?cat=special&next=Personality-and-care-fill1.html" style="font-size:12px;font-weight:600;">Add</a></div>
-          <p style="color:var(--wf-muted);">Meds with meals, grooming, anything non-obvious</p>
+        <div class="pp-slot">
+          <div class="pp-headrow"><h3 class="pp-card__title">Special requirements</h3><a href="Add-care-note.html?cat=special&next=Personality-and-care-fill1.html" class="pp-btn pp-btn--link">Add</a></div>
+          <p class="pp-card__body">Meds with meals, grooming, anything non-obvious</p>
         </div>
 
         <div style="padding:16px;display:flex;flex-direction:column;gap:10px;align-items:center;">
-          <button class="btn-secondary" style="width:100%;font-size:13px;" onclick="window.location.href='Shared-pet-view-empty.html'+window.location.search.replace(/^\?/, '?')">Preview as sitter</button>
+          <button class="pp-btn pp-btn--secondary pp-btn--full" onclick="window.location.href='Shared-pet-view-empty.html'+window.location.search.replace(/^\?/, '?')">Preview as sitter</button>
         </div>
       </div>
 
-      <nav class="phone-nav" aria-label="Main navigation">
-        <a href="My-Pets.html" class="active">
-          <span class="nav-icon" aria-hidden="true"></span> Pets
+      <nav class="pp-tabbar" aria-label="Main navigation">
+        <a href="My-Pets.html" class="pp-tab pp-tab--pets" aria-current="page">
+          <span class="pp-tab__icon" aria-hidden="true"></span> Pets
         </a>
-        <a href="Whats-due.html">
-          <span class="nav-icon" aria-hidden="true"></span> What's due
+        <a href="Whats-due.html" class="pp-tab pp-tab--reminders">
+          <span class="pp-tab__icon" aria-hidden="true"></span> What's due
         </a>
-        <a href="Share-a-pet.html">
-          <span class="nav-icon" aria-hidden="true"></span> Share
+        <a href="Share-a-pet.html" class="pp-tab pp-tab--share">
+          <span class="pp-tab__icon" aria-hidden="true"></span> Share
         </a>
-              <a href="Me.html">
-          <span class="nav-icon" aria-hidden="true"></span> Owner
+              <a href="Me.html" class="pp-tab pp-tab--owner">
+          <span class="pp-tab__icon" aria-hidden="true"></span> Owner
         </a>
       </nav>
 

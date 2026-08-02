@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Documents & passport · first document — PetPal wireframe</title>
+<link rel="stylesheet" href="../ui/kit.css">
 <style>
   :root {
     --wf-bg:         #ffffff;
@@ -679,49 +680,49 @@
         <span class="zone-label">Main, R3</span> Main + R3 · <span>Pet card → ★ Documents & passport</span>
       </div>
 
-      <header class="m-header">
-        <a href="home-progress-2.html" style="text-decoration:none;"><button class="back" aria-label="Back">← Miso's card</button></a>
-        <h1>Documents & passport</h1>
+      <header class="pp-appbar">
+        <a href="home-progress-2.html" style="text-decoration:none;"><button class="pp-appbar__back" aria-label="Back">← Miso's card</button></a>
+        <h1 class="pp-appbar__title">Documents & passport</h1>
         <span style="width:60px;" aria-hidden="true"></span>
       </header>
 
       <div class="m-main">
 
-        <section class="m-pet-identity" aria-label="Pet identity">
-          <figure class="pet-photo pet-photo-s" aria-label="Pet photo placeholder">photo</figure>
-          <div class="pet-info">
-            <h2 style="font-size:15px;font-weight:700;">Miso</h2>
-            <p class="pet-meta" style="font-size:12px;">Dog · Border Terrier · Female</p>
+        <section class="pp-identity" aria-label="Pet identity">
+          <figure class="pp-avatar pp-avatar--md pp-avatar--miso pp-iconbox" aria-label="Miso">photo</figure>
+          <div class="pp-identity__body">
+            <h2 class="pp-identity__name">Miso</h2>
+            <p class="pp-identity__meta">Dog · Border Terrier · Female</p>
           </div>
         </section>
 
-        <div class="doc-card">
-          <div class="doc-thumb">PDF</div>
-          <div class="doc-info">
-            <h3>EU Pet Passport</h3>
-            <p class="doc-meta">DE-0812345 · Valid · Issued 15 Jan 2024</p>
+        <div class="pp-doc pp-ruled">
+          <div class="pp-doc__thumb">PDF</div>
+          <div class="pp-doc__body">
+            <h3 class="pp-doc__name">EU Pet Passport</h3>
+            <p class="pp-doc__meta">DE-0812345 · Valid · Issued 15 Jan 2024</p>
           </div>
-          <a href="Document-view.html?doc=passport"><button class="record-action">→</button></a>
+          <a href="Document-view.html?doc=passport"><button class="pp-row__chev" aria-hidden="true">→</button></a>
         </div>
         
         
         
       </div>
 
-      <a href="Add-record.html" class="fab" aria-label="Add">+</a>
+      <a href="Add-record.html" class="pp-fab" aria-label="Add">+</a>
 
-      <nav class="phone-nav" aria-label="Main navigation">
-        <a href="My-Pets.html" class="active">
-          <span class="nav-icon" aria-hidden="true"></span> Pets
+      <nav class="pp-tabbar" aria-label="Main navigation">
+        <a href="My-Pets.html" class="pp-tab pp-tab--pets" aria-current="page">
+          <span class="pp-tab__icon" aria-hidden="true"></span> Pets
         </a>
-        <a href="Whats-due.html">
-          <span class="nav-icon" aria-hidden="true"></span> What's due
+        <a href="Whats-due.html" class="pp-tab pp-tab--reminders">
+          <span class="pp-tab__icon" aria-hidden="true"></span> What's due
         </a>
-        <a href="Share-a-pet.html">
-          <span class="nav-icon" aria-hidden="true"></span> Share
+        <a href="Share-a-pet.html" class="pp-tab pp-tab--share">
+          <span class="pp-tab__icon" aria-hidden="true"></span> Share
         </a>
-              <a href="Me.html">
-          <span class="nav-icon" aria-hidden="true"></span> Owner
+              <a href="Me.html" class="pp-tab pp-tab--owner">
+          <span class="pp-tab__icon" aria-hidden="true"></span> Owner
         </a>
       </nav>
 

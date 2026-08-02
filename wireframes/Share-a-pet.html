@@ -7,6 +7,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700&family=Hanken+Grotesk:wght@400;500;600;700&family=EB+Garamond:ital,wght@0,600;1,600;1,700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../ui/kit.css">
 <style>
   :root {
     --wf-bg:         #ffffff;
@@ -867,9 +868,9 @@
         <span class="zone-label">S2</span> S2 · <span>Pet card → ★ Share a pet</span> → link created
       </div>
 
-      <header class="m-header">
-        <a href="home-success.html" style="text-decoration:none;"><button class="back" aria-label="Back to Miso's card">←</button></a>
-        <h1>Share</h1>
+      <header class="pp-appbar">
+        <a href="home-success.html" style="text-decoration:none;"><button class="pp-appbar__back" aria-label="Back to Miso's card">←</button></a>
+        <h1 class="pp-appbar__title">Share</h1>
         <span></span>
       </header>
 
@@ -882,68 +883,68 @@
           <span class="sh-qr"></span>
         </div>
 
-        <div class="share-id">
-          <div class="name-row">
-            <h2>Miso</h2>
+        <div class="pp-arch pp-arch--plain">
+          <div class="pp-arch__namerow">
+            <h2 class="pp-arch__name">Miso</h2>
           </div>
-          <p class="meta">Dog &middot; Border Terrier &middot; Female</p>
+          <p class="pp-arch__meta">Dog &middot; Border Terrier &middot; Female</p>
         </div>
 
-        <div class="pet-switcher" aria-label="Switch pet">
-          <span class="pet-switcher-label">Pet:</span>
-          <a href="Share-a-pet.html" class="pet-pill active"><span class="pill-avatar">M</span> Miso</a>
-          <a href="Share-a-pet.html" class="pet-pill"><span class="pill-avatar">C</span> Cheetah</a>
+        <div class="pp-switcher pp-switcher--split" aria-label="Switch pet">
+          <span class="pp-switcher__label pp-sr">Pet:</span>
+          <a href="Share-a-pet.html" class="pp-seg__item" aria-current="page"><span class="pp-seg__avatar">M</span> Miso</a>
+          <a href="Share-a-pet.html" class="pp-seg__item"><span class="pp-seg__avatar">C</span> Cheetah</a>
         </div>
 
         <section style="padding:16px 16px 0;">
           <p style="font-size:13px;font-weight:600;color:var(--wf-text);margin-bottom:0;">Choose what your sitter can see:</p>
         </section>
 
-        <div class="share-scope">
-          <div class="scope-option selected" onclick="selectScope(this)">
-            <div class="scope-radio"></div>
-            <div>
-              <div class="scope-label">Full card</div>
-              <div class="scope-desc">Health, documents, personality, vet — everything</div>
+        <div class="pp-choices" role="radiogroup" aria-label="Choose what your sitter can see">
+          <div class="pp-choice" role="radio" tabindex="0" aria-checked="true" onclick="Array.from(this.parentElement.children).forEach(function(o){o.setAttribute(&quot;aria-checked&quot;, o===this?&quot;true&quot;:&quot;false&quot;)}, this)">
+            <div class="pp-choice__radio"></div>
+            <div class="pp-choice__body">
+              <div class="pp-choice__title">Full card</div>
+              <div class="pp-choice__desc">Health, documents, personality, vet — everything</div>
             </div>
           </div>
-          <div class="scope-option" onclick="selectScope(this)">
-            <div class="scope-radio"></div>
-            <div>
-              <div class="scope-label">Personality &amp; care only</div>
-              <div class="scope-desc">Personality, food, routines, warnings — for a sitter</div>
+          <div class="pp-choice" role="radio" tabindex="0" aria-checked="false" onclick="Array.from(this.parentElement.children).forEach(function(o){o.setAttribute(&quot;aria-checked&quot;, o===this?&quot;true&quot;:&quot;false&quot;)}, this)">
+            <div class="pp-choice__radio"></div>
+            <div class="pp-choice__body">
+              <div class="pp-choice__title">Personality &amp; care only</div>
+              <div class="pp-choice__desc">Personality, food, routines, warnings — for a sitter</div>
             </div>
           </div>
-          <div class="scope-option" onclick="selectScope(this)">
-            <div class="scope-radio"></div>
-            <div>
-              <div class="scope-label">Health &amp; jabs only</div>
-              <div class="scope-desc">Jabs, conditions, meds — for a vet visit</div>
+          <div class="pp-choice" role="radio" tabindex="0" aria-checked="false" onclick="Array.from(this.parentElement.children).forEach(function(o){o.setAttribute(&quot;aria-checked&quot;, o===this?&quot;true&quot;:&quot;false&quot;)}, this)">
+            <div class="pp-choice__radio"></div>
+            <div class="pp-choice__body">
+              <div class="pp-choice__title">Health &amp; jabs only</div>
+              <div class="pp-choice__desc">Jabs, conditions, meds — for a vet visit</div>
             </div>
           </div>
-          <div class="scope-option" onclick="selectScope(this)">
-            <div class="scope-radio"></div>
-            <div>
-              <div class="scope-label">Emergency info only</div>
-              <div class="scope-desc">Vet contact, conditions, meds — the essentials</div>
+          <div class="pp-choice" role="radio" tabindex="0" aria-checked="false" onclick="Array.from(this.parentElement.children).forEach(function(o){o.setAttribute(&quot;aria-checked&quot;, o===this?&quot;true&quot;:&quot;false&quot;)}, this)">
+            <div class="pp-choice__radio"></div>
+            <div class="pp-choice__body">
+              <div class="pp-choice__title">Emergency info only</div>
+              <div class="pp-choice__desc">Vet contact, conditions, meds — the essentials</div>
             </div>
           </div>
         </div>
 
-        <div class="form-group">
-          <label for="m-role">Role</label>
-          <select id="m-role"><option>Sitter (read-only)</option><option>Vet (can add records)</option><option>Co-owner (full edit)</option></select>
-          <p class="helper">Default: sitter — read-only, no account needed.</p>
+        <div class="pp-field pp-inset">
+          <label class="pp-field__label" for="m-role">Role</label>
+          <select class="pp-select pp-select--chev" id="m-role"><option>Sitter (read-only)</option><option>Vet (can add records)</option><option>Co-owner (full edit)</option></select>
+          <p class="pp-help">Default: sitter — read-only, no account needed.</p>
         </div>
 
-        <div class="form-group">
-          <label for="m-link-expires-after">Link expires after</label>
-          <select id="m-link-expires-after"><option>1 week</option><option selected>1 month</option><option>Permanent</option></select>
+        <div class="pp-field pp-inset">
+          <label class="pp-field__label" for="m-link-expires-after">Link expires after</label>
+          <select class="pp-select pp-select--chev" id="m-link-expires-after"><option>1 week</option><option selected>1 month</option><option>Permanent</option></select>
         </div>
 
-        <div class="form-actions" style="flex-direction:column;gap:10px;">
-          <a href="Share-a-pet-loading.html" style="display:block;"><button type="button" class="btn-primary" style="width:100%;">Create share link</button></a>
-          <button type="button" class="btn-secondary" style="width:100%;" onclick="document.getElementById('qr-modal').classList.add('open');">Show QR code</button>
+        <div class="pp-actions" style="flex-direction:column;gap:10px;">
+          <a href="Share-a-pet-loading.html" style="display:block;"><button type="button" class="pp-btn" style="width:100%;">Create share link</button></a>
+          <button type="button" class="pp-btn pp-btn--secondary" style="width:100%;" onclick="document.getElementById('qr-modal').classList.add('open');">Show QR code</button>
         </div>
 
         <p style="padding:0 16px 12px;font-size:11px;color:var(--wf-muted);text-align:center;">Your sitter opens the link in a browser or scans the QR code — no app or account needed.</p>
@@ -969,18 +970,18 @@
         </div>
       </div>
 
-      <nav class="phone-nav" aria-label="Main navigation">
-        <a href="My-Pets.html">
-          <span class="nav-icon" aria-hidden="true"></span> Pets
+      <nav class="pp-tabbar" aria-label="Main navigation">
+        <a href="My-Pets.html" class="pp-tab pp-tab--pets">
+          <span class="pp-tab__icon" aria-hidden="true"></span> Pets
         </a>
-        <a href="Whats-due.html">
-          <span class="nav-icon" aria-hidden="true"></span> Reminders
+        <a href="Whats-due.html" class="pp-tab pp-tab--reminders">
+          <span class="pp-tab__icon" aria-hidden="true"></span> Reminders
         </a>
-        <a href="Share-a-pet.html" class="active">
-          <span class="nav-icon" aria-hidden="true"></span> Share
+        <a href="Share-a-pet.html" class="pp-tab pp-tab--share" aria-current="page">
+          <span class="pp-tab__icon" aria-hidden="true"></span> Share
         </a>
-              <a href="Me.html">
-          <span class="nav-icon" aria-hidden="true"></span> Owner
+              <a href="Me.html" class="pp-tab pp-tab--owner">
+          <span class="pp-tab__icon" aria-hidden="true"></span> Owner
         </a>
       </nav>
 

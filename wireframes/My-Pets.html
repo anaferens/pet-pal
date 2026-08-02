@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>My Pets — PetPal wireframe</title>
+<link rel="stylesheet" href="../ui/kit.css">
 <style>
   :root {
     --wf-bg:         #ffffff;
@@ -678,56 +679,56 @@
         <span class="zone-label">Main</span> Main job · step 1 of 4 — <span>★ My Pets</span> → Pet card → sections → Share
       </div>
 
-      <header class="m-header">
+      <header class="pp-appbar">
         <span></span>
-        <h1>Your pets</h1>
+        <h1 class="pp-appbar__title">Your pets</h1>
         <span></span>
       </header>
 
       <div class="m-main">
 
-        <ul style="list-style:none;padding:0 16px;display:flex;flex-direction:column;gap:10px;">
+        <ul class="pp-stack">
           <li>
-            <a href="home-success.html" style="text-decoration:none;color:inherit;display:block;"><article class="pet-card">
-              <figure class="pet-photo pet-photo-m" aria-label="Pet photo placeholder">photo</figure>
-              <div class="pet-card-info">
-                <h3>Miso</h3>
-                <p class="pet-meta">Dog · Border Terrier · Female</p>
-                <p class="fill-hint">5 of 6 sections filled · Updated 2 days ago</p>
+            <a href="home-success.html" style="text-decoration:none;color:inherit;display:block;"><article class="pp-card pp-card--row">
+              <figure class="pp-avatar pp-avatar--lg pp-avatar--miso pp-iconbox" aria-label="Miso">photo</figure>
+              <div class="pp-row__body">
+                <h3 class="pp-row__title pp-is-name">Miso</h3>
+                <p class="pp-row__meta">Dog · Border Terrier · Female</p>
+                <p class="pp-row__meta">5 of 6 sections filled · Updated 2 days ago</p>
               </div>
-              <span class="card-arrow" aria-hidden="true">→</span>
+              <span class="pp-row__chev" aria-hidden="true">→</span>
             </article></a>
           </li>
           <li>
-            <a href="home-success-cheetah.html" style="text-decoration:none;color:inherit;display:block;"><article class="pet-card">
-              <figure class="pet-photo pet-photo-m" aria-label="Pet photo placeholder">photo</figure>
-              <div class="pet-card-info">
-                <h3>Cheetah</h3>
-                <p class="pet-meta">Cat · Tabby stray · Female</p>
-                <p class="fill-hint">2 of 6 sections filled · Updated 1 week ago</p>
+            <a href="home-success-cheetah.html" style="text-decoration:none;color:inherit;display:block;"><article class="pp-card pp-card--row">
+              <figure class="pp-avatar pp-avatar--lg pp-avatar--cheetah pp-iconbox" aria-label="Cheetah">photo</figure>
+              <div class="pp-row__body">
+                <h3 class="pp-row__title pp-is-name">Cheetah</h3>
+                <p class="pp-row__meta">Cat · Tabby stray · Female</p>
+                <p class="pp-row__meta">2 of 6 sections filled · Updated 1 week ago</p>
               </div>
-              <span class="card-arrow" aria-hidden="true">→</span>
+              <span class="pp-row__chev" aria-hidden="true">→</span>
             </article></a>
           </li>
         </ul>
 
-        <section style="padding: 12px 16px;">
-          <a href="Set-up-a-pet.html" style="display:block;"><button class="btn-primary" style="width:100%;">Add a pet</button></a>
+        <section class="pp-cta">
+          <a href="Set-up-a-pet.html"><button class="pp-btn pp-btn--full">Add a pet</button></a>
         </section>
       </div>
 
-      <nav class="phone-nav" aria-label="Main navigation">
-        <a href="My-Pets.html" class="active">
-          <span class="nav-icon" aria-hidden="true"></span> Pets
+      <nav class="pp-tabbar" aria-label="Main navigation">
+        <a href="My-Pets.html" class="pp-tab pp-tab--pets" aria-current="page">
+          <span class="pp-tab__icon" aria-hidden="true"></span> Pets
         </a>
-        <a href="Whats-due.html">
-          <span class="nav-icon" aria-hidden="true"></span> What's due
+        <a href="Whats-due.html" class="pp-tab pp-tab--reminders">
+          <span class="pp-tab__icon" aria-hidden="true"></span> What's due
         </a>
-        <a href="Share-a-pet.html">
-          <span class="nav-icon" aria-hidden="true"></span> Share
+        <a href="Share-a-pet.html" class="pp-tab pp-tab--share">
+          <span class="pp-tab__icon" aria-hidden="true"></span> Share
         </a>
-              <a href="Me.html">
-          <span class="nav-icon" aria-hidden="true"></span> Owner
+              <a href="Me.html" class="pp-tab pp-tab--owner">
+          <span class="pp-tab__icon" aria-hidden="true"></span> Owner
         </a>
       </nav>
 

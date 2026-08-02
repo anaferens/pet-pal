@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Who has access (empty) — PetPal wireframe</title>
+<link rel="stylesheet" href="../ui/kit.css">
 <style>
   :root {
     --wf-bg:         #ffffff;
@@ -570,27 +571,27 @@
         S1 · Access management — Share a pet → <span>★ Who has access</span> → Edit/revoke
       </div>
 
-      <header class="m-header">
-        <a href="Share-a-pet.html" style="text-decoration:none;"><button class="back" aria-label="Back to Share">← Share</button></a>
-        <h1>Who can see your pets' cards</h1>
+      <header class="pp-appbar">
+        <a href="Share-a-pet.html" style="text-decoration:none;"><button class="pp-appbar__back" aria-label="Back to Share">← Share</button></a>
+        <h1 class="pp-appbar__title">Who can see your pets' cards</h1>
         <span></span>
       </header>
 
       <main class="m-main">
-        <div class="empty-block">
-          <figure class="empty-illustration" alt="No access grants illustration">illustration</figure>
-          <h2>No one can see your pets' cards yet</h2>
-          <p>Share your pet's card with a sitter, vet, or co-owner. You control exactly what they can see.</p>
-          <a href="Share-a-pet.html" style="text-decoration:none;"><button class="btn-primary">Share a pet</button></a>
+        <div class="pp-empty">
+          <figure class="pp-illus pp-illus--share" alt="No access grants illustration">illustration</figure>
+          <h2 class="pp-empty__title">No one can see your pets' cards yet</h2>
+          <p class="pp-empty__body">Share your pet's card with a sitter, vet, or co-owner. You control exactly what they can see.</p>
+          <a href="Share-a-pet.html" style="text-decoration:none;"><button class="pp-btn">Share a pet</button></a>
         </div>
       </main>
 
-      <nav class="phone-nav" aria-label="Main navigation">
-        <a href="My-Pets.html"><span class="nav-icon" aria-hidden="true"></span> Pets</a>
-        <a href="Whats-due.html"><span class="nav-icon" aria-hidden="true"></span> What's due</a>
-        <a href="Share-a-pet.html" class="active"><span class="nav-icon" aria-hidden="true"></span> Share</a>
-              <a href="Me.html">
-          <span class="nav-icon" aria-hidden="true"></span> Owner
+      <nav class="pp-tabbar" aria-label="Main navigation">
+        <a href="My-Pets.html" class="pp-tab pp-tab--pets"><span class="pp-tab__icon" aria-hidden="true"></span> Pets</a>
+        <a href="Whats-due.html" class="pp-tab pp-tab--reminders"><span class="pp-tab__icon" aria-hidden="true"></span> What's due</a>
+        <a href="Share-a-pet.html" class="pp-tab pp-tab--share" aria-current="page"><span class="pp-tab__icon" aria-hidden="true"></span> Share</a>
+              <a href="Me.html" class="pp-tab pp-tab--owner">
+          <span class="pp-tab__icon" aria-hidden="true"></span> Owner
         </a>
       </nav>
 

@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Who has access (loading) — PetPal wireframe</title>
+<link rel="stylesheet" href="../ui/kit.css">
 <style>
   :root {
     --wf-bg:         #ffffff;
@@ -543,26 +544,26 @@
         S1 · Access management — Share a pet → <span>★ Who has access</span> → Edit/revoke
       </div>
 
-      <header class="m-header">
-        <a href="Share-a-pet.html" style="text-decoration:none;"><button class="back" aria-label="Back to Share">← Share</button></a>
-        <h1>Who can see your pets' cards</h1>
+      <header class="pp-appbar">
+        <a href="Share-a-pet.html" style="text-decoration:none;"><button class="pp-appbar__back" aria-label="Back to Share">← Share</button></a>
+        <h1 class="pp-appbar__title">Who can see your pets' cards</h1>
         <span></span>
       </header>
 
-      <main class="m-main">
+      <main class="m-main pp-skels">
         <!-- Skeleton cards -->
-        <div class="skeleton-block" style="height:120px;"></div>
-        <div class="skeleton-block" style="height:120px;"></div>
-        <div class="skeleton-block" style="height:120px;"></div>
-        <p class="loading-text">Loading your sharing settings…</p>
+        <div class="pp-skel pp-skel--card"></div>
+        <div class="pp-skel pp-skel--card"></div>
+        <div class="pp-skel pp-skel--card"></div>
+        <p class="pp-loading-label">Loading your sharing settings…</p>
       </main>
 
-      <nav class="phone-nav" aria-label="Main navigation">
-        <a href="My-Pets.html"><span class="nav-icon" aria-hidden="true"></span> Pets</a>
-        <a href="Whats-due.html"><span class="nav-icon" aria-hidden="true"></span> What's due</a>
-        <a href="Share-a-pet.html" class="active"><span class="nav-icon" aria-hidden="true"></span> Share</a>
-              <a href="Me.html">
-          <span class="nav-icon" aria-hidden="true"></span> Owner
+      <nav class="pp-tabbar" aria-label="Main navigation">
+        <a href="My-Pets.html" class="pp-tab pp-tab--pets"><span class="pp-tab__icon" aria-hidden="true"></span> Pets</a>
+        <a href="Whats-due.html" class="pp-tab pp-tab--reminders"><span class="pp-tab__icon" aria-hidden="true"></span> What's due</a>
+        <a href="Share-a-pet.html" class="pp-tab pp-tab--share" aria-current="page"><span class="pp-tab__icon" aria-hidden="true"></span> Share</a>
+              <a href="Me.html" class="pp-tab pp-tab--owner">
+          <span class="pp-tab__icon" aria-hidden="true"></span> Owner
         </a>
       </nav>
 

@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Personality & care · 3 of 6 notes — PetPal wireframe</title>
+<link rel="stylesheet" href="../ui/kit.css">
 <style>
   :root {
     --wf-bg:         #ffffff;
@@ -679,74 +680,74 @@
         <span class="zone-label">R2</span> R2 · <span>Pet card → ★ Personality & care</span>
       </div>
 
-      <header class="m-header">
-        <a href="home-progress-3.html" style="text-decoration:none;"><button class="back" aria-label="Back">← Miso's card</button></a>
-        <h1>Personality & care</h1>
+      <header class="pp-appbar">
+        <a href="home-progress-3.html" style="text-decoration:none;"><button class="pp-appbar__back" aria-label="Back">← Miso's card</button></a>
+        <h1 class="pp-appbar__title">Personality & care</h1>
         <span style="width:60px;" aria-hidden="true"></span>
       </header>
 
       <div class="m-main">
 
-        <section class="m-pet-identity" aria-label="Pet identity">
-          <figure class="pet-photo pet-photo-s" aria-label="Pet photo placeholder">photo</figure>
-          <div class="pet-info">
-            <h2 style="font-size:15px;font-weight:700;">Miso</h2>
-            <p class="pet-meta" style="font-size:12px;">Dog · Border Terrier · Female</p>
+        <section class="pp-identity" aria-label="Pet identity">
+          <figure class="pp-avatar pp-avatar--md pp-avatar--miso pp-iconbox" aria-label="Miso">photo</figure>
+          <div class="pp-identity__body">
+            <h2 class="pp-identity__name">Miso</h2>
+            <p class="pp-identity__meta">Dog · Border Terrier · Female</p>
           </div>
         </section>
 
-        <p style="padding:10px 16px;font-size:11px;color:var(--wf-muted);background:var(--wf-surface);border-bottom:1px solid var(--wf-border);">This is what your sitter sees on Miso's shared card.</p>
+        <p class="pp-note">This is what your sitter sees on Miso's shared card.</p>
 
-        <div class="personality-section">
-          <div style="display:flex;justify-content:space-between;align-items:baseline;"><h3>Favourite food &amp; treats</h3><a href="Edit-care-note.html?note=food" style="font-size:12px;color:var(--wf-muted);">Edit</a></div>
-          <p>Royal Canin Maxi Adult, 350 g twice daily (morning + evening). Loves dried chicken strips as training treats. No rawhide — causes stomach upset.</p>
+        <div class="pp-ruled">
+          <div class="pp-headrow"><h3 class="pp-card__title">Favourite food &amp; treats</h3><a href="Edit-care-note.html?note=food" class="pp-btn pp-btn--link">Edit</a></div>
+          <p class="pp-card__body">Royal Canin Maxi Adult, 350 g twice daily (morning + evening). Loves dried chicken strips as training treats. No rawhide — causes stomach upset.</p>
         </div>
 
-        <div class="personality-section">
-          <div style="display:flex;justify-content:space-between;align-items:baseline;"><h3>Likes &amp; temperament</h3><a href="Edit-care-note.html?note=likes" style="font-size:12px;color:var(--wf-muted);">Edit</a></div>
-          <p>Calm and affectionate. Loves belly rubs and long walks in the forest. Enjoys meeting other dogs on leash. Sleeps on the sofa — allowed.</p>
+        <div class="pp-ruled">
+          <div class="pp-headrow"><h3 class="pp-card__title">Likes &amp; temperament</h3><a href="Edit-care-note.html?note=likes" class="pp-btn pp-btn--link">Edit</a></div>
+          <p class="pp-card__body">Calm and affectionate. Loves belly rubs and long walks in the forest. Enjoys meeting other dogs on leash. Sleeps on the sofa — allowed.</p>
         </div>
 
-        <div class="personality-section warning">
-          <div style="display:flex;justify-content:space-between;align-items:baseline;"><h3>Not friendly with</h3><a href="Edit-care-note.html?note=warning" style="font-size:12px;color:var(--wf-muted);">Edit</a></div>
-          <p>Small rodents (strong prey drive). Off-leash terriers — gets overstimulated. Keep leashed in dog parks if terriers are present.</p>
+        <div class="pp-ruled pp-ruled--warn">
+          <div class="pp-headrow"><h3 class="pp-card__title">Not friendly with</h3><a href="Edit-care-note.html?note=warning" class="pp-btn pp-btn--link">Edit</a></div>
+          <p class="pp-card__body">Small rodents (strong prey drive). Off-leash terriers — gets overstimulated. Keep leashed in dog parks if terriers are present.</p>
         </div>
 
-        <div class="personality-section" style="border:1.5px dashed var(--wf-border);border-radius:8px;margin:10px 16px;padding:12px 14px;">
-          <div style="display:flex;justify-content:space-between;align-items:baseline;"><h3 style="color:var(--wf-muted);">Behaviour notes</h3><a href="Add-care-note.html?cat=behaviour&next=Personality-and-care-fill4.html" style="font-size:12px;font-weight:600;">Add</a></div>
-          <p style="color:var(--wf-muted);">Habits, quirks, commands she knows, alone-time limits</p>
+        <div class="pp-slot">
+          <div class="pp-headrow"><h3 class="pp-card__title">Behaviour notes</h3><a href="Add-care-note.html?cat=behaviour&next=Personality-and-care-fill4.html" class="pp-btn pp-btn--link">Add</a></div>
+          <p class="pp-card__body">Habits, quirks, commands she knows, alone-time limits</p>
         </div>
 
-        <div class="personality-section" style="border:1.5px dashed var(--wf-border);border-radius:8px;margin:10px 16px;padding:12px 14px;">
-          <div style="display:flex;justify-content:space-between;align-items:baseline;"><h3 style="color:var(--wf-muted);">Walking &amp; routines</h3><a href="Add-care-note.html?cat=walking&next=Personality-and-care-fill4.html" style="font-size:12px;font-weight:600;">Add</a></div>
-          <p style="color:var(--wf-muted);">Walk times, routes, leash rules</p>
+        <div class="pp-slot">
+          <div class="pp-headrow"><h3 class="pp-card__title">Walking &amp; routines</h3><a href="Add-care-note.html?cat=walking&next=Personality-and-care-fill4.html" class="pp-btn pp-btn--link">Add</a></div>
+          <p class="pp-card__body">Walk times, routes, leash rules</p>
         </div>
 
-        <div class="personality-section" style="border:1.5px dashed var(--wf-border);border-radius:8px;margin:10px 16px;padding:12px 14px;">
-          <div style="display:flex;justify-content:space-between;align-items:baseline;"><h3 style="color:var(--wf-muted);">Special requirements</h3><a href="Add-care-note.html?cat=special&next=Personality-and-care-fill4.html" style="font-size:12px;font-weight:600;">Add</a></div>
-          <p style="color:var(--wf-muted);">Meds with meals, grooming, anything non-obvious</p>
+        <div class="pp-slot">
+          <div class="pp-headrow"><h3 class="pp-card__title">Special requirements</h3><a href="Add-care-note.html?cat=special&next=Personality-and-care-fill4.html" class="pp-btn pp-btn--link">Add</a></div>
+          <p class="pp-card__body">Meds with meals, grooming, anything non-obvious</p>
         </div>
 
         <div style="padding:16px;display:flex;flex-direction:column;gap:10px;align-items:center;">
-          <a href="Add-care-note.html?cat=behaviour&next=Personality-and-care-fill4.html" style="width:100%;"><button class="btn-primary" style="width:100%;font-size:13px;">Add a note</button></a>
-          <button class="btn-secondary" style="width:100%;font-size:13px;" onclick="window.location.href='Shared-pet-view.html'+window.location.search">Preview as sitter</button>
+          <a href="Add-care-note.html?cat=behaviour&next=Personality-and-care-fill4.html" style="width:100%;"><button class="pp-btn pp-btn--full">Add a note</button></a>
+          <button class="pp-btn pp-btn--secondary pp-btn--full" onclick="window.location.href='Shared-pet-view.html'+window.location.search">Preview as sitter</button>
         </div>
       </div>
 
-      <a href="Add-care-note.html" class="fab" aria-label="Add a note">+</a>
+      <a href="Add-care-note.html" class="pp-fab" aria-label="Add a note">+</a>
 
-      <nav class="phone-nav" aria-label="Main navigation">
-        <a href="My-Pets.html" class="active">
-          <span class="nav-icon" aria-hidden="true"></span> Pets
+      <nav class="pp-tabbar" aria-label="Main navigation">
+        <a href="My-Pets.html" class="pp-tab pp-tab--pets" aria-current="page">
+          <span class="pp-tab__icon" aria-hidden="true"></span> Pets
         </a>
-        <a href="Whats-due.html">
-          <span class="nav-icon" aria-hidden="true"></span> What's due
+        <a href="Whats-due.html" class="pp-tab pp-tab--reminders">
+          <span class="pp-tab__icon" aria-hidden="true"></span> What's due
         </a>
-        <a href="Share-a-pet.html">
-          <span class="nav-icon" aria-hidden="true"></span> Share
+        <a href="Share-a-pet.html" class="pp-tab pp-tab--share">
+          <span class="pp-tab__icon" aria-hidden="true"></span> Share
         </a>
-              <a href="Me.html">
-          <span class="nav-icon" aria-hidden="true"></span> Owner
+              <a href="Me.html" class="pp-tab pp-tab--owner">
+          <span class="pp-tab__icon" aria-hidden="true"></span> Owner
         </a>
       </nav>
 

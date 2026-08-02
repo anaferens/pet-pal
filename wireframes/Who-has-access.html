@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Who has access — PetPal wireframe</title>
+<link rel="stylesheet" href="../ui/kit.css">
 <style>
   :root {
     --wf-bg:         #ffffff;
@@ -1221,93 +1222,93 @@
         S1 · Access management — Share a pet → <span>★ Who has access</span> → Edit/revoke
       </div>
 
-      <header class="m-header">
-        <a href="Share-a-pet.html" style="text-decoration:none;"><button class="back" aria-label="Back to Share">← Share</button></a>
-        <h1>Who can see your pets' cards</h1>
+      <header class="pp-appbar">
+        <a href="Share-a-pet.html" style="text-decoration:none;"><button class="pp-appbar__back" aria-label="Back to Share">← Share</button></a>
+        <h1 class="pp-appbar__title">Who can see your pets' cards</h1>
         <span></span>
       </header>
 
       <main class="m-main">
 
         <!-- Pet filter segmented control -->
-        <div class="pet-filter" role="group" aria-label="Filter by pet">
-          <button class="active" onclick="segSelect(this)">All pets</button>
-          <button onclick="segSelect(this)">Miso</button>
-          <button onclick="segSelect(this)">Cheetah</button>
+        <div class="pp-switcher pp-switcher--tight pp-switcher--split" role="group" aria-label="Filter by pet">
+          <button class="pp-seg__item" aria-current="page" onclick="Array.from(this.parentElement.children).forEach(function(b){b.removeAttribute(&quot;aria-current&quot;)});this.setAttribute(&quot;aria-current&quot;,&quot;page&quot;)">All pets</button>
+          <button class="pp-seg__item" onclick="Array.from(this.parentElement.children).forEach(function(b){b.removeAttribute(&quot;aria-current&quot;)});this.setAttribute(&quot;aria-current&quot;,&quot;page&quot;)">Miso</button>
+          <button class="pp-seg__item" onclick="Array.from(this.parentElement.children).forEach(function(b){b.removeAttribute(&quot;aria-current&quot;)});this.setAttribute(&quot;aria-current&quot;,&quot;page&quot;)">Cheetah</button>
         </div>
 
         <!-- Active grants list -->
         <section aria-label="Active access grants">
-          <ul class="grant-list">
+          <ul class="pp-stack">
 
             <!-- Grant 1: Marie -->
             <li>
-              <article class="grant-card">
-                <div class="grant-card-header">
-                  <div class="grant-avatar">M</div>
+              <article class="pp-card">
+                <div class="pp-contact">
+                  <div class="pp-avatar pp-avatar--md">M</div>
                   <div>
-                    <div class="grant-name">Marie (dog walker)</div>
-                    <div class="grant-role">Sitter · read-only</div>
+                    <div class="pp-contact__name">Marie (dog walker)</div>
+                    <div class="pp-contact__meta">Sitter · read-only</div>
                   </div>
                 </div>
-                <div class="grant-details">
+                <div class="pp-detail">
                   <strong>Scope:</strong> Care info only (personality, food, routines)<br>
                   <strong>Pet:</strong> Miso<br>
                   <strong>Shared:</strong> 12 Jun 2026<br>
                   <strong>Expires:</strong> 12 Jul 2026<br>
                   <strong>Status:</strong> Active
                 </div>
-                <div class="grant-actions">
-                  <a href="Edit-access-grant.html?person=marie"><button class="btn-sm btn-primary">Edit</button></a>
-                  <a href="Edit-access-grant.html?person=marie"><button class="btn-sm btn-secondary">Stop sharing</button></a>
+                <div class="pp-actions pp-actions--flush">
+                  <a href="Edit-access-grant.html?person=marie"><button class="pp-btn pp-btn--sm">Edit</button></a>
+                  <a href="Edit-access-grant.html?person=marie"><button class="pp-btn pp-btn--secondary pp-btn--sm">Stop sharing</button></a>
                 </div>
               </article>
             </li>
 
             <!-- Grant 2: Dr. Muller -->
             <li>
-              <article class="grant-card">
-                <div class="grant-card-header">
-                  <div class="grant-avatar">D</div>
+              <article class="pp-card">
+                <div class="pp-contact">
+                  <div class="pp-avatar pp-avatar--md">D</div>
                   <div>
-                    <div class="grant-name">Dr. Muller (Tierklinik am Stadtpark)</div>
-                    <div class="grant-role">Vet · can add records</div>
+                    <div class="pp-contact__name">Dr. Muller (Tierklinik am Stadtpark)</div>
+                    <div class="pp-contact__meta">Vet · can add records</div>
                   </div>
                 </div>
-                <div class="grant-details">
+                <div class="pp-detail">
                   <strong>Scope:</strong> Health info + Documents<br>
                   <strong>Pet:</strong> Miso<br>
                   <strong>Shared:</strong> 20 May 2026<br>
                   <strong>Expires:</strong> Permanent<br>
                   <strong>Status:</strong> Active
                 </div>
-                <div class="grant-actions">
-                  <a href="Edit-access-grant.html?person=drmuller"><button class="btn-sm btn-primary">Edit</button></a>
-                  <a href="Edit-access-grant.html?person=drmuller"><button class="btn-sm btn-secondary">Stop sharing</button></a>
+                <div class="pp-actions pp-actions--flush">
+                  <a href="Edit-access-grant.html?person=drmuller"><button class="pp-btn pp-btn--sm">Edit</button></a>
+                  <a href="Edit-access-grant.html?person=drmuller"><button class="pp-btn pp-btn--secondary pp-btn--sm">Stop sharing</button></a>
                 </div>
               </article>
             </li>
 
             <!-- Grant 3: Thomas -->
             <li>
-              <article class="grant-card">
-                <div class="grant-card-header">
-                  <div class="grant-avatar">T</div>
+              <article class="pp-card">
+                <div class="pp-contact">
+                  <div class="pp-avatar pp-avatar--md">T</div>
                   <div>
-                    <div class="grant-name">Thomas (brother)</div>
-                    <div class="grant-role">Co-owner · full edit</div>
+                    <div class="pp-contact__name">Thomas (brother)</div>
+                    <div class="pp-contact__meta">Co-owner · full edit</div>
                   </div>
                 </div>
-                <div class="grant-details">
+                <div class="pp-detail">
                   <strong>Scope:</strong> Full card<br>
                   <strong>Pet:</strong> Cheetah<br>
                   <strong>Shared:</strong> 1 Jun 2026<br>
                   <strong>Expires:</strong> Permanent<br>
                   <strong>Status:</strong> Active
                 </div>
-                <div class="grant-actions">
-                  <a href="Edit-access-grant.html?person=thomas"><button class="btn-sm btn-primary">Edit</button></a>
-                  <a href="Edit-access-grant.html?person=thomas"><button class="btn-sm btn-secondary">Stop sharing</button></a>
+                <div class="pp-actions pp-actions--flush">
+                  <a href="Edit-access-grant.html?person=thomas"><button class="pp-btn pp-btn--sm">Edit</button></a>
+                  <a href="Edit-access-grant.html?person=thomas"><button class="pp-btn pp-btn--secondary pp-btn--sm">Stop sharing</button></a>
                 </div>
               </article>
             </li>
@@ -1317,38 +1318,38 @@
 
         <!-- Expired / revoked section -->
         <section class="expired-section" aria-label="Expired or revoked grants">
-          <h2 class="expired-heading">Expired / revoked</h2>
-          <article class="expired-card">
-            <div class="grant-card-header">
-              <div class="grant-avatar" style="opacity:0.6;">A</div>
+          <h2 class="pp-heading">Expired / revoked</h2>
+          <article class="pp-card pp-card--inset">
+            <div class="pp-contact">
+              <div class="pp-avatar pp-avatar--md">A</div>
               <div>
-                <div class="grant-name">Anna (pet sitter)</div>
-                <div class="grant-role">Sitter · read-only</div>
+                <div class="pp-contact__name">Anna (pet sitter)</div>
+                <div class="pp-contact__meta">Sitter · read-only</div>
               </div>
             </div>
-            <p class="expired-meta">Expired 1 Jun 2026 · <a href="Share-a-pet.html">Re-share</a></p>
+            <p class="pp-help">Expired 1 Jun 2026 · <a href="Share-a-pet.html">Re-share</a></p>
           </article>
         </section>
 
         <!-- Share new CTA -->
-        <div class="share-new-cta">
-          <a href="Share-a-pet.html"><button class="btn-full btn-primary">Share with someone new</button></a>
+        <div class="pp-cta">
+          <a href="Share-a-pet.html"><button class="pp-btn pp-btn--full">Share with someone new</button></a>
         </div>
 
       </main>
 
-      <nav class="phone-nav" aria-label="Main navigation">
-        <a href="My-Pets.html">
-          <span class="nav-icon" aria-hidden="true"></span> Pets
+      <nav class="pp-tabbar" aria-label="Main navigation">
+        <a href="My-Pets.html" class="pp-tab pp-tab--pets">
+          <span class="pp-tab__icon" aria-hidden="true"></span> Pets
         </a>
-        <a href="Whats-due.html">
-          <span class="nav-icon" aria-hidden="true"></span> What's due
+        <a href="Whats-due.html" class="pp-tab pp-tab--reminders">
+          <span class="pp-tab__icon" aria-hidden="true"></span> What's due
         </a>
-        <a href="Share-a-pet.html" class="active">
-          <span class="nav-icon" aria-hidden="true"></span> Share
+        <a href="Share-a-pet.html" class="pp-tab pp-tab--share" aria-current="page">
+          <span class="pp-tab__icon" aria-hidden="true"></span> Share
         </a>
-              <a href="Me.html">
-          <span class="nav-icon" aria-hidden="true"></span> Owner
+              <a href="Me.html" class="pp-tab pp-tab--owner">
+          <span class="pp-tab__icon" aria-hidden="true"></span> Owner
         </a>
       </nav>
 

@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Health & jabs — PetPal wireframe</title>
+<link rel="stylesheet" href="../ui/kit.css">
 <style>
   :root {
     --wf-bg:         #ffffff;
@@ -687,90 +688,90 @@
         <span class="zone-label">R1, R3</span> R1 + R3 · <span>Pet card → ★ Health & jabs</span>
       </div>
 
-      <header class="m-header">
-        <a href="home-success.html" style="text-decoration:none;"><button class="back" aria-label="Back">← Miso's card</button></a>
-        <h1>Health & jabs</h1>
+      <header class="pp-appbar">
+        <a href="home-success.html" style="text-decoration:none;"><button class="pp-appbar__back" aria-label="Back">← Miso's card</button></a>
+        <h1 class="pp-appbar__title">Health & jabs</h1>
         <span style="width:60px;" aria-hidden="true"></span>
       </header>
 
       <div class="m-main">
 
-        <section class="m-pet-identity" aria-label="Pet identity">
-          <figure class="pet-photo pet-photo-s" aria-label="Pet photo placeholder">photo</figure>
-          <div class="pet-info">
-            <h2 style="font-size:15px;font-weight:700;">Miso</h2>
-            <p class="pet-meta" style="font-size:12px;">Dog · Border Terrier · Female</p>
+        <section class="pp-identity" aria-label="Pet identity">
+          <figure class="pp-avatar pp-avatar--md pp-avatar--miso pp-iconbox" aria-label="Miso">photo</figure>
+          <div class="pp-identity__body">
+            <h2 class="pp-identity__name">Miso</h2>
+            <p class="pp-identity__meta">Dog · Border Terrier · Female</p>
           </div>
         </section>
 
-        <div class="pinned-card">
+        <div class="pp-card pp-card--inset">
           <div class="zone-label">Conditions &amp; current meds (pinned)</div>
-          <h3>Conditions &amp; current medications</h3>
-          <p>Atopic dermatitis — diagnosed Jan 2025<br>
+          <h3 class="pp-card__title">Conditions &amp; current medications</h3>
+          <p class="pp-card__body">Atopic dermatitis — diagnosed Jan 2025<br>
           Apoquel (oclacitinib) 16 mg, 1× daily with food<br>
           Seasonal ear drops — prescribed May 2026</p>
         </div>
 
-        <div class="section-heading">Jabs</div>
+        <div class="pp-heading">Jabs</div>
 
-        <div class="record-entry">
-          <div class="record-info">
-            <h3>Rabies</h3>
-            <p class="record-meta">12 Mar 2026 · Due 15 Mar 2027</p>
+        <div class="pp-headrow pp-ruled">
+          <div class="pp-row__body">
+            <h3 class="pp-row__title">Rabies</h3>
+            <p class="pp-row__meta">12 Mar 2026 · Due 15 Mar 2027</p>
           </div>
-          <a href="Edit-health-record.html?rec=rabies" style="text-decoration:none;color:var(--wf-muted);font-size:12px;margin-right:10px;">Edit</a><span class="record-status">Up to date</span>
+          <a href="Edit-health-record.html?rec=rabies" class="pp-btn pp-btn--link">Edit</a><span class="pp-chip pp-chip--success">Up to date</span>
         </div>
-        <div class="record-entry">
-          <div class="record-info">
-            <h3>DHPP (Distemper combo)</h3>
-            <p class="record-meta">12 Mar 2026 · Due 12 Mar 2027</p>
+        <div class="pp-headrow pp-ruled">
+          <div class="pp-row__body">
+            <h3 class="pp-row__title">DHPP (Distemper combo)</h3>
+            <p class="pp-row__meta">12 Mar 2026 · Due 12 Mar 2027</p>
           </div>
-          <a href="Edit-health-record.html?rec=dhpp" style="text-decoration:none;color:var(--wf-muted);font-size:12px;margin-right:10px;">Edit</a><span class="record-status">Up to date</span>
+          <a href="Edit-health-record.html?rec=dhpp" class="pp-btn pp-btn--link">Edit</a><span class="pp-chip pp-chip--success">Up to date</span>
         </div>
-        <div class="record-entry">
-          <div class="record-info">
-            <h3>Leptospirosis</h3>
-            <p class="record-meta">5 Jan 2026 · Due 5 Jul 2026</p>
+        <div class="pp-headrow pp-ruled">
+          <div class="pp-row__body">
+            <h3 class="pp-row__title">Leptospirosis</h3>
+            <p class="pp-row__meta">5 Jan 2026 · Due 5 Jul 2026</p>
           </div>
-          <a href="Edit-health-record.html?rec=lepto" style="text-decoration:none;color:var(--wf-muted);font-size:12px;margin-right:10px;">Edit</a><span class="record-status">Due soon</span>
+          <a href="Edit-health-record.html?rec=lepto" class="pp-btn pp-btn--link">Edit</a><span class="pp-chip pp-chip--warning">Due soon</span>
         </div>
 
-        <div class="section-heading">Health records</div>
+        <div class="pp-heading">Health records</div>
 
-        <div class="record-entry">
-          <div class="record-info">
-            <h3>Dental cleaning</h3>
-            <p class="record-meta">20 May 2026 · Tierklinik am Stadtpark</p>
+        <div class="pp-headrow pp-ruled">
+          <div class="pp-row__body">
+            <h3 class="pp-row__title">Dental cleaning</h3>
+            <p class="pp-row__meta">20 May 2026 · Tierklinik am Stadtpark</p>
           </div>
-          <a href="Edit-health-record.html?rec=dental"><button class="record-action">Edit →</button></a>
+          <a href="Edit-health-record.html?rec=dental"><button class="pp-btn pp-btn--link">Edit →</button></a>
         </div>
-        <div class="record-entry">
-          <div class="record-info">
-            <h3>Annual checkup</h3>
-            <p class="record-meta">12 Mar 2026 · Dr. Müller — all clear</p>
+        <div class="pp-headrow pp-ruled">
+          <div class="pp-row__body">
+            <h3 class="pp-row__title">Annual checkup</h3>
+            <p class="pp-row__meta">12 Mar 2026 · Dr. Müller — all clear</p>
           </div>
-          <a href="Edit-health-record.html?rec=checkup"><button class="record-action">Edit →</button></a>
+          <a href="Edit-health-record.html?rec=checkup"><button class="pp-btn pp-btn--link">Edit →</button></a>
         </div>
       </div>
 
-      <div class="fab-menu" id="fab-menu" aria-label="Add options">
+      <div class="pp-menu" id="fab-menu" aria-label="Add options">
         <a href="Add-record.html">Add a jab</a>
         <a href="Add-health-record.html">Add a health record</a>
       </div>
-      <button class="fab" id="fab-btn" aria-label="Add record" onclick="toggleFab()">+</button>
+      <button class="pp-fab" id="fab-btn" aria-label="Add record" aria-expanded="false" onclick="var m=document.getElementById(&quot;fab-menu&quot;),o=m.classList.toggle(&quot;is-open&quot;);this.textContent=o?&quot;×&quot;:&quot;+&quot;;this.setAttribute(&quot;aria-expanded&quot;,o)">+</button>
 
-      <nav class="phone-nav" aria-label="Main navigation">
-        <a href="My-Pets.html" class="active">
-          <span class="nav-icon" aria-hidden="true"></span> Pets
+      <nav class="pp-tabbar" aria-label="Main navigation">
+        <a href="My-Pets.html" class="pp-tab pp-tab--pets" aria-current="page">
+          <span class="pp-tab__icon" aria-hidden="true"></span> Pets
         </a>
-        <a href="Whats-due.html">
-          <span class="nav-icon" aria-hidden="true"></span> What's due
+        <a href="Whats-due.html" class="pp-tab pp-tab--reminders">
+          <span class="pp-tab__icon" aria-hidden="true"></span> What's due
         </a>
-        <a href="Share-a-pet.html">
-          <span class="nav-icon" aria-hidden="true"></span> Share
+        <a href="Share-a-pet.html" class="pp-tab pp-tab--share">
+          <span class="pp-tab__icon" aria-hidden="true"></span> Share
         </a>
-              <a href="Me.html">
-          <span class="nav-icon" aria-hidden="true"></span> Owner
+              <a href="Me.html" class="pp-tab pp-tab--owner">
+          <span class="pp-tab__icon" aria-hidden="true"></span> Owner
         </a>
       </nav>
 

@@ -7,6 +7,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700&family=Hanken+Grotesk:wght@400;500;600;700&family=EB+Garamond:ital,wght@0,600;1,600;1,700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../ui/kit.css">
 <style>
   :root {
     --wf-bg:         #ffffff;
@@ -743,33 +744,33 @@
         <span class="zone-label">S2</span> S2 · <span>Pet card → ★ Share a pet</span> → link created
       </div>
 
-      <header class="m-header">
-        <a href="home-success.html" style="text-decoration:none;"><button class="back" aria-label="Back">← Miso's card</button></a>
-        <h1>Share Miso's card</h1>
+      <header class="pp-appbar pp-appbar--plain">
+        <a href="home-success.html" style="text-decoration:none;"><button class="pp-appbar__back" aria-label="Back">← Miso's card</button></a>
+        <h1 class="pp-appbar__title">Share Miso's card</h1>
         <span></span>
       </header>
 
       <div class="m-main">
 
         <section style="padding:40px 32px;text-align:center;">
-          <figure class="empty-illustration" aria-hidden="true"></figure>
+          <figure class="pp-illus pp-illus--wait" aria-hidden="true"></figure>
           <h2 style="font-size:18px;font-weight:600;margin-bottom:8px;">Creating share link… <a href="Share-success.html" style="color:var(--wf-muted);font-size:11px;">→ when done, view confirmation</a></h2>
           <p style="font-size:14px;color:var(--wf-muted);">Setting up Miso's shared pet card — full access for a sitter.</p>
         </section>
       </div>
 
-      <nav class="phone-nav" aria-label="Main navigation">
-        <a href="My-Pets.html">
-          <span class="nav-icon" aria-hidden="true"></span> Pets
+      <nav class="pp-tabbar" aria-label="Main navigation">
+        <a href="My-Pets.html" class="pp-tab pp-tab--pets">
+          <span class="pp-tab__icon" aria-hidden="true"></span> Pets
         </a>
-        <a href="Whats-due.html">
-          <span class="nav-icon" aria-hidden="true"></span> Reminders
+        <a href="Whats-due.html" class="pp-tab pp-tab--reminders">
+          <span class="pp-tab__icon" aria-hidden="true"></span> Reminders
         </a>
-        <a href="Share-a-pet.html" class="active">
-          <span class="nav-icon" aria-hidden="true"></span> Share
+        <a href="Share-a-pet.html" class="pp-tab pp-tab--share" aria-current="page">
+          <span class="pp-tab__icon" aria-hidden="true"></span> Share
         </a>
-              <a href="Me.html">
-          <span class="nav-icon" aria-hidden="true"></span> Owner
+              <a href="Me.html" class="pp-tab pp-tab--owner">
+          <span class="pp-tab__icon" aria-hidden="true"></span> Owner
         </a>
       </nav>
 
