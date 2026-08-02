@@ -1,0 +1,436 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-07-30T23:30:47Z",
+  "title": "Design System: PetPal",
+  "extensions": {
+    "colorMeta": {
+      "paper": {
+        "role": "neutral",
+        "displayName": "Paper White",
+        "canonical": "#ffffff",
+        "tonalRamp": [
+          "#262626",
+          "#434343",
+          "#616161",
+          "#7e7e7e",
+          "#9b9b9b",
+          "#b8b8b8",
+          "#d5d5d5",
+          "#f2f2f2"
+        ]
+      },
+      "ink": {
+        "role": "neutral",
+        "displayName": "Near-Black Ink",
+        "canonical": "#141414",
+        "tonalRamp": [
+          "#262626",
+          "#434343",
+          "#616161",
+          "#7e7e7e",
+          "#9b9b9b",
+          "#b8b8b8",
+          "#d5d5d5",
+          "#f2f2f2"
+        ]
+      },
+      "meta": {
+        "role": "neutral",
+        "displayName": "Meta Grey",
+        "canonical": "#5c5c5c",
+        "tonalRamp": [
+          "#262626",
+          "#434343",
+          "#616161",
+          "#7e7e7e",
+          "#9b9b9b",
+          "#b8b8b8",
+          "#d5d5d5",
+          "#f2f2f2"
+        ]
+      },
+      "surface": {
+        "role": "neutral",
+        "displayName": "Secondary Surface",
+        "canonical": "#f4f4f4",
+        "tonalRamp": [
+          "#262626",
+          "#434343",
+          "#616161",
+          "#7e7e7e",
+          "#9b9b9b",
+          "#b8b8b8",
+          "#d5d5d5",
+          "#f2f2f2"
+        ]
+      },
+      "line": {
+        "role": "neutral",
+        "displayName": "Hairline",
+        "canonical": "#e7e7e7",
+        "tonalRamp": [
+          "#262626",
+          "#434343",
+          "#616161",
+          "#7e7e7e",
+          "#9b9b9b",
+          "#b8b8b8",
+          "#d5d5d5",
+          "#f2f2f2"
+        ]
+      },
+      "photo-ground": {
+        "role": "neutral",
+        "displayName": "Photo Ground",
+        "canonical": "#eaeaea",
+        "tonalRamp": [
+          "#262626",
+          "#434343",
+          "#616161",
+          "#7e7e7e",
+          "#9b9b9b",
+          "#b8b8b8",
+          "#d5d5d5",
+          "#f2f2f2"
+        ]
+      },
+      "signal": {
+        "role": "primary",
+        "displayName": "Signal Amber",
+        "canonical": "#ffbf00",
+        "tonalRamp": [
+          "#4c3900",
+          "#876500",
+          "#c19100",
+          "#fbbc00",
+          "#ffcd37",
+          "#ffdb71",
+          "#ffeaab",
+          "#fff9e5"
+        ]
+      },
+      "signal-deep": {
+        "role": "primary",
+        "displayName": "Amber Deep",
+        "canonical": "#e0a400",
+        "tonalRamp": [
+          "#4c3800",
+          "#876300",
+          "#c18d00",
+          "#fbb800",
+          "#ffc937",
+          "#ffd971",
+          "#ffe9ab",
+          "#fff8e5"
+        ]
+      },
+      "signal-ink": {
+        "role": "primary",
+        "displayName": "Amber Ink",
+        "canonical": "#8a6b00",
+        "tonalRamp": [
+          "#4c3b00",
+          "#876900",
+          "#c19600",
+          "#fbc300",
+          "#ffd237",
+          "#ffdf71",
+          "#ffecab",
+          "#fff9e5"
+        ]
+      },
+      "signal-tint": {
+        "role": "primary",
+        "displayName": "Amber Tint",
+        "canonical": "#fdf3d3",
+        "tonalRamp": [
+          "#493903",
+          "#816406",
+          "#b98f08",
+          "#f0ba0b",
+          "#f6cb3f",
+          "#f9da77",
+          "#fbe9af",
+          "#fef8e7"
+        ]
+      },
+      "success": {
+        "role": "tertiary",
+        "displayName": "Verified Green",
+        "canonical": "#0c6b3b",
+        "tonalRamp": [
+          "#084526",
+          "#0e7943",
+          "#13ae60",
+          "#19e27d",
+          "#4beb9a",
+          "#7ff1b7",
+          "#b4f7d5",
+          "#e8fcf2"
+        ]
+      },
+      "warning": {
+        "role": "tertiary",
+        "displayName": "Due-Soon Bronze",
+        "canonical": "#8a5800",
+        "tonalRamp": [
+          "#4c3100",
+          "#875600",
+          "#c17b00",
+          "#fba000",
+          "#ffb637",
+          "#ffcc71",
+          "#ffe1ab",
+          "#fff6e5"
+        ]
+      },
+      "danger": {
+        "role": "tertiary",
+        "displayName": "Overdue Oxblood",
+        "canonical": "#9a2820",
+        "tonalRamp": [
+          "#3f100d",
+          "#701d17",
+          "#a02a21",
+          "#d0362b",
+          "#dd6259",
+          "#e78f89",
+          "#f1bdba",
+          "#fbebea"
+        ]
+      },
+      "info": {
+        "role": "tertiary",
+        "displayName": "Upcoming Slate-Teal",
+        "canonical": "#235a73",
+        "tonalRamp": [
+          "#122e3b",
+          "#1f5167",
+          "#2d7494",
+          "#3b97c1",
+          "#65afd0",
+          "#92c6de",
+          "#bfddeb",
+          "#ebf5f9"
+        ]
+      }
+    },
+    "typographyMeta": {
+      "name": {
+        "displayName": "Name",
+        "purpose": "Pet and owner names only. EB Garamond italic 700. Never a label."
+      },
+      "display": {
+        "displayName": "App bar",
+        "purpose": "Screen title in the amber band; switches to the serif when the title is a name."
+      },
+      "title": {
+        "displayName": "Section title",
+        "purpose": "Heading on every listing card."
+      },
+      "body": {
+        "displayName": "Body",
+        "purpose": "Descriptions and record values."
+      },
+      "bodySmall": {
+        "displayName": "Body small",
+        "purpose": "Meta line under a section title: counts and 'Updated N days ago'."
+      },
+      "label": {
+        "displayName": "Tab label",
+        "purpose": "Tab bar captions; active steps to 700 and ink."
+      }
+    },
+    "shadows": [
+      {
+        "name": "card",
+        "value": "0 10px 24px -18px rgba(20,20,20,.13), 0 2px 6px -4px rgba(20,20,20,.05)",
+        "purpose": "Every listing card and section. Offset ambient + tight contact; never a zero-offset halo."
+      },
+      {
+        "name": "pop",
+        "value": "0 26px 50px -22px rgba(20,20,20,.34), 0 6px 16px -10px rgba(20,20,20,.16)",
+        "purpose": "Confirm sheets and the QR sheet — one step above a card."
+      }
+    ],
+    "motion": [
+      {
+        "name": "state",
+        "value": "150ms",
+        "purpose": "Switch knob travel and segmented-control shifts."
+      },
+      {
+        "name": "fade",
+        "value": "120ms",
+        "purpose": "Checkmark fade on the active switch."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "mobile",
+        "value": "372px"
+      }
+    ],
+    "geometry": [
+      {
+        "name": "arch",
+        "value": "border-radius: 50% 50% 0 0 / 94px 94px 0 0",
+        "purpose": "White panel cut into the amber band. The 94px rise is constant; only band height varies."
+      }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "The one call to action. Ink, never amber.",
+      "html": "<button class=\"ds-btn-primary\">Share Miso’s card</button>",
+      "css": ".ds-btn-primary{background:#141414;color:#fff;border:none;border-radius:999px;padding:15px 20px;min-height:44px;font-family:'Hanken Grotesk',system-ui,sans-serif;font-size:14px;font-weight:600;cursor:pointer;transition:background .15s}.ds-btn-primary:hover{background:#2c2c2c}.ds-btn-primary:focus-visible{outline:2px solid #ffbf00;outline-offset:2px}"
+    },
+    {
+      "name": "Secondary Button",
+      "kind": "button",
+      "refersTo": "button-secondary",
+      "description": "Supporting action on a card.",
+      "html": "<button class=\"ds-btn-secondary\">Edit</button>",
+      "css": ".ds-btn-secondary{background:#f4f4f4;color:#141414;border:none;border-radius:999px;padding:15px 20px;min-height:44px;font-family:'Hanken Grotesk',system-ui,sans-serif;font-size:14px;font-weight:600;cursor:pointer;transition:background .15s}.ds-btn-secondary:hover{background:#e7e7e7}.ds-btn-secondary:focus-visible{outline:2px solid #ffbf00;outline-offset:2px}"
+    },
+    {
+      "name": "Section Card",
+      "kind": "card",
+      "refersTo": "card",
+      "description": "The listing row: icon tile, title, meta line, verification tick, chevron.",
+      "html": "<div class=\"ds-card\"><span class=\"ds-card-tile\"><svg viewBox=\"0 0 24 24\" width=\"22\" height=\"22\" fill=\"#141414\"><path d=\"M12 21s-7.5-4.7-9.3-9A5.3 5.3 0 0 1 12 6.6 5.3 5.3 0 0 1 21.3 12c-1.8 4.3-9.3 9-9.3 9z\"/></svg></span><span class=\"ds-card-body\"><b>Personality &amp; care</b><i>Filled · Updated 5 days ago</i></span><span class=\"ds-card-chev\">↓</span></div>",
+      "css": ".ds-card{display:flex;align-items:center;gap:12px;width:340px;background:#fff;border:1px solid #e7e7e7;border-radius:16px;padding:14px;box-shadow:0 10px 24px -18px rgba(20,20,20,.13),0 2px 6px -4px rgba(20,20,20,.05);font-family:'Hanken Grotesk',system-ui,sans-serif}.ds-card-tile{width:36px;height:36px;flex:0 0 auto;border-radius:12px;background:#f4f4f4;display:flex;align-items:center;justify-content:center}.ds-card-body{flex:1;display:flex;flex-direction:column}.ds-card-body b{font-family:'Bricolage Grotesque',system-ui,sans-serif;font-size:16px;font-weight:700;line-height:1.3;color:#141414}.ds-card-body i{font-style:normal;font-size:13px;font-weight:400;line-height:1.45;color:#5c5c5c;margin-top:2px}.ds-card-chev{color:#5c5c5c}"
+    },
+    {
+      "name": "Text Field",
+      "kind": "input",
+      "refersTo": "field",
+      "description": "46px tall, hairline bordered, amber focus ring.",
+      "html": "<input class=\"ds-field\" id=\"ds-f1\" type=\"text\" value=\"Eva Schmidt\" aria-label=\"Full name\">",
+      "css": ".ds-field{width:340px;height:46px;background:#fff;border:1px solid #e7e7e7;border-radius:12px;padding:0 14px;font-family:'Hanken Grotesk',system-ui,sans-serif;font-size:14px;color:#141414}.ds-field::placeholder{color:#8a8a8a}.ds-field:focus{outline:none;border-color:#ffbf00;box-shadow:0 0 0 3px rgba(255,191,0,.28)}"
+    },
+    {
+      "name": "Up-to-date Tag",
+      "kind": "chip",
+      "refersTo": "tag-uptodate",
+      "description": "The enamel badge the direction is named for.",
+      "html": "<span class=\"ds-tag\">✓ Up to date</span>",
+      "css": ".ds-tag{display:inline-flex;align-items:center;gap:6px;background:#e6f3ec;color:#0c6b3b;border-radius:9px;padding:5px 11px;font-family:'Hanken Grotesk',system-ui,sans-serif;font-size:12px;font-weight:600;line-height:1}"
+    },
+    {
+      "name": "Status Chip",
+      "kind": "chip",
+      "refersTo": "chip-status",
+      "description": "Status only, never decoration. Overdue shown.",
+      "html": "<span class=\"ds-chip\">Overdue</span>",
+      "css": ".ds-chip{display:inline-flex;align-items:center;background:#f9e7e6;color:#9a2820;border-radius:8px;padding:5px 11px;font-family:'Hanken Grotesk',system-ui,sans-serif;font-size:12px;font-weight:600;line-height:1}"
+    },
+    {
+      "name": "Segmented Control",
+      "kind": "nav",
+      "refersTo": "segmented-control",
+      "description": "Pet switcher. Active segment squares its inner corners so it reads as a tab pulled forward.",
+      "html": "<div class=\"ds-seg\"><button class=\"ds-seg-i is-on\">Miso</button><button class=\"ds-seg-i\">Cheetah</button></div>",
+      "css": ".ds-seg{display:flex;width:340px;height:36px;background:#f4f4f4;border-radius:999px;overflow:hidden}.ds-seg-i{flex:1;border:none;background:transparent;color:#5c5c5c;font-family:'Hanken Grotesk',system-ui,sans-serif;font-size:14px;font-weight:600;cursor:pointer;transition:background .15s}.ds-seg-i.is-on{background:#141414;color:#fff;border-radius:999px 0 0 999px}.ds-seg-i.is-on+.ds-seg-i{border-radius:0 999px 999px 0}.ds-seg-i:focus-visible{outline:2px solid #ffbf00;outline-offset:-2px}"
+    },
+    {
+      "name": "Switch",
+      "kind": "custom",
+      "refersTo": "switch-on",
+      "description": "48x28 pill; ink when on, with a fading checkmark.",
+      "html": "<div class=\"ds-switch is-on\" role=\"switch\" aria-checked=\"true\" tabindex=\"0\" aria-label=\"Email reminders\"></div>",
+      "css": ".ds-switch{position:relative;width:48px;height:28px;border-radius:999px;background:#e7e7e7;cursor:pointer;transition:background .15s}.ds-switch.is-on{background:#141414}.ds-switch::after{content:'';position:absolute;top:1px;left:1px;width:26px;height:26px;border-radius:50%;background:#fff;box-shadow:0 1px 4px rgba(20,20,20,.32);transition:left .15s}.ds-switch.is-on::after{left:21px}.ds-switch:focus-visible{outline:2px solid #ffbf00;outline-offset:2px}"
+    },
+    {
+      "name": "Illustration Tile",
+      "kind": "custom",
+      "refersTo": "illustration-tile",
+      "description": "The answer to a missing image. Never a grey fill.",
+      "html": "<figure class=\"ds-illus\"><svg viewBox=\"0 0 24 24\" width=\"52\" height=\"52\" fill=\"#8a6b00\"><path d=\"M12 21s-7.5-4.7-9.3-9A5.3 5.3 0 0 1 12 6.6 5.3 5.3 0 0 1 21.3 12c-1.8 4.3-9.3 9-9.3 9z\"/></svg></figure>",
+      "css": ".ds-illus{width:120px;height:120px;margin:0;border-radius:16px;background:#fdf3d3;display:flex;align-items:center;justify-content:center}"
+    },
+    {
+      "name": "Tab Bar",
+      "kind": "nav",
+      "refersTo": "tab-bar",
+      "description": "Four destinations. Active carries a 24x3px amber marker. Absent on the recipient's shared card.",
+      "html": "<nav class=\"ds-tabs\"><a class=\"is-on\" href=\"#\">Pets</a><a href=\"#\">Reminders</a><a href=\"#\">Share</a><a href=\"#\">Owner</a></nav>",
+      "css": ".ds-tabs{display:flex;width:372px;height:61px;background:#fff;border-top:1px solid #e7e7e7}.ds-tabs a{position:relative;flex:1;display:flex;align-items:center;justify-content:center;text-decoration:none;color:#5c5c5c;font-family:'Hanken Grotesk',system-ui,sans-serif;font-size:10.5px;font-weight:500}.ds-tabs a.is-on{color:#141414;font-weight:700}.ds-tabs a.is-on::before{content:'';position:absolute;top:0;left:50%;transform:translateX(-50%);width:24px;height:3px;border-radius:3px;background:#ffbf00}"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Enamel ID Tag",
+    "overview": "PetPal is the small metal disc on a collar, enlarged into an interface. An enamel ID tag is stamped once, worn for years, and read by a stranger in a hurry - so it is confident, findable, and utterly calm under pressure. A white canvas that never competes, one saturated amber that behaves like transit wayfinding rather than decoration, and a photograph of the actual animal doing the emotional work the UI refuses to do itself. The system is deliberately not the category's cream-and-terracotta reflex; warmth is layered on through photography, the amber band, and an italic serif reserved for names, never painted across the background.",
+    "keyCharacteristics": [
+      "White canvas, near-black ink, exactly one signal colour",
+      "Amber as wayfinding, never as a button",
+      "Real pet photography leads; a missing image is amber-tinted, never grey",
+      "Cards separated by shadow, not outline",
+      "An italic serif used only for names - never for a label",
+      "Every section entry is icon-anchored for fast scanning"
+    ],
+    "rules": [
+      {
+        "name": "The One Signal Rule",
+        "body": "Amber appears on the band and the active-tab marker, and essentially nowhere else. If a second amber element enters a screen, one of them is wrong.",
+        "section": "colors"
+      },
+      {
+        "name": "The Amber Is Not A Button Rule",
+        "body": "Across all 21 implemented screens, no button is amber-filled. Primary actions are ink; amber is orientation, not invitation.",
+        "section": "colors"
+      },
+      {
+        "name": "The Ink-On-Amber Rule",
+        "body": "Ink #141414 is the only text colour permitted on amber (11.15:1). Meta grey on amber is 4.05:1 and fails.",
+        "section": "colors"
+      },
+      {
+        "name": "The Status-Only Rule",
+        "body": "The four status pairs describe state and nothing else. Never decoration or category colour.",
+        "section": "colors"
+      },
+      {
+        "name": "The Names-Only Rule",
+        "body": "The serif is for names - pet and owner - and nothing else. 'Owner' as an app-bar title is a label, not a name, so it stays sans.",
+        "section": "typography"
+      },
+      {
+        "name": "The X-Height Rule",
+        "body": "When EB Garamond sits inline with Bricolage Grotesque, set it at 1.25x and line-height 1. Garamond's x-height is 42.1 per 100px against Bricolage's 52.5.",
+        "section": "typography"
+      },
+      {
+        "name": "The Meta-Is-Not-A-Heading Rule",
+        "body": "A meta line nested inside a heading element must restate font-family and font-weight, or it inherits the display face and 700.",
+        "section": "typography"
+      },
+      {
+        "name": "The No-Outline Rule",
+        "body": "Depth comes from shadow plus a #e7e7e7 hairline. A black or heavy border on a card contradicts the world.",
+        "section": "elevation"
+      }
+    ],
+    "dos": [
+      "Do keep amber to the band and the active-tab marker - roughly one amber element per screen.",
+      "Do use ink #141414 for every primary action.",
+      "Do set the serif at 1.25x with line-height 1 whenever it sits inline with the grotesque.",
+      "Do anchor every section row with a 36px icon tile - a bare text list was rejected by name.",
+      "Do reach for the amber-tint illustration tile whenever an image is missing.",
+      "Do keep the arch rise at 94px and centre the photo 50/50 on the arch line.",
+      "Do give every form control a programmatic label and a >=44x44 tap target."
+    ],
+    "donts": [
+      "Don't fill a button with amber. Primary actions are ink.",
+      "Don't put meta grey on amber (4.05:1). Ink is the only text colour on the signal.",
+      "Don't put the serif on anything that is not a name. 'Owner' is a label.",
+      "Don't outline a card. Shadow plus a hairline is the separation.",
+      "Don't use a grey fill where an image belongs.",
+      "Don't introduce cream or terracotta in any role.",
+      "Don't use emoji anywhere in product UI. Functional glyphs are icons and are fine."
+    ]
+  }
+}

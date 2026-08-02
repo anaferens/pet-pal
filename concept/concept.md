@@ -87,42 +87,67 @@ Both remain viable worlds: if The Signal ever needs more gravitas (A) or more he
 
 The full set in use, each tied to the **Attribute** it serves. Anything on a PetPal screen must resolve to a token below; a value that can't is a decision invented from scratch and gets removed. Live in [`concept.html`](concept.html) `:root`.
 
+> **This section follows the layouts.** The 21 implemented screens are the design; this table describes them. Values below were measured from computed styles on the live pages (see [`../DESIGN.md`](../DESIGN.md), generated from the same screens), not transcribed from intent. Where the wireframes name a token differently from the concept board, **the wireframe name is the one that ships** and is given in the *In the layouts* column.
+
 ### Colour
 
-| Token | Value | Serves | Why this value |
-|---|---|---|---|
-| `--paper` | `#ffffff` | 5 · Warm and credible | The white canvas decided above — refuses the cream-and-terracotta anti-reference. |
-| `--ink` | `#141414` | 1 · Calm | Near-black, not pure black: sits calmer on white while holding 18.4:1. |
-| `--surface` | `#f4f4f4` | 5 | The neutral secondary surface — the two-surface rhythm, de-creamed from Warm Sand. |
-| `--line` | `#e7e7e7` | 1 · Calm | Hairline separation instead of a border. Cards are told apart by shadow, not outline (Shape: *no black outlines*). |
-| `--meta` | `#5c5c5c` | 1 · Calm | Secondary text that recedes but still clears AA on white (6.7:1). |
-| `--signal` | `#ffbf00` | 2 · Trust signals visible | The one action colour. Headspace's discipline: saturated hue only in small accents. |
-| `--on-signal` | `#141414` | 2 | Ink is the only text colour allowed on amber — 11.2:1. Muted grey on amber is 4.05:1 and **fails**. |
-| `--signal-deep` | `#e0a400` | 1 · Calm | Hover/pressed for amber. Darkens rather than brightens, so feedback never flashes. |
-| `--signal-ink` | `#8a6b00` | 3 · Real imagery | Amber dark enough to be *text or a glyph*. Carries illustration glyphs on tint at 4.5:1. |
-| `--signal-tint` | `#fdf3d3` | 3 · Real imagery | The illustration-tile ground. Warmth without a grey placeholder — the anti-reference this replaces. |
-| `--success` / `--success-bg` | `#0c6b3b` / `#e6f3ec` | 2 · Trust signals visible | The verified mark and the enamel *up-to-date* tag. The designer approved green as the one supporting accent. |
-| `--warning` / `--warning-bg` | `#8a5800` / `#fbeed6` | 1 · Calm | *Due soon.* Amber-brown, distinct from `--signal` so a warning is never mistaken for a button. |
-| `--danger` / `--danger-bg` | `#9a2820` / `#f9e7e6` | 1 · Calm | *Overdue* and destructive actions. Deep, not alarm-red — [voice.md](../research/voice.md) P2 asks for precise, never panicked. |
-| `--info` / `--info-bg` | `#235a73` / `#e5f0f4` | 1 · Calm | *Upcoming.* The quietest status, so the far future doesn't compete with what's due. |
+| Token | In the layouts | Value | Serves | Why this value |
+|---|---|---|---|---|
+| `--paper` | `--wf-bg`, `--wf-input-bg` | `#ffffff` | 5 · Warm and credible | The white canvas decided above — refuses the cream-and-terracotta anti-reference. |
+| `--ink` | `--wf-text`, `--wf-btn` | `#141414` | 1 · Calm | Near-black, not pure black: sits calmer on white while holding 18.42:1. Also the primary button fill. |
+| `--surface` | `--wf-surface`, `--wf-btn-sec` | `#f4f4f4` | 5 | The neutral secondary surface — icon tiles, the segmented-control track, secondary buttons. De-creamed from Warm Sand. |
+| `--line` | `--wf-border` | `#e7e7e7` | 1 · Calm | Hairline separation instead of a border. Cards are told apart by shadow, not outline. |
+| `--meta` | `--wf-muted` | `#5c5c5c` | 1 · Calm | Secondary text that recedes but still clears AA — 6.69:1 on paper, 6.08:1 on surface. |
+| `--signal` | `--signal` | `#ffbf00` | 2 · Trust signals visible | The one signal colour. **Implemented as orientation, not as an action fill** — see the rule below. |
+| `--signal-ink` | `--signal-ink` | `#8a6b00` | 3 · Real imagery | Amber dark enough to be *text or a glyph*. Carries illustration glyphs on tint at 4.53:1. |
+| `--signal-tint` | `--signal-tint` | `#fdf3d3` | 3 · Real imagery | The illustration-tile ground. Warmth without a grey placeholder — the anti-reference this replaces. |
+| `--photo-bg` | `--wf-placeholder` | `#eaeaea` | 3 · Real imagery | The tone behind a photo for the instant before it paints. **Not a placeholder fill** — it is never what a user is left looking at. |
+| `--success` / `--success-bg` | same | `#0c6b3b` / `#e6f3ec` | 2 · Trust signals visible | The verification mark and the enamel *up-to-date* tag. 5.78:1. |
+| `--warning` / `--warning-bg` | same | `#8a5800` / `#fbeed6` | 1 · Calm | *Due soon.* Amber-brown, deliberately distinct from `--signal` so a warning is never mistaken for an action. 5.26:1. |
+| `--danger` / `--danger-bg` | same | `#9a2820` / `#f9e7e6` | 1 · Calm | *Overdue* and destructive actions. Deep, not alarm-red — [voice.md](../research/voice.md) P2 asks for precise, never panicked. 6.52:1. |
+| `--info` / `--info-bg` | same | `#235a73` / `#e5f0f4` | 1 · Calm | *Upcoming.* The quietest status, so the far future doesn't compete with what's due. 6.51:1. |
 
-**Semantic colour is status only, never decoration.** All four pairs clear AA on their own ground (5.3–6.5:1).
+**Semantic colour is status only, never decoration.** All four pairs clear AA on their own ground (5.26–6.52:1, verified against the shipped values).
 
-Three further tokens exist so nothing falls back to a bare hex:
+**Amber is orientation, not invitation.** In all 21 screens amber fills the app-bar band and the hero band behind the arch, and marks the active tab with a 24×3px bar — and fills **no button anywhere**. Primary actions are ink `#141414`. *Rationale:* the direction is transit wayfinding, and a band that says *where you are* cannot also be the thing that says *press me* without the screen growing two competing voices. This is what the layouts do; the amber pill button on the [`concept.html`](concept.html) board is a swatch of the token, not a shipped pattern.
 
-| Token | Value | Role |
+**Ink is the only text colour on amber** (11.15:1). Meta grey on amber is 4.05:1 and fails.
+
+#### Declared only on the board, not in the layouts
+
+| Token | Value | Status |
 |---|---|---|
-| `--disabled` | `#8a8a8a` | Inactive control text. Exempt from the AA text rule (WCAG 1.4.3 excludes inactive components), but it still needs to be a named value rather than an ad-hoc grey. |
-| `--photo-bg` | `#eaeaea` | The tone behind a photo for the instant before it paints. **Not a placeholder fill** — Attribute 3 bans those. It is never what a user is left looking at. |
-| `--board` | `#ececec` | The language board's own page ground in `concept.html`. Documentation chrome, not product UI. |
+| `--on-signal` | `#141414` | A *rule* rather than a variable in the wireframes — the ink-on-amber pairing is written literally. Kept because the rule it names is load-bearing. |
+| `--signal-deep` | `#e0a400` | Hover/pressed for amber, and the board's masthead clause. No shipped screen has an amber hover surface yet, so it appears only in `concept.html`. Darkens rather than brightens, so feedback never flashes. |
+| `--disabled` | `#8a8a8a` | Inactive control text. Ships in the wireframes as `--nav-cap`, where it styles the **prototype sidebar** only, not product UI. |
+| `--board` | `#ececec` | The language board's own page ground. Documentation chrome, never product UI. |
+
+The four status pairs and `--signal-tint` are declared on the 10 pages that use them rather than globally — a page carries the tokens it needs. Every `var()` reference in all 21 pages resolves on its own page; there are no dangling references.
+
+#### The tab bar's own set
+
+The wireframes carry `--nav-bg` `#ffffff`, `--nav-line` `#e7e7e7`, `--nav-text` `#5c5c5c`, `--nav-text-active` `#141414`, `--nav-active-bg` `#f4f4f4`. *Rationale:* these are aliases of the neutral ramp, kept separate so the tab bar can be restyled without touching page surfaces. `--nav-cap` `#8a8a8a` belongs to the prototype sidebar and is not product UI — its 3.45:1 is therefore not a product accessibility finding.
 
 ### Type
 
 | Token | Value | Serves | Why |
 |---|---|---|---|
 | `--disp` | Bricolage Grotesque 600/700 | 5 · Warm and credible | Headings. Confident without shouting. |
-| `--body` | Hanken Grotesk 400–700 | 4 · Icon-supported | UI and body. Neutral, highly legible at 13px. |
+| `--body` | Hanken Grotesk 400–700 | 4 · Icon-supported | UI and body. Neutral, highly legible down to 13px. |
 | `--serif` | EB Garamond italic 700 | 5 · Warm and credible | **Names only** — pet and owner. Kinhive's italic serif carrying the warm clause. Never a label: Me.html's app bar reads "Owner", which is a label, so it stays sans. |
+
+**The roles as implemented.** Measured on the live screens; each is a role, not a free size.
+
+| Role | Value | Where | Why this value |
+|---|---|---|---|
+| Name | EB Garamond italic 700 · 36px · 1.06 | Under the arch, on the pet card and owner profile | The single most expressive element on a screen. Large enough to be the thing you see first, italic so it reads as *a name* rather than a heading. |
+| App bar | Bricolage Grotesque 600 · 17px · 1.5 · −0.01em | The title inside the amber band | Small and calm — the band already does the orienting, so the title does not need to shout. **Switches to EB Garamond 700 when the title is a name** (the pet card), because a name is a name wherever it appears. |
+| Section title | Bricolage Grotesque 700 · 16px · 1.3 | The heading on every listing card | Byte-identical across `home-success`, `Whats-due` and `Shared-pet-view` — this is the most repeated component in the product, so its spec is the one that must not drift. |
+| Body | Hanken Grotesk 400 · 14px · 1.5 | Descriptions and record values | The default reading size. |
+| Body small | Hanken Grotesk 400 · 13px · 1.45 | The meta line under a section title — counts, "Updated N days ago" | One step down so the count recedes behind the section name without becoming unreadable. 6.69:1 in `--meta`. |
+| Tab label | Hanken Grotesk 500 · 10.5px | Tab bar captions | Caption scale; the active tab steps to 700 and `--ink` so the current place is legible at a glance. |
+
+**A meta line nested inside a heading must restate its own font.** `font-family` **and** `font-weight` both — otherwise it inherits the display face and 700 from the enclosing heading and renders as a second title. *Rationale:* the section-title/meta-line pair is the most repeated component in the product; when the meta inherits, every card on the screen reads as two competing headings.
 
 **Standing rule — set the serif 1.25× when it sits inline with the grotesque.** EB Garamond's x-height is 42.1 per 100px against Bricolage's 52.5, so at a shared `font-size` the serif reads about 20% short. Multiply by `52.5 / 42.1 = 1.25` to match x-heights and the two faces look one size; pair it with `line-height:1` so the taller inline box doesn't inflate the line. Cap-heights already agree (66 vs 65.4), which is why only the lowercase looks wrong. Applied to the masthead clause and to the Garamond type specimen (56px against the two 46px sans specimens). A name standing on its own — `.petcard .n`, the row names, the 26px name spec — needs no correction, because nothing sits beside it to be short against.
 
@@ -130,26 +155,54 @@ Three further tokens exist so nothing falls back to a bare hex:
 
 ### Shape
 
-| Token | Value | Serves | Why |
+The scale is real and consistent in the layouts, but it ships as **literal `px`, not as `--r-*` custom properties** — none of the six radius tokens is declared on any of the 21 pages. They are named here because the *scale* is the durable decision; the variables exist only on the [`concept.html`](concept.html) board. Radius encodes **what a thing is**, which is why the set is small enough to memorise.
+
+| Token (board) | Value | Serves | Why |
 |---|---|---|---|
-| `--r-pill` | `999px` | 2 · Trust | Buttons and the segmented switcher. The committed *pill* shape. |
-| `--r-card` | `16px` | 1 · Calm | Cards, sheets, illustration tiles. |
-| `--r-input` | `12px` | 1 · Calm | Inputs, selects, icon tiles, calendar tiles — anything you act on inside a card. |
+| `--r-pill` | `999px` | 2 · Trust | Buttons and the segmented switcher. The committed *action* shape. |
+| `--r-card` | `16px` | 1 · Calm | Cards, sheets, illustration tiles — the containers. |
+| `--r-input` | `12px` | 1 · Calm | Anything you act on *inside* a card: fields, selects, icon tiles, calendar tiles. |
 | `--r-tag` | `9px` | 2 · Trust | The flat enamel *up-to-date* tag. The enamel ID-tag radius the direction is named for. |
-| `--r-chip` | `8px` | 2 · Trust | Status chips (*Overdue*, *Due soon*). |
-| `--r-thumb` | `12px` | 3 · Real imagery | Photo thumbnails. |
+| `--r-chip` | `8px` | 2 · Trust | Status chips (*Overdue*, *Due soon*). One step tighter than the tag, so status reads as smaller than proof. |
+| `--r-thumb` | `12px` | 3 · Real imagery | Photo thumbnails. Same value as `--r-input` — kept as a separate name because it answers a different question. |
+| *(no token)* | `50%` | 3 · Real imagery | Photographs of a living thing, and round icon buttons. A circle is reserved for faces. |
+
+**The arch is the signature geometry.** A white panel cut into the bottom of the amber band: `border-radius: 50% 50% 0 0 / 94px 94px 0 0`. The **94px rise is constant** on every screen that uses it — `home-success`, `Me`, `Shared-pet-view` — and only the band height above it changes (160px on the pet card and owner profile, 188px on Share, 224px on the shared card). *Rationale:* the arch is the one shape a returning user recognises before reading anything, so its curvature is fixed and the band flexes instead. The band must stay at least as tall as apex + rise, or the curve clips flat at the edges.
+
+**The photo sits 50/50 on the arch line.** An 88px circle with a 3px `--paper` ring, centred so exactly half crosses the arch. *Rationale:* it belongs to both the amber band and the white card, which is what makes the pet — not the chrome — the subject of the screen.
+
+### Layout
+
+| Attribute | Value | Why |
+|---|---|---|
+| Canvas | `372px` | Mobile-first; the prototype's device frame. Desktop is a later phase. |
+| Side inset | `16px` | Gives a `340px` content measure that **every** card, field and button shares — one measure, no exceptions, so nothing looks hand-placed. |
+| Card padding | `14px` | Tight enough to keep a section row at 72px, loose enough that the 36px icon tile does not touch the edge. |
+| Card gutter | `10px` | Cards in a group read as one list; the group is then separated from the next block by `24px`. |
+| Row gap | `12px` | Icon tile → text inside a card row. |
+| Field height | `46px` | Above the 44px tap-target floor with 2px to spare. |
+| Tab bar | `61px` | Pinned bottom on every owner-facing screen. **Absent on the recipient's shared card** — a sitter has no account, so there is nowhere to navigate. |
 
 ### Elevation
 
-| Token | Serves | Why |
-|---|---|---|
-| `--sh-card` | 1 · Calm | Cards float on a soft shadow instead of an outline. Offset + blur, never a zero-offset halo. Lightened once on the designer's note that the first value was too intense. |
-| `--sh-pop` | 1 · Calm | Confirm sheets and the QR sheet — one step above a card. |
-| `--sh-phone` | — | Prototype chrome only (the device frame), not product UI. |
+| Token | Value as shipped | Serves | Why |
+|---|---|---|---|
+| `--sh-card` | `0 10px 24px -18px rgba(20,20,20,.13), 0 2px 6px -4px rgba(20,20,20,.05)` | 1 · Calm | Cards float on a soft shadow instead of an outline. Two stacked shadows — a wide, deeply-inset ambient one and a tight contact one — so the card lifts without a visible edge. Never a zero-offset halo, which reads as a glow. Lightened once on the designer's note that the first value was too intense. Identical on all 21 pages. |
+| `--sh-pop` | `0 26px 50px -22px rgba(20,20,20,.34), 0 6px 16px -10px rgba(20,20,20,.16)` | 1 · Calm | Confirm sheets and the QR sheet — exactly one step above a card. Declared on the 17 pages that have a sheet. |
+| `--sh-phone` | — | — | Prototype chrome only (the device frame), not product UI. |
+
+Cards also carry a `1px --line` hairline alongside the shadow. *Rationale:* shadow alone disappears against `--surface`; the hairline guarantees the edge is findable on either ground without becoming an outline.
 
 ### Standing rules
 
-- **Tap targets ≥ 44×44** (WCAG 2.5.5). Buttons are `15px 20px` for a 44px box.
+- **Tap targets ≥ 44×44** (WCAG 2.5.5). Buttons are `15px 20px` for a 44px box; fields are 46px.
 - **Every form control needs a programmatic label** — `id` + `for`, not a visually adjacent `<label>`.
-- **Icons are Solar only.** Where Solar has no glyph — it has no bare checkmark and no bowl — draw it in CSS rather than importing a second family.
-- **No grey placeholder fills.** A missing image is the `--signal-tint` illustration tile with one content-matched Solar glyph; a real photo where the content is a pet or a person (Attribute 3).
+- **Icons are Solar only.** Where Solar has no glyph — it has no bare checkmark and no bowl — draw it in CSS rather than importing a second family. All 189 icons ship **inlined as base64 data URIs**, not fetched from the Iconify CDN. *Rationale:* the pages render with no network dependency and no icon flash; the trade is that family provenance is no longer machine-checkable from the file, so it must be enforced at authoring time.
+- **No grey placeholder fills.** A missing image is the `--signal-tint` illustration tile (120×120, `--r-card`) with one content-matched Solar glyph; a real photo where the content is a pet or a person (Attribute 3).
+- **Amber fills no button.** Primary actions are `--ink`. See the colour section.
+
+---
+
+## Where this file sits
+
+[`../DESIGN.md`](../DESIGN.md) is generated from the layouts and records **what is implemented**. This file records **why** — the taste, the attributes, and the reasoning behind each value. When the two disagree, the layouts are the design and this file is corrected to follow them.
