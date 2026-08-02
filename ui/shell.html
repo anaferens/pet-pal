@@ -1,0 +1,199 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>PetPal — Shared shell</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700&family=Hanken+Grotesk:wght@400;500;600;700&family=EB+Garamond:ital,wght@0,600;1,500;1,700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="kit.css">
+<style>
+  body { margin: 0; background: #ececec; font-family: "Hanken Grotesk", system-ui, sans-serif; }
+  .page { max-width: 980px; margin: 0 auto; padding: 32px 20px 64px; }
+  .page h1 { font-family: "Bricolage Grotesque", system-ui, sans-serif;
+             font-size: 28px; font-weight: 700; margin: 0 0 8px; }
+  .page .lede { color: #5c5c5c; font-size: 15px; max-width: 62ch; margin: 0 0 28px; line-height: 1.5; }
+  .page h2 { font-family: "Bricolage Grotesque", system-ui, sans-serif;
+             font-size: 13px; font-weight: 700; text-transform: uppercase;
+             letter-spacing: .08em; color: #5c5c5c; margin: 32px 0 12px; }
+  .split { display: grid; grid-template-columns: 372px 1fr; gap: 28px; align-items: start; }
+  @media (max-width: 860px) { .split { grid-template-columns: 1fr; } }
+  .frame { background: #fff; border-radius: 16px; overflow: hidden;
+           box-shadow: 0 10px 30px -20px rgba(20,20,20,.4); }
+  pre { background: #141414; color: #f4f4f4; padding: 18px; border-radius: 12px;
+        overflow-x: auto; font-size: 12.5px; line-height: 1.6; margin: 0;
+        font-family: ui-monospace, SFMono-Regular, Menlo, monospace; }
+  .note { background: #fdf3d3; border-radius: 12px; padding: 14px 16px;
+          font-size: 13.5px; line-height: 1.5; color: #141414; margin: 0 0 20px; }
+  .note b { font-weight: 700; }
+  .slot { outline: 1.5px dashed #8a6b00; outline-offset: -1.5px; }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <h1>The shared shell</h1>
+  <p class="lede">Two-layer header plus tab bar, as <b>markup</b>. A grey wireframe adopts this
+  structure first and inherits the visual language for free — a CSS-only kit cannot style
+  a skeleton that isn't there. Everything below is <code>kit.css</code>; nothing here
+  is page-specific.</p>
+
+  <p class="note"><b>Two layers, two jobs.</b> Layer 1 (<code>.pp-appbar</code>) is the amber
+  band carrying back / title / action — it says <i>where you are</i>. Layer 2
+  (<code>.pp-hero</code> + <code>.pp-arch</code>) carries the subject: the photograph
+  straddling the arch, then the name. A screen with no subject — a list, a form — uses
+  layer 1 alone and drops layer 2.</p>
+
+  <h2>Rendered</h2>
+  <div class="split">
+    <div class="frame">
+      <!-- ============ SHELL — copy from here ============ -->
+      <div class="pp">
+        <div class="pp-shell">
+
+          <!-- Layer 1 · app bar -->
+          <header class="pp-appbar">
+            <button class="pp-appbar__back" aria-label="Back to your pets">←</button>
+            <span class="pp-appbar__title pp-is-name">Miso</span>
+            <button class="pp-appbar__action">Edit</button>
+          </header>
+
+          <!-- Layer 2 · hero band with the arch cut into it -->
+          <div class="pp-hero">
+            <div class="pp-hero__photo"><figure class="pp-avatar pp-avatar--ring" aria-label="Miso"></figure></div>
+          </div>
+          <div class="pp-arch">
+            <div class="pp-arch__namerow"><h1 class="pp-arch__name">Miso</h1></div>
+            <p class="pp-arch__meta">Dog · Border Terrier · Female</p>
+            <span class="pp-tag">Up to date</span>
+          </div>
+
+          <!-- Content slot -->
+          <main class="pp-main">
+            <div class="pp-stack slot" style="min-height:120px;align-items:center;justify-content:center;color:#8a6b00;font-size:13px">
+              page content goes here
+            </div>
+          </main>
+
+          <!-- Tab bar -->
+          <nav class="pp-tabbar" aria-label="Main">
+            <a class="pp-tab pp-tab--pets" href="#" aria-current="page">
+              <span class="pp-tab__icon" aria-hidden="true"></span>Pets</a>
+            <a class="pp-tab pp-tab--reminders" href="#">
+              <span class="pp-tab__icon" aria-hidden="true"></span>Reminders</a>
+            <a class="pp-tab pp-tab--share" href="#">
+              <span class="pp-tab__icon" aria-hidden="true"></span>Share</a>
+            <a class="pp-tab pp-tab--owner" href="#">
+              <span class="pp-tab__icon" aria-hidden="true"></span>Owner</a>
+          </nav>
+
+        </div>
+      </div>
+      <!-- ============ SHELL — to here ============ -->
+    </div>
+
+    <div>
+      <h2 style="margin-top:0">Markup</h2>
+<pre>&lt;div class="pp"&gt;
+  &lt;div class="pp-shell"&gt;
+
+    &lt;!-- Layer 1 · app bar --&gt;
+    &lt;header class="pp-appbar"&gt;
+      &lt;button class="pp-appbar__back" aria-label="Back to your pets"&gt;←&lt;/button&gt;
+      &lt;span class="pp-appbar__title pp-is-name"&gt;Miso&lt;/span&gt;
+      &lt;button class="pp-appbar__action"&gt;Edit&lt;/button&gt;
+    &lt;/header&gt;
+
+    &lt;!-- Layer 2 · hero + arch (omit on list/form screens) --&gt;
+    &lt;!-- the photo stays in flow; the arch is pulled up over it, which is
+         what puts half the circle above the arch line and half below --&gt;
+    &lt;div class="pp-hero"&gt;
+      &lt;div class="pp-hero__photo"&gt;
+        &lt;figure class="pp-avatar pp-avatar--ring"&gt;&lt;/figure&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class="pp-arch"&gt;
+      &lt;div class="pp-arch__namerow"&gt;&lt;h1 class="pp-arch__name"&gt;Miso&lt;/h1&gt;&lt;/div&gt;
+      &lt;p class="pp-arch__meta"&gt;Dog · Border Terrier · Female&lt;/p&gt;
+      &lt;span class="pp-tag"&gt;Up to date&lt;/span&gt;
+    &lt;/div&gt;
+
+    &lt;main class="pp-main"&gt;
+      &lt;div class="pp-stack"&gt;&lt;!-- cards, rows, fields --&gt;&lt;/div&gt;
+    &lt;/main&gt;
+
+    &lt;nav class="pp-tabbar" aria-label="Main"&gt;
+      &lt;a class="pp-tab pp-tab--pets" href="#" aria-current="page"&gt;
+        &lt;span class="pp-tab__icon" aria-hidden="true"&gt;&lt;/span&gt;Pets&lt;/a&gt;
+      &lt;a class="pp-tab pp-tab--reminders" href="#"&gt;
+        &lt;span class="pp-tab__icon" aria-hidden="true"&gt;&lt;/span&gt;Reminders&lt;/a&gt;
+      &lt;a class="pp-tab pp-tab--share" href="#"&gt;
+        &lt;span class="pp-tab__icon" aria-hidden="true"&gt;&lt;/span&gt;Share&lt;/a&gt;
+      &lt;a class="pp-tab pp-tab--owner" href="#"&gt;
+        &lt;span class="pp-tab__icon" aria-hidden="true"&gt;&lt;/span&gt;Owner&lt;/a&gt;
+    &lt;/nav&gt;
+
+  &lt;/div&gt;
+&lt;/div&gt;</pre>
+    </div>
+  </div>
+
+  <h2>Variants</h2>
+  <div class="split">
+    <div class="frame">
+      <div class="pp">
+        <div class="pp-shell">
+          <header class="pp-appbar">
+            <button class="pp-appbar__back" aria-label="Back to Share">←</button>
+            <span class="pp-appbar__title">Share</span>
+            <span class="pp-appbar__action" aria-hidden="true"></span>
+          </header>
+          <main class="pp-main">
+            <div class="pp-stack slot" style="min-height:200px;align-items:center;justify-content:center;color:#8a6b00;font-size:13px">
+              layer 1 only — no subject to show
+            </div>
+          </main>
+          <nav class="pp-tabbar" aria-label="Main">
+            <a class="pp-tab pp-tab--pets" href="#"><span class="pp-tab__icon" aria-hidden="true"></span>Pets</a>
+            <a class="pp-tab pp-tab--reminders" href="#"><span class="pp-tab__icon" aria-hidden="true"></span>Reminders</a>
+            <a class="pp-tab pp-tab--share" href="#" aria-current="page"><span class="pp-tab__icon" aria-hidden="true"></span>Share</a>
+            <a class="pp-tab pp-tab--owner" href="#"><span class="pp-tab__icon" aria-hidden="true"></span>Owner</a>
+          </nav>
+        </div>
+      </div>
+    </div>
+
+    <div class="frame">
+      <div class="pp">
+        <div class="pp-shell">
+          <header class="pp-appbar">
+            <span class="pp-appbar__brand">PetPal</span>
+            <a class="pp-appbar__action" href="#">To the app</a>
+          </header>
+          <div class="pp-hero pp-hero--recipient">
+            <figure class="pp-avatar pp-avatar--ring pp-hero__photo" aria-label="Miso"></figure>
+          </div>
+          <div class="pp-arch">
+            <div class="pp-arch__namerow"><h1 class="pp-arch__name">Miso</h1></div>
+            <p class="pp-arch__meta">Dog · Border Terrier · Female</p>
+          </div>
+          <main class="pp-main">
+            <div class="pp-stack slot" style="min-height:80px;align-items:center;justify-content:center;color:#8a6b00;font-size:13px">
+              recipient view
+            </div>
+          </main>
+          <footer class="pp-sharedfoot">Shared by Eva · Read-only</footer>
+        </div>
+      </div>
+    </div>
+  </div>
+  <p class="note" style="margin-top:20px"><b>Left:</b> layer 1 only, for list and form screens
+  (<code>Share</code>, <code>Whats-due</code>, every <code>Add-*</code>).
+  <b>Right:</b> the recipient shell — a brand bar instead of back/title, a taller hero
+  (<code>.pp-hero--recipient</code>), and <code>.pp-sharedfoot</code> in place of the tab bar,
+  because a sitter has no account to navigate.</p>
+
+</div>
+</body>
+</html>

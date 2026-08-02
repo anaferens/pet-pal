@@ -1,0 +1,892 @@
+/* The kit names three typefaces, so it carries them. A screen that already
+   links this family in its own <head> is unaffected — same URL, same faces. */
+@import url("https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700&family=Hanken+Grotesk:wght@400;500;600;700&family=EB+Garamond:ital,wght@0,600;1,600;1,700&display=swap");
+
+/* ============================================================================
+   PetPal UI Kit — The Signal
+   Flat kit: :root variables + component classes. No token tiers, no build step.
+
+   Extracted from the styled screens (home-success + -empty/-error/-loading,
+   Me, Whats-due, Share-a-pet, Shared-pet-view) and the component census in
+   ui/inventory.md. Naming drift is consolidated into one API: every button is
+   .pp-btn, every avatar .pp-avatar, every status .pp-chip, every card .pp-card.
+
+   Rules held here:
+   - every value resolves to a :root variable
+   - no wireframe scaffolding (.wf-*, .phone, .device, .state-bar, .flow-step)
+   - styled components carry the measured values of their reference screens
+   ========================================================================= */
+
+:root {
+  /* ---- colour -------------------------------------------------------- */
+  --pp-paper:        #ffffff;
+  --pp-ink:          #141414;
+  --pp-meta:         #5c5c5c;
+  --pp-surface:      #f4f4f4;
+  --pp-line:         #e7e7e7;
+  --pp-photo:        #eaeaea;
+  --pp-disabled:     #8a8a8a;
+
+  --pp-signal:       #ffbf00;
+  --pp-signal-deep:  #e0a400;
+  --pp-signal-ink:   #8a6b00;
+  --pp-signal-tint:  #fdf3d3;
+  --pp-on-signal:    var(--pp-ink);
+
+  --pp-ink-hover:    #2c2c2c;  /* the only lift the ink button takes */
+  --pp-danger-hover: #7f2019;
+  --pp-focus-ring:   rgba(255,191,0,.28);
+
+  --pp-success:      #0c6b3b;  --pp-success-bg: #e6f3ec;
+  --pp-warning:      #8a5800;  --pp-warning-bg: #fbeed6;
+  --pp-danger:       #9a2820;  --pp-danger-bg:  #f9e7e6;
+  --pp-info:         #235a73;  --pp-info-bg:    #e5f0f4;
+
+  /* ---- type ---------------------------------------------------------- */
+  --pp-disp:  "Bricolage Grotesque", system-ui, sans-serif;
+  --pp-body:  "Hanken Grotesk", system-ui, -apple-system, sans-serif;
+  --pp-serif: "EB Garamond", Georgia, "Times New Roman", serif;
+
+  --pp-fs-name:   36px;   /* pet / owner name, serif italic          */
+  --pp-fs-appbar: 17px;   /* screen title in the band                */
+  --pp-fs-title:  16px;   /* section title on a card                 */
+  --pp-fs-body:   14px;   /* default reading size                    */
+  --pp-fs-field:  15px;   /* form controls sit one step up (Me.html)  */
+  --pp-fs-small:  13px;   /* meta line under a title                 */
+  --pp-fs-chip:   12px;   /* chips and tags                          */
+  --pp-fs-fine:   12.5px; /* the fine print: helper text, choice description */
+  --pp-fs-micro:  11px;   /* detail label, shared-link footnote      */
+  --pp-fs-label:  10.5px; /* tab captions                            */
+
+  --pp-w-regular: 400;
+  --pp-w-medium:  500;
+  --pp-w-semi:    600;
+  --pp-w-bold:    700;
+
+  --pp-lh-name:   1.06;
+  --pp-lh-title:  1.3;
+  --pp-lh-body:   1.5;
+  --pp-lh-small:  1.45;
+  --pp-lh-detail: 1.6;    /* reading copy inside an opened section   */
+  --pp-ls-appbar: -0.01em;
+  --pp-ls-caps:   0.04em; /* the tracking every uppercase label uses */
+
+  /* the serif needs 1.25x to match Bricolage's x-height when set inline */
+  --pp-serif-scale: 1.25;
+
+  /* ---- shape --------------------------------------------------------- */
+  --pp-r-pill:   999px;
+  --pp-r-card:   16px;
+  --pp-r-input:  12px;
+  --pp-r-tag:    9px;
+  --pp-r-chip:   8px;
+  --pp-r-circle: 50%;
+
+  /* ---- spacing ------------------------------------------------------- */
+  --pp-s-1: 4px;
+  --pp-s-2: 6px;
+  --pp-s-3: 10px;
+  --pp-s-4: 12px;
+  --pp-s-5: 14px;
+  --pp-s-6: 16px;
+  --pp-s-7: 24px;
+
+  /* ---- elevation ----------------------------------------------------- */
+  --pp-sh-card: 0 10px 24px -18px rgba(20,20,20,.13), 0 2px 6px -4px rgba(20,20,20,.05);
+  --pp-sh-pop:  0 26px 50px -22px rgba(20,20,20,.34), 0 6px 16px -10px rgba(20,20,20,.16);
+  --pp-sh-knob: 0 1px 4px rgba(20,20,20,.32);
+  --pp-sh-float:0 2px 8px -2px rgba(20,20,20,.35);  /* a control lifted off a photo */
+  --pp-sh-select: var(--pp-sh-card), 0 0 0 3px rgba(255,191,0,.35);  /* a chosen card */
+
+  /* ---- tints --------------------------------------------------------- */
+  /* the two washes a control paints on itself when it sits on ink or paper */
+  --pp-tint-ink:   rgba(20,20,20,.10);
+  --pp-tint-paper: rgba(255,255,255,.22);
+
+  /* ---- layout -------------------------------------------------------- */
+  --pp-canvas:     372px;
+  --pp-inset:      16px;
+  --pp-appbar-h:   48px;   /* the bar's floor; 44px tap targets take it to 68 */
+  --pp-appbar-h-sm:48px;   /* the compact bar on Me                        */
+  --pp-hero-pt:    22px;   /* 22 + 88 photo + 50 = the 160px band            */
+  --pp-hero-pb:    50px;
+  --pp-arch-rise:  94px;   /* constant on every screen; the band flexes      */
+  --pp-arch-pt:    70px;   /* clears the photo that bisects the arch line    */
+  --pp-tabbar-h:   60px;  /* measured; the bar itself is content-driven, this is
+                             the clearance anything floating above it must keep */
+  --pp-tap:        44px;
+  --pp-field-h:    46px;
+  --pp-tile:       36px;
+  --pp-avatar:     88px;
+  --pp-sheet-w:    340px;
+  --pp-scrim:      rgba(0,0,0,.5);
+
+  /* ---- motion -------------------------------------------------------- */
+  --pp-t-state: 150ms;
+  --pp-t-fade:  120ms;
+
+  /* ---- icons (Solar, inlined) ---------------------------------------- */
+  --pp-i-pets:        url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxZW0iIGhlaWdodD0iMWVtIiB2aWV3Qm94PSIwIDAgMjQgMjQiPjxwYXRoIGZpbGw9IiM1YzVjNWMiIGQ9Ik03LjU3IDE1LjM3NmMxLjU4Ni0zLjIyOCAyLjM4LTQuODQyIDMuNTItNS4yMjdhMi44NSAyLjg1IDAgMCAxIDEuODIgMGMxLjE0LjM4NSAxLjkzNCAxLjk5OSAzLjUyIDUuMjI3bC44NzggMS43OWMuNDEuODMzLjYxNCAxLjI1LjY2MyAxLjUzNGMuMjAxIDEuMTc5LS42NyAyLjI2NS0xLjg0NiAyLjNjLS4yODMuMDA4LS43MjUtLjExMy0xLjYxLS4zNTZhMTcgMTcgMCAwIDAtMS4wMS0uMjU5YTcuNiA3LjYgMCAwIDAtMy4wMSAwYy0uMjUyLjA1MS0uNTA1LjEyLTEuMDEuMjZjLS44ODUuMjQyLTEuMzI3LjM2My0xLjYxLjM1NWMtMS4xNzUtLjAzNS0yLjA0Ny0xLjEyMS0xLjg0Ni0yLjNjLjA0OC0uMjg0LjI1My0uNy42NjMtMS41MzV6TTYuMTQ1IDUuNTI3Yy40MTIgMS42MzEgMS41NzYgMi43MTcgMi42IDIuNDI2YzEuMDI1LS4yOTIgMS41MjItMS44NSAxLjExLTMuNDhjLS40MTItMS42MzEtMS41NzYtMi43MTctMi42LTIuNDI2Yy0xLjAyNS4yOTItMS41MjIgMS44NS0xLjExIDMuNDhtMTEuNzEgMGMtLjQxMiAxLjYzMS0xLjU3NiAyLjcxNy0yLjYgMi40MjZjLTEuMDI1LS4yOTItMS41MjItMS44NS0xLjExLTMuNDhjLjQxMi0xLjYzMSAxLjU3Ni0yLjcxNyAyLjYtMi40MjZjMS4wMjUuMjkyIDEuNTIyIDEuODUgMS4xMSAzLjQ4bS0xNS42NTMgNi43N2MuNDUgMS4yMDUgMS41MDggMS45MzcgMi4zNjMgMS42MzVzMS4xODMtMS41MjQuNzMzLTIuNzNjLS40NS0xLjIwNC0xLjUwOC0xLjkzNi0yLjM2My0xLjYzNHMtMS4xODMgMS41MjQtLjczMyAyLjczbTE5LjU5Ni0uMDAxYy0uNDUgMS4yMDUtMS41MDggMS45MzctMi4zNjMgMS42MzVzLTEuMTgzLTEuNTI0LS43MzMtMi43M2MuNDUtMS4yMDQgMS41MDgtMS45MzYgMi4zNjMtMS42MzRzMS4xODMgMS41MjQuNzMzIDIuNzMiLz48L3N2Zz4=");
+  --pp-i-pets-on:     url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxZW0iIGhlaWdodD0iMWVtIiB2aWV3Qm94PSIwIDAgMjQgMjQiPjxwYXRoIGZpbGw9IiMxNDE0MTQiIGQ9Ik03LjU3IDE1LjM3NmMxLjU4Ni0zLjIyOCAyLjM4LTQuODQyIDMuNTItNS4yMjdhMi44NSAyLjg1IDAgMCAxIDEuODIgMGMxLjE0LjM4NSAxLjkzNCAxLjk5OSAzLjUyIDUuMjI3bC44NzggMS43OWMuNDEuODMzLjYxNCAxLjI1LjY2MyAxLjUzNGMuMjAxIDEuMTc5LS42NyAyLjI2NS0xLjg0NiAyLjNjLS4yODMuMDA4LS43MjUtLjExMy0xLjYxLS4zNTZhMTcgMTcgMCAwIDAtMS4wMS0uMjU5YTcuNiA3LjYgMCAwIDAtMy4wMSAwYy0uMjUyLjA1MS0uNTA1LjEyLTEuMDEuMjZjLS44ODUuMjQyLTEuMzI3LjM2My0xLjYxLjM1NWMtMS4xNzUtLjAzNS0yLjA0Ny0xLjEyMS0xLjg0Ni0yLjNjLjA0OC0uMjg0LjI1My0uNy42NjMtMS41MzV6TTYuMTQ1IDUuNTI3Yy40MTIgMS42MzEgMS41NzYgMi43MTcgMi42IDIuNDI2YzEuMDI1LS4yOTIgMS41MjItMS44NSAxLjExLTMuNDhjLS40MTItMS42MzEtMS41NzYtMi43MTctMi42LTIuNDI2Yy0xLjAyNS4yOTItMS41MjIgMS44NS0xLjExIDMuNDhtMTEuNzEgMGMtLjQxMiAxLjYzMS0xLjU3NiAyLjcxNy0yLjYgMi40MjZjLTEuMDI1LS4yOTItMS41MjItMS44NS0xLjExLTMuNDhjLjQxMi0xLjYzMSAxLjU3Ni0yLjcxNyAyLjYtMi40MjZjMS4wMjUuMjkyIDEuNTIyIDEuODUgMS4xMSAzLjQ4bS0xNS42NTMgNi43N2MuNDUgMS4yMDUgMS41MDggMS45MzcgMi4zNjMgMS42MzVzMS4xODMtMS41MjQuNzMzLTIuNzNjLS40NS0xLjIwNC0xLjUwOC0xLjkzNi0yLjM2My0xLjYzNHMtMS4xODMgMS41MjQtLjczMyAyLjczbTE5LjU5Ni0uMDAxYy0uNDUgMS4yMDUtMS41MDggMS45MzctMi4zNjMgMS42MzVzLTEuMTgzLTEuNTI0LS43MzMtMi43M2MuNDUtMS4yMDQgMS41MDgtMS45MzYgMi4zNjMtMS42MzRzMS4xODMgMS41MjQuNzMzIDIuNzMiLz48L3N2Zz4=");
+  --pp-i-reminders:   url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxZW0iIGhlaWdodD0iMWVtIiB2aWV3Qm94PSIwIDAgMjQgMjQiPjxwYXRoIGZpbGw9IiM1YzVjNWMiIGQ9Ik0yMiAxNHYtMmMwLS44MzkgMC0xLjU4NS0uMDEzLTIuMjVIMi4wMTNDMiAxMC40MTUgMiAxMS4xNjEgMiAxMnYyYzAgMy43NzEgMCA1LjY1NyAxLjE3MiA2LjgyOFM2LjIyOSAyMiAxMCAyMmg0YzMuNzcxIDAgNS42NTcgMCA2LjgyOC0xLjE3MlMyMiAxNy43NzEgMjIgMTRNNy43NSAyLjVhLjc1Ljc1IDAgMCAwLTEuNSAwdjEuNThjLTEuNDQuMTE1LTIuMzg0LjM5Ny0zLjA3OCAxLjA5MmMtLjY5NS42OTQtLjk3NyAxLjYzOS0xLjA5MyAzLjA3OGgxOS44NDJjLS4xMTYtMS40NC0uMzk4LTIuMzg0LTEuMDkzLTMuMDc4Yy0uNjk0LS42OTUtMS42MzktLjk3Ny0zLjA3OC0xLjA5M1YyLjVhLjc1Ljc1IDAgMCAwLTEuNSAwdjEuNTEzQzE1LjU4NSA0IDE0LjgzOSA0IDE0IDRoLTRjLS44MzkgMC0xLjU4NSAwLTIuMjUuMDEzeiIvPjwvc3ZnPg==");
+  --pp-i-reminders-on:url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxZW0iIGhlaWdodD0iMWVtIiB2aWV3Qm94PSIwIDAgMjQgMjQiPjxwYXRoIGZpbGw9IiMxNDE0MTQiIGQ9Ik0yMiAxNHYtMmMwLS44MzkgMC0xLjU4NS0uMDEzLTIuMjVIMi4wMTNDMiAxMC40MTUgMiAxMS4xNjEgMiAxMnYyYzAgMy43NzEgMCA1LjY1NyAxLjE3MiA2LjgyOFM2LjIyOSAyMiAxMCAyMmg0YzMuNzcxIDAgNS42NTcgMCA2LjgyOC0xLjE3MlMyMiAxNy43NzEgMjIgMTRNNy43NSAyLjVhLjc1Ljc1IDAgMCAwLTEuNSAwdjEuNThjLTEuNDQuMTE1LTIuMzg0LjM5Ny0zLjA3OCAxLjA5MmMtLjY5NS42OTQtLjk3NyAxLjYzOS0xLjA5MyAzLjA3OGgxOS44NDJjLS4xMTYtMS40NC0uMzk4LTIuMzg0LTEuMDkzLTMuMDc4Yy0uNjk0LS42OTUtMS42MzktLjk3Ny0zLjA3OC0xLjA5M1YyLjVhLjc1Ljc1IDAgMCAwLTEuNSAwdjEuNTEzQzE1LjU4NSA0IDE0LjgzOSA0IDE0IDRoLTRjLS44MzkgMC0xLjU4NSAwLTIuMjUuMDEzeiIvPjwvc3ZnPg==");
+  --pp-i-share:       url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxZW0iIGhlaWdodD0iMWVtIiB2aWV3Qm94PSIwIDAgMjQgMjQiPjxwYXRoIGZpbGw9IiM1YzVjNWMiIGZpbGwtcnVsZT0iZXZlbm9kZCIgZD0iTTEzLjgwMyA1LjMzM2MwLTEuODQgMS41LTMuMzMzIDMuMzQ4LTMuMzMzQTMuMzQgMy4zNCAwIDAgMSAyMC41IDUuMzMzYzAgMS44NDEtMS41IDMuMzM0LTMuMzQ5IDMuMzM0YTMuMzUgMy4zNSAwIDAgMS0yLjM4NC0uOTk0bC00LjYzNSAzLjE1NmEzLjM0IDMuMzQgMCAwIDEtLjE4MiAxLjkxN2w1LjA4MiAzLjM0YTMuMzUgMy4zNSAwIDAgMSAyLjEyLS43NTNhMy4zNCAzLjM0IDAgMCAxIDMuMzQ4IDMuMzM0QzIwLjUgMjAuNTA3IDE5IDIyIDE3LjE1MSAyMmEzLjM0IDMuMzQgMCAwIDEtMy4zNDgtMy4zMzNhMy4zIDMuMyAwIDAgMSAuMjg5LTEuMzU2TDkuMDUgMTRhMy4zNSAzLjM1IDAgMCAxLTIuMjAyLjgyMUEzLjM0IDMuMzQgMCAwIDEgMy41IDExLjQ4N2EzLjM0IDMuMzQgMCAwIDEgMy4zNDgtMy4zMzNjMS4wNjQgMCAyLjAxLjQ5MyAyLjYyMyAxLjI2MWw0LjQ5My0zLjA1OWEzLjMgMy4zIDAgMCAxLS4xNjEtMS4wMjMiIGNsaXAtcnVsZT0iZXZlbm9kZCIvPjwvc3ZnPg==");
+  --pp-i-share-on:    url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxZW0iIGhlaWdodD0iMWVtIiB2aWV3Qm94PSIwIDAgMjQgMjQiPjxwYXRoIGZpbGw9IiMxNDE0MTQiIGZpbGwtcnVsZT0iZXZlbm9kZCIgZD0iTTEzLjgwMyA1LjMzM2MwLTEuODQgMS41LTMuMzMzIDMuMzQ4LTMuMzMzQTMuMzQgMy4zNCAwIDAgMSAyMC41IDUuMzMzYzAgMS44NDEtMS41IDMuMzM0LTMuMzQ5IDMuMzM0YTMuMzUgMy4zNSAwIDAgMS0yLjM4NC0uOTk0bC00LjYzNSAzLjE1NmEzLjM0IDMuMzQgMCAwIDEtLjE4MiAxLjkxN2w1LjA4MiAzLjM0YTMuMzUgMy4zNSAwIDAgMSAyLjEyLS43NTNhMy4zNCAzLjM0IDAgMCAxIDMuMzQ4IDMuMzM0QzIwLjUgMjAuNTA3IDE5IDIyIDE3LjE1MSAyMmEzLjM0IDMuMzQgMCAwIDEtMy4zNDgtMy4zMzNhMy4zIDMuMyAwIDAgMSAuMjg5LTEuMzU2TDkuMDUgMTRhMy4zNSAzLjM1IDAgMCAxLTIuMjAyLjgyMUEzLjM0IDMuMzQgMCAwIDEgMy41IDExLjQ4N2EzLjM0IDMuMzQgMCAwIDEgMy4zNDgtMy4zMzNjMS4wNjQgMCAyLjAxLjQ5MyAyLjYyMyAxLjI2MWw0LjQ5My0zLjA1OWEzLjMgMy4zIDAgMCAxLS4xNjEtMS4wMjMiIGNsaXAtcnVsZT0iZXZlbm9kZCIvPjwvc3ZnPg==");
+  --pp-i-owner:       url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxZW0iIGhlaWdodD0iMWVtIiB2aWV3Qm94PSIwIDAgMjQgMjQiPjxwYXRoIGZpbGw9IiM1YzVjNWMiIGZpbGwtcnVsZT0iZXZlbm9kZCIgZD0iTTIyIDEyYzAgNS41MjMtNC40NzcgMTAtMTAgMTBTMiAxNy41MjMgMiAxMlM2LjQ3NyAyIDEyIDJzMTAgNC40NzcgMTAgMTBtLTctM2EzIDMgMCAxIDEtNiAwYTMgMyAwIDAgMSA2IDBtLTMgMTEuNWE4LjQ2IDguNDYgMCAwIDAgNC44MDctMS40ODljLjYwNC0uNDE1Ljg2Mi0xLjIwNS41MS0xLjg0OEMxNi41OSAxNS44MyAxNS4wOSAxNSAxMiAxNXMtNC41OS44My01LjMxOCAyLjE2M2MtLjM1MS42NDMtLjA5MyAxLjQzMy41MTEgMS44NDhBOC40NiA4LjQ2IDAgMCAwIDEyIDIwLjUiIGNsaXAtcnVsZT0iZXZlbm9kZCIvPjwvc3ZnPg==");
+  --pp-i-owner-on:    url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxZW0iIGhlaWdodD0iMWVtIiB2aWV3Qm94PSIwIDAgMjQgMjQiPjxwYXRoIGZpbGw9IiMxNDE0MTQiIGZpbGwtcnVsZT0iZXZlbm9kZCIgZD0iTTIyIDEyYzAgNS41MjMtNC40NzcgMTAtMTAgMTBTMiAxNy41MjMgMiAxMlM2LjQ3NyAyIDEyIDJzMTAgNC40NzcgMTAgMTBtLTctM2EzIDMgMCAxIDEtNiAwYTMgMyAwIDAgMSA2IDBtLTMgMTEuNWE4LjQ2IDguNDYgMCAwIDAgNC44MDctMS40ODljLjYwNC0uNDE1Ljg2Mi0xLjIwNS41MS0xLjg0OEMxNi41OSAxNS44MyAxNS4wOSAxNSAxMiAxNXMtNC41OS44My01LjMxOCAyLjE2M2MtLjM1MS42NDMtLjA5MyAxLjQzMy41MTEgMS44NDhBOC40NiA4LjQ2IDAgMCAwIDEyIDIwLjUiIGNsaXAtcnVsZT0iZXZlbm9kZCIvPjwvc3ZnPg==");
+  --pp-i-verified:    url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxZW0iIGhlaWdodD0iMWVtIiB2aWV3Qm94PSIwIDAgMjQgMjQiPjxwYXRoIGZpbGw9IiMwYzZiM2IiIGZpbGwtcnVsZT0iZXZlbm9kZCIgZD0iTTkuNTkyIDMuMmE2IDYgMCAwIDEtLjQ5NS4zOTljLS4yOTguMi0uNjMzLjMzOC0uOTg1LjQwOGMtLjE1My4wMy0uMzEzLjA0My0uNjMyLjA2OGMtLjgwMS4wNjQtMS4yMDIuMDk2LTEuNTM2LjIxNGEyLjcxIDIuNzEgMCAwIDAtMS42NTUgMS42NTVjLS4xMTguMzM0LS4xNS43MzUtLjIxNCAxLjUzNmE2IDYgMCAwIDEtLjA2OC42MzJjLS4wNy4zNTItLjIwOC42ODctLjQwOC45ODVjLS4wODcuMTMtLjE5MS4yNTItLjM5OS40OTVjLS41MjEuNjEyLS43ODIuOTE4LS45MzUgMS4yMzhjLS4zNTMuNzQtLjM1MyAxLjYgMCAyLjM0Yy4xNTMuMzIuNDE0LjYyNi45MzUgMS4yMzhjLjIwOC4yNDMuMzEyLjM2NS4zOTkuNDk1Yy4yLjI5OC4zMzguNjMzLjQwOC45ODVjLjAzLjE1My4wNDMuMzEzLjA2OC42MzJjLjA2NC44MDEuMDk2IDEuMjAyLjIxNCAxLjUzNmEyLjcxIDIuNzEgMCAwIDAgMS42NTUgMS42NTVjLjMzNC4xMTguNzM1LjE1IDEuNTM2LjIxNGMuMzE5LjAyNS40NzkuMDM4LjYzMi4wNjhjLjM1Mi4wNy42ODcuMjA5Ljk4NS40MDhjLjEzLjA4Ny4yNTIuMTkxLjQ5NS4zOTljLjYxMi41MjEuOTE4Ljc4MiAxLjIzOC45MzVjLjc0LjM1MyAxLjYuMzUzIDIuMzQgMGMuMzItLjE1My42MjYtLjQxNCAxLjIzOC0uOTM1Yy4yNDMtLjIwOC4zNjUtLjMxMi40OTUtLjM5OWMuMjk4LS4yLjYzMy0uMzM4Ljk4NS0uNDA4Yy4xNTMtLjAzLjMxMy0uMDQzLjYzMi0uMDY4Yy44MDEtLjA2NCAxLjIwMi0uMDk2IDEuNTM2LS4yMTRhMi43MSAyLjcxIDAgMCAwIDEuNjU1LTEuNjU1Yy4xMTgtLjMzNC4xNS0uNzM1LjIxNC0xLjUzNmMuMDI1LS4zMTkuMDM4LS40NzkuMDY4LS42MzJjLjA3LS4zNTIuMjA5LS42ODcuNDA4LS45ODVjLjA4Ny0uMTMuMTkxLS4yNTIuMzk5LS40OTVjLjUyMS0uNjEyLjc4Mi0uOTE4LjkzNS0xLjIzOGMuMzUzLS43NC4zNTMtMS42IDAtMi4zNGMtLjE1My0uMzItLjQxNC0uNjI2LS45MzUtMS4yMzhhNiA2IDAgMCAxLS4zOTktLjQ5NWEyLjcgMi43IDAgMCAxLS40MDgtLjk4NWE2IDYgMCAwIDEtLjA2OC0uNjMyYy0uMDY0LS44MDEtLjA5Ni0xLjIwMi0uMjE0LTEuNTM2YTIuNzEgMi43MSAwIDAgMC0xLjY1NS0xLjY1NWMtLjMzNC0uMTE4LS43MzUtLjE1LTEuNTM2LS4yMTRhNiA2IDAgMCAxLS42MzItLjA2OGEyLjcgMi43IDAgMCAxLS45ODUtLjQwOGE2IDYgMCAwIDEtLjQ5NS0uMzk5Yy0uNjEyLS41MjEtLjkxOC0uNzgyLTEuMjM4LS45MzVhMi43MSAyLjcxIDAgMCAwLTIuMzQgMGMtLjMyLjE1My0uNjI2LjQxNC0xLjIzOC45MzVtNi43ODEgNi42NjNhLjgxNC44MTQgMCAwIDAtMS4xNS0xLjE1bC00Ljg1IDQuODVsLTEuNTk2LTEuNTk1YS44MTQuODE0IDAgMCAwLTEuMTUgMS4xNWwyLjE3IDIuMTdhLjgxNC44MTQgMCAwIDAgMS4xNSAweiIgY2xpcC1ydWxlPSJldmVub2RkIi8+PC9zdmc+");
+  --pp-i-personality: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxZW0iIGhlaWdodD0iMWVtIiB2aWV3Qm94PSIwIDAgMjQgMjQiPjxwYXRoIGZpbGw9IiMxNDE0MTQiIGQ9Ik0yIDkuMTM3QzIgMTQgNi4wMiAxNi41OTEgOC45NjIgMTguOTExQzEwIDE5LjcyOSAxMSAyMC41IDEyIDIwLjVzMi0uNzcgMy4wMzgtMS41OUMxNy45ODEgMTYuNTkyIDIyIDE0IDIyIDkuMTM4UzE2LjUuODI1IDEyIDUuNTAxQzcuNS44MjUgMiA0LjI3NCAyIDkuMTM3Ii8+PC9zdmc+");
+  --pp-i-health:      url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxZW0iIGhlaWdodD0iMWVtIiB2aWV3Qm94PSIwIDAgMjQgMjQiPjxwYXRoIGZpbGw9IiMxNDE0MTQiIGQ9Ik0xNy43ODIgMy4yMjZhLjc3MS43NzEgMCAxIDAtMS4wOTEgMS4wOWwuOTUuOTUxbC0xLjY5OCAxLjdsLS44NjgtLjg2OGMtLjc3NS0uNzc2LTEuMTYzLTEuMTYzLTEuNjAzLTEuMzI0YTIuMTIgMi4xMiAwIDAgMC0xLjQ0OCAwYy0uNDQuMTYtLjgyOC41NDgtMS42MDMgMS4zMjRsLS4xMi4xMmw3LjQ4IDcuNDhsLjEyLS4xMmMuNzc1LS43NzUgMS4xNjMtMS4xNjMgMS4zMjMtMS42MDNjLjE3LS40NjguMTctLjk4IDAtMS40NDhjLS4xNi0uNDQtLjU0OC0uODI4LTEuMzIzLTEuNjAzbC0uODY3LS44NjhsMS42OTgtMS42OTlsLjk1MS45NTFhLjc3MS43NzEgMCAwIDAgMS4wOTEtMS4wOXpNNi4wMTYgMTAuNTA0TDkuMjEgNy4zMDlsNy40OCA3LjQ4bC0xLjE1MiAxLjE1NGwtMi45NjgtMi45NjhhLjc3MS43NzEgMCAxIDAtMS4wOTEgMS4wOTFsMi45NjggMi45NjhsLS41OTIuNTkybC0xLjY5My0xLjY5M2EuNzcyLjc3MiAwIDAgMC0xLjA5MSAxLjA5MWwxLjYyIDEuNjIxYTUuMjkgNS4yOSAwIDAgMS02LjA5LS4xNTVsLTIuMjg0IDIuMjg0YS43NzIuNzcyIDAgMCAxLTEuMDkxLTEuMDlsMi4yODQtMi4yODVhNS4yOSA1LjI5IDAgMCAxIC41MDYtNi44OTUiLz48L3N2Zz4=");
+  --pp-i-vet:         url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxZW0iIGhlaWdodD0iMWVtIiB2aWV3Qm94PSIwIDAgMjQgMjQiPjxwYXRoIGZpbGw9IiMxNDE0MTQiIGQ9Ik0xMiAxLjI1YS43NS43NSAwIDAgMSAuNzUuNzV2LjI1MWEzLjc1IDMuNzUgMCAwIDEgMy43IDMuNDE4Yy4wMTQuMTY2LjAxNC4zNTQuMDE0LjYyOVY3LjUyYzAgMy44Ny0yLjk0NCA3LjA1LTYuNzE0IDcuNDI3VjE3QTQuMjUgNC4yNSAwIDAgMCAxNCAyMS4yNWguODgyYTMuMzcgMy4zNyAwIDAgMCAzLjEwOC0yLjA2OHEuMDYtLjE0Mi4wODUtLjMyN0EzLjAwMSAzLjAwMSAwIDAgMSAxOSAxM2EzIDMgMCAwIDEgLjU3NSA1Ljk0NWEyLjkgMi45IDAgMCAxLS4yMDEuODE3YTQuODcgNC44NyAwIDAgMS00LjQ5MiAyLjk4OEgxNEE1Ljc1IDUuNzUgMCAwIDEgOC4yNSAxN3YtMi4wNWE3Ljc1IDcuNzUgMCAwIDEtNy03LjcxNXYtLjkzN2MwLS4yNzUgMC0uNDYzLjAxNS0uNjI4QTMuNzUgMy43NSAwIDAgMSA0LjY3IDIuMjY1YTcgNyAwIDAgMSAuNTgtLjAxNVYyYS43NS43NSAwIDEgMSAxLjUgMHYyYS43NS43NSAwIDAgMS0xLjUgMHYtLjI1Yy0uMjYzIDAtLjM2Ni4wMDEtLjQ0OC4wMDlhMi4yNSAyLjI1IDAgMCAwLTIuMDQzIDIuMDQzYy0uMDA4LjA5LS4wMDkuMjA2LS4wMDkuNTM1di44OThBNi4yNSA2LjI1IDAgMCAwIDkgMTMuNDg1YTUuOTY0IDUuOTY0IDAgMCAwIDUuOTY0LTUuOTY0VjYuMzM3YzAtLjMyOSAwLS40NDUtLjAwOC0uNTM1YTIuMjUgMi4yNSAwIDAgMC0yLjIwNi0yLjA1VjRhLjc1Ljc1IDAgMCAxLTEuNSAwVjJhLjc1Ljc1IDAgMCAxIC43NS0uNzUiLz48L3N2Zz4=");
+  --pp-i-edit:        url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxZW0iIGhlaWdodD0iMWVtIiB2aWV3Qm94PSIwIDAgMjQgMjQiPjxwYXRoIGZpbGw9IiMxNDE0MTQiIGQ9Im0xMS40IDE4LjE2MWw3LjM5Ni03LjM5NmExMC4zIDEwLjMgMCAwIDEtMy4zMjYtMi4yMzRhMTAuMyAxMC4zIDAgMCAxLTIuMjM1LTMuMzI3TDUuODM5IDEyLjZjLS41NzcuNTc3LS44NjYuODY2LTEuMTE0IDEuMTg0YTYuNiA2LjYgMCAwIDAtLjc0OSAxLjIxMWMtLjE3My4zNjQtLjMwMi43NTItLjU2IDEuNTI2bC0xLjM2MiA0LjA4M2ExLjA2IDEuMDYgMCAwIDAgMS4zNDIgMS4zNDJsNC4wODMtMS4zNjJjLjc3NS0uMjU4IDEuMTYyLS4zODcgMS41MjYtLjU2cS42NDctLjMwOCAxLjIxMS0uNzQ5Yy4zMTgtLjI0OC42MDctLjUzNyAxLjE4NC0xLjExNG05LjQ0OC05LjQ0OGEzLjkzMiAzLjkzMiAwIDAgMC01LjU2MS01LjU2MWwtLjg4Ny44ODdsLjAzOC4xMTFhOC43NSA4Ljc1IDAgMCAwIDIuMDkyIDMuMzJhOC43NSA4Ljc1IDAgMCAwIDMuNDMxIDIuMTN6Ii8+PC9zdmc+");
+  --pp-i-sharelink:   url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxZW0iIGhlaWdodD0iMWVtIiB2aWV3Qm94PSIwIDAgMjQgMjQiPjxwYXRoIGZpbGw9IiNmZmZmZmYiIGZpbGwtcnVsZT0iZXZlbm9kZCIgZD0iTTEzLjgwMyA1LjMzM2MwLTEuODQgMS41LTMuMzMzIDMuMzQ4LTMuMzMzQTMuMzQgMy4zNCAwIDAgMSAyMC41IDUuMzMzYzAgMS44NDEtMS41IDMuMzM0LTMuMzQ5IDMuMzM0YTMuMzUgMy4zNSAwIDAgMS0yLjM4NC0uOTk0bC00LjYzNSAzLjE1NmEzLjM0IDMuMzQgMCAwIDEtLjE4MiAxLjkxN2w1LjA4MiAzLjM0YTMuMzUgMy4zNSAwIDAgMSAyLjEyLS43NTNhMy4zNCAzLjM0IDAgMCAxIDMuMzQ4IDMuMzM0QzIwLjUgMjAuNTA3IDE5IDIyIDE3LjE1MSAyMmEzLjM0IDMuMzQgMCAwIDEtMy4zNDgtMy4zMzNhMy4zIDMuMyAwIDAgMSAuMjg5LTEuMzU2TDkuMDUgMTRhMy4zNSAzLjM1IDAgMCAxLTIuMjAyLjgyMUEzLjM0IDMuMzQgMCAwIDEgMy41IDExLjQ4N2EzLjM0IDMuMzQgMCAwIDEgMy4zNDgtMy4zMzNjMS4wNjQgMCAyLjAxLjQ5MyAyLjYyMyAxLjI2MWw0LjQ5My0zLjA1OWEzLjMgMy4zIDAgMCAxLS4xNjEtMS4wMjMiIGNsaXAtcnVsZT0iZXZlbm9kZCIvPjwvc3ZnPg==");
+  --pp-i-personality-tint: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxZW0iIGhlaWdodD0iMWVtIiB2aWV3Qm94PSIwIDAgMjQgMjQiPjxwYXRoIGZpbGw9IiM4YTZiMDAiIGQ9Ik0yIDkuMTM3QzIgMTQgNi4wMiAxNi41OTEgOC45NjIgMTguOTExQzEwIDE5LjcyOSAxMSAyMC41IDEyIDIwLjVzMi0uNzcgMy4wMzgtMS41OUMxNy45ODEgMTYuNTkyIDIyIDE0IDIyIDkuMTM4UzE2LjUuODI1IDEyIDUuNTAxQzcuNS44MjUgMiA0LjI3NCAyIDkuMTM3Ii8+PC9zdmc+");
+  --pp-i-health-tint: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxZW0iIGhlaWdodD0iMWVtIiB2aWV3Qm94PSIwIDAgMjQgMjQiPjxwYXRoIGZpbGw9IiM4YTZiMDAiIGQ9Ik0xNy43ODIgMy4yMjZhLjc3MS43NzEgMCAxIDAtMS4wOTEgMS4wOWwuOTUuOTUxbC0xLjY5OCAxLjdsLS44NjgtLjg2OGMtLjc3NS0uNzc2LTEuMTYzLTEuMTYzLTEuNjAzLTEuMzI0YTIuMTIgMi4xMiAwIDAgMC0xLjQ0OCAwYy0uNDQuMTYtLjgyOC41NDgtMS42MDMgMS4zMjRsLS4xMi4xMmw3LjQ4IDcuNDhsLjEyLS4xMmMuNzc1LS43NzUgMS4xNjMtMS4xNjMgMS4zMjMtMS42MDNjLjE3LS40NjguMTctLjk4IDAtMS40NDhjLS4xNi0uNDQtLjU0OC0uODI4LTEuMzIzLTEuNjAzbC0uODY3LS44NjhsMS42OTgtMS42OTlsLjk1MS45NTFhLjc3MS43NzEgMCAwIDAgMS4wOTEtMS4wOXpNNi4wMTYgMTAuNTA0TDkuMjEgNy4zMDlsNy40OCA3LjQ4bC0xLjE1MiAxLjE1NGwtMi45NjgtMi45NjhhLjc3MS43NzEgMCAxIDAtMS4wOTEgMS4wOTFsMi45NjggMi45NjhsLS41OTIuNTkybC0xLjY5My0xLjY5M2EuNzcyLjc3MiAwIDAgMC0xLjA5MSAxLjA5MWwxLjYyIDEuNjIxYTUuMjkgNS4yOSAwIDAgMS02LjA5LS4xNTVsLTIuMjg0IDIuMjg0YS43NzIuNzcyIDAgMCAxLTEuMDkxLTEuMDlsMi4yODQtMi4yODVhNS4yOSA1LjI5IDAgMCAxIC41MDYtNi44OTUiLz48L3N2Zz4=");
+  --pp-i-vet-tint: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxZW0iIGhlaWdodD0iMWVtIiB2aWV3Qm94PSIwIDAgMjQgMjQiPjxwYXRoIGZpbGw9IiM4YTZiMDAiIGQ9Ik0xMiAxLjI1YS43NS43NSAwIDAgMSAuNzUuNzV2LjI1MWEzLjc1IDMuNzUgMCAwIDEgMy43IDMuNDE4Yy4wMTQuMTY2LjAxNC4zNTQuMDE0LjYyOVY3LjUyYzAgMy44Ny0yLjk0NCA3LjA1LTYuNzE0IDcuNDI3VjE3QTQuMjUgNC4yNSAwIDAgMCAxNCAyMS4yNWguODgyYTMuMzcgMy4zNyAwIDAgMCAzLjEwOC0yLjA2OHEuMDYtLjE0Mi4wODUtLjMyN0EzLjAwMSAzLjAwMSAwIDAgMSAxOSAxM2EzIDMgMCAwIDEgLjU3NSA1Ljk0NWEyLjkgMi45IDAgMCAxLS4yMDEuODE3YTQuODcgNC44NyAwIDAgMS00LjQ5MiAyLjk4OEgxNEE1Ljc1IDUuNzUgMCAwIDEgOC4yNSAxN3YtMi4wNWE3Ljc1IDcuNzUgMCAwIDEtNy03LjcxNXYtLjkzN2MwLS4yNzUgMC0uNDYzLjAxNS0uNjI4QTMuNzUgMy43NSAwIDAgMSA0LjY3IDIuMjY1YTcgNyAwIDAgMSAuNTgtLjAxNVYyYS43NS43NSAwIDEgMSAxLjUgMHYyYS43NS43NSAwIDAgMS0xLjUgMHYtLjI1Yy0uMjYzIDAtLjM2Ni4wMDEtLjQ0OC4wMDlhMi4yNSAyLjI1IDAgMCAwLTIuMDQzIDIuMDQzYy0uMDA4LjA5LS4wMDkuMjA2LS4wMDkuNTM1di44OThBNi4yNSA2LjI1IDAgMCAwIDkgMTMuNDg1YTUuOTY0IDUuOTY0IDAgMCAwIDUuOTY0LTUuOTY0VjYuMzM3YzAtLjMyOSAwLS40NDUtLjAwOC0uNTM1YTIuMjUgMi4yNSAwIDAgMC0yLjIwNi0yLjA1VjRhLjc1Ljc1IDAgMCAxLTEuNSAwVjJhLjc1Ljc1IDAgMCAxIC43NS0uNzUiLz48L3N2Zz4=");
+  --pp-i-docs-tint: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxZW0iIGhlaWdodD0iMWVtIiB2aWV3Qm94PSIwIDAgMjQgMjQiPjxwYXRoIGZpbGw9IiM4YTZiMDAiIGZpbGwtcnVsZT0iZXZlbm9kZCIgZD0iTTQuMTcyIDMuMTcyQzMgNC4zNDMgMyA2LjIyOSAzIDEwdjRjMCAzLjc3MSAwIDUuNjU3IDEuMTcyIDYuODI4UzcuMjI5IDIyIDExIDIyaDJjMy43NzEgMCA1LjY1NyAwIDYuODI4LTEuMTcyUzIxIDE3Ljc3MSAyMSAxNHYtNGMwLTMuNzcxIDAtNS42NTctMS4xNzItNi44MjhTMTYuNzcxIDIgMTMgMmgtMkM3LjIyOSAyIDUuMzQzIDIgNC4xNzIgMy4xNzJNNy4yNSA4QS43NS43NSAwIDAgMSA4IDcuMjVoOGEuNzUuNzUgMCAwIDEgMCAxLjVIOEEuNzUuNzUgMCAwIDEgNy4yNSA4bTAgNGEuNzUuNzUgMCAwIDEgLjc1LS43NWg4YS43NS43NSAwIDAgMSAwIDEuNUg4YS43NS43NSAwIDAgMS0uNzUtLjc1TTggMTUuMjVhLjc1Ljc1IDAgMCAwIDAgMS41aDVhLjc1Ljc1IDAgMCAwIDAtMS41eiIgY2xpcC1ydWxlPSJldmVub2RkIi8+PC9zdmc+");
+  --pp-i-docs:        url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxZW0iIGhlaWdodD0iMWVtIiB2aWV3Qm94PSIwIDAgMjQgMjQiPjxwYXRoIGZpbGw9IiMxNDE0MTQiIGZpbGwtcnVsZT0iZXZlbm9kZCIgZD0iTTQuMTcyIDMuMTcyQzMgNC4zNDMgMyA2LjIyOSAzIDEwdjRjMCAzLjc3MSAwIDUuNjU3IDEuMTcyIDYuODI4UzcuMjI5IDIyIDExIDIyaDJjMy43NzEgMCA1LjY1NyAwIDYuODI4LTEuMTcyUzIxIDE3Ljc3MSAyMSAxNHYtNGMwLTMuNzcxIDAtNS42NTctMS4xNzItNi44MjhTMTYuNzcxIDIgMTMgMmgtMkM3LjIyOSAyIDUuMzQzIDIgNC4xNzIgMy4xNzJNNy4yNSA4QS43NS43NSAwIDAgMSA4IDcuMjVoOGEuNzUuNzUgMCAwIDEgMCAxLjVIOEEuNzUuNzUgMCAwIDEgNy4yNSA4bTAgNGEuNzUuNzUgMCAwIDEgLjc1LS43NWg4YS43NS43NSAwIDAgMSAwIDEuNUg4YS43NS43NSAwIDAgMS0uNzUtLjc1TTggMTUuMjVhLjc1Ljc1IDAgMCAwIDAgMS41aDVhLjc1Ljc1IDAgMCAwIDAtMS41eiIgY2xpcC1ydWxlPSJldmVub2RkIi8+PC9zdmc+");
+  --pp-i-insurance:   url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxZW0iIGhlaWdodD0iMWVtIiB2aWV3Qm94PSIwIDAgMjQgMjQiPjxwYXRoIGZpbGw9IiMxNDE0MTQiIGZpbGwtcnVsZT0iZXZlbm9kZCIgZD0iTTMuMzc4IDUuMDgyQzMgNS42MiAzIDcuMjIgMyAxMC40MTd2MS41NzRjMCA1LjYzOCA0LjIzOSA4LjM3NSA2Ljg5OSA5LjUzNmMuNzIxLjMxNSAxLjA4Mi40NzMgMi4xMDEuNDczYzEuMDIgMCAxLjM4LS4xNTggMi4xMDEtLjQ3M0MxNi43NjEgMjAuMzY1IDIxIDE3LjYzIDIxIDExLjk5MXYtMS41NzRjMC0zLjE5OCAwLTQuNzk3LS4zNzgtNS4zMzVjLS4zNzctLjUzNy0xLjg4LTEuMDUyLTQuODg3LTIuMDgxbC0uNTczLS4xOTZDMTMuNTk1IDIuMjY4IDEyLjgxMiAyIDEyIDJzLTEuNTk1LjI2OC0zLjE2Mi44MDVMOC4yNjUgM2MtMy4wMDcgMS4wMy00LjUxIDEuNTQ1LTQuODg3IDIuMDgyTTE1LjA2IDEwLjVhLjc1Ljc1IDAgMCAwLTEuMTItLjk5OWwtMy4wMTEgMy4zNzRsLS44Ny0uOTc0YS43NS43NSAwIDAgMC0xLjExOCAxbDEuNDI4IDEuNmEuNzUuNzUgMCAwIDAgMS4xMTkgMHoiIGNsaXAtcnVsZT0iZXZlbm9kZCIvPjwvc3ZnPg==");
+  --pp-i-pets-tint: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxZW0iIGhlaWdodD0iMWVtIiB2aWV3Qm94PSIwIDAgMjQgMjQiPjxwYXRoIGZpbGw9IiM4YTZiMDAiIGQ9Ik03LjU3IDE1LjM3NmMxLjU4Ni0zLjIyOCAyLjM4LTQuODQyIDMuNTItNS4yMjdhMi44NSAyLjg1IDAgMCAxIDEuODIgMGMxLjE0LjM4NSAxLjkzNCAxLjk5OSAzLjUyIDUuMjI3bC44NzggMS43OWMuNDEuODMzLjYxNCAxLjI1LjY2MyAxLjUzNGMuMjAxIDEuMTc5LS42NyAyLjI2NS0xLjg0NiAyLjNjLS4yODMuMDA4LS43MjUtLjExMy0xLjYxLS4zNTZhMTcgMTcgMCAwIDAtMS4wMS0uMjU5YTcuNiA3LjYgMCAwIDAtMy4wMSAwYy0uMjUyLjA1MS0uNTA1LjEyLTEuMDEuMjZjLS44ODUuMjQyLTEuMzI3LjM2My0xLjYxLjM1NWMtMS4xNzUtLjAzNS0yLjA0Ny0xLjEyMS0xLjg0Ni0yLjNjLjA0OC0uMjg0LjI1My0uNy42NjMtMS41MzV6TTYuMTQ1IDUuNTI3Yy40MTIgMS42MzEgMS41NzYgMi43MTcgMi42IDIuNDI2YzEuMDI1LS4yOTIgMS41MjItMS44NSAxLjExLTMuNDhjLS40MTItMS42MzEtMS41NzYtMi43MTctMi42LTIuNDI2Yy0xLjAyNS4yOTItMS41MjIgMS44NS0xLjExIDMuNDhtMTEuNzEgMGMtLjQxMiAxLjYzMS0xLjU3NiAyLjcxNy0yLjYgMi40MjZjLTEuMDI1LS4yOTItMS41MjItMS44NS0xLjExLTMuNDhjLjQxMi0xLjYzMSAxLjU3Ni0yLjcxNyAyLjYtMi40MjZjMS4wMjUuMjkyIDEuNTIyIDEuODUgMS4xMSAzLjQ4bS0xNS42NTMgNi43N2MuNDUgMS4yMDUgMS41MDggMS45MzcgMi4zNjMgMS42MzVzMS4xODMtMS41MjQuNzMzLTIuNzNjLS40NS0xLjIwNC0xLjUwOC0xLjkzNi0yLjM2My0xLjYzNHMtMS4xODMgMS41MjQtLjczMyAyLjczbTE5LjU5Ni0uMDAxYy0uNDUgMS4yMDUtMS41MDggMS45MzctMi4zNjMgMS42MzVzLTEuMTgzLTEuNTI0LS43MzMtMi43M2MuNDUtMS4yMDQgMS41MDgtMS45MzYgMi4zNjMtMS42MzRzMS4xODMgMS41MjQuNzMzIDIuNzMiLz48L3N2Zz4=");
+  --pp-i-share-tint: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxZW0iIGhlaWdodD0iMWVtIiB2aWV3Qm94PSIwIDAgMjQgMjQiPjxwYXRoIGZpbGw9IiM4YTZiMDAiIGZpbGwtcnVsZT0iZXZlbm9kZCIgZD0iTTEzLjgwMyA1LjMzM2MwLTEuODQgMS41LTMuMzMzIDMuMzQ4LTMuMzMzQTMuMzQgMy4zNCAwIDAgMSAyMC41IDUuMzMzYzAgMS44NDEtMS41IDMuMzM0LTMuMzQ5IDMuMzM0YTMuMzUgMy4zNSAwIDAgMS0yLjM4NC0uOTk0bC00LjYzNSAzLjE1NmEzLjM0IDMuMzQgMCAwIDEtLjE4MiAxLjkxN2w1LjA4MiAzLjM0YTMuMzUgMy4zNSAwIDAgMSAyLjEyLS43NTNhMy4zNCAzLjM0IDAgMCAxIDMuMzQ4IDMuMzM0QzIwLjUgMjAuNTA3IDE5IDIyIDE3LjE1MSAyMmEzLjM0IDMuMzQgMCAwIDEtMy4zNDgtMy4zMzNhMy4zIDMuMyAwIDAgMSAuMjg5LTEuMzU2TDkuMDUgMTRhMy4zNSAzLjM1IDAgMCAxLTIuMjAyLjgyMUEzLjM0IDMuMzQgMCAwIDEgMy41IDExLjQ4N2EzLjM0IDMuMzQgMCAwIDEgMy4zNDgtMy4zMzNjMS4wNjQgMCAyLjAxLjQ5MyAyLjYyMyAxLjI2MWw0LjQ5My0zLjA1OWEzLjMgMy4zIDAgMCAxLS4xNjEtMS4wMjMiIGNsaXAtcnVsZT0iZXZlbm9kZCIvPjwvc3ZnPg==");
+  --pp-i-insurance-tint: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxZW0iIGhlaWdodD0iMWVtIiB2aWV3Qm94PSIwIDAgMjQgMjQiPjxwYXRoIGZpbGw9IiM4YTZiMDAiIGZpbGwtcnVsZT0iZXZlbm9kZCIgZD0iTTMuMzc4IDUuMDgyQzMgNS42MiAzIDcuMjIgMyAxMC40MTd2MS41NzRjMCA1LjYzOCA0LjIzOSA4LjM3NSA2Ljg5OSA5LjUzNmMuNzIxLjMxNSAxLjA4Mi40NzMgMi4xMDEuNDczYzEuMDIgMCAxLjM4LS4xNTggMi4xMDEtLjQ3M0MxNi43NjEgMjAuMzY1IDIxIDE3LjYzIDIxIDExLjk5MXYtMS41NzRjMC0zLjE5OCAwLTQuNzk3LS4zNzgtNS4zMzVjLS4zNzctLjUzNy0xLjg4LTEuMDUyLTQuODg3LTIuMDgxbC0uNTczLS4xOTZDMTMuNTk1IDIuMjY4IDEyLjgxMiAyIDEyIDJzLTEuNTk1LjI2OC0zLjE2Mi44MDVMOC4yNjUgM2MtMy4wMDcgMS4wMy00LjUxIDEuNTQ1LTQuODg3IDIuMDgyTTE1LjA2IDEwLjVhLjc1Ljc1IDAgMCAwLTEuMTItLjk5OWwtMy4wMTEgMy4zNzRsLS44Ny0uOTc0YS43NS43NSAwIDAgMC0xLjExOCAxbDEuNDI4IDEuNmEuNzUuNzUgMCAwIDAgMS4xMTkgMHoiIGNsaXAtcnVsZT0iZXZlbm9kZCIvPjwvc3ZnPg==");
+  --pp-i-emergency-tint: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxZW0iIGhlaWdodD0iMWVtIiB2aWV3Qm94PSIwIDAgMjQgMjQiPjxwYXRoIGZpbGw9IiM4YTZiMDAiIGZpbGwtcnVsZT0iZXZlbm9kZCIgZD0iTTQgMjEuMjVIMmEuNzUuNzUgMCAwIDAgMCAxLjVoMjBhLjc1Ljc1IDAgMCAwIDAtMS41aC0yVjE2YzAtMi44IDAtNC4yLS41NDUtNS4yN2E1IDUgMCAwIDAtMi4xODUtMi4xODVDMTYuMiA4IDE0LjggOCAxMiA4cy00LjIgMC01LjI3LjU0NWE1IDUgMCAwIDAtMi4xODUgMi4xODVDNCAxMS44IDQgMTMuMiA0IDE2em05LjUtMy43NWExLjUgMS41IDAgMCAxLS43NSAxLjN2Mi40NWgtMS41VjE4LjhhMS41IDEuNSAwIDEgMSAyLjI1LTEuM20xLjUtNy40MzVhLjc1Ljc1IDAgMCAwIDAgMS41Yy44NDIgMCAxLjQ2NC42MzggMS40MzYgMS40MDhhLjc1Ljc1IDAgMCAwIDEuNDk5LjA1NGMuMDYxLTEuNjktMS4zMTctMi45NjItMi45MzUtMi45NjIiIGNsaXAtcnVsZT0iZXZlbm9kZCIvPjxwYXRoIGZpbGw9IiM4YTZiMDAiIGQ9Ik0xMiAxLjI1YS43NS43NSAwIDAgMSAuNzUuNzV2M2EuNzUuNzUgMCAwIDEtMS41IDBWMmEuNzUuNzUgMCAwIDEgLjc1LS43NW05LjUzIDQuMjhsLTEuNSAxLjVhLjc1Ljc1IDAgMSAxLTEuMDYtMS4wNmwxLjUtMS41YS43NS43NSAwIDEgMSAxLjA2IDEuMDZtLTE4LTEuMDZhLjc1Ljc1IDAgMCAwLTEuMDYgMS4wNmwxLjUgMS41YS43NS43NSAwIDAgMCAxLjA2LTEuMDZ6Ii8+PC9zdmc+");
+  --pp-i-warn-tint: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxZW0iIGhlaWdodD0iMWVtIiB2aWV3Qm94PSIwIDAgMjQgMjQiPjxwYXRoIGZpbGw9IiM4YTZiMDAiIGQ9Ik0xMiAzYy0yLjMxIDAtMy43NyAyLjU4Ny02LjY4OCA3Ljc2MmwtLjM2NC42NDRjLTIuNDI1IDQuMy0zLjYzOCA2LjQ1LTIuNTQyIDguMDIyUzYuMjE0IDIxIDExLjYzNiAyMWguNzI4YzUuNDIyIDAgOC4xMzQgMCA5LjIzLTEuNTcycy0uMTE3LTMuNzIyLTIuNTQyLTguMDIybC0uMzY0LS42NDVDMTUuNzcgNS41ODcgMTQuMzExIDMgMTIgMyIgb3BhY2l0eT0iLjUiLz48cGF0aCBmaWxsPSIjOGE2YjAwIiBkPSJNMTIgNy4yNWEuNzUuNzUgMCAwIDEgLjc1Ljc1djVhLjc1Ljc1IDAgMCAxLTEuNSAwVjhhLjc1Ljc1IDAgMCAxIC43NS0uNzVNMTIgMTdhMSAxIDAgMSAwIDAtMmExIDEgMCAwIDAgMCAyIi8+PC9zdmc+");
+  --pp-i-wait-tint: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxZW0iIGhlaWdodD0iMWVtIiB2aWV3Qm94PSIwIDAgMjQgMjQiPjxwYXRoIGZpbGw9IiM4YTZiMDAiIGZpbGwtcnVsZT0iZXZlbm9kZCIgZD0iTTEyIDJDNy44NjcgMiA1LjggMiA1LjE5OCAzLjNhMi41IDIuNSAwIDAgMC0uMTMuMzQ2Yy0uNDEgMS4zODcgMS4wNTIgMi45OTUgMy45NzQgNi4yMUwxMSAxMmgybDEuOTU4LTIuMTQzYzIuOTIyLTMuMjE2IDQuMzgzLTQuODI0IDMuOTc0LTYuMjFhMi41IDIuNSAwIDAgMC0uMTMtLjM0OEMxOC4yIDIgMTYuMTMzIDIgMTIgMiIgY2xpcC1ydWxlPSJldmVub2RkIi8+PHBhdGggZmlsbD0iIzhhNmIwMCIgZD0iTTUuMTk4IDIwLjdDNS44IDIyIDcuODY3IDIyIDEyIDIyczYuMiAwIDYuODAyLTEuM2EyLjUgMi41IDAgMCAwIC4xMy0uMzQ2Yy40MS0xLjM4Ny0xLjA1Mi0yLjk5NS0zLjk3NC02LjIxTDEzIDEyaC0ybC0xLjk1OCAyLjE0M2MtMi45MjIgMy4yMTYtNC4zODMgNC44MjQtMy45NzQgNi4yMXEuMDUyLjE4LjEzLjM0OCIgb3BhY2l0eT0iLjUiLz48L3N2Zz4=");
+  --pp-i-chev:        url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxZW0iIGhlaWdodD0iMWVtIiB2aWV3Qm94PSIwIDAgMjQgMjQiPjxwYXRoIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzE0MTQxNCIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIiBzdHJva2Utd2lkdGg9IjEuNSIgZD0ibTE5IDlsLTcgNmwtNy02Ii8+PC9zdmc+");
+  --pp-i-emergency:   url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxZW0iIGhlaWdodD0iMWVtIiB2aWV3Qm94PSIwIDAgMjQgMjQiPjxwYXRoIGZpbGw9IiMxNDE0MTQiIGZpbGwtcnVsZT0iZXZlbm9kZCIgZD0iTTQgMjEuMjVIMmEuNzUuNzUgMCAwIDAgMCAxLjVoMjBhLjc1Ljc1IDAgMCAwIDAtMS41aC0yVjE2YzAtMi44IDAtNC4yLS41NDUtNS4yN2E1IDUgMCAwIDAtMi4xODUtMi4xODVDMTYuMiA4IDE0LjggOCAxMiA4cy00LjIgMC01LjI3LjU0NWE1IDUgMCAwIDAtMi4xODUgMi4xODVDNCAxMS44IDQgMTMuMiA0IDE2em05LjUtMy43NWExLjUgMS41IDAgMCAxLS43NSAxLjN2Mi40NWgtMS41VjE4LjhhMS41IDEuNSAwIDEgMSAyLjI1LTEuM20xLjUtNy40MzVhLjc1Ljc1IDAgMCAwIDAgMS41Yy44NDIgMCAxLjQ2NC42MzggMS40MzYgMS40MDhhLjc1Ljc1IDAgMCAwIDEuNDk5LjA1NGMuMDYxLTEuNjktMS4zMTctMi45NjItMi45MzUtMi45NjIiIGNsaXAtcnVsZT0iZXZlbm9kZCIvPjxwYXRoIGZpbGw9IiMxNDE0MTQiIGQ9Ik0xMiAxLjI1YS43NS43NSAwIDAgMSAuNzUuNzV2M2EuNzUuNzUgMCAwIDEtMS41IDBWMmEuNzUuNzUgMCAwIDEgLjc1LS43NW05LjUzIDQuMjhsLTEuNSAxLjVhLjc1Ljc1IDAgMSAxLTEuMDYtMS4wNmwxLjUtMS41YS43NS43NSAwIDEgMSAxLjA2IDEuMDZtLTE4LTEuMDZhLjc1Ljc1IDAgMCAwLTEuMDYgMS4wNmwxLjUgMS41YS43NS43NSAwIDAgMCAxLjA2LTEuMDZ6Ii8+PC9zdmc+");
+
+  /* ---- demo photography ------------------------------------------------
+     Content, not a design decision — but it lives here so a screen never has
+     to carry an inline style just to hold its own portrait. One entry per
+     subject the wireframes show. */
+  --pp-img-miso: url("https://images.unsplash.com/photo-1543466835-00a7907e9de1?w=320&q=80&auto=format&fit=crop");
+  --pp-img-cheetah: url("../visuals/pet-cat-cheetah.jpg");
+}
+
+/* ============================ base ======================================= */
+
+.pp *, .pp *::before, .pp *::after { box-sizing: border-box; }
+.pp { font-family: var(--pp-body); color: var(--pp-ink);
+      font-size: var(--pp-fs-body); line-height: var(--pp-lh-body);
+      -webkit-font-smoothing: antialiased; }
+.pp h1, .pp h2, .pp h3, .pp h4, .pp p, .pp figure, .pp ul { margin: 0; padding: 0; }
+.pp ul { list-style: none; }
+.pp :focus-visible { outline: 2px solid var(--pp-signal-deep); outline-offset: 2px; border-radius: var(--pp-r-chip); }
+
+/* ============================ shell ====================================== */
+/* The frame every screen sits in. Structure lives in ui/shell.html so grey
+   wireframes can adopt the skeleton, not just the paint. */
+
+.pp-shell { width: var(--pp-canvas); margin: 0 auto; background: var(--pp-paper);
+            display: flex; flex-direction: column; min-height: 100%; position: relative; }
+
+/* --- layer 1: the app bar (amber band) --- */
+/* one bar: the box is always 48px tall on 12/16 padding, and it grows to 68
+   by itself when the row carries 44px tap targets (home-success, Share-a-pet) */
+.pp-appbar { display: flex; align-items: center; justify-content: space-between;
+             min-height: var(--pp-appbar-h);
+             padding: var(--pp-s-4) var(--pp-inset); background: var(--pp-signal);
+             color: var(--pp-on-signal); }
+.pp-appbar__title { font-family: var(--pp-disp); font-size: var(--pp-fs-appbar);
+                    font-weight: var(--pp-w-semi); line-height: var(--pp-lh-body);
+                    letter-spacing: var(--pp-ls-appbar); }
+/* a name in the title slot is a name wherever it appears */
+.pp-appbar__title.pp-is-name { font-family: var(--pp-serif); font-style: italic;
+                               font-weight: var(--pp-w-bold);
+                               font-size: var(--pp-fs-appbar);
+                               line-height: var(--pp-lh-body); letter-spacing: 0; }
+.pp-appbar__back, .pp-appbar__action {
+  min-width: var(--pp-tap); min-height: var(--pp-tap);
+  display: inline-flex; align-items: center; background: none; border: 0;
+  color: var(--pp-on-signal); font-family: var(--pp-body);
+  font-size: var(--pp-fs-small); font-weight: var(--pp-w-regular); cursor: pointer; }
+/* the back glyph is centred in its own tap target and pulled to the inset;
+   the trailing action sits flush to the inset, so it takes no negative margin */
+.pp-appbar__back   { font-family: var(--pp-body); justify-content: center; margin-left: calc(var(--pp-s-3) * -1); font-size: var(--pp-fs-body); }
+.pp-appbar__action { justify-content: flex-end; }
+.pp-appbar__brand  { font-family: var(--pp-disp); font-weight: var(--pp-w-bold); font-size: var(--pp-fs-appbar); }
+/* compact bar: no back/action, just a centred title */
+.pp-appbar--sm { min-height: var(--pp-appbar-h-sm); padding: var(--pp-s-4) var(--pp-inset); gap: normal; }
+/* the bar before the band: no fill of its own — it lets the paper canvas show
+   through — and a hairline foot. The states that have not taken the amber band
+   yet still render this one. */
+.pp-appbar--plain { background: none; border-bottom: 1px solid var(--pp-line); }
+/* the recipient has no app chrome: the brand bar rides inside the hero band,
+   so it drops the band's own fill, inset and height and keeps only the row */
+.pp-appbar--bare { min-height: 0; padding: 0; gap: normal; background: none; }
+.pp-appbar--bare .pp-appbar__brand { font-family: var(--pp-body); font-size: var(--pp-fs-title); }
+.pp-appbar__link { min-height: var(--pp-tap); display: inline-flex; align-items: center;
+                   font-family: var(--pp-body); font-size: var(--pp-fs-body);
+                   color: var(--pp-ink); text-decoration: none; }
+
+/* --- layer 2: the hero band + the arch cut into it --- */
+.pp-hero { background: var(--pp-signal); padding: var(--pp-hero-pt) 0 var(--pp-hero-pb); }
+/* the recipient hero carries a brand bar, so the photo gets its own top margin.
+   It is also inset, so it clips: nothing may bleed past the band's edge. */
+.pp-hero--recipient { padding: var(--pp-s-6) var(--pp-inset) var(--pp-hero-pb); overflow: hidden; }
+.pp-hero--recipient .pp-hero__photo { margin-top: 26px; }
+/* the photo sits in normal flow; the arch is pulled up over it, which is what
+   puts exactly half of it above the arch line and half below */
+.pp-hero__photo.pp-hero__photo { display: flex; position: relative; width: var(--pp-avatar);
+                  margin-left: auto; margin-right: auto; z-index: 2;
+                  overflow: visible; font-size: 0; line-height: 0; font-weight: 400;
+                  color: transparent; }
+/* the frame the photo shares with its edit affordance: photo-width, centred,
+   and one layer above the photo so the button can hang off its edge */
+.pp-hero__frame { position: relative; width: var(--pp-avatar);
+                  margin-left: auto; margin-right: auto; z-index: 3; }
+/* doubled: .pp-iconbtn is declared later and would otherwise win the shadow */
+.pp-hero__edit.pp-hero__edit { position: absolute; right: -2px; bottom: 2px; z-index: 4;
+                 width: 30px; height: 30px; background-size: 14px; box-shadow: var(--pp-sh-float); }
+
+.pp-arch { position: relative; background: var(--pp-paper); text-align: center;
+           margin-top: calc(var(--pp-arch-rise) * -1);
+           padding: var(--pp-arch-pt) var(--pp-inset) var(--pp-s-1);
+           border-radius: var(--pp-r-circle) var(--pp-r-circle) 0 0 /
+                          var(--pp-arch-rise) var(--pp-arch-rise) 0 0; }
+.pp-arch--recipient { padding-bottom: var(--pp-s-3); }
+/* the name block on its own: the hero above it already drew the arch, so this
+   carries only the type — no shape, no rise, no fill (Share-a-pet) */
+.pp-arch--plain { position: static; background: none; margin-top: 0;
+                  padding: 0 var(--pp-inset) var(--pp-s-1); border-radius: 0; }
+.pp-arch--plain .pp-arch__meta { margin-bottom: 0; }
+/* the recipient arch runs to a third line, so the gap moves off the meta */
+.pp-arch--recipient .pp-arch__meta { margin-bottom: 0; }
+.pp-arch__namerow { display: flex; align-items: center; justify-content: center; gap: var(--pp-s-3); }
+.pp-arch__name { font-family: var(--pp-serif); font-style: italic;
+                 font-weight: var(--pp-w-bold); font-size: var(--pp-fs-name);
+                 line-height: var(--pp-lh-name); letter-spacing: 0; }
+.pp-arch__meta { font-family: var(--pp-body); font-size: var(--pp-fs-body); color: var(--pp-meta); margin: 2px 0 8px; }
+/* the meta reserves 8px under itself only when it is the arch's last line; a
+   tag or chip that follows brings its own lead */
+.pp-arch__meta:has(+ .pp-tag) { margin-bottom: 0; }
+/* the third arch line: microchip / registry id, one step down from the meta */
+.pp-arch__chip { font-family: var(--pp-body); font-size: var(--pp-fs-chip); color: var(--pp-meta); margin-top: 2px; }
+
+.pp-main { flex: 1; padding: var(--pp-s-5) 0 var(--pp-s-7); background: var(--pp-paper); }
+/* a stack is often a <ul>; it must drop the marker without needing a .pp host */
+.pp-stack { display: flex; flex-direction: column; gap: var(--pp-s-3);
+            padding: 0 var(--pp-inset); list-style: none; }
+.pp-stack + .pp-stack { margin-top: var(--pp-s-7); }
+
+/* --- pet identity strip: the "whose screen is this" line under the app bar --- */
+.pp-identity { display: flex; align-items: center; gap: var(--pp-s-3);
+               padding: var(--pp-s-4) var(--pp-inset);
+               border-bottom: 1px solid var(--pp-line); }
+.pp-identity__body { flex: 1; min-width: 0; }
+.pp-identity__name { font-family: var(--pp-serif); font-style: italic;
+                     font-weight: var(--pp-w-bold); font-size: 19px;
+                     line-height: 1.2; letter-spacing: 0; }
+.pp-identity__meta { font-family: var(--pp-body); font-size: var(--pp-fs-chip);
+                     color: var(--pp-meta); margin-top: 2px; }
+
+/* the uppercase rule that opens a group of rows */
+.pp-heading { font-family: var(--pp-body); padding: var(--pp-s-6) var(--pp-inset) 8px;
+              font-size: var(--pp-fs-small); font-weight: var(--pp-w-bold);
+              text-transform: uppercase; letter-spacing: var(--pp-ls-caps);
+              color: var(--pp-meta); }
+
+/* --- tab bar --- */
+.pp-tabbar { display: flex; justify-content: space-around;
+             background: var(--pp-paper); border-top: 1px solid var(--pp-line); }
+.pp-tab { position: relative; flex: 1; display: flex; flex-direction: column; align-items: center;
+          gap: 3px; padding: 10px 0 8px; text-align: center; text-decoration: none;
+          font-family: var(--pp-body); color: var(--pp-meta);
+          font-size: var(--pp-fs-label); font-weight: var(--pp-w-medium); }
+.pp-tab__icon { width: 23px; height: 23px; background-size: 23px;
+                background-repeat: no-repeat; background-position: center; }
+.pp-tab[aria-current="page"] { color: var(--pp-ink); font-weight: var(--pp-w-bold); }
+/* the amber marker: the one place amber appears outside the band */
+.pp-tab[aria-current="page"]::before { content: ""; position: absolute; top: -1px;
+  left: 50%; transform: translateX(-50%); width: 22px; height: 3px;
+  border-radius: 3px; background: var(--pp-signal); }
+.pp-tab--pets      .pp-tab__icon { background-image: var(--pp-i-pets); }
+.pp-tab--reminders .pp-tab__icon { background-image: var(--pp-i-reminders); }
+.pp-tab--share     .pp-tab__icon { background-image: var(--pp-i-share); }
+.pp-tab--owner     .pp-tab__icon { background-image: var(--pp-i-owner); }
+.pp-tab--pets[aria-current="page"]      .pp-tab__icon { background-image: var(--pp-i-pets-on); }
+.pp-tab--reminders[aria-current="page"] .pp-tab__icon { background-image: var(--pp-i-reminders-on); }
+.pp-tab--share[aria-current="page"]     .pp-tab__icon { background-image: var(--pp-i-share-on); }
+.pp-tab--owner[aria-current="page"]     .pp-tab__icon { background-image: var(--pp-i-owner-on); }
+
+/* the recipient has no account, so no tab bar — this footer takes its place */
+.pp-sharedfoot { font-family: var(--pp-body); padding: var(--pp-s-4) var(--pp-inset); background: var(--pp-surface);
+                 border-top: 1px solid var(--pp-line); text-align: center;
+                 font-size: var(--pp-fs-micro); line-height: var(--pp-lh-body);
+                 color: var(--pp-meta); }
+
+/* ============================ avatar ===================================== */
+/* consolidates .pet-photo / .pet-photo-s / -m / .dv3-photo / .pill-avatar /
+   .recipient-avatar / .contact-avatar / .me-avatar */
+
+.pp-avatar { width: var(--pp-avatar); height: var(--pp-avatar); flex: 0 0 auto;
+             border-radius: var(--pp-r-circle); background-color: var(--pp-photo);
+             background-size: cover; background-position: center;
+             display: inline-flex; align-items: center; justify-content: center;
+             font-family: var(--pp-body); font-size: var(--pp-fs-small);
+             font-weight: var(--pp-w-semi); color: var(--pp-meta); overflow: hidden;
+             background-repeat: no-repeat; }
+.pp-avatar--xs { font-family: var(--pp-body); --pp-avatar: 22px; font-size: 10px; }
+.pp-avatar--sm { font-family: var(--pp-body); --pp-avatar: 32px; font-size: var(--pp-fs-chip); }
+.pp-avatar--md { --pp-avatar: 40px; }
+.pp-avatar--lg { --pp-avatar: 64px; }
+.pp-avatar--xl { --pp-avatar: 96px; }
+/* the ring only exists where the avatar crosses the arch */
+.pp-avatar--ring { border: 3px solid var(--pp-paper); }
+/* subject modifiers — the demo photography, so no screen needs an inline style */
+.pp-avatar--miso    { background-image: var(--pp-img-miso); }
+.pp-avatar--cheetah { background-image: var(--pp-img-cheetah); }
+
+/* ============================ buttons ==================================== */
+/* consolidates .btn-primary / .btn-secondary / .btn-share / .btn-danger /
+   .btn-sm / .btn-full / .action-btn / .text-link / .empty-cta / .error-cta */
+
+.pp-btn { display: inline-block; text-align: center; min-height: var(--pp-tap); padding: 15px 20px;
+          border: 0; border-radius: var(--pp-r-pill); cursor: pointer;
+          font-family: var(--pp-body); font-size: var(--pp-fs-body);
+          font-weight: var(--pp-w-semi); line-height: 1; text-decoration: none;
+          background: var(--pp-ink); color: var(--pp-paper);
+          transition: background var(--pp-t-state), opacity var(--pp-t-state); }
+.pp-btn:hover { background: var(--pp-ink-hover); }
+.pp-btn:disabled, .pp-btn[aria-disabled="true"] {
+  background: var(--pp-surface); color: var(--pp-disabled); cursor: not-allowed; }
+.pp-btn--secondary { background: var(--pp-surface); color: var(--pp-ink); }
+.pp-btn--secondary:hover { background: var(--pp-line); }
+.pp-btn--danger { background: var(--pp-danger); color: var(--pp-paper); }
+.pp-btn--danger:hover { background: var(--pp-danger-hover); }
+.pp-btn--ghost { background: transparent; color: var(--pp-ink);
+                 border: 1px solid var(--pp-line); }
+.pp-btn--ghost:hover { background: var(--pp-surface); }
+/* inline-flex, not inline-block: the label centres in the 44px tap target
+   instead of hanging off its top edge */
+.pp-btn--link { display: inline-flex; align-items: center; justify-content: center;
+                background: none; color: var(--pp-ink); padding: 0 var(--pp-s-2);
+                min-height: var(--pp-tap); text-decoration: underline;
+                text-underline-offset: 3px; font-weight: var(--pp-w-semi); }
+.pp-btn--link:hover { background: none; color: var(--pp-signal-ink); }
+.pp-btn--dangerlink.pp-btn--dangerlink { display: inline-flex; align-items: center;
+  justify-content: center; background: none; color: var(--pp-danger); padding: 0;
+  border: none; border-radius: 0; line-height: normal; min-height: var(--pp-tap);
+  font-size: var(--pp-fs-small); font-weight: var(--pp-w-regular); text-decoration: underline; }
+.pp-btn--dangerlink.pp-btn--dangerlink:hover { background: none; color: var(--pp-danger-hover); }
+.pp-btn--sm { font-family: var(--pp-body); min-height: 36px; padding: var(--pp-s-3) var(--pp-s-5);
+              font-size: var(--pp-fs-small); }
+.pp-btn--full { width: 100%; }
+/* the share CTA: the one button that leads with an icon */
+.pp-btn--share { display: inline-flex; align-items: center; justify-content: center;
+                 gap: 8px; }
+.pp-btn--share::before { content: ""; width: 18px; height: 18px; flex: 0 0 auto;
+                 background: var(--pp-i-sharelink) center / 18px no-repeat; }
+/* the block that carries a full-width CTA at the foot of a card */
+.pp-cta { padding: 8px var(--pp-inset) 20px; }
+.pp-cta > a { display: block; text-decoration: none; }
+
+/* round icon button — .photo-edit / .name-share consolidated.
+   The icon is the background, so the box needs no inner layout: it stays a
+   plain block, which is what both reference screens render. */
+.pp-iconbtn { width: var(--pp-tile); height: var(--pp-tile); flex: 0 0 auto;
+              display: block;
+              border: 0; border-radius: var(--pp-r-circle); cursor: pointer;
+              background-color: var(--pp-paper); box-shadow: var(--pp-sh-card);
+              background-repeat: no-repeat; background-position: center;
+              background-size: 18px; }
+.pp-iconbtn:hover { background-color: var(--pp-surface); }
+.pp-iconbtn--edit  { width: 30px; height: 30px; background-size: 14px;
+                     background-image: var(--pp-i-edit); }
+.pp-iconbtn--share { width: 26px; height: 26px; background-size: 13px; box-shadow: none;
+                     background-color: var(--pp-ink); background-image: var(--pp-i-sharelink); }
+.pp-iconbtn--share:hover { background-color: var(--pp-ink-hover); }
+
+/* floating add button */
+/* flex-centred so the glyph sits true whether the FAB is a button or a link */
+.pp-fab { font-family: var(--pp-body); position: absolute; right: var(--pp-inset);
+          bottom: calc(var(--pp-tabbar-h) + var(--pp-s-6));
+          width: 52px; height: 52px; border: 0; border-radius: var(--pp-r-circle);
+          display: flex; align-items: center; justify-content: center;
+          background: var(--pp-ink); color: var(--pp-paper); font-size: 24px;
+          line-height: 1; text-decoration: none; cursor: pointer;
+          box-shadow: var(--pp-sh-pop); }
+.pp-fab:hover { background: var(--pp-ink-hover); }
+
+/* the sheet of choices a FAB opens above itself */
+.pp-menu { display: none; position: absolute; right: var(--pp-inset);
+           bottom: calc(var(--pp-tabbar-h) + 84px); min-width: 195px;
+           background: var(--pp-paper); border: 1px solid var(--pp-line);
+           border-radius: var(--pp-r-card); overflow: hidden;
+           box-shadow: var(--pp-sh-pop); z-index: 10; }
+.pp-menu.is-open { display: block; }
+.pp-menu a { display: block; padding: 13px 18px; font-family: var(--pp-body);
+             font-size: var(--pp-fs-field); color: var(--pp-ink); text-decoration: none; }
+.pp-menu a + a { border-top: 1px solid var(--pp-line); }
+.pp-menu a:hover { background: var(--pp-surface); }
+
+/* ============================ chips & tags =============================== */
+/* consolidates .status / .record-status / .vax-status / .appt-status /
+   .doc-status / .auth-status / .chip / .reminder-badge */
+
+.pp-chip { font-family: var(--pp-body); display: inline-flex; align-items: center; gap: var(--pp-s-2);
+           padding: 5px 11px; border-radius: var(--pp-r-chip); line-height: 1;
+           font-size: var(--pp-fs-chip); font-weight: var(--pp-w-semi);
+           background: var(--pp-surface); color: var(--pp-meta); }
+.pp-chip--success { background: var(--pp-success-bg); color: var(--pp-success); }
+.pp-chip--warning { background: var(--pp-warning-bg); color: var(--pp-warning); }
+.pp-chip--danger  { background: var(--pp-danger-bg);  color: var(--pp-danger); }
+.pp-chip--info    { background: var(--pp-info-bg);    color: var(--pp-info); }
+
+/* the enamel up-to-date tag — the ID-tag radius the direction is named for */
+.pp-tag { font-family: var(--pp-body); display: inline-flex; align-items: center; gap: var(--pp-s-2);
+          padding: 5px 11px; border-radius: var(--pp-r-tag); line-height: 1;
+          margin-top: var(--pp-s-3);
+          font-size: var(--pp-fs-chip); font-weight: var(--pp-w-semi);
+          background: var(--pp-success-bg); color: var(--pp-success); }
+.pp-tag::before { content: ""; width: 14px; height: 14px; flex: 0 0 auto;
+                  background: var(--pp-i-verified) center / 14px no-repeat; }
+
+/* the verification tick used beside a section title */
+.pp-check { width: 18px; height: 18px; flex: 0 0 auto;
+            background: var(--pp-i-verified) center / 18px no-repeat; }
+
+/* icon-only box: the element draws its icon as a background and still holds the
+   text label the icon replaced ("icon", "✓", "photo"). Centre the box and render
+   that label invisibly, so nothing but the icon reads. */
+.pp-iconbox { display: flex; align-items: center; justify-content: center;
+              font-size: 0; color: transparent; }
+
+/* ============================ cards & rows =============================== */
+/* consolidates .m-section-card / .card-body / .vet-card / .doc-card /
+   .policy-card / .pinned-card / .reminder-card / .shared-section */
+
+.pp-card { background: var(--pp-paper); border: 1px solid var(--pp-line);
+           border-radius: var(--pp-r-card); box-shadow: var(--pp-sh-card);
+           padding: var(--pp-s-5); }
+.pp-card--flush { padding: 0 var(--pp-s-5); }
+/* a card that IS a listing row — the dossier's section card. Same box as
+   .pp-card, laid out like .pp-row, so the __tile / __body / __chev parts fit */
+.pp-card--row { display: flex; align-items: center; gap: var(--pp-s-4);
+                cursor: pointer; }
+/* a section that has nothing in it yet: same card, dashed edge */
+.pp-card--dashed { border-style: dashed; }
+/* a card standing alone on the canvas carries the inset itself */
+.pp-card--inset { margin: var(--pp-s-4) var(--pp-inset); }
+.pp-card__title { font-family: var(--pp-disp); font-size: var(--pp-fs-title);
+                  font-weight: var(--pp-w-bold); line-height: var(--pp-lh-title);
+                  letter-spacing: normal; margin-bottom: var(--pp-s-2); }
+.pp-card__body  { font-family: var(--pp-body); font-size: var(--pp-fs-small);
+                  line-height: var(--pp-lh-detail); color: var(--pp-meta); }
+
+/* a ruled band: inset from the frame, closed with a hairline. The separator the
+   record list, the document list and the care notes are all built from. */
+.pp-ruled { padding: var(--pp-s-5) var(--pp-inset);
+            border-bottom: 1px solid var(--pp-line); }
+.pp-ruled:last-child { border-bottom: 0; }
+/* a band that carries a caution: warm ground, and its title leads with the mark */
+.pp-ruled--warn { background: var(--pp-warning-bg); }
+.pp-ruled--warn .pp-card__title::before { content: "⚠ "; }
+/* a title with a trailing action on the same line */
+.pp-headrow { display: flex; align-items: center; justify-content: space-between;
+              gap: var(--pp-s-4); }
+
+/* an unfilled section: a dashed card holding the prompt for its first entry */
+.pp-slot { margin: var(--pp-s-3) var(--pp-inset);
+           padding: var(--pp-s-4) var(--pp-s-5);
+           border: 1px dashed var(--pp-line); border-radius: var(--pp-r-card); }
+.pp-slot .pp-card__title { color: var(--pp-meta); }
+
+/* a quiet full-bleed note above the content it explains */
+.pp-note { font-family: var(--pp-body); padding: var(--pp-s-3) var(--pp-inset);
+           background: var(--pp-surface); border-bottom: 1px solid var(--pp-line);
+           font-size: var(--pp-fs-chip); line-height: var(--pp-lh-small);
+           color: var(--pp-meta); }
+
+/* the listing row: icon tile, title, meta, optional tick and chevron */
+.pp-row { display: flex; align-items: center; gap: var(--pp-s-4);
+          width: 100%; background: none; border: 0; padding: var(--pp-s-5) 0;
+          font: inherit; color: inherit; text-align: left; text-decoration: none;
+          cursor: pointer; }
+.pp-row__tile { width: var(--pp-tile); height: var(--pp-tile); flex: 0 0 auto;
+                border-radius: var(--pp-r-input); background-color: var(--pp-surface);
+                background-repeat: no-repeat; background-position: center;
+                background-size: 22px; }
+.pp-row__tile--personality { background-image: var(--pp-i-personality); }
+.pp-row__tile--health      { background-image: var(--pp-i-health); }
+.pp-row__tile--vet         { background-image: var(--pp-i-vet); }
+.pp-row__tile--docs        { background-image: var(--pp-i-docs); }
+.pp-row__tile--insurance   { background-image: var(--pp-i-insurance); }
+.pp-row__tile--emergency   { background-image: var(--pp-i-emergency); }
+.pp-row__body  { display: block; flex: 1; min-width: 0; }
+.pp-row__title { font-family: var(--pp-disp); font-size: var(--pp-fs-title);
+                 font-weight: var(--pp-w-bold); line-height: var(--pp-lh-title);
+                 display: flex; align-items: center; gap: var(--pp-s-2); }
+/* a meta line inside a heading must restate its own font or it inherits 700 */
+.pp-row__meta  { display: block; font-family: var(--pp-body); font-size: var(--pp-fs-small);
+                 font-weight: var(--pp-w-regular); line-height: var(--pp-lh-small);
+                 color: var(--pp-meta); margin-top: 2px; }
+/* also used on a <button>, so it resets the UA chrome a button brings */
+.pp-row__chev  { color: var(--pp-meta); flex: 0 0 auto;
+                 background: none; border: 0; padding: 0; font: inherit;
+                 cursor: pointer; }
+
+/* a run of label/value lines set as one paragraph (an access grant's terms) */
+.pp-detail { font-family: var(--pp-body); font-size: var(--pp-fs-small);
+             line-height: var(--pp-lh-detail); color: var(--pp-meta);
+             margin-bottom: var(--pp-s-3); }
+.pp-detail strong { color: var(--pp-ink); font-weight: var(--pp-w-semi); }
+/* label / value pair inside an opened section */
+.pp-detail__label { font-family: var(--pp-body); font-size: var(--pp-fs-micro); font-weight: var(--pp-w-semi);
+                    text-transform: uppercase; letter-spacing: var(--pp-ls-caps);
+                    line-height: var(--pp-lh-detail); color: var(--pp-meta);
+                    margin-top: var(--pp-s-3); margin-bottom: 2px; }
+.pp-detail__value { font-family: var(--pp-body); font-size: var(--pp-fs-small);
+                    line-height: var(--pp-lh-detail); color: var(--pp-ink);
+                    margin-bottom: var(--pp-s-1); }
+/* the caution line that follows a value the reader must not miss */
+.pp-caution { font-family: var(--pp-body); font-size: var(--pp-fs-chip); font-weight: var(--pp-w-semi);
+              line-height: var(--pp-lh-detail); color: var(--pp-danger);
+              margin-top: var(--pp-s-1); margin-bottom: var(--pp-s-1); }
+
+/* ============================ forms ====================================== */
+
+.pp-field { display: block; margin-bottom: var(--pp-s-6); }
+/* when the form is not inside a .pp-stack it carries its own inset. Two rhythms
+   are in use: --inset is the profile form's packed one (14px, explicitly
+   left-aligned — Me); a field that only needs the inset takes .pp-inset. */
+.pp-field--inset { padding: 0 var(--pp-inset); margin-bottom: var(--pp-s-5); text-align: left; }
+.pp-field__label { font-family: var(--pp-body); display: block; font-size: var(--pp-fs-small);
+                   font-weight: var(--pp-w-semi); margin-bottom: var(--pp-s-2); }
+.pp-field__req { color: var(--pp-danger); }
+.pp-input, .pp-select, .pp-textarea {
+  width: 100%; min-height: var(--pp-field-h); padding: 0 var(--pp-s-5);
+  background: var(--pp-paper); color: var(--pp-ink);
+  border: 1px solid var(--pp-line); border-radius: var(--pp-r-input);
+  font-family: var(--pp-body); font-size: var(--pp-fs-field);
+  transition: border-color var(--pp-t-state), box-shadow var(--pp-t-state); }
+.pp-textarea { padding: var(--pp-s-4) var(--pp-s-5); min-height: 96px;
+               line-height: var(--pp-lh-body); resize: vertical; }
+.pp-input::placeholder, .pp-textarea::placeholder { color: var(--pp-disabled); }
+.pp-input:focus, .pp-select:focus, .pp-textarea:focus {
+  outline: none; border-color: var(--pp-signal);
+  box-shadow: 0 0 0 3px var(--pp-focus-ring); }
+.pp-input:disabled, .pp-select:disabled, .pp-textarea:disabled {
+  background: var(--pp-surface); color: var(--pp-disabled); cursor: not-allowed; }
+.pp-select { appearance: auto; }
+/* --chev: the select paints its own chevron on a 42px right gutter, so the glyph
+   clears the border instead of hugging it. The base leaves the native control. */
+.pp-select--chev { appearance: none; -webkit-appearance: none; padding-right: 42px;
+             background-image: var(--pp-i-chev); background-repeat: no-repeat;
+             background-position: right var(--pp-s-5) center; background-size: 18px; }
+.pp-help { font-family: var(--pp-body); font-size: var(--pp-fs-fine); color: var(--pp-meta); margin-top: var(--pp-s-1); }
+.pp-actions { display: flex; gap: var(--pp-s-3); padding: var(--pp-inset); }
+/* inside a card the inset is already spent, so the row drops its own */
+.pp-actions--flush { padding: 0; }
+.pp-actions > .pp-btn { flex: 1; }
+
+/* switch — 48x28, ink when on, knob carries the tick */
+.pp-switchrow { display: flex; align-items: center; justify-content: space-between;
+                gap: var(--pp-s-4); padding: var(--pp-s-4) 0; }
+/* ruled variant: a settings row banded top and bottom, full-bleed to the inset */
+.pp-switchrow--ruled { gap: normal; margin: 4px 0 14px; text-align: left; padding: var(--pp-s-4) var(--pp-inset);
+  border-top: 1px solid var(--pp-line); border-bottom: 1px solid var(--pp-line); }
+.pp-switchrow__label { font-family: var(--pp-body); display: block; font-size: var(--pp-fs-body); font-weight: var(--pp-w-medium); }
+.pp-switchrow__desc  { font-family: var(--pp-body); display: block; font-size: var(--pp-fs-chip); color: var(--pp-meta); margin-top: 2px; }
+.pp-switch { position: relative; width: 48px; height: 28px; flex: 0 0 auto;
+             border: 0; padding: 0; border-radius: var(--pp-r-pill);
+             background: var(--pp-line); cursor: pointer;
+             transition: background var(--pp-t-state); }
+.pp-switch::after { content: ""; position: absolute; top: 1px; left: 1px;
+                    width: 26px; height: 26px; border-radius: var(--pp-r-circle);
+                    background: var(--pp-paper); box-shadow: var(--pp-sh-knob);
+                    transition: left var(--pp-t-state); z-index: 1; }
+.pp-switch::before { content: ""; position: absolute; z-index: 2; opacity: 0;
+                     width: 6px; height: 11px; top: 50%; left: 34px;
+                     border: solid var(--pp-ink); border-width: 0 2.5px 2.5px 0;
+                     transform: translate(-50%,-60%) rotate(45deg);
+                     transition: opacity var(--pp-t-fade); }
+.pp-switch[aria-checked="true"] { background: var(--pp-ink); }
+.pp-switch[aria-checked="true"]::after  { left: 21px; }
+.pp-switch[aria-checked="true"]::before { opacity: 1; }
+
+/* choice card — the scope radio, circle on the right (Airbnb pattern).
+   Same box as the listing card; selected adds the ink edge and an amber ring. */
+.pp-choices { padding: var(--pp-s-2) var(--pp-inset) var(--pp-s-4); }
+.pp-choice { display: flex; align-items: center; gap: var(--pp-s-3);
+             width: 100%; text-align: start; cursor: pointer;
+             background: var(--pp-paper); border: 1px solid var(--pp-line);
+             border-radius: var(--pp-r-card); box-shadow: var(--pp-sh-card);
+             padding: var(--pp-s-4) var(--pp-s-5); margin-bottom: 8px;
+             font: inherit; color: inherit; }
+.pp-choice[aria-checked="true"] { border-color: var(--pp-ink); box-shadow: var(--pp-sh-select); }
+.pp-choice__body { display: block; flex: 1; order: 1; }
+.pp-choice__title { font-family: var(--pp-body); display: block; font-size: var(--pp-fs-body); font-weight: var(--pp-w-semi); }
+.pp-choice__desc  { font-family: var(--pp-body); display: block; font-size: var(--pp-fs-fine); color: var(--pp-meta); }
+/* the donut: a thin grey ring unselected, a thick ink ring when selected — the
+   "dot" is the paper ground showing through the 6px border, not a second layer */
+.pp-choice__radio { order: 2; width: 22px; height: 22px; flex: 0 0 auto;
+                    background: var(--pp-paper);
+                    border: 2px solid var(--pp-line); border-radius: var(--pp-r-circle);
+                    transition: border-color var(--pp-t-state), border-width var(--pp-t-state); }
+.pp-choice[aria-checked="true"] .pp-choice__radio { border: 6px solid var(--pp-ink); }
+
+/* segmented control — the pet switcher */
+/* the row it rides in: a ruled band under the arch */
+.pp-switcher { display: flex; align-items: center; gap: var(--pp-s-1);
+               padding: 20px var(--pp-inset) 32px; background: var(--pp-paper);
+               border-bottom: 1px solid var(--pp-line); }
+/* the caption that names the control for a screen reader */
+.pp-switcher__label { font-family: var(--pp-body); font-size: var(--pp-fs-micro);
+               color: var(--pp-meta); margin-right: var(--pp-s-1); }
+/* tight: a shallower band, for a filter that is not the screen's main switch */
+.pp-switcher--tight { padding: var(--pp-s-4) var(--pp-inset); }
+/* split: the segments are the row's own children — no separate track element —
+   so they close the gap, each paints its own track, and only the pair's outer
+   corners round (Share-a-pet) */
+.pp-switcher--split { gap: 0; }
+.pp-seg { display: flex; width: 100%; height: 36px; gap: 0;
+          background: var(--pp-surface); border-radius: var(--pp-r-pill); }
+.pp-seg__item { flex: 1; display: flex; align-items: center;
+                justify-content: center; gap: var(--pp-s-2);
+                padding: 7px var(--pp-s-5);
+                border: 0; border-radius: var(--pp-r-pill);
+                background: none; cursor: pointer;
+                font-family: var(--pp-body); font-size: var(--pp-fs-small);
+                font-weight: var(--pp-w-medium); color: var(--pp-meta);
+                text-decoration: none; transition: background var(--pp-t-state); }
+/* the active segment squares the corner facing its neighbour, so it reads as a
+   tab pulled forward; an inactive segment stays a whole pill */
+.pp-switcher--split .pp-seg__item { background: var(--pp-surface); border-radius: 0; }
+.pp-switcher--split .pp-seg__item:first-of-type { border-radius: var(--pp-r-pill) 0 0 var(--pp-r-pill); }
+.pp-switcher--split .pp-seg__item:last-of-type  { border-radius: 0 var(--pp-r-pill) var(--pp-r-pill) 0; }
+/* border-color is ink even at zero width: it is the edge the pulled-forward
+   segment would rule itself with, and it must not follow the white label */
+.pp-seg__item[aria-current="page"] { background: var(--pp-ink); color: var(--pp-paper);
+  border-color: var(--pp-ink); font-weight: var(--pp-w-semi); }
+.pp-seg__item[aria-current="page"]:first-child { border-radius: var(--pp-r-pill) 0 0 var(--pp-r-pill); }
+.pp-seg__item[aria-current="page"]:last-child  { border-radius: 0 var(--pp-r-pill) var(--pp-r-pill) 0; }
+/* the initial that stands in for each pet's photo inside a segment */
+.pp-seg__avatar { width: 22px; height: 22px; flex: 0 0 auto; border-radius: var(--pp-r-circle);
+                  display: flex; align-items: center; justify-content: center;
+                  font-family: var(--pp-body); font-size: 8px; font-weight: var(--pp-w-bold);
+                  background: var(--pp-tint-ink); color: var(--pp-ink); }
+.pp-seg__item[aria-current="page"] .pp-seg__avatar { background: var(--pp-tint-paper);
+                  color: var(--pp-paper); }
+
+/* --- filter variant: the three-way pet filter on Whats-due --------------------
+   A different animal from the two-pet switcher above, so it gets its own rules:
+   the buttons carry their own background (no track), there are no avatars, and
+   the pill ends belong to the FIRST and LAST child positionally — the active
+   segment never rounds its own corners, so a middle selection reads as a square
+   block cut into the bar. Doubled class keeps these ahead of the base's
+   active-corner rules regardless of source order. */
+.pp-seg--filter { height: auto; background: none; border-radius: 0; overflow: visible; }
+.pp-seg--filter.pp-seg--filter .pp-seg__item,
+.pp-seg--filter.pp-seg--filter .pp-seg__item[aria-current="page"],
+.pp-seg--filter.pp-seg--filter .pp-seg__item[aria-current="page"] + .pp-seg__item { font-family: var(--pp-body);
+  position: relative; border-radius: 0;
+  padding: 7px var(--pp-s-5);
+  background: var(--pp-surface); color: var(--pp-meta);
+  font-size: var(--pp-fs-small); font-weight: var(--pp-w-medium); }
+.pp-seg--filter.pp-seg--filter .pp-seg__item:first-child {
+  border-radius: var(--pp-r-pill) 0 0 var(--pp-r-pill); }
+.pp-seg--filter.pp-seg--filter .pp-seg__item:last-child {
+  border-radius: 0 var(--pp-r-pill) var(--pp-r-pill) 0; }
+.pp-seg--filter.pp-seg--filter .pp-seg__item[aria-current="page"] {
+  background: var(--pp-ink); color: var(--pp-paper); font-weight: var(--pp-w-semi); }
+/* the filter bar sits at 31px by design; extend the hit area to clear the 44px
+   floor without moving a pixel of the visual. The two-pet switcher does NOT
+   take this: its reference renders a static, unpadded pill, and the kit is not
+   allowed to quietly re-position an element the reference leaves in flow. */
+.pp-seg--filter.pp-seg--filter .pp-seg__item::before {
+  content: ""; position: absolute; inset: -7px 0; }                                 /* 31 → 45 */
+
+/* search */
+.pp-search { width: 100%; min-height: var(--pp-field-h); padding: 0 var(--pp-s-5);
+             background: var(--pp-surface); border: 1px solid transparent;
+             border-radius: var(--pp-r-pill); font-family: var(--pp-body);
+             font-size: var(--pp-fs-body); color: var(--pp-ink); }
+.pp-search::placeholder { color: var(--pp-meta); }
+.pp-search:focus { outline: none; background: var(--pp-paper);
+                   border-color: var(--pp-signal);
+                   box-shadow: 0 0 0 3px var(--pp-focus-ring); }
+
+/* destructive block, isolated at the foot of a form */
+.pp-danger { border-top: 1px solid var(--pp-line); margin-top: var(--pp-s-7);
+             padding-top: var(--pp-s-6); }
+.pp-danger__label { font-family: var(--pp-body); font-size: var(--pp-fs-chip); font-weight: var(--pp-w-bold);
+                    text-transform: uppercase; letter-spacing: .06em;
+                    color: var(--pp-danger); margin-bottom: var(--pp-s-3); }
+
+/* --- collapsible section -------------------------------------------------
+   The recipient's card is a stack of these: the listing row is the trigger and
+   the body unfolds beneath it. Promoted from the one-off list because the whole
+   sitter flow is built from it. */
+.pp-collapse { background: var(--pp-paper); border: 1px solid var(--pp-line);
+               box-shadow: var(--pp-sh-card); border-radius: var(--pp-r-card);
+               padding: 0 var(--pp-s-5); margin: var(--pp-s-3) var(--pp-inset); }
+.pp-collapse__head { display: flex; align-items: center; gap: var(--pp-s-4);
+                     margin: 0; padding: var(--pp-s-5) 0; cursor: pointer;
+                     user-select: none;
+                     font-family: var(--pp-disp); font-size: var(--pp-fs-title);
+                     font-weight: var(--pp-w-bold); line-height: var(--pp-lh-title);
+                     letter-spacing: normal; text-transform: none;
+                     color: var(--pp-ink); }
+/* in a collapse head the text column hugs its content, so the tick sits beside
+   the title instead of being pushed to the far edge by a flex:1 body */
+.pp-collapse__head .pp-row__body { display: flex; flex-direction: column;
+                                   flex: 0 1 auto; min-width: auto; }
+.pp-collapse__chev { margin-left: auto; color: var(--pp-meta); flex: 0 0 auto;
+                     font-size: var(--pp-fs-appbar);
+                     transition: transform var(--pp-t-state); }
+.pp-collapse.is-open > .pp-collapse__head .pp-collapse__chev { transform: rotate(180deg); }
+.pp-collapse__body { display: none; padding: var(--pp-s-3) 0 var(--pp-s-4); }
+.pp-collapse.is-open > .pp-collapse__body { display: block; }
+/* base reading copy for anything the body holds that is not a kit component
+   (a nested card's paragraphs, a document row). :where() keeps it at element
+   specificity so every real class still wins. */
+:where(.pp-collapse__body) p { font-size: var(--pp-fs-small);
+                               line-height: var(--pp-lh-detail);
+                               margin-bottom: var(--pp-s-1); }
+
+/* --- confirm sheet ------------------------------------------------------- */
+.pp-modal { display: none; position: fixed; inset: 0; z-index: 120;
+            background: var(--pp-scrim); align-items: center; justify-content: center;
+            padding: 20px; }
+.pp-modal.is-open { display: flex; }
+.pp-sheet { width: 100%; max-width: var(--pp-sheet-w); text-align: center;
+            background: var(--pp-paper); border-radius: var(--pp-r-card);
+            padding: var(--pp-s-7) 20px 20px; box-shadow: var(--pp-sh-pop); }
+.pp-sheet__title { font-family: var(--pp-disp); font-size: 18px; font-weight: var(--pp-w-bold);
+                   margin-bottom: 8px; }
+.pp-sheet__body  { font-family: var(--pp-body); font-size: var(--pp-fs-small); color: var(--pp-meta);
+                   line-height: var(--pp-lh-body); margin-bottom: var(--pp-s-6); }
+.pp-sheet__actions { display: flex; gap: 8px; }
+.pp-sheet__actions > * { flex: 1; }
+.pp-sheet__actions > .pp-btn { width: auto; }
+.pp-sheet__actions a { text-decoration: none; }
+
+/* ============================ states ===================================== */
+
+/* illustration tile — the answer to a missing image, never a grey fill.
+   It renders nothing but its glyph, so it zeroes any text it is handed. */
+.pp-illus { width: 120px; height: 120px; margin: 0 auto 20px;
+            border-radius: var(--pp-r-card); background-color: var(--pp-signal-tint);
+            background-repeat: no-repeat; background-position: center;
+            background-size: 56px; display: flex; align-items: center;
+            justify-content: center; font-size: 0; color: transparent; }
+.pp-illus--personality { background-image: var(--pp-i-personality-tint); }
+.pp-illus--health      { background-image: var(--pp-i-health-tint); }
+.pp-illus--vet         { background-image: var(--pp-i-vet-tint); }
+.pp-illus--docs        { background-image: var(--pp-i-docs-tint); }
+.pp-illus--warn        { background-image: var(--pp-i-warn-tint); }
+.pp-illus--wait        { background-image: var(--pp-i-wait-tint); }
+.pp-illus--pets        { background-image: var(--pp-i-pets-tint); }
+.pp-illus--share       { background-image: var(--pp-i-share-tint); }
+.pp-illus--insurance   { background-image: var(--pp-i-insurance-tint); }
+.pp-illus--emergency   { background-image: var(--pp-i-emergency-tint); }
+
+.pp-empty { padding: 60px 32px; text-align: center; }
+.pp-empty__title { font-family: var(--pp-disp); font-size: 18px;
+                   font-weight: var(--pp-w-semi); line-height: var(--pp-lh-body);
+                   margin-bottom: 8px; }
+.pp-empty__body  { font-family: var(--pp-body); font-size: var(--pp-fs-body); color: var(--pp-meta);
+                   margin-bottom: 20px; }
+.pp-empty__body + .pp-btn { margin-top: var(--pp-s-6); }
+
+/* inline error inside a form */
+.pp-banner { font-family: var(--pp-body); display: flex; gap: var(--pp-s-3); padding: var(--pp-s-4) var(--pp-s-5);
+             border-radius: var(--pp-r-input); background: var(--pp-danger-bg);
+             color: var(--pp-danger); font-size: var(--pp-fs-small);
+             line-height: var(--pp-lh-small); margin-bottom: var(--pp-s-6); }
+.pp-banner__detail { color: var(--pp-danger); opacity: .82; margin-top: 2px; }
+
+/* whole-screen error / empty: 60px of air above, 32px in from the frame */
+.pp-error { padding: 60px 32px; text-align: center; }
+.pp-error__title { font-family: var(--pp-disp); font-size: 18px;
+                   font-weight: var(--pp-w-semi); line-height: var(--pp-lh-body);
+                   margin-bottom: 8px; }
+.pp-error__body  { font-family: var(--pp-body); font-size: var(--pp-fs-body); color: var(--pp-meta);
+                   line-height: var(--pp-lh-body); margin-bottom: 20px; }
+.pp-error__body + .pp-btn { margin-top: var(--pp-s-6); }
+
+/* loading skeletons */
+@keyframes pp-shimmer { 0% { opacity: 1; } 50% { opacity: .45; } 100% { opacity: 1; } }
+.pp-skel { background: var(--pp-photo); border-radius: var(--pp-r-chip);
+           animation: pp-shimmer 1.4s ease-in-out infinite; }
+.pp-skel--line   { height: 13px; }
+.pp-skel--title  { height: 17px; width: 60%; }
+.pp-skel--short  { width: 40%; }
+.pp-skel--tile   { width: var(--pp-tile); height: var(--pp-tile);
+                   border-radius: var(--pp-r-input); flex: 0 0 auto; }
+.pp-skel--circle { width: var(--pp-avatar); height: var(--pp-avatar);
+                   border-radius: var(--pp-r-circle); }
+.pp-skel--card   { height: 72px; border-radius: var(--pp-r-card); }
+/* the block a run of skeletons sits in */
+.pp-skels { display: flex; flex-direction: column; gap: var(--pp-s-3);
+            padding: var(--pp-inset); }
+.pp-skel-row { display: flex; align-items: center; gap: var(--pp-s-4);
+               padding: var(--pp-s-5) 0; }
+.pp-skel-row__body { flex: 1; display: flex; flex-direction: column; gap: var(--pp-s-2); }
+.pp-loading-label { font-family: var(--pp-body); text-align: center; font-size: var(--pp-fs-small);
+                    color: var(--pp-meta); padding: var(--pp-s-4) 0; }
+
+/* ============================ reminders ================================== */
+
+.pp-urgency { font-family: var(--pp-body); font-size: var(--pp-fs-small);
+              font-weight: var(--pp-w-bold); color: var(--pp-meta);
+              padding: 0 var(--pp-inset); margin-bottom: var(--pp-s-3); }
+.pp-reminder { display: flex; align-items: flex-start; gap: var(--pp-s-4); }
+.pp-reminder__body { display: block; flex: 1; min-width: 0; }
+.pp-reminder__title { display: block; font-family: var(--pp-disp); font-size: var(--pp-fs-title);
+                      font-weight: var(--pp-w-bold); line-height: var(--pp-lh-title); }
+.pp-reminder__meta  { font-family: var(--pp-body); display: block; font-size: var(--pp-fs-small); color: var(--pp-meta); margin-top: 2px; }
+
+/* k of 6 sections filled — the two halves sit on a shared baseline */
+.pp-counter { font-family: var(--pp-body); display: flex; align-items: baseline;
+              justify-content: space-between;
+              padding: var(--pp-s-5) var(--pp-inset) var(--pp-s-2); }
+.pp-counter__count { font-size: var(--pp-fs-body); font-weight: var(--pp-w-semi); color: var(--pp-ink); }
+.pp-counter__meta  { font-size: var(--pp-fs-chip); color: var(--pp-meta); }
+
+/* ============================ utilities ================================== */
+/* The only two utilities in the kit. Everything else is a component. */
+
+/* the canvas inset, for a block that sits directly on the paper */
+.pp-inset { padding-left: var(--pp-inset); padding-right: var(--pp-inset); }
+
+/* present to a screen reader, absent to the eye */
+.pp-sr { position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0;
+         overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
+
+/* a name is a name wherever it appears — the serif, italic, bold. Declared here
+   so it wins the tie against the component that sets the slot's size. */
+.pp-is-name { font-family: var(--pp-serif); font-style: italic;
+              font-weight: var(--pp-w-bold); letter-spacing: 0; }
+
+/* ============================ misc blocks ================================ */
+
+.pp-roles { display: flex; flex-wrap: wrap; gap: var(--pp-s-2);
+            padding: 0 var(--pp-inset) var(--pp-s-4); }
+
+.pp-contact { display: flex; align-items: center; gap: var(--pp-s-4); }
+.pp-contact__body { display: block; flex: 1; min-width: 0; }
+.pp-contact__name { font-family: var(--pp-body); display: block; font-size: var(--pp-fs-body); font-weight: var(--pp-w-semi); }
+.pp-contact__meta { font-family: var(--pp-body); display: block; font-size: var(--pp-fs-small); color: var(--pp-meta); margin-top: 2px; }
+
+.pp-doc { display: flex; align-items: center; gap: var(--pp-s-4); }
+/* the thumbnail doubles as a format chip until a real scan is wired in */
+.pp-doc__thumb { width: 48px; height: 48px; flex: 0 0 auto;
+                 border-radius: var(--pp-r-input); background-color: var(--pp-photo);
+                 background-size: cover; background-position: center;
+                 display: flex; align-items: center; justify-content: center;
+                 font-family: var(--pp-body); font-size: 10px;
+                 font-weight: var(--pp-w-bold); letter-spacing: var(--pp-ls-caps);
+                 color: var(--pp-meta); }
+.pp-doc__body { display: block; flex: 1; min-width: 0; }
+.pp-doc__name { font-family: var(--pp-body); display: block; font-size: var(--pp-fs-body); font-weight: var(--pp-w-semi); }
+.pp-doc__meta { font-family: var(--pp-body); display: block; font-size: var(--pp-fs-small); color: var(--pp-meta); margin-top: 2px; }
+
+/* ============================ motion opt-out ============================= */
+@media (prefers-reduced-motion: reduce) {
+  .pp *, .pp *::before, .pp *::after {
+    transition-duration: 1ms !important; animation-duration: 1ms !important;
+    animation-iteration-count: 1 !important; }
+  .pp-skel { animation: none !important; }
+}

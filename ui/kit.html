@@ -1,0 +1,614 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>PetPal — UI Kit</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700&family=Hanken+Grotesk:wght@400;500;600;700&family=EB+Garamond:ital,wght@0,600;1,500;1,700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="kit.css">
+<style>
+  /* showcase chrome only — never part of the kit */
+  body { margin:0; background:#ececec; font-family:"Hanken Grotesk",system-ui,sans-serif; color:#141414; }
+  .doc { max-width:1120px; margin:0 auto; padding:36px 20px 90px; }
+  .doc > header { margin-bottom:34px; }
+  .doc > header h1 { font-family:"Bricolage Grotesque",system-ui,sans-serif; font-size:34px; font-weight:700;
+            line-height:1.1; margin:0 0 10px; }
+  .doc > header h1 em { font-family:"EB Garamond",Georgia,serif; font-style:italic; font-weight:700;
+               font-size:1.25em; line-height:1; color:#e0a400; }
+  .lede { color:#5c5c5c; font-size:15.5px; line-height:1.55; max-width:70ch; margin:0; }
+  .toc { display:flex; flex-wrap:wrap; gap:8px; margin:22px 0 0; }
+  .toc a { font-size:12.5px; font-weight:600; text-decoration:none; color:#141414;
+           background:#fff; border:1px solid #e7e7e7; border-radius:999px; padding:7px 14px; }
+  .toc a:hover { background:#fdf3d3; }
+  h2.sec { font-family:"Bricolage Grotesque",system-ui,sans-serif; font-size:22px; font-weight:700;
+           margin:52px 0 4px; padding-top:14px; border-top:1px solid #dcdcdc; }
+  h2.sec span { font-size:13px; font-weight:600; color:#5c5c5c; margin-left:10px; }
+  .secnote { color:#5c5c5c; font-size:14px; line-height:1.5; margin:0 0 20px; max-width:70ch; }
+  .grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(300px,1fr)); gap:18px; }
+  .spec { background:#fff; border:1px solid #e7e7e7; border-radius:14px; overflow:hidden; }
+  .spec > figcaption { display:flex; align-items:baseline; justify-content:space-between; gap:10px;
+        padding:11px 14px; border-bottom:1px solid #f0f0f0; background:#fafafa; }
+  .spec > figcaption b { font-size:13px; font-weight:700; }
+  .spec > figcaption code { font-size:11.5px; color:#5c5c5c; font-family:ui-monospace,SFMono-Regular,Menlo,monospace; }
+  .spec .demo { padding:18px 16px; display:flex; flex-direction:column; gap:12px; align-items:flex-start; }
+  .spec .demo.row { flex-direction:row; flex-wrap:wrap; align-items:center; }
+  .spec .demo.center { align-items:center; }
+  .spec .demo.tight { gap:8px; }
+  .st { font-size:10.5px; font-weight:700; letter-spacing:.06em; text-transform:uppercase;
+        color:#8a6b00; background:#fdf3d3; border-radius:5px; padding:3px 7px; }
+  .onwhite { background:#fff; }
+  .frame { width:372px; background:#fff; border-radius:16px; overflow:hidden;
+           box-shadow:0 10px 30px -20px rgba(20,20,20,.4); }
+  .frames { display:flex; gap:22px; flex-wrap:wrap; }
+  .note { background:#fdf3d3; border-radius:12px; padding:14px 16px; font-size:13.5px;
+          line-height:1.55; margin:0 0 22px; max-width:74ch; }
+  .note b { font-weight:700; }
+</style>
+</head>
+<body>
+<div class="doc">
+
+<header>
+  <h1>PetPal UI Kit <em>The Signal</em></h1>
+  <p class="lede">Every component in <code>kit.css</code>, with each state it actually has.
+  Copy is taken from <a href="../research/microcopy.md">microcopy.md</a>; values are the ones
+  measured on the styled screens. Components that exist only as grey wireframes are built
+  from their own structure and painted in the established language — nothing here is invented.</p>
+  <nav class="toc">
+    <a href="#shell">Shell</a><a href="#nav">Navigation</a><a href="#profiles">Profiles</a>
+    <a href="#forms">Forms</a><a href="#reminders">Reminders</a><a href="#cards">Cards</a>
+    <a href="#states">States</a>
+  </nav>
+</header>
+
+<!-- ==================== SHELL ==================== -->
+<h2 class="sec" id="shell">Shared shell <span>two-layer header + tab bar</span></h2>
+<p class="secnote">The frame every screen sits in, as markup — see
+<a href="shell.html">shell.html</a>. Layer 1 says where you are; layer 2 carries the subject.</p>
+<div class="frames">
+
+  <div class="frame">
+    <div class="pp"><div class="pp-shell">
+      <header class="pp-appbar">
+        <button class="pp-appbar__back" aria-label="Back to your pets">←</button>
+        <span class="pp-appbar__title pp-is-name">Miso</span>
+        <button class="pp-appbar__action">Edit</button>
+      </header>
+      <div class="pp-hero"><div class="pp-hero__photo"><figure class="pp-avatar pp-avatar--ring" style="background-image:url(../visuals/pet-dog-miso.jpg)" aria-label="Miso"></figure></div></div>
+      <div class="pp-arch">
+        <div class="pp-arch__namerow"><h1 class="pp-arch__name">Miso</h1>
+          <button class="pp-iconbtn pp-iconbtn--share" aria-label="Share Miso's card"></button></div>
+        <p class="pp-arch__meta">Dog · Border Terrier · Female</p>
+        <span class="pp-tag">Up to date</span>
+      </div>
+      <main class="pp-main">
+        <div class="pp-counter"><span>Card completeness</span><span class="pp-counter__count">6 of 6 sections filled</span></div>
+        <div class="pp-stack">
+          <div class="pp-card pp-card--flush">
+            <a class="pp-row" href="#"><span class="pp-row__tile pp-row__tile--health"></span>
+              <span class="pp-row__body"><span class="pp-row__title">Health &amp; jabs <i class="pp-check"></i></span>
+              <span class="pp-row__meta">6 records · Updated 3 days ago</span></span>
+              <span class="pp-row__chev">→</span></a>
+          </div>
+          <div class="pp-card pp-card--flush">
+            <a class="pp-row" href="#"><span class="pp-row__tile pp-row__tile--docs"></span>
+              <span class="pp-row__body"><span class="pp-row__title">Documents &amp; passport <i class="pp-check"></i></span>
+              <span class="pp-row__meta">4 documents · Updated 1 week ago</span></span>
+              <span class="pp-row__chev">→</span></a>
+          </div>
+        </div>
+      </main>
+      <nav class="pp-tabbar" aria-label="Main">
+        <a class="pp-tab pp-tab--pets" href="#" aria-current="page"><span class="pp-tab__icon"></span>Pets</a>
+        <a class="pp-tab pp-tab--reminders" href="#"><span class="pp-tab__icon"></span>Reminders</a>
+        <a class="pp-tab pp-tab--share" href="#"><span class="pp-tab__icon"></span>Share</a>
+        <a class="pp-tab pp-tab--owner" href="#"><span class="pp-tab__icon"></span>Owner</a>
+      </nav>
+    </div></div>
+  </div>
+
+  <div class="frame">
+    <div class="pp"><div class="pp-shell">
+      <header class="pp-appbar">
+        <span class="pp-appbar__brand">PetPal</span>
+        <a class="pp-appbar__action" href="#">To the app</a>
+      </header>
+      <div class="pp-hero pp-hero--recipient"><div class="pp-hero__photo"><figure class="pp-avatar pp-avatar--ring" style="background-image:url(../visuals/pet-dog-miso.jpg)" aria-label="Miso"></figure></div></div>
+      <div class="pp-arch pp-arch--recipient">
+        <div class="pp-arch__namerow"><h1 class="pp-arch__name">Miso</h1></div>
+        <p class="pp-arch__meta">Dog · Border Terrier · Female</p>
+      </div>
+      <main class="pp-main">
+        <div class="pp-stack">
+          <div class="pp-card pp-card--flush">
+            <div class="pp-row"><span class="pp-row__tile pp-row__tile--personality"></span>
+              <span class="pp-row__body"><span class="pp-row__title">Personality &amp; care <i class="pp-check"></i></span>
+              <span class="pp-row__meta">Filled · Updated 5 days ago</span></span>
+              <span class="pp-row__chev">↓</span></div>
+          </div>
+          <div class="pp-card pp-card--flush">
+            <div class="pp-row"><span class="pp-row__tile pp-row__tile--vet"></span>
+              <span class="pp-row__body"><span class="pp-row__title">Vet contact <i class="pp-check"></i></span>
+              <span class="pp-row__meta">Tierklinik am Stadtpark</span></span>
+              <span class="pp-row__chev">↓</span></div>
+          </div>
+        </div>
+      </main>
+      <footer class="pp-sharedfoot">Shared by Eva · Read-only</footer>
+    </div></div>
+  </div>
+</div>
+
+<!-- ==================== NAVIGATION ==================== -->
+<h2 class="sec" id="nav">Navigation</h2>
+<p class="secnote">Amber appears here and nowhere else: the band, and the 24×3px marker over
+the active tab.</p>
+<div class="grid">
+
+  <figure class="spec"><figcaption><b>Tab bar</b><code>.pp-tabbar / .pp-tab</code></figcaption>
+    <div class="demo" style="padding:0">
+      <div class="pp" style="width:100%">
+        <nav class="pp-tabbar">
+          <a class="pp-tab pp-tab--pets" href="#" aria-current="page"><span class="pp-tab__icon"></span>Pets</a>
+          <a class="pp-tab pp-tab--reminders" href="#"><span class="pp-tab__icon"></span>Reminders</a>
+          <a class="pp-tab pp-tab--share" href="#"><span class="pp-tab__icon"></span>Share</a>
+          <a class="pp-tab pp-tab--owner" href="#"><span class="pp-tab__icon"></span>Owner</a>
+        </nav>
+        <nav class="pp-tabbar">
+          <a class="pp-tab pp-tab--pets" href="#"><span class="pp-tab__icon"></span>Pets</a>
+          <a class="pp-tab pp-tab--reminders" href="#"><span class="pp-tab__icon"></span>Reminders</a>
+          <a class="pp-tab pp-tab--share" href="#" aria-current="page"><span class="pp-tab__icon"></span>Share</a>
+          <a class="pp-tab pp-tab--owner" href="#"><span class="pp-tab__icon"></span>Owner</a>
+        </nav>
+      </div>
+    </div>
+  </figure>
+
+  <figure class="spec"><figcaption><b>App bar</b><code>.pp-appbar</code></figcaption>
+    <div class="demo" style="padding:0">
+      <div class="pp" style="width:100%">
+        <header class="pp-appbar"><button class="pp-appbar__back">←</button>
+          <span class="pp-appbar__title pp-is-name">Miso</span>
+          <button class="pp-appbar__action">Edit</button></header>
+        <header class="pp-appbar"><button class="pp-appbar__back">←</button>
+          <span class="pp-appbar__title">What's due</span>
+          <button class="pp-appbar__action">Settings</button></header>
+        <header class="pp-appbar"><span class="pp-appbar__brand">PetPal</span>
+          <a class="pp-appbar__action" href="#">To the app</a></header>
+      </div>
+    </div>
+  </figure>
+
+  <figure class="spec"><figcaption><b>Pet toggle</b><code>.pp-seg</code></figcaption>
+    <div class="demo onwhite">
+      <span class="st">Miso active</span>
+      <div class="pp" style="width:100%"><div class="pp-seg">
+        <a class="pp-seg__item" href="#" aria-current="page"><span class="pp-avatar pp-avatar--xs" style="background-image:url(../visuals/pet-dog-miso.jpg)"></span> Miso</a>
+        <a class="pp-seg__item" href="#"><span class="pp-avatar pp-avatar--xs" style="background-image:url(../visuals/pet-cat-cheetah.jpg)"></span> Cheetah</a>
+      </div></div>
+      <span class="st">Cheetah active</span>
+      <div class="pp" style="width:100%"><div class="pp-seg">
+        <a class="pp-seg__item" href="#"><span class="pp-avatar pp-avatar--xs" style="background-image:url(../visuals/pet-dog-miso.jpg)"></span> Miso</a>
+        <a class="pp-seg__item" href="#" aria-current="page"><span class="pp-avatar pp-avatar--xs" style="background-image:url(../visuals/pet-cat-cheetah.jpg)"></span> Cheetah</a>
+      </div></div>
+    </div>
+  </figure>
+
+  <figure class="spec"><figcaption><b>Pet filter (3-up)</b><code>.pp-seg--filter</code></figcaption>
+    <div class="demo onwhite">
+      <span class="st">All pets</span>
+      <div class="pp" style="width:100%"><nav class="pp-seg pp-seg--filter" aria-label="Filter by pet">
+        <button class="pp-seg__item" aria-current="page">All pets</button>
+        <button class="pp-seg__item">Miso</button>
+        <button class="pp-seg__item">Cheetah</button>
+      </nav></div>
+      <span class="st">Miso — middle stays square</span>
+      <div class="pp" style="width:100%"><nav class="pp-seg pp-seg--filter" aria-label="Filter by pet">
+        <button class="pp-seg__item">All pets</button>
+        <button class="pp-seg__item" aria-current="page">Miso</button>
+        <button class="pp-seg__item">Cheetah</button>
+      </nav></div>
+      <span class="st">Cheetah</span>
+      <div class="pp" style="width:100%"><nav class="pp-seg pp-seg--filter" aria-label="Filter by pet">
+        <button class="pp-seg__item">All pets</button>
+        <button class="pp-seg__item">Miso</button>
+        <button class="pp-seg__item" aria-current="page">Cheetah</button>
+      </nav></div>
+    </div>
+  </figure>
+
+  <figure class="spec"><figcaption><b>Search</b><code>.pp-search</code></figcaption>
+    <div class="demo onwhite"><div class="pp" style="width:100%">
+      <input class="pp-search" type="search" aria-label="Search"
+             placeholder="Search sections, records, documents…">
+    </div></div>
+  </figure>
+
+  <figure class="spec"><figcaption><b>Add button</b><code>.pp-fab</code></figcaption>
+    <div class="demo center onwhite" style="min-height:110px;justify-content:center">
+      <button class="pp-fab" style="position:static" aria-label="Add a pet">+</button>
+    </div>
+  </figure>
+
+  <figure class="spec"><figcaption><b>Shared footer</b><code>.pp-sharedfoot</code></figcaption>
+    <div class="demo" style="padding:0"><div class="pp" style="width:100%">
+      <footer class="pp-sharedfoot">Shared by Eva · Read-only</footer>
+    </div></div>
+  </figure>
+</div>
+
+<!-- ==================== PROFILES ==================== -->
+<h2 class="sec" id="profiles">Profiles</h2>
+<p class="secnote">Seven components need a photograph. Where one hasn't loaded, the slot shows
+its photo ground — never a grey stand-in the reader is left looking at.</p>
+<div class="grid">
+
+  <figure class="spec"><figcaption><b>Avatar</b><code>.pp-avatar --xs…--xl</code></figcaption>
+    <div class="demo row onwhite">
+      <span class="pp-avatar pp-avatar--xs" style="background-image:url(../visuals/pet-dog-miso.jpg)"></span>
+      <span class="pp-avatar pp-avatar--sm" style="background-image:url(../visuals/pet-cat-cheetah.jpg)"></span>
+      <span class="pp-avatar pp-avatar--md" style="background-image:url(../visuals/pet-dog-1.jpg)"></span>
+      <span class="pp-avatar pp-avatar--lg" style="background-image:url(../visuals/pet-cat-1.jpg)"></span>
+      <span class="pp-avatar" style="background-image:url(../visuals/pet-dog-2.jpg)"></span>
+    </div>
+    <div class="demo row onwhite" style="border-top:1px solid #f0f0f0">
+      <span class="st">with ring</span>
+      <span class="pp-avatar pp-avatar--md pp-avatar--ring" style="background-image:url(../visuals/pet-cat-2.jpg)"></span>
+      <span class="st">awaiting photo</span>
+      <span class="pp-avatar pp-avatar--md"></span>
+    </div>
+  </figure>
+
+  <figure class="spec"><figcaption><b>Arch hero</b><code>.pp-hero + .pp-arch</code></figcaption>
+    <div class="demo" style="padding:0"><div class="pp" style="width:100%">
+      <div class="pp-hero"><div class="pp-hero__photo"><figure class="pp-avatar pp-avatar--ring" style="background-image:url(../visuals/pet-cat-cheetah.jpg)"></figure></div></div>
+      <div class="pp-arch">
+        <div class="pp-arch__namerow"><h3 class="pp-arch__name">Cheetah</h3></div>
+        <p class="pp-arch__meta">Cat · Tabby stray · Female</p>
+        <span class="pp-tag">Up to date</span>
+      </div>
+    </div></div>
+  </figure>
+
+  <figure class="spec"><figcaption><b>Contact row</b><code>.pp-contact</code></figcaption>
+    <div class="demo onwhite"><div class="pp" style="width:100%">
+      <div class="pp-card"><div class="pp-contact">
+        <span class="pp-avatar pp-avatar--sm">TS</span>
+        <span class="pp-contact__body"><span class="pp-contact__name">Tierklinik am Stadtpark</span>
+        <span class="pp-contact__meta">Primary vet · Berlin</span></span>
+        <button class="pp-btn pp-btn--sm pp-btn--secondary">Call</button>
+      </div></div>
+    </div></div>
+  </figure>
+
+  <figure class="spec"><figcaption><b>Role badges</b><code>.pp-roles</code></figcaption>
+    <div class="demo onwhite"><div class="pp" style="width:100%">
+      <div class="pp-roles" style="padding:0">
+        <span class="pp-chip pp-chip--info">Sitter</span>
+        <span class="pp-chip pp-chip--success">Active</span>
+        <span class="pp-chip">Read-only</span>
+      </div>
+    </div></div>
+  </figure>
+</div>
+
+<!-- ==================== FORMS ==================== -->
+<h2 class="sec" id="forms">Forms</h2>
+<p class="secnote">One button API replaces six drifting names. Every control carries a
+programmatic label and clears the 44px tap floor.</p>
+<div class="grid">
+
+  <figure class="spec"><figcaption><b>Action button</b><code>.pp-btn</code></figcaption>
+    <div class="demo row onwhite">
+      <button class="pp-btn">Share Miso's card</button>
+      <button class="pp-btn pp-btn--secondary">Cancel</button>
+      <button class="pp-btn pp-btn--danger">Delete</button>
+      <button class="pp-btn pp-btn--ghost">Preview as sitter</button>
+      <button class="pp-btn" disabled>Save record</button>
+      <button class="pp-btn pp-btn--sm">Add a jab</button>
+      <button class="pp-btn pp-btn--link">Show QR code</button>
+    </div>
+    <div class="demo onwhite" style="border-top:1px solid #f0f0f0">
+      <span class="st">full width</span>
+      <button class="pp-btn pp-btn--full">Create share link</button>
+    </div>
+  </figure>
+
+  <figure class="spec"><figcaption><b>Round icon button</b><code>.pp-iconbtn</code></figcaption>
+    <div class="demo row center onwhite" style="min-height:90px">
+      <button class="pp-iconbtn pp-iconbtn--edit" aria-label="Edit Miso's photo"></button>
+      <button class="pp-iconbtn pp-iconbtn--share" aria-label="Share Miso's card"></button>
+    </div>
+  </figure>
+
+  <figure class="spec"><figcaption><b>Form field</b><code>.pp-field / .pp-input</code></figcaption>
+    <div class="demo onwhite"><div class="pp" style="width:100%">
+      <label class="pp-field" for="k-vax">
+        <span class="pp-field__label">Vaccine name <span class="pp-field__req">*</span></span>
+        <input class="pp-input" id="k-vax" placeholder="e.g. Rabies, DHPP, Leptospirosis">
+        <span class="pp-help">Use the name printed on the certificate.</span>
+      </label>
+      <label class="pp-field" for="k-mail">
+        <span class="pp-field__label">Email</span>
+        <input class="pp-input" id="k-mail" type="email" value="eva@example.com">
+      </label>
+      <label class="pp-field" for="k-dis">
+        <span class="pp-field__label">Microchip</span>
+        <input class="pp-input" id="k-dis" value="276 098 106 412 345" disabled>
+      </label>
+    </div></div>
+  </figure>
+
+  <figure class="spec"><figcaption><b>Select &amp; textarea</b><code>.pp-select / .pp-textarea</code></figcaption>
+    <div class="demo onwhite"><div class="pp" style="width:100%">
+      <label class="pp-field" for="k-species">
+        <span class="pp-field__label">Species <span class="pp-field__req">*</span></span>
+        <select class="pp-select" id="k-species">
+          <option>Dog</option><option>Cat</option><option>Rabbit</option>
+          <option>Guinea pig</option><option>Bird</option>
+        </select>
+      </label>
+      <label class="pp-field" for="k-notes" style="margin-bottom:0">
+        <span class="pp-field__label">Notes</span>
+        <textarea class="pp-textarea" id="k-notes"
+          placeholder="Anything a sitter should know">Belly rubs, fetch, rolling in grass. Dislikes the vacuum cleaner.</textarea>
+      </label>
+    </div></div>
+  </figure>
+
+  <figure class="spec"><figcaption><b>Toggle</b><code>.pp-switch</code></figcaption>
+    <div class="demo onwhite"><div class="pp" style="width:100%">
+      <div class="pp-switchrow">
+        <span><span class="pp-switchrow__label">Email reminders</span>
+        <span class="pp-switchrow__desc">A note before anything falls due.</span></span>
+        <button class="pp-switch" role="switch" aria-checked="true" aria-label="Email reminders"></button>
+      </div>
+      <div class="pp-switchrow" style="border-top:1px solid var(--pp-line)">
+        <span><span class="pp-switchrow__label">Push notifications</span>
+        <span class="pp-switchrow__desc">Off — you'll only get email.</span></span>
+        <button class="pp-switch" role="switch" aria-checked="false" aria-label="Push notifications"></button>
+      </div>
+    </div></div>
+  </figure>
+
+  <figure class="spec"><figcaption><b>Choice card</b><code>.pp-choice</code></figcaption>
+    <div class="demo onwhite"><div class="pp" style="width:100%;display:flex;flex-direction:column;gap:10px">
+      <button class="pp-choice" role="radio" aria-checked="true">
+        <span class="pp-choice__body"><span class="pp-choice__title">Full card</span>
+        <span class="pp-choice__desc">Everything except documents you mark private.</span></span>
+        <span class="pp-choice__radio"></span></button>
+      <button class="pp-choice" role="radio" aria-checked="false">
+        <span class="pp-choice__body"><span class="pp-choice__title">Care and emergency only</span>
+        <span class="pp-choice__desc">Personality, feeding, vet contact.</span></span>
+        <span class="pp-choice__radio"></span></button>
+    </div></div>
+  </figure>
+
+  <figure class="spec"><figcaption><b>Form actions</b><code>.pp-actions</code></figcaption>
+    <div class="demo onwhite"><div class="pp" style="width:100%">
+      <div class="pp-actions" style="padding:0;margin-top:0">
+        <button class="pp-btn pp-btn--secondary">Cancel</button>
+        <button class="pp-btn">Save changes</button>
+      </div>
+    </div></div>
+  </figure>
+
+  <figure class="spec"><figcaption><b>Danger zone</b><code>.pp-danger</code></figcaption>
+    <div class="demo onwhite"><div class="pp" style="width:100%">
+      <div class="pp-danger" style="margin-top:0">
+        <p class="pp-danger__label">Danger zone</p>
+        <p class="pp-help" style="margin:0 0 12px">Removing Miso deletes every record and document. It can't be undone.</p>
+        <button class="pp-btn pp-btn--danger pp-btn--full">Delete Miso</button>
+      </div>
+    </div></div>
+  </figure>
+</div>
+
+<!-- ==================== REMINDERS ==================== -->
+<h2 class="sec" id="reminders">Reminders</h2>
+<p class="secnote">Status colour speaks only about status. Due-soon bronze is deliberately not
+the signal amber, so a warning is never mistaken for an action.</p>
+<div class="grid">
+
+  <figure class="spec"><figcaption><b>Status chip</b><code>.pp-chip</code></figcaption>
+    <div class="demo row onwhite">
+      <span class="pp-chip pp-chip--success">Up to date</span>
+      <span class="pp-chip pp-chip--warning">Due soon</span>
+      <span class="pp-chip pp-chip--danger">Overdue</span>
+      <span class="pp-chip pp-chip--info">Upcoming</span>
+      <span class="pp-chip">Confirmed</span>
+    </div>
+  </figure>
+
+  <figure class="spec"><figcaption><b>Up-to-date tag</b><code>.pp-tag / .pp-check</code></figcaption>
+    <div class="demo row center onwhite" style="min-height:90px">
+      <span class="pp-tag">Up to date</span>
+      <span class="pp-check" title="Verified"></span>
+    </div>
+  </figure>
+
+  <figure class="spec"><figcaption><b>Reminder card</b><code>.pp-reminder</code></figcaption>
+    <div class="demo onwhite"><div class="pp" style="width:100%;display:flex;flex-direction:column;gap:10px">
+      <p class="pp-urgency" style="padding:0;margin:0">Overdue</p>
+      <div class="pp-card"><div class="pp-reminder">
+        <span class="pp-reminder__body"><span class="pp-reminder__title">Rabies booster — Miso</span>
+        <span class="pp-reminder__meta">Due 14 Mar</span></span>
+        <span class="pp-chip pp-chip--danger">Overdue</span></div></div>
+      <p class="pp-urgency" style="padding:0;margin:6px 0 0">Due this month</p>
+      <div class="pp-card"><div class="pp-reminder">
+        <span class="pp-reminder__body"><span class="pp-reminder__title">Insurance renewal — Miso</span>
+        <span class="pp-reminder__meta">Due 28 Mar</span></span>
+        <span class="pp-chip pp-chip--warning">Due soon</span></div></div>
+      <p class="pp-urgency" style="padding:0;margin:6px 0 0">Coming up</p>
+      <div class="pp-card"><div class="pp-reminder">
+        <span class="pp-reminder__body"><span class="pp-reminder__title">Annual checkup — Miso</span>
+        <span class="pp-reminder__meta">Due 11 Jun</span></span>
+        <span class="pp-chip pp-chip--info">Upcoming</span></div></div>
+    </div></div>
+  </figure>
+
+  <figure class="spec"><figcaption><b>Fill counter</b><code>.pp-counter</code></figcaption>
+    <div class="demo onwhite"><div class="pp" style="width:100%">
+      <div class="pp-counter" style="padding:0"><span>Card completeness</span>
+        <span class="pp-counter__count">6 of 6 sections filled</span></div>
+      <div class="pp-counter" style="padding:8px 0 0"><span>Card completeness</span>
+        <span class="pp-counter__count">2 of 6 sections filled</span></div>
+    </div></div>
+  </figure>
+</div>
+
+<!-- ==================== CARDS ==================== -->
+<h2 class="sec" id="cards">Cards</h2>
+<p class="secnote">The listing row is the most repeated component in the product — a 36px icon
+tile, a title, and a meta line that must restate its own font or it inherits the heading's 700.</p>
+<div class="grid">
+
+  <figure class="spec"><figcaption><b>Listing card</b><code>.pp-card + .pp-row</code></figcaption>
+    <div class="demo onwhite"><div class="pp" style="width:100%;display:flex;flex-direction:column;gap:10px">
+      <div class="pp-card pp-card--flush">
+        <a class="pp-row" href="#"><span class="pp-row__tile pp-row__tile--personality"></span>
+          <span class="pp-row__body"><span class="pp-row__title">Personality &amp; care <i class="pp-check"></i></span>
+          <span class="pp-row__meta">Filled · Updated 5 days ago</span></span>
+          <span class="pp-row__chev">→</span></a>
+      </div>
+      <div class="pp-card pp-card--flush">
+        <a class="pp-row" href="#"><span class="pp-row__tile pp-row__tile--health"></span>
+          <span class="pp-row__body"><span class="pp-row__title">Health &amp; jabs</span>
+          <span class="pp-row__meta">No health records yet</span></span>
+          <span class="pp-row__chev">→</span></a>
+      </div>
+    </div></div>
+  </figure>
+
+  <figure class="spec"><figcaption><b>Detail rows</b><code>.pp-detail__label / __value</code></figcaption>
+    <div class="demo onwhite"><div class="pp" style="width:100%"><div class="pp-card">
+      <p class="pp-detail__label" style="margin-top:0">Favourite food</p>
+      <p class="pp-detail__value">Royal Canin Maxi Adult, 350 g twice daily</p>
+      <p class="pp-detail__label">Likes</p>
+      <p class="pp-detail__value">Belly rubs, fetch, rolling in grass</p>
+      <p class="pp-detail__label">Dislikes</p>
+      <p class="pp-detail__value">Loud noises, the vacuum cleaner</p>
+    </div></div></div>
+  </figure>
+
+  <figure class="spec"><figcaption><b>Document card</b><code>.pp-doc</code></figcaption>
+    <div class="demo onwhite"><div class="pp" style="width:100%"><div class="pp-card">
+      <div class="pp-doc"><span class="pp-doc__thumb"></span>
+        <span class="pp-doc__body"><span class="pp-doc__name">EU pet passport</span>
+        <span class="pp-doc__meta">PDF · Added 12 Jan</span></span>
+        <span class="pp-chip pp-chip--success">Valid</span></div>
+    </div></div></div>
+  </figure>
+
+  <figure class="spec"><figcaption><b>Illustration tile</b><code>.pp-illus</code></figcaption>
+    <div class="demo row center onwhite">
+      <span class="pp-illus pp-illus--health" style="margin:0"></span>
+      <span class="pp-illus pp-illus--docs" style="margin:0"></span>
+    </div>
+  </figure>
+</div>
+
+<!-- ==================== STATES ==================== -->
+<h2 class="sec" id="states">States <span>empty · error · loading</span></h2>
+<p class="secnote">A missing image is the amber-tint illustration tile, never a grey fill.
+Error copy names what failed and what to do — no apology, and never “Something went wrong”.</p>
+<div class="grid">
+
+  <figure class="spec"><figcaption><b>Empty state</b><code>.pp-empty</code></figcaption>
+    <div class="demo onwhite"><div class="pp" style="width:100%">
+      <div class="pp-empty" style="padding-top:8px">
+        <span class="pp-illus pp-illus--personality"></span>
+        <h3 class="pp-empty__title">No pets yet</h3>
+        <p class="pp-empty__body">Add your first pet to keep their health, documents, and care info in one place.</p>
+        <button class="pp-btn">Add a pet</button>
+      </div>
+    </div></div>
+  </figure>
+
+  <figure class="spec"><figcaption><b>Empty — section</b><code>.pp-empty</code></figcaption>
+    <div class="demo onwhite"><div class="pp" style="width:100%">
+      <div class="pp-empty" style="padding-top:8px">
+        <span class="pp-illus pp-illus--docs"></span>
+        <h3 class="pp-empty__title">No documents yet</h3>
+        <p class="pp-empty__body">Upload Miso's first document — pet passport, microchip registration, insurance policy, or vaccination certificate.</p>
+        <button class="pp-btn">Upload first document</button>
+      </div>
+    </div></div>
+  </figure>
+
+  <figure class="spec"><figcaption><b>Error banner</b><code>.pp-banner</code></figcaption>
+    <div class="demo onwhite"><div class="pp" style="width:100%">
+      <div class="pp-banner"><span aria-hidden="true">!</span>
+        <span>Couldn't save this record. Check your connection and try again.
+        <span class="pp-banner__detail">Your text is still here.</span></span></div>
+      <label class="pp-field" for="k-err" style="margin-bottom:0">
+        <span class="pp-field__label">Vaccine name <span class="pp-field__req">*</span></span>
+        <input class="pp-input" id="k-err" value="Rabies">
+      </label>
+    </div></div>
+  </figure>
+
+  <figure class="spec"><figcaption><b>Error state</b><code>.pp-error</code></figcaption>
+    <div class="demo onwhite"><div class="pp" style="width:100%">
+      <div class="pp-error" style="padding-top:8px">
+        <span class="pp-illus pp-illus--health"></span>
+        <h3 class="pp-error__title">Couldn't load Miso's health records</h3>
+        <p class="pp-error__body">Check your connection and try again.</p>
+        <button class="pp-btn">Try again</button>
+      </div>
+    </div></div>
+  </figure>
+
+  <figure class="spec"><figcaption><b>Error — expired link</b><code>.pp-error</code></figcaption>
+    <div class="demo onwhite"><div class="pp" style="width:100%">
+      <div class="pp-error" style="padding-top:8px">
+        <span class="pp-illus pp-illus--vet"></span>
+        <h3 class="pp-error__title">This link has expired</h3>
+        <p class="pp-error__body">Ask the owner for a new link. If urgent, call the vet or owner directly.</p>
+      </div>
+    </div></div>
+  </figure>
+
+  <figure class="spec"><figcaption><b>Confirm sheet</b><code>.pp-modal / .pp-sheet</code></figcaption>
+    <div class="demo onwhite"><div class="pp" style="width:100%">
+      <div class="pp-sheet" style="box-shadow:none;padding-top:0">
+        <h3 class="pp-sheet__title">Delete account?</h3>
+        <p class="pp-sheet__body">This permanently removes your account, Miso's and Cheetah's cards, and every share link. It can't be undone.</p>
+        <div class="pp-sheet__actions">
+          <button class="pp-btn pp-btn--secondary">Cancel</button>
+          <button class="pp-btn pp-btn--danger">Delete account</button>
+        </div>
+      </div>
+    </div></div>
+  </figure>
+
+  <figure class="spec"><figcaption><b>Loading skeleton</b><code>.pp-skel</code></figcaption>
+    <div class="demo onwhite"><div class="pp" style="width:100%">
+      <div class="pp-card pp-card--flush">
+        <div class="pp-skel-row"><span class="pp-skel pp-skel--tile"></span>
+          <span class="pp-skel-row__body"><span class="pp-skel pp-skel--title"></span>
+          <span class="pp-skel pp-skel--line pp-skel--short"></span></span></div>
+      </div>
+      <div class="pp-card pp-card--flush" style="margin-top:10px">
+        <div class="pp-skel-row"><span class="pp-skel pp-skel--tile"></span>
+          <span class="pp-skel-row__body"><span class="pp-skel pp-skel--title"></span>
+          <span class="pp-skel pp-skel--line pp-skel--short"></span></span></div>
+      </div>
+      <p class="pp-loading-label">Loading Miso's care profile…</p>
+    </div></div>
+  </figure>
+
+  <figure class="spec"><figcaption><b>Loading — hero</b><code>.pp-skel--circle</code></figcaption>
+    <div class="demo center onwhite"><div class="pp" style="width:100%;text-align:center">
+      <span class="pp-skel pp-skel--circle" style="display:inline-block"></span>
+      <span class="pp-skel pp-skel--title" style="display:block;margin:14px auto 8px;width:50%;height:24px"></span>
+      <span class="pp-skel pp-skel--line" style="display:block;margin:0 auto;width:70%"></span>
+    </div></div>
+  </figure>
+</div>
+
+</div>
+</body>
+</html>
