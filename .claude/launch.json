@@ -1,0 +1,11 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "mig",
+      "runtimeExecutable": "python3",
+      "runtimeArgs": ["-m", "http.server", "8181", "--directory", "/private/tmp/claude-501/-Users-anaferens-Documents-Claude/fd19a8ae-ae48-408b-9f3c-b80590434a20/scratchpad/mig"],
+      "port": 8181
+    }
+  ]
+}

@@ -38,15 +38,7 @@ Because a handful of strings (e.g. `← Dossier` ×46) repeat across dozens of s
 | all | bottom nav | What's due | nav item | |
 | all | bottom nav | Share | nav item | |
 | all | bottom nav | Owner | nav item | |
-| dossier, sections | header (back) | ← Dossier | button | 🟠 back-label — pattern is `← [destination]` (see §9) |
-| My-Pets children | header (back) | ← My Pets | button | 🟠 |
-| add/edit forms | header (back) | ← Cancel | button | 🟠 **breaks the pattern** — an action, not a destination |
-| Share children | header (back) | ← Share | button | 🟠 |
-| Who-has-access child | header (back) | ← Who has access | button | 🟠 |
-| Whats-due child | header (back) | ← What's due | button | 🟠 |
-| Document-view | header (back) | ← Documents | button | 🟠 |
-| Emergency child | header (back) | ← Emergency info | button | 🟠 |
-| Shared-pet-view child | header (back) | ← Miso's profile | link | 🟠 + 🔴 (see §11-A) |
+| all screens | header (back) | `←` (arrow only) | button | ✅ resolved 2026-08-04 — destination moved to `aria-label`, e.g. `aria-label="Back to Miso's card"` (see §9) |
 | various | header | Edit | button | 🟠 vs `Edit →`, `Edit pet details` |
 | Whats-due | header | Settings | button | |
 
@@ -271,9 +263,25 @@ Role: `Carer (read-only) · Vet (can add records) · Co-owner (full edit)`. Sex:
 
 ---
 
-## 9 · Consistency of the back-button pattern
+## 9 · The back control — **arrow only** *(rule changed 2026-08-04)*
 
-Header back-buttons mostly follow **`← [destination]`**: `← Dossier`, `← My Pets`, `← Share`, `← Who has access`, `← What's due`, `← Documents`, `← Emergency info`, `← Miso's profile`. **Exception:** `← Cancel` (add/edit forms) uses an *action* word in the destination slot. 🟠
+**On mobile the app bar back control is a bare `←` with no destination label.** No `← Dossier`, no `← My Pets`, no `← Cancel`. This holds on every screen, add/edit forms included.
+
+**Why the pattern changed.** The app bar is a single 48px row carrying back, title and action. On a 372px canvas a destination label competes with the screen title for that strip and shoves the title off-centre — `← Miso's card` alone ate 45 screens' worth of header space. The arrow is a universally understood affordance at this size, and the title directly beside it already names where you are; the label was restating a place the user can read.
+
+**The destination is not lost — it moves to `aria-label`:**
+
+```html
+<button class="pp-appbar__back" aria-label="Back to Miso's card">←</button>
+```
+
+Screen-reader users keep the destination they'd otherwise lose; sighted users get the space back. **An arrow with no `aria-label` is a defect**, not a shorter version of this rule.
+
+**Applied across all 123 wireframes** — 83 labels stripped: `← Miso's card` (45), `← Cancel` (15), `← Your pets` (11), and 12 across Share / Who has access / Emergency info / What's due / Documents.
+
+**`← Cancel` is gone rather than renamed.** A form's escape route is the Cancel button in its own action row, where it sits beside Save and reads as a choice. In the app bar it was an action masquerading as a destination — the inconsistency this section used to flag 🟠 is now resolved by deleting the case, not by relabelling it.
+
+*Desktop is a later phase and may reinstate a labelled back control, where the header is wide enough to carry one.*
 
 `section` / `block`: **checked — consistent.** Product copy only ever says "section" (`View in section`, `Search sections`, `k of 6 sections filled`). "block" appears **only** inside user-authored walking-routine sample text ("around the block"), never as UI. ✅
 
@@ -321,7 +329,7 @@ These are demo values standing in for what a real owner would type. They must **
 - **Delete:** `Delete` / `Delete this note` / `Delete this record` / `Delete profile` / `Permanently delete Miso`.
 - **Preview sharing:** `Preview as sitter` vs `See what your sitter sees`.
 - **Share again:** `Share with someone new` vs `Share with a pet sitter` vs `Re-share`.
-- **Back:** `← [destination]` everywhere **except** `← Cancel`.
+- ~~**Back:** `← [destination]` everywhere **except** `← Cancel`.~~ ✅ **resolved 2026-08-04** — the back control is now a bare `←` on every screen, with the destination in `aria-label`. The `← Cancel` inconsistency is gone because the case is gone (see §9).
 - **Edit:** `Edit` vs `Edit →` vs `Edit pet details`.
 
 ### C. 🟡 AI clichés & over-cheerful tone

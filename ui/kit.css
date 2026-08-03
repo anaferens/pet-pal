@@ -109,7 +109,7 @@
   --pp-appbar-h:   48px;   /* the bar's floor; 44px tap targets take it to 68 */
   --pp-appbar-h-sm:48px;   /* the compact bar on Me                        */
   --pp-hero-pt:    22px;   /* 22 + 88 photo + 50 = the 160px band            */
-  --pp-hero-pb:    50px;
+  --pp-hero-pb:    45px;   /* = arch rise 94 - photo 98/2, which is what keeps the 50/50 */
   --pp-arch-rise:  94px;   /* constant on every screen; the band flexes      */
   --pp-arch-pt:    70px;   /* clears the photo that bisects the arch line    */
   --pp-tabbar-h:   60px;  /* measured; the bar itself is content-driven, this is
@@ -134,6 +134,7 @@
   --pp-i-share-on:    url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxZW0iIGhlaWdodD0iMWVtIiB2aWV3Qm94PSIwIDAgMjQgMjQiPjxwYXRoIGZpbGw9IiMxNDE0MTQiIGZpbGwtcnVsZT0iZXZlbm9kZCIgZD0iTTEzLjgwMyA1LjMzM2MwLTEuODQgMS41LTMuMzMzIDMuMzQ4LTMuMzMzQTMuMzQgMy4zNCAwIDAgMSAyMC41IDUuMzMzYzAgMS44NDEtMS41IDMuMzM0LTMuMzQ5IDMuMzM0YTMuMzUgMy4zNSAwIDAgMS0yLjM4NC0uOTk0bC00LjYzNSAzLjE1NmEzLjM0IDMuMzQgMCAwIDEtLjE4MiAxLjkxN2w1LjA4MiAzLjM0YTMuMzUgMy4zNSAwIDAgMSAyLjEyLS43NTNhMy4zNCAzLjM0IDAgMCAxIDMuMzQ4IDMuMzM0QzIwLjUgMjAuNTA3IDE5IDIyIDE3LjE1MSAyMmEzLjM0IDMuMzQgMCAwIDEtMy4zNDgtMy4zMzNhMy4zIDMuMyAwIDAgMSAuMjg5LTEuMzU2TDkuMDUgMTRhMy4zNSAzLjM1IDAgMCAxLTIuMjAyLjgyMUEzLjM0IDMuMzQgMCAwIDEgMy41IDExLjQ4N2EzLjM0IDMuMzQgMCAwIDEgMy4zNDgtMy4zMzNjMS4wNjQgMCAyLjAxLjQ5MyAyLjYyMyAxLjI2MWw0LjQ5My0zLjA1OWEzLjMgMy4zIDAgMCAxLS4xNjEtMS4wMjMiIGNsaXAtcnVsZT0iZXZlbm9kZCIvPjwvc3ZnPg==");
   --pp-i-owner:       url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxZW0iIGhlaWdodD0iMWVtIiB2aWV3Qm94PSIwIDAgMjQgMjQiPjxwYXRoIGZpbGw9IiM1YzVjNWMiIGZpbGwtcnVsZT0iZXZlbm9kZCIgZD0iTTIyIDEyYzAgNS41MjMtNC40NzcgMTAtMTAgMTBTMiAxNy41MjMgMiAxMlM2LjQ3NyAyIDEyIDJzMTAgNC40NzcgMTAgMTBtLTctM2EzIDMgMCAxIDEtNiAwYTMgMyAwIDAgMSA2IDBtLTMgMTEuNWE4LjQ2IDguNDYgMCAwIDAgNC44MDctMS40ODljLjYwNC0uNDE1Ljg2Mi0xLjIwNS41MS0xLjg0OEMxNi41OSAxNS44MyAxNS4wOSAxNSAxMiAxNXMtNC41OS44My01LjMxOCAyLjE2M2MtLjM1MS42NDMtLjA5MyAxLjQzMy41MTEgMS44NDhBOC40NiA4LjQ2IDAgMCAwIDEyIDIwLjUiIGNsaXAtcnVsZT0iZXZlbm9kZCIvPjwvc3ZnPg==");
   --pp-i-owner-on:    url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxZW0iIGhlaWdodD0iMWVtIiB2aWV3Qm94PSIwIDAgMjQgMjQiPjxwYXRoIGZpbGw9IiMxNDE0MTQiIGZpbGwtcnVsZT0iZXZlbm9kZCIgZD0iTTIyIDEyYzAgNS41MjMtNC40NzcgMTAtMTAgMTBTMiAxNy41MjMgMiAxMlM2LjQ3NyAyIDEyIDJzMTAgNC40NzcgMTAgMTBtLTctM2EzIDMgMCAxIDEtNiAwYTMgMyAwIDAgMSA2IDBtLTMgMTEuNWE4LjQ2IDguNDYgMCAwIDAgNC44MDctMS40ODljLjYwNC0uNDE1Ljg2Mi0xLjIwNS41MS0xLjg0OEMxNi41OSAxNS44MyAxNS4wOSAxNSAxMiAxNXMtNC41OS44My01LjMxOCAyLjE2M2MtLjM1MS42NDMtLjA5MyAxLjQzMy41MTEgMS44NDhBOC40NiA4LjQ2IDAgMCAwIDEyIDIwLjUiIGNsaXAtcnVsZT0iZXZlbm9kZCIvPjwvc3ZnPg==");
+  --pp-i-pending:     url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCI+PHBhdGggZmlsbD0iIzhhNTgwMCIgZmlsbC1ydWxlPSJldmVub2RkIiBkPSJNMTIgMkM2LjQ3NyAyIDIgNi40NzcgMiAxMnM0LjQ3NyAxMCAxMCAxMHMxMC00LjQ3NyAxMC0xMFMxNy41MjMgMiAxMiAybTAgNWExIDEgMCAwIDEgMSAxdjVhMSAxIDAgMSAxLTIgMFY4YTEgMSAwIDAgMSAxLTFtMCAxMWExLjI1IDEuMjUgMCAxIDEgMC0yLjVhMS4yNSAxLjI1IDAgMCAxIDAgMi41IiBjbGlwLXJ1bGU9ImV2ZW5vZGQiLz48L3N2Zz4=");
   --pp-i-verified:    url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxZW0iIGhlaWdodD0iMWVtIiB2aWV3Qm94PSIwIDAgMjQgMjQiPjxwYXRoIGZpbGw9IiMwYzZiM2IiIGZpbGwtcnVsZT0iZXZlbm9kZCIgZD0iTTkuNTkyIDMuMmE2IDYgMCAwIDEtLjQ5NS4zOTljLS4yOTguMi0uNjMzLjMzOC0uOTg1LjQwOGMtLjE1My4wMy0uMzEzLjA0My0uNjMyLjA2OGMtLjgwMS4wNjQtMS4yMDIuMDk2LTEuNTM2LjIxNGEyLjcxIDIuNzEgMCAwIDAtMS42NTUgMS42NTVjLS4xMTguMzM0LS4xNS43MzUtLjIxNCAxLjUzNmE2IDYgMCAwIDEtLjA2OC42MzJjLS4wNy4zNTItLjIwOC42ODctLjQwOC45ODVjLS4wODcuMTMtLjE5MS4yNTItLjM5OS40OTVjLS41MjEuNjEyLS43ODIuOTE4LS45MzUgMS4yMzhjLS4zNTMuNzQtLjM1MyAxLjYgMCAyLjM0Yy4xNTMuMzIuNDE0LjYyNi45MzUgMS4yMzhjLjIwOC4yNDMuMzEyLjM2NS4zOTkuNDk1Yy4yLjI5OC4zMzguNjMzLjQwOC45ODVjLjAzLjE1My4wNDMuMzEzLjA2OC42MzJjLjA2NC44MDEuMDk2IDEuMjAyLjIxNCAxLjUzNmEyLjcxIDIuNzEgMCAwIDAgMS42NTUgMS42NTVjLjMzNC4xMTguNzM1LjE1IDEuNTM2LjIxNGMuMzE5LjAyNS40NzkuMDM4LjYzMi4wNjhjLjM1Mi4wNy42ODcuMjA5Ljk4NS40MDhjLjEzLjA4Ny4yNTIuMTkxLjQ5NS4zOTljLjYxMi41MjEuOTE4Ljc4MiAxLjIzOC45MzVjLjc0LjM1MyAxLjYuMzUzIDIuMzQgMGMuMzItLjE1My42MjYtLjQxNCAxLjIzOC0uOTM1Yy4yNDMtLjIwOC4zNjUtLjMxMi40OTUtLjM5OWMuMjk4LS4yLjYzMy0uMzM4Ljk4NS0uNDA4Yy4xNTMtLjAzLjMxMy0uMDQzLjYzMi0uMDY4Yy44MDEtLjA2NCAxLjIwMi0uMDk2IDEuNTM2LS4yMTRhMi43MSAyLjcxIDAgMCAwIDEuNjU1LTEuNjU1Yy4xMTgtLjMzNC4xNS0uNzM1LjIxNC0xLjUzNmMuMDI1LS4zMTkuMDM4LS40NzkuMDY4LS42MzJjLjA3LS4zNTIuMjA5LS42ODcuNDA4LS45ODVjLjA4Ny0uMTMuMTkxLS4yNTIuMzk5LS40OTVjLjUyMS0uNjEyLjc4Mi0uOTE4LjkzNS0xLjIzOGMuMzUzLS43NC4zNTMtMS42IDAtMi4zNGMtLjE1My0uMzItLjQxNC0uNjI2LS45MzUtMS4yMzhhNiA2IDAgMCAxLS4zOTktLjQ5NWEyLjcgMi43IDAgMCAxLS40MDgtLjk4NWE2IDYgMCAwIDEtLjA2OC0uNjMyYy0uMDY0LS44MDEtLjA5Ni0xLjIwMi0uMjE0LTEuNTM2YTIuNzEgMi43MSAwIDAgMC0xLjY1NS0xLjY1NWMtLjMzNC0uMTE4LS43MzUtLjE1LTEuNTM2LS4yMTRhNiA2IDAgMCAxLS42MzItLjA2OGEyLjcgMi43IDAgMCAxLS45ODUtLjQwOGE2IDYgMCAwIDEtLjQ5NS0uMzk5Yy0uNjEyLS41MjEtLjkxOC0uNzgyLTEuMjM4LS45MzVhMi43MSAyLjcxIDAgMCAwLTIuMzQgMGMtLjMyLjE1My0uNjI2LjQxNC0xLjIzOC45MzVtNi43ODEgNi42NjNhLjgxNC44MTQgMCAwIDAtMS4xNS0xLjE1bC00Ljg1IDQuODVsLTEuNTk2LTEuNTk1YS44MTQuODE0IDAgMCAwLTEuMTUgMS4xNWwyLjE3IDIuMTdhLjgxNC44MTQgMCAwIDAgMS4xNSAweiIgY2xpcC1ydWxlPSJldmVub2RkIi8+PC9zdmc+");
   --pp-i-personality: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxZW0iIGhlaWdodD0iMWVtIiB2aWV3Qm94PSIwIDAgMjQgMjQiPjxwYXRoIGZpbGw9IiMxNDE0MTQiIGQ9Ik0yIDkuMTM3QzIgMTQgNi4wMiAxNi41OTEgOC45NjIgMTguOTExQzEwIDE5LjcyOSAxMSAyMC41IDEyIDIwLjVzMi0uNzcgMy4wMzgtMS41OUMxNy45ODEgMTYuNTkyIDIyIDE0IDIyIDkuMTM4UzE2LjUuODI1IDEyIDUuNTAxQzcuNS44MjUgMiA0LjI3NCAyIDkuMTM3Ii8+PC9zdmc+");
   --pp-i-health:      url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxZW0iIGhlaWdodD0iMWVtIiB2aWV3Qm94PSIwIDAgMjQgMjQiPjxwYXRoIGZpbGw9IiMxNDE0MTQiIGQ9Ik0xNy43ODIgMy4yMjZhLjc3MS43NzEgMCAxIDAtMS4wOTEgMS4wOWwuOTUuOTUxbC0xLjY5OCAxLjdsLS44NjgtLjg2OGMtLjc3NS0uNzc2LTEuMTYzLTEuMTYzLTEuNjAzLTEuMzI0YTIuMTIgMi4xMiAwIDAgMC0xLjQ0OCAwYy0uNDQuMTYtLjgyOC41NDgtMS42MDMgMS4zMjRsLS4xMi4xMmw3LjQ4IDcuNDhsLjEyLS4xMmMuNzc1LS43NzUgMS4xNjMtMS4xNjMgMS4zMjMtMS42MDNjLjE3LS40NjguMTctLjk4IDAtMS40NDhjLS4xNi0uNDQtLjU0OC0uODI4LTEuMzIzLTEuNjAzbC0uODY3LS44NjhsMS42OTgtMS42OTlsLjk1MS45NTFhLjc3MS43NzEgMCAwIDAgMS4wOTEtMS4wOXpNNi4wMTYgMTAuNTA0TDkuMjEgNy4zMDlsNy40OCA3LjQ4bC0xLjE1MiAxLjE1NGwtMi45NjgtMi45NjhhLjc3MS43NzEgMCAxIDAtMS4wOTEgMS4wOTFsMi45NjggMi45NjhsLS41OTIuNTkybC0xLjY5My0xLjY5M2EuNzcyLjc3MiAwIDAgMC0xLjA5MSAxLjA5MWwxLjYyIDEuNjIxYTUuMjkgNS4yOSAwIDAgMS02LjA5LS4xNTVsLTIuMjg0IDIuMjg0YS43NzIuNzcyIDAgMCAxLTEuMDkxLTEuMDlsMi4yODQtMi4yODVhNS4yOSA1LjI5IDAgMCAxIC41MDYtNi44OTUiLz48L3N2Zz4=");
@@ -185,8 +186,12 @@
    by itself when the row carries 44px tap targets (home-success, Share-a-pet) */
 .pp-appbar { display: flex; align-items: center; justify-content: space-between;
              min-height: var(--pp-appbar-h);
-             padding: var(--pp-s-4) var(--pp-inset); background: var(--pp-signal);
+             padding: var(--pp-s-4) var(--pp-inset); background: transparent;
              color: var(--pp-on-signal); }
+/* The band is amber only where an arch carries it on down the page. On a screen
+   with no arch the amber would be a stripe with nothing beneath it, so the bar
+   goes transparent and sits on the page's own ground. */
+.pp-appbar--onarch { background: var(--pp-signal); }
 .pp-appbar__title { font-family: var(--pp-disp); font-size: var(--pp-fs-appbar);
                     font-weight: var(--pp-w-semi); line-height: var(--pp-lh-body);
                     letter-spacing: var(--pp-ls-appbar); }
@@ -227,7 +232,8 @@
 .pp-hero--recipient .pp-hero__photo { margin-top: 26px; }
 /* the photo sits in normal flow; the arch is pulled up over it, which is what
    puts exactly half of it above the arch line and half below */
-.pp-hero__photo.pp-hero__photo { display: flex; position: relative; width: var(--pp-avatar);
+.pp-hero__photo.pp-hero__photo { --pp-avatar: 98px;   /* the hero photo only */
+                  display: flex; position: relative; width: var(--pp-avatar);
                   margin-left: auto; margin-right: auto; z-index: 2;
                   overflow: visible; font-size: 0; line-height: 0; font-weight: 400;
                   color: transparent; }
@@ -443,8 +449,14 @@
                   background: var(--pp-i-verified) center / 14px no-repeat; }
 
 /* the verification tick used beside a section title */
-.pp-check { display: inline-block; vertical-align: -3px; width: 18px; height: 18px; flex: 0 0 auto; margin-left: 2px;
-           background: var(--pp-i-verified) center / 18px no-repeat; }
+.pp-check.pp-check { display: inline-block; vertical-align: -3px; width: 18px; height: 18px;
+                 flex: 0 0 auto; margin-left: 2px; font-size: 0; color: transparent;
+                 background: var(--pp-i-verified) center / 18px no-repeat; }
+/* the counterpart to .pp-check: a section that has not been filled in yet.
+   Same box and baseline so a row reads identically whichever mark it carries. */
+.pp-pending.pp-pending { display: inline-block; vertical-align: -3px; width: 18px; height: 18px;
+                 flex: 0 0 auto; margin-left: 2px; font-size: 0; color: transparent;
+                 background: var(--pp-i-pending) center / 18px no-repeat; }
 
 /* icon-only box: the element draws its icon as a background and still holds the
    text label the icon replaced ("icon", "✓", "photo"). Centre the box and render
@@ -516,7 +528,7 @@
 .pp-row__body  { display: block; flex: 1; min-width: 0; }
 .pp-row__title { font-family: var(--pp-disp); font-size: var(--pp-fs-title);
                  font-weight: var(--pp-w-bold); line-height: var(--pp-lh-title);
-                 display: flex; align-items: center; gap: var(--pp-s-2); }
+                 display: block; }
 /* a meta line inside a heading must restate its own font or it inherits 700 */
 .pp-row__meta  { display: block; font-family: var(--pp-body); font-size: var(--pp-fs-small);
                  font-weight: var(--pp-w-regular); line-height: var(--pp-lh-small);

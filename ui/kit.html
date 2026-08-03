@@ -147,7 +147,7 @@
 
   <div class="frame">
     <div class="pp"><div class="pp-shell">
-      <header class="pp-appbar">
+      <header class="pp-appbar pp-appbar--onarch">
         <button class="pp-appbar__back" aria-label="Back to your pets">←</button>
         <span class="pp-appbar__title pp-is-name">Miso</span>
         <button class="pp-appbar__action">Edit</button>
@@ -237,7 +237,7 @@
 
   <div class="frame">
     <div class="pp"><div class="pp-shell">
-      <header class="pp-appbar pp-appbar--sm">
+      <header class="pp-appbar pp-appbar--onarch pp-appbar--sm">
         <span class="pp-appbar__title">Owner</span>
       </header>
       <div class="pp-hero"><div class="pp-hero__photo">
@@ -302,16 +302,21 @@ the active tab.</p>
   </figure>
 
   <figure class="spec"><figcaption><b>App bar</b><code>.pp-appbar</code></figcaption>
-    <div class="demo flush demo--flow">
-      <div class="pp">
-        <header class="pp-appbar"><button class="pp-appbar__back">←</button>
+    <div class="demo demo--flow" style="padding:0">
+      <div style="width:100%">
+        <div class="st" style="margin:10px 0 0 12px">transparent — the default, any screen with no arch</div>
+        <header class="pp-appbar"><button class="pp-appbar__back" aria-label="Back to Miso's card">←</button>
+          <span class="pp-appbar__title">Health &amp; jabs</span>
+          <button class="pp-appbar__action">Edit</button></header>
+        <div class="st" style="margin:10px 0 0 12px">--onarch — amber, only where an arch carries the band on</div>
+        <header class="pp-appbar pp-appbar--onarch"><button class="pp-appbar__back" aria-label="Back to your pets">←</button>
           <span class="pp-appbar__title pp-is-name">Miso</span>
           <button class="pp-appbar__action">Edit</button></header>
-        <header class="pp-appbar"><button class="pp-appbar__back">← Miso's card</button>
-          <span class="pp-appbar__title">Health &amp; jabs</span>
-          <button class="pp-appbar__action">Add a jab</button></header>
-        <header class="pp-appbar"><span class="pp-appbar__brand">PetPal</span>
-          <a class="pp-appbar__action" href="#">To the app</a></header>
+        <div class="st" style="margin:10px 0 0 12px">--sm compact · --bare recipient brand bar</div>
+        <header class="pp-appbar pp-appbar--sm pp-appbar--onarch"><span></span>
+          <span class="pp-appbar__title">Owner</span><span></span></header>
+        <header class="pp-appbar pp-appbar--bare"><span class="pp-appbar__brand">PetPal</span>
+          <a class="pp-appbar__link" href="#">To the app</a></header>
       </div>
     </div>
   </figure>
@@ -890,6 +895,29 @@ the signal amber, so a warning is never mistaken for an action.</p>
       <p class="note">The tag brings its own 10px lead, and <code>.pp-arch__meta:has(+ .pp-tag)</code>
       drops the 8px it reserves otherwise — a relationship only block flow produces, so both are
       shown in the arch they belong to. The tick sits inside a section title.</p>
+    </div>
+  </figure>
+
+  <figure class="spec"><figcaption><b>Section marks</b><code>.pp-check / .pp-pending</code></figcaption>
+    <div class="demo demo--flow onwhite">
+      <div class="pp-card pp-card--flush" style="margin-bottom:10px">
+        <div class="pp-row"><span class="pp-row__tile pp-row__tile--health"></span>
+          <span class="pp-row__body"><span class="pp-row__title">Health &amp; jabs <span class="pp-check"></span></span>
+          <span class="pp-row__meta">6 records · Updated 3 days ago</span></span></div>
+      </div>
+      <div class="pp-card pp-card--flush" style="margin-bottom:10px">
+        <div class="pp-row"><span class="pp-row__tile pp-row__tile--insurance"></span>
+          <span class="pp-row__body"><span class="pp-row__title">Insurance <span class="pp-pending"></span></span>
+          <span class="pp-row__meta">Not filled yet</span></span></div>
+      </div>
+      <div class="pp-card pp-card--flush">
+        <div class="pp-row"><span class="pp-row__tile pp-row__tile--emergency"></span>
+          <span class="pp-row__body"><span class="pp-row__title">Emergency info &amp; authorisation <span class="pp-check"></span></span>
+          <span class="pp-row__meta">Set up · Vet, meds, contacts</span></span></div>
+      </div>
+      <p style="font-size:12.5px;color:#5c5c5c;line-height:1.5;margin:12px 0 0">The mark lives <b>inside</b> the title
+      and follows the last word — including when the title wraps, as the third row shows. As a sibling of the body its
+      position becomes whatever space is left over.</p>
     </div>
   </figure>
 

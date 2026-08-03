@@ -1029,8 +1029,8 @@
         Main job · step 2 of 4 — <span>My Pets → ★ Pet card</span> → sections → Share
       </div>
 
-      <header class="pp-appbar">
-        <a href="My-Pets.html" style="text-decoration:none;"><button class="pp-appbar__back" aria-label="Back to your pets">← Your pets</button></a>
+      <header class="pp-appbar pp-appbar--onarch">
+        <a href="My-Pets.html" style="text-decoration:none;"><button class="pp-appbar__back" aria-label="Back to your pets">←</button></a>
         <h1 class="pp-appbar__title pp-is-name">Cheetah</h1>
         <a href="Edit-pet.html" style="text-decoration:none;"><button class="pp-appbar__action">Edit</button></a>
       </header>
@@ -1041,7 +1041,10 @@
           <figure class="pp-avatar pp-avatar--ring pp-avatar--cheetah pp-hero__photo" aria-label="Cheetah">photo</figure>
         </div>
         <div class="pp-arch">
-          <h2 class="pp-arch__name">Cheetah</h2>
+          <div class="pp-arch__namerow">
+            <h2 class="pp-arch__name">Cheetah</h2>
+            <a href="Share-a-pet.html" class="pp-iconbtn pp-iconbtn--share" aria-label="Share Cheetah's card"></a>
+          </div>
           <p class="pp-arch__meta">Cat · Tabby stray · Female</p>
           <p class="pp-arch__chip">No microchip registered</p>
         </div>
@@ -1052,19 +1055,12 @@
           <a href="home-success-cheetah.html" class="pp-seg__item" aria-current="page"><span class="pp-seg__avatar">C</span> Cheetah</a>
         </div>
 
-        <section class="pp-actions" aria-label="Quick actions">
-          <a href="Share-a-pet.html"><button class="pp-btn">Share Cheetah's info</button></a>
-          <a href="Set-up-a-pet.html"><button class="pp-btn pp-btn--secondary">Edit pet details</button></a>
-        </section>
-
         <section class="pp-counter" aria-label="Card completeness">
-          <div class="zone-label">Counter</div>
           <span class="pp-counter__count">4 of 6 sections filled</span>
           <span class="pp-counter__meta">Updated 1 week ago</span>
         </section>
 
         <section class="pp-stack" aria-label="Search sections">
-          <div class="zone-label">Search &amp; filter</div>
           <input class="pp-search" type="search" placeholder="Search sections, records, documents…" aria-label="Search sections">
         </section>
 
@@ -1074,7 +1070,7 @@
             <a href="Health-and-jabs.html" style="text-decoration:none;color:inherit;display:block;"><article class="pp-card pp-card--row">
               <div class="pp-row__tile pp-row__tile--health pp-iconbox">icon</div>
               <div class="pp-row__body">
-                <h3 class="pp-row__title">Health &amp; jabs <span class="pp-check pp-iconbox">✓</span></h3>
+                <h3 class="pp-row__title">Health &amp; jabs <span class="pp-check"></span></h3>
                 <p class="pp-row__meta">2 records · Updated 1 week ago</p>
               </div>
               <span class="pp-row__chev" aria-hidden="true">→</span>
@@ -1085,7 +1081,7 @@
             <a href="Documents-and-passport.html" style="text-decoration:none;color:inherit;display:block;"><article class="pp-card pp-card--row">
               <div class="pp-row__tile pp-row__tile--docs pp-iconbox">icon</div>
               <div class="pp-row__body">
-                <h3 class="pp-row__title">Documents &amp; passport <span class="pp-check pp-iconbox">✓</span></h3>
+                <h3 class="pp-row__title">Documents &amp; passport <span class="pp-check"></span></h3>
                 <p class="pp-row__meta">1 document · Updated 2 weeks ago</p>
               </div>
               <span class="pp-row__chev" aria-hidden="true">→</span>
@@ -1096,7 +1092,7 @@
             <a href="Insurance-empty.html" style="text-decoration:none;color:inherit;display:block;"><article class="pp-card pp-card--row pp-card--dashed">
               <div class="pp-row__tile pp-row__tile--insurance pp-iconbox">icon</div>
               <div class="pp-row__body">
-                <h3 class="pp-row__title">Insurance</h3>
+                <h3 class="pp-row__title">Insurance <span class="pp-pending" aria-label="Not filled yet"></span></h3>
                 <p class="pp-row__meta"><strong>Not filled yet</strong><br>Policy, coverage and renewal reminders</p>
               </div>
               <span class="pp-row__chev" aria-hidden="true">→</span>
@@ -1107,7 +1103,7 @@
             <a href="Personality-and-care.html" style="text-decoration:none;color:inherit;display:block;"><article class="pp-card pp-card--row">
               <div class="pp-row__tile pp-row__tile--personality pp-iconbox">icon</div>
               <div class="pp-row__body">
-                <h3 class="pp-row__title">Personality &amp; care <span class="pp-check pp-iconbox">✓</span></h3>
+                <h3 class="pp-row__title">Personality &amp; care <span class="pp-check"></span></h3>
                 <p class="pp-row__meta">Partially filled · Updated 1 week ago</p>
               </div>
               <span class="pp-row__chev" aria-hidden="true">→</span>
@@ -1118,7 +1114,7 @@
             <a href="Vet-and-appointments.html" style="text-decoration:none;color:inherit;display:block;"><article class="pp-card pp-card--row">
               <div class="pp-row__tile pp-row__tile--vet pp-iconbox">icon</div>
               <div class="pp-row__body">
-                <h3 class="pp-row__title">Vet &amp; appointments <span class="pp-check pp-iconbox">✓</span></h3>
+                <h3 class="pp-row__title">Vet &amp; appointments <span class="pp-check"></span></h3>
                 <p class="pp-row__meta">Tierklinik am Stadtpark</p>
               </div>
               <span class="pp-row__chev" aria-hidden="true">→</span>

@@ -8,12 +8,14 @@ Every component that appears in the wireframes, whether or not it has been resty
 
 ---
 
+**Marks sit inline, on the title.** A verification tick or not-filled mark goes *inside* the title element, immediately after the text — never as a sibling of the flexible body, where its position becomes whatever space is left over and four sections put it in four different places. The title must be block-flow, not flex: as a flex row the mark centres beside a wrapped title instead of following the last word. Status chips (`.pp-chip`) follow the same rule. This only misbehaves on titles long enough to wrap, so it hides on short ones.
+
 ## Navigation
 
 | Component | Screens where it appears | Available states | Requires a photo |
 |---|---|---|---|
 | **Tab bar** (`.phone-nav`) | **92** across 24 families incl. `home`, `Personality-and-care`, `Emergency-info`, `Whats-due`, `My-Pets`, `Health-and-jabs`. Absent on **31** focused-task screens: the recipient views (`Shared-pet-view`, `Emergency-allowed`), auth (`Login`, `Sign-up`, `Forgot-password`, `Logged-out`), and the full-screen add/edit/upload flows (`Add-*`, `Set-up-a-pet`, `Upload-photo`, `Edit-health-record`, `Section-saving`) | Default · **Active** (`a.active` — filled icon; on styled pages also a 24×3px amber marker). Four destinations: Pets · Reminders · Share · Owner | No |
-| **App bar** (`.m-header`) | **115** across 40 families. The **8** without it are the `*-loading` screens where a skeleton stands in for the header (`Add-care-note`, `Add-record`, `Edit-care-note`, `Edit-pet`, `Emergency-auth-setup`, `Set-up-a-pet`), plus `Section-saving` and `Shared-pet-view` | Title only · With back (`.back`) · With trailing action (`.action-btn`) · Amber band variant (`.v3-header`, 10 screens) | No |
+| **App bar** (`.m-header` → `.pp-appbar`) | **115** across 40 families. The **8** without it are the `*-loading` screens where a skeleton stands in for the header, plus `Section-saving` and `Shared-pet-view` | Title only · With back · With trailing action · **`--sm`** compact (48px, `Me`) · **`--bare`** recipient brand bar · **`--onarch`** amber. **Background is transparent by default**; the amber is `--onarch` only, worn by the 4 screens whose arch continues the band down the page (`home-success`, `-single`, `-cheetah`, `Me`) — elsewhere it would be a stripe with nothing beneath it. Back control is a **bare `←`** on every screen, destination in `aria-label` | No |
 | **Back control** (`.back`) | **98** across 31 families | Default | No |
 | **Add button / FAB** (`.fab`) | **21** across 9 families — `Personality-and-care` (8), `Documents-and-passport` (2), `Health-and-jabs` (2), `Insurance` (2), `Vet-and-appointments` (2) | Default · **Menu open** (`.fab-menu`, 3 screens, with hover) | No |
 | **Pet toggle — 2-up switcher** (`.pet-switcher`, `.pet-pill`, `.pet-seg`) | **5** — `home-empty`, `home-new`, `home-success`, `home-success-cheetah`, `Share-a-pet`. Only where the owner has more than one pet | **Inactive · Active** (`.pet-pill.active`) · Hover. The active segment squares its **inner** corners, so it reads as a tab pulled forward | **Yes** — `.pill-avatar`, 22px circle per pet |
@@ -52,6 +54,7 @@ Every component that appears in the wireframes, whether or not it has been resty
 | **Status chip** (`.status`, `.record-status`, `.vax-status`, `.appt-status`, `.doc-status`, `.auth-status`) | **14** across 4 families — `home` (9), `Health-and-jabs` (2), `home-success` (2), `Shared-pet-view` | One per status value; six named variants across record, vaccination, appointment, document and authorisation contexts | No |
 | **Fill counter** (`.m-fill-counter`, `.count`) | **11** — `home` (9), `home-success` (2) | Default. Tracks how much of a section is complete | No |
 | **Verification tick** (`.check`) | **10** — the six `home-progress-1…6` steps, `home-success` + its `-single` and `-cheetah` variants, and `Shared-pet-view` | Present / absent per section | No |
+| **Not-filled mark** (`.pp-pending`) | **1** — `home-success-cheetah`, on the Insurance section | Single state. The counterpart to the tick: same 18px box, baseline and inline placement, in `--pp-warning` bronze, so a row reads identically whichever mark it carries. Added 2026-08-04 | No |
 | **Reminder card** (`.reminder-card`) | **2** — `Whats-due`, `Whats-due-offline` | Default · Hover | No |
 | **Reminder badge** (`.reminder-badge`) | **2** — `Whats-due`, `Whats-due-offline` | **Overdue · Due this month · Coming up** — driven by the parent `section[aria-label]`, not a modifier class | No |
 | **Urgency heading** (`.urgency-heading`) | **2** — `Whats-due`, `Whats-due-offline` | Default. Groups reminders by urgency band | No |
