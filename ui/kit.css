@@ -170,7 +170,10 @@
 .pp { font-family: var(--pp-body); color: var(--pp-ink);
       font-size: var(--pp-fs-body); line-height: var(--pp-lh-body);
       -webkit-font-smoothing: antialiased; }
-.pp h1, .pp h2, .pp h3, .pp h4, .pp p, .pp figure, .pp ul { margin: 0; padding: 0; }
+/* :where() keeps the reset at zero specificity so it can never out-specify a
+   component. As `.pp ul` (0,1,1) it beat `.pp-stack` (0,1,0) and silently
+   stripped the 16px inset from every card list inside a .pp canvas. */
+.pp :where(h1, h2, h3, h4, p, figure, ul) { margin: 0; padding: 0; }
 .pp ul { list-style: none; }
 .pp :focus-visible { outline: 2px solid var(--pp-signal-deep); outline-offset: 2px; border-radius: var(--pp-r-chip); }
 
