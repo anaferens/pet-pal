@@ -443,8 +443,8 @@
                   background: var(--pp-i-verified) center / 14px no-repeat; }
 
 /* the verification tick used beside a section title */
-.pp-check { width: 18px; height: 18px; flex: 0 0 auto;
-            background: var(--pp-i-verified) center / 18px no-repeat; }
+.pp-check { display: inline-block; vertical-align: -3px; width: 18px; height: 18px; flex: 0 0 auto; margin-left: 2px;
+           background: var(--pp-i-verified) center / 18px no-repeat; }
 
 /* icon-only box: the element draws its icon as a background and still holds the
    text label the icon replaced ("icon", "✓", "photo"). Centre the box and render
