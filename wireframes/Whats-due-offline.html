@@ -7,6 +7,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700&family=Hanken+Grotesk:wght@400;500;600;700&family=EB+Garamond:ital,wght@0,600;1,600;1,700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../ui/kit.css">
 <style>
   :root {
     --wf-bg:         #ffffff;
@@ -1291,39 +1292,39 @@
         R1 · What's due — <span>What's due</span> → section → Add/update a record
       </div>
 
-      <header class="m-header">
-        <a href="home-success.html" style="text-decoration:none;"><button class="back" aria-label="Back to your pets">←</button></a>
-        <h1>Reminders</h1>
+      <header class="pp-appbar pp-appbar--center">
+        <a href="home-success.html" style="text-decoration:none;"><button class="pp-appbar__back" aria-label="Back to your pets">←</button></a>
+        <h1 class="pp-appbar__title">Reminders</h1>
         <span></span>
       </header>
 
       <main class="m-main">
 
         <!-- Pet filter tabs -->
-        <nav class="pet-filter-tabs" aria-label="Filter by pet">
-          <button class="active" onclick="segSelect(this)">All pets</button>
-          <button onclick="segSelect(this)">Miso</button>
-          <button onclick="segSelect(this)">Cheetah</button>
+        <nav class="pp-seg pp-seg--filter" aria-label="Filter by pet">
+          <button class="pp-seg__item" aria-current="page" onclick="segSelect(this)">All pets</button>
+          <button class="pp-seg__item" onclick="segSelect(this)">Miso</button>
+          <button class="pp-seg__item" onclick="segSelect(this)">Cheetah</button>
         </nav>
 
         <!-- Overdue section -->
-        <div style="margin:12px 16px;padding:10px 14px;border:1.5px solid var(--wf-border);border-radius:8px;background:var(--wf-surface);display:flex;align-items:center;gap:10px;">
-          <span style="font-size:13px;flex:1;color:var(--wf-muted);"><strong style="color:var(--wf-text);">Offline</strong> &mdash; showing your last saved reminders. Some may be out of date.</span>
-          <a href="Whats-due-loading.html" style="text-decoration:none;"><button class="btn-secondary" style="padding:6px 14px;font-size:12px;">Try again</button></a>
+        <div class="pp-card pp-card--inset pp-headrow">
+          <p class="pp-card__body"><strong>Offline</strong> &mdash; showing your last saved reminders. Some may be out of date.</p>
+          <a href="Whats-due-loading.html" style="text-decoration:none;"><button class="pp-btn pp-btn--secondary pp-btn--sm">Try again</button></a>
         </div>
 
         <section aria-label="Overdue reminders">
-          <h2 class="urgency-heading">Overdue</h2>
-          <ul class="reminder-list">
+          <h2 class="pp-heading">Overdue</h2>
+          <ul class="pp-stack pp-stack--band">
             <li>
-              <a href="Whats-due-detail.html?rem=rabies" class="reminder-card">
-                <div class="card-icon card-icon-m">icon</div>
-                <article class="reminder-body">
-                  <h3>Rabies booster — Miso</h3>
-                  <p class="reminder-meta">Was due 15 Jun 2026</p>
-                  <span class="reminder-badge">Overdue</span>
+              <a href="Whats-due-detail.html?rem=rabies" class="pp-card pp-card--row">
+                <div class="pp-row__tile pp-row__tile--health pp-iconbox">icon</div>
+                <article class="pp-reminder__body">
+                  <h3 class="pp-reminder__title">Rabies booster — Miso</h3>
+                  <p class="pp-reminder__meta">Was due 15 Jun 2026</p>
+                  <span class="pp-chip pp-chip--danger">Overdue</span>
                 </article>
-                <span class="card-arrow" aria-hidden="true">→</span>
+                <span class="pp-row__chev" aria-hidden="true">→</span>
               </a>
             </li>
           </ul>
@@ -1331,28 +1332,28 @@
 
         <!-- Due this month section -->
         <section aria-label="Due this month">
-          <h2 class="urgency-heading">Due this month</h2>
-          <ul class="reminder-list">
+          <h2 class="pp-heading">Due this month</h2>
+          <ul class="pp-stack pp-stack--band">
             <li>
-              <a href="Whats-due-detail.html?rem=insurance" class="reminder-card">
-                <div class="card-icon card-icon-m">icon</div>
-                <article class="reminder-body">
-                  <h3>Insurance renewal — Miso</h3>
-                  <p class="reminder-meta">Due 1 Oct 2026 · Lassie OP-Schutz Plus</p>
-                  <span class="reminder-badge">Due soon</span>
+              <a href="Whats-due-detail.html?rem=insurance" class="pp-card pp-card--row">
+                <div class="pp-row__tile pp-row__tile--insurance pp-iconbox">icon</div>
+                <article class="pp-reminder__body">
+                  <h3 class="pp-reminder__title">Insurance renewal — Miso</h3>
+                  <p class="pp-reminder__meta">Due 1 Oct 2026 · Lassie OP-Schutz Plus</p>
+                  <span class="pp-chip pp-chip--warning">Due soon</span>
                 </article>
-                <span class="card-arrow" aria-hidden="true">→</span>
+                <span class="pp-row__chev" aria-hidden="true">→</span>
               </a>
             </li>
             <li>
-              <a href="Whats-due-detail.html?rem=checkup" class="reminder-card">
-                <div class="card-icon card-icon-m">icon</div>
-                <article class="reminder-body">
-                  <h3>Annual checkup — Miso</h3>
-                  <p class="reminder-meta">15 Aug 2026, 10:00 · Tierklinik am Stadtpark</p>
-                  <span class="reminder-badge">Due soon</span>
+              <a href="Whats-due-detail.html?rem=checkup" class="pp-card pp-card--row">
+                <div class="pp-row__tile pp-row__tile--vet pp-iconbox">icon</div>
+                <article class="pp-reminder__body">
+                  <h3 class="pp-reminder__title">Annual checkup — Miso</h3>
+                  <p class="pp-reminder__meta">15 Aug 2026, 10:00 · Tierklinik am Stadtpark</p>
+                  <span class="pp-chip pp-chip--warning">Due soon</span>
                 </article>
-                <span class="card-arrow" aria-hidden="true">→</span>
+                <span class="pp-row__chev" aria-hidden="true">→</span>
               </a>
             </li>
           </ul>
@@ -1360,52 +1361,52 @@
 
         <!-- Coming up section -->
         <section aria-label="Coming up">
-          <h2 class="urgency-heading">Coming up</h2>
-          <ul class="reminder-list">
+          <h2 class="pp-heading">Coming up</h2>
+          <ul class="pp-stack pp-stack--band">
             <li>
-              <a href="Whats-due-detail.html?rem=fvrcp" class="reminder-card">
-                <div class="card-icon card-icon-m">icon</div>
-                <article class="reminder-body">
-                  <h3>FVRCP booster — Cheetah</h3>
-                  <p class="reminder-meta">Due 12 Nov 2026</p>
-                  <span class="reminder-badge">Upcoming</span>
+              <a href="Whats-due-detail.html?rem=fvrcp" class="pp-card pp-card--row">
+                <div class="pp-row__tile pp-row__tile--health pp-iconbox">icon</div>
+                <article class="pp-reminder__body">
+                  <h3 class="pp-reminder__title">FVRCP booster — Cheetah</h3>
+                  <p class="pp-reminder__meta">Due 12 Nov 2026</p>
+                  <span class="pp-chip pp-chip--info">Upcoming</span>
                 </article>
-                <span class="card-arrow" aria-hidden="true">→</span>
+                <span class="pp-row__chev" aria-hidden="true">→</span>
               </a>
             </li>
             <li>
-              <a href="Whats-due-detail.html?rem=passport" class="reminder-card">
-                <div class="card-icon card-icon-m">icon</div>
-                <article class="reminder-body">
-                  <h3>EU Passport renewal — Miso</h3>
-                  <p class="reminder-meta">Expires 1 Mar 2027</p>
-                  <span class="reminder-badge">Upcoming</span>
+              <a href="Whats-due-detail.html?rem=passport" class="pp-card pp-card--row">
+                <div class="pp-row__tile pp-row__tile--docs pp-iconbox">icon</div>
+                <article class="pp-reminder__body">
+                  <h3 class="pp-reminder__title">EU Passport renewal — Miso</h3>
+                  <p class="pp-reminder__meta">Expires 1 Mar 2027</p>
+                  <span class="pp-chip pp-chip--info">Upcoming</span>
                 </article>
-                <span class="card-arrow" aria-hidden="true">→</span>
+                <span class="pp-row__chev" aria-hidden="true">→</span>
               </a>
             </li>
           </ul>
         </section>
 
         <!-- Floating add reminder button -->
-        <div class="fab-add">
-          <a href="Add-record.html" style="text-decoration:none;"><button class="btn-primary">Add a reminder</button></a>
+        <div class="pp-actionbar">
+          <a href="Add-record.html" style="text-decoration:none;"><button class="pp-btn pp-btn--full">Add a reminder</button></a>
         </div>
 
       </main>
 
-      <nav class="phone-nav" aria-label="Main navigation">
-        <a href="My-Pets.html">
-          <span class="nav-icon" aria-hidden="true"></span> Pets
+      <nav class="pp-tabbar" aria-label="Main navigation">
+        <a href="My-Pets.html" class="pp-tab pp-tab--pets">
+          <span class="pp-tab__icon" aria-hidden="true"></span> Pets
         </a>
-        <a href="Whats-due.html" class="active">
-          <span class="nav-icon" aria-hidden="true"></span> What's due
+        <a href="Whats-due.html" class="pp-tab pp-tab--reminders" aria-current="page">
+          <span class="pp-tab__icon" aria-hidden="true"></span> What's due
         </a>
-        <a href="Share-a-pet.html">
-          <span class="nav-icon" aria-hidden="true"></span> Share
+        <a href="Share-a-pet.html" class="pp-tab pp-tab--share">
+          <span class="pp-tab__icon" aria-hidden="true"></span> Share
         </a>
-              <a href="Me.html">
-          <span class="nav-icon" aria-hidden="true"></span> Owner
+              <a href="Me.html" class="pp-tab pp-tab--owner">
+          <span class="pp-tab__icon" aria-hidden="true"></span> Owner
         </a>
       </nav>
 
@@ -1454,7 +1455,7 @@
 
       <!-- Overdue -->
       <div style="margin:12px 16px;padding:10px 14px;border:1.5px solid var(--wf-border);border-radius:8px;background:var(--wf-surface);display:flex;align-items:center;gap:10px;">
-          <span style="font-size:13px;flex:1;color:var(--wf-muted);"><strong style="color:var(--wf-text);">Offline</strong> &mdash; showing your last saved reminders. Some may be out of date.</span>
+          <span style="font-size:13px;flex:1;color:var(--wf-muted);"><strong style="color:var(--wf-text);">Offline</strong> &mdash; showing your last saved reminders. Some may be out of date.</p>
           <a href="Whats-due-loading.html" style="text-decoration:none;"><button class="btn-secondary" style="padding:6px 14px;font-size:12px;">Try again</button></a>
         </div>
 
@@ -1544,8 +1545,9 @@
 
 <script>
 function segSelect(btn) {
-  Array.from(btn.parentElement.children).forEach(function(b) { b.classList.remove('active'); });
+  Array.from(btn.parentElement.children).forEach(function(b) { b.classList.remove('active'); b.removeAttribute('aria-current'); });
   btn.classList.add('active');
+  btn.setAttribute('aria-current', 'page');
 }
 function setView(mode) {
   document.body.classList.toggle('is-desktop', mode === 'desktop');

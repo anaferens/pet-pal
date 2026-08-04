@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Insurance — PetPal wireframe</title>
+<link rel="stylesheet" href="../ui/kit.css">
 <style>
   :root {
     --wf-bg:         #ffffff;
@@ -679,57 +680,57 @@
         <span class="zone-label">R1</span> R1 · <span>Pet card → ★ Insurance</span>
       </div>
 
-      <header class="m-header">
-        <a href="home-success.html" style="text-decoration:none;"><button class="back" aria-label="Back to Miso's card">←</button></a>
-        <h1>Insurance</h1>
-        <a href="Add-record.html"><button class="action-btn">Edit</button></a>
+      <header class="pp-appbar">
+        <a href="home-success.html" style="text-decoration:none;"><button class="pp-appbar__back" aria-label="Back to Miso's card">←</button></a>
+        <h1 class="pp-appbar__title">Insurance</h1>
+        <a href="Add-record.html"><button class="pp-appbar__action">Edit</button></a>
       </header>
 
       <div class="m-main">
 
-        <section class="m-pet-identity" aria-label="Pet identity">
-          <figure class="pet-photo pet-photo-s" aria-label="Pet photo placeholder">photo</figure>
-          <div class="pet-info">
-            <h2 style="font-size:15px;font-weight:700;">Miso</h2>
-            <p class="pet-meta" style="font-size:12px;">Dog · Border Terrier · Female</p>
+        <section class="pp-identity" aria-label="Pet identity">
+          <figure class="pp-avatar pp-avatar--md pp-avatar--miso pp-iconbox" aria-label="Miso">photo</figure>
+          <div class="pp-identity__body">
+            <h2 class="pp-identity__name">Miso</h2>
+            <p class="pp-identity__meta">Dog · Border Terrier · Female</p>
           </div>
         </section>
 
-        <div class="policy-card">
-          <h3>Lassie Haustierversicherung</h3>
-          <p style="font-size:12px;color:var(--wf-muted);margin-bottom:12px;">OP-Schutz Plus</p>
-          <div class="policy-field"><span class="policy-label">Policy number</span><span class="policy-value">LSS-2024-0847291</span></div>
-          <div class="policy-field"><span class="policy-label">Coverage</span><span class="policy-value">Surgery, inpatient treatment</span></div>
-          <div class="policy-field"><span class="policy-label">Premium</span><span class="policy-value">€29.90 / month</span></div>
-          <div class="policy-field"><span class="policy-label">Start date</span><span class="policy-value">1 Oct 2024</span></div>
-          <div class="policy-field"><span class="policy-label">Renewal</span><span class="policy-value">1 Oct 2026</span></div>
-          <div class="policy-field"><span class="policy-label">Status</span><span class="policy-value">Active</span></div>
+        <div class="pp-card pp-card--inset">
+          <h3 class="pp-card__title">Lassie Haustierversicherung</h3>
+          <p class="pp-card__body">OP-Schutz Plus</p>
+          <div class="pp-detail__row pp-detail__row--ruled"><span>Policy number</span><strong>LSS-2024-0847291</strong></div>
+          <div class="pp-detail__row pp-detail__row--ruled"><span>Coverage</span><strong>Surgery, inpatient treatment</strong></div>
+          <div class="pp-detail__row pp-detail__row--ruled"><span>Premium</span><strong>€29.90 / month</strong></div>
+          <div class="pp-detail__row pp-detail__row--ruled"><span>Start date</span><strong>1 Oct 2024</strong></div>
+          <div class="pp-detail__row pp-detail__row--ruled"><span>Renewal</span><strong>1 Oct 2026</strong></div>
+          <div class="pp-detail__row pp-detail__row--ruled"><span>Status</span><strong>Active</strong></div>
         </div>
 
-        <div class="doc-card">
-          <div class="doc-thumb">PDF</div>
-          <div class="doc-info">
-            <h3>Policy document</h3>
-            <p class="doc-meta">Lassie_OP-Schutz_Miso.pdf · 1.2 MB</p>
+        <div class="pp-doc pp-ruled">
+          <div class="pp-doc__thumb">PDF</div>
+          <div class="pp-doc__body">
+            <h3 class="pp-doc__name">Policy document</h3>
+            <p class="pp-doc__meta">Lassie_OP-Schutz_Miso.pdf · 1.2 MB</p>
           </div>
-          <a href="Document-view.html?doc=policy"><button class="record-action">→</button></a>
+          <a href="Document-view.html?doc=policy"><button class="pp-row__chev">→</button></a>
         </div>
       </div>
 
-      <a href="Add-record.html" class="fab" aria-label="Add">+</a>
+      <a href="Add-record.html" class="pp-fab" aria-label="Add">+</a>
 
-      <nav class="phone-nav" aria-label="Main navigation">
-        <a href="My-Pets.html" class="active">
-          <span class="nav-icon" aria-hidden="true"></span> Pets
+      <nav class="pp-tabbar" aria-label="Main navigation">
+        <a href="My-Pets.html" class="pp-tab pp-tab--pets" aria-current="page">
+          <span class="pp-tab__icon" aria-hidden="true"></span> Pets
         </a>
-        <a href="Whats-due.html">
-          <span class="nav-icon" aria-hidden="true"></span> What's due
+        <a href="Whats-due.html" class="pp-tab pp-tab--reminders">
+          <span class="pp-tab__icon" aria-hidden="true"></span> What's due
         </a>
-        <a href="Share-a-pet.html">
-          <span class="nav-icon" aria-hidden="true"></span> Share
+        <a href="Share-a-pet.html" class="pp-tab pp-tab--share">
+          <span class="pp-tab__icon" aria-hidden="true"></span> Share
         </a>
-              <a href="Me.html">
-          <span class="nav-icon" aria-hidden="true"></span> Owner
+              <a href="Me.html" class="pp-tab pp-tab--owner">
+          <span class="pp-tab__icon" aria-hidden="true"></span> Owner
         </a>
       </nav>
 

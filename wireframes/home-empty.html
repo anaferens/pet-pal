@@ -7,6 +7,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700&family=Hanken+Grotesk:wght@400;500;600;700&family=EB+Garamond:ital,wght@0,600;1,600;1,700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../ui/kit.css">
 <style>
   :root {
     --wf-bg:#ffffff;--wf-surface:#f4f4f4;--wf-border:#e7e7e7;--wf-text:#141414;
@@ -406,51 +407,59 @@
         Main job · step 2 of 4 — <span>My Pets → ★ Pet card</span> → sections → Share
       </div>
 
-      <header class="m-header">
-        <a href="My-Pets.html" style="text-decoration:none;"><button class="back" aria-label="Back to your pets">←</button></a>
-        <h1>Miso</h1>
-        <a href="Edit-pet.html" style="text-decoration:none;"><button class="action-edit">Edit</button></a>
+      <header class="pp-appbar">
+        <a href="My-Pets.html" style="text-decoration:none;"><button class="pp-appbar__back" aria-label="Back to your pets">←</button></a>
+        <h1 class="pp-appbar__title pp-is-name">Miso</h1>
+        <a href="Edit-pet.html" style="text-decoration:none;"><button class="pp-appbar__action">Edit</button></a>
       </header>
 
       <div class="m-main">
-        <section class="m-pet-identity">
-          <figure class="pet-photo pet-photo-m">photo</figure>
-          <div class="pet-info">
-            <h2 style="font-size:20px;font-weight:700;">Miso</h2>
-            <p class="pet-meta" style="font-size:13px;">Dog · Border Terrier · Female</p>
-            <p class="pet-chip" style="font-size:11px;">Microchip 276 098 106 412 345</p>
+        <section class="pp-identity" aria-label="Pet identity">
+          <figure class="pp-avatar pp-avatar--md pp-avatar--miso pp-iconbox" aria-label="Miso">photo</figure>
+          <div class="pp-identity__body">
+            <h2 class="pp-identity__name">Miso</h2>
+            <p class="pp-identity__meta">Dog · Border Terrier · Female</p>
+            <p class="pp-identity__chip">Microchip 276 098 106 412 345</p>
           </div>
         </section>
 
-        <section class="m-quick-actions">
-          <a href="Share-a-pet.html"><button class="btn-primary">Share Miso's info</button></a>
-          <a href="Set-up-a-pet.html"><button class="btn-secondary">Edit pet details</button></a>
+        <section class="pp-actions pp-actions--links" aria-label="Quick actions">
+          <a href="Share-a-pet.html"><button class="pp-btn">Share Miso's info</button></a>
+          <a href="Set-up-a-pet.html"><button class="pp-btn pp-btn--secondary">Edit pet details</button></a>
         </section>
 
-        <section class="m-fill-counter">
-          <span class="count">0 results</span>
-          <span class="status">for "rabies cert"</span>
+        <section class="pp-counter" aria-label="Search results">
+          <span class="pp-counter__count">0 results</span>
+          <span class="pp-counter__meta">for "rabies cert"</span>
         </section>
 
-        <section class="m-search-filter">
-          <input class="search-bar" type="search" value="rabies cert" aria-label="Search sections">
+        <section class="pp-stack" aria-label="Search sections">
+          <input class="pp-search" type="search" value="rabies cert" aria-label="Search sections">
         </section>
 
         <!-- EMPTY STATE: no search results -->
-        <section class="empty-block" aria-label="No results">
-          <figure class="empty-illustration">illustration</figure>
-          <h3>No sections match your search</h3>
-          <p>Nothing in Miso's card matches "rabies cert." Try a broader term or clear the search to see all sections.</p>
-          <button class="btn-primary" onclick="history.back()">Clear search</button>
-          <a href="home-success.html" style="font-size:12px;color:var(--wf-muted);margin-top:4px;">Show all sections</a>
+        <section class="pp-empty" aria-label="No results">
+          <figure class="pp-illus pp-illus--pets" aria-label="Illustration placeholder">illustration</figure>
+          <h3 class="pp-empty__title">No sections match your search</h3>
+          <p class="pp-empty__body">Nothing in Miso's card matches "rabies cert." Try a broader term or clear the search to see all sections.</p>
+          <button class="pp-btn" onclick="history.back()">Clear search</button>
+          <a href="home-success.html" class="pp-btn pp-btn--link">Show all sections</a>
         </section>
       </div>
 
-      <nav class="phone-nav">
-        <a href="My-Pets.html" class="active"><span class="nav-icon"></span> Pets</a>
-        <a href="Whats-due.html"><span class="nav-icon"></span> Reminders</a>
-        <a href="Share-a-pet.html"><span class="nav-icon"></span> Share</a>
-        <a href="Me.html"><span class="nav-icon"></span> Owner</a>
+      <nav class="pp-tabbar" aria-label="Main navigation">
+        <a href="My-Pets.html" class="pp-tab pp-tab--pets" aria-current="page">
+          <span class="pp-tab__icon" aria-hidden="true"></span> Pets
+        </a>
+        <a href="Whats-due.html" class="pp-tab pp-tab--reminders">
+          <span class="pp-tab__icon" aria-hidden="true"></span> Reminders
+        </a>
+        <a href="Share-a-pet.html" class="pp-tab pp-tab--share">
+          <span class="pp-tab__icon" aria-hidden="true"></span> Share
+        </a>
+        <a href="Me.html" class="pp-tab pp-tab--owner">
+          <span class="pp-tab__icon" aria-hidden="true"></span> Owner
+        </a>
       </nav>
     </div>
   </div>

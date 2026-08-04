@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Edit access (saving) — PetPal wireframe</title>
+<link rel="stylesheet" href="../ui/kit.css">
 <style>
   :root {
     --wf-bg:         #ffffff;
@@ -1183,9 +1184,9 @@
         S1 · Edit grant — Who has access → <span>★ Edit / revoke</span>
       </div>
 
-      <header class="m-header">
-        <a href="Who-has-access.html" style="text-decoration:none;"><button class="back" aria-label="Back to who has access">←</button></a>
-        <h1>Marie's access</h1>
+      <header class="pp-appbar">
+        <a href="Who-has-access.html" style="text-decoration:none;"><button class="pp-appbar__back" aria-label="Back to who has access">←</button></a>
+        <h1 class="pp-appbar__title">Marie's access</h1>
         <span></span>
       </header>
 
@@ -1194,114 +1195,114 @@
         <form>
 
           <!-- Recipient info (read-only) -->
-          <section class="recipient-info" style="opacity:0.5;" aria-label="Recipient information">
-            <div class="zone-label">Sitter (read-only)</div>
-            <div class="recipient-info-header">
-              <div class="recipient-avatar">M</div>
-              <div class="recipient-name">Marie (dog walker)</div>
+          <section class="pp-card pp-card--inset pp-saving" aria-label="Recipient information">
+            <p class="pp-detail__label">Sitter (read-only)</p>
+            <div class="pp-contact">
+              <div class="pp-avatar pp-avatar--md">M</div>
+              <div class="pp-contact__name">Marie (dog walker)</div>
             </div>
-            <div class="recipient-details">
+            <p class="pp-detail">
               <strong>Shared via:</strong> Link<br>
               <strong>Shared on:</strong> 12 Jun 2026<br>
               <strong>Pet:</strong> Miso
-            </div>
+            </p>
           </section>
 
           <!-- Role fieldset (disabled) -->
-          <fieldset disabled style="border:none;padding:0;margin:16px 0 0;opacity:0.5;">
-            <div class="form-group">
-              <legend><label for="role-select">Role</label></legend>
-              <select id="role-select">
+          <fieldset class="pp-fieldset" disabled>
+            <div class="pp-field pp-field--inset">
+              <legend class="pp-field__label"><label class="pp-field__label" for="role-select">Role</label></legend>
+              <select class="pp-select pp-select--chev" id="role-select">
                 <option selected>Sitter (read-only)</option>
                 <option>Vet (can add records)</option>
                 <option>Co-owner (full edit)</option>
               </select>
-              <p class="helper">Sitters can view but not edit. Vets can add medical records.</p>
+              <p class="pp-help">Sitters can view but not edit. Vets can add medical records.</p>
             </div>
           </fieldset>
 
           <!-- Scope fieldset (disabled) -->
-          <fieldset disabled style="border:none;padding:0;margin:16px 0 0;">
-            <legend class="scope-picker-label" style="padding:0 16px;opacity:0.5;">What can Marie see?</legend>
-            <div class="scope-picker" role="radiogroup" aria-label="Access scope">
-              <label class="scope-option" onclick="selectScope(this)">
-                <input type="radio" name="scope" value="full" style="display:none;">
-                <div class="scope-radio"></div>
-                <div>
-                  <div class="scope-label-text">Full card</div>
-                  <div class="scope-desc">Health, documents, personality, vet — everything</div>
+          <fieldset class="pp-fieldset" disabled>
+            <legend class="pp-field__label pp-inset">What can Marie see?</legend>
+            <div class="pp-choices" role="radiogroup" aria-label="Access scope">
+              <label class="pp-choice" role="radio" tabindex="0" aria-checked="false" onclick="selectScope(this)">
+                <input type="radio" name="scope" value="full" hidden>
+                <div class="pp-choice__radio"></div>
+                <div class="pp-choice__body">
+                  <div class="pp-choice__title">Full card</div>
+                  <div class="pp-choice__desc">Health, documents, personality, vet — everything</div>
                 </div>
               </label>
-              <label class="scope-option selected" onclick="selectScope(this)">
-                <input type="radio" name="scope" value="care" checked style="display:none;">
-                <div class="scope-radio"></div>
-                <div>
-                  <div class="scope-label-text">Care info only</div>
-                  <div class="scope-desc">Personality, food, routines, warnings — for a sitter</div>
+              <label class="pp-choice" role="radio" tabindex="0" aria-checked="true" onclick="selectScope(this)">
+                <input type="radio" name="scope" value="care" checked hidden>
+                <div class="pp-choice__radio"></div>
+                <div class="pp-choice__body">
+                  <div class="pp-choice__title">Care info only</div>
+                  <div class="pp-choice__desc">Personality, food, routines, warnings — for a sitter</div>
                 </div>
               </label>
-              <label class="scope-option" onclick="selectScope(this)">
-                <input type="radio" name="scope" value="health" style="display:none;">
-                <div class="scope-radio"></div>
-                <div>
-                  <div class="scope-label-text">Health info only</div>
-                  <div class="scope-desc">Jabs, conditions, meds — for a vet visit</div>
+              <label class="pp-choice" role="radio" tabindex="0" aria-checked="false" onclick="selectScope(this)">
+                <input type="radio" name="scope" value="health" hidden>
+                <div class="pp-choice__radio"></div>
+                <div class="pp-choice__body">
+                  <div class="pp-choice__title">Health info only</div>
+                  <div class="pp-choice__desc">Jabs, conditions, meds — for a vet visit</div>
                 </div>
               </label>
-              <label class="scope-option" onclick="selectScope(this)">
-                <input type="radio" name="scope" value="emergency" style="display:none;">
-                <div class="scope-radio"></div>
-                <div>
-                  <div class="scope-label-text">Emergency only</div>
-                  <div class="scope-desc">Vet contact, conditions, meds — the essentials</div>
+              <label class="pp-choice" role="radio" tabindex="0" aria-checked="false" onclick="selectScope(this)">
+                <input type="radio" name="scope" value="emergency" hidden>
+                <div class="pp-choice__radio"></div>
+                <div class="pp-choice__body">
+                  <div class="pp-choice__title">Emergency only</div>
+                  <div class="pp-choice__desc">Vet contact, conditions, meds — the essentials</div>
                 </div>
               </label>
             </div>
           </fieldset>
 
           <!-- Expiry fieldset (disabled) -->
-          <fieldset disabled style="border:none;padding:0;margin:16px 0 0;opacity:0.5;">
-            <div class="form-group">
-              <legend><label for="expiry-select">Link expires after</label></legend>
-              <select id="expiry-select">
+          <fieldset class="pp-fieldset" disabled>
+            <div class="pp-field pp-field--inset">
+              <legend class="pp-field__label"><label class="pp-field__label" for="expiry-select">Link expires after</label></legend>
+              <select class="pp-select pp-select--chev" id="expiry-select">
                 <option>1 week</option>
                 <option selected>1 month</option>
                 <option>Permanent</option>
                 <option>Custom date</option>
               </select>
-              <p class="helper">Currently expires 12 Jul 2026</p>
+              <p class="pp-help">Currently expires 12 Jul 2026</p>
             </div>
           </fieldset>
 
           <!-- Form actions (saving state) -->
-          <div class="form-actions" style="flex-direction:column;gap:10px;">
-            <button type="button" class="btn-primary" style="width:100%;opacity:0.5;cursor:not-allowed;" disabled disabled>Saving changes…</button>
-            <button type="button" class="btn-secondary" style="width:100%;opacity:0.5;cursor:not-allowed;" disabled onclick="window.location.href='Who-has-access.html'+window.location.search">Cancel</button>
+          <div class="pp-actions pp-actions--stack pp-actions--links">
+            <button type="button" class="pp-btn pp-btn--full" disabled>Saving changes…</button>
+            <button type="button" class="pp-btn pp-btn--secondary pp-btn--full" disabled onclick="window.location.href='Who-has-access.html'+window.location.search">Cancel</button>
           </div>
 
           <!-- Danger zone (disabled) -->
-          <section class="danger-zone" aria-label="Danger zone">
-            <div class="danger-zone-label">Stop sharing</div>
-            <button type="button" class="btn-secondary" style="border-color:var(--wf-muted);" disabled onclick="window.location.href='Who-has-access.html'+window.location.search">Stop sharing</button>
-            <p class="helper">Marie can no longer open Miso's card — this happens immediately. You can share it with her again later.</p>
+          <section class="pp-danger pp-inset" aria-label="Danger zone">
+            <p class="pp-danger__label">Stop sharing</p>
+            <button type="button" class="pp-btn pp-btn--secondary pp-btn--full" disabled onclick="window.location.href='Who-has-access.html'+window.location.search">Stop sharing</button>
+            <p class="pp-help">Marie can no longer open Miso's card — this happens immediately. You can share it with her again later.</p>
           </section>
 
         </form>
 
       </main>
 
-      <nav class="phone-nav" aria-label="Main navigation">
-        <a href="My-Pets.html">
-          <span class="nav-icon" aria-hidden="true"></span> Pets
+      <nav class="pp-tabbar" aria-label="Main navigation">
+        <a href="My-Pets.html" class="pp-tab pp-tab--pets">
+          <span class="pp-tab__icon" aria-hidden="true"></span> Pets
         </a>
-        <a href="Whats-due.html">
-          <span class="nav-icon" aria-hidden="true"></span> What's due
+        <a href="Whats-due.html" class="pp-tab pp-tab--reminders">
+          <span class="pp-tab__icon" aria-hidden="true"></span> What's due
         </a>
-        <a href="Share-a-pet.html" class="active">
-          <span class="nav-icon" aria-hidden="true"></span> Share
+        <a href="Share-a-pet.html" class="pp-tab pp-tab--share" aria-current="page">
+          <span class="pp-tab__icon" aria-hidden="true"></span> Share
         </a>
-              <a href="Me.html">
-          <span class="nav-icon" aria-hidden="true"></span> Owner
+              <a href="Me.html" class="pp-tab pp-tab--owner">
+          <span class="pp-tab__icon" aria-hidden="true"></span> Owner
         </a>
       </nav>
 
@@ -1457,8 +1458,8 @@
 <script>
 function selectScope(el) {
   var group = el.parentElement;
-  group.querySelectorAll('.scope-option').forEach(function(o){ o.classList.remove('selected'); });
-  el.classList.add('selected');
+  group.querySelectorAll('.pp-choice').forEach(function(o){ o.setAttribute('aria-checked', 'false'); });
+  el.setAttribute('aria-checked', 'true');
 }
 function setView(mode) {
   document.body.classList.toggle('is-desktop', mode === 'desktop');

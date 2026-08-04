@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Insurance (empty) — PetPal wireframe</title>
+<link rel="stylesheet" href="../ui/kit.css">
 <style>
   :root {
     --wf-bg:         #ffffff;
@@ -678,41 +679,41 @@
         <span class="zone-label">R1</span> R1 · <span>Pet card → ★ Insurance</span>
       </div>
 
-      <header class="m-header">
-        <a href="home-progress-2.html" style="text-decoration:none;"><button class="back" aria-label="Back to Miso's card">←</button></a>
-        <h1>Insurance</h1>
-        <a href="Add-insurance.html"><button class="action-btn">Edit</button></a>
+      <header class="pp-appbar">
+        <a href="home-progress-2.html" style="text-decoration:none;"><button class="pp-appbar__back" aria-label="Back to Miso's card">←</button></a>
+        <h1 class="pp-appbar__title">Insurance</h1>
+        <a href="Add-insurance.html"><button class="pp-appbar__action">Edit</button></a>
       </header>
 
       <div class="m-main">
 
-        <section class="m-pet-identity" aria-label="Pet identity">
-          <figure class="pet-photo pet-photo-s" aria-label="Pet photo placeholder">photo</figure>
-          <div class="pet-info">
-            <h2 style="font-size:15px;font-weight:700;">Miso</h2>
-            <p class="pet-meta" style="font-size:12px;">Dog · Border Terrier · Female</p>
+        <section class="pp-identity" aria-label="Pet identity">
+          <figure class="pp-avatar pp-avatar--md pp-avatar--miso pp-iconbox" aria-label="Miso">photo</figure>
+          <div class="pp-identity__body">
+            <h2 class="pp-identity__name">Miso</h2>
+            <p class="pp-identity__meta">Dog · Border Terrier · Female</p>
           </div>
         </section>
-        <section class="empty-state" aria-label="Empty state">
-          <figure class="empty-illustration" aria-label="Illustration placeholder">illustration</figure>
-          <h2 class="empty-headline">No insurance yet</h2>
-          <p class="empty-body">Add Miso's insurance policy — renewal date, coverage, and the policy document, ready for the vet or a sitter.</p>
-          <a href="Add-insurance.html"><button class="btn-primary empty-cta">Add a policy</button></a>
+        <section class="pp-empty" aria-label="Empty state">
+          <figure class="pp-illus pp-illus--insurance" aria-label="Illustration placeholder">illustration</figure>
+          <h2 class="pp-empty__title">No insurance yet</h2>
+          <p class="pp-empty__body">Add Miso's insurance policy — renewal date, coverage, and the policy document, ready for the vet or a sitter.</p>
+          <a href="Add-insurance.html"><button class="pp-btn">Add a policy</button></a>
         </section>
       </div>
 
-      <nav class="phone-nav" aria-label="Main navigation">
-        <a href="My-Pets.html" class="active">
-          <span class="nav-icon" aria-hidden="true"></span> Pets
+      <nav class="pp-tabbar" aria-label="Main navigation">
+        <a href="My-Pets.html" class="pp-tab pp-tab--pets" aria-current="page">
+          <span class="pp-tab__icon" aria-hidden="true"></span> Pets
         </a>
-        <a href="Whats-due.html">
-          <span class="nav-icon" aria-hidden="true"></span> What's due
+        <a href="Whats-due.html" class="pp-tab pp-tab--reminders">
+          <span class="pp-tab__icon" aria-hidden="true"></span> What's due
         </a>
-        <a href="Share-a-pet.html">
-          <span class="nav-icon" aria-hidden="true"></span> Share
+        <a href="Share-a-pet.html" class="pp-tab pp-tab--share">
+          <span class="pp-tab__icon" aria-hidden="true"></span> Share
         </a>
-              <a href="Me.html">
-          <span class="nav-icon" aria-hidden="true"></span> Owner
+              <a href="Me.html" class="pp-tab pp-tab--owner">
+          <span class="pp-tab__icon" aria-hidden="true"></span> Owner
         </a>
       </nav>
 

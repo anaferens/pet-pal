@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Document view — PetPal wireframe</title>
+<link rel="stylesheet" href="../ui/kit.css">
 <style>
   :root {
     --wf-bg:         #ffffff;
@@ -679,52 +680,50 @@
         <span class="zone-label">Main, R3</span> Main + R3 · <span>Documents & passport → ★ Document view</span> → back to section
       </div>
 
-      <header class="m-header">
-        <a href="Documents-and-passport.html" style="text-decoration:none;"><button class="back" aria-label="Back to Documents">←</button></a>
-        <h1 class="dv-title">EU Pet Passport</h1>
-        <span style="width:60px;" aria-hidden="true"></span>
+      <header class="pp-appbar">
+        <a href="Documents-and-passport.html" style="text-decoration:none;"><button class="pp-appbar__back" aria-label="Back to Documents">←</button></a>
+        <h1 class="dv-title pp-appbar__title">EU Pet Passport</h1>
+        <span aria-hidden="true"></span>
       </header>
 
       <div class="m-main">
 
-        <section class="m-pet-identity" aria-label="Pet identity">
-          <figure class="pet-photo pet-photo-s" aria-label="Pet photo placeholder">photo</figure>
-          <div class="pet-info">
-            <h2 style="font-size:15px;font-weight:700;">Miso</h2>
-            <p class="pet-meta" style="font-size:12px;">Dog · Border Terrier · Female</p>
+        <section class="pp-identity" aria-label="Pet identity">
+          <figure class="pp-avatar pp-avatar--md pp-avatar--miso pp-iconbox" aria-label="Miso">photo</figure>
+          <div class="pp-identity__body">
+            <h2 class="pp-identity__name">Miso</h2>
+            <p class="pp-identity__meta">Dog · Border Terrier · Female</p>
           </div>
         </section>
 
-        <div style="margin:16px;border:1.5px dashed var(--wf-border);border-radius:10px;background:var(--wf-surface);height:340px;display:flex;align-items:center;justify-content:center;color:var(--wf-muted);font-size:13px;">
+        <div class="pp-preview">
           <span class="dv-thumb">document preview</span>
         </div>
 
-        <div style="padding:0 16px;">
-          <div class="zone-label">Document details</div>
-          <div class="dv-rows" style="font-size:13px;line-height:2;border-bottom:1px solid var(--wf-border);padding-bottom:12px;"></div>
-        </div>
+        <h2 class="pp-heading">Document details</h2>
+        <div class="dv-rows pp-ruled"></div>
 
-        <div style="display:flex;gap:8px;padding:16px;">
-          <button class="btn-primary" style="flex:1;" onclick="this.textContent='Downloaded ✓'">Download PDF</button>
-          <a href="Share-a-pet.html" style="flex:1;text-decoration:none;"><button class="btn-secondary" style="width:100%;">Share</button></a>
+        <div class="pp-actions">
+          <button class="pp-btn" onclick="this.textContent='Downloaded ✓'">Download PDF</button>
+          <button class="pp-btn pp-btn--secondary" onclick="window.location.href='Share-a-pet.html'">Share</button>
         </div>
-        <div style="padding:0 16px 16px;">
-          <a href="Add-record.html" style="font-size:12px;color:var(--wf-muted);">Update this document →</a>
+        <div class="pp-inset">
+          <a href="Add-record.html" class="pp-btn pp-btn--link">Update this document →</a>
         </div>
       </div>
 
-      <nav class="phone-nav" aria-label="Main navigation">
-        <a href="My-Pets.html" class="active">
-          <span class="nav-icon" aria-hidden="true"></span> Pets
+      <nav class="pp-tabbar" aria-label="Main navigation">
+        <a href="My-Pets.html" class="pp-tab pp-tab--pets" aria-current="page">
+          <span class="pp-tab__icon" aria-hidden="true"></span> Pets
         </a>
-        <a href="Whats-due.html">
-          <span class="nav-icon" aria-hidden="true"></span> What's due
+        <a href="Whats-due.html" class="pp-tab pp-tab--reminders">
+          <span class="pp-tab__icon" aria-hidden="true"></span> What's due
         </a>
-        <a href="Share-a-pet.html">
-          <span class="nav-icon" aria-hidden="true"></span> Share
+        <a href="Share-a-pet.html" class="pp-tab pp-tab--share">
+          <span class="pp-tab__icon" aria-hidden="true"></span> Share
         </a>
-              <a href="Me.html">
-          <span class="nav-icon" aria-hidden="true"></span> Owner
+              <a href="Me.html" class="pp-tab pp-tab--owner">
+          <span class="pp-tab__icon" aria-hidden="true"></span> Owner
         </a>
       </nav>
 
@@ -802,7 +801,7 @@ function populateDoc() {
   var ext = d.rows[d.rows.length-1][1].split(' ')[0].split('.').pop().toUpperCase();
   document.querySelectorAll('.dv-thumb').forEach(function(t){ t.textContent = ext + ' preview'; });
   var html = d.rows.map(function(r){
-    return '<div style="display:flex;justify-content:space-between;"><span style="color:var(--wf-muted);">'+r[0]+'</span><strong>'+r[1]+'</strong></div>';
+    return '<div class="pp-detail__row"><span>'+r[0]+'</span><strong>'+r[1]+'</strong></div>';
   }).join('');
   document.querySelectorAll('.dv-rows').forEach(function(el){ el.innerHTML = html; });
   document.title = d.title + ' \u2014 PetPal wireframe';

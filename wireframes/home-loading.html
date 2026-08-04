@@ -7,6 +7,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700&family=Hanken+Grotesk:wght@400;500;600;700&family=EB+Garamond:ital,wght@0,600;1,600;1,700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../ui/kit.css">
 <style>
   :root {
     --wf-bg:#ffffff;--wf-surface:#f4f4f4;--wf-border:#e7e7e7;--wf-text:#141414;
@@ -359,80 +360,88 @@
         Main job · step 2 of 4 — <span>My Pets → ★ Pet card</span> → sections → Share
       </div>
 
-      <header class="m-header">
-        <a href="My-Pets.html" style="text-decoration:none;"><button class="back" aria-label="Back to your pets">←</button></a>
-        <h1>Miso</h1>
+      <header class="pp-appbar">
+        <a href="My-Pets.html" style="text-decoration:none;"><button class="pp-appbar__back" aria-label="Back to your pets">←</button></a>
+        <h1 class="pp-appbar__title pp-is-name">Miso</h1>
       </header>
 
       <div class="m-main">
 
         <!-- pet identity skeleton -->
-        <section class="m-pet-identity">
-          <figure class="pet-photo pet-photo-m">photo</figure>
-          <div class="pet-info">
-            <h2 style="font-size:20px;font-weight:700;">Miso</h2>
-            <p class="pet-meta" style="font-size:13px;">Dog · Border Terrier · Female</p>
+        <section class="pp-identity" aria-label="Pet identity">
+          <figure class="pp-avatar pp-avatar--md pp-avatar--miso pp-iconbox" aria-label="Miso">photo</figure>
+          <div class="pp-identity__body">
+            <h2 class="pp-identity__name">Miso</h2>
+            <p class="pp-identity__meta">Dog · Border Terrier · Female</p>
           </div>
         </section>
 
-        <p class="skeleton-label">Loading Miso's card…</p>
+        <p class="pp-loading-label">Loading Miso's card…</p>
 
         <!-- LOADING STATE: skeleton cards replacing section list -->
-        <ul class="skeleton-list" aria-label="Loading card sections">
-          <li><div class="skeleton-card">
-            <div class="skeleton-icon"></div>
-            <div class="skeleton-lines">
-              <div class="skeleton-line w60"></div>
-              <div class="skeleton-line w80"></div>
-              <div class="skeleton-line w45"></div>
+        <ul class="pp-skels" aria-label="Loading card sections">
+          <li><div class="pp-skel-row">
+            <div class="pp-skel pp-skel--tile"></div>
+            <div class="pp-skel-row__body">
+              <div class="pp-skel pp-skel--line"></div>
+              <div class="pp-skel pp-skel--line"></div>
+              <div class="pp-skel pp-skel--line"></div>
             </div>
           </div></li>
-          <li><div class="skeleton-card">
-            <div class="skeleton-icon"></div>
-            <div class="skeleton-lines">
-              <div class="skeleton-line w70"></div>
-              <div class="skeleton-line w60"></div>
-              <div class="skeleton-line w80"></div>
+          <li><div class="pp-skel-row">
+            <div class="pp-skel pp-skel--tile"></div>
+            <div class="pp-skel-row__body">
+              <div class="pp-skel pp-skel--line"></div>
+              <div class="pp-skel pp-skel--line"></div>
+              <div class="pp-skel pp-skel--line"></div>
             </div>
           </div></li>
-          <li><div class="skeleton-card">
-            <div class="skeleton-icon"></div>
-            <div class="skeleton-lines">
-              <div class="skeleton-line w45"></div>
-              <div class="skeleton-line w70"></div>
-              <div class="skeleton-line w60"></div>
+          <li><div class="pp-skel-row">
+            <div class="pp-skel pp-skel--tile"></div>
+            <div class="pp-skel-row__body">
+              <div class="pp-skel pp-skel--line"></div>
+              <div class="pp-skel pp-skel--line"></div>
+              <div class="pp-skel pp-skel--line"></div>
             </div>
           </div></li>
-          <li><div class="skeleton-card">
-            <div class="skeleton-icon"></div>
-            <div class="skeleton-lines">
-              <div class="skeleton-line w80"></div>
-              <div class="skeleton-line w45"></div>
+          <li><div class="pp-skel-row">
+            <div class="pp-skel pp-skel--tile"></div>
+            <div class="pp-skel-row__body">
+              <div class="pp-skel pp-skel--line"></div>
+              <div class="pp-skel pp-skel--line"></div>
             </div>
           </div></li>
-          <li><div class="skeleton-card">
-            <div class="skeleton-icon"></div>
-            <div class="skeleton-lines">
-              <div class="skeleton-line w60"></div>
-              <div class="skeleton-line w80"></div>
-              <div class="skeleton-line w45"></div>
+          <li><div class="pp-skel-row">
+            <div class="pp-skel pp-skel--tile"></div>
+            <div class="pp-skel-row__body">
+              <div class="pp-skel pp-skel--line"></div>
+              <div class="pp-skel pp-skel--line"></div>
+              <div class="pp-skel pp-skel--line"></div>
             </div>
           </div></li>
-          <li><div class="skeleton-card">
-            <div class="skeleton-icon"></div>
-            <div class="skeleton-lines">
-              <div class="skeleton-line w70"></div>
-              <div class="skeleton-line w60"></div>
+          <li><div class="pp-skel-row">
+            <div class="pp-skel pp-skel--tile"></div>
+            <div class="pp-skel-row__body">
+              <div class="pp-skel pp-skel--line"></div>
+              <div class="pp-skel pp-skel--line"></div>
             </div>
           </div></li>
         </ul>
       </div>
 
-      <nav class="phone-nav">
-        <a href="My-Pets.html" class="active"><span class="nav-icon"></span> Pets</a>
-        <a href="Whats-due.html"><span class="nav-icon"></span> Reminders</a>
-        <a href="Share-a-pet.html"><span class="nav-icon"></span> Share</a>
-        <a href="Me.html"><span class="nav-icon"></span> Owner</a>
+      <nav class="pp-tabbar" aria-label="Main navigation">
+        <a href="My-Pets.html" class="pp-tab pp-tab--pets" aria-current="page">
+          <span class="pp-tab__icon" aria-hidden="true"></span> Pets
+        </a>
+        <a href="Whats-due.html" class="pp-tab pp-tab--reminders">
+          <span class="pp-tab__icon" aria-hidden="true"></span> Reminders
+        </a>
+        <a href="Share-a-pet.html" class="pp-tab pp-tab--share">
+          <span class="pp-tab__icon" aria-hidden="true"></span> Share
+        </a>
+        <a href="Me.html" class="pp-tab pp-tab--owner">
+          <span class="pp-tab__icon" aria-hidden="true"></span> Owner
+        </a>
       </nav>
     </div>
   </div>

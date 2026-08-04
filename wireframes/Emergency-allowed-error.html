@@ -7,6 +7,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700&family=Hanken+Grotesk:wght@400;500;600;700&family=EB+Garamond:ital,wght@0,600;1,500;1,700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../ui/kit.css">
 <style>
   :root {
     --signal:#ffbf00; --signal-deep:#e0a400; --signal-ink:#8a6b00; --signal-tint:#fdf3d3;
@@ -194,20 +195,10 @@
     .btn-danger:active { transform: none !important; }
   }
 
-  /* ── The Signal · type roles ────────────────────────────────────────────── */
-  .phone, .phone button, .phone input, .phone select { font-family: var(--body); }
-  .phone h1, .phone h2, .phone h3, .phone h4 { font-family: var(--disp); letter-spacing: normal; }
-  .phone .pet-name, .phone .sv-name { font-family: var(--serif); font-style: italic; font-weight: 700; }
-  /* cards float on a shadow rather than an outline */
-  .phone .contact-card, .phone .vet-card, .phone .med-list, .phone .important-notes {
-    background: var(--wf-bg); border: 1px solid var(--wf-border); border-radius: 16px;
-    box-shadow: var(--sh-card); }
-  .phone .btn-primary { background: var(--wf-btn); color: var(--wf-btn-text);
-    border-radius: 999px; padding: 15px 20px; min-height: 44px; font-weight: 600; }
-  .phone .btn-secondary { background: var(--wf-surface); color: var(--wf-text);
-    border-radius: 999px; padding: 15px 20px; min-height: 44px; font-weight: 600; }
-  .phone .role-badge-strip span, .phone .chip { border-radius: 8px; padding: 5px 11px;
-    font-size: 12px; font-weight: 600; line-height: 1; }
+  /* The Signal's type roles and card/button/chip rules that stood here are now
+     the kit's — .pp-appbar, .pp-card, .pp-btn, .pp-chip, .pp-note. They had to
+     go: `.phone h1..h4` (0,1,1) out-specified every kit class (0,1,0) and would
+     have forced letter-spacing:normal onto the app-bar title. */
 </style>
 </head>
 <body>
@@ -565,28 +556,28 @@
         R5/R2 · Sitter emergency — Shared pet card → <span>★ Emergency &amp; allowed (error)</span>
       </div>
 
-      <header class="m-header">
-        <a href="Shared-pet-view.html" class="back" aria-label="Back to Miso's card">←</a>
-        <h1>Emergency info</h1>
-        <span style="width:40px;"></span>
+      <header class="pp-appbar">
+        <a href="Shared-pet-view.html" class="pp-appbar__back" aria-label="Back to Miso's card">←</a>
+        <h1 class="pp-appbar__title">Emergency info</h1>
+        <span aria-hidden="true"></span>
       </header>
 
       <main class="m-main">
 
-        <div class="error-block">
-          <h2>Couldn't load emergency info</h2>
-          <p>Check your connection and try again. If urgent, call the vet or owner directly.</p>
-          <a href="Emergency-allowed-loading.html"><button class="btn-primary">Try again</button></a>
+        <div class="pp-error">
+          <h2 class="pp-error__title">Couldn't load emergency info</h2>
+          <p class="pp-error__body">Check your connection and try again. If urgent, call the vet or owner directly.</p>
+          <a href="Emergency-allowed-loading.html"><button class="pp-btn">Try again</button></a>
         </div>
 
-        <div class="fallback-contacts">
-          <a href="tel:+493012345670">Call vet: +49 30 1234567</a>
-          <a href="tel:+491719876543">Call owner: +49 171 9876543</a>
+        <div class="pp-actions pp-actions--stack">
+          <a href="tel:+493012345670" class="pp-btn pp-btn--secondary">Call vet: +49 30 1234567</a>
+          <a href="tel:+491719876543" class="pp-btn pp-btn--secondary">Call owner: +49 171 9876543</a>
         </div>
 
       </main>
 
-      <footer class="shared-footer" aria-label="Shared link info">
+      <footer class="pp-sharedfoot" aria-label="Shared link info">
         Shared via PetPal · In a real emergency, always call the vet first.
       </footer>
 

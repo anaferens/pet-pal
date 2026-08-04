@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Emergency info · set up — PetPal wireframe</title>
+<link rel="stylesheet" href="../ui/kit.css">
 <style>
   :root {
     --wf-bg:         #ffffff;
@@ -617,51 +618,51 @@
         R5 · Emergency — <span>My Pets → ★ Emergency info</span>
       </div>
 
-      <header class="m-header">
-        <a href="home-progress-6.html" style="text-decoration:none;"><button class="back" aria-label="Back to Miso's card">←</button></a>
-        <h1>Emergency info</h1>
+      <header class="pp-appbar">
+        <a href="home-progress-6.html" style="text-decoration:none;"><button class="pp-appbar__back" aria-label="Back to Miso's card">←</button></a>
+        <h1 class="pp-appbar__title">Emergency info</h1>
         <span></span>
       </header>
 
       <div class="m-main">
 
-        <section class="m-pet-identity" aria-label="Pet identity">
-          <figure class="pet-photo pet-photo-s" aria-label="Pet photo placeholder">photo</figure>
-          <div class="pet-info">
-            <h2 style="font-size:15px;font-weight:700;">Miso</h2>
-            <p class="pet-meta" style="font-size:12px;">Dog &middot; Border Terrier &middot; Female</p>
+        <section class="pp-identity" aria-label="Pet identity">
+          <figure class="pp-avatar pp-avatar--md pp-avatar--miso pp-iconbox" aria-label="Miso">photo</figure>
+          <div class="pp-identity__body">
+            <h2 class="pp-identity__name">Miso</h2>
+            <p class="pp-identity__meta">Dog &middot; Border Terrier &middot; Female</p>
           </div>
         </section>
 
-        <div style="margin:10px 16px;padding:12px 14px;border:1.5px solid var(--wf-border);border-radius:8px;">
-          <h3 style="font-size:14px;font-weight:600;">Emergency contact</h3>
-          <p style="font-size:13px;margin-top:6px;"><strong>Eva Schmidt</strong> · Owner<br><a href="tel:+491719876543" style="color:var(--wf-muted);">+49 171 9876543</a></p>
+        <div class="pp-card pp-card--inset">
+          <h3 class="pp-card__title">Emergency contact</h3>
+          <p class="pp-card__body"><strong>Eva Schmidt</strong> · Owner<br><a href="tel:+491719876543">+49 171 9876543</a></p>
         </div>
 
-        <div style="margin:10px 16px;padding:12px 14px;border:1.5px solid var(--wf-border);border-radius:8px;">
-          <h3 style="font-size:14px;font-weight:600;">Vet clinic</h3>
-          <p style="font-size:13px;margin-top:6px;"><strong>Tierklinik am Stadtpark</strong> · Dr. Müller<br>Parkstraße 12, 10115 Berlin</p>
-          <a href="tel:+493012345670" style="text-decoration:none;"><button class="btn-secondary" style="width:100%;margin-top:8px;font-size:13px;">Call vet</button></a>
+        <div class="pp-card pp-card--inset">
+          <h3 class="pp-card__title">Vet clinic</h3>
+          <p class="pp-card__body"><strong>Tierklinik am Stadtpark</strong> · Dr. Müller<br>Parkstraße 12, 10115 Berlin</p>
+          <a href="tel:+493012345670" style="text-decoration:none;"><button class="pp-btn pp-btn--secondary pp-btn--full">Call vet</button></a>
         </div>
 
-        <div style="margin:10px 16px;padding:12px 14px;border:1.5px solid var(--wf-border);border-radius:8px;">
-          <h3 style="font-size:14px;font-weight:600;">Important — authorisation &amp; allowed meds</h3>
-          <p style="font-size:13px;margin-top:6px;"><strong>Set up</strong> · Sitter may seek emergency vet care up to €500<br>Allowed meds list: Apoquel (with vet approval) · No aspirin</p>
-          <a href="Emergency-auth-setup.html" style="font-size:12px;">Edit authorisation →</a>
+        <div class="pp-card pp-card--inset">
+          <h3 class="pp-card__title">Important — authorisation &amp; allowed meds</h3>
+          <p class="pp-card__body"><strong>Set up</strong> · Sitter may seek emergency vet care up to €500<br>Allowed meds list: Apoquel (with vet approval) · No aspirin</p>
+          <a href="Emergency-auth-setup.html" class="pp-btn pp-btn--link">Edit authorisation</a>
         </div>
       
-      <nav class="phone-nav" aria-label="Main navigation">
-        <a href="My-Pets.html" class="active">
-          <span class="nav-icon" aria-hidden="true"></span> Pets
+      <nav class="pp-tabbar" aria-label="Main navigation">
+        <a href="My-Pets.html" class="pp-tab pp-tab--pets" aria-current="page">
+          <span class="pp-tab__icon" aria-hidden="true"></span> Pets
         </a>
-        <a href="Whats-due.html">
-          <span class="nav-icon" aria-hidden="true"></span> What's due
+        <a href="Whats-due.html" class="pp-tab pp-tab--reminders">
+          <span class="pp-tab__icon" aria-hidden="true"></span> What's due
         </a>
-        <a href="Share-a-pet.html">
-          <span class="nav-icon" aria-hidden="true"></span> Share
+        <a href="Share-a-pet.html" class="pp-tab pp-tab--share">
+          <span class="pp-tab__icon" aria-hidden="true"></span> Share
         </a>
-              <a href="Me.html">
-          <span class="nav-icon" aria-hidden="true"></span> Owner
+              <a href="Me.html" class="pp-tab pp-tab--owner">
+          <span class="pp-tab__icon" aria-hidden="true"></span> Owner
         </a>
       </nav>
 

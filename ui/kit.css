@@ -49,6 +49,7 @@
 
   --pp-fs-name:   36px;   /* pet / owner name, serif italic          */
   --pp-fs-appbar: 17px;   /* screen title in the band                */
+  --pp-fs-brand:  24px;   /* the wordmark on an auth screen          */
   --pp-fs-title:  16px;   /* section title on a card                 */
   --pp-fs-body:   14px;   /* default reading size                    */
   --pp-fs-field:  15px;   /* form controls sit one step up (Me.html)  */
@@ -151,6 +152,7 @@
   --pp-i-share-tint: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxZW0iIGhlaWdodD0iMWVtIiB2aWV3Qm94PSIwIDAgMjQgMjQiPjxwYXRoIGZpbGw9IiM4YTZiMDAiIGZpbGwtcnVsZT0iZXZlbm9kZCIgZD0iTTEzLjgwMyA1LjMzM2MwLTEuODQgMS41LTMuMzMzIDMuMzQ4LTMuMzMzQTMuMzQgMy4zNCAwIDAgMSAyMC41IDUuMzMzYzAgMS44NDEtMS41IDMuMzM0LTMuMzQ5IDMuMzM0YTMuMzUgMy4zNSAwIDAgMS0yLjM4NC0uOTk0bC00LjYzNSAzLjE1NmEzLjM0IDMuMzQgMCAwIDEtLjE4MiAxLjkxN2w1LjA4MiAzLjM0YTMuMzUgMy4zNSAwIDAgMSAyLjEyLS43NTNhMy4zNCAzLjM0IDAgMCAxIDMuMzQ4IDMuMzM0QzIwLjUgMjAuNTA3IDE5IDIyIDE3LjE1MSAyMmEzLjM0IDMuMzQgMCAwIDEtMy4zNDgtMy4zMzNhMy4zIDMuMyAwIDAgMSAuMjg5LTEuMzU2TDkuMDUgMTRhMy4zNSAzLjM1IDAgMCAxLTIuMjAyLjgyMUEzLjM0IDMuMzQgMCAwIDEgMy41IDExLjQ4N2EzLjM0IDMuMzQgMCAwIDEgMy4zNDgtMy4zMzNjMS4wNjQgMCAyLjAxLjQ5MyAyLjYyMyAxLjI2MWw0LjQ5My0zLjA1OWEzLjMgMy4zIDAgMCAxLS4xNjEtMS4wMjMiIGNsaXAtcnVsZT0iZXZlbm9kZCIvPjwvc3ZnPg==");
   --pp-i-insurance-tint: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxZW0iIGhlaWdodD0iMWVtIiB2aWV3Qm94PSIwIDAgMjQgMjQiPjxwYXRoIGZpbGw9IiM4YTZiMDAiIGZpbGwtcnVsZT0iZXZlbm9kZCIgZD0iTTMuMzc4IDUuMDgyQzMgNS42MiAzIDcuMjIgMyAxMC40MTd2MS41NzRjMCA1LjYzOCA0LjIzOSA4LjM3NSA2Ljg5OSA5LjUzNmMuNzIxLjMxNSAxLjA4Mi40NzMgMi4xMDEuNDczYzEuMDIgMCAxLjM4LS4xNTggMi4xMDEtLjQ3M0MxNi43NjEgMjAuMzY1IDIxIDE3LjYzIDIxIDExLjk5MXYtMS41NzRjMC0zLjE5OCAwLTQuNzk3LS4zNzgtNS4zMzVjLS4zNzctLjUzNy0xLjg4LTEuMDUyLTQuODg3LTIuMDgxbC0uNTczLS4xOTZDMTMuNTk1IDIuMjY4IDEyLjgxMiAyIDEyIDJzLTEuNTk1LjI2OC0zLjE2Mi44MDVMOC4yNjUgM2MtMy4wMDcgMS4wMy00LjUxIDEuNTQ1LTQuODg3IDIuMDgyTTE1LjA2IDEwLjVhLjc1Ljc1IDAgMCAwLTEuMTItLjk5OWwtMy4wMTEgMy4zNzRsLS44Ny0uOTc0YS43NS43NSAwIDAgMC0xLjExOCAxbDEuNDI4IDEuNmEuNzUuNzUgMCAwIDAgMS4xMTkgMHoiIGNsaXAtcnVsZT0iZXZlbm9kZCIvPjwvc3ZnPg==");
   --pp-i-emergency-tint: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxZW0iIGhlaWdodD0iMWVtIiB2aWV3Qm94PSIwIDAgMjQgMjQiPjxwYXRoIGZpbGw9IiM4YTZiMDAiIGZpbGwtcnVsZT0iZXZlbm9kZCIgZD0iTTQgMjEuMjVIMmEuNzUuNzUgMCAwIDAgMCAxLjVoMjBhLjc1Ljc1IDAgMCAwIDAtMS41aC0yVjE2YzAtMi44IDAtNC4yLS41NDUtNS4yN2E1IDUgMCAwIDAtMi4xODUtMi4xODVDMTYuMiA4IDE0LjggOCAxMiA4cy00LjIgMC01LjI3LjU0NWE1IDUgMCAwIDAtMi4xODUgMi4xODVDNCAxMS44IDQgMTMuMiA0IDE2em05LjUtMy43NWExLjUgMS41IDAgMCAxLS43NSAxLjN2Mi40NWgtMS41VjE4LjhhMS41IDEuNSAwIDEgMSAyLjI1LTEuM20xLjUtNy40MzVhLjc1Ljc1IDAgMCAwIDAgMS41Yy44NDIgMCAxLjQ2NC42MzggMS40MzYgMS40MDhhLjc1Ljc1IDAgMCAwIDEuNDk5LjA1NGMuMDYxLTEuNjktMS4zMTctMi45NjItMi45MzUtMi45NjIiIGNsaXAtcnVsZT0iZXZlbm9kZCIvPjxwYXRoIGZpbGw9IiM4YTZiMDAiIGQ9Ik0xMiAxLjI1YS43NS43NSAwIDAgMSAuNzUuNzV2M2EuNzUuNzUgMCAwIDEtMS41IDBWMmEuNzUuNzUgMCAwIDEgLjc1LS43NW05LjUzIDQuMjhsLTEuNSAxLjVhLjc1Ljc1IDAgMSAxLTEuMDYtMS4wNmwxLjUtMS41YS43NS43NSAwIDEgMSAxLjA2IDEuMDZtLTE4LTEuMDZhLjc1Ljc1IDAgMCAwLTEuMDYgMS4wNmwxLjUgMS41YS43NS43NSAwIDAgMCAxLjA2LTEuMDZ6Ii8+PC9zdmc+");
+  --pp-i-reminders-tint: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxZW0iIGhlaWdodD0iMWVtIiB2aWV3Qm94PSIwIDAgMjQgMjQiPjxwYXRoIGZpbGw9IiM4YTZiMDAiIGQ9Ik02Ljk0IDJjLjQxNiAwIC43NTMuMzI0Ljc1My43MjR2MS40NmMuNjY4LS4wMTIgMS40MTctLjAxMiAyLjI2LS4wMTJoNC4wMTVjLjg0MiAwIDEuNTkxIDAgMi4yNTkuMDEzdi0xLjQ2YzAtLjQuMzM3LS43MjUuNzUzLS43MjVzLjc1My4zMjQuNzUzLjcyNFY0LjI1YzEuNDQ1LjExMSAyLjM5NC4zODQgMy4wOSAxLjA1NWMuNjk4LjY3Ljk4MiAxLjU4MiAxLjA5NyAyLjk3MkwyMiA5SDJ2LS43MjRjLjExNi0xLjM5LjQtMi4zMDIgMS4wOTctMi45NzJzMS42NDUtLjk0NCAzLjA5LTEuMDU1VjIuNzI0YzAtLjQuMzM3LS43MjQuNzUzLS43MjQiLz48cGF0aCBmaWxsPSIjOGE2YjAwIiBkPSJNMjIgMTR2LTJjMC0uODM5LS4wMDQtMi4zMzUtLjAxNy0zSDIuMDFjLS4wMTMuNjY1LS4wMSAyLjE2MS0uMDEgM3YyYzAgMy43NzEgMCA1LjY1NyAxLjE3MiA2LjgyOFM2LjIyOCAyMiAxMCAyMmg0YzMuNzcgMCA1LjY1NiAwIDYuODI4LTEuMTcyUzIyIDE3Ljc3MiAyMiAxNCIgb3BhY2l0eT0iLjUiLz48L3N2Zz4=");
   --pp-i-warn-tint: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxZW0iIGhlaWdodD0iMWVtIiB2aWV3Qm94PSIwIDAgMjQgMjQiPjxwYXRoIGZpbGw9IiM4YTZiMDAiIGQ9Ik0xMiAzYy0yLjMxIDAtMy43NyAyLjU4Ny02LjY4OCA3Ljc2MmwtLjM2NC42NDRjLTIuNDI1IDQuMy0zLjYzOCA2LjQ1LTIuNTQyIDguMDIyUzYuMjE0IDIxIDExLjYzNiAyMWguNzI4YzUuNDIyIDAgOC4xMzQgMCA5LjIzLTEuNTcycy0uMTE3LTMuNzIyLTIuNTQyLTguMDIybC0uMzY0LS42NDVDMTUuNzcgNS41ODcgMTQuMzExIDMgMTIgMyIgb3BhY2l0eT0iLjUiLz48cGF0aCBmaWxsPSIjOGE2YjAwIiBkPSJNMTIgNy4yNWEuNzUuNzUgMCAwIDEgLjc1Ljc1djVhLjc1Ljc1IDAgMCAxLTEuNSAwVjhhLjc1Ljc1IDAgMCAxIC43NS0uNzVNMTIgMTdhMSAxIDAgMSAwIDAtMmExIDEgMCAwIDAgMCAyIi8+PC9zdmc+");
   --pp-i-wait-tint: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxZW0iIGhlaWdodD0iMWVtIiB2aWV3Qm94PSIwIDAgMjQgMjQiPjxwYXRoIGZpbGw9IiM4YTZiMDAiIGZpbGwtcnVsZT0iZXZlbm9kZCIgZD0iTTEyIDJDNy44NjcgMiA1LjggMiA1LjE5OCAzLjNhMi41IDIuNSAwIDAgMC0uMTMuMzQ2Yy0uNDEgMS4zODcgMS4wNTIgMi45OTUgMy45NzQgNi4yMUwxMSAxMmgybDEuOTU4LTIuMTQzYzIuOTIyLTMuMjE2IDQuMzgzLTQuODI0IDMuOTc0LTYuMjFhMi41IDIuNSAwIDAgMC0uMTMtLjM0OEMxOC4yIDIgMTYuMTMzIDIgMTIgMiIgY2xpcC1ydWxlPSJldmVub2RkIi8+PHBhdGggZmlsbD0iIzhhNmIwMCIgZD0iTTUuMTk4IDIwLjdDNS44IDIyIDcuODY3IDIyIDEyIDIyczYuMiAwIDYuODAyLTEuM2EyLjUgMi41IDAgMCAwIC4xMy0uMzQ2Yy40MS0xLjM4Ny0xLjA1Mi0yLjk5NS0zLjk3NC02LjIxTDEzIDEyaC0ybC0xLjk1OCAyLjE0M2MtMi45MjIgMy4yMTYtNC4zODMgNC44MjQtMy45NzQgNi4yMXEuMDUyLjE4LjEzLjM0OCIgb3BhY2l0eT0iLjUiLz48L3N2Zz4=");
   --pp-i-chev:        url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxZW0iIGhlaWdodD0iMWVtIiB2aWV3Qm94PSIwIDAgMjQgMjQiPjxwYXRoIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzE0MTQxNCIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIiBzdHJva2Utd2lkdGg9IjEuNSIgZD0ibTE5IDlsLTcgNmwtNy02Ii8+PC9zdmc+");
@@ -195,6 +197,13 @@
    with no arch the amber would be a stripe with nothing beneath it, so the bar
    goes transparent and sits on the page's own ground. */
 .pp-appbar--onarch { background: var(--pp-signal); }
+/* the bar that centres its title on the canvas rather than on what is left
+   between the side slots: a bare back arrow is narrower than a word, and the
+   difference pushed the title 17px off-centre. The title leaves the flex row
+   and takes the whole bar, so neither slot can move it (Whats-due). */
+.pp-appbar--center { position: relative; }
+.pp-appbar--center .pp-appbar__title { position: absolute; left: 0; right: 0;
+                                       text-align: center; pointer-events: none; }
 .pp-appbar__title { font-family: var(--pp-disp); font-size: var(--pp-fs-appbar);
                     font-weight: var(--pp-w-semi); line-height: var(--pp-lh-body);
                     letter-spacing: var(--pp-ls-appbar); }
@@ -277,6 +286,10 @@
 .pp-stack { display: flex; flex-direction: column; gap: var(--pp-s-3);
             padding: 0 var(--pp-inset); list-style: none; }
 .pp-stack + .pp-stack { margin-top: var(--pp-s-7); }
+/* a stack that closes a band — the run of reminders under one urgency heading.
+   It leaves 4px behind it so the next band's heading does not sit straight on
+   the last card (the two are in different sections, so no gap reaches across). */
+.pp-stack--band { margin-bottom: var(--pp-s-1); }
 
 /* --- pet identity strip: the "whose screen is this" line under the app bar --- */
 .pp-identity { display: flex; align-items: center; gap: var(--pp-s-3);
@@ -321,6 +334,11 @@
 .pp-tab--reminders[aria-current="page"] .pp-tab__icon { background-image: var(--pp-i-reminders-on); }
 .pp-tab--share[aria-current="page"]     .pp-tab__icon { background-image: var(--pp-i-share-on); }
 .pp-tab--owner[aria-current="page"]     .pp-tab__icon { background-image: var(--pp-i-owner-on); }
+
+/* the quiet line that closes a screen: when what is above it was last checked.
+   No band and no rule — it is a footnote, not a footer. */
+.pp-footnote { font-family: var(--pp-body); padding: var(--pp-s-6) var(--pp-inset);
+               text-align: center; font-size: var(--pp-fs-chip); color: var(--pp-meta); }
 
 /* the recipient has no account, so no tab bar — this footer takes its place */
 .pp-sharedfoot { font-family: var(--pp-body); padding: var(--pp-s-4) var(--pp-inset); background: var(--pp-surface);
@@ -393,6 +411,12 @@
 /* the block that carries a full-width CTA at the foot of a card */
 .pp-cta { padding: 8px var(--pp-inset) 20px; }
 .pp-cta > a { display: block; text-decoration: none; }
+/* the action bar that rides at the foot of a scrolling list rather than at the
+   end of it: it keeps its own ground so the list can pass under it, and a
+   hairline to stand on. Not .pp-cta — that one blocks the link it wraps, and a
+   sticky bar has to leave the link exactly as the screen wrote it. */
+.pp-actionbar { position: sticky; bottom: 0; padding: var(--pp-s-4) var(--pp-inset);
+                background: var(--pp-paper); border-top: 1px solid var(--pp-line); }
 
 /* round icon button — .photo-edit / .name-share consolidated.
    The icon is the background, so the box needs no inner layout: it stays a
@@ -437,10 +461,15 @@
 /* consolidates .status / .record-status / .vax-status / .appt-status /
    .doc-status / .auth-status / .chip / .reminder-badge */
 
-.pp-chip { font-family: var(--pp-body); display: inline-flex; align-items: center; gap: var(--pp-s-2);
+.pp-chip { font-family: var(--pp-body); display: inline-flex; align-items: center;
            padding: 5px 11px; border-radius: var(--pp-r-chip); line-height: 1;
            font-size: var(--pp-fs-chip); font-weight: var(--pp-w-semi);
            background: var(--pp-surface); color: var(--pp-meta); }
+/* the space before a second thing in the chip, not a `gap` the chip always
+   declares: every chip in the wireframes holds one word, and a standing `gap`
+   made the reminder badge — which never had one — differ from its reference for
+   a rule that spaces nothing. This spaces only what is actually there. */
+.pp-chip > * + * { margin-left: var(--pp-s-2); }
 .pp-chip--success { background: var(--pp-success-bg); color: var(--pp-success); }
 .pp-chip--warning { background: var(--pp-warning-bg); color: var(--pp-warning); }
 .pp-chip--danger  { background: var(--pp-danger-bg);  color: var(--pp-danger); }
@@ -477,7 +506,10 @@
 
 .pp-card { background: var(--pp-paper); border: 1px solid var(--pp-line);
            border-radius: var(--pp-r-card); box-shadow: var(--pp-sh-card);
-           padding: var(--pp-s-5); }
+           padding: var(--pp-s-5); list-style: none; }
+/* two cards stacked inside one band carry the gap themselves — the band has no
+   flow of its own to give them (Emergency-allowed's owner + backup contact) */
+.pp-ruled > .pp-card + .pp-card { margin-top: var(--pp-s-3); }
 .pp-card--flush { padding: 0 var(--pp-s-5); }
 /* a card that IS a listing row — the dossier's section card. Same box as
    .pp-card, laid out like .pp-row, so the __tile / __body / __chev parts fit.
@@ -496,6 +528,8 @@
                   letter-spacing: normal; margin-bottom: var(--pp-s-2); }
 .pp-card__body  { font-family: var(--pp-body); font-size: var(--pp-fs-small);
                   line-height: var(--pp-lh-detail); color: var(--pp-meta); }
+/* the word the body is really about comes forward, as it does in .pp-detail */
+.pp-card__body strong { color: var(--pp-ink); font-weight: var(--pp-w-semi); }
 
 /* a ruled band: inset from the frame, closed with a hairline. The separator the
    record list, the document list and the care notes are all built from. */
@@ -508,6 +542,9 @@
 /* a title with a trailing action on the same line */
 .pp-headrow { display: flex; align-items: center; justify-content: space-between;
               gap: var(--pp-s-4); }
+/* the action keeps its width and the title is what gives — otherwise a long
+   line squeezes "Try again" onto two lines inside a 44px pill */
+.pp-headrow > :last-child { flex: 0 0 auto; }
 
 /* an unfilled section: a dashed card holding the prompt for its first entry */
 .pp-slot { margin: var(--pp-s-3) var(--pp-inset);
@@ -520,6 +557,8 @@
            background: var(--pp-surface); border-bottom: 1px solid var(--pp-line);
            font-size: var(--pp-fs-chip); line-height: var(--pp-lh-small);
            color: var(--pp-meta); }
+/* the word the note turns on — who you are, what you may do */
+.pp-note strong { color: var(--pp-ink); font-weight: var(--pp-w-semi); }
 /* several screens carry the note's element with nothing in it. A banded stripe
    with no words in it is a defect, so an empty note is no note. */
 .pp-note:empty { display: none; }
@@ -557,11 +596,34 @@
                  background: none; border: 0; padding: 0; font: inherit;
                  cursor: pointer; }
 
+/* a number you can call, set inside a line of text: it belongs to the sentence,
+   so it takes the line's colour and keeps only the rule that says it is live.
+   Anything meant to read as a control wears .pp-btn--link instead. */
+:where(.pp-card__body, .pp-contact__meta, .pp-detail, .pp-detail__row) a[href^="tel:"] {
+  color: inherit; text-decoration: underline; text-underline-offset: 3px; }
+
 /* a run of label/value lines set as one paragraph (an access grant's terms) */
 .pp-detail { font-family: var(--pp-body); font-size: var(--pp-fs-small);
              line-height: var(--pp-lh-detail); color: var(--pp-meta);
              margin-bottom: var(--pp-s-3); }
 .pp-detail strong { color: var(--pp-ink); font-weight: var(--pp-w-semi); }
+/* a label and its value on one line — the reminder's terms read as two columns
+   rather than as the stacked label/value pair below. Self-contained, because
+   the rows are written by the screen's own script and must not depend on a
+   host class to look right. */
+.pp-detail__row { display: flex; justify-content: space-between; gap: var(--pp-s-4);
+                  font-family: var(--pp-body); font-size: var(--pp-fs-small);
+                  line-height: var(--pp-lh-detail); color: var(--pp-meta); }
+/* the value is whatever closes the row — a <strong>, a <span>, a tel: link —
+   so the rule names the position, not the tag */
+.pp-detail__row > :last-child { color: var(--pp-ink); font-weight: var(--pp-w-semi); }
+/* --ruled: a run of them reads as a table, closed line by line (a policy's
+   terms). The last line does not rule itself — the card edge already does. */
+.pp-detail__row--ruled { padding: var(--pp-s-2) 0; border-bottom: 1px solid var(--pp-line); }
+.pp-detail__row--ruled:last-child { border-bottom: 0; }
+/* --action: the value is something you can do — a number to call, an address to
+   open — so it is the one value that carries a rule under it */
+.pp-detail__row--action > :last-child { text-decoration: underline; text-underline-offset: 3px; }
 /* label / value pair inside an opened section */
 .pp-detail__label { font-family: var(--pp-body); font-size: var(--pp-fs-micro); font-weight: var(--pp-w-semi);
                     text-transform: uppercase; letter-spacing: var(--pp-ls-caps);
@@ -570,6 +632,20 @@
 .pp-detail__value { font-family: var(--pp-body); font-size: var(--pp-fs-small);
                     line-height: var(--pp-lh-detail); color: var(--pp-ink);
                     margin-bottom: var(--pp-s-1); }
+/* the number the reader is meant to call: set as a headline rather than as a
+   link in a sentence, because on an emergency screen it IS the action */
+.pp-callnumber { font-family: var(--pp-disp); font-size: var(--pp-fs-title);
+                 font-weight: var(--pp-w-bold); line-height: var(--pp-lh-title);
+                 color: var(--pp-ink); text-decoration: none; }
+
+/* a run of plain lines — an unmarked list where the rule between them is what
+   separates them, as in .pp-ruled, so the last line does not carry one */
+.pp-lines { list-style: none; font-family: var(--pp-body);
+            font-size: var(--pp-fs-small); line-height: var(--pp-lh-small);
+            color: var(--pp-ink); }
+.pp-lines > li { padding: var(--pp-s-2) 0; border-bottom: 1px solid var(--pp-line); }
+.pp-lines > li:last-child { border-bottom: 0; }
+
 /* the caution line that follows a value the reader must not miss */
 .pp-caution { font-family: var(--pp-body); font-size: var(--pp-fs-chip); font-weight: var(--pp-w-semi);
               line-height: var(--pp-lh-detail); color: var(--pp-danger);
@@ -606,9 +682,23 @@
              background-image: var(--pp-i-chev); background-repeat: no-repeat;
              background-position: right var(--pp-s-5) center; background-size: 18px; }
 .pp-help { font-family: var(--pp-body); font-size: var(--pp-fs-fine); color: var(--pp-meta); margin-top: var(--pp-s-1); }
+/* a field that opens with a fixed token — a currency, a dialling code. The two
+   share one edge, so the mark squares the side it meets and the field squares
+   the side it is met on, and the pair reads as a single control. */
+.pp-affix { display: flex; align-items: stretch; }
+.pp-affix__mark { display: flex; align-items: center; flex: 0 0 auto;
+                  padding: 0 var(--pp-s-3); background: var(--pp-surface);
+                  color: var(--pp-meta); border: 1px solid var(--pp-line);
+                  border-right: 0; border-radius: var(--pp-r-input) 0 0 var(--pp-r-input);
+                  font-family: var(--pp-body); font-size: var(--pp-fs-field);
+                  font-weight: var(--pp-w-semi); }
+.pp-affix > .pp-input { border-radius: 0 var(--pp-r-input) var(--pp-r-input) 0; }
 .pp-actions { display: flex; gap: var(--pp-s-3); padding: var(--pp-inset); }
 /* inside a card the inset is already spent, so the row drops its own */
 .pp-actions--flush { padding: 0; }
+/* --stack: one under the other, for choices that are alternatives to each other
+   rather than a primary action and its escape (the auth screens' Google/Apple) */
+.pp-actions--stack { flex-direction: column; }
 .pp-actions > .pp-btn { flex: 1; }
 /* --links: the row's buttons are each wrapped in the <a> that navigates. The
    link becomes the flex child, so it takes the share of the row the button
@@ -633,6 +723,15 @@
 .pp-drop--sm { padding: var(--pp-s-5); }
 /* an attachment card sitting directly above its replacement target */
 .pp-card + .pp-drop { margin-top: var(--pp-s-2); }
+
+/* the sheet a document shows before a real scan is wired in: the page's shape,
+   dashed like everything else on the canvas that is waiting for content */
+.pp-preview { display: flex; align-items: center; justify-content: center;
+              height: 340px; margin: var(--pp-inset);
+              background: var(--pp-surface); border: 1px dashed var(--pp-line);
+              border-radius: var(--pp-r-card); text-align: center;
+              font-family: var(--pp-body); font-size: var(--pp-fs-small);
+              color: var(--pp-meta); }
 
 /* the round photo intake: a circle awaiting an image. Not an avatar — an
    avatar shows a photograph, this one asks for one, so it takes the dashed
@@ -664,6 +763,10 @@
 /* switch — 48x28, ink when on, knob carries the tick */
 .pp-switchrow { display: flex; align-items: center; justify-content: space-between;
                 gap: var(--pp-s-4); padding: var(--pp-s-4) 0; }
+/* --list: one of a run of settings rows — inset, and closed with a hairline so
+   the run reads as a list rather than a stack of separate blocks */
+.pp-switchrow--list { padding: var(--pp-s-4) var(--pp-inset);
+                      border-bottom: 1px solid var(--pp-line); }
 /* ruled variant: a settings row banded top and bottom, full-bleed to the inset */
 .pp-switchrow--ruled { gap: normal; margin: 4px 0 14px; text-align: left; padding: var(--pp-s-4) var(--pp-inset);
   border-top: 1px solid var(--pp-line); border-bottom: 1px solid var(--pp-line); }
@@ -757,7 +860,11 @@
    segment never rounds its own corners, so a middle selection reads as a square
    block cut into the bar. Doubled class keeps these ahead of the base's
    active-corner rules regardless of source order. */
-.pp-seg--filter { height: auto; background: none; border-radius: 0; overflow: visible; }
+/* It is also a bar in its own right, not a track inside .pp-switcher: it carries
+   its own inset and the 20px of air the reminder list needs beneath it, so it
+   must NOT be nested in a switcher or the two insets stack. */
+.pp-seg--filter { height: auto; background: none; border-radius: 0; overflow: visible;
+                  padding: var(--pp-s-4) var(--pp-inset) 20px; }
 .pp-seg--filter.pp-seg--filter .pp-seg__item,
 .pp-seg--filter.pp-seg--filter .pp-seg__item[aria-current="page"],
 .pp-seg--filter.pp-seg--filter .pp-seg__item[aria-current="page"] + .pp-seg__item { font-family: var(--pp-body);
@@ -859,6 +966,18 @@
                    font-family: var(--pp-body); font-size: var(--pp-fs-field); }
 .pp-sheet__close:hover { background: var(--pp-line); }
 
+/* the link a share produces, with the one action it needs beside it. The
+   address is a token to copy, not a sentence to read, so it holds one line and
+   ellipses rather than wrapping. */
+.pp-linkrow { display: flex; align-items: center; gap: var(--pp-s-2);
+              max-width: 320px; margin: 0 auto var(--pp-s-5);
+              padding: var(--pp-s-3) var(--pp-s-4); text-align: left;
+              background: var(--pp-surface); border: 1px solid var(--pp-line);
+              border-radius: var(--pp-r-input); }
+.pp-linkrow__url { flex: 1; min-width: 0; font-family: var(--pp-body);
+                   font-size: var(--pp-fs-small); color: var(--pp-ink);
+                   overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+
 /* ============================ states ===================================== */
 
 /* illustration tile — the answer to a missing image, never a grey fill.
@@ -878,6 +997,7 @@
 .pp-illus--share       { background-image: var(--pp-i-share-tint); }
 .pp-illus--insurance   { background-image: var(--pp-i-insurance-tint); }
 .pp-illus--emergency   { background-image: var(--pp-i-emergency-tint); }
+.pp-illus--reminders   { background-image: var(--pp-i-reminders-tint); }
 
 .pp-empty { padding: 60px 32px; text-align: center; }
 .pp-empty__title { font-family: var(--pp-disp); font-size: 18px;
@@ -892,7 +1012,11 @@
 .pp-banner { font-family: var(--pp-body); display: block; padding: var(--pp-s-4) var(--pp-s-5);
              border-radius: var(--pp-r-input); background: var(--pp-danger-bg);
              color: var(--pp-danger); font-size: var(--pp-fs-small);
-             line-height: var(--pp-lh-small); margin-bottom: var(--pp-s-6); }
+             line-height: var(--pp-lh-small); margin-bottom: var(--pp-s-6);
+             /* `start`, not `left`: a banner is a sentence and must read from the
+                margin even inside a centred block (the auth screens), and `start`
+                is what every banner already computed, so naming it moves none. */
+             text-align: start; }
 .pp-banner__detail { color: var(--pp-danger); opacity: .82; margin-top: 2px; }
 /* the banner carries its own inset when it sits straight on the canvas: its
    padding is already spent on the fill, so the gap has to be margin */
@@ -907,6 +1031,19 @@
                    line-height: var(--pp-lh-body); margin-bottom: 20px; }
 .pp-error__body + .pp-btn { margin-top: var(--pp-s-6); }
 
+/* the quieter second way out of a state — "Show all sections", "Back to your
+   pets". It takes its own line under the state's main action instead of sitting
+   beside it: as an inline-flex link it shared the button's line and read as a
+   caption to it. display:flex makes the row its own, and the centring the link
+   already carries then centres it on the state's axis. */
+.pp-empty .pp-btn--link, .pp-error .pp-btn--link { display: flex; }
+
+/* a block the screen has taken out of play while it saves: it stays where it
+   was and stays legible, but stops asking to be read. On a <fieldset> the
+   `disabled` attribute already says it, so the kit reads that too and the
+   screen needs no class of its own. */
+.pp-saving, .pp-fieldset:disabled { opacity: .5; }
+
 /* loading skeletons */
 @keyframes pp-shimmer { 0% { opacity: 1; } 50% { opacity: .45; } 100% { opacity: 1; } }
 .pp-skel { background: var(--pp-photo); border-radius: var(--pp-r-chip);
@@ -919,25 +1056,40 @@
 .pp-skel--circle { width: var(--pp-avatar); height: var(--pp-avatar);
                    border-radius: var(--pp-r-circle); }
 .pp-skel--card   { height: 72px; border-radius: var(--pp-r-card); }
-/* the block a run of skeletons sits in */
+/* the block a run of skeletons sits in. Often a <ul>, so — like .pp-stack — it
+   drops the marker itself rather than relying on a .pp host. */
 .pp-skels { display: flex; flex-direction: column; gap: var(--pp-s-3);
-            padding: var(--pp-inset); }
+            padding: var(--pp-inset); list-style: none; }
 .pp-skel-row { display: flex; align-items: center; gap: var(--pp-s-4);
                padding: var(--pp-s-5) 0; }
 .pp-skel-row__body { flex: 1; display: flex; flex-direction: column; gap: var(--pp-s-2); }
+/* the lines in a row stand for a title over its meta, so their measures belong
+   to the component and run full, four-fifths, half. Without this a screen has
+   to carry an inline width just to draw a placeholder, which is CSS on a screen. */
+.pp-skel-row__body > .pp-skel--line:nth-child(2) { width: 80%; }
+.pp-skel-row__body > .pp-skel--line:nth-child(3) { width: 45%; }
 .pp-loading-label { font-family: var(--pp-body); text-align: center; font-size: var(--pp-fs-small);
                     color: var(--pp-meta); padding: var(--pp-s-4) 0; }
+/* a heading naming what is still loading already sits inside the run's inset,
+   so it drops its own — otherwise the label is 32px in from the frame */
+.pp-skels > .pp-heading { padding-left: 0; padding-right: 0; }
 
 /* ============================ reminders ================================== */
 
-.pp-urgency { font-family: var(--pp-body); font-size: var(--pp-fs-small);
-              font-weight: var(--pp-w-bold); color: var(--pp-meta);
-              padding: 0 var(--pp-inset); margin-bottom: var(--pp-s-3); }
+/* The urgency heading is `.pp-heading` — measured against Whats-due, the two
+   were the same rule twice (13px/700/uppercase/.04em/meta on 16-16-8), so the
+   duplicate `.pp-urgency` is gone and the band opens with `.pp-heading`. */
 .pp-reminder { display: flex; align-items: flex-start; gap: var(--pp-s-4); }
 .pp-reminder__body { display: block; flex: 1; min-width: 0; }
 .pp-reminder__title { display: block; font-family: var(--pp-disp); font-size: var(--pp-fs-title);
                       font-weight: var(--pp-w-bold); line-height: var(--pp-lh-title); }
-.pp-reminder__meta  { font-family: var(--pp-body); display: block; font-size: var(--pp-fs-small); color: var(--pp-meta); margin-top: 2px; }
+/* the meta carries its own leading, as .pp-row__meta does: without it the line
+   inherits the canvas's 1.5 and a two-line due date grows by 1.3px a line */
+.pp-reminder__meta  { font-family: var(--pp-body); display: block; font-size: var(--pp-fs-small);
+                      line-height: var(--pp-lh-small); color: var(--pp-meta); margin-top: 2px; }
+/* the badge under the meta hangs 6px below it — the reminder's rhythm, not
+   something every chip should carry */
+.pp-reminder__body > .pp-chip { margin-top: var(--pp-s-2); }
 
 /* k of 6 sections filled — the two halves sit on a shared baseline */
 .pp-counter { font-family: var(--pp-body); display: flex; align-items: baseline;
@@ -945,6 +1097,31 @@
               padding: var(--pp-s-5) var(--pp-inset) var(--pp-s-2); }
 .pp-counter__count { font-size: var(--pp-fs-body); font-weight: var(--pp-w-semi); color: var(--pp-ink); }
 .pp-counter__meta  { font-size: var(--pp-fs-chip); color: var(--pp-meta); }
+
+/* ============================ auth ======================================= */
+/* The one screen shape with no app chrome around it: a single centred column,
+   at most 340px, holding the wordmark, the form, and the way to the other
+   account flow. No tab bar and no arch — the bar above it stays transparent.
+   It carries no side inset of its own: the fields inside bring theirs. */
+
+.pp-auth { max-width: var(--pp-sheet-w); margin: 0 auto; padding: 28px 0 20px;
+           text-align: center; }
+.pp-auth__brand { font-family: var(--pp-disp); font-size: var(--pp-fs-brand);
+                  font-weight: var(--pp-w-bold); line-height: var(--pp-lh-title);
+                  letter-spacing: var(--pp-ls-appbar); margin-bottom: var(--pp-s-1); }
+.pp-auth__sub   { font-family: var(--pp-body); font-size: var(--pp-fs-body);
+                  line-height: var(--pp-lh-body); color: var(--pp-meta);
+                  margin-bottom: var(--pp-s-6); }
+.pp-auth__title { font-family: var(--pp-disp); font-size: 20px;
+                  font-weight: var(--pp-w-bold); line-height: var(--pp-lh-title);
+                  margin-bottom: var(--pp-s-5); }
+/* the word between two ways in — it names a choice, so it sits on the axis */
+.pp-auth__divider { font-family: var(--pp-body); font-size: var(--pp-fs-micro);
+                    color: var(--pp-meta); margin: var(--pp-s-6) 0; }
+.pp-auth__foot  { font-family: var(--pp-body); font-size: var(--pp-fs-small);
+                  color: var(--pp-meta); margin-top: 18px; }
+.pp-auth__foot a { color: var(--pp-ink); text-decoration: underline;
+                   text-underline-offset: 3px; }
 
 /* ============================ utilities ================================== */
 /* The only two utilities in the kit. Everything else is a component. */

@@ -7,6 +7,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700&family=Hanken+Grotesk:wght@400;500;600;700&family=EB+Garamond:ital,wght@0,600;1,600;1,700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../ui/kit.css">
 <style>
   :root {
     --wf-bg:         #ffffff;
@@ -799,57 +800,54 @@
         <span class="zone-label">R1</span> R1 · <span>What's due → ★ Reminder</span> → back to list
       </div>
 
-      <header class="m-header">
-        <a href="Whats-due.html" style="text-decoration:none;"><button class="back" aria-label="Back to What's due">←</button></a>
-        <h1>Reminder</h1>
-        <span style="width:60px;" aria-hidden="true"></span>
+      <header class="pp-appbar pp-appbar--center">
+        <a href="Whats-due.html" style="text-decoration:none;"><button class="pp-appbar__back" aria-label="Back to What's due">←</button></a>
+        <h1 class="pp-appbar__title">Reminder</h1>
+        <span aria-hidden="true"></span>
       </header>
 
       <div class="m-main">
 
-        <section class="m-pet-identity" aria-label="Pet identity">
-          <figure class="pet-photo pet-photo-s" aria-label="Pet photo placeholder">photo</figure>
-          <div class="pet-info">
-            <h2 style="font-size:15px;font-weight:700;">Miso</h2>
-            <p class="pet-meta" style="font-size:12px;">Dog · Border Terrier · Female</p>
+        <section class="pp-identity" aria-label="Pet identity">
+          <figure class="pp-avatar pp-avatar--md pp-avatar--miso pp-iconbox" aria-label="Miso">photo</figure>
+          <div class="pp-identity__body">
+            <h2 class="pp-identity__name">Miso</h2>
+            <p class="pp-identity__meta">Dog · Border Terrier · Female</p>
           </div>
         </section>
 
-        <div style="margin:16px;padding:16px;border:1.5px solid var(--wf-border);border-radius:10px;background:var(--wf-surface);">
-          <span class="rd-badge" style="display:inline-block;font-size:11px;font-weight:700;padding:3px 10px;border-radius:12px;background:var(--wf-border);color:var(--wf-text);">Due soon</span>
-          <h2 class="rd-title" style="font-size:18px;font-weight:700;margin-top:10px;">Reminder</h2>
-          <p class="rd-due" style="font-size:13px;color:var(--wf-muted);margin-top:4px;"></p>
+        <div class="pp-card pp-card--inset">
+          <h2 class="pp-card__title"><span class="rd-title">Reminder</span>&nbsp;<span class="pp-chip" data-rd="badge">Due soon</span></h2>
+          <p class="rd-due pp-card__body"></p>
         </div>
 
-        <div style="padding:0 16px;">
-          <div class="zone-label">Details</div>
-          <div class="dv-rows" style="font-size:13px;line-height:2;border-bottom:1px solid var(--wf-border);padding-bottom:12px;"></div>
-        </div>
+        <h2 class="pp-heading">Details</h2>
+        <div class="dv-rows pp-ruled"></div>
 
-        <div style="display:flex;gap:8px;padding:16px;">
-          <button class="btn-primary" style="flex:1;" onclick="window.location.href='Reminder-done.html'+window.location.search">Mark done</button>
-          <button class="btn-secondary" style="flex:1;" onclick="this.textContent='Snoozed 1 week'">Snooze</button>
+        <div class="pp-actions">
+          <button class="pp-btn" onclick="window.location.href='Reminder-done.html'+window.location.search">Mark done</button>
+          <button class="pp-btn pp-btn--secondary" onclick="this.textContent='Snoozed 1 week'">Snooze</button>
         </div>
-        <div style="padding:0 16px 10px;">
-          <a class="rd-primary" href="Add-vet-record.html"><button class="btn-secondary" style="width:100%;">Book vet appointment</button></a>
+        <div class="pp-cta">
+          <a class="rd-primary" href="Add-vet-record.html"><button class="pp-btn pp-btn--secondary pp-btn--full">Book vet appointment</button></a>
         </div>
-        <div style="padding:0 16px 16px;">
-          <a class="rd-view" href="Health-and-jabs.html" style="font-size:12px;color:var(--wf-muted);">View in section →</a>
+        <div class="pp-inset">
+          <a class="rd-view pp-btn pp-btn--link" href="Health-and-jabs.html">View in section →</a>
         </div>
       </div>
 
-      <nav class="phone-nav" aria-label="Main navigation">
-        <a href="My-Pets.html" class="active">
-          <span class="nav-icon" aria-hidden="true"></span> Pets
+      <nav class="pp-tabbar" aria-label="Main navigation">
+        <a href="My-Pets.html" class="pp-tab pp-tab--pets" aria-current="page">
+          <span class="pp-tab__icon" aria-hidden="true"></span> Pets
         </a>
-        <a href="Whats-due.html">
-          <span class="nav-icon" aria-hidden="true"></span> What's due
+        <a href="Whats-due.html" class="pp-tab pp-tab--reminders">
+          <span class="pp-tab__icon" aria-hidden="true"></span> What's due
         </a>
-        <a href="Share-a-pet.html">
-          <span class="nav-icon" aria-hidden="true"></span> Share
+        <a href="Share-a-pet.html" class="pp-tab pp-tab--share">
+          <span class="pp-tab__icon" aria-hidden="true"></span> Share
         </a>
-              <a href="Me.html">
-          <span class="nav-icon" aria-hidden="true"></span> Owner
+              <a href="Me.html" class="pp-tab pp-tab--owner">
+          <span class="pp-tab__icon" aria-hidden="true"></span> Owner
         </a>
       </nav>
 
@@ -938,9 +936,14 @@ function populateReminder() {
   var r = R[key] || R.rabies;
   document.querySelectorAll('.rd-title').forEach(function(t){ t.textContent = r.title; });
   document.querySelectorAll('.rd-due').forEach(function(t){ t.textContent = r.due; });
+  var CHIP = { 'Overdue': 'danger', 'Due soon': 'warning', 'Upcoming': 'info' };
   document.querySelectorAll('.rd-badge').forEach(function(t){ t.textContent = r.badge; });
+  // the mobile badge is a kit chip and answers to a data hook, not .rd-badge:
+  // that class still carries a rule in this page's <style> and would repaint it
+  document.querySelectorAll('[data-rd="badge"]').forEach(function(t){ t.textContent = r.badge;
+    t.className = 'pp-chip pp-chip--' + (CHIP[r.badge] || 'info'); });
   var html = r.rows.map(function(x){
-    return '<div style="display:flex;justify-content:space-between;"><span style="color:var(--wf-muted);">'+x[0]+'</span><strong>'+x[1]+'</strong></div>';
+    return '<div class="pp-detail__row"><span>'+x[0]+'</span><strong>'+x[1]+'</strong></div>';
   }).join('');
   document.querySelectorAll('.dv-rows').forEach(function(el){ el.innerHTML = html; });
   document.querySelectorAll('.rd-primary').forEach(function(a){ a.setAttribute('href', r.primary[1]); a.querySelector('button').textContent = r.primary[0]; });

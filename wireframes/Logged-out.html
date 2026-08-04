@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Signed out — PetPal wireframe</title>
+<link rel="stylesheet" href="../ui/kit.css">
 <style>
   :root {
     --wf-bg:         #ffffff;
@@ -675,19 +676,19 @@
         <span class="zone-label">Owner</span> <span>Signed out</span> — session ended (log out / profile deleted)
       </div>
 
-      <header class="m-header">
+      <header class="pp-appbar pp-appbar--plain">
         <span></span>
-        <h1>PetPal</h1>
+        <h1 class="pp-appbar__brand">PetPal</h1>
         <span></span>
       </header>
 
       <div class="m-main">
 
-        <section class="empty-state" aria-label="Signed out">
-          <figure class="empty-illustration" aria-label="Illustration placeholder">illustration</figure>
-          <h2 class="empty-headline" id="lo-head">You're logged out</h2>
-          <p class="empty-body" id="lo-body">Your pets' data is safe. Log back in any time to pick up where you left off.</p>
-          <a href="Login.html"><button class="btn-primary empty-cta">Log back in</button></a>
+        <section class="pp-empty" aria-label="Signed out">
+          <figure class="pp-illus pp-illus--pets" aria-label="Illustration placeholder">illustration</figure>
+          <h2 class="pp-empty__title" id="lo-head">You're logged out</h2>
+          <p class="pp-empty__body" id="lo-body">Your pets' data is safe. Log back in any time to pick up where you left off.</p>
+          <a href="Login.html"><button class="pp-btn">Log back in</button></a>
         </section>
       </div>
 

@@ -7,6 +7,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700&family=Hanken+Grotesk:wght@400;500;600;700&family=EB+Garamond:ital,wght@0,600;1,600;1,700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../ui/kit.css">
 <style>
   :root {
     --wf-bg:         #ffffff;
@@ -966,33 +967,33 @@
         R1 · What's due — <span>What's due</span> → section → Add/update a record
       </div>
 
-      <header class="m-header">
-        <a href="home-success.html" style="text-decoration:none;"><button class="back" aria-label="Back to your pets">←</button></a>
-        <h1>Reminders</h1>
+      <header class="pp-appbar pp-appbar--center">
+        <a href="home-success.html" style="text-decoration:none;"><button class="pp-appbar__back" aria-label="Back to your pets">←</button></a>
+        <h1 class="pp-appbar__title">Reminders</h1>
         <span></span>
       </header>
 
       <main class="m-main">
-        <section class="empty-state" aria-label="No reminders">
-          <figure class="empty-illustration" alt="No reminders illustration placeholder">illustration</figure>
-          <h2>No reminders yet</h2>
-          <p>When you add jabs, appointments, or insurance, their due dates appear here automatically.</p>
-          <a href="My-Pets.html" style="text-decoration:none;"><button class="btn-primary">Go to your pets</button></a>
+        <section class="pp-empty" aria-label="No reminders">
+          <figure class="pp-illus pp-illus--reminders" alt="No reminders illustration placeholder">illustration</figure>
+          <h2 class="pp-empty__title">No reminders yet</h2>
+          <p class="pp-empty__body">When you add jabs, appointments, or insurance, their due dates appear here automatically.</p>
+          <a href="My-Pets.html" style="text-decoration:none;"><button class="pp-btn">Go to your pets</button></a>
         </section>
       </main>
 
-      <nav class="phone-nav" aria-label="Main navigation">
-        <a href="My-Pets.html">
-          <span class="nav-icon" aria-hidden="true"></span> Pets
+      <nav class="pp-tabbar" aria-label="Main navigation">
+        <a href="My-Pets.html" class="pp-tab pp-tab--pets">
+          <span class="pp-tab__icon" aria-hidden="true"></span> Pets
         </a>
-        <a href="Whats-due.html" class="active">
-          <span class="nav-icon" aria-hidden="true"></span> What's due
+        <a href="Whats-due.html" class="pp-tab pp-tab--reminders" aria-current="page">
+          <span class="pp-tab__icon" aria-hidden="true"></span> What's due
         </a>
-        <a href="Share-a-pet.html">
-          <span class="nav-icon" aria-hidden="true"></span> Share
+        <a href="Share-a-pet.html" class="pp-tab pp-tab--share">
+          <span class="pp-tab__icon" aria-hidden="true"></span> Share
         </a>
-              <a href="Me.html">
-          <span class="nav-icon" aria-hidden="true"></span> Owner
+              <a href="Me.html" class="pp-tab pp-tab--owner">
+          <span class="pp-tab__icon" aria-hidden="true"></span> Owner
         </a>
       </nav>
 

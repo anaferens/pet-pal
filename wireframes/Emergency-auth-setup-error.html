@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Emergency authorization setup (error) — PetPal wireframe</title>
+<link rel="stylesheet" href="../ui/kit.css">
 <style>
   :root {
     --wf-bg:         #ffffff;
@@ -608,132 +609,127 @@
         R5 &middot; Emergency setup &mdash; Emergency info &rarr; <span>&starf; Authorization setup</span>
       </div>
 
-      <header class="m-header">
-        <a href="Emergency-info.html" style="text-decoration:none;"><button class="back" aria-label="Back to Emergency info">←</button></a>
-        <h1>Emergency authorisation</h1>
+      <header class="pp-appbar">
+        <a href="Emergency-info.html" style="text-decoration:none;"><button class="pp-appbar__back" aria-label="Back to Emergency info">←</button></a>
+        <h1 class="pp-appbar__title">Emergency authorisation</h1>
         <span></span>
       </header>
 
       <main class="m-main">
 
-        <section class="m-pet-identity" aria-label="Pet identity">
-          <figure class="pet-photo pet-photo-s" aria-label="Pet photo placeholder">photo</figure>
-          <div class="pet-info">
-            <h2 style="font-size:15px;font-weight:700;">Miso</h2>
-            <p class="pet-meta" style="font-size:12px;">Dog &middot; Border Terrier &middot; Female</p>
+        <section class="pp-identity" aria-label="Pet identity">
+          <figure class="pp-avatar pp-avatar--md pp-avatar--miso pp-iconbox" aria-label="Miso">photo</figure>
+          <div class="pp-identity__body">
+            <h2 class="pp-identity__name">Miso</h2>
+            <p class="pp-identity__meta">Dog &middot; Border Terrier &middot; Female</p>
           </div>
         </section>
 
         <form>
 
           <!-- Authorization toggle — data preserved -->
-          <fieldset aria-label="Authorization toggle">
-            <legend>Sitter emergency access</legend>
-            <div class="form-group">
-              <div class="toggle-row">
-                <label for="auth-toggle" class="toggle-label">Allow sitter to seek emergency vet care</label>
-                <div class="toggle-switch">
-                  <input type="checkbox" id="auth-toggle" name="auth-toggle" checked>
-                  <label for="auth-toggle" class="toggle-track" aria-label="Toggle emergency authorisation"></label>
-                </div>
+          <fieldset class="pp-fieldset" aria-label="Authorization toggle">
+            <legend class="pp-heading">Sitter emergency access</legend>
+            <div class="pp-field pp-field--inset">
+              <div class="pp-switchrow">
+                <div class="pp-switchrow__label">Allow sitter to seek emergency vet care</div>
+                <div class="pp-switch" role="switch" aria-checked="true" tabindex="0" aria-label="Toggle emergency authorisation" onclick="this.setAttribute('aria-checked', this.getAttribute('aria-checked')==='true'?'false':'true')"></div>
               </div>
-              <p class="helper">When enabled, your sitter can take Miso to the vet in an emergency without waiting for your approval.</p>
+              <p class="pp-help">When enabled, your sitter can take Miso to the vet in an emergency without waiting for your approval.</p>
             </div>
           </fieldset>
 
           <!-- Spend limit — data preserved -->
-          <fieldset aria-label="Spend limit">
-            <legend>Spend limit</legend>
-            <div class="form-group">
-              <label for="spend-limit">Pre-approved spend limit</label>
-              <div class="input-prefix-wrap">
-                <span class="prefix">&euro;</span>
-                <input type="number" id="spend-limit" name="spend-limit" value="500" min="0" step="50">
+          <fieldset class="pp-fieldset" aria-label="Spend limit">
+            <legend class="pp-heading">Spend limit</legend>
+            <div class="pp-field pp-field--inset">
+              <label class="pp-field__label" for="spend-limit">Pre-approved spend limit</label>
+              <div class="pp-affix">
+                <span class="pp-affix__mark">&euro;</span>
+                <input class="pp-input" type="number" id="spend-limit" name="spend-limit" value="500" min="0" step="50">
               </div>
-              <p class="helper">The maximum your sitter may authorise for emergency treatment.</p>
+              <p class="pp-help">The maximum your sitter may authorise for emergency treatment.</p>
             </div>
           </fieldset>
 
           <!-- Payment arrangement — data preserved -->
-          <fieldset aria-label="Payment arrangement">
-            <legend>Payment arrangement</legend>
-            <div class="form-group">
-              <label for="payment-method">Payment method</label>
-              <select id="payment-method" name="payment-method">
+          <fieldset class="pp-fieldset" aria-label="Payment arrangement">
+            <legend class="pp-heading">Payment arrangement</legend>
+            <div class="pp-field pp-field--inset">
+              <label class="pp-field__label" for="payment-method">Payment method</label>
+              <select class="pp-select pp-select--chev" id="payment-method" name="payment-method">
                 <option value="reimburse" selected>Sitter pays, owner reimburses</option>
                 <option value="card-on-file">Owner's card on file at vet</option>
                 <option value="other">Other</option>
               </select>
             </div>
-            <div class="form-group">
-              <label for="payment-notes">Payment notes</label>
-              <textarea id="payment-notes" name="payment-notes" placeholder="e.g. Sitter should use the credit card in the emergency folder"></textarea>
+            <div class="pp-field pp-field--inset">
+              <label class="pp-field__label" for="payment-notes">Payment notes</label>
+              <textarea class="pp-textarea" id="payment-notes" name="payment-notes" placeholder="e.g. Sitter should use the credit card in the emergency folder"></textarea>
             </div>
           </fieldset>
 
           <!-- Emergency vet — data preserved -->
-          <fieldset aria-label="Emergency clinic">
-            <legend>Emergency clinic</legend>
-            <div class="form-group">
-              <label for="emergency-clinic">Preferred emergency clinic (if different from regular vet)</label>
-              <input type="text" id="emergency-clinic" name="emergency-clinic" placeholder="e.g. Tierklinik D&uuml;ppel 24h">
+          <fieldset class="pp-fieldset" aria-label="Emergency clinic">
+            <legend class="pp-heading">Emergency clinic</legend>
+            <div class="pp-field pp-field--inset">
+              <label class="pp-field__label" for="emergency-clinic">Preferred emergency clinic (if different from regular vet)</label>
+              <input class="pp-input" type="text" id="emergency-clinic" name="emergency-clinic" placeholder="e.g. Tierklinik D&uuml;ppel 24h">
             </div>
-            <div class="form-group">
-              <label for="emergency-phone">Emergency clinic phone</label>
-              <input type="tel" id="emergency-phone" name="emergency-phone" placeholder="e.g. +49 30 8311091">
+            <div class="pp-field pp-field--inset">
+              <label class="pp-field__label" for="emergency-phone">Emergency clinic phone</label>
+              <input class="pp-input" type="tel" id="emergency-phone" name="emergency-phone" placeholder="e.g. +49 30 8311091">
             </div>
           </fieldset>
 
           <!-- Owner emergency contacts — data preserved -->
-          <fieldset aria-label="Owner emergency contacts">
-            <legend>Owner emergency contacts</legend>
-            <article class="contact-row">
-              <div class="contact-avatar">icon</div>
-              <div class="contact-info">
-                <h4>Eva Schmidt</h4>
-                <p class="contact-meta">+49 171 9876543</p>
+          <fieldset class="pp-fieldset" aria-label="Owner emergency contacts">
+            <legend class="pp-heading">Owner emergency contacts</legend>
+            <article class="pp-contact pp-ruled">
+              <div class="pp-avatar pp-avatar--md pp-iconbox">icon</div>
+              <div class="pp-contact__body">
+                <h4 class="pp-contact__name">Eva Schmidt&nbsp;<span class="pp-chip">Owner</span></h4>
+                <p class="pp-contact__meta">+49 171 9876543</p>
               </div>
-              <span class="contact-role">Owner</span>
-              <a href="Edit-access-grant.html?person=eva" class="edit-link">Edit</a>
+              <a href="Edit-access-grant.html?person=eva" class="pp-btn pp-btn--link">Edit</a>
             </article>
-            <article class="contact-row">
-              <div class="contact-avatar">icon</div>
-              <div class="contact-info">
-                <h4>Thomas Schmidt</h4>
-                <p class="contact-meta">+49 171 1112233</p>
+            <article class="pp-contact pp-ruled">
+              <div class="pp-avatar pp-avatar--md pp-iconbox">icon</div>
+              <div class="pp-contact__body">
+                <h4 class="pp-contact__name">Thomas Schmidt&nbsp;<span class="pp-chip">Backup</span></h4>
+                <p class="pp-contact__meta">+49 171 1112233</p>
               </div>
-              <span class="contact-role">Backup</span>
-              <a href="Edit-access-grant.html?person=backup" class="edit-link">Edit</a>
+              <a href="Edit-access-grant.html?person=backup" class="pp-btn pp-btn--link">Edit</a>
             </article>
           </fieldset>
 
           <!-- Error banner above form actions -->
-          <div class="error-banner" role="alert">
+          <div class="pp-banner pp-banner--inset" role="alert">
             <p><strong>Couldn't save your authorisation settings.</strong> Check your connection and try again.</p>
           </div>
 
           <!-- Form actions — retry available -->
-          <div class="form-actions">
-            <a href="Emergency-auth-setup-loading.html" style="flex:1;text-decoration:none;"><button type="button" class="btn-primary" style="width:100%;">Try again</button></a>
-            <a href="Emergency-info.html" style="flex:1;text-decoration:none;"><button type="button" class="btn-secondary" style="width:100%;">Cancel</button></a>
+          <div class="pp-actions pp-actions--links">
+            <a href="Emergency-auth-setup-loading.html"><button type="button" class="pp-btn pp-btn--full">Try again</button></a>
+            <a href="Emergency-info.html"><button type="button" class="pp-btn pp-btn--secondary pp-btn--full">Cancel</button></a>
           </div>
 
         </form>
 
       </main>
 
-      <nav class="phone-nav" aria-label="Main navigation">
-        <a href="My-Pets.html" class="active">
-          <span class="nav-icon" aria-hidden="true"></span> Pets
+      <nav class="pp-tabbar" aria-label="Main navigation">
+        <a href="My-Pets.html" class="pp-tab pp-tab--pets" aria-current="page">
+          <span class="pp-tab__icon" aria-hidden="true"></span> Pets
         </a>
-        <a href="Whats-due.html">
-          <span class="nav-icon" aria-hidden="true"></span> What's due
+        <a href="Whats-due.html" class="pp-tab pp-tab--reminders">
+          <span class="pp-tab__icon" aria-hidden="true"></span> What's due
         </a>
-        <a href="Share-a-pet.html">
-          <span class="nav-icon" aria-hidden="true"></span> Share
+        <a href="Share-a-pet.html" class="pp-tab pp-tab--share">
+          <span class="pp-tab__icon" aria-hidden="true"></span> Share
         </a>
-              <a href="Me.html">
-          <span class="nav-icon" aria-hidden="true"></span> Owner
+              <a href="Me.html" class="pp-tab pp-tab--owner">
+          <span class="pp-tab__icon" aria-hidden="true"></span> Owner
         </a>
       </nav>
 

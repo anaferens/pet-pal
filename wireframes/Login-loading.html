@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Logging in — PetPal wireframe</title>
+<link rel="stylesheet" href="../ui/kit.css">
 <style>
   :root {
     --wf-bg:         #ffffff;
@@ -691,18 +692,18 @@
         <span class="zone-label">Auth</span> Auth · <span>Logging in…</span> → My Pets
       </div>
 
-      <header class="m-header">
+      <header class="pp-appbar pp-appbar--plain">
         <span></span>
-        <h1>PetPal</h1>
+        <h1 class="pp-appbar__brand">PetPal</h1>
         <span></span>
       </header>
 
       <div class="m-main">
 
-        <section class="empty-state" aria-label="Logging in">
-          <figure class="empty-illustration" aria-label="Illustration placeholder">illustration</figure>
-          <h2 class="empty-headline">Logging you in…</h2>
-          <p class="empty-body">Fetching your pets and reminders so everything is where you left it.</p>
+        <section class="pp-empty" aria-label="Logging in">
+          <figure class="pp-illus pp-illus--wait" aria-label="Illustration placeholder">illustration</figure>
+          <h2 class="pp-empty__title">Logging you in…</h2>
+          <p class="pp-empty__body">Fetching your pets and reminders so everything is where you left it.</p>
         </section>
       </div>
 

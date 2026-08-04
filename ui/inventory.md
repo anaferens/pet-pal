@@ -2,7 +2,7 @@
 
 Every component that appears in the wireframes, whether or not it has been restyled yet. Built by parsing all **123** files in [`../wireframes/`](../wireframes/), scoped to the product canvas (`.content-mobile → .phone`) so prototype chrome — the sidebar, persona-flow breadcrumb and state tabs — is excluded. Cross-checked against [`../research/sitemap.md`](../research/sitemap.md) and the language board at [`../concept/concept.html`](../concept/concept.html).
 
-**Scope note.** **21** of the 123 screens carried The Signal when this was written; the owner flow's remaining **32** were painted onto the kit in the migration below, and the setup flow's **33** after them, so **86** now do. The rest are still grey. This inventory covers both — a grey component is still a component, and most of the kit lives there. Nothing here is inferred from [`../DESIGN.md`](../DESIGN.md) or [`../concept/concept.md`](../concept/concept.md); every row is something that exists in markup.
+**Scope note.** **21** of the 123 screens carried The Signal when this was written; the owner flow's remaining **32** were painted onto the kit in the migration below, the setup flow's **33** after them, and the last **48** — `Whats-due`, `Vet-and-appointments`, `Insurance`, `Emergency-info`, `Emergency-allowed`, `Emergency-auth-setup`, `Edit-access-grant`, the auth screens, `home`'s states and six singles — in the migration after that. **All 123 now carry [`kit.css`](kit.css).** This inventory still describes both the grey component and the kit class that replaced it — the grey name is where the value came from. Nothing here is inferred from [`../DESIGN.md`](../DESIGN.md) or [`../concept/concept.md`](../concept/concept.md); every row is something that exists in markup.
 
 **Reading the columns.** *Screens* gives the count and the families it appears in (a family = a screen plus its state pages). *States* lists only variants that exist in the CSS or markup — modifier classes and pseudo-states — not states we might want. *Photo* means the component has a slot for a photograph of a pet or a person; icon tiles and illustration tiles are **not** photos.
 
@@ -15,11 +15,11 @@ Every component that appears in the wireframes, whether or not it has been resty
 | Component | Screens where it appears | Available states | Requires a photo |
 |---|---|---|---|
 | **Tab bar** (`.phone-nav`) | **92** across 24 families incl. `home`, `Personality-and-care`, `Emergency-info`, `Whats-due`, `My-Pets`, `Health-and-jabs`. Absent on **31** focused-task screens: the recipient views (`Shared-pet-view`, `Emergency-allowed`), auth (`Login`, `Sign-up`, `Forgot-password`, `Logged-out`), and the full-screen add/edit/upload flows (`Add-*`, `Set-up-a-pet`, `Upload-photo`, `Edit-health-record`, `Section-saving`) | Default · **Active** (`a.active` — filled icon; on styled pages also a 24×3px amber marker). Four destinations: Pets · Reminders · Share · Owner | No |
-| **App bar** (`.m-header` → `.pp-appbar`) | **115** across 40 families. The **8** without it are the `*-loading` screens where a skeleton stands in for the header, plus `Section-saving` and `Shared-pet-view` | Title only · With back · With trailing action · **`--sm`** compact (48px, `Me`) · **`--bare`** recipient brand bar · **`--onarch`** amber. **Background is transparent by default**; the amber is `--onarch` only, worn by the 10 screens whose arch continues the band down the page (`home-success`, `-single`, `-cheetah`, `Me`, `home-progress-1…6`) — elsewhere it would be a stripe with nothing beneath it. `home-new` is the test case: same family, same title, but a flat identity strip instead of an arch, so its bar stays transparent. Back control is a **bare `←`** on every screen, destination in `aria-label` | No |
+| **App bar** (`.m-header` → `.pp-appbar`) | **115** across 40 families. The **8** without it are the `*-loading` screens where a skeleton stands in for the header, plus `Section-saving` and `Shared-pet-view` | Title only · With back · With trailing action · **`--sm`** compact (48px, `Me`) · **`--bare`** recipient brand bar · **`--plain`** no fill + hairline foot (the auth screens and `Share-a-pet`'s states) · **`--center`** title centred on the canvas, not between the side slots (the `Whats-due` family) · **`--onarch`** amber. **Background is transparent by default**; the amber is `--onarch` only, worn by the 11 screens whose arch continues the band down the page (`home-success`, `-single`, `-cheetah`, `Me`, `home-progress-1…6`, `Whats-due`) — elsewhere it would be a stripe with nothing beneath it. `home-new` is the test case: same family, same title, but a flat identity strip instead of an arch, so its bar stays transparent. Back control is a **bare `←`** on every screen, destination in `aria-label` | No |
 | **Back control** (`.back`) | **98** across 31 families | Default | No |
 | **Add button / FAB** (`.fab`) | **21** across 9 families — `Personality-and-care` (8), `Documents-and-passport` (2), `Health-and-jabs` (2), `Insurance` (2), `Vet-and-appointments` (2) | Default · **Menu open** (`.fab-menu`, 3 screens, with hover) | No |
 | **Pet toggle — 2-up switcher** (`.pet-switcher`, `.pet-pill`, `.pet-seg`) | **5** — `home-empty`, `home-new`, `home-success`, `home-success-cheetah`, `Share-a-pet`. Only where the owner has more than one pet | **Inactive · Active** (`.pet-pill.active`) · Hover. The active segment squares its **inner** corners, so it reads as a tab pulled forward | **Yes** — `.pill-avatar`, 22px circle per pet |
-| **Pet toggle — 3-up filter** (`.pet-filter-tabs`) | **2** — `Whats-due`, `Whats-due-offline`. Adds an *All pets* option the 2-up has no room for | **All pets · Miso · Cheetah**, one active. Radius is **positional, not stateful**: the first child keeps the left pill end and the last the right, so a middle selection reads as a square block cut into the bar | **No** — labels only, 31px tall |
+| **Pet toggle — 3-up filter** (`.pet-filter-tabs` → `.pp-seg--filter`) | **2** — `Whats-due`, `Whats-due-offline`. Adds an *All pets* option the 2-up has no room for | **All pets · Miso · Cheetah**, one active (`aria-current="page"`). Radius is **positional, not stateful**: the first child keeps the left pill end and the last the right, so a middle selection reads as a square block cut into the bar. The kit class also extends each segment's hit area to 44px with a `::before`, which is why `Whats-due` — a frozen reference whose segments are static — keeps its own rule and only `Whats-due-offline` wears `.pp-seg--filter` | **No** — labels only, 31px tall |
 | **Search & filter** (`.m-search-filter`, `.search-bar`) | **9** — `home` (7), `home-success` (2) | Default · **Focus** (`.search-bar:focus`) | No |
 | **Desktop top nav** (`.top-nav`) | **4** — `Emergency-info` (3), `Vet-and-appointments-clinic` | Default | No |
 
@@ -31,7 +31,7 @@ Every component that appears in the wireframes, whether or not it has been resty
 | **Pet identity strip** (`.m-pet-identity`) | **53** across 16 families — `Personality-and-care` (11), `Emergency-info` (6), `Documents-and-passport` (5), `Health-and-jabs` (5), `Insurance` (5) | Default. Composes a 40px avatar + name + breed/age meta | **Yes** — via `.pet-photo-s` |
 | **Arch hero** (`.dv3-hero` + `.dv3-arch`, `.sv-hero`, `.share-hero`) | **12** — `home` (7), `home-success` (2), `Me`, `Share-a-pet`, `Shared-pet-view` | Band height varies by screen — 160 / 188 / 224px — while the **arch rise stays 94px** | **Yes** — 88px circle sitting 50/50 on the arch line |
 | **Recipient info block** (`.recipient-info`) | **3** — `Edit-access-grant` (all states) | Default | **Yes** — `.recipient-avatar`, 40px |
-| **Role badge strip** (`.role-badge-strip`) | **3** — `Emergency-allowed` (2), `Shared-pet-view` | Default. States *what the holder of the link may do* | No |
+| **Role badge strip** (`.role-badge-strip` → `.pp-note`) | **3** — `Emergency-allowed` (2), `Shared-pet-view` | Default. States *what the holder of the link may do*. It is `.pp-note` exactly — surface ground, hairline foot, 12px meta — with the role itself in a `<strong>` the kit now brings forward to ink | No |
 
 ## Forms
 
@@ -57,7 +57,7 @@ Every component that appears in the wireframes, whether or not it has been resty
 | **Not-filled mark** (`.pp-pending`) | **1** — `home-success-cheetah`, on the Insurance section | Single state. The counterpart to the tick: same 18px box, baseline and inline placement, in `--pp-warning` bronze, so a row reads identically whichever mark it carries. Added 2026-08-04 | No |
 | **Reminder card** (`.reminder-card`) | **2** — `Whats-due`, `Whats-due-offline` | Default · Hover | No |
 | **Reminder badge** (`.reminder-badge`) | **2** — `Whats-due`, `Whats-due-offline` | **Overdue · Due this month · Coming up** — driven by the parent `section[aria-label]`, not a modifier class | No |
-| **Urgency heading** (`.urgency-heading`) | **2** — `Whats-due`, `Whats-due-offline` | Default. Groups reminders by urgency band | No |
+| **Urgency heading** (`.urgency-heading` → `.pp-heading`) | **2** — `Whats-due`, `Whats-due-offline` | Default. Groups reminders by urgency band. Measured against `Whats-due`, this was `.pp-heading` twice over — same 13/700 uppercase on `.04em` in `--pp-meta`, same 16-16-8 padding — so the duplicate `.pp-urgency` is gone and the band opens with `.pp-heading` | No |
 
 ## Cards
 
@@ -69,10 +69,11 @@ Every component that appears in the wireframes, whether or not it has been resty
 | **Section / listing card** (`.m-section-card`, `.card-body`, `.card-icon`, `.card-arrow`) | **12** — `home` (7), `Whats-due` (2), `home-success` (2), `My-Pets` | Default · Hover · **Collapsed / Open** on `Shared-pet-view` | No — leads with a 36px icon tile, not a photo |
 | **Shared footer** (`.shared-footer`) | **8** — `Emergency-allowed` (4), `Shared-pet-view` (4) | Default. The recipient's persistent footer, replacing the tab bar | No |
 | **Error banner** (`.error-banner`) | **7** across 7 families — `Add-care-note`, `Add-record`, `Edit-access-grant`, `Edit-care-note`, `Edit-pet`, `Emergency-auth-setup`, `Set-up-a-pet` | Default · With detail (`.error-detail`). Always inside a form | No |
-| **Auth block** (`.auth-wrap`, `.auth-card`) | **6** — `Login` (2), `Sign-up`, `Forgot-password`, `Emergency-info`, `Emergency-allowed` | Default · **Error** (`.auth-error`) | No |
+| **Auth block** (`.auth-wrap` → `.pp-auth`; `.auth-card` → `.pp-card`) | **6** — `Login` (2), `Sign-up`, `Forgot-password`, `Emergency-info`, `Emergency-allowed` | Default · **Error** (`.auth-error` → `.pp-banner--inset`) | No |
 | **Vet card** (`.vet-card`) | **5** across 4 families — `Vet-and-appointments` (2), `Emergency-info`, `Shared-pet-view`, `Vet-and-appointments-clinic` | Default | No |
-| **Detail row** (`.detail-label` / `.detail-value`) | **4** — `Document-view`, `Emergency-allowed`, `Shared-pet-view`, `Whats-due` | Default. The label/value pair inside a record | No |
-| **Contact row** (`.contact-row`, `.contact-info`) | **3** — `Emergency-auth-setup` (2), `Emergency-info` | Default | **Yes** — `.contact-avatar`, 32px |
+| **Detail row — stacked** (`.detail-label` / `.detail-value` → `.pp-detail__label` / `__value`) | **4** — `Document-view`, `Emergency-allowed`, `Shared-pet-view`, `Whats-due` | Default. The label/value pair inside a record, label above value | No |
+| **Detail row — two-column** (`.policy-field`, `.vet-field`, `.dv-rows` → `.pp-detail__row`) | **17** across 7 families — `Emergency-info` (5), `Vet-and-appointments` (3), `Edit-access-grant` (3), `Insurance` (2), `Whats-due-detail`, `Document-view` | Default · `--ruled` · `--action`. The same pair read across one line rather than down two — a policy's terms, a clinic's card, a document's fields | No |
+| **Contact row** (`.contact-row`, `.contact-info` → `.pp-contact`) | **3** — `Emergency-auth-setup` (2), `Emergency-info` | Default. The role badge (*Owner*, *Backup*) is a `.pp-chip` bound **inside** the name with `&nbsp;`, not a sibling of the body | **Yes** — `.pp-avatar--md`, 40px |
 | **Document card** (`.doc-card` + `.doc-thumb`) | **3** — `Documents-and-passport` (2), `Insurance` | Default | **Yes** — `.doc-thumb`, a 48px thumbnail of the scan or PDF |
 | **Record entry** (`.record-entry`) | **3** — `Health-and-jabs` (2), `Health-and-jabs-record1` | Default, with `.record-action` | No |
 | **Appointment entry** (`.appt-entry`) | **2** — `Vet-and-appointments`, `Vet-and-appointments-firstrun` | Default, with `.appt-status` | No |
@@ -224,6 +225,77 @@ zero computed-style diff against the pre-migration file:
 | `.pp-note` | (no empty rule) | `:empty { display:none }` — four screens carry the note's element with nothing in it, and a banded stripe with no words in it is a defect | `Add-record`, `Add-insurance`, `Add-vet-record` |
 | `.pp-banner` | `display:flex; gap:10px` | `display:block` — the banner is a headline with a detail line under it, and as a flex row the two sat side by side. No screen had used it yet, so nothing had caught it | `Add-record-error` |
 
+### Added by the final migration
+
+The last 48 files — `Whats-due` (6), `Vet-and-appointments` (6), `Emergency-info` (7),
+`Insurance` (5), `Emergency-allowed` (4), the auth screens (6), `Edit-access-grant` (3),
+`Emergency-auth-setup` (3), `home`'s states (3) and five singles — brought these in.
+`Whats-due` is a reference screen, so everything it touched was measured against it and
+driven to a zero computed-style diff; the rest are measured from the grey screen they
+replaced.
+
+| Component | Screens where it appears | Available states | Requires a photo |
+|---|---|---|---|
+| **Centred app bar** (`.pp-appbar--center`) | **6** — the `Whats-due` family. The title leaves the flex row and takes the whole bar, so neither side slot can move it: a bare `←` is narrower than *Settings* and pushed the title 17px off-centre | Default | No |
+| **Table detail row** (`.pp-detail__row` + `--ruled`, `--action`) | **17** — `Insurance` (2), `Vet-and-appointments` (3), `Emergency-info` (5), `Whats-due-detail`, `Document-view`, `Edit-access-grant` (3) | Default · `--ruled` (a run reads as a table, closed line by line; last line drops its rule) · `--action` (the value is a number to call or an address to open, so it carries a rule under it). The value is whatever closes the row — a `<strong>`, a `<span>`, a `tel:` link — so the rule names the position, not the tag | No |
+| **Sticky action bar** (`.pp-actionbar`) | **2** — `Whats-due`, `Whats-due-offline`. The CTA that rides at the foot of a scrolling list rather than at the end of it. **Not** `.pp-cta` — that one blocks the link it wraps, and a sticky bar has to leave the link exactly as the screen wrote it | Default | No |
+| **Band stack** (`.pp-stack--band`) | **2** — `Whats-due`, `Whats-due-offline`. A stack that closes an urgency band with 4px so the next band's heading does not sit straight on the last card | Default | No |
+| **Auth panel** (`.pp-auth` + `__brand`, `__sub`, `__title`, `__divider`, `__foot`) | **6** — `Login`, `-error`, `-loading`, `Sign-up`, `Forgot-password`, `Logged-out`. The one screen shape with no app chrome: a single centred 340px column, no tab bar, no arch, the bar above it `--plain`. It carries no side inset of its own — the fields inside bring theirs | Default | No |
+| **Stacked actions** (`.pp-actions--stack`) | **9** — the auth screens' Google/Apple pair, `Edit-access-grant` (3), `Emergency-allowed-error`. For choices that are alternatives to each other rather than a primary and its escape | Default | No |
+| **Affixed field** (`.pp-affix` + `__mark`) | **2** — `Emergency-auth-setup`, `-error`. A field that opens with a fixed token (`€`). The two share one edge, so the mark squares the side it meets and the field squares the side it is met on | No |
+| **Settings switch row** (`.pp-switchrow--list`) | **1** — `Reminder-settings`. One of a run: inset, closed with a hairline, so the run reads as a list rather than separate blocks | **Off · On** | No |
+| **Call number** (`.pp-callnumber`) | **3** — `Emergency-allowed`, `-empty`, `Emergency-info`. The number the reader is meant to call, set as a headline rather than a link in a sentence, because on an emergency screen it **is** the action | Default | No |
+| **Plain line list** (`.pp-lines`) | **1** — `Emergency-allowed` (medications, important notes). An unmarked list where the rule between lines is what separates them, as in `.pp-ruled`, so the last line carries none | Default | No |
+| **Document preview** (`.pp-preview`) | **1** — `Document-view`. The sheet a document shows before a real scan is wired in: the page's shape, dashed like everything else waiting for content | Default | **Yes** — it is the scan's slot |
+| **Share link row** (`.pp-linkrow` + `__url`) | **1** — `Share-success`. The link a share produces with the one action it needs beside it; the address holds one line and ellipses rather than wrapping | Default | No |
+| **Footnote** (`.pp-footnote`) | **1** — `Emergency-info`. The quiet line that closes a screen: when what is above it was last checked. No band and no rule — a footnote, not a footer | Default | No |
+| **Saving state** (`.pp-saving`, `.pp-fieldset:disabled`) | **3** — `Edit-access-grant-loading` (card + three fieldsets). A block the screen has taken out of play while it saves. On a `<fieldset>` the `disabled` attribute already says it, so the kit reads that too and the screen needs no class | Default | No |
+| **Reminders illustration** (`.pp-illus--reminders`, from `--pp-i-reminders-tint`) | **2** — `Whats-due-empty`, `Reminder-done`. The calendar glyph re-filled to `--pp-signal-ink`, the last tile the empty states needed | Default | No |
+
+One new token backs the auth panel: `--pp-fs-brand: 24px` (the wordmark on an auth screen).
+
+> **`Emergency-allowed` (all 4 states) is on the kit.** It had the Signal restyle
+> first — token set, webfonts and type roles added to its own `<style>` — and this
+> migration replaced every one of those rules with a kit class: the steps are
+> `.pp-ruled` opened by `.pp-detail__label`, the cards `.pp-card`, the numbers
+> `.pp-callnumber`, the med list `.pp-lines`, the role strip `.pp-note`, the footer
+> `.pp-sharedfoot`. The temporary Signal block had to be **removed**, not just left
+> unused: its `.phone h1, .phone h2, .phone h3, .phone h4` rule is specificity
+> (0,1,1) and out-specified every kit class (0,1,0), which would have forced
+> `letter-spacing:normal` onto the app-bar title. That is the whole shape of the
+> "prototype CSS silently beats the kit" failure, caught before it shipped.
+
+#### Corrected by the final migration
+
+Measured on `Whats-due`, the reference screen for this batch, and driven to a zero
+computed-style diff against the pre-migration file. The rest are the gaps the other
+44 screens exposed.
+
+| Selector | Was | Now | Proved by |
+|---|---|---|---|
+| `.pp-chip` | a standing `gap:6px` | no `gap`; `> * + * { margin-left:6px }` instead. Every chip in the wireframes holds one word, so the `gap` spaced nothing — but it made the reminder badge, which never had one, differ from its reference. The capability survives: a chip that ever grows an icon still spaces it | `Whats-due` (5 badges to zero); re-measured on `Health-and-jabs` + `-firstrun`, where 4 chips change `gap` and **no** rect |
+| `.pp-reminder__meta` | no `line-height` — inherited the canvas's 1.5 | `--pp-lh-small` (1.45), as `.pp-row__meta` already carried. Without it a two-line due date grew 1.3px a line | `Whats-due` |
+| `.pp-urgency` | a second `.pp-heading` under another name | removed. Both were 13/700 uppercase `.04em` in `--pp-meta` on 16-16-8; the kit consolidates naming drift, and this was drift | `Whats-due` |
+| `.pp-reminder__body > .pp-chip` | (no rule) | `margin-top:6px` — the badge hangs below the meta. The reminder's rhythm, not something every chip should carry | `Whats-due` |
+| `.pp-seg--filter` | no padding; depended on a `.pp-switcher` wrapper | carries its own `12px 16px 20px`, so it is a bar in its own right and must **not** be nested in a switcher | `Whats-due-offline` |
+| `.pp-banner` | no `text-align` | `text-align:start` — a banner is a sentence and must read from the margin even inside a centred block. `start`, not `left`: `left` is the same pixel and a different computed value, and it moved four banners on the approved screens | `Login-error`, re-measured on `Add-record-error`, `Edit-pet-error` |
+| `.pp-card` | no list rule; no rule between two cards in one band | `list-style:none` (a card is never a marker list) and `.pp-ruled > .pp-card + .pp-card { margin-top:10px }` — a band has no flow of its own to give two stacked cards | `Emergency-allowed` |
+| `.pp-card__body` / `.pp-note` | `<strong>` inherited the block's muted colour | `strong { color:--pp-ink; font-weight:600 }`, as `.pp-detail` already did — the word the block turns on comes forward | `Whats-due-offline`, `Emergency-allowed` |
+| `.pp-headrow` | the action shrank with the title | `> :last-child { flex:0 0 auto }` — a long line squeezed *Try again* onto two lines inside a 44px pill | `Whats-due-offline` |
+| `.pp-skels` | no list rule; a heading inside it took its own inset | `list-style:none`, and `> .pp-heading` goes flush — otherwise the label sits 32px in from the frame | `home-loading`, `Emergency-info-loading` |
+| `.pp-skel-row__body` | every line full width | `> .pp-skel--line:nth-child(2)` 80%, `:nth-child(3)` 45% — the lines stand for a title over its meta, and their measures belong to the component. Without this a screen carries an inline `width` just to draw a placeholder | `home-loading` |
+| `.pp-empty` / `.pp-error` | a `.pp-btn--link` shared the button's line | `.pp-btn--link { display:flex }` inside them — the quieter second way out takes its own line, and the centring the link already carries puts it on the state's axis | `home-empty`, `home-error` |
+| kit text blocks | a bare `tel:` link fell back to the UA's blue | `:where(.pp-card__body, .pp-contact__meta, .pp-detail, .pp-detail__row) a[href^="tel:"]` takes the line's colour and keeps only the underline. Scoped to `tel:` on purpose: `Who-has-access` wraps its buttons in bare `<a>`s, and a blanket rule would have recoloured them | `Emergency-info` |
+
+**Not applied to `Whats-due`, deliberately.** Three of its blocks stay on the screen's own
+CSS because a kit class would have moved a computed value on a frozen reference: the arch
+(painted by `.m-main::before/::after` at band 160 / apex 66 / rise 94, which is not the
+kit's 22-98-45 hero geometry); the date strip and the two overlapping pet circles (already
+listed as one-offs below); and the three-way pet filter, because `.pp-seg--filter` extends
+each segment's hit area to 44px with a `::before`, and that needs `position:relative` on a
+segment the reference leaves static. `Whats-due-offline` — a state screen, not a reference
+— takes the kit filter and its 44px targets.
+
 **Left alone, deliberately: `.pp-row__chev`.** It keeps `font: inherit`, so on any page
 whose own `body` is still the prototype's `-apple-system` the `→` renders in the system
 face while the row around it is Hanken. Naming `--pp-body` there fixes it and is what
@@ -253,26 +325,23 @@ These appear on exactly one screen each. Listed so nothing is lost, but they are
 | `Whats-due` | Date strip / day sections (`.date-strip`, `.day-section`, `.day-list`, `.day-label`, `.day-empty`, `.wd-month`, `.wd-pet`) |
 | `home-success` | Share CTA bar (`.m-share-cta`, `.btn-share`); pet segmented switcher (`.pet-seg`); round photo-edit button (`.photo-edit`); up-to-date tag (`.uptodate`) |
 | `Shared-pet-view` | Document item (`.doc-item`, `.doc-name`); emergency link; vaccination list (`.vax-list`); vet card's 13px call button — a sub-44px legacy control the kit's `.pp-btn` deliberately does not reproduce |
-| `Emergency-allowed` | Contact card (`.contact-card`, `.contact-name`, `.contact-phone`); emergency step list; important notes; medication list; auth highlight |
-
-> **`Emergency-allowed` (all 4 states) is not on the kit.** That family never had
-> The Signal applied: it still runs the pre-Signal token set (`#1a1a1a` ink,
-> `#757575` muted, `#333333` button, `#f5f5f5` surface, `#e0e0e0` line,
-> `#d0d0d0` placeholder) and loads no webfont, so every kit class differs from
-> what is on screen in colour, face and metrics. It needs the Signal restyle
-> first; migrating it onto the kit is the step after that, not instead of it.
 | `Who-has-access` | Expired grant card (`.expired-card`, `.expired-section`, `.expired-heading`, `.expired-meta`); grant actions |
 | `home-new` | Add-a-pet sheet (`.add-sheet`, `.add-modal`, `.add-option`, `.opt-body`, `.opt-arrow`) |
 | `Me` | Confirm sheet (`.me-sheet`, `.me-modal`); danger link; toggle label + description |
-| `Emergency-info` | Authorisation detail / link / status; contact entry; info footer |
 | `My-Pets` | Pet card (`.pet-card`, `.pet-card-info`); fill hint |
-| `Whats-due-detail` | Reminder detail block (`.rd-title`, `.rd-due`, `.rd-badge`, `.rd-primary`, `.rd-view`) |
+| `Whats-due-detail` | The reminder detail's JS hooks only (`.rd-title`, `.rd-due`, `.rd-badge`, `.rd-primary`, `.rd-view`) — the script keys off them, but every one of them now also wears a kit class and carries no CSS of its own |
 | `Edit-health-record` | Record fields (`.ehr-title`, `.ehr-date`, `.ehr-vet`, `.ehr-notes`, `.ehr-followup`) |
-| `Document-view` | Document viewer (`.dv-thumb`, `.dv-title`) |
+| `Document-view` | The viewer's JS hooks only (`.dv-thumb`, `.dv-title`) — the page itself is `.pp-preview`, and both hooks now wear a kit class |
 | `home-progress-6` | Done sheet + done illustration (`.done-sheet`, `.done-modal`, `.done-illustration`, `.done-later`) |
-| `Forgot-password` | Request form / sent confirmation (`.fp-form`, `.fp-sent`) |
+| `Forgot-password` | The form / sent-confirmation switch (`.fp-form`, `.fp-sent`) — a JS display toggle, not a look; both blocks are `.pp-auth` inside |
 | `Shared-pet-view-empty` | Empty notice (`.empty-notice`) |
-| `Emergency-allowed-error` | Fallback contacts (`.fallback-contacts`) |
+
+> **Three of these have shrunk to nothing but a JS hook.** `Whats-due-detail`,
+> `Document-view` and `Forgot-password` keep their class names because their own
+> scripts select on them; the CSS behind those names is gone and the elements are
+> kit components. `Emergency-info`'s authorisation block and `Emergency-allowed-error`'s
+> fallback contacts have left the list entirely — the first is `.pp-card` +
+> `.pp-card__body` + `.pp-btn--link`, the second `.pp-actions--stack`.
 
 ---
 
