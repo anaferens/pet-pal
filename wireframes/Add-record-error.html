@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Add / update a record (error) — PetPal wireframe</title>
+<link rel="stylesheet" href="../ui/kit.css">
 <style>
   :root {
     --wf-bg:         #ffffff;
@@ -678,35 +679,35 @@
         <span class="zone-label">Main</span> Main · <span>Section → ★ Add / update a record</span> → back to section
       </div>
 
-      <header class="m-header">
-        <a href="Health-and-jabs.html" style="text-decoration:none;"><button class="back" aria-label="Cancel and go back">←</button></a>
-        <h1>Add a record</h1>
+      <header class="pp-appbar">
+        <a href="Health-and-jabs.html" style="text-decoration:none;"><button class="pp-appbar__back" aria-label="Cancel and go back">←</button></a>
+        <h1 class="pp-appbar__title">Add a record</h1>
         <span></span>
       </header>
 
       <div class="m-main">
 
         <form aria-label="Save failed">
-          <div class="error-banner">
+          <div class="pp-banner pp-banner--inset">
             <p>Couldn't save this record. Check your connection and try again.</p>
-            <p class="error-detail">All your data is preserved — just tap "Try again."</p>
+            <p class="pp-banner__detail">All your data is preserved — just tap "Try again."</p>
           </div>
 
-          <div class="form-group">
-            <label>Jab name</label>
-            <input type="text" value="Leptospirosis">
+          <div class="pp-field pp-field--inset">
+            <label class="pp-field__label">Jab name</label>
+            <input class="pp-input" type="text" value="Leptospirosis">
           </div>
-          <div class="form-group">
-            <label>Date of the jab</label>
-            <input type="text" value="2 Jul 2026">
+          <div class="pp-field pp-field--inset">
+            <label class="pp-field__label">Date of the jab</label>
+            <input class="pp-input" type="text" value="2 Jul 2026">
           </div>
-          <div class="form-group">
-            <label>Next due date</label>
-            <input type="text" value="2 Jan 2027">
+          <div class="pp-field pp-field--inset">
+            <label class="pp-field__label">Next due date</label>
+            <input class="pp-input" type="text" value="2 Jan 2027">
           </div>
-          <div class="form-actions">
-            <a href="Health-and-jabs.html"><button type="button" class="btn-secondary">Cancel</button></a>
-            <a href="Add-record.html"><button type="button" class="btn-primary">Try again</button></a>
+          <div class="pp-actions pp-actions--links">
+            <a href="Health-and-jabs.html"><button type="button" class="pp-btn pp-btn--secondary">Cancel</button></a>
+            <a href="Add-record.html"><button type="button" class="pp-btn">Try again</button></a>
           </div>
         </form>
       </div>

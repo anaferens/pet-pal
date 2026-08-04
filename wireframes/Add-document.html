@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Add document — PetPal wireframe</title>
+<link rel="stylesheet" href="../ui/kit.css">
 <style>
   :root {
     --wf-bg:         #ffffff;
@@ -678,20 +679,20 @@
         <span class="zone-label">Main</span> Main · <span>Section → ★ Add / update a record</span> → back to section
       </div>
 
-      <header class="m-header">
-        <a href="Documents-and-passport-empty.html" style="text-decoration:none;"><button class="back" aria-label="Cancel and go back">←</button></a>
-        <h1>Add a document</h1>
+      <header class="pp-appbar">
+        <a href="Documents-and-passport-empty.html" style="text-decoration:none;"><button class="pp-appbar__back" aria-label="Cancel and go back">←</button></a>
+        <h1 class="pp-appbar__title">Add a document</h1>
         <span></span>
       </header>
 
       <div class="m-main">
 
         <form aria-label="Add a record">
-          <p style="padding:12px 16px;font-size:12px;color:var(--wf-muted);">Context-aware form — fields adapt to record type. Shown: document.</p>
+          <p class="pp-note">Context-aware form — fields adapt to record type. Shown: document.</p>
 
-          <div class="form-group">
-            <label>Record type</label>
-            <select>
+          <div class="pp-field pp-field--inset">
+            <label class="pp-field__label">Record type</label>
+            <select class="pp-select pp-select--chev">
               <option>Jab</option>
               <option>Health &amp; jabs</option>
               <option selected>Documents &amp; passport</option>
@@ -701,43 +702,43 @@
             </select>
           </div>
 
-          <div class="form-group">
-            <label>Document name <span class="req">*</span></label>
-            <input type="text" placeholder="e.g. EU Pet Passport, insurance policy">
+          <div class="pp-field pp-field--inset">
+            <label class="pp-field__label">Document name <span class="pp-field__req">*</span></label>
+            <input class="pp-input" type="text" placeholder="e.g. EU Pet Passport, insurance policy">
           </div>
 
-          <div class="form-group">
-            <label>Date <span class="req">*</span></label>
-            <input type="date">
+          <div class="pp-field pp-field--inset">
+            <label class="pp-field__label">Date <span class="pp-field__req">*</span></label>
+            <input class="pp-input" type="date">
           </div>
 
-          <div class="form-group">
-            <label>Next due date</label>
-            <input type="date">
-            <p class="helper">Used for reminders — leave blank if unknown.</p>
+          <div class="pp-field pp-field--inset">
+            <label class="pp-field__label">Next due date</label>
+            <input class="pp-input" type="date">
+            <p class="pp-help">Used for reminders — leave blank if unknown.</p>
           </div>
 
-          <div class="form-group">
-            <label>Administering vet</label>
-            <input type="text" placeholder="e.g. Dr. Müller, Tierklinik am Stadtpark">
+          <div class="pp-field pp-field--inset">
+            <label class="pp-field__label">Administering vet</label>
+            <input class="pp-input" type="text" placeholder="e.g. Dr. Müller, Tierklinik am Stadtpark">
           </div>
 
-          <div class="form-group">
-            <label>Notes</label>
-            <textarea placeholder="e.g. Where you keep the original, or anything else worth noting."></textarea>
+          <div class="pp-field pp-field--inset">
+            <label class="pp-field__label">Notes</label>
+            <textarea class="pp-textarea" placeholder="e.g. Where you keep the original, or anything else worth noting."></textarea>
           </div>
 
-          <div class="form-group">
-            <label>Proof / attachment</label>
-            <div style="padding:20px;border:1.5px dashed var(--wf-border);border-radius:6px;text-align:center;color:var(--wf-muted);font-size:13px;cursor:pointer;" onclick="this.textContent='attachment added ✓'">
+          <div class="pp-field pp-field--inset">
+            <label class="pp-field__label">Proof / attachment</label>
+            <div class="pp-drop" onclick="this.textContent='attachment added ✓'">
               Tap to upload photo or PDF
             </div>
-            <p class="helper">The document file — EU Pet Passport, certificate, or policy (PDF or photo).</p>
+            <p class="pp-help">The document file — EU Pet Passport, certificate, or policy (PDF or photo).</p>
           </div>
 
-          <div class="form-actions">
-            <a href="Documents-and-passport-empty.html"><button type="button" class="btn-secondary">Cancel</button></a>
-            <a href="Section-saving.html?next=Documents-and-passport-firstrun.html"><button type="button" class="btn-primary">Save</button></a>
+          <div class="pp-actions pp-actions--links">
+            <a href="Documents-and-passport-empty.html"><button type="button" class="pp-btn pp-btn--secondary">Cancel</button></a>
+            <a href="Section-saving.html?next=Documents-and-passport-firstrun.html"><button type="button" class="pp-btn">Save</button></a>
           </div>
         </form>
       </div>

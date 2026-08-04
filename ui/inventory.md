@@ -2,7 +2,7 @@
 
 Every component that appears in the wireframes, whether or not it has been restyled yet. Built by parsing all **123** files in [`../wireframes/`](../wireframes/), scoped to the product canvas (`.content-mobile → .phone`) so prototype chrome — the sidebar, persona-flow breadcrumb and state tabs — is excluded. Cross-checked against [`../research/sitemap.md`](../research/sitemap.md) and the language board at [`../concept/concept.html`](../concept/concept.html).
 
-**Scope note.** **21** of the 123 screens carried The Signal when this was written; the owner flow's remaining **32** were painted onto the kit in the migration below, so **53** now do. The rest are still grey. This inventory covers both — a grey component is still a component, and most of the kit lives there. Nothing here is inferred from [`../DESIGN.md`](../DESIGN.md) or [`../concept/concept.md`](../concept/concept.md); every row is something that exists in markup.
+**Scope note.** **21** of the 123 screens carried The Signal when this was written; the owner flow's remaining **32** were painted onto the kit in the migration below, and the setup flow's **33** after them, so **86** now do. The rest are still grey. This inventory covers both — a grey component is still a component, and most of the kit lives there. Nothing here is inferred from [`../DESIGN.md`](../DESIGN.md) or [`../concept/concept.md`](../concept/concept.md); every row is something that exists in markup.
 
 **Reading the columns.** *Screens* gives the count and the families it appears in (a family = a screen plus its state pages). *States* lists only variants that exist in the CSS or markup — modifier classes and pseudo-states — not states we might want. *Photo* means the component has a slot for a photograph of a pet or a person; icon tiles and illustration tiles are **not** photos.
 
@@ -15,7 +15,7 @@ Every component that appears in the wireframes, whether or not it has been resty
 | Component | Screens where it appears | Available states | Requires a photo |
 |---|---|---|---|
 | **Tab bar** (`.phone-nav`) | **92** across 24 families incl. `home`, `Personality-and-care`, `Emergency-info`, `Whats-due`, `My-Pets`, `Health-and-jabs`. Absent on **31** focused-task screens: the recipient views (`Shared-pet-view`, `Emergency-allowed`), auth (`Login`, `Sign-up`, `Forgot-password`, `Logged-out`), and the full-screen add/edit/upload flows (`Add-*`, `Set-up-a-pet`, `Upload-photo`, `Edit-health-record`, `Section-saving`) | Default · **Active** (`a.active` — filled icon; on styled pages also a 24×3px amber marker). Four destinations: Pets · Reminders · Share · Owner | No |
-| **App bar** (`.m-header` → `.pp-appbar`) | **115** across 40 families. The **8** without it are the `*-loading` screens where a skeleton stands in for the header, plus `Section-saving` and `Shared-pet-view` | Title only · With back · With trailing action · **`--sm`** compact (48px, `Me`) · **`--bare`** recipient brand bar · **`--onarch`** amber. **Background is transparent by default**; the amber is `--onarch` only, worn by the 4 screens whose arch continues the band down the page (`home-success`, `-single`, `-cheetah`, `Me`) — elsewhere it would be a stripe with nothing beneath it. Back control is a **bare `←`** on every screen, destination in `aria-label` | No |
+| **App bar** (`.m-header` → `.pp-appbar`) | **115** across 40 families. The **8** without it are the `*-loading` screens where a skeleton stands in for the header, plus `Section-saving` and `Shared-pet-view` | Title only · With back · With trailing action · **`--sm`** compact (48px, `Me`) · **`--bare`** recipient brand bar · **`--onarch`** amber. **Background is transparent by default**; the amber is `--onarch` only, worn by the 10 screens whose arch continues the band down the page (`home-success`, `-single`, `-cheetah`, `Me`, `home-progress-1…6`) — elsewhere it would be a stripe with nothing beneath it. `home-new` is the test case: same family, same title, but a flat identity strip instead of an arch, so its bar stays transparent. Back control is a **bare `←`** on every screen, destination in `aria-label` | No |
 | **Back control** (`.back`) | **98** across 31 families | Default | No |
 | **Add button / FAB** (`.fab`) | **21** across 9 families — `Personality-and-care` (8), `Documents-and-passport` (2), `Health-and-jabs` (2), `Insurance` (2), `Vet-and-appointments` (2) | Default · **Menu open** (`.fab-menu`, 3 screens, with hover) | No |
 | **Pet toggle — 2-up switcher** (`.pet-switcher`, `.pet-pill`, `.pet-seg`) | **5** — `home-empty`, `home-new`, `home-success`, `home-success-cheetah`, `Share-a-pet`. Only where the owner has more than one pet | **Inactive · Active** (`.pet-pill.active`) · Hover. The active segment squares its **inner** corners, so it reads as a tab pulled forward | **Yes** — `.pill-avatar`, 22px circle per pet |
@@ -53,7 +53,7 @@ Every component that appears in the wireframes, whether or not it has been resty
 |---|---|---|---|
 | **Status chip** (`.status`, `.record-status`, `.vax-status`, `.appt-status`, `.doc-status`, `.auth-status`) | **14** across 4 families — `home` (9), `Health-and-jabs` (2), `home-success` (2), `Shared-pet-view` | One per status value; six named variants across record, vaccination, appointment, document and authorisation contexts | No |
 | **Fill counter** (`.m-fill-counter`, `.count`) | **11** — `home` (9), `home-success` (2) | Default. Tracks how much of a section is complete | No |
-| **Verification tick** (`.check`) | **10** — the six `home-progress-1…6` steps, `home-success` + its `-single` and `-cheetah` variants, and `Shared-pet-view` | Present / absent per section | No |
+| **Verification tick** (`.check` → `.pp-check`) | **10** — the six `home-progress-1…6` steps, `home-success` + its `-single` and `-cheetah` variants, and `Shared-pet-view`. All ten are on `.pp-check` now | Present / absent per section | No |
 | **Not-filled mark** (`.pp-pending`) | **1** — `home-success-cheetah`, on the Insurance section | Single state. The counterpart to the tick: same 18px box, baseline and inline placement, in `--pp-warning` bronze, so a row reads identically whichever mark it carries. Added 2026-08-04 | No |
 | **Reminder card** (`.reminder-card`) | **2** — `Whats-due`, `Whats-due-offline` | Default · Hover | No |
 | **Reminder badge** (`.reminder-badge`) | **2** — `Whats-due`, `Whats-due-offline` | **Overdue · Due this month · Coming up** — driven by the parent `section[aria-label]`, not a modifier class | No |
@@ -131,6 +131,24 @@ them had the component; the rest measured from the grey screen it replaced.
 | **Subject avatar** (`.pp-avatar--cheetah`, from `--pp-img-cheetah`) | **2** — `My-Pets`, `home-success-cheetah` | Default. Points at `visuals/pet-cat-cheetah.jpg`, the repo's own asset. `--pp-img-miso` stays on its Unsplash URL because the frozen reference screens render it | **Yes** — it *is* the photo |
 | **Utilities** (`.pp-inset`, `.pp-sr`, `.pp-is-name`) | **12** | The kit's only three utilities. `.pp-inset` = the canvas inset alone; `.pp-sr` = present to a screen reader, absent to the eye; `.pp-is-name` = the serif italic a name takes in whatever slot it lands in | No |
 
+### Added by the setup-flow migration
+
+The setup flow — `Set-up-a-pet`, `Upload-photo`, `home-new`, `home-progress-1…6`,
+every `Add-*` and `Edit-*` form and `Section-saving`, 33 files — brought these in.
+Each is measured from the grey screen it replaced and checked against the closest
+reference (`Me` for the forms, `home-success` for the card).
+
+| Component | Screens where it appears | Available states | Requires a photo |
+|---|---|---|---|
+| **Attachment target** (`.pp-drop` + `--sm`) | **8** — `Add-record`, `Add-health-record`, `Add-document`, `Add-insurance`, `Add-vet-record`, `Add-care-note`, `Edit-care-note`, `Edit-health-record` | Default · Hover (ink edge). `--sm` is the shallower one offered when the slot already holds a file. Wears the dashed edge `.pp-card--dashed` and `.pp-slot` wear, so "nothing here yet" reads the same whether it is a section, a slot or a file | No |
+| **Photo intake** (`.pp-photoslot` + `--lg`) | **4** — `Set-up-a-pet`, `Upload-photo` (`--lg`, 140px), `Edit-pet`, `Edit-pet-error` | Default · Hover. 80px dashed circle on `--pp-surface`. **Not** an avatar: an avatar shows a photograph, this asks for one, so it takes the dashed edge and the surface ground rather than the photo grey | **Yes** — it is the photo intake |
+| **Photo row** (`.pp-photorow` + `__actions`) | **2** — `Edit-pet`, `Edit-pet-error` | Default. The photo and what you can do to it, banded under the app bar: 80px slot + a column of actions | **Yes** — via `.pp-photoslot` |
+| **Field group** (`.pp-fieldset`) | **3** — `Edit-pet` (all states). The reset a `<fieldset>` needs so `.pp-heading` can serve as its `<legend>` | Default | No |
+| **Identity chip line** (`.pp-identity__chip`) | **1** — `home-new`. The strip's third line — microchip / registry id, as `.pp-arch__chip` is to the arch | Default | No |
+| **Choices sheet** (`.pp-sheet--list` + `__head`, `__close`) | **1** — `home-new`. The sheet that offers a set of destinations rather than a decision, so it drops the centring, takes the wider 420px measure the rows need and scrolls inside itself | **Closed · Open** (`.is-open`) | No |
+| **Linked actions row** (`.pp-actions--links`) | **13** — every `Add-*` / `Edit-*` / `Set-up-a-pet` form and `home-progress-1…6`. Opt-in, because a row of bare buttons must not start stretching links it does not have | Default | No |
+| **Inset banner** (`.pp-banner--inset`) | **6** — `Set-up-a-pet-error`, `Add-record-error`, `Add-care-note-error`, `Edit-care-note-error`, `Edit-pet-error` | Default. The banner's padding is spent on its fill, so the canvas gap has to be margin | No |
+
 New tiles and tints back these: `.pp-row__tile--insurance` / `--emergency`, and
 `.pp-illus--warn` / `--wait` / `--pets` / `--share` / `--insurance` / `--emergency`
 (each the same Solar glyph re-filled to `--pp-signal-ink`).
@@ -197,6 +215,24 @@ zero computed-style diff against the pre-migration file:
 | `.pp-illus` | `background-size:52px`, `margin-bottom:16px` | `56px`, `20px`, plus `font-size:0; color:transparent` — the tile renders nothing but its glyph. 56px is what all **12** styled screens carry | `Share-a-pet-error`, `-loading` |
 | `.pp-error` / `.pp-empty` | `padding:24px 16px`; title `700/1.3`; body `margin-top:6px` | `padding:60px 32px`; title `600/1.5` + `margin-bottom:8px`; body `line-height:1.5` + `margin-bottom:20px` | `Share-a-pet-error` |
 | `.pp-tabbar` | `min-height:var(--pp-tabbar-h)` | no `min-height` — the bar is content-driven, and the token now means the FAB's clearance | `home-success`, `Me` |
+
+#### Corrected by the setup-flow migration
+
+| Selector | Was | Now | Proved by |
+|---|---|---|---|
+| `.pp-card--row` | `display:flex` + gap only | adds `width:100%`, `font:inherit`, `color:inherit`, `text-align:start` — the resets a `<button>` brings, all four of them what an `<article>` already inherits. `start`, not `left`: `left` is the same pixel and a different computed value, and it moved 42 of them on `home-success` | `Upload-photo` (card-shaped `<button>`), zero-diffed against `home-success` |
+| `.pp-note` | (no empty rule) | `:empty { display:none }` — four screens carry the note's element with nothing in it, and a banded stripe with no words in it is a defect | `Add-record`, `Add-insurance`, `Add-vet-record` |
+| `.pp-banner` | `display:flex; gap:10px` | `display:block` — the banner is a headline with a detail line under it, and as a flex row the two sat side by side. No screen had used it yet, so nothing had caught it | `Add-record-error` |
+
+**Left alone, deliberately: `.pp-row__chev`.** It keeps `font: inherit`, so on any page
+whose own `body` is still the prototype's `-apple-system` the `→` renders in the system
+face while the row around it is Hanken. Naming `--pp-body` there fixes it and is what
+every other text-bearing part does — but it also re-renders the arrow on five screens
+that are already signed off (`My-Pets`, `home-success-single`, `-cheetah`,
+`Documents-and-passport`, `-firstrun`), two of them by half a pixel, because the
+chevron is a `<button>` there and its line box grows. Measured, then reverted: the
+setup flow now matches the approved corpus rather than diverging from it. The real fix
+is to move those pages' `body` onto the kit's face, which is a separate change.
 
 Four more were corrected against the grey screens, where the kit class was simply wrong
 for the element it had to carry: `.pp-btn--link` became `inline-flex` and centred (as an

@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Pet card · setup 3/6 — PetPal wireframe</title>
+<link rel="stylesheet" href="../ui/kit.css">
 <style>
   :root {
     --wf-bg:         #ffffff;
@@ -1027,125 +1028,125 @@
         Main job · step 2 of 4 — <span>My Pets → ★ Pet card</span> → sections → Share
       </div>
 
-      <header class="m-header v3-header">
-        <a href="My-Pets.html" style="text-decoration:none;"><button class="back" aria-label="Back to your pets">←</button></a>
-        <h1>Miso</h1>
-        <a href="Edit-pet.html" style="text-decoration:none;"><button class="action-edit">Edit</button></a>
+      <header class="pp-appbar pp-appbar--onarch">
+        <a href="My-Pets.html" style="text-decoration:none;"><button class="pp-appbar__back" aria-label="Back to your pets">←</button></a>
+        <h1 class="pp-appbar__title pp-is-name">Miso</h1>
+        <a href="Edit-pet.html" style="text-decoration:none;"><button class="pp-appbar__action">Edit</button></a>
       </header>
 
       <div class="m-main">
 
-        <div class="dv3-hero">
-          <figure class="dv3-photo" aria-label="Pet photo placeholder">photo</figure>
+        <div class="pp-hero">
+          <figure class="pp-avatar pp-avatar--ring pp-avatar--miso pp-hero__photo" aria-label="Pet photo placeholder">photo</figure>
         </div>
-        <div class="dv3-arch">
-          <h2>Miso</h2>
-          <p class="meta">Dog · Border Terrier · Female</p>
-          <p class="chip">Microchip 276 098 106 412 345</p>
+        <div class="pp-arch">
+          <h2 class="pp-arch__name">Miso</h2>
+          <p class="pp-arch__meta">Dog · Border Terrier · Female</p>
+          <p class="pp-arch__chip">Microchip 276 098 106 412 345</p>
         </div>
 
-        <section class="m-quick-actions" aria-label="Quick actions">
-          <a href="Share-a-pet.html"><button class="btn-primary">Share Miso's info</button></a>
-          <a href="Set-up-a-pet.html"><button class="btn-secondary">Edit pet details</button></a>
+        <section class="pp-actions pp-actions--links" aria-label="Quick actions">
+          <a href="Share-a-pet.html"><button class="pp-btn">Share Miso's info</button></a>
+          <a href="Set-up-a-pet.html"><button class="pp-btn pp-btn--secondary">Edit pet details</button></a>
         </section>
 
-        <section class="m-fill-counter" aria-label="Card completeness">
-          <div class="zone-label">Counter</div>
-          <span class="count">3 of 6 sections filled</span>
-          <span class="status">Just now</span>
+        <section class="pp-counter" aria-label="Card completeness">
+          <div class="pp-sr">Counter</div>
+          <span class="pp-counter__count">3 of 6 sections filled</span>
+          <span class="pp-counter__meta">Just now</span>
         </section>
 
-        <section class="m-search-filter" aria-label="Search sections">
-          <div class="zone-label">Search &amp; filter</div>
-          <input class="search-bar" type="search" placeholder="Search sections, records, documents…" aria-label="Search sections">
+        <section class="pp-stack" aria-label="Search sections">
+          <div class="pp-sr">Search &amp; filter</div>
+          <input class="pp-search" type="search" placeholder="Search sections, records, documents…" aria-label="Search sections">
         </section>
 
-                <ul class="m-section-list" aria-label="Card sections">
+                <ul class="pp-stack" aria-label="Card sections">
 
           <li>
-            <a href="Health-and-jabs-firstrun.html" style="text-decoration:none;color:inherit;display:block;"><article class="m-section-card v3">
-              <div class="card-icon card-icon-m">icon</div>
-              <div class="card-body">
-                <h3>Health &amp; jabs <span class="check">✓</span></h3>
-                <p class="card-meta">2 records · Just now</p>
+            <a href="Health-and-jabs-firstrun.html" style="text-decoration:none;color:inherit;display:block;"><article class="pp-card pp-card--row">
+              <div class="pp-row__tile pp-row__tile--health pp-iconbox">icon</div>
+              <div class="pp-row__body">
+                <h3 class="pp-row__title">Health &amp; jabs&nbsp;<span class="pp-check">✓</span></h3>
+                <p class="pp-row__meta">2 records · Just now</p>
               </div>
-              <span class="card-arrow" aria-hidden="true">→</span>
+              <span class="pp-row__chev" aria-hidden="true">→</span>
             </article></a>
           </li>
 
           <li>
-            <a href="Documents-and-passport-firstrun.html" style="text-decoration:none;color:inherit;display:block;"><article class="m-section-card v3">
-              <div class="card-icon card-icon-m">icon</div>
-              <div class="card-body">
-                <h3>Documents &amp; passport <span class="check">✓</span></h3>
-                <p class="card-meta">1 document · Just now</p>
+            <a href="Documents-and-passport-firstrun.html" style="text-decoration:none;color:inherit;display:block;"><article class="pp-card pp-card--row">
+              <div class="pp-row__tile pp-row__tile--docs pp-iconbox">icon</div>
+              <div class="pp-row__body">
+                <h3 class="pp-row__title">Documents &amp; passport&nbsp;<span class="pp-check">✓</span></h3>
+                <p class="pp-row__meta">1 document · Just now</p>
               </div>
-              <span class="card-arrow" aria-hidden="true">→</span>
+              <span class="pp-row__chev" aria-hidden="true">→</span>
             </article></a>
           </li>
 
           <li>
-            <a href="Insurance-firstrun.html" style="text-decoration:none;color:inherit;display:block;"><article class="m-section-card v3">
-              <div class="card-icon card-icon-m">icon</div>
-              <div class="card-body">
-                <h3>Insurance <span class="check">✓</span></h3>
-                <p class="card-meta">1 active policy · Renews 1 Oct 2026</p>
+            <a href="Insurance-firstrun.html" style="text-decoration:none;color:inherit;display:block;"><article class="pp-card pp-card--row">
+              <div class="pp-row__tile pp-row__tile--insurance pp-iconbox">icon</div>
+              <div class="pp-row__body">
+                <h3 class="pp-row__title">Insurance&nbsp;<span class="pp-check">✓</span></h3>
+                <p class="pp-row__meta">1 active policy · Renews 1 Oct 2026</p>
               </div>
-              <span class="card-arrow" aria-hidden="true">→</span>
+              <span class="pp-row__chev" aria-hidden="true">→</span>
             </article></a>
           </li>
 
           <li>
-            <a href="Personality-and-care-empty.html" style="text-decoration:none;color:inherit;display:block;"><article class="m-section-card v3" style="border-style:dashed;">
-              <div class="card-icon card-icon-m">icon</div>
-              <div class="card-body">
-                <h3>Personality &amp; care</h3>
-                <p class="card-meta"><strong>Not filled yet</strong><br>Food, temperament, warnings, routines — what a sitter needs</p>
+            <a href="Personality-and-care-empty.html" style="text-decoration:none;color:inherit;display:block;"><article class="pp-card pp-card--row pp-card--dashed">
+              <div class="pp-row__tile pp-row__tile--personality pp-iconbox">icon</div>
+              <div class="pp-row__body">
+                <h3 class="pp-row__title">Personality &amp; care</h3>
+                <p class="pp-row__meta"><strong>Not filled yet</strong><br>Food, temperament, warnings, routines — what a sitter needs</p>
               </div>
-              <span class="card-arrow" aria-hidden="true">→</span>
+              <span class="pp-row__chev" aria-hidden="true">→</span>
             </article></a>
           </li>
 
           <li>
-            <a href="Vet-and-appointments-empty.html" style="text-decoration:none;color:inherit;display:block;"><article class="m-section-card v3" style="border-style:dashed;">
-              <div class="card-icon card-icon-m">icon</div>
-              <div class="card-body">
-                <h3>Vet &amp; appointments</h3>
-                <p class="card-meta"><strong>Not filled yet</strong><br>Your vet clinic and upcoming appointments</p>
+            <a href="Vet-and-appointments-empty.html" style="text-decoration:none;color:inherit;display:block;"><article class="pp-card pp-card--row pp-card--dashed">
+              <div class="pp-row__tile pp-row__tile--vet pp-iconbox">icon</div>
+              <div class="pp-row__body">
+                <h3 class="pp-row__title">Vet &amp; appointments</h3>
+                <p class="pp-row__meta"><strong>Not filled yet</strong><br>Your vet clinic and upcoming appointments</p>
               </div>
-              <span class="card-arrow" aria-hidden="true">→</span>
+              <span class="pp-row__chev" aria-hidden="true">→</span>
             </article></a>
           </li>
 
           <li>
-            <a href="Emergency-info-empty.html" style="text-decoration:none;color:inherit;display:block;"><article class="m-section-card v3" style="border-style:dashed;">
-              <div class="card-icon card-icon-m">icon</div>
-              <div class="card-body">
-                <h3>Emergency info &amp; authorisation</h3>
-                <p class="card-meta"><strong>Not filled yet</strong><br>Vet contact, current meds, conditions, emergency contact — what a sitter needs if something goes wrong</p>
+            <a href="Emergency-info-empty.html" style="text-decoration:none;color:inherit;display:block;"><article class="pp-card pp-card--row pp-card--dashed">
+              <div class="pp-row__tile pp-row__tile--emergency pp-iconbox">icon</div>
+              <div class="pp-row__body">
+                <h3 class="pp-row__title">Emergency info &amp; authorisation</h3>
+                <p class="pp-row__meta"><strong>Not filled yet</strong><br>Vet contact, current meds, conditions, emergency contact — what a sitter needs if something goes wrong</p>
               </div>
-              <span class="card-arrow" aria-hidden="true">→</span>
+              <span class="pp-row__chev" aria-hidden="true">→</span>
             </article></a>
           </li>
 
         </ul>
       </div>
 
-      <div style="display:flex;justify-content:flex-end;padding:4px 20px 8px;">
-        <div style="width:130px;height:92px;border-radius:14px;background:var(--wf-placeholder);display:flex;align-items:center;justify-content:center;font-size:10px;color:var(--wf-muted);text-align:center;">cute illustration<br>(bone in a bowl)</div>
+      <div class="pp-cta">
+        <div class="pp-illus pp-illus--pets">cute illustration<br>(bone in a bowl)</div>
       </div>
-      <nav class="phone-nav" aria-label="Main navigation">
-        <a href="My-Pets.html" class="active">
-          <span class="nav-icon" aria-hidden="true"></span> Pets
+      <nav class="pp-tabbar" aria-label="Main navigation">
+        <a href="My-Pets.html" class="pp-tab pp-tab--pets" aria-current="page">
+          <span class="pp-tab__icon" aria-hidden="true"></span> Pets
         </a>
-        <a href="Whats-due.html">
-          <span class="nav-icon" aria-hidden="true"></span> What's due
+        <a href="Whats-due.html" class="pp-tab pp-tab--reminders">
+          <span class="pp-tab__icon" aria-hidden="true"></span> What's due
         </a>
-        <a href="Share-a-pet.html">
-          <span class="nav-icon" aria-hidden="true"></span> Share
+        <a href="Share-a-pet.html" class="pp-tab pp-tab--share">
+          <span class="pp-tab__icon" aria-hidden="true"></span> Share
         </a>
-              <a href="Me.html">
-          <span class="nav-icon" aria-hidden="true"></span> Owner
+              <a href="Me.html" class="pp-tab pp-tab--owner">
+          <span class="pp-tab__icon" aria-hidden="true"></span> Owner
         </a>
       </nav>
 

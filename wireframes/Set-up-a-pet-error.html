@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Set up a pet (error) — PetPal wireframe</title>
+<link rel="stylesheet" href="../ui/kit.css">
 <style>
   :root {
     --wf-bg:         #ffffff;
@@ -678,37 +679,37 @@
         <span class="zone-label">Main</span> Main job — <span>My Pets → ★ Set up a pet</span> → Pet card
       </div>
 
-      <header class="m-header">
-        <a href="My-Pets.html" style="text-decoration:none;"><button class="back" aria-label="Back to your pets">←</button></a>
-        <h1>Set up a pet</h1>
+      <header class="pp-appbar">
+        <a href="My-Pets.html" style="text-decoration:none;"><button class="pp-appbar__back" aria-label="Back to your pets">←</button></a>
+        <h1 class="pp-appbar__title">Set up a pet</h1>
         <span></span>
       </header>
 
       <div class="m-main">
 
         <form aria-label="Set up a pet (error)">
-          <div class="error-banner">
+          <div class="pp-banner pp-banner--inset">
             <p>Couldn't save your pet. Check your connection and try again.</p>
-            <p class="error-detail">Your data has been preserved — nothing was lost.</p>
+            <p class="pp-banner__detail">Your data has been preserved — nothing was lost.</p>
           </div>
 
-          <div class="form-group">
-            <label>Pet name <span class="req">*</span></label>
-            <input type="text" value="Miso">
+          <div class="pp-field pp-field--inset">
+            <label class="pp-field__label">Pet name <span class="pp-field__req">*</span></label>
+            <input class="pp-input" type="text" value="Miso">
           </div>
 
-          <div class="form-group">
-            <label>Species <span class="req">*</span></label>
-            <select><option>Dog</option></select>
+          <div class="pp-field pp-field--inset">
+            <label class="pp-field__label">Species <span class="pp-field__req">*</span></label>
+            <select class="pp-select pp-select--chev"><option>Dog</option></select>
           </div>
 
-          <div class="form-group">
-            <label>Breed</label>
-            <input type="text" value="Border Terrier">
+          <div class="pp-field pp-field--inset">
+            <label class="pp-field__label">Breed</label>
+            <input class="pp-input" type="text" value="Border Terrier">
           </div>
 
-          <div class="form-actions">
-            <a href="Set-up-a-pet.html"><button type="button" class="btn-primary">Try again</button></a>
+          <div class="pp-actions pp-actions--links">
+            <a href="Set-up-a-pet.html"><button type="button" class="pp-btn">Try again</button></a>
           </div>
         </form>
       </div>

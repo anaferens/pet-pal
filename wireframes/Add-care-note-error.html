@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Add care note (error) — PetPal wireframe</title>
+<link rel="stylesheet" href="../ui/kit.css">
 <style>
   :root {
     --wf-bg:         #ffffff;
@@ -564,31 +565,31 @@
         <span class="zone-label">Main</span> Main · <span>Personality &amp; care → ★ Add care note</span> → back to section
       </div>
 
-      <header class="m-header">
-        <a href="Personality-and-care.html" style="text-decoration:none;"><button class="back" aria-label="Cancel and go back">←</button></a>
-        <h1>Add a note</h1>
+      <header class="pp-appbar">
+        <a href="Personality-and-care.html" style="text-decoration:none;"><button class="pp-appbar__back" aria-label="Cancel and go back">←</button></a>
+        <h1 class="pp-appbar__title">Add a note</h1>
         <span></span>
       </header>
 
       <div class="m-main">
 
-        <section class="m-pet-identity" aria-label="Pet identity">
-          <figure class="pet-photo pet-photo-s" aria-label="Pet photo placeholder">photo</figure>
-          <div class="pet-info">
-            <h2 style="font-size:15px;font-weight:700;">Miso</h2>
-            <p class="pet-meta" style="font-size:12px;">Dog · Border Terrier · Female</p>
+        <section class="pp-identity" aria-label="Pet identity">
+          <figure class="pp-avatar pp-avatar--md pp-avatar--miso pp-iconbox" aria-label="Pet photo placeholder">photo</figure>
+          <div class="pp-identity__body">
+            <h2 class="pp-identity__name">Miso</h2>
+            <p class="pp-identity__meta">Dog · Border Terrier · Female</p>
           </div>
         </section>
 
-        <div class="error-banner">
+        <div class="pp-banner pp-banner--inset">
           <p><strong>Couldn't save the note.</strong></p>
-          <p class="error-detail">Check your connection and try again. Your note is still here.</p>
+          <p class="pp-banner__detail">Check your connection and try again. Your note is still here.</p>
         </div>
 
         <form aria-label="Add a care note">
-          <div class="form-group">
-            <label>Category <span class="req">*</span></label>
-            <select>
+          <div class="pp-field pp-field--inset">
+            <label class="pp-field__label">Category <span class="pp-field__req">*</span></label>
+            <select class="pp-select pp-select--chev">
               <option selected>Favourite food &amp; treats</option>
               <option>Likes &amp; temperament</option>
               <option>Not friendly with (warning)</option>
@@ -600,43 +601,43 @@
             </select>
           </div>
 
-          <div class="form-group">
-            <label>Title</label>
-            <input type="text" value="Morning feeding routine">
+          <div class="pp-field pp-field--inset">
+            <label class="pp-field__label">Title</label>
+            <input class="pp-input" type="text" value="Morning feeding routine">
           </div>
 
-          <div class="form-group">
-            <label>Details <span class="req">*</span></label>
-            <textarea>Royal Canin Maxi Adult, 350 g twice daily (morning + evening). Loves dried chicken strips as training treats. No rawhide — causes stomach upset.</textarea>
+          <div class="pp-field pp-field--inset">
+            <label class="pp-field__label">Details <span class="pp-field__req">*</span></label>
+            <textarea class="pp-textarea">Royal Canin Maxi Adult, 350 g twice daily (morning + evening). Loves dried chicken strips as training treats. No rawhide — causes stomach upset.</textarea>
           </div>
 
-          <div class="toggle-row">
+          <div class="pp-switchrow pp-switchrow--ruled">
             <div>
-              <div class="toggle-label">Mark as warning</div>
-              <div class="toggle-desc">Highlights this note so the sitter doesn't miss it.</div>
+              <div class="pp-switchrow__label">Mark as warning</div>
+              <div class="pp-switchrow__desc">Highlights this note so the sitter doesn't miss it.</div>
             </div>
-            <div class="toggle-switch" aria-label="Warning toggle" role="switch" onclick="this.classList.toggle('on')"></div>
+            <div class="pp-switch" aria-label="Warning toggle" role="switch" aria-checked="false" tabindex="0" onclick="this.setAttribute('aria-checked', this.getAttribute('aria-checked')==='true'?'false':'true')"></div>
           </div>
 
-          <div class="form-actions" style="margin-top:16px;">
-            <a href="Personality-and-care.html"><button type="button" class="btn-secondary">Cancel</button></a>
-            <a href="Add-care-note-loading.html"><button type="button" class="btn-primary">Try again</button></a>
+          <div class="pp-actions pp-actions--links">
+            <a href="Personality-and-care.html"><button type="button" class="pp-btn pp-btn--secondary">Cancel</button></a>
+            <a href="Add-care-note-loading.html"><button type="button" class="pp-btn">Try again</button></a>
           </div>
         </form>
       </div>
 
-      <nav class="phone-nav" aria-label="Main navigation">
-        <a href="My-Pets.html" class="active">
-          <span class="nav-icon" aria-hidden="true"></span> Pets
+      <nav class="pp-tabbar" aria-label="Main navigation">
+        <a href="My-Pets.html" class="pp-tab pp-tab--pets" aria-current="page">
+          <span class="pp-tab__icon" aria-hidden="true"></span> Pets
         </a>
-        <a href="Whats-due.html">
-          <span class="nav-icon" aria-hidden="true"></span> What's due
+        <a href="Whats-due.html" class="pp-tab pp-tab--reminders">
+          <span class="pp-tab__icon" aria-hidden="true"></span> What's due
         </a>
-        <a href="Share-a-pet.html">
-          <span class="nav-icon" aria-hidden="true"></span> Share
+        <a href="Share-a-pet.html" class="pp-tab pp-tab--share">
+          <span class="pp-tab__icon" aria-hidden="true"></span> Share
         </a>
-              <a href="Me.html">
-          <span class="nav-icon" aria-hidden="true"></span> Owner
+              <a href="Me.html" class="pp-tab pp-tab--owner">
+          <span class="pp-tab__icon" aria-hidden="true"></span> Owner
         </a>
       </nav>
 

@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Add vet clinic — PetPal wireframe</title>
+<link rel="stylesheet" href="../ui/kit.css">
 <style>
   :root {
     --wf-bg:         #ffffff;
@@ -678,43 +679,43 @@
         <span class="zone-label">Main</span> Main · <span>Section → ★ Add / update a record</span> → back to section
       </div>
 
-      <header class="m-header">
-        <a href="Insurance-empty.html" style="text-decoration:none;"><button class="back" aria-label="Cancel and go back">←</button></a>
-        <h1>Add a clinic</h1>
+      <header class="pp-appbar">
+        <a href="Insurance-empty.html" style="text-decoration:none;"><button class="pp-appbar__back" aria-label="Cancel and go back">←</button></a>
+        <h1 class="pp-appbar__title">Add a clinic</h1>
         <span></span>
       </header>
 
       <div class="m-main">
 
         <form aria-label="Add a record">
-          <div class="form-group">
-            <label>Clinic name <span class="req">*</span></label>
-            <input type="text" value="Tierklinik am Stadtpark">
+          <div class="pp-field pp-field--inset">
+            <label class="pp-field__label">Clinic name <span class="pp-field__req">*</span></label>
+            <input class="pp-input" type="text" value="Tierklinik am Stadtpark">
           </div>
 
-          <div class="form-group">
-            <label>Doctor / vet</label>
-            <input type="text" value="Dr. Müller">
+          <div class="pp-field pp-field--inset">
+            <label class="pp-field__label">Doctor / vet</label>
+            <input class="pp-input" type="text" value="Dr. Müller">
           </div>
 
-          <div class="form-group">
-            <label>Phone <span class="req">*</span></label>
-            <input type="text" value="+49 30 1234567">
+          <div class="pp-field pp-field--inset">
+            <label class="pp-field__label">Phone <span class="pp-field__req">*</span></label>
+            <input class="pp-input" type="text" value="+49 30 1234567">
           </div>
 
-          <div class="form-group">
-            <label>Address</label>
-            <input type="text" value="Parkstraße 12, 10115 Berlin">
+          <div class="pp-field pp-field--inset">
+            <label class="pp-field__label">Address</label>
+            <input class="pp-input" type="text" value="Parkstraße 12, 10115 Berlin">
           </div>
 
-          <div class="form-group">
-            <label>Notes</label>
-            <textarea placeholder="e.g. Open Sat mornings. Ask for Dr. Müller for dermatology."></textarea>
+          <div class="pp-field pp-field--inset">
+            <label class="pp-field__label">Notes</label>
+            <textarea class="pp-textarea" placeholder="e.g. Open Sat mornings. Ask for Dr. Müller for dermatology."></textarea>
           </div>
 
-          <div class="form-actions">
-            <a href="Vet-and-appointments-empty.html"><button type="button" class="btn-secondary">Cancel</button></a>
-            <a href="Section-saving.html?next=Vet-and-appointments-clinic.html" class="save-link"><button type="button" class="btn-primary">Save</button></a>
+          <div class="pp-actions pp-actions--links">
+            <a href="Vet-and-appointments-empty.html"><button type="button" class="pp-btn pp-btn--secondary">Cancel</button></a>
+            <a href="Section-saving.html?next=Vet-and-appointments-clinic.html" class="save-link"><button type="button" class="pp-btn">Save</button></a>
           </div>
         </form>
       </div>

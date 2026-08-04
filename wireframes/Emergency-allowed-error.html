@@ -4,31 +4,42 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Emergency &amp; allowed (error) — PetPal wireframe</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700&family=Hanken+Grotesk:wght@400;500;600;700&family=EB+Garamond:ital,wght@0,600;1,500;1,700&display=swap" rel="stylesheet">
 <style>
   :root {
+    --signal:#ffbf00; --signal-deep:#e0a400; --signal-ink:#8a6b00; --signal-tint:#fdf3d3;
+    --success:#0c6b3b; --success-bg:#e6f3ec; --warning:#8a5800; --warning-bg:#fbeed6;
+    --danger:#9a2820; --danger-bg:#f9e7e6; --info:#235a73; --info-bg:#e5f0f4;
+    --disp:"Bricolage Grotesque",system-ui,sans-serif;
+    --body:"Hanken Grotesk",system-ui,-apple-system,sans-serif;
+    --serif:"EB Garamond",Georgia,"Times New Roman",serif;
+    --sh-card:0 10px 24px -18px rgba(20,20,20,.13), 0 2px 6px -4px rgba(20,20,20,.05);
+    --sh-pop:0 26px 50px -22px rgba(20,20,20,.34), 0 6px 16px -10px rgba(20,20,20,.16);
     --wf-bg:         #ffffff;
-    --wf-surface:    #f5f5f5;
-    --wf-border:     #e0e0e0;
-    --wf-text:       #1a1a1a;
-    --wf-muted:      #757575;
-    --wf-placeholder:#d0d0d0;
-    --wf-input-bg:   #fafafa;
-    --wf-btn:        #333333;
+    --wf-surface:    #f4f4f4;
+    --wf-border:     #e7e7e7;
+    --wf-text:       #141414;
+    --wf-muted:      #5c5c5c;
+    --wf-placeholder:#eaeaea;
+    --wf-input-bg:   #ffffff;
+    --wf-btn:        #141414;
     --wf-btn-text:   #ffffff;
     --wf-btn-sec:    transparent;
 
-    --nav-bg:        #f9f9f9;
-    --nav-active-bg: #eaeaea;
-    --nav-text:      #555555;
-    --nav-text-active:#1a1a1a;
-    --nav-cap:       #999999;
-    --nav-line:      #e0e0e0;
+    --nav-bg:        #ffffff;
+    --nav-active-bg: #f4f4f4;
+    --nav-text:      #5c5c5c;
+    --nav-text-active:#141414;
+    --nav-cap:       #8a8a8a;
+    --nav-line:      #e7e7e7;
   }
 
   * { box-sizing: border-box; margin: 0; padding: 0; }
 
   body {
-    font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+    font-family: var(--body);
     background: var(--wf-bg);
     color: var(--wf-text);
     line-height: 1.5;
@@ -182,6 +193,21 @@
     .btn-primary:active, .btn-secondary:active, .btn:active, .btn-share:active,
     .btn-danger:active { transform: none !important; }
   }
+
+  /* ── The Signal · type roles ────────────────────────────────────────────── */
+  .phone, .phone button, .phone input, .phone select { font-family: var(--body); }
+  .phone h1, .phone h2, .phone h3, .phone h4 { font-family: var(--disp); letter-spacing: normal; }
+  .phone .pet-name, .phone .sv-name { font-family: var(--serif); font-style: italic; font-weight: 700; }
+  /* cards float on a shadow rather than an outline */
+  .phone .contact-card, .phone .vet-card, .phone .med-list, .phone .important-notes {
+    background: var(--wf-bg); border: 1px solid var(--wf-border); border-radius: 16px;
+    box-shadow: var(--sh-card); }
+  .phone .btn-primary { background: var(--wf-btn); color: var(--wf-btn-text);
+    border-radius: 999px; padding: 15px 20px; min-height: 44px; font-weight: 600; }
+  .phone .btn-secondary { background: var(--wf-surface); color: var(--wf-text);
+    border-radius: 999px; padding: 15px 20px; min-height: 44px; font-weight: 600; }
+  .phone .role-badge-strip span, .phone .chip { border-radius: 8px; padding: 5px 11px;
+    font-size: 12px; font-weight: 600; line-height: 1; }
 </style>
 </head>
 <body>

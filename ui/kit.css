@@ -288,6 +288,10 @@
                      line-height: 1.2; letter-spacing: 0; }
 .pp-identity__meta { font-family: var(--pp-body); font-size: var(--pp-fs-chip);
                      color: var(--pp-meta); margin-top: 2px; }
+/* the strip's third line — microchip / registry id, as .pp-arch__chip is to
+   the arch. Same size and colour, so the two blocks read as one component */
+.pp-identity__chip { font-family: var(--pp-body); font-size: var(--pp-fs-micro);
+                     color: var(--pp-meta); margin-top: 2px; }
 
 /* the uppercase rule that opens a group of rows */
 .pp-heading { font-family: var(--pp-body); padding: var(--pp-s-6) var(--pp-inset) 8px;
@@ -476,9 +480,13 @@
            padding: var(--pp-s-5); }
 .pp-card--flush { padding: 0 var(--pp-s-5); }
 /* a card that IS a listing row — the dossier's section card. Same box as
-   .pp-card, laid out like .pp-row, so the __tile / __body / __chev parts fit */
+   .pp-card, laid out like .pp-row, so the __tile / __body / __chev parts fit.
+   Also worn by a <button> or an <a>, so it carries the resets those bring —
+   every one of them is what an <article> already computes, so the card the
+   reference screens render does not move. */
 .pp-card--row { display: flex; align-items: center; gap: var(--pp-s-4);
-                cursor: pointer; }
+                width: 100%; font: inherit; color: inherit; text-align: start;
+                text-decoration: none; cursor: pointer; }
 /* a section that has nothing in it yet: same card, dashed edge */
 .pp-card--dashed { border-style: dashed; }
 /* a card standing alone on the canvas carries the inset itself */
@@ -512,6 +520,9 @@
            background: var(--pp-surface); border-bottom: 1px solid var(--pp-line);
            font-size: var(--pp-fs-chip); line-height: var(--pp-lh-small);
            color: var(--pp-meta); }
+/* several screens carry the note's element with nothing in it. A banded stripe
+   with no words in it is a defect, so an empty note is no note. */
+.pp-note:empty { display: none; }
 
 /* the listing row: icon tile, title, meta, optional tick and chevron */
 .pp-row { display: flex; align-items: center; gap: var(--pp-s-4);
@@ -536,7 +547,12 @@
 .pp-row__meta  { display: block; font-family: var(--pp-body); font-size: var(--pp-fs-small);
                  font-weight: var(--pp-w-regular); line-height: var(--pp-lh-small);
                  color: var(--pp-meta); margin-top: 2px; }
-/* also used on a <button>, so it resets the UA chrome a button brings */
+/* also used on a <button>, so it resets the UA chrome a button brings.
+   It keeps `font: inherit` deliberately: naming --pp-body here would be more
+   consistent with every other text-bearing part, but the arrow then re-renders
+   on five screens that are already signed off (My-Pets, home-success-single,
+   -cheetah, Documents-and-passport, -firstrun), two of them by half a pixel.
+   The kit does not move an approved screen to tidy a decorative glyph. */
 .pp-row__chev  { color: var(--pp-meta); flex: 0 0 auto;
                  background: none; border: 0; padding: 0; font: inherit;
                  cursor: pointer; }
@@ -594,6 +610,56 @@
 /* inside a card the inset is already spent, so the row drops its own */
 .pp-actions--flush { padding: 0; }
 .pp-actions > .pp-btn { flex: 1; }
+/* --links: the row's buttons are each wrapped in the <a> that navigates. The
+   link becomes the flex child, so it takes the share of the row the button
+   would have had and the button fills it. Opt-in, because a row of bare
+   buttons must not start stretching links it does not have. */
+.pp-actions--links > a { flex: 1 1 0; display: block; text-decoration: none; }
+.pp-actions--links > a > .pp-btn { width: 100%; }
+
+/* --- attachment and photo intake ------------------------------------------
+   The target a proof, a scan or a photo is dropped on. It wears the dashed
+   edge .pp-card--dashed and .pp-slot wear, so "nothing here yet" reads the
+   same whether it is a section, a slot or a file. */
+.pp-drop { display: flex; align-items: center; justify-content: center;
+           min-height: var(--pp-tap); padding: 20px; width: 100%;
+           border: 1px dashed var(--pp-line); border-radius: var(--pp-r-input);
+           background: var(--pp-surface); text-align: center; cursor: pointer;
+           font-family: var(--pp-body); font-size: var(--pp-fs-small);
+           color: var(--pp-meta);
+           transition: border-color var(--pp-t-state), background var(--pp-t-state); }
+.pp-drop:hover { border-color: var(--pp-ink); }
+/* the shallower one: the slot already holds a file and only offers to swap it */
+.pp-drop--sm { padding: var(--pp-s-5); }
+/* an attachment card sitting directly above its replacement target */
+.pp-card + .pp-drop { margin-top: var(--pp-s-2); }
+
+/* the round photo intake: a circle awaiting an image. Not an avatar — an
+   avatar shows a photograph, this one asks for one, so it takes the dashed
+   edge and the surface ground rather than the photo grey. */
+.pp-photoslot { width: 80px; height: 80px; flex: 0 0 auto; display: flex;
+                align-items: center; justify-content: center; margin: 0 auto;
+                border-radius: var(--pp-r-circle); background: var(--pp-surface);
+                border: 1px dashed var(--pp-line); cursor: pointer;
+                text-align: center; font-family: var(--pp-body);
+                font-size: var(--pp-fs-micro); line-height: var(--pp-lh-small);
+                color: var(--pp-meta);
+                transition: border-color var(--pp-t-state); }
+.pp-photoslot:hover { border-color: var(--pp-ink); }
+/* the preview on the screen whose whole job is the photo */
+.pp-photoslot--lg { width: 140px; height: 140px; margin: var(--pp-s-2) auto 20px; }
+
+/* the photo and what you can do to it, banded under the app bar */
+.pp-photorow { display: flex; align-items: center; gap: var(--pp-s-6);
+               padding: var(--pp-s-6) var(--pp-inset);
+               border-bottom: 1px solid var(--pp-line); }
+.pp-photorow .pp-photoslot { margin: 0; }
+.pp-photorow__actions { display: flex; flex-direction: column;
+                        align-items: flex-start; gap: var(--pp-s-2); }
+
+/* a run of fields under one heading: the reset a <fieldset> needs so that
+   .pp-heading can serve as its <legend> */
+.pp-fieldset { min-width: 0; margin: 0; padding: 0; border: 0; }
 
 /* switch — 48x28, ink when on, knob carries the tick */
 .pp-switchrow { display: flex; align-items: center; justify-content: space-between;
@@ -776,6 +842,22 @@
 .pp-sheet__actions > * { flex: 1; }
 .pp-sheet__actions > .pp-btn { width: auto; }
 .pp-sheet__actions a { text-decoration: none; }
+/* --list: the sheet that offers a set of destinations rather than a decision.
+   It reads left to right like a list, so it drops the centring, takes the
+   wider measure the rows need, and scrolls inside the sheet. */
+.pp-sheet--list { max-width: 420px; max-height: 88vh; overflow-y: auto;
+                  text-align: left; padding: 20px; }
+/* the rows are the sheet's own children, so the rhythm between them lives here */
+.pp-sheet--list > .pp-card { margin-bottom: var(--pp-s-4); }
+.pp-sheet--list > .pp-card:last-child { margin-bottom: 0; }
+.pp-sheet__head { display: flex; align-items: center; justify-content: space-between;
+                  gap: var(--pp-s-4); margin-bottom: var(--pp-s-6); }
+.pp-sheet__close { width: var(--pp-tile); height: var(--pp-tile); flex: 0 0 auto;
+                   display: flex; align-items: center; justify-content: center;
+                   border: 0; border-radius: var(--pp-r-circle); cursor: pointer;
+                   background: var(--pp-surface); color: var(--pp-ink);
+                   font-family: var(--pp-body); font-size: var(--pp-fs-field); }
+.pp-sheet__close:hover { background: var(--pp-line); }
 
 /* ============================ states ===================================== */
 
@@ -805,12 +887,16 @@
                    margin-bottom: 20px; }
 .pp-empty__body + .pp-btn { margin-top: var(--pp-s-6); }
 
-/* inline error inside a form */
-.pp-banner { font-family: var(--pp-body); display: flex; gap: var(--pp-s-3); padding: var(--pp-s-4) var(--pp-s-5);
+/* inline error inside a form. Block, not flex: the banner is a headline with a
+   detail line under it, and as a flex row the two sat side by side. */
+.pp-banner { font-family: var(--pp-body); display: block; padding: var(--pp-s-4) var(--pp-s-5);
              border-radius: var(--pp-r-input); background: var(--pp-danger-bg);
              color: var(--pp-danger); font-size: var(--pp-fs-small);
              line-height: var(--pp-lh-small); margin-bottom: var(--pp-s-6); }
 .pp-banner__detail { color: var(--pp-danger); opacity: .82; margin-top: 2px; }
+/* the banner carries its own inset when it sits straight on the canvas: its
+   padding is already spent on the fill, so the gap has to be margin */
+.pp-banner--inset { margin: var(--pp-s-4) var(--pp-inset); }
 
 /* whole-screen error / empty: 60px of air above, 32px in from the frame */
 .pp-error { padding: 60px 32px; text-align: center; }

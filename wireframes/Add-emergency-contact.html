@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Add emergency contact — PetPal wireframe</title>
+<link rel="stylesheet" href="../ui/kit.css">
 <style>
   :root {
     --wf-bg:         #ffffff;
@@ -678,28 +679,28 @@
         <span class="zone-label">Main</span> Main · <span>Section → ★ Add / update a record</span> → back to section
       </div>
 
-      <header class="m-header">
-        <a href="Insurance-empty.html" style="text-decoration:none;"><button class="back" aria-label="Cancel and go back">←</button></a>
-        <h1>Add an emergency contact</h1>
+      <header class="pp-appbar">
+        <a href="Insurance-empty.html" style="text-decoration:none;"><button class="pp-appbar__back" aria-label="Cancel and go back">←</button></a>
+        <h1 class="pp-appbar__title">Add an emergency contact</h1>
         <span></span>
       </header>
 
       <div class="m-main">
 
         <form aria-label="Add a record">
-          <div class="form-group">
-            <label>Name <span class="req">*</span></label>
-            <input type="text" value="Eva Schmidt">
+          <div class="pp-field pp-field--inset">
+            <label class="pp-field__label">Name <span class="pp-field__req">*</span></label>
+            <input class="pp-input" type="text" value="Eva Schmidt">
           </div>
 
-          <div class="form-group">
-            <label>Phone <span class="req">*</span></label>
-            <input type="text" value="+49 171 9876543">
+          <div class="pp-field pp-field--inset">
+            <label class="pp-field__label">Phone <span class="pp-field__req">*</span></label>
+            <input class="pp-input" type="text" value="+49 171 9876543">
           </div>
 
-          <div class="form-group">
-            <label>Role</label>
-            <select>
+          <div class="pp-field pp-field--inset">
+            <label class="pp-field__label">Role</label>
+            <select class="pp-select pp-select--chev">
               <option selected>Owner</option>
               <option>Backup contact</option>
               <option>Neighbour</option>
@@ -707,14 +708,14 @@
             </select>
           </div>
 
-          <div class="form-group">
-            <label>Notes</label>
-            <textarea placeholder="e.g. Reachable after 17:00 on weekdays."></textarea>
+          <div class="pp-field pp-field--inset">
+            <label class="pp-field__label">Notes</label>
+            <textarea class="pp-textarea" placeholder="e.g. Reachable after 17:00 on weekdays."></textarea>
           </div>
 
-          <div class="form-actions">
-            <a href="Emergency-info-empty.html"><button type="button" class="btn-secondary">Cancel</button></a>
-            <a href="Section-saving.html?next=Emergency-info-fill1.html" class="save-link"><button type="button" class="btn-primary">Save</button></a>
+          <div class="pp-actions pp-actions--links">
+            <a href="Emergency-info-empty.html"><button type="button" class="pp-btn pp-btn--secondary">Cancel</button></a>
+            <a href="Section-saving.html?next=Emergency-info-fill1.html" class="save-link"><button type="button" class="pp-btn">Save</button></a>
           </div>
         </form>
       </div>

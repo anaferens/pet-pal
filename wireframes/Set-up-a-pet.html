@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Set up a pet — PetPal wireframe</title>
+<link rel="stylesheet" href="../ui/kit.css">
 <style>
   :root {
     --wf-bg:         #ffffff;
@@ -678,57 +679,57 @@
         <span class="zone-label">Main</span> Main job — <span>My Pets → ★ Set up a pet</span> → Pet card
       </div>
 
-      <header class="m-header">
-        <a href="My-Pets.html" style="text-decoration:none;"><button class="back" aria-label="Back to your pets">←</button></a>
-        <h1>Set up a pet</h1>
+      <header class="pp-appbar">
+        <a href="My-Pets.html" style="text-decoration:none;"><button class="pp-appbar__back" aria-label="Back to your pets">←</button></a>
+        <h1 class="pp-appbar__title">Set up a pet</h1>
         <span></span>
       </header>
 
       <div class="m-main">
 
         <form aria-label="Set up a pet">
-          <p style="padding:12px 16px;font-size:12px;color:var(--wf-muted);">Only name and species are required. You can add more later.</p>
+          <p class="pp-note">Only name and species are required. You can add more later.</p>
 
-          <div class="form-group">
-            <label>Pet name <span class="req">*</span></label>
-            <input type="text" placeholder="e.g. Miso, Buddy">
+          <div class="pp-field pp-field--inset">
+            <label class="pp-field__label">Pet name <span class="pp-field__req">*</span></label>
+            <input class="pp-input" type="text" placeholder="e.g. Miso, Buddy">
           </div>
 
-          <div class="form-group">
-            <label>Species <span class="req">*</span></label>
-            <select><option>Dog</option><option>Cat</option></select>
-            <p class="helper">Dogs and cats only, for now.</p>
+          <div class="pp-field pp-field--inset">
+            <label class="pp-field__label">Species <span class="pp-field__req">*</span></label>
+            <select class="pp-select pp-select--chev"><option>Dog</option><option>Cat</option></select>
+            <p class="pp-help">Dogs and cats only, for now.</p>
           </div>
 
-          <div class="form-group">
-            <label>Breed</label>
-            <input type="text" placeholder="e.g. Border Terrier, Tabby stray">
+          <div class="pp-field pp-field--inset">
+            <label class="pp-field__label">Breed</label>
+            <input class="pp-input" type="text" placeholder="e.g. Border Terrier, Tabby stray">
           </div>
 
-          <div class="form-group">
-            <label>Date of birth</label>
-            <input type="date">
-            <p class="helper">Approximate is fine — helps track age-related care.</p>
+          <div class="pp-field pp-field--inset">
+            <label class="pp-field__label">Date of birth</label>
+            <input class="pp-input" type="date">
+            <p class="pp-help">Approximate is fine — helps track age-related care.</p>
           </div>
 
-          <div class="form-group">
-            <label>Sex</label>
-            <select><option value="">—</option><option>Male</option><option>Female</option></select>
+          <div class="pp-field pp-field--inset">
+            <label class="pp-field__label">Sex</label>
+            <select class="pp-select pp-select--chev"><option value="">—</option><option>Male</option><option>Female</option></select>
           </div>
 
-          <div class="form-group">
-            <label>Microchip number</label>
-            <input type="text" placeholder="e.g. 276 098 106 412 345">
+          <div class="pp-field pp-field--inset">
+            <label class="pp-field__label">Microchip number</label>
+            <input class="pp-input" type="text" placeholder="e.g. 276 098 106 412 345">
           </div>
 
-          <div class="form-group">
-            <label>Photo</label>
-            <a href="Upload-photo.html" style="text-decoration:none;display:inline-block;"><div style="width:80px;height:80px;border-radius:50%;background:var(--wf-placeholder);display:flex;align-items:center;justify-content:center;font-size:10px;color:var(--wf-muted);cursor:pointer;">Upload</div></a>
-            <p class="helper">Optional — camera or photo library.</p>
+          <div class="pp-field pp-field--inset">
+            <label class="pp-field__label">Photo</label>
+            <a href="Upload-photo.html" style="text-decoration:none;display:inline-block;"><div class="pp-photoslot">Upload</div></a>
+            <p class="pp-help">Optional — camera or photo library.</p>
           </div>
 
-          <div class="form-actions">
-            <a href="Set-up-a-pet-loading.html"><button type="button" class="btn-primary">Save</button></a>
+          <div class="pp-actions pp-actions--links">
+            <a href="Set-up-a-pet-loading.html"><button type="button" class="pp-btn">Save</button></a>
           </div>
         </form>
       </div>

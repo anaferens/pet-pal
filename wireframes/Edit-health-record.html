@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Edit health record — PetPal wireframe</title>
+<link rel="stylesheet" href="../ui/kit.css">
 <style>
   :root {
     --wf-bg:         #ffffff;
@@ -678,20 +679,20 @@
         <span class="zone-label">Main</span> Main · <span>Health & jabs → ★ Edit record</span> → back to section
       </div>
 
-      <header class="m-header">
-        <a href="Health-and-jabs.html" style="text-decoration:none;"><button class="back" aria-label="Cancel and go back">←</button></a>
-        <h1>Edit record</h1>
+      <header class="pp-appbar">
+        <a href="Health-and-jabs.html" style="text-decoration:none;"><button class="pp-appbar__back" aria-label="Cancel and go back">←</button></a>
+        <h1 class="pp-appbar__title">Edit record</h1>
         <span></span>
       </header>
 
       <div class="m-main">
 
         <form aria-label="Add a record">
-          <p style="padding:12px 16px;font-size:12px;color:var(--wf-muted);">Editing an existing record — fields are pre-filled. Change anything and save.</p>
+          <p class="pp-note">Editing an existing record — fields are pre-filled. Change anything and save.</p>
 
-          <div class="form-group">
-            <label>Record type</label>
-            <select>
+          <div class="pp-field pp-field--inset">
+            <label class="pp-field__label">Record type</label>
+            <select class="pp-select pp-select--chev">
               <option>Jab</option>
               <option selected>Health &amp; jabs</option>
               <option>Documents &amp; passport</option>
@@ -701,50 +702,50 @@
             </select>
           </div>
 
-          <div class="form-group">
-            <label>Record title <span class="req">*</span></label>
-            <input type="text" class="ehr-title" value="Dental cleaning">
+          <div class="pp-field pp-field--inset">
+            <label class="pp-field__label">Record title <span class="pp-field__req">*</span></label>
+            <input type="text" class="pp-input ehr-title" value="Dental cleaning">
           </div>
 
-          <div class="form-group">
-            <label>Date <span class="req">*</span></label>
-            <input type="date" class="ehr-date" value="2026-05-20">
+          <div class="pp-field pp-field--inset">
+            <label class="pp-field__label">Date <span class="pp-field__req">*</span></label>
+            <input type="date" class="pp-input ehr-date" value="2026-05-20">
           </div>
 
-          <div class="form-group">
-            <label>Vet / clinic</label>
-            <input type="text" class="ehr-vet" value="Tierklinik am Stadtpark">
+          <div class="pp-field pp-field--inset">
+            <label class="pp-field__label">Vet / clinic</label>
+            <input type="text" class="pp-input ehr-vet" value="Tierklinik am Stadtpark">
           </div>
 
-          <div class="form-group">
-            <label>Follow-up date</label>
-            <input type="date" class="ehr-followup" value="2027-05-20">
-            <p class="helper">Used for reminders — leave blank if none.</p>
+          <div class="pp-field pp-field--inset">
+            <label class="pp-field__label">Follow-up date</label>
+            <input type="date" class="pp-input ehr-followup" value="2027-05-20">
+            <p class="pp-help">Used for reminders — leave blank if none.</p>
           </div>
 
-          <div class="form-group">
-            <label>Outcome / notes</label>
-            <textarea class="ehr-notes">All clear. Tartar removed under light sedation. Next cleaning recommended in 12 months.</textarea>
+          <div class="pp-field pp-field--inset">
+            <label class="pp-field__label">Outcome / notes</label>
+            <textarea class="pp-textarea ehr-notes">All clear. Tartar removed under light sedation. Next cleaning recommended in 12 months.</textarea>
           </div>
 
-          <div class="form-group">
-            <label>Proof / attachment</label>
-            <div style="display:flex;align-items:center;gap:10px;padding:12px;border:1.5px solid var(--wf-border);border-radius:6px;margin-bottom:8px;">
-              <span style="width:34px;height:34px;border-radius:6px;background:var(--wf-placeholder);display:flex;align-items:center;justify-content:center;font-size:9px;color:var(--wf-muted);flex-shrink:0;">PDF</span>
-              <span style="flex:1;font-size:13px;">Dental_invoice_Miso.pdf<br><span style="font-size:11px;color:var(--wf-muted);">0.8 MB · added 20 May 2026</span></span>
-              <a href="Document-view.html" style="font-size:12px;">View</a>
+          <div class="pp-field pp-field--inset">
+            <label class="pp-field__label">Proof / attachment</label>
+            <div class="pp-card pp-doc">
+              <span class="pp-doc__thumb">PDF</span>
+              <span class="pp-doc__body pp-doc__name">Dental_invoice_Miso.pdf<br><span class="pp-doc__meta">0.8 MB · added 20 May 2026</span></span>
+              <a href="Document-view.html" class="pp-btn pp-btn--link pp-btn--sm">View</a>
             </div>
-            <div style="padding:14px;border:1.5px dashed var(--wf-border);border-radius:6px;text-align:center;color:var(--wf-muted);font-size:13px;cursor:pointer;" onclick="this.textContent='attachment replaced ✓'">
+            <div class="pp-drop pp-drop--sm" onclick="this.textContent='attachment replaced ✓'">
               Replace attachment
             </div>
           </div>
 
-          <div class="form-actions">
-            <a href="Health-and-jabs.html"><button type="button" class="btn-secondary">Cancel</button></a>
-            <a href="Health-and-jabs.html"><button type="button" class="btn-primary">Save</button></a>
+          <div class="pp-actions pp-actions--links">
+            <a href="Health-and-jabs.html"><button type="button" class="pp-btn pp-btn--secondary">Cancel</button></a>
+            <a href="Health-and-jabs.html"><button type="button" class="pp-btn">Save</button></a>
           </div>
-          <div style="text-align:center;padding:4px 16px 20px;">
-            <button type="button" style="background:none;border:none;color:var(--wf-muted);font-size:12px;text-decoration:underline;cursor:pointer;" onclick="window.location.href='Health-and-jabs.html'+window.location.search">Delete record</button>
+          <div class="pp-inset" style="text-align:center;">
+            <button type="button" class="pp-btn pp-btn--dangerlink" onclick="window.location.href='Health-and-jabs.html'+window.location.search">Delete record</button>
           </div>
         </form>
       </div>

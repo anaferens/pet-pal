@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Pet card · new pet — PetPal wireframe</title>
+<link rel="stylesheet" href="../ui/kit.css">
 <style>
   :root {
     --wf-bg:#ffffff;--wf-surface:#f5f5f5;--wf-border:#e0e0e0;--wf-text:#1a1a1a;
@@ -368,73 +369,73 @@
         Main job · step 2 of 4 — <span>My Pets → ★ Pet card</span> → sections → Share
       </div>
 
-      <header class="m-header">
-        <a href="My-Pets.html" style="text-decoration:none;"><button class="back" aria-label="Back to your pets">←</button></a>
-        <h1>Miso</h1>
-        <a href="Edit-pet.html" style="text-decoration:none;"><button class="action-edit">Edit</button></a>
+      <header class="pp-appbar">
+        <a href="My-Pets.html" style="text-decoration:none;"><button class="pp-appbar__back" aria-label="Back to your pets">←</button></a>
+        <h1 class="pp-appbar__title pp-is-name">Miso</h1>
+        <a href="Edit-pet.html" style="text-decoration:none;"><button class="pp-appbar__action">Edit</button></a>
       </header>
 
       <div class="m-main">
-        <section class="m-pet-identity">
-          <figure class="pet-photo pet-photo-m">photo</figure>
-          <div class="pet-info">
-            <h2 style="font-size:20px;font-weight:700;">Miso</h2>
-            <p class="pet-meta" style="font-size:13px;">Dog · Border Terrier · Female</p>
-            <p class="pet-chip" style="font-size:11px;">Microchip 276 098 106 412 345</p>
+        <section class="pp-identity">
+          <figure class="pp-avatar pp-avatar--lg pp-avatar--miso pp-iconbox">photo</figure>
+          <div class="pp-identity__body">
+            <h2 class="pp-identity__name">Miso</h2>
+            <p class="pp-identity__meta">Dog · Border Terrier · Female</p>
+            <p class="pp-identity__chip">Microchip 276 098 106 412 345</p>
           </div>
         </section>
 
-        <section class="m-quick-actions">
-          <a href="Share-a-pet.html"><button class="btn-primary">Share Miso's info</button></a>
-          <a href="Set-up-a-pet.html"><button class="btn-secondary">Edit pet details</button></a>
+        <section class="pp-actions pp-actions--links">
+          <a href="Share-a-pet.html"><button class="pp-btn">Share Miso's info</button></a>
+          <a href="Set-up-a-pet.html"><button class="pp-btn pp-btn--secondary">Edit pet details</button></a>
         </section>
 
-        <section class="m-fill-counter">
-          <span class="count">0 of 6 sections filled</span>
-          <span class="status">Just created</span>
+        <section class="pp-counter">
+          <span class="pp-counter__count">0 of 6 sections filled</span>
+          <span class="pp-counter__meta">Just created</span>
         </section>
 
         <!-- EMPTY STATE: brand-new pet card -->
-        <section class="empty-block" aria-label="New card">
-          <figure class="empty-illustration">illustration</figure>
-          <h3>Miso's card is set up</h3>
-          <p>Add jabs, documents, and care notes whenever it suits you — ready for the vet or a sitter when it matters.</p>
-          <button class="btn-primary" onclick="openAddModal()">Add a section</button>
-      <div class="add-modal" onclick="if(event.target===this)closeAddModal()">
-        <div class="add-sheet" role="dialog" aria-label="What do you want to add?">
-          <div class="add-sheet-head">
-            <h3>What do you want to add?</h3>
-            <button class="add-close" onclick="closeAddModal()" aria-label="Close">✕</button>
+        <section class="pp-empty" aria-label="New card">
+          <figure class="pp-illus pp-illus--pets">illustration</figure>
+          <h3 class="pp-empty__title">Miso's card is set up</h3>
+          <p class="pp-empty__body">Add jabs, documents, and care notes whenever it suits you — ready for the vet or a sitter when it matters.</p>
+          <button class="pp-btn" onclick="openAddModal()">Add a section</button>
+      <div class="pp-modal" onclick="if(event.target===this)closeAddModal()">
+        <div class="pp-sheet pp-sheet--list" role="dialog" aria-label="What do you want to add?">
+          <div class="pp-sheet__head">
+            <h3 class="pp-sheet__title">What do you want to add?</h3>
+            <button class="pp-sheet__close" onclick="closeAddModal()" aria-label="Close">✕</button>
           </div>
-          <a class="add-option" href="Add-health-record.html">
-            <span class="opt-icon"></span>
-            <span class="opt-body"><h4>Health &amp; jabs</h4><span class="opt-desc">Jabs, check-ups, and health records</span></span>
-            <span class="opt-arrow">→</span>
+          <a class="pp-card pp-card--row" href="Add-health-record.html">
+            <span class="pp-row__tile pp-row__tile--health"></span>
+            <span class="pp-row__body"><h4 class="pp-row__title">Health &amp; jabs</h4><span class="pp-row__meta">Jabs, check-ups, and health records</span></span>
+            <span class="pp-row__chev">→</span>
           </a>
-          <a class="add-option" href="Add-record.html?type=documents">
-            <span class="opt-icon"></span>
-            <span class="opt-body"><h4>Documents &amp; passport</h4><span class="opt-desc">EU pet passport, microchip cert, pedigree papers</span></span>
-            <span class="opt-arrow">→</span>
+          <a class="pp-card pp-card--row" href="Add-record.html?type=documents">
+            <span class="pp-row__tile pp-row__tile--docs"></span>
+            <span class="pp-row__body"><h4 class="pp-row__title">Documents &amp; passport</h4><span class="pp-row__meta">EU pet passport, microchip cert, pedigree papers</span></span>
+            <span class="pp-row__chev">→</span>
           </a>
-          <a class="add-option" href="Add-record.html?type=insurance">
-            <span class="opt-icon"></span>
-            <span class="opt-body"><h4>Insurance</h4><span class="opt-desc">Policy, coverage and renewal reminders</span></span>
-            <span class="opt-arrow">→</span>
+          <a class="pp-card pp-card--row" href="Add-record.html?type=insurance">
+            <span class="pp-row__tile pp-row__tile--insurance"></span>
+            <span class="pp-row__body"><h4 class="pp-row__title">Insurance</h4><span class="pp-row__meta">Policy, coverage and renewal reminders</span></span>
+            <span class="pp-row__chev">→</span>
           </a>
-          <a class="add-option" href="Add-care-note.html?cat=behaviour">
-            <span class="opt-icon"></span>
-            <span class="opt-body"><h4>Personality &amp; care</h4><span class="opt-desc">Food, temperament, warnings, routines — what a sitter needs</span></span>
-            <span class="opt-arrow">→</span>
+          <a class="pp-card pp-card--row" href="Add-care-note.html?cat=behaviour">
+            <span class="pp-row__tile pp-row__tile--personality"></span>
+            <span class="pp-row__body"><h4 class="pp-row__title">Personality &amp; care</h4><span class="pp-row__meta">Food, temperament, warnings, routines — what a sitter needs</span></span>
+            <span class="pp-row__chev">→</span>
           </a>
-          <a class="add-option" href="Add-record.html?type=vet">
-            <span class="opt-icon"></span>
-            <span class="opt-body"><h4>Vet &amp; appointments</h4><span class="opt-desc">Your vet clinic and upcoming appointments</span></span>
-            <span class="opt-arrow">→</span>
+          <a class="pp-card pp-card--row" href="Add-record.html?type=vet">
+            <span class="pp-row__tile pp-row__tile--vet"></span>
+            <span class="pp-row__body"><h4 class="pp-row__title">Vet &amp; appointments</h4><span class="pp-row__meta">Your vet clinic and upcoming appointments</span></span>
+            <span class="pp-row__chev">→</span>
           </a>
-          <a class="add-option dashed" href="Emergency-auth-setup.html">
-            <span class="opt-icon"></span>
-            <span class="opt-body"><h4>Emergency info &amp; authorisation</h4><span class="opt-desc">Vet contact, current meds, conditions, emergency contact — what a sitter needs if something goes wrong</span></span>
-            <span class="opt-arrow">→</span>
+          <a class="pp-card pp-card--row pp-card--dashed" href="Emergency-auth-setup.html">
+            <span class="pp-row__tile pp-row__tile--emergency"></span>
+            <span class="pp-row__body"><h4 class="pp-row__title">Emergency info &amp; authorisation</h4><span class="pp-row__meta">Vet contact, current meds, conditions, emergency contact — what a sitter needs if something goes wrong</span></span>
+            <span class="pp-row__chev">→</span>
           </a>
         </div>
       </div>
@@ -442,12 +443,12 @@
         </section>
       </div>
 
-      <nav class="phone-nav">
-        <a href="My-Pets.html" class="active"><span class="nav-icon"></span> Pets</a>
-        <a href="Whats-due.html"><span class="nav-icon"></span> What's due</a>
-        <a href="Share-a-pet.html"><span class="nav-icon"></span> Share</a>
-              <a href="Me.html">
-          <span class="nav-icon" aria-hidden="true"></span> Owner
+      <nav class="pp-tabbar">
+        <a href="My-Pets.html" class="pp-tab pp-tab--pets" aria-current="page"><span class="pp-tab__icon"></span> Pets</a>
+        <a href="Whats-due.html" class="pp-tab pp-tab--reminders"><span class="pp-tab__icon"></span> What's due</a>
+        <a href="Share-a-pet.html" class="pp-tab pp-tab--share"><span class="pp-tab__icon"></span> Share</a>
+              <a href="Me.html" class="pp-tab pp-tab--owner">
+          <span class="pp-tab__icon" aria-hidden="true"></span> Owner
         </a>
       </nav>
     </div>
@@ -541,8 +542,8 @@
 
 </div>
 <script>
-function openAddModal(){document.querySelectorAll('.add-modal').forEach(function(m){m.classList.add('open')})}
-function closeAddModal(){document.querySelectorAll('.add-modal').forEach(function(m){m.classList.remove('open')})}
+function openAddModal(){document.querySelectorAll('.add-modal,.pp-modal').forEach(function(m){m.classList.add('open','is-open')})}
+function closeAddModal(){document.querySelectorAll('.add-modal,.pp-modal').forEach(function(m){m.classList.remove('open','is-open')})}
 function setView(mode){
   document.body.classList.toggle('is-desktop',mode==='desktop');
   document.getElementById('btn-mobile').classList.toggle('active',mode==='mobile');

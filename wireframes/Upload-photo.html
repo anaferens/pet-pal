@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Add pet photo — PetPal wireframe</title>
+<link rel="stylesheet" href="../ui/kit.css">
 <style>
   :root {
     --wf-bg:         #ffffff;
@@ -678,37 +679,37 @@
         <span class="zone-label">Main</span> Main · <span>Set up a pet → ★ Add photo</span> → back to form → back to section
       </div>
 
-      <header class="m-header">
-        <a href="Set-up-a-pet.html" style="text-decoration:none;"><button class="back" aria-label="Cancel and go back">←</button></a>
-        <h1>Add a photo</h1>
+      <header class="pp-appbar">
+        <a href="Set-up-a-pet.html" style="text-decoration:none;"><button class="pp-appbar__back" aria-label="Cancel and go back">←</button></a>
+        <h1 class="pp-appbar__title">Add a photo</h1>
         <span></span>
       </header>
 
       <div class="m-main">
 
         <form aria-label="Add a photo">
-          <p style="padding:12px 16px;font-size:12px;color:var(--wf-muted);">A photo helps sitters and vets recognise your pet at a glance.</p>
+          <p class="pp-note">A photo helps sitters and vets recognise your pet at a glance.</p>
 
-          <div style="display:flex;justify-content:center;padding:8px 16px 20px;">
-            <div class="photo-preview" style="width:140px;height:140px;border-radius:50%;background:var(--wf-placeholder);display:flex;align-items:center;justify-content:center;font-size:11px;color:var(--wf-muted);text-align:center;">no photo yet</div>
+          <div class="pp-inset">
+            <div class="pp-photoslot pp-photoslot--lg">no photo yet</div>
           </div>
 
-          <div class="form-group">
-            <button type="button" class="btn-secondary" style="width:100%;display:flex;align-items:center;gap:12px;padding:14px 16px;" onclick="selectPhoto(this)">
-              <span style="width:32px;height:32px;border-radius:8px;background:var(--wf-placeholder);flex-shrink:0;"></span>
-              <span style="text-align:left;"><strong style="display:block;font-size:14px;">Take photo</strong><span style="font-size:12px;color:var(--wf-muted);">Use your camera</span></span>
+          <div class="pp-field pp-field--inset">
+            <button type="button" class="pp-card pp-card--row" onclick="selectPhoto(this)">
+              <span class="pp-row__tile"></span>
+              <span class="pp-row__body"><strong class="pp-choice__title">Take photo</strong><span class="pp-choice__desc">Use your camera</span></span>
             </button>
           </div>
-          <div class="form-group">
-            <button type="button" class="btn-secondary" style="width:100%;display:flex;align-items:center;gap:12px;padding:14px 16px;" onclick="selectPhoto(this)">
-              <span style="width:32px;height:32px;border-radius:8px;background:var(--wf-placeholder);flex-shrink:0;"></span>
-              <span style="text-align:left;"><strong style="display:block;font-size:14px;">Choose from library</strong><span style="font-size:12px;color:var(--wf-muted);">Pick an existing photo</span></span>
+          <div class="pp-field pp-field--inset">
+            <button type="button" class="pp-card pp-card--row" onclick="selectPhoto(this)">
+              <span class="pp-row__tile"></span>
+              <span class="pp-row__body"><strong class="pp-choice__title">Choose from library</strong><span class="pp-choice__desc">Pick an existing photo</span></span>
             </button>
           </div>
 
-          <div class="form-actions">
-            <a href="Set-up-a-pet.html"><button type="button" class="btn-secondary">Cancel</button></a>
-            <a href="Set-up-a-pet.html"><button type="button" class="btn-primary">Use photo</button></a>
+          <div class="pp-actions pp-actions--links">
+            <a href="Set-up-a-pet.html"><button type="button" class="pp-btn pp-btn--secondary">Cancel</button></a>
+            <a href="Set-up-a-pet.html"><button type="button" class="pp-btn">Use photo</button></a>
           </div>
         </form>
       </div>
