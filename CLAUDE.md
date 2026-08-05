@@ -12,6 +12,12 @@ Two files govern it, and product work must resolve to them:
 | [`concept/concept.md`](concept/concept.md) | The **why** — Designer's Taste, the five Attributes every decision is checked against, and the **Tokens** table tying each token to the Attribute it serves. |
 | [`concept/concept.html`](concept/concept.html) | The **what** — the live language board. Source of truth for component values (buttons, fields, cards, switcher, switch, chips, illustration tiles, tab bar). |
 
+**“We’re keeping this.”** When that is said about a visual change, it stops being a one-screen tweak and becomes part of the system. Three things follow, in order:
+
+1. **Update the kit.** A *value* goes in `:root` in [`ui/kit.css`](ui/kit.css); a *component* goes in the showcase [`ui/kit.html`](ui/kit.html) too. Never style a screen directly — no `<style>` block, no `style=""` except to supply content such as a photo.
+2. **Document the reason** in [`DESIGN.md`](DESIGN.md), so the next person reads *why*, not just *what*.
+3. **Propagate the markup.** A value change in `kit.css` reaches all 123 screens on its own. A **markup** change does not — it must be applied to every screen carrying that component. Fixing one screen and stopping is what creates the drift this kit exists to remove.
+
 **Standing rules:** every value on a screen resolves to a token in concept.md — a value that can't is an invention and gets removed. Tap targets ≥ 44×44. Every form control carries a programmatic label. Solar icons only. No grey placeholder fills — a missing image is the signal-tint illustration tile with one content-matched glyph. Product copy follows [`research/voice.md`](research/voice.md), whose Glossary is binding (it's **pet card**, never "dossier" or "profile").
 
 ## Problem
